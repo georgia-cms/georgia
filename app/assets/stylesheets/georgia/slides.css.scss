@@ -1,0 +1,18 @@
+#slideshow {
+	#slides_tabs {
+		.slide {
+			position: relative;
+
+			> a.remove_icon, > a.edit_icon {
+				position: absolute;
+				right: 10px;
+				bottom: 4px;
+				color: #FFF;
+				&:hover {background: none;}
+			}
+			 > a.edit_icon {right: 30px;}
+			&.active > a.remove_icon {background: none;}
+			&.active > a.edit_icon {background: none;}
+		}
+	}
+}

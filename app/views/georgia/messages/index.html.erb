@@ -1,0 +1,28 @@
+<h1 class="page-header">
+  Messages
+</h1>
+
+<%= paginate @messages %>
+
+<table class="table table-hover">
+  <thead>
+    <th><%= sortable 'last_name', 'Name' %></th>
+    <th><%= sortable 'email', 'Email' %></th>
+    <th>Message</th>
+    <th><%= sortable 'created_at', 'Sent' %></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% if @messages and @messages.any? %>
+      <%= render @messages %>
+    <% else %>
+      <tr>
+        <td colspan="6">
+          There are currently no messages.
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @messages %>

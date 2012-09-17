@@ -1,0 +1,25 @@
+<%= simple_form_for(@user, url: user_path(@user), html: { class: 'form-horizontal' }) do |f| %>
+
+  <fieldset>
+    <legend>Settings</legend>
+    
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :password, hint: "(leave blank if you don't want to change it)" %>
+    <%= f.input :password_confirmation, label: 'Confirm' %>
+
+    <%= f.association :roles, as: :check_boxes %>
+
+    <div class="form-actions">
+      <%= f.submit 'Update', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, class: 'btn' %>
+
+      <div class="pull-right">
+        <%= link_to_delete @user %>
+      </div>
+    </div>
+
+  </fieldset>
+
+<% end %>

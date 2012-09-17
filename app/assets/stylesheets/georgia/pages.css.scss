@@ -1,0 +1,30 @@
+ul#subpages li {cursor: move;}
+ul#slides li {cursor: move;}
+
+.template {
+  width: 100px;
+  min-height: 100px;
+  border: 1px solid #CCC;
+  float: left;
+  margin: 5px 10px;
+  padding: 5px;
+  cursor: pointer;
+
+  header, footer, aside, #sidebar {
+    background-color: #CCC;
+  }
+  header {
+    font-variant: small-caps;
+    text-align: center;
+  }
+  #main, #sidebar {
+    height: 50px;
+    margin: 5px 0;
+  }
+  &.active {
+    margin: 4px 9px;
+    border: 2px solid $blue;
+  }
+}
+.nav-list > li.active > a > [class^="icon-"] {background-image: none;}
+

@@ -1,0 +1,12 @@
+<div class='row-fluid'>
+	<div class='span6'>
+		<legend>Page Versions</legend>
+		<%= render Georgia::VersionDecorator.decorate(@page.versions.reverse) %>
+	</div>
+	<div class='span6'>
+		<% I18n.available_locales.each do |locale| %>
+		<legend><%= locale_name(locale) %> Versions</legend>
+		<%= render Georgia::VersionDecorator.decorate(@page.contents.find_by_locale(locale).versions.reverse) %>
+		<% end -%>
+	</div>
+</div>

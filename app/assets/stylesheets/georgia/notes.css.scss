@@ -1,0 +1,31 @@
+.note {
+   position:relative;
+   width: 70px;
+   height: 100px;
+   padding:1em 1.5em;
+   margin: 1em 0.5em 1em 0;
+   color:#fff;
+   background: $blue;
+   overflow:hidden;
+}
+
+.note:before {
+   content:"";
+   position:absolute;
+   top:0;
+   right:0;
+   border-width:0 16px 16px 0;
+   border-style:solid;
+   border-color:#fff #fff $light_blue $light_blue;
+   background: $light_blue;
+   @include box-shadow(0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2));
+   display:block; width:0; /* Firefox 3.0 damage limitation */
+}
+
+.note.rounded {@include border-radius(5px 0 5px 5px);}
+
+.note.rounded:before {
+   border-width:8px;
+   border-color: #fff #fff transparent transparent;
+   @include border-radius(0 0 0 5px);
+}

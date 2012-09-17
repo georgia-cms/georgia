@@ -1,0 +1,11 @@
+<% if model and model.errors.any? %>
+  <div class="alert alert-error">
+    <a class="close" data-dismiss='alert'>×</a>
+    <h4 class="alert-heading"><%= pluralize(model.errors.count, "error") %> prohibited this client from being saved:</h4>
+    <ul>
+      <% model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

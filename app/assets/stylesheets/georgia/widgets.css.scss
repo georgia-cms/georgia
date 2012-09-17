@@ -1,0 +1,59 @@
+#widgets {
+	.ui-draggable {
+		cursor: move;
+	}
+
+	#widgets_list {
+		margin: 0;
+	}
+
+	.widget {
+		float: left;
+		position:relative;
+		width: 70px;
+		height: 100px;
+		padding:1em 1.5em;
+		margin: 1em 0.5em 1em 0;
+		color:#fff;
+		background: $blue;
+		overflow:hidden;
+		@include border-radius(5px);
+		@include box-shadow(0 4px 3px 0 #666);
+		&.widget-custom {background: $red;}
+	}
+
+	.ui_association_list {
+		min-height: 150px;
+		padding: 4px 8px;
+		@include border-radius(4px);
+		background-color: $light_grey;
+		@include linear-gradient($grey, $light_grey);
+
+		.ui_association {
+			padding: 0.5em 0.75em;
+			height: 40px;
+			margin: 0 0 5px;
+			padding: 0.5em 0.75em;
+			width: 90%;
+			position: relative;
+			color: #FFF;
+			background-color: $green;
+			@include border-radius(4px);
+			@include box-shadow(0 4px 3px 0 #666);
+			&.widget-custom {background-color: $red;}
+		}
+
+		&.ui-state-hover {
+			background-color: $light_yellow;
+			@include linear-gradient($yellow, $light_yellow);
+		}
+	}
+
+	a.remove_icon, a.edit_icon {
+		position: absolute;
+		right: 10px;
+		bottom: 4px;
+		color: #FFF;
+	}
+	a.edit_icon {right: 30px;}
+}

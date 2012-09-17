@@ -1,0 +1,17 @@
+<tr class="page<%#= ' pending-review' unless page.version %><%= ' disabled' unless page.published? %>">
+	<td>
+		<%= page.title %>
+	</td>
+	<td>
+		<%= page.text %>
+	</td>
+	<td>
+		<%= page.url %>
+	</td>
+	<td class="labels">
+		<%= page.seo_completion_tag %>
+	</td>
+	<td class="actions">
+		<%= link_to_group_edit page, publish: true, review: true %>
+	</td>
+</tr>
