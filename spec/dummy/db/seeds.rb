@@ -1,7 +1,6 @@
-Georgia::Role.destroy_all
-Georgia::Role.create(name: 'Admin')
 
-Georgia::User.destroy_all
-mathieu = Georgia::User.create(email: 'mathieu@motioneleven.com', password: 'motion11', password_confirmation: 'motion11')
-mathieu.roles << Georgia::Role.find_by_name('Admin')
-mathieu.save!
+# Create an admin user to start playing around
+Georgia::User.create(first_name: 'Mathieu', last_name: 'Gagné', email: 'mathieu@motioneleven.com', password: 'motion11', password_confirmation: 'motion11') do |user|
+  user.roles << Georgia::Role.create(name: 'Admin')
+  user.roles << Georgia::Role.create(name: 'Editor')
+end
