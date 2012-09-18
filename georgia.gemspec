@@ -1,6 +1,5 @@
 $:.push File.expand_path("../lib", __FILE__)
 
-# Maintain your gem's version:
 require "georgia/version"
 
 Gem::Specification.new do |s|
@@ -9,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Mathieu Gagné"]
   s.email       = ["mathieu@motioneleven.com"]
   s.homepage    = "http://www.motioneleven.com/"
-  s.summary     = "Backend System for Motion Eleven's websites"
+  s.summary     = "Motion Eleven's CMS Engine"
   s.description = "This is simply the best CMS in town. User authentication, widgets, slideshows, easy UI with drag and drop, publishing system, versioning, etc."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
