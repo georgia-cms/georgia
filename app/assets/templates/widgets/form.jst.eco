@@ -1,0 +1,9 @@
+<% if @widget.isNew(): %>
+	<legend>Add a Widget</legend>
+<% else: %>
+	<legend>Update Widget</legend>
+<% end %>
+<div id='contents_panel'></div>
+<div class='form-actions'>
+	<a id='submit' href='#' class='btn'>Save</a>
+</div>

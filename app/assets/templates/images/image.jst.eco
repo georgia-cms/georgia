@@ -1,0 +1,3 @@
+<a href="<%= @image.get('url') %>" class="thumbnail">
+	<img src="<%= @image.get('thumb_url') %>" />
+</a>

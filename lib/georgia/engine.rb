@@ -17,5 +17,7 @@ module Georgia
 		require 'ckeditor'
 		require 'carrierwave'
 		require 'draper'
+		require 'backbone-on-rails'
+		require 'henry'
 	end
 end

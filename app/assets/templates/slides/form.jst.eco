@@ -1,0 +1,9 @@
+<% if @slide.isNew(): %>
+	<legend>Add a Slide</legend>
+<% else: %>
+	<legend>Update Slide</legend>
+<% end %>
+<div id='contents_panel'></div>
+<div class='form-actions'>
+	<a id='submit' href='#' class='btn'>Save</a>
+</div>

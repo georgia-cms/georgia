@@ -1,0 +1,3 @@
+<legend><%= @ui_section.get('title') %></legend>
+<div class='ui_association_list'>
+</div>

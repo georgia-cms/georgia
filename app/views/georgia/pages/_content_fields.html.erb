@@ -1,24 +1,26 @@
 <div class="tab-pane" id="<%= f.object.locale %>">
-	<div class='form-inputs'>
-		<div class="row-fluid">
+	<fieldset class='max-length'>
+		<div class='form-inputs'>
+			<div class="row-fluid">
 
-			<div class="span8">
-				<fieldset class="max-length">
-					<%= f.input :title %>
-					<%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
-					<%= f.input :excerpt, as: :text, input_html: {rows: 3} %>
-				</fieldset>
+				<div class="span8">
+					<fieldset class="max-length">
+						<%= f.input :title %>
+						<%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
+						<%= f.input :excerpt, as: :text, input_html: {rows: 3} %>
+					</fieldset>
 
-			</div>
+				</div>
 
-			<div class="span4">
+				<div class="span4">
 
-				<fieldset class="max-length">
-					<%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma separated list of keywords to help search engines' %>
-					<%= f.hidden_field :locale %>
-				</fieldset>
+					<fieldset class="max-length">
+						<%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma separated list of keywords to help search engines' %>
+						<%= f.hidden_field :locale %>
+					</fieldset>
 
+				</div>
 			</div>
 		</div>
-	</div>
+	</fieldset>
 </div>

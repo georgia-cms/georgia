@@ -1,0 +1,5 @@
+<a href="#slide_<%= @slide.get('id') %>_fields" data-toggle="tab">
+	<img alt="" src="<%= @slide.get('image') %>">
+</a>
+<a href='#' class='edit_icon'><i class='icon-edit icon-white'></i></a>
+<a href='#' class='remove_icon'><i class='icon-trash icon-white'></i></a>

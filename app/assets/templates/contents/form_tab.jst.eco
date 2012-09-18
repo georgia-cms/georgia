@@ -1,0 +1,3 @@
+<a href="#content_<%= @content.cid %>" data-toggle="tab">
+	<%= @content.localeName(@content.get('locale')) %>
+</a>

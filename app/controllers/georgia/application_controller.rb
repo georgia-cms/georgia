@@ -2,7 +2,7 @@ module Georgia
 	class ApplicationController < ActionController::Base
 
 		# Required otherwise get the error 'uninitialized Ability'
-		require 'devise'
+		# require 'devise'
 
 		helper 'georgia/ui'
 		helper 'georgia/internationalization'

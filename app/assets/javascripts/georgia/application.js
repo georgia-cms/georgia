@@ -15,4 +15,15 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require ckeditor/init
+//= require .//ckeditor_config
+//= require .//jquery.lightbox-0.5
+//= require underscore
+//= require backbone
+//= require .//backbone-relational
+//= require .//georgia
+//= require_tree ./../../templates/
+//= require_tree .//models
+//= require_tree .//collections
+//= require_tree .//views
+//= require_tree .//routers
 //= require_tree .

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917155748) do
+ActiveRecord::Schema.define(:version => 20120918145523) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -84,7 +84,26 @@ ActiveRecord::Schema.define(:version => 20120917155748) do
 
   add_index "georgia_slides", ["page_id"], :name => "index_georgia_slides_on_page_id"
 
+  create_table "georgia_ui_associations", :force => true do |t|
+    t.integer  "page_id",       :null => false
+    t.integer  "widget_id",     :null => false
+    t.integer  "ui_section_id", :null => false
+    t.integer  "position"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "georgia_ui_associations", ["page_id"], :name => "index_georgia_ui_associations_on_page_id"
+  add_index "georgia_ui_associations", ["ui_section_id"], :name => "index_georgia_ui_associations_on_ui_section_id"
+  add_index "georgia_ui_associations", ["widget_id"], :name => "index_georgia_ui_associations_on_widget_id"
+
+  create_table "georgia_ui_sections", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "georgia_users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -95,14 +114,18 @@ ActiveRecord::Schema.define(:version => 20120917155748) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name"
-    t.string   "last_name"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
 
   add_index "georgia_users", ["email"], :name => "index_georgia_users_on_email", :unique => true
   add_index "georgia_users", ["reset_password_token"], :name => "index_georgia_users_on_reset_password_token", :unique => true
+
+  create_table "georgia_widgets", :force => true do |t|
+    t.integer  "position"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id", :null => false

@@ -8,7 +8,7 @@ module Georgia
 
 		belongs_to :contentable, polymorphic: true
 		
-		# belongs_to :image, class_name: Ckeditor::Picture
+		belongs_to :image, class_name: Ckeditor::Picture
 		
 	end
 end
