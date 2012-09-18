@@ -1,10 +1,13 @@
 module Georgia
 	class ApplicationController < ActionController::Base
 
-		# require 'devise'
+		# Required otherwise get the error 'uninitialized Ability'
+		require 'devise'
+
 		helper 'georgia/ui'
 		helper 'georgia/internationalization'
 		helper 'georgia/form_actions'
+		helper 'georgia/routes'
 
 		protect_from_forgery
 		

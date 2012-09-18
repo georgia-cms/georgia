@@ -1,5 +1,7 @@
 Georgia::Engine.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
 	devise_for :users, 
 		class_name: "Georgia::User",
 		path: '/',
@@ -39,6 +41,7 @@ Georgia::Engine.routes.draw do
 		end
 	end
 	
+	resources :media, path: :media
 	get '/', :to => 'messages#new'
 	root to: 'messages#new'
 

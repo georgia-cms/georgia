@@ -32,6 +32,12 @@
 						</li>
 						<% end -%>
 
+						<% if can? :manage, Ckeditor::Asset %>
+						<li class="dropdown<%= ' active' if controller_name == 'media' %>">
+							<%= link_to "Media", media_index_url %>
+						</li>
+						<% end -%>
+
 					</ul>
 					<% end %>
 					<ul class="nav pull-right">

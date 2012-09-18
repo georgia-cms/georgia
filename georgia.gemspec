@@ -21,13 +21,13 @@ Gem::Specification.new do |s|
   s.add_dependency "simple_form"
   s.add_dependency "draper"
   s.add_dependency "kaminari"
-  s.add_dependency "carrierwave"
-  s.add_dependency "mini_magick"
   s.add_dependency "fog"
   s.add_dependency "acts_as_list"
   s.add_dependency "paper_trail", '~> 2'
   s.add_dependency "differ"
-  s.add_dependency "ckeditor", '3.7.1'
+  s.add_dependency "ckeditor"
+  s.add_dependency "carrierwave"
+  s.add_dependency "mini_magick"
   s.add_dependency 'twitter-bootstrap-rails'
   s.add_dependency "bourbon"
   s.add_dependency 'sass-rails',   '~> 3.2.3'

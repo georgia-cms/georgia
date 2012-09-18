@@ -6,7 +6,7 @@ PATH
       bourbon
       cancan
       carrierwave
-      ckeditor (= 3.7.1)
+      ckeditor
       coffee-rails (~> 3.2.1)
       devise
       differ
@@ -86,7 +86,7 @@ GEM
       activesupport (>= 3.2.0)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
-    ckeditor (3.7.1)
+    ckeditor (3.7.2)
       mime-types
       orm_adapter
     coffee-rails (3.2.2)
