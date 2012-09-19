@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919105807) do
+ActiveRecord::Schema.define(:version => 20120919173149) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(:version => 20120919105807) do
   end
 
   add_index "georgia_slides", ["page_id"], :name => "index_georgia_slides_on_page_id"
+
+  create_table "georgia_statuses", :force => true do |t|
+    t.string  "name"
+    t.string  "label"
+    t.string  "icon"
+    t.integer "statusable_id"
+    t.string  "statusable_type"
+  end
+
+  add_index "georgia_statuses", ["statusable_type", "statusable_id"], :name => "index_georgia_statuses_on_statusable_type_and_statusable_id"
 
   create_table "georgia_ui_associations", :force => true do |t|
     t.integer  "page_id",       :null => false

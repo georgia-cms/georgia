@@ -26,6 +26,8 @@ module Georgia
 
 		has_many :menu_items, dependent: :destroy
 
+		has_one :status, as: :statusable
+
 		has_many :slides, dependent: :destroy
 		accepts_nested_attributes_for :slides
 		attr_accessible :slides_attributes
@@ -45,15 +47,22 @@ module Georgia
 			published_at.present?
 		end
 
+		def wait_for_review
+			self.status = Georgia::Status.pending_review.first
+			self
+		end
+
 		def publish(user)
 			self.published_at = Time.now
 			self.published_by = user
+    	self.status = Georgia::Status.published.first
 			self
 		end
 
 		def unpublish
 			self.published_at = nil
 			self.published_by = nil
+    	self.status = Georgia::Status.draft.first
 			self
 		end
 
@@ -71,6 +80,10 @@ module Georgia
       Menu.select(:id).each do |menu|
         MenuItem.find_or_create_by_page_id_and_menu_id(self.id, menu.id)
       end
+    end
+
+    before_save do
+    	self.status ||= Status.draft.first
     end
 
 	end

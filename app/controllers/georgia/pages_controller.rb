@@ -84,7 +84,9 @@ module Georgia
 
     def ask_for_review
       @page = PageDecorator.decorate(Page.find(params[:id]))
-      if Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
+      @page.wait_for_review
+      if @page.save
+        # Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
         respond_to do |format|
           format.html {redirect_to :back, notice: "You have succesfully asked for a review."}
           format.js { render layout: false }

@@ -19,10 +19,5 @@ module Georgia
     require 'backbone-on-rails'
     # require 'paper_trail'
     require 'henry'
-
-    config.after_initialize do
-      config.active_record.observers = Georgia::MenuObserver
-      _ = ActiveRecord::Base if config.active_record.observers
-    end
   end
 end

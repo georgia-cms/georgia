@@ -1,10 +1,10 @@
 module Georgia
-	class Menu < ActiveRecord::Base
+  class Menu < ActiveRecord::Base
 
-		attr_accessible :name
+    attr_accessible :name
 
-		has_many :menu_items, dependent: :destroy
-		has_many :pages, through: :menu_items
+    has_many :menu_items, dependent: :destroy
+    has_many :pages, through: :menu_items
 
     # Stays inside model and not exported to observers folder because
     # for some reason the config.active_record.observers is loaded before the observer is first initialized
@@ -14,5 +14,5 @@ module Georgia
       end
     end
 
-	end
+  end
 end
