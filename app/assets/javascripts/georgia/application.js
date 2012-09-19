@@ -15,8 +15,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require ckeditor/init
-//= require .//ckeditor_config
-//= require .//jquery.lightbox-0.5
 //= require underscore
 //= require backbone
 //= require .//backbone-relational

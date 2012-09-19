@@ -26,11 +26,8 @@ Georgia::Engine.routes.draw do
 	end
 
 	resources :users
-	resources :employees
-	resources :employee_directors, controller: :employees
-	resources :employee_managers, controller: :employees
 	resources :messages
-	resources :navigation_menus
+	resources :menus
 	resources :menu_items do
 		collection do
 			post :add

@@ -1,0 +1,10 @@
+<h1 class="page-header">New Menu</h1>
+
+<%= simple_form_for :menu, url: menus_url do |f| %>
+<div class="form-inputs">
+  <%= f.input :name %>
+</div>
+<div class="form-actions">
+  <%= f.submit nil, class: 'btn' %>
+</div>
+<% end -%>

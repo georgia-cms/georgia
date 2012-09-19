@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918145523) do
+ActiveRecord::Schema.define(:version => 20120919105807) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -45,6 +45,21 @@ ActiveRecord::Schema.define(:version => 20120918145523) do
   add_index "georgia_contents", ["contentable_type", "contentable_id"], :name => "index_georgia_contents_on_contentable_type_and_contentable_id"
   add_index "georgia_contents", ["image_id"], :name => "index_georgia_contents_on_image_id"
   add_index "georgia_contents", ["locale"], :name => "index_georgia_contents_on_locale"
+
+  create_table "georgia_menu_items", :force => true do |t|
+    t.integer "menu_id"
+    t.integer "page_id"
+    t.integer "position"
+    t.boolean "active",   :default => false
+  end
+
+  add_index "georgia_menu_items", ["menu_id", "page_id"], :name => "index_georgia_menu_items_on_menu_id_and_page_id"
+
+  create_table "georgia_menus", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "georgia_messages", :force => true do |t|
     t.string   "name"

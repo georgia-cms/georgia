@@ -139,6 +139,20 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     add_index :georgia_ui_associations, :widget_id
     add_index :georgia_ui_associations, :ui_section_id
 
+    # Create Navigation Menus
+    create_table :georgia_menus do |t|
+      t.string :name
+      t.timestamps
+    end
+    # Create Navigation Menus Items
+    create_table :georgia_menu_items do |t|
+      t.integer :menu_id
+      t.integer :page_id
+      t.integer :position
+      t.boolean :active, default: false
+    end
+    add_index :georgia_menu_items, [:menu_id, :page_id]
+
   end
 
   def down
@@ -153,6 +167,8 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     drop_table :georgia_ui_sections
     drop_table :georgia_widgets
     drop_table :georgia_ui_associations
+    drop_table :georgia_menus
+    drop_table :georgia_menu_items
     remove_index :roles_users, [:user_id, :role_id]
     remove_index :georgia_pages, :parent_id
     remove_index :georgia_pages, :published_by_id
@@ -167,5 +183,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     remove_index :georgia_ui_associations, :page_id
     remove_index :georgia_ui_associations, :widget_id
     remove_index :georgia_ui_associations, :ui_section_id
+    remove_index :georgia_menu_items, [:menu_id, :page_id]
   end
 end

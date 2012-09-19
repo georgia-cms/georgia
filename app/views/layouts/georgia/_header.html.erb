@@ -32,6 +32,12 @@
 						</li>
 						<% end -%>
 
+						<% if can? :manage, Georgia::Menu %>
+						<li class="dropdown<%= ' active' if controller_name == 'navigation_menus' %>">
+							<%= link_to "Menus", menus_url %>
+						</li>
+						<% end -%>
+
 						<% if can? :manage, Ckeditor::Asset %>
 						<li class="dropdown<%= ' active' if controller_name == 'media' %>">
 							<%= link_to "Media", media_index_url %>

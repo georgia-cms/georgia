@@ -1,0 +1,28 @@
+<h1 class="page-header">Navigation Menus</h1>
+
+<table class="table">
+  <thead>
+  <th>Name</th>
+  <th></th>
+  </thead>
+  <tbody>
+    <% if @menus and @menus.any? %>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.name %></td>
+        <td class='actions'><%= link_to_group_edit menu %></td>
+      </tr>
+    <% end -%>
+    <% else %>
+    <tr>
+      <td colspan="6">
+        There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @menus %>
+
+<%= link_to 'Add Menu', new_menu_url, class: 'btn' %>
