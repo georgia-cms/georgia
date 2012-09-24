@@ -5,7 +5,7 @@ module Georgia
 		end
 
 		def resource
-			@resource ||= User.new
+			@resource ||= Georgia::User.new
 		end
 
 		def devise_mapping

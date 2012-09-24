@@ -1,7 +1,7 @@
 module Georgia
   class WidgetDecorator < ApplicationDecorator
-    decorates :widget
-    decorates_association :versions
+    decorates :widget, class: Georgia::Widget
+    # decorates_association :versions
 
     def title
       h.content_tag(:strong, content.title) if content and content.title

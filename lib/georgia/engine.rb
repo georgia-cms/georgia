@@ -17,7 +17,12 @@ module Georgia
     require 'carrierwave'
     require 'draper'
     require 'backbone-on-rails'
-    # require 'paper_trail'
     require 'henry'
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.integration_tool :rspec
+    end
+    config.cache_classes = !(ENV['DRB'] == 'true')
   end
 end
