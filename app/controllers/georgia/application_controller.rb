@@ -4,6 +4,7 @@ module Georgia
     # Required otherwise get the error 'uninitialized Ability'
     # require 'devise'
 
+    layout 'georgia/application'
     helper 'georgia/ui'
     helper 'georgia/internationalization'
     helper 'georgia/form_actions'
