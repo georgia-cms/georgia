@@ -1,5 +1,6 @@
 module Georgia
   module FormActionsHelper
+    
     def sortable(column, title = nil)
       title ||= column.titleize
       css_class = column == sort_column ? "current #{sort_direction}" : nil

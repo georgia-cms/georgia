@@ -45,8 +45,6 @@ module Georgia
       end
     end
 
-    protected
-
     def content
       @content ||= model.contents.find_by_locale(I18n.locale) || Content.new
     end
