@@ -19,6 +19,15 @@ module Georgia
     require 'backbone-on-rails'
     require 'henry'
 
+    initializer 'georgia.action_controller' do |app|
+      ActiveSupport.on_load :action_controller do
+        helper Georgia::FormActionsHelper
+        helper Georgia::InternationalizationHelper
+        helper Georgia::RoutesHelper
+        helper Georgia::UiHelper
+      end
+    end
+
     config.generators do |g|
       g.test_framework :rspec
       g.integration_tool :rspec

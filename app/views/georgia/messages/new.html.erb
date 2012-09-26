@@ -11,10 +11,8 @@
         <%= link_to 'Learn more', 'http://www.georgiaonrails.com/help', class: 'btn btn-primary btn-large' %>
       </p>
     </div>
-
   </div>
   <div class="span6">
-
     <div class="well">
       <%= simple_form_for :message, html: {class: 'form-horizontal'} do |f| %>
       <fieldset class="max-length">
@@ -27,12 +25,12 @@
           <%= f.input :message, as: :text, input_html: {rows: 5} %>
         </div>
 
-        </fieldset>
+      </fieldset>
 
-        <div class="form-actions">
-          <%= f.submit 'Send', class: 'btn btn-primary' %>
-        </div>
-        <% end %>
+      <div class="form-actions">
+        <%= f.submit 'Send', class: 'btn btn-primary' %>
       </div>
+      <% end %>
     </div>
   </div>
+</div>
