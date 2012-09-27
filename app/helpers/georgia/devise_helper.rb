@@ -1,5 +1,5 @@
 module Georgia
-	module ApplicationHelper
+	module DeviseHelper
 		def resource_name
 			:georgia_admin
 		end

@@ -8,11 +8,11 @@ Georgia::Engine.routes.draw do
 		module: :devise,
 		path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'},
 		controllers: {sessions: "georgia/admins/sessions", registrations: "georgia/admins/registrations"}
-	devise_scope :user do
-		get '/logout', to: 'admins/sessions#destroy'
+	devise_scope :admin do
+		get '/logout', to: 'georgia/admins/sessions#destroy'
 	end
 
-	post "versions/:id/revert" => "versions#revert", :as => :revert_version
+	# post "versions/:id/revert" => "versions#revert", :as => :revert_version
 	resources :pages do
 		collection do
 			post :sort
@@ -24,8 +24,8 @@ Georgia::Engine.routes.draw do
 			match :unpublish
 		end
 	end
-
-	resources :users
+	resources :media, path: :media
+	resources :admins
 	resources :messages
 	resources :menus
 	resources :menu_items do
@@ -38,8 +38,6 @@ Georgia::Engine.routes.draw do
 		end
 	end
 	
-	resources :media, path: :media
-	get '/', :to => 'messages#new'
 	root to: 'messages#new'
 
 end

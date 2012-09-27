@@ -21,6 +21,7 @@ module Georgia
 
     initializer 'georgia.action_controller' do |app|
       ActiveSupport.on_load :action_controller do
+        helper Georgia::DeviseHelper
         helper Georgia::FormActionsHelper
         helper Georgia::InternationalizationHelper
         helper Georgia::RoutesHelper

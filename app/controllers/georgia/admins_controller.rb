@@ -1,6 +1,8 @@
 module Georgia
   class AdminsController < ApplicationController
 
+    load_and_authorize_resource class: 'Georgia::Admin'
+
     def index
       @admins = AdminDecorator.decorate(Admin.order(:created_at).page(params[:page]))
     end

@@ -6,11 +6,11 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.timestamps
     end
     # Create RolesAdmins Association Table
-    create_table :roles_admins, id: false do |t|
+    create_table :admins_roles, id: false do |t|
       t.references :role, null: false
       t.references :admin, null: false
     end
-    add_index :roles_admins, [:admin_id, :role_id]
+    add_index :admins_roles, [:admin_id, :role_id]
 
     # Create Messages
     create_table :georgia_messages do |t|
@@ -168,7 +168,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
   def down
     drop_table :georgia_roles
-    drop_table :roles_admins
+    drop_table :admins_roles
     drop_table :georgia_messages
     drop_table :georgia_pages
     drop_table :georgia_contents
@@ -181,7 +181,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     drop_table :georgia_menus
     drop_table :georgia_menu_items
     drop_table :georgia_statuses
-    remove_index :roles_admins, [:admin_id, :role_id]
+    remove_index :admins_roles, [:admin_id, :role_id]
     remove_index :georgia_pages, :parent_id
     remove_index :georgia_pages, :published_by_id
     remove_index :georgia_contents, [:contentable_type, :contentable_id]
