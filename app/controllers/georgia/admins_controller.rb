@@ -1,18 +1,18 @@
 module Georgia
   class AdminsController < ApplicationController
 
-    load_and_authorize_resource class: 'Georgia::Admin'
+    load_and_authorize_resource class: Georgia::Admin
 
     def index
       @admins = AdminDecorator.decorate(Admin.order(:created_at).page(params[:page]))
     end
 
-    def new
-      @admin = Admin.new
-    end
-
     def show
       redirect_to edit_admin_path(params[:id])
+    end
+
+    def new
+      @admin = Admin.new
     end
 
     def edit
