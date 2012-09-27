@@ -9,7 +9,7 @@ Georgia::Engine.routes.draw do
 		path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'},
 		controllers: {sessions: "georgia/admins/sessions", registrations: "georgia/admins/registrations"}
 	devise_scope :admin do
-		get '/logout', to: 'georgia/admins/sessions#destroy'
+		get '/logout', to: 'admins/sessions#destroy'
 	end
 
 	# post "versions/:id/revert" => "versions#revert", :as => :revert_version

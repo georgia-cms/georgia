@@ -2,10 +2,10 @@ module Georgia
 	class Ability
 		include CanCan::Ability
 
-		def initialize(user)
-			user ||= Georgia::Admin.new
+		def initialize(admin)
+			admin ||= Georgia::Admin.new
 
-			user.roles.each do |role|
+			admin.roles.each do |role|
 				if role.name == 'Admin'
 					can :manage, :all
 				end

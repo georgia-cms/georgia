@@ -25,7 +25,7 @@ module Georgia
       if @admin.save
         redirect_to admins_url, notice: "Admin was successfully created."
       else
-        render action: 'new'
+        render 'new'
       end
     end
 
@@ -36,7 +36,7 @@ module Georgia
       if @admin.update_attributes(params[:admin])
         redirect_to admins_url, notice: "Admin was successfully updated."
       else
-        render action: 'edit'
+        render 'edit'
       end
     end
 

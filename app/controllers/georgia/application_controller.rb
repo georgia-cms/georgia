@@ -19,7 +19,7 @@ module Georgia
     end
 
     def current_ability
-      @current_ability ||= Georgia::Ability.new(current_admin)
+      @current_ability = Georgia::Ability.new(current_admin)
     end
     
   end
