@@ -21,7 +21,7 @@ module Georgia
 
 		def create
 			@message = Message.new(params[:message])
-			@message.created_by_id = current_user.id
+			@message.created_by_id = current_admin.id
 
 			if @message.save
 				redirect_to [:new, @message], notice: 'Message was successfully sent.'

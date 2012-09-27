@@ -1,5 +1,5 @@
 <h1 class="page-header">
-  Users
+  Admins
 </h1>
 
 <table class="table table-hover">
@@ -9,18 +9,18 @@
   <th>Roles</th>
   </thead>
   <tbody>
-    <% if @users and @users.any? %>
-      <%= render @users %>
+    <% if @admins and @admins.any? %>
+      <%= render @admins %>
     <% else %>
     <tr>
       <td colspan="6">
-        There are currently no users.
+        There are currently no admins.
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= paginate @users %>
+<%= paginate @admins %>
 
-<%= link_to "Add User", new_user_path, class: 'btn' %>
+<%= link_to "Add Admin", new_admin_path, class: 'btn' %>

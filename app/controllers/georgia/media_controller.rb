@@ -1,7 +1,7 @@
 module Georgia
   class MediaController < ApplicationController
     
-    load_and_authorize_resource :class => "Ckeditor::Asset" 
+    load_and_authorize_resource class: "Ckeditor::Asset" 
 
     def index
       @assets = Ckeditor::Asset.all

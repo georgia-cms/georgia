@@ -15,7 +15,7 @@ module Georgia
     validates :template, inclusion: {in: TEMPLATES, message: "%{value} is not a valid template" }
     validates :slug, uniqueness: {scope: :parent_id}
 
-    belongs_to :published_by, class_name: User
+    belongs_to :published_by, class_name: Admin
 
     has_many :contents, as: :contentable, dependent: :destroy
     accepts_nested_attributes_for :contents

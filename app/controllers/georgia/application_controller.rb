@@ -12,14 +12,14 @@ module Georgia
 
     protect_from_forgery
     
-    before_filter :authenticate_user!, except: :login
+    before_filter :authenticate_admin!, except: :login
     
     def login
-      render 'users/sessions/new'
+      render 'admins/sessions/new'
     end
 
     def current_ability
-      @current_ability ||= Georgia::Ability.new(current_user)
+      @current_ability ||= Georgia::Ability.new(current_admin)
     end
     
   end

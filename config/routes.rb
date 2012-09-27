@@ -2,14 +2,14 @@ Georgia::Engine.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-	devise_for :users, 
-		class_name: "Georgia::User",
+	devise_for :admins, 
+		class_name: "Georgia::Admin",
 		path: '/',
 		module: :devise,
 		path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'},
-		controllers: {sessions: "georgia/users/sessions", registrations: "georgia/users/registrations"}
+		controllers: {sessions: "georgia/admins/sessions", registrations: "georgia/admins/registrations"}
 	devise_scope :user do
-		get '/logout', to: 'users/sessions#destroy'
+		get '/logout', to: 'admins/sessions#destroy'
 	end
 
 	post "versions/:id/revert" => "versions#revert", :as => :revert_version

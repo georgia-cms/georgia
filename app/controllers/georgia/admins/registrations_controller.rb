@@ -1,5 +1,5 @@
 module Georgia
-	class Users::RegistrationsController < ::Devise::RegistrationsController
+	class Admins::RegistrationsController < ::Devise::RegistrationsController
 		
 		layout 'georgia/application'
 

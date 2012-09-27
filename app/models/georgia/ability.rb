@@ -3,7 +3,7 @@ module Georgia
 		include CanCan::Ability
 
 		def initialize(user)
-			user ||= Georgia::User.new
+			user ||= Georgia::Admin.new
 
 			user.roles.each do |role|
 				if role.name == 'Admin'
