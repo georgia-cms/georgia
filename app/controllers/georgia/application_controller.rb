@@ -1,9 +1,6 @@
 module Georgia
   class ApplicationController < ActionController::Base
 
-    # Required otherwise get the error 'uninitialized Ability'
-    # require 'devise'
-
     layout 'georgia/application'
     helper 'georgia/ui'
     helper 'georgia/internationalization'
@@ -19,7 +16,7 @@ module Georgia
     end
 
     def current_ability
-      @current_ability = Georgia::Ability.new(current_admin)
+      @current_ability ||= Ability.new(current_admin)
     end
     
   end
