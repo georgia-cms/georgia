@@ -19,5 +19,7 @@ module Georgia
       @current_ability ||= Ability.new(current_admin)
     end
 
+    alias_method :current_user, :current_admin
+
   end
 end
