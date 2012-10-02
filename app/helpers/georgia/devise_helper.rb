@@ -1,15 +1,15 @@
 module Georgia
 	module DeviseHelper
 		def resource_name
-			:georgia_admin
+			:georgia_user
 		end
 
 		def resource
-			@resource ||= Georgia::Admin.new
+			@resource ||= Georgia::User.new
 		end
 
 		def devise_mapping
-			@devise_mapping ||= Devise.mappings[:georgia_admin]
+			@devise_mapping ||= Devise.mappings[:georgia_user]
 		end
 	end
 end

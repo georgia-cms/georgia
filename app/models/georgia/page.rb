@@ -12,10 +12,10 @@ module Georgia
     attr_accessible :template, :slug, :position, :parent_id, :published_at, :published_by_id
 
     TEMPLATES = ['one-column', 'sidebar-left', 'sidebar-right', 'contact']
-    validates :template, inclusion: {in: TEMPLATES, message: "%{value} is not a valid template" }
+    # validates :template, inclusion: {in: TEMPLATES, message: "%{value} is not a valid template" }
     validates :slug, uniqueness: {scope: :parent_id}
 
-    belongs_to :published_by, class_name: Admin
+    belongs_to :published_by, class_name: Georgia::User
 
     has_many :contents, as: :contentable, dependent: :destroy
     accepts_nested_attributes_for :contents
@@ -26,7 +26,8 @@ module Georgia
 
     has_many :menu_items, dependent: :destroy
 
-    has_one :status, as: :statusable
+    belongs_to :status
+    delegate :published?, :draft?, :pending_review?, to: :status
 
     has_many :slides, dependent: :destroy
     accepts_nested_attributes_for :slides
@@ -37,13 +38,11 @@ module Georgia
     has_many :widgets, through: :ui_associations
 
     include PgSearch
-    pg_search_scope :text_search, against: [:title, :text], using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
+    pg_search_scope :text_search, against: [:title, :text, :excerpt, :keywords], using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
 
     def self.search query
       query.present? ? text_search(query) : scoped
     end
-
-    delegate :published?, :draft?, :pending_review?, to: :status
 
     def wait_for_review
       self.status = Georgia::Status.pending_review.first

@@ -78,7 +78,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
     add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
 
-    # Create Users
+    # Create Admins
     create_table :georgia_users do |t|
       t.string :first_name
       t.string :last_name
@@ -181,7 +181,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     drop_table :georgia_menus
     drop_table :georgia_menu_items
     drop_table :georgia_statuses
-    remove_index :roles_users, [:user_id, :role_id]
+    remove_index :admins_roles, [:admin_id, :role_id]
     remove_index :georgia_pages, :parent_id
     remove_index :georgia_pages, :published_by_id
     remove_index :georgia_contents, [:contentable_type, :contentable_id]

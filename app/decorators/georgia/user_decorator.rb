@@ -1,6 +1,6 @@
 module Georgia
-  class AdminDecorator < ApplicationDecorator
-    decorates :admin, class: Georgia::Admin
+  class UserDecorator < ApplicationDecorator
+    decorates :user, class: Georgia::User
 
     def name
       [first_name, last_name].join(' ')

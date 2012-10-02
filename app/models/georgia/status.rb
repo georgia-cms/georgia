@@ -7,9 +7,9 @@ module Georgia
 
     attr_accessible :name, :label, :icon
 
-    belongs_to :statusable, polymorphic: true
-
     validates :name, presence: true
+
+    has_many :pages
 
     scope :published, where(name: PUBLISHED)
     scope :draft, where(name: DRAFT)

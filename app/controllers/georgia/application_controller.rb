@@ -9,17 +9,15 @@ module Georgia
 
     protect_from_forgery
     
-    before_filter :authenticate_admin!, except: :login
+    before_filter :authenticate_user!, except: :login
     
     def login
-      render 'admins/sessions/new'
+      render 'users/sessions/new'
     end
 
     def current_ability
-      @current_ability ||= Ability.new(current_admin)
+      @current_ability ||= Ability.new(current_user)
     end
-
-    alias_method :current_user, :current_admin
 
   end
 end

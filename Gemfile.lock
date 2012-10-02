@@ -1,13 +1,7 @@
 PATH
-  remote: ../henry
-  specs:
-    henry (0.0.2)
-      jbuilder
-
-PATH
   remote: .
   specs:
-    georgia (0.0.12)
+    georgia (0.0.15)
       acts_as_list
       backbone-on-rails
       bourbon
@@ -29,6 +23,12 @@ PATH
       sass-rails (~> 3.2.3)
       simple_form
       twitter-bootstrap-rails
+
+PATH
+  remote: ../henry
+  specs:
+    henry (0.0.2)
+      jbuilder
 
 GEM
   remote: http://rubygems.org/

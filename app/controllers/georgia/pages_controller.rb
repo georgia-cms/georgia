@@ -62,9 +62,9 @@ module Georgia
 
     def publish
       @page = PageDecorator.decorate(Page.find(params[:id]))
-      @page.publish current_admin
+      @page.publish current_user
       if @page.save
-        # Notifier.notify_admins(@page, "#{current_admin.name} has published the job '#{@page.title}'").deliver
+        # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
         redirect_to :back, notice: "'#{@page.title}' was successfully published."
       else
         render :edit
@@ -75,7 +75,7 @@ module Georgia
       @page = PageDecorator.decorate(Page.find(params[:id]))
       @page.unpublish
       if @page.save
-        # Notifier.notify_admins(@page, "#{current_admin.name} has unpublished the job '#{@page.title}'").deliver
+        # Notifier.notify_users(@page, "#{current_user.name} has unpublished the job '#{@page.title}'").deliver
         redirect_to :back, notice: "'#{@page.title}' was successfully unpublished."
       else
         render :edit
@@ -86,7 +86,7 @@ module Georgia
       @page = PageDecorator.decorate(Page.find(params[:id]))
       @page.wait_for_review
       if @page.save
-        # Notifier.notify_editors(@page, "#{current_admin.name} is asking you to review job '#{@page.title}'").deliver
+        # Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
         respond_to do |format|
           format.html {redirect_to :back, notice: "You have succesfully asked for a review."}
           format.js { render layout: false }

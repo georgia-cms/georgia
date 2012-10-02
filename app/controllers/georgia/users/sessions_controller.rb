@@ -1,5 +1,5 @@
 module Georgia
-	class Admins::SessionsController < ::Devise::SessionsController
+	class Users::SessionsController < ::Devise::SessionsController
 		layout 'georgia/application'
     helper 'georgia/routes'
 	end
