@@ -38,7 +38,8 @@ module Georgia
     has_many :widgets, through: :ui_associations
 
     include PgSearch
-    pg_search_scope :text_search, against: [:title, :text, :excerpt, :keywords], using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
+    pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
+     associated_against: { contents: [:title, :text, :excerpt, :keywords] }
 
     def self.search query
       query.present? ? text_search(query) : scoped
