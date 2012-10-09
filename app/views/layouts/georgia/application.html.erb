@@ -10,6 +10,7 @@
   <%= csrf_meta_tags %>
   <!--[if IE]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <%= favicon_link_tag %>
+  <%= yield :head %>
 </head>
 <body id="<%= controller_name %>" class="<%= action_name %>">
   <div class="container-fluid">

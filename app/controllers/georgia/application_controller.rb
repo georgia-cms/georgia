@@ -6,11 +6,12 @@ module Georgia
     helper 'georgia/internationalization'
     helper 'georgia/form_actions'
     helper 'georgia/routes'
+    helper 'georgia/devise'
 
     protect_from_forgery
-    
+
     before_filter :authenticate_user!, except: :login
-    
+
     def login
       render 'users/sessions/new'
     end
