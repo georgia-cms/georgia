@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "7cfd00af015ff60ec66987485a21fc9e04dfbcaeea8e59f4a605a87848852094f735a27f244dc96084be33fd372bb5a543ce692873337d78013aa312f64a71c7"
+  # config.pepper = "fda1f3ee14c9bf91666455c497ba4ecc634917a32aff0589860bc99151163d7f63407dfef3e0374e97211162fbc5a6f34ce8efcfc525a209f111b79f4deeb37f"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -125,7 +125,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
-  
+
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
 
@@ -224,6 +224,7 @@ Devise.setup do |config|
   #     mount MyEngine, at: "/my_engine"
   #
   # The router that invoked `devise_for`, in the example above, would be:
+  # config.router_name = :my_engine
   config.router_name = :georgia
   #
   # When using omniauth, Devise cannot automatically set Omniauth path,
