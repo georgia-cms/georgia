@@ -8,8 +8,11 @@ class Georgia.Views.SlideForm extends Backbone.View
   initialize: (options) ->
     @panel = options.panel
     @images = options.images
+    @locales = options.locales
     @contents = @model.get('contents')
-    @contents.add([{locale: 'en'}, {locale: 'fr'}]) if @contents.length == 0
+    if @contents.length == 0 and @locales.length
+      $.each @locales, (index, lang) =>
+        @contents.add([{locale: lang}])
 
   render: ->
     $(@el).html(@template(slide: @model))

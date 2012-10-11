@@ -6,6 +6,7 @@ class Georgia.Views.Panel extends Backbone.View
 
   initialize: (options) ->
     @images = options.images
+    @locales = $(@el).data('locales').split(',')
     @collection.on('reset', @render, this)
     @collection.on('add', @renderForm, this)
 

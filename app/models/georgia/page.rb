@@ -7,7 +7,7 @@ module Georgia
 
     paginates_per 20
 
-    default_scope includes(:contents)
+    default_scope includes([:contents, :status])
 
     attr_accessible :template, :slug, :position, :parent_id, :published_at, :published_by_id
 

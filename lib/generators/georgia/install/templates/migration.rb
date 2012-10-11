@@ -66,15 +66,15 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string  :data_file_name, :null => false
       t.string  :data_content_type
       t.integer :data_file_size
-      
+
       t.integer :assetable_id
       t.string  :assetable_type, :limit => 30
       t.string  :type, :limit => 30
-      
+
       # Uncomment it to save images dimensions, if your need it
       t.integer :width
       t.integer :height
-      
+
       t.timestamps
     end
     add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
@@ -181,7 +181,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     drop_table :georgia_menus
     drop_table :georgia_menu_items
     drop_table :georgia_statuses
-    remove_index :admins_roles, [:admin_id, :role_id]
+    remove_index :roles_users, [:user_id, :role_id]
     remove_index :georgia_pages, :parent_id
     remove_index :georgia_pages, :published_by_id
     remove_index :georgia_pages, :status_id

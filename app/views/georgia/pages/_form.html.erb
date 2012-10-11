@@ -80,7 +80,7 @@
 				<%= render 'georgia/pages/content_fields', f: c %>
 				<% end -%>
 
-				<div class="tab-pane" id="slideshow">
+				<div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
 					<!-- Backbone Slideshow Panel -->
 					Loading ...
 				</div>
@@ -89,7 +89,7 @@
 					<%= render 'georgia/pages/hierarchy_fields', f: f %>
 				</div>
 
-				<div class='tab-pane' id='widgets'>
+				<div class='tab-pane' id='widgets' data-locales='<%= I18n.available_locales.join(',') %>'>
 					<!-- Backbone Widgets Panel -->
 					Loading ...
 				</div>

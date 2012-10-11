@@ -21,6 +21,6 @@ class Georgia.Views.SlideshowPanel extends Georgia.Views.Panel
     this
 
   renderForm: (slide) =>
-    view = new Georgia.Views.SlideForm(model: slide, images: @images, panel: this)
+    view = new Georgia.Views.SlideForm(model: slide, images: @images, locales: @locales, panel: this)
     @$('.form').html(view.render().el)
     @activateTabs()

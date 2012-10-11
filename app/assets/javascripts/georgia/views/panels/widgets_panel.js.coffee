@@ -3,6 +3,7 @@ class Georgia.Views.WidgetsPanel extends Georgia.Views.Panel
 
   initialize: (options) ->
     @images = options.images
+    @locales = $(@el).data('locales').split(',')
     @ui_sections = options.ui_sections
     @collection.on('reset', @render, this)
     @collection.on('add', @renderForm, this)
@@ -24,6 +25,6 @@ class Georgia.Views.WidgetsPanel extends Georgia.Views.Panel
     this
 
   renderForm: (widget) =>
-    view = new Georgia.Views.WidgetForm(model: widget, images: @images, panel: this)
+    view = new Georgia.Views.WidgetForm(model: widget, images: @images, locales: @locales, panel: this)
     @$('.form').html(view.render().el)
     @activateTabs()
