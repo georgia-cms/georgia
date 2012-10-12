@@ -2,12 +2,13 @@ Georgia::Engine.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-	devise_for :users, 
+	devise_for :users,
 		class_name: "Georgia::User",
 		path: '/',
 		module: :devise,
 		path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'},
 		controllers: {sessions: "georgia/users/sessions", registrations: "georgia/users/registrations"}
+
 	devise_scope :user do
 		get '/logout', to: 'users/sessions#destroy'
 	end
@@ -37,7 +38,7 @@ Georgia::Engine.routes.draw do
 			post :deactivate
 		end
 	end
-	
+
 	root to: 'messages#new'
 
 end

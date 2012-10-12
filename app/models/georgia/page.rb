@@ -11,8 +11,7 @@ module Georgia
 
     attr_accessible :template, :slug, :position, :parent_id, :published_at, :published_by_id
 
-    TEMPLATES = ['one-column', 'sidebar-left', 'sidebar-right', 'contact']
-    # validates :template, inclusion: {in: TEMPLATES, message: "%{value} is not a valid template" }
+    validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
     validates :slug, uniqueness: {scope: :parent_id}
 
     belongs_to :published_by, class_name: Georgia::User
