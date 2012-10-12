@@ -1,18 +1,32 @@
 #slideshow {
 	#slides_tabs {
 		.slide {
-			position: relative;
+      float: left;
+      padding:1em 1.5em;
+      margin: 1em 0.5em 1em 0;
 
-			> a.remove_icon, > a.edit_icon {
-				position: absolute;
-				right: 10px;
-				bottom: 4px;
-				color: #FFF;
-				&:hover {background: none;}
-			}
-			 > a.edit_icon {right: 30px;}
-			&.active > a.remove_icon {background: none;}
-			&.active > a.edit_icon {background: none;}
-		}
-	}
+      position: relative;
+      min-height: 80px;
+      min-width: 160px;
+      background-color: $blue;
+      color: #FFF;
+      font-weight: bold;
+      text-align: center;
+      overflow:hidden;
+      @include border-radius(5px);
+      @include box-shadow(0 4px 3px 0 #666);
+
+      > a.remove_icon, > a.edit_icon {
+        position: absolute;
+        right: 10px;
+        bottom: 4px;
+        color: #FFF;
+        padding: 0;
+        &:hover {background: none;}
+      }
+      > a.edit_icon {right: 30px;}
+      &.active > a.remove_icon {background: none;}
+      &.active > a.edit_icon {background: none;}
+    }
+  }
 }

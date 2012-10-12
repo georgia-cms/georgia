@@ -1,6 +1,6 @@
 module Georgia
-  class WidgetDecorator < ApplicationDecorator
-    decorates :widget, class: Georgia::Widget
+  class SlideDecorator < ApplicationDecorator
+    decorates :slide, class: Georgia::Slide
     # decorates_association :versions
 
     def title

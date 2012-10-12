@@ -6,6 +6,7 @@ class Georgia.Models.Slide extends Backbone.RelationalModel
     key: 'contents'
     relatedModel: 'Georgia.Models.Content'
     collectionType: 'Georgia.Collections.Contents'
+    includeInJSON: false
     reverseRelation:
       key: 'slide'
       includeInJSON: false

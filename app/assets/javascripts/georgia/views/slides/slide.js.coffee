@@ -14,6 +14,7 @@ class Georgia.Views.Slide extends Backbone.View
     $(@el).attr 'id', @id
     $(@el).addClass(@model.attributes.type)
     $(@el).attr('data-slide-id', @model.id)
+    $(@el).css('background', "url('#{@model.image}') no-repeat scroll 0 0 #08C") if @model.image
     @model.on('change', @render, this)
 
   render: ->

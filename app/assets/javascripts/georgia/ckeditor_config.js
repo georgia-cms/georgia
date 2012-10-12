@@ -1,7 +1,7 @@
 CKEDITOR.config.baseHref = '/assets/ckeditor/';
 CKEDITOR.config.height = 400;
-CKEDITOR.config.toolbarStartupExpanded = false;
-CKEDITOR.config.toolbar = 'Full'; 
+// CKEDITOR.config.toolbarStartupExpanded = false;
+CKEDITOR.config.toolbar = 'Full';
 CKEDITOR.config.toolbar_Full =
 [
 	{ name: 'document', items : [ 'Source','-','ShowBlocks'] },

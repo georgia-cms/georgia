@@ -4,7 +4,7 @@ module Georgia
     load_and_authorize_resource class: Georgia::Page
 
     def index
-      @pages = PageDecorator.decorate(Page.order('updated_at DESC').page(params[:page]))
+      @pages = Georgia::PageDecorator.decorate(Page.order('updated_at DESC').page(params[:page]))
     end
 
     def show
@@ -12,17 +12,17 @@ module Georgia
     end
 
     def new
-      @page = PageDecorator.decorate(Page.new)
+      @page = Georgia::PageDecorator.decorate(Page.new)
       build_associations
     end
 
     def edit
-      @page = PageDecorator.decorate(Page.find(params[:id]))
+      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
       build_associations
     end
 
     def create
-      @page = PageDecorator.decorate(Page.new(params[:page]))
+      @page = Georgia::PageDecorator.decorate(Page.new(params[:page]))
 
       if @page.save
         redirect_to [:edit, @page], notice: 'Page was successfully created.'
@@ -33,7 +33,7 @@ module Georgia
     end
 
     def update
-      @page = PageDecorator.decorate(Page.find(params[:id]))
+      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
 
       if @page.update_attributes(params[:page])
         redirect_to [:edit, @page], notice: 'Page was successfully updated.'
@@ -49,19 +49,19 @@ module Georgia
       if @page.destroy
         redirect_to pages_url, notice: 'Page was successfully deleted.'
       else
-        redirect_to pages_url, notice: 'Oups. Something went wrong.'      
+        redirect_to pages_url, notice: 'Oups. Something went wrong.'
       end
     end
 
     def preview
       @page = Page.find(params[:id])
       @page.attributes = params[:page]
-      @page = PageDecorator.new(@page)
+      @page = Georgia::PageDecorator.new(@page)
       render 'pages/show', layout: 'application'
     end
 
     def publish
-      @page = PageDecorator.decorate(Page.find(params[:id]))
+      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
       @page.publish current_user
       if @page.save
         # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
@@ -72,7 +72,7 @@ module Georgia
     end
 
     def unpublish
-      @page = PageDecorator.decorate(Page.find(params[:id]))
+      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
       @page.unpublish
       if @page.save
         # Notifier.notify_users(@page, "#{current_user.name} has unpublished the job '#{@page.title}'").deliver
@@ -83,7 +83,7 @@ module Georgia
     end
 
     def ask_for_review
-      @page = PageDecorator.decorate(Page.find(params[:id]))
+      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
       @page.wait_for_review
       if @page.save
         # Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
