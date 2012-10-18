@@ -1,0 +1,24 @@
+<div class='row-fluid'>
+  <div class='span5'>
+    <fieldset class="max-length">
+      <div class="form-inputs">
+        <div class="control-group string required">
+          <label class="string required control-label" for="title">
+            <abbr title="required">*</abbr> Content
+          </label>
+          <div class="controls">
+            <input class="string required" id="title" size="50" type="text" value="<%= @content.get('title') %>">
+          </div>
+        </div>
+        <div class="control-group string required">
+          <label class="string required control-label" for="text">
+            <abbr title="required">*</abbr> URL
+          </label>
+          <div class="controls">
+            <input class="string required" id="text" size="50" type="text" value="<%= @content.get('text') %>">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</div>

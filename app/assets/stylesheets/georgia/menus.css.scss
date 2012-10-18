@@ -1,15 +1,40 @@
-.column {
-	margin: 18px 0;
-	min-height: 300px;
+#menus {
+  .column {
+    margin: 18px 0;
+    min-height: 300px;
 
-	.portlet {
-		display: block;
-		background-color: #FFF;
-		@include border-radius(4px);
-		border: 1px solid #e2e2e2;
-		padding: 0 5px;
-		.handle {
-			cursor: move;
-		}
-	}
+    .portlet {
+      display: block;
+      background-color: #FFF;
+      @include border-radius(4px);
+      border: 1px solid #e2e2e2;
+      padding: 0 5px;
+      .handle {
+        cursor: move;
+      }
+    }
+  }
+
+  .link {
+    width: 350px;
+    background-color: #EEE;
+    border-top: 1px solid #DDD;
+    padding: 0 10px;
+  }
+
+  #pages {
+    height: 400px;
+    overflow-y: auto;
+
+    h5 {
+      margin-top: 2px;
+    }
+  }
+
+  .accordion-toggle {position:relative;}
+  .accordion-toggle > .js-toggle-chevron {position: absolute;}
+  .js-toggle-chevron.icon-chevron-up {left: 5px;}
+  .js-toggle-chevron.icon-chevron-down {left: -9999px;}
+  .collapsed > .icon-chevron-up {left: -9999px;}
+  .collapsed > .icon-chevron-down {left: 5px;}
 }

@@ -2,6 +2,7 @@ module Georgia
   class PageDecorator < ApplicationDecorator
     decorates :page, class: Georgia::Page
     decorates_association :versions
+    decorates_association :children, with: Georgia::PageDecorator
 
     PUBLISHED = 'Published'
     PENDING = 'Pending'
@@ -10,7 +11,7 @@ module Georgia
     SEO_INCOMPLETE = 'SEO Incomplete'
 
     def title
-      h.content_tag(:strong, content.title)
+      content.title
     end
 
     def text

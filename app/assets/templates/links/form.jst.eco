@@ -1,0 +1,29 @@
+<% if @link.isNew(): %>
+<legend>Add Link</legend>
+<% else: %>
+<legend>Update Link</legend>
+<% end %>
+<div id='contents_panel'>
+  <div class="tabbable">
+    <ul id='form_tabs' class="nav nav-tabs">
+      <% if @contents.length: %>
+      <% for content in @contents.models: %>
+      <li>
+        <a href="#content_<%= content.cid %>" data-toggle="tab">
+          <%= content.localeName(content.get('locale')) %>
+        </a>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
+    <div id='form_contents' class="tab-content">
+    </div>
+  </div>
+</div>
+<div class='form-actions'>
+  <% if @link.isNew(): %>
+  <a id='submit' href='#' class='btn btn-primary bb-create'>Create</a>
+  <% else: %>
+  <a id='submit' href='#' class='btn btn-primary bb-update'>Update</a>
+  <% end %>
+</div>

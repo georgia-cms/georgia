@@ -24,14 +24,9 @@ class Georgia.Views.SlideForm extends Backbone.View
     event.preventDefault()
     @model.save @model.attributes,
       success: @handleSuccess
-      error: @handleError
+      error: @panel.handleError
 
   handleSuccess: (slide, response) =>
     @panel.swapPanels()
-    @model.trigger('reset')
-
-  handleError: (slide, response) ->
-    if response.status == 422
-      errors = $.parseJSON(response.responseText).errors
-      for attribute, messages of errors
-        alert "#{attribute} #{message}" for message in messages
+    @panel.appendSlide(@model)
+    @panel.notify("<em>#{slide.get('title')}</em> has been updated.")

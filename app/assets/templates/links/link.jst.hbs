@@ -1,0 +1,33 @@
+<div class="accordion-heading">
+  <div class='row-fluid'>
+    <div class='span1'>
+      <small class="handle"><i class="icon-th"></i></small>
+    </div>
+    <div class='span9'>
+      <strong>{{{title}}}</strong><br />
+      <small class='muted'>{{text}}</small>
+    </div>
+    <div class='span1'>
+      <a href='#' class='bb-edit'><i class='icon-edit icon-white'></i></a>
+      <a href='#' class='bb-remove'><i class='icon-trash icon-white'></i></a>
+    </div>
+    <div class='span1'>
+      <a class="accordion-toggle collapsed" data-toggle="collapse" href="#accordion-{{id}}">
+        <i class='icon-chevron-down js-toggle-chevron'></i>
+        <i class='icon-chevron-up js-toggle-chevron'></i>
+      </a>
+    </div>
+  </div>
+</div>
+<div id="accordion-{{id}}" class="accordion-body collapse">
+  <div class="accordion-inner">
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <input id="dropdown" class="check_boxes required bb-dropdown" type="checkbox" value="65" {{#if dropdown}}checked{{/if}}>
+          Include subpages?
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

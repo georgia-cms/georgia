@@ -1,5 +1,5 @@
 module Georgia
-  class MessagesController < ApplicationController
+  class MessagesController < Georgia::ApplicationController
 
     load_and_authorize_resource class: 'Georgia::Message'
 

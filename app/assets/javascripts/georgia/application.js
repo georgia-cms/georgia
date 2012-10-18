@@ -14,7 +14,11 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap
+//= require georgia/menus
+//= require georgia/pages
 //= require ckeditor/init
+//= require handlebars
 //= require underscore
 //= require backbone
 //= require .//backbone-relational

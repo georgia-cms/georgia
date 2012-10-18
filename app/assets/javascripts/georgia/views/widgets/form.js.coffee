@@ -28,10 +28,12 @@ class Georgia.Views.WidgetForm extends Backbone.View
 
   handleSuccess: (widget, response) =>
     @panel.swapPanels()
-    @model.trigger('reset')
+    @panel.appendWidget(@model)
 
   handleError: (widget, response) ->
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
+    else
+      alert 'Oups. Something went wrong.'

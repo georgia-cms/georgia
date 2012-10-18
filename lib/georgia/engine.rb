@@ -16,6 +16,7 @@ module Georgia
     require 'ckeditor'
     require 'carrierwave'
     require 'draper'
+    require 'handlebars_assets'
     require 'backbone-on-rails'
     require 'henry'
 
@@ -26,6 +27,7 @@ module Georgia
         helper Georgia::InternationalizationHelper
         helper Georgia::RoutesHelper
         helper Georgia::UiHelper
+        helper Georgia::MenusHelper
       end
     end
 

@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg'
   s.add_dependency 'pg_search'
   s.add_dependency 'backbone-on-rails'
+  s.add_dependency 'handlebars_assets'
   # s.add_dependency 'henry'
 
   s.add_development_dependency "thin"

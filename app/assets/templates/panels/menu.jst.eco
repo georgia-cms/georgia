@@ -1,0 +1,28 @@
+<div class='row-fluid'>
+
+  <div class='span3'>
+    <div class="control-group check_boxes required">
+      <div id='pages' class="controls">
+      </div>
+    </div>
+    <a href="#" class="btn btn-primary bb-add-to-menu">Add to Menu »</a>
+  </div>
+
+  <div class='span6'>
+    <div class='panel active'>
+      <div class='row-fluid'><h2><a href="#" class="pull-right swap-panel new-form">Add a Custom Link »</a></h2></div>
+      <div id="links" class='accordion' data-toggle='false'></div>
+      <hr />
+    </div>
+    <div id='link_form' class='panel' style='display:none;'>
+      <div class='row-fluid'><h2><a href="#" class="pull-right swap-panel">« Back to Menu</a></h2></div>
+      <div class='form'></div>
+    </div>
+  </div>
+
+  <div class='span3'>
+    <div class='messages'>
+    </div>
+  </div>
+
+</div>

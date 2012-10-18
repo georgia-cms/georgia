@@ -1,44 +1,13 @@
 <%= content_for :messages do %>
-<%= render 'georgia/shared/messages', model: @page %>
+<%= render 'georgia/shared/messages', model: @menu %>
 <% end %>
 
-<%= simple_form_for @menu, html: {class: 'form-vertical'} do |f| %>
-
-<div class='form-inputs'>
-
-  <div class='row-fluid'>
-
-    <div class='span6'>
-      <legend>Available Pages</legend>
-      <div id='inactive' class="column" data-update-url="<%= deactivate_menu_items_url %>">
-        <% if @inactive_items.any? %>
-        <%= render @inactive_items %>
-        <% else -%>
-        <p class='help-block'>
-          There are currently no available pages to add to your menu.
-        </p>
-        <% end -%>
-      </div>
-    </div>
-
-    <div class='span6'>
-      <legend>Your Navigation Menu</legend>
-      <div id='active' class="column" data-update-url="<%= activate_menu_items_url %>">
-        <% if @active_items.any? %>
-        <%= render @active_items %>
-        <% else -%>
-        <p class='help-block'>
-          There are currently no available pages added to your menu.
-        </p>
-        <% end -%>
-      </div>
-    </div>
-
-  </div>
+<div id='menu_panel' data-menu-id='<%= @menu.id %>' data-locales='<%= I18n.available_locales.join(',') %>'>
+  Loading ...
 </div>
 
-<div class="form-actions">
-  <%= link_to 'Cancel', menus_url, class: 'btn' %>
-</div>
-
-<% end %>
+<%= content_for :ujs do %>
+<script type="text/javascript">
+$(function() { Georgia.initMenuPanel(); });
+</script>
+<% end -%>

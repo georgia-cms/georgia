@@ -71,14 +71,6 @@ module Georgia
 
     end
 
-    # Stays inside model and not exported to observers folder because
-    # for some reason the config.active_record.observers is loaded before the observer is first initialized
-    after_create do
-      Menu.select(:id).each do |menu|
-        MenuItem.find_or_create_by_page_id_and_menu_id(self.id, menu.id)
-      end
-    end
-
     before_save do
       self.status ||= Status.draft.first
     end

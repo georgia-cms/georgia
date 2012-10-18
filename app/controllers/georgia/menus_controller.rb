@@ -1,5 +1,5 @@
 module Georgia
-  class MenusController < ApplicationController
+  class MenusController < Georgia::ApplicationController
 
     load_and_authorize_resource class: 'Georgia::Menu'
 
@@ -36,8 +36,11 @@ module Georgia
 
     def edit
       @menu = Georgia::Menu.find(params[:id])
-      @inactive_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.inactive)
-      @active_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.active)
+      @pages = PageDecorator.decorate(Georgia::Page.all)
+      @link = Georgia::Link.new
+      @link.menu = @menu
+      # @inactive_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.inactive)
+      # @active_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.active)
     end
 
     private

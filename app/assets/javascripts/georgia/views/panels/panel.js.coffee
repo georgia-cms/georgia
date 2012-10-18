@@ -20,5 +20,22 @@ class Georgia.Views.Panel extends Backbone.View
       )
     )
 
+  notify: (message, status = 'warning') ->
+    view = new Georgia.Views.Message(message: message, status: status)
+    @$('.messages').append(view.render().el)
+
   activateTabs: ->
     @$('.form .nav.nav-tabs > li:first-child > a').trigger('click')
+
+  new: (event) ->
+    event.preventDefault()
+    @collection.add([{}])
+    this
+
+  handleError: (instance, response) ->
+    if response.status == 422
+      errors = $.parseJSON(response.responseText).errors
+      for attribute, messages of errors
+        @notify("#{attribute} #{message}", 'error') for message in messages
+    else
+      @notify('Oups. Something went wrong.', 'error')

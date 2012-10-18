@@ -12,7 +12,7 @@ class Georgia.Views.ContentsFormContent extends Backbone.View
     @model.on('updateImage', @updateImage, this)
 
   render: ->
-    $(@el).html(@template(content: @model))    
+    $(@el).html(@template(content: @model))
     view = new Georgia.Views.ImagesPanel(collection: @images, model: @model)
     @$('#images_panel').html(view.render().el)
     this

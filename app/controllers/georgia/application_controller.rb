@@ -7,6 +7,7 @@ module Georgia
     helper 'georgia/form_actions'
     helper 'georgia/routes'
     helper 'georgia/devise'
+    helper 'georgia/menus'
 
     protect_from_forgery
 
