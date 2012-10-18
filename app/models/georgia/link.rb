@@ -3,6 +3,8 @@ module Georgia
 
     attr_accessible :menu_id, :page_id, :dropdown
 
+    acts_as_list scope: :menu
+
     belongs_to :menu
     belongs_to :page
 
