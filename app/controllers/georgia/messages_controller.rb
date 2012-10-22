@@ -19,15 +19,16 @@ module Georgia
     def new
     end
 
+    def show
+      @message = Message.find(params[:id])
+    end
+
     def create
       @message = Message.new(params[:message])
-      @message.created_by_id = current_user.id
-
       if @message.save
-        redirect_to [:new, @message], notice: 'Message was successfully sent.'
-      else
-        render action: "new"
+        Georgia::Notifier.notify_support(@message).deliver
       end
+      render layout: false
     end
 
     private
