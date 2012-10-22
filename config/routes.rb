@@ -27,7 +27,9 @@ Georgia::Engine.routes.draw do
 	end
 	resources :media, path: :media
 	resources :users
-	resources :messages
+	resources :messages do
+    match :search, on: :collection
+  end
 	resources :menus
 	resources :menu_items do
 		collection do
@@ -38,6 +40,8 @@ Georgia::Engine.routes.draw do
 			post :deactivate
 		end
 	end
+
+  match '/search/messages', to: 'search#messages'
 
 	root to: 'messages#new'
 

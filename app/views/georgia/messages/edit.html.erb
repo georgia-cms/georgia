@@ -1,0 +1,10 @@
+<h1 class="page-header"><%= @message.subject %></h1>
+<p>
+  <%= @message.message %>
+</p>
+<hr />
+Written by: <%= @message.name %><br />
+Sent on: <%= @message.created_at %>
+<div class="form-actions">
+  <%= link_to "&laquo; Back".html_safe, georgia.messages_url, class: 'btn' %>
+</div>

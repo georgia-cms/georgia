@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.1.8)
+    georgia (0.2.1)
       acts_as_list
       backbone-on-rails
       bourbon
@@ -28,7 +28,7 @@ PATH
 PATH
   remote: ../henry
   specs:
-    henry (0.0.6)
+    henry (0.0.7)
       jbuilder
 
 GEM

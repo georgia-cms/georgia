@@ -5,6 +5,12 @@ module Georgia
 
     helper_method :sort_column, :sort_direction
 
+
+    def search
+      @messages = MessageDecorator.decorate(Message.search(params[:query]).page(params[:page]))
+      render 'index'
+    end
+
     def index
       @messages = MessageDecorator.decorate(Message.order(sort_column + ' ' + sort_direction).page(params[:page]))
     end
@@ -19,8 +25,8 @@ module Georgia
     def new
     end
 
-    def show
-      @message = Message.find(params[:id])
+    def edit
+      @message = MessageDecorator.decorate(Message.find(params[:id]))
     end
 
     def create
