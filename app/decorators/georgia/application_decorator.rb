@@ -1,8 +1,12 @@
 module Georgia
   class ApplicationDecorator < Draper::Base
 
-    def created_at
-      model.created_at.strftime('%F')
+    def created_at(options={})
+      options[:format] ||= :short
+      case options[:format]
+      when :short then model.created_at.strftime('%F')
+      when :long then model.created_at.strftime('%d %B, %Y - %H:%M')
+      end
     end
 
     def updated_at

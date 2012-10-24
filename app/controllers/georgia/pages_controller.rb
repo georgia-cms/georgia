@@ -35,7 +35,12 @@ module Georgia
     def update
       @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
 
-      if @page.update_attributes(params[:page])
+      @page.store_revision do
+        @page.update_attributes(params[:page])
+        @page.updated_by = current_user
+      end
+
+      if @page.save!
         redirect_to [:edit, @page], notice: 'Page was successfully updated.'
       else
         build_associations
@@ -49,15 +54,8 @@ module Georgia
       if @page.destroy
         redirect_to pages_url, notice: 'Page was successfully deleted.'
       else
-        redirect_to pages_url, notice: 'Oups. Something went wrong.'
+        redirect_to pages_url, alert: 'Oups. Something went wrong.'
       end
-    end
-
-    def preview
-      @page = Page.find(params[:id])
-      @page.attributes = params[:page]
-      @page = Georgia::PageDecorator.new(@page)
-      render 'pages/show', layout: 'application'
     end
 
     def publish
@@ -67,7 +65,7 @@ module Georgia
         # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
         redirect_to :back, notice: "'#{@page.title}' was successfully published."
       else
-        render :edit
+        render :edit, alert: "Oups. Something went wrong."
       end
     end
 
@@ -112,10 +110,10 @@ module Georgia
 
     def build_associations
       @page.slides.build unless @page.slides.any?
-      I18n.available_locales.each do |locale|
-        @page.contents << Content.new(locale: locale.to_s) unless @page.contents.find_by_locale(locale.to_s).present?
+      I18n.available_locales.map(&:to_s).each do |locale|
+        @page.contents << Content.new(locale: locale) unless @page.contents.find_by_locale(locale).present?
         @page.slides.each do |slide|
-          slide.contents << Content.new(locale: locale.to_s) unless slide.contents.find_by_locale(locale.to_s).present?
+          slide.contents << Content.new(locale: locale) unless slide.contents.find_by_locale(locale).present?
         end
       end
     end

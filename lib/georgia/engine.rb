@@ -10,6 +10,8 @@ module Georgia
     require 'cancan'
     require 'sass-rails'
     require 'acts_as_list'
+    # require 'paper_trail'
+    require 'acts_as_revisionable'
     require 'kaminari'
     require 'pg'
     require 'pg_search'

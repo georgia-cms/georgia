@@ -13,7 +13,8 @@ Georgia::Engine.routes.draw do
 		get '/logout', to: 'users/sessions#destroy'
 	end
 
-	# post "versions/:id/revert" => "versions#revert", :as => :revert_version
+	post "revisions/:id/revert" => "revisions#revert", :as => :revert_version
+
 	resources :pages do
 		collection do
 			post :sort

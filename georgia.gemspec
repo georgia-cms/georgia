@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari"
   s.add_dependency "fog"
   s.add_dependency "acts_as_list"
-  s.add_dependency "paper_trail", '~> 2'
+  # s.add_dependency "paper_trail", '~> 2'
+  s.add_dependency "acts_as_revisionable", "~> 1.2.2"
   s.add_dependency "differ"
   s.add_dependency "ckeditor"
   s.add_dependency "carrierwave"

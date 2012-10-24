@@ -31,13 +31,13 @@
 					<li>
 						<a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a>
 					</li>
-<!-- 					<li>
-						<a href="#versions" data-toggle="tab"><%= icon_tag('icon-tags') %> Versions</a>
-					</li> -->
+ 					<li>
+						<a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a>
+					</li>
 					<% unless @page.new_record? %>
 					<li class="nav-header">Actions</li>
 					<li>
-						<%= link_to_preview @page %>
+						<%#= link_to_preview @page %>
 					</li>
 					<li>
 						<%= link_to_publish @page %>
@@ -94,9 +94,9 @@
          Loading ...
        </div>
 
-<!-- 				<div class='tab-pane' id='versions'>
-					<%#= render 'georgia/pages/versions' %>
-				</div> -->
+ 				<div class='tab-pane' id='revisions'>
+					<%= render 'georgia/pages/revisions' %>
+				</div>
 
 			</div>
 

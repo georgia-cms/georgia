@@ -1,7 +1,8 @@
 module Georgia
   class Page < ActiveRecord::Base
 
-    # has_paper_trail ignore: [:created_at, :updated_at, :updated_by_id]
+    acts_as_revisionable associations: :contents
+    belongs_to :current_revision, class_name: ActsAsRevisionable::RevisionRecord, foreign_key: :revision_id
 
     acts_as_list scope: :parent
 
@@ -15,6 +16,7 @@ module Georgia
     validates :slug, uniqueness: {scope: :parent_id}
 
     belongs_to :published_by, class_name: Georgia::User
+    belongs_to :updated_by, class_name: Georgia::User
 
     has_many :contents, as: :contentable, dependent: :destroy
     accepts_nested_attributes_for :contents
@@ -38,7 +40,9 @@ module Georgia
 
     include PgSearch
     pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
-     associated_against: { contents: [:title, :text, :excerpt, :keywords] }
+    associated_against: { contents: [:title, :text, :excerpt, :keywords] }
+
+    scope :published, joins(:status).where(status: {name: Georgia::Status::PUBLISHED})
 
     def self.search query
       query.present? ? text_search(query) : scoped
@@ -50,17 +54,26 @@ module Georgia
     end
 
     def publish(user)
-      self.published_at = Time.now
       self.published_by = user
       self.status = Georgia::Status.published.first
+      self.create_revision!
+      self.current_revision = self.last_revision
       self
     end
 
     def unpublish
-      self.published_at = nil
       self.published_by = nil
       self.status = Georgia::Status.draft.first
       self
+    end
+
+    def load_current_revision!
+      return self unless self.current_revision
+      self.class.new().load_raw_attributes! self.current_revision.revision_attributes.symbolize_keys!
+    end
+
+    def preview! attributes
+      self.load_raw_attributes! attributes
     end
 
     class << self
@@ -73,6 +86,16 @@ module Georgia
 
     before_save do
       self.status ||= Status.draft.first
+    end
+
+    protected
+
+    def load_raw_attributes! attributes
+      attributes.delete(:contents).each do |content|
+        self.contents << Georgia::Content.new(content, without_protection: true)
+      end
+      self.assign_attributes(attributes, without_protection: true)
+      self
     end
 
   end

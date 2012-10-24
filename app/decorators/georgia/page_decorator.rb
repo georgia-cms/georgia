@@ -1,7 +1,6 @@
 module Georgia
   class PageDecorator < ApplicationDecorator
     decorates :page, class: Georgia::Page
-    decorates_association :versions
     decorates_association :children, with: Georgia::PageDecorator
 
     PUBLISHED = 'Published'
