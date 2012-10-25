@@ -1,15 +1,17 @@
 module Georgia
   module FormActionsHelper
 
-    def link_to_preview(object, attributes)
-      #link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, url_for([:preview, attributes])
-    end
-
-    def link_to_preview_revision(object, revision, options={})
+    def link_to_preview(page, options={})
       options[:method] = :post
       options[:target] = '_blank'
-      revision ||= object.last_revision
-      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(object, page: revision.revision_attributes), options
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(page, page: page.attributes.merge(contents: page.contents.map(&:attributes))), options
+    end
+
+    def link_to_preview_revision(page, revision, options={})
+      options[:method] = :post
+      options[:target] = '_blank'
+      revision ||= page.last_revision
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(page, page: revision.revision_attributes), options
     end
 
     def link_to_revert revision
