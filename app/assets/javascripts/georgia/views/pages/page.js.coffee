@@ -4,5 +4,5 @@ class Georgia.Views.Page extends Backbone.View
   className: 'checkbox'
 
   render: ->
-    $(@el).html(@template(page: @model))
+    $(@el).html(@template(@model.attributes))
     this

@@ -1,2 +1,0 @@
-<input class="check_boxes required" id="menu_items_pages_<%= @page.id %>" name="menu_items[pages][]" type="checkbox" value="<%= @page.id %>">
-<h5><%= @page.get('title') %> <small><%= @page.get('slug') %></small></h5>
