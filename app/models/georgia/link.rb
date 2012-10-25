@@ -15,7 +15,7 @@ module Georgia
     scope :ordered, order('position ASC')
     scope :active, where(active: true)
     scope :inactive, where(active: false)
-    default_scope includes(:contents)
+    default_scope includes(:contents).order(:position)
 
     def copy_from_page! page
       page.contents.each do |content|
