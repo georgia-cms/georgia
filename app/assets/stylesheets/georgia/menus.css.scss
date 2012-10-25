@@ -37,4 +37,35 @@
   .js-toggle-chevron.icon-chevron-down {left: -9999px;}
   .collapsed > .icon-chevron-up {left: -9999px;}
   .collapsed > .icon-chevron-down {left: 5px;}
+
+  #menu_panel > .row-fluid > .span3 {position: relative;}
+  #menu_panel > .row-fluid > .span3 > .control-group.check_boxes {margin-bottom: 0;}
+  .bb-check, .bb-uncheck {line-height: 2em;}
+
+  #scrollable-sections-top-shadow {
+    border-top: 1px solid #EBEBEB;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    background: -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, .3)),to(transparent));
+    background: -moz-radial-gradient(center top , ellipse farthest-side, rgba(0, 0, 0, 0.3), transparent);
+    -webkit-mask-box-image : -webkit-gradient(linear,left top,right top,color-stop(0.0,rgba(0,0,0,0)),color-stop(0.5,rgba(0,0,0,.8)),color-stop(1.0,rgba(0,0,0,0)));
+    background-image: -moz-radial-gradient(top,ellipse farthest-side,rgba(0,0,0,.3),rgba(0,0,0,0));
+    height: 15px;
+    position: absolute;
+    width: 100%;
+  }
+
+  #scrollable-sections-bottom-shadow {
+    border-bottom: 1px solid #EBEBEB;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background: -webkit-gradient(linear,left bottom,left top,from(rgba(0, 0, 0, .3)),to(transparent));
+    background: -moz-radial-gradient(center top , ellipse farthest-side, rgba(0, 0, 0, 0.3), transparent);
+    -webkit-mask-box-image : -webkit-gradient(linear,left top,right top,color-stop(0.0,rgba(0,0,0,0)),color-stop(0.5,rgba(0,0,0,.8)),color-stop(1.0,rgba(0,0,0,0)));
+    background-image: -moz-radial-gradient(center bottom , ellipse farthest-side, rgba(0, 0, 0, 0.3), transparent);
+    height: 15px;
+    position: relative;
+    width: 100%;
+    bottom: 15px;
+    margin-bottom: 8px;
+  }
+
 }

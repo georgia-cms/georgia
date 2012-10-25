@@ -3,6 +3,8 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
   template: JST['panels/menu']
 
   events:
+    'click .bb-check': 'checkAll'
+    'click .bb-uncheck': 'uncheckAll'
     'click .bb-add-to-menu': 'create'
     'click .new-form': 'new'
     'click .swap-panel': 'swapPanels'
@@ -20,6 +22,7 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
         wait: true
         success: (link, response) =>
           @appendLink(link)
+          @uncheckAll()
           @notify("<em>#{link.get('title')}</em> has been added to the menu.", 'success')
         error: @handleError
     this
@@ -51,3 +54,9 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
     view = new Georgia.Views.LinkForm(model: link, locales: @locales, panel: this)
     @$('.form').html(view.render().el)
     @activateTabs()
+
+  checkAll: () =>
+    @$('#pages input[type=checkbox]').prop('checked', true)
+
+  uncheckAll: () =>
+    @$('#pages input[type=checkbox]').prop('checked', false)

@@ -1,10 +1,13 @@
 <div class='row-fluid'>
 
   <div class='span3'>
+    <a href="#" class='bb-check'>check all</a> | <a href="#" class='bb-uncheck'>uncheck all</a>
+    <div id="scrollable-sections-top-shadow"></div>
     <div class="control-group check_boxes required">
       <div id='pages' class="controls">
       </div>
     </div>
+    <div id="scrollable-sections-bottom-shadow"></div>
     <a href="#" class="btn btn-primary bb-add-to-menu">Add to Menu »</a>
   </div>
 

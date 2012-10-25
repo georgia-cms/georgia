@@ -1,12 +1,12 @@
 //  Login Centered Box
 .center-box {
-    width: 40%;
-    margin: 10% auto 0;
+  width: 40%;
+  margin: 10% auto 0;
 
-    .logo {
-        text-align: center;
-        padding: 10px 10px 20px;
-    }
+  .logo {
+    text-align: center;
+    padding: 10px 10px 20px;
+  }
 
 }
 
@@ -14,15 +14,15 @@
 // td:first-child {width: 20%;}
 td.labels {width: 72px; padding: 4px; text-align: center;}
 td.actions {
-    width: 80px;
-    padding: 4px;
-    div.btn-group {float: right;}
+  width: 80px;
+  padding: 4px;
+  div.btn-group {float: right;}
 }
 
 th .current {
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 th .asc {background-image: url('up_arrow.gif');}
