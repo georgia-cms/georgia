@@ -6,5 +6,9 @@ module Georgia
       h.truncate(model.message, :length => 80)
     end
 
+    def message
+      model.message
+    end
+
   end
 end
