@@ -8,7 +8,7 @@ module Georgia
 
     paginates_per 20
 
-    default_scope includes([:contents, :status])
+    default_scope includes(:contents)
 
     attr_accessible :template, :slug, :position, :parent_id, :published_at, :published_by_id
 
@@ -42,7 +42,7 @@ module Georgia
     pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
     associated_against: { contents: [:title, :text, :excerpt, :keywords] }
 
-    scope :published, joins(:status).where(status: {name: Georgia::Status::PUBLISHED})
+    scope :published, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PUBLISHED})
 
     def self.search query
       query.present? ? text_search(query) : scoped
@@ -63,6 +63,7 @@ module Georgia
 
     def unpublish
       self.published_by = nil
+      self.current_revision = nil
       self.status = Georgia::Status.draft.first
       self
     end
@@ -74,14 +75,6 @@ module Georgia
 
     def preview! attributes
       self.load_raw_attributes! attributes
-    end
-
-    class << self
-
-      def published
-        order('published_at DESC').keep_if(&:published?)
-      end
-
     end
 
     before_save do

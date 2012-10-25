@@ -7,6 +7,11 @@ module Georgia
       @pages = Georgia::PageDecorator.decorate(Page.order('updated_at DESC').page(params[:page]))
     end
 
+    def search
+      @pages = Georgia::PageDecorator.decorate(Page.search(params[:query]).page(params[:page]))
+      render :index
+    end
+
     def show
       redirect_to edit_page_path(params[:id])
     end
