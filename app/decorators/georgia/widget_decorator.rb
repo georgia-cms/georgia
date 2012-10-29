@@ -4,15 +4,15 @@ module Georgia
     # decorates_association :versions
 
     def title
-      h.content_tag(:strong, content.title) if content and content.title
+      h.content_tag(:strong, content.try(:title))
     end
 
     def text
-      h.truncate(h.strip_tags(content.text), length: 100) if content and content.text
+      h.truncate(h.strip_tags(content.try(:text)), length: 100)
     end
 
     def image
-      content.image
+      content.try(:image)
     end
 
   end
