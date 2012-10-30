@@ -1,13 +1,14 @@
 module Georgia
 	class Message < ActiveRecord::Base
 
-		attr_accessible :name, :email, :subject, :message, :attachment
+    attr_accessible :name, :email, :subject, :message, :attachment
+    delegate :url, :current_path, :size, :content_type, :filename, :to => :attachment
 
-		validates :name, presence: true
-		validates :email, presence: true, format: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
-		validates :message, presence: true
+    validates :name, presence: true
+    validates :email, presence: true, format: /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+    validates :message, presence: true
 
-    mount_uploader :attachment, CkeditorAttachmentFileUploader, :mount_on => :data_file_name
+    mount_uploader :attachment, Georgia::AttachmentUploader
 
     include PgSearch
     pg_search_scope :text_search, against: [:subject, :message, :name, :email], using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
@@ -16,5 +17,5 @@ module Georgia
       query.present? ? text_search(query) : scoped
     end
 
-	end
+  end
 end
