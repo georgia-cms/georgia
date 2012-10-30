@@ -17,6 +17,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :subject
+      t.string :attachment
       t.text :message
 
       t.timestamps
