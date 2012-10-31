@@ -10,6 +10,9 @@ jQuery ->
         data.submit()
       else
         $("#new_picture").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>#{file.name} is not a gif, jpeg, or png image file.</div>")
+    done: (e, data) ->
+      file = data.files[0]
+      $("##{file.size}").fadeOut()
     progress: (e, data) ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)
