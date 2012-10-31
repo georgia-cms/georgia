@@ -13,12 +13,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
 //= require georgia/menus
 //= require georgia/pages
-//= require georgia/media
 //= require ckeditor/init
 //= require handlebars
 //= require underscore
