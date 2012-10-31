@@ -2,7 +2,7 @@
 
 <div class='gal-holder'>
 	<% @assets.each do |asset| %>
-  <% if asset %>
+  <% if asset.data.file.exists? %>
 	<%= content_tag(:div, id: dom_id(asset), class: "gal-item", :"data-url" => asset.url_content) do %>
 	<%= link_to image_tag("/assets/ckeditor/filebrowser/images/gal_del.png", title: 'delete'),
 	media_path(asset), method: :delete,
