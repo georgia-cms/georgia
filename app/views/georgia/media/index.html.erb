@@ -1,5 +1,6 @@
 <h1 class='page-header'>Media Library</h1>
 
+<<<<<<< HEAD
 <div class='gal-holder'>
 	<% @assets.each do |asset| %>
   <% if asset.data.file.exists? %>
@@ -25,6 +26,23 @@
 	<% end %>
   <% end %>
 	<% end %>
+=======
+<div class='row-fluid'>
+  <div class='span3'>
+    <%= simple_form_for @asset, url: media_index_url do |f| %>
+    <span class="btn btn-success fileinput-button">
+      <i class="icon-plus icon-white"></i>
+      <span>Add files...</span>
+      <input type="file" name="picture[data]" multiple="">
+    </span>
+    <% end %>
+  </div>
+  <div class='span9'>
+    <div id='pictures' class='gal-holder'>
+      <%= render partial: 'georgia/ckeditor/pictures/picture', collection: @assets %>
+    </div>
+  </div>
+>>>>>>> fileupload
 </div>
 
 <hr />
@@ -35,5 +53,17 @@
 <% end %>
 
 <%= content_for :ujs do %>
+<<<<<<< HEAD
 	<script type="text/javascript">$("a[rel='lightbox']").lightBox()</script>
+=======
+<script type="text/javascript">$("a[rel='lightbox']").lightBox()</script>
+<script id="template-upload" type="text/x-tmpl">
+<div id="{%=o.size%}" class="upload">
+{%=o.name%}
+<div class="progress progress-striped active">
+<div class="bar" style="width: 0%"></div>
+</div>
+</div>
+</script>
+>>>>>>> fileupload
 <% end -%>

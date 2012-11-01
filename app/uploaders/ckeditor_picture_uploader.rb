@@ -19,7 +19,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
     Ckeditor.image_file_types
   end
 
-    process :read_dimensions
+  process :read_dimensions
 
   version :thumb do
     process resize_to_fill: [160, 120]
