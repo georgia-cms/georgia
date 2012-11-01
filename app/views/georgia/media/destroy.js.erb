@@ -1,0 +1,5 @@
+<% if @picture.destroyed? %>
+$("#pictures #picture_<%= @picture.id %>").remove();
+<% else %>
+$("#new_picture").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>Couldn't delete image.</div>");
+<% end %>

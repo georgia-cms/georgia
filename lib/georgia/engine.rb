@@ -10,7 +10,6 @@ module Georgia
     require 'cancan'
     require 'sass-rails'
     require 'acts_as_list'
-    # require 'paper_trail'
     require 'acts_as_revisionable'
     require 'kaminari'
     require 'pg'
@@ -20,6 +19,7 @@ module Georgia
     require 'draper'
     require 'handlebars_assets'
     require 'backbone-on-rails'
+    require 'jquery-fileupload-rails'
     require 'henry'
 
     initializer 'georgia.action_controller' do |app|

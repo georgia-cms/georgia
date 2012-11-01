@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency "kaminari"
   s.add_dependency "fog"
   s.add_dependency "acts_as_list"
-  # s.add_dependency "paper_trail", '~> 2'
   s.add_dependency "acts_as_revisionable", "~> 1.2.2"
   s.add_dependency "differ"
   s.add_dependency "ckeditor"
@@ -36,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg_search'
   s.add_dependency 'backbone-on-rails'
   s.add_dependency 'handlebars_assets'
-  # s.add_dependency 'henry'
+  s.add_dependency 'jquery-fileupload-rails'
 
   s.add_development_dependency "thin"
   s.add_development_dependency "sqlite3"
