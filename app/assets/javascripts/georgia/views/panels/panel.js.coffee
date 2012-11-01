@@ -22,7 +22,7 @@ class Georgia.Views.Panel extends Backbone.View
 
   notify: (message, status = 'warning') ->
     view = new Georgia.Views.Message(message: message, status: status)
-    @$('.messages').append(view.render().el)
+    @$('.messages').prepend(view.render().el)
 
   activateTabs: ->
     @$('.form .nav.nav-tabs > li:first-child > a').trigger('click')
