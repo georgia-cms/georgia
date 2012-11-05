@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency "ckeditor"
   s.add_dependency "carrierwave"
   s.add_dependency "mini_magick"
+  s.add_dependency 'therubyracer'
+  s.add_dependency 'less-rails'
   s.add_dependency 'twitter-bootstrap-rails'
   s.add_dependency "bourbon"
   s.add_dependency 'sass-rails',   '~> 3.2.3'

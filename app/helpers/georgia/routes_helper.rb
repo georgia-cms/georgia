@@ -20,6 +20,14 @@ module Georgia
       end
     end
 
+    def georgia?
+      namespace == 'Georgia'
+    end
+
+    def main_app?
+      namespace == 'Admin'
+    end
+
     protected
 
     def namespace
