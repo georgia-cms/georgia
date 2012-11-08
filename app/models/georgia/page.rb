@@ -25,7 +25,7 @@ module Georgia
     belongs_to :parent, class_name: Page
     has_many :children, class_name: Page, foreign_key: :parent_id, order: :position
 
-    has_many :menu_items, dependent: :destroy
+    has_many :links, dependent: :destroy
 
     belongs_to :status
     delegate :published?, :draft?, :pending_review?, to: :status
