@@ -59,4 +59,22 @@ namespace :georgia do
     end
 
   end
+
+  namespace :ancestry do
+    desc "Saves ancestry from legacy parent_id"
+    task load: :environment do
+
+      Georgia::Page.find_each do |page|
+        if parent = page.attributes['parent_id']
+          begin
+            page.parent = Georgia::Page.find(parent)
+            page.save!
+          rescue ActiveRecord::RecordNotFound
+            puts 'Page not found'
+          end
+        end
+      end
+
+    end
+  end
 end

@@ -1,16 +1,16 @@
 module Georgia
   class Page < ActiveRecord::Base
 
+    acts_as_list scope: :parent
+    acts_as_tree orphan_strategy: :rootify
     acts_as_revisionable associations: :contents
     belongs_to :current_revision, class_name: ActsAsRevisionable::RevisionRecord, foreign_key: :revision_id
-
-    acts_as_list scope: :parent
 
     paginates_per 20
 
     default_scope includes(:contents)
 
-    attr_accessible :template, :slug, :position, :parent_id, :published_at, :published_by_id
+    attr_accessible :template, :slug, :position, :published_at, :published_by_id
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
     validates :slug, uniqueness: {scope: :parent_id}
@@ -21,9 +21,6 @@ module Georgia
     has_many :contents, as: :contentable, dependent: :destroy
     accepts_nested_attributes_for :contents
     attr_accessible :contents_attributes
-
-    belongs_to :parent, class_name: Page
-    has_many :children, class_name: Page, foreign_key: :parent_id, order: :position
 
     has_many :links, dependent: :destroy
 

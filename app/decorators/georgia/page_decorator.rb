@@ -18,7 +18,11 @@ module Georgia
     end
 
     def url
-      "/#{parent.present? ? "#{parent.slug}/#{model.slug}" : model.slug}"
+      if is_root?
+        '/' + slug
+      else
+        '/' + ancestors.map(&:slug).join('/') + '/' + slug
+      end
     end
 
     def slug_tag

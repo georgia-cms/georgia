@@ -25,19 +25,20 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Pages
     create_table :georgia_pages do |t|
-      t.string :template, default: 'one-column'
-      t.string :slug
+      t.string  :template, default: 'one-column'
+      t.string  :slug
       t.integer :parent_id
       t.integer :position
-      # t.datetime :published_at
       t.integer :revision_id
       t.integer :published_by_id
       t.integer :status_id
+      t.string  :ancestry
       t.timestamps
     end
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :status_id
+    add_index :georgia_pages, :ancestry
 
     # Create Content
     create_table :georgia_contents do |t|

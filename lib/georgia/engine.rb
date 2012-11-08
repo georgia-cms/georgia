@@ -20,6 +20,7 @@ module Georgia
     require 'handlebars_assets'
     require 'backbone-on-rails'
     require 'jquery-fileupload-rails'
+    require 'ancestry'
     require 'henry'
 
     initializer 'georgia.action_controller' do |app|

@@ -1,7 +1,7 @@
 <fieldset>
 	<legend>Site Hierarchy</legend>
 	<h3 class='page-header'>Parent Section</h3>
-	<%= f.association :parent, collection: Georgia::PageDecorator.decorate(Georgia::Page.all).map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
+	<%= f.input :parent_id, collection: Georgia::PageDecorator.decorate(Georgia::Page.all).map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
 	<h3 class='page-header'>Subpages</h3>
 	<p>
 		Move the pages around to change their display position.
