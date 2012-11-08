@@ -10,7 +10,7 @@ module Georgia
 
     default_scope includes(:contents)
 
-    attr_accessible :template, :slug, :position, :published_at, :published_by_id
+    attr_accessible :template, :slug, :position, :published_at, :published_by_id, :parent_id
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
     validates :slug, uniqueness: {scope: :parent_id}
