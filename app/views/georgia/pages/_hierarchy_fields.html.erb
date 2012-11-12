@@ -6,7 +6,7 @@
 	<p>
 		Move the pages around to change their display position.
 	</p>
-	<% if @page.children.any? %>
+	<% if @page.persisted? and @page.children.any? %>
 	<ul id="subpages" class="nav nav-pills ui-sortable" data-sort-url="<%= sort_pages_url %>">
 		<% Georgia::PageDecorator.decorate(@page.children).each do |page| %>
 		<%= content_tag_for(:li, page, class: 'note rounded') do %>

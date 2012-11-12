@@ -19,9 +19,9 @@ module Georgia
 
     def url
       if is_root?
-        '/' + slug
+        "/#{slug}"
       else
-        '/' + ancestors.map(&:slug).join('/') + '/' + slug
+        "/#{ancestors.map(&:slug).join('/')}/slug"
       end
     end
 

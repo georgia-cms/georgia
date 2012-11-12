@@ -49,7 +49,7 @@ module Georgia
         redirect_to [:edit, @page], notice: 'Page was successfully updated.'
       else
         build_associations
-        render action: :edit
+        render :edit
       end
     end
 
