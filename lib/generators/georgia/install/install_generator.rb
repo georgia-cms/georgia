@@ -11,6 +11,12 @@ module Georgia
 
       def mount_engine
         route "mount Georgia::Engine => '/admin'"
+        route "mount Henry::Engine => '/api'"
+        route "mount Ckeditor::Engine => '/ckeditor'"
+        route "get '/:slug(/:slug)(/:slug)', to: 'pages#show', as: :page"
+        route "resources :pages, only: [] do
+          post '/preview', to: 'pages#preview', as: :preview, on: :member
+        end"
       end
 
       def self.next_migration_number(dirname)
@@ -23,6 +29,14 @@ module Georgia
 
       def copy_config
         template "config/initializers/georgia.rb"
+      end
+
+      def migrate
+        rake "db:migrate"
+      end
+
+      def boostrap
+        rake "georgia:setup"
       end
 
     end
