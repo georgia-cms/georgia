@@ -21,7 +21,7 @@ module Georgia
       if is_root?
         "/#{slug}"
       else
-        "/#{ancestors.map(&:slug).join('/')}/slug"
+        "/#{ancestors.map(&:slug).join('/')}/#{slug}"
       end
     end
 
