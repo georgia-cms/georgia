@@ -13,7 +13,7 @@ module Georgia
     attr_accessible :template, :slug, :position, :published_at, :published_by_id, :parent_id
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
-    validates :slug, uniqueness: {scope: :parent_id}
+    validates :slug, uniqueness: {scope: :ancestry}
 
     belongs_to :published_by, class_name: Georgia::User
     belongs_to :updated_by, class_name: Georgia::User
@@ -66,7 +66,7 @@ module Georgia
     end
 
     def load_current_revision!
-      return self unless self.current_revision
+      return self if self.current_revision.blank? or self.current_revision == self.last_revision
       self.class.new().load_raw_attributes! self.current_revision.revision_attributes.symbolize_keys!
     end
 
