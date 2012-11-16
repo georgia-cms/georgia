@@ -10,6 +10,8 @@ module Georgia
       desc "Generate migration for Georgia CMS Models"
 
       def mount_engine
+        route "root to: 'pages#show', slug: 'home'"
+        route "resources :messages, only: [:create]"
         route "mount Georgia::Engine => '/admin'"
         route "mount Henry::Engine => '/api'"
         route "mount Ckeditor::Engine => '/ckeditor'"
