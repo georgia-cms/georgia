@@ -5,7 +5,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   require 'carrierwave/processing/mini_magick'
   include CarrierWave::MiniMagick
 
-  storage :file
+  storage :fog
 
   def store_dir
     'system/ckeditor_assets/pictures/'
