@@ -53,7 +53,7 @@ module Georgia
     def publish(user)
       self.published_by = user
       self.status = Georgia::Status.published.first
-      self.create_revision!
+      self.create_revision! unless new_record?
       self.current_revision = self.last_revision
       self
     end

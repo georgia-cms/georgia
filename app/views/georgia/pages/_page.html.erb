@@ -1,17 +1,17 @@
 <tr class="page <%= page.status.try(:label) %>">
-	<td>
-		<%= page.title %>
-	</td>
-	<td>
-		<%= page.text %>
-	</td>
-	<td>
-		<%= page.url %>
-	</td>
-	<td class="labels">
-		<%= page.status_tag %>
-	</td>
-	<td class="actions">
-		<%= link_to_group_edit page, publish: true, review: true, delete: true %>
-	</td>
+  <td>
+    <%= page.title %>
+  </td>
+  <td>
+    <%= page.text %>
+  </td>
+  <td>
+    <%= page.url %>
+  </td>
+  <td class="labels">
+    <%= page.status_tag %>
+  </td>
+  <td class="actions">
+    <%= link_to_group_edit page, publish: true, review: true, delete: true %>
+  </td>
 </tr>

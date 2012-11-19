@@ -5,6 +5,7 @@ module Georgia
     require 'jquery-rails'
     require 'simple_form'
     require 'twitter-bootstrap-rails'
+    require 'less-rails'
     require 'bourbon'
     require 'devise'
     require 'cancan'
@@ -27,6 +28,7 @@ module Georgia
       ActiveSupport.on_load :action_controller do
         helper Georgia::DeviseHelper
         helper Georgia::FormActionsHelper
+        helper Georgia::FormsHelper
         helper Georgia::InternationalizationHelper
         helper Georgia::RoutesHelper
         helper Georgia::UiHelper

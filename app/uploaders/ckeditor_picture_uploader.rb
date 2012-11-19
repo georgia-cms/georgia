@@ -12,7 +12,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "system/ckeditor_assets/pictures/"
+    'pictures/'
   end
 
   def extension_white_list

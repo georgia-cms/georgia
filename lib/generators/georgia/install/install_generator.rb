@@ -12,13 +12,13 @@ module Georgia
       def mount_engine
         route "root to: 'pages#show', slug: 'home'"
         route "resources :messages, only: [:create]"
-        route "mount Georgia::Engine => '/admin'"
-        route "mount Henry::Engine => '/api'"
-        route "mount Ckeditor::Engine => '/ckeditor'"
         route "get '/:slug(/:slug)(/:slug)', to: 'pages#show', as: :page"
         route "resources :pages, only: [] do
           post '/preview', to: 'pages#preview', as: :preview, on: :member
         end"
+        route "mount Georgia::Engine => '/admin'"
+        route "mount Henry::Engine => '/api'"
+        route "mount Ckeditor::Engine => '/ckeditor'"
       end
 
       def self.next_migration_number(dirname)

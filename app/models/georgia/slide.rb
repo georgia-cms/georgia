@@ -7,6 +7,9 @@ module Georgia
 
 		belongs_to :page
 
+    # image is a belongs_to on content
+    # Accessable via decorator at the moment
+
 		delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, to: :contents
 
 		has_many :contents, as: :contentable, dependent: :destroy

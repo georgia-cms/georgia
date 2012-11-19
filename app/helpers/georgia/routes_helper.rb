@@ -13,6 +13,8 @@ module Georgia
       case namespace
       when 'Georgia'
         georgia.url_for([action, model].compact)
+      when 'Kennedy'
+        kennedy.url_for([action, model].compact)
       when 'Admin'
         main_app.url_for([action, :admin, model].compact)
       else
@@ -22,6 +24,10 @@ module Georgia
 
     def georgia?
       namespace == 'Georgia'
+    end
+
+    def kennedy?
+      namespace == 'Kennedy'
     end
 
     def main_app?

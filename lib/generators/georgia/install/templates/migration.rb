@@ -1,10 +1,12 @@
 class CreateGeorgiaModels < ActiveRecord::Migration
   def change
+
     # Create Roles
     create_table :georgia_roles do |t|
       t.string :name
       t.timestamps
     end
+
     # Create RolesUsers Association Table
     create_table :roles_users, id: false do |t|
       t.references :role, null: false
@@ -19,7 +21,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :subject
       t.string :attachment
       t.text :message
-
       t.timestamps
     end
 
@@ -74,7 +75,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string  :assetable_type, :limit => 30
       t.string  :type, :limit => 30
 
-      # Uncomment it to save images dimensions, if your need it
+      # Save images dimensions
       t.integer :width
       t.integer :height
 
@@ -167,15 +168,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :icon
     end
 
-    # create_table :versions do |t|
-    #   t.string   :item_type, :null => false
-    #   t.integer  :item_id,   :null => false
-    #   t.string   :event,     :null => false
-    #   t.string   :whodunnit
-    #   t.text     :object
-    #   t.datetime :created_at
-    # end
-    # add_index :versions, [:item_type, :item_id]
     ActsAsRevisionable::RevisionRecord.create_table
 
   end
