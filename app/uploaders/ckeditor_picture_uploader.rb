@@ -5,14 +5,10 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   require 'carrierwave/processing/mini_magick'
   include CarrierWave::MiniMagick
 
-  if Rails.env.development?
-    storage :file
-  else
-    storage :fog
-  end
+  storage :file
 
   def store_dir
-    'pictures/'
+    'system/ckeditor_assets/pictures/'
   end
 
   def extension_white_list
