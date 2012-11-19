@@ -17,7 +17,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
 //= require georgia/menus
-//= require georgia/pages
+//= require georgia/slugs
 //= require georgia/media
 //= require ckeditor/init
 //= require handlebars

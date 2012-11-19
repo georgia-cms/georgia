@@ -33,6 +33,7 @@ module Georgia
         helper Georgia::RoutesHelper
         helper Georgia::UiHelper
         helper Georgia::MenusHelper
+        helper Georgia::MetaTagsHelper
       end
     end
 
