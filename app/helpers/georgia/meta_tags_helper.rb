@@ -3,7 +3,7 @@ module Georgia
 
     def meta_title title
       site_title = ""
-      site_title << "#{title} | " if title
+      site_title << "#{title} | " unless title.blank?
       site_title << Georgia.title
       content_tag :title, site_title
     end
