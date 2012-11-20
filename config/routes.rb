@@ -27,7 +27,11 @@ Georgia::Engine.routes.draw do
       match :unpublish
     end
   end
-  resources :media, path: :media
+  resources :media, path: :media do
+    collection do
+      delete :destroy_all, to: 'media#destroy_all'
+    end
+  end
   resources :users
   resources :messages do
     match :search, on: :collection

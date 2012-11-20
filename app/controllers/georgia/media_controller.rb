@@ -16,5 +16,13 @@ module Georgia
       @picture = Ckeditor.picture_model.get!(params[:id]).destroy
     end
 
+    def destroy_all
+      if Ckeditor::Picture.destroy_all
+        redirect_to media_index_url, notice: 'Successfully purged all images'
+      else
+        redirect_to media_index_url, notice: 'Oups. Something went wrong'
+      end
+    end
+
   end
 end

@@ -1,4 +1,9 @@
-<h1 class='page-header'>Media Library</h1>
+<h1 class='page-header'>
+  <div class="pull-right">
+    <%= link_to "#{icon_tag 'icon-fire'} Purge All Images".html_safe, destroy_all_media_index_url, class: 'btn btn-danger', method: :delete, confirm: 'This will erase ALL images! Are you sure?' %>
+  </div>
+  Media Library
+</h1>
 
 <div class='row-fluid'>
   <div class='span3'>
