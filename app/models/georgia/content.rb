@@ -6,9 +6,8 @@ module Georgia
     validates :keywords, length: {maximum: 255}
     validates :excerpt, length: {maximum: 255}
 
-    belongs_to :contentable, polymorphic: true
-
-    belongs_to :image, class_name: Ckeditor::Picture
+    belongs_to :contentable, polymorphic: true, touch: true
+    belongs_to :image, class_name: Ckeditor::Picture, touch: true
 
   end
 end
