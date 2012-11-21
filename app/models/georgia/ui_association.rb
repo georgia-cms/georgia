@@ -2,11 +2,13 @@ module Georgia
   class UiAssociation < ActiveRecord::Base
 
    acts_as_list scope: :page
-   
-   belongs_to :page
-   belongs_to :widget
-   belongs_to :ui_section
+
+   belongs_to :page, touch: true
+   belongs_to :widget, touch: true
+   belongs_to :ui_section, touch: true
    attr_accessible :position, :widget_id, :ui_section_id, :page_id
+
+   default_scope includes(:widget)
 
    scope :footer, joins(:ui_section).where(georgia_ui_sections: {name: 'Footer'})
    scope :submenu, joins(:ui_section).where(georgia_ui_sections: {name: 'Submenu'})
