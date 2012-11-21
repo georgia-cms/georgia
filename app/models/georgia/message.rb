@@ -2,7 +2,6 @@ module Georgia
 	class Message < ActiveRecord::Base
 
     attr_accessible :name, :email, :subject, :message, :attachment
-    attr_accessible :created_at, :updated_at
     delegate :url, :current_path, :size, :content_type, :filename, :to => :attachment
 
     validates :name, presence: true
