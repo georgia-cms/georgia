@@ -4,8 +4,8 @@ class Georgia.Views.Widget extends Backbone.View
   className: 'widget'
 
   events:
-    'click .edit_icon': 'edit'
-    'click .remove_icon': 'remove'
+    'click .bb-edit': 'edit'
+    'click .bb-remove': 'remove'
 
   initialize: (options) ->
     @panel = options.panel
@@ -33,5 +33,8 @@ class Georgia.Views.Widget extends Backbone.View
 
   remove: (event) ->
     event.preventDefault()
+    event.stopPropagation()
     @model.destroy
-      success: (model, response) => $(@el).fadeOut(500, -> $(this).remove())
+      success: (widget, response) =>
+        $(@el).fadeOut(500, -> $(this).remove())
+        @panel.notify("<em>#{widget.get('title')}</em> has been deleted.")

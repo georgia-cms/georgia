@@ -3,7 +3,8 @@ class Georgia.Views.WidgetForm extends Backbone.View
   className: 'widget-form'
 
   events:
-    'click #submit': 'save'
+    'click .bb-create': 'create'
+    'click .bb-update': 'update'
 
   initialize: (options) ->
     @panel = options.panel
@@ -20,20 +21,19 @@ class Georgia.Views.WidgetForm extends Backbone.View
     @$('#contents_panel').html(view.render().el)
     this
 
-  save: (event) ->
+  create: (event) ->
     event.preventDefault()
     @model.save @model.attributes,
-      success: @handleSuccess
-      error: @handleError
+      success: () =>
+        @panel.swapPanels()
+        @panel.appendWidget(@model)
+        @panel.notify("#{@model.get('title')} has been successfully created.", 'success')
+      error: @panel.handleError
 
-  handleSuccess: (widget, response) =>
-    @panel.swapPanels()
-    @panel.appendWidget(@model)
-
-  handleError: (widget, response) ->
-    if response.status == 422
-      errors = $.parseJSON(response.responseText).errors
-      for attribute, messages of errors
-        alert "#{attribute} #{message}" for message in messages
-    else
-      alert 'Oups. Something went wrong.'
+  update: (event) ->
+    event.preventDefault()
+    @model.save @model.attributes,
+      success: () =>
+        @panel.swapPanels()
+        @panel.notify("#{@model.get('title')} has been successfully updated.", 'success')
+      error: @panel.handleError
