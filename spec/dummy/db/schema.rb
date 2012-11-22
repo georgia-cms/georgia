@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002103415) do
+ActiveRecord::Schema.define(:version => 20121122111837) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(:version => 20121002103415) do
   add_index "georgia_contents", ["image_id"], :name => "index_georgia_contents_on_image_id"
   add_index "georgia_contents", ["locale"], :name => "index_georgia_contents_on_locale"
 
-  create_table "georgia_menu_items", :force => true do |t|
+  create_table "georgia_links", :force => true do |t|
     t.integer "menu_id"
     t.integer "page_id"
     t.integer "position"
-    t.boolean "active",   :default => false
+    t.boolean "dropdown", :default => false
   end
 
-  add_index "georgia_menu_items", ["menu_id", "page_id"], :name => "index_georgia_menu_items_on_menu_id_and_page_id"
+  add_index "georgia_links", ["menu_id", "page_id"], :name => "index_georgia_links_on_menu_id_and_page_id"
 
   create_table "georgia_menus", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20121002103415) do
     t.string   "name"
     t.string   "email"
     t.string   "subject"
+    t.string   "attachment"
     t.text     "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -75,14 +76,18 @@ ActiveRecord::Schema.define(:version => 20121002103415) do
     t.string   "slug"
     t.integer  "parent_id"
     t.integer  "position"
-    t.datetime "published_at"
+    t.integer  "revision_id"
     t.integer  "published_by_id"
+    t.integer  "status_id"
+    t.string   "ancestry"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
 
+  add_index "georgia_pages", ["ancestry"], :name => "index_georgia_pages_on_ancestry"
   add_index "georgia_pages", ["parent_id"], :name => "index_georgia_pages_on_parent_id"
   add_index "georgia_pages", ["published_by_id"], :name => "index_georgia_pages_on_published_by_id"
+  add_index "georgia_pages", ["status_id"], :name => "index_georgia_pages_on_status_id"
 
   create_table "georgia_roles", :force => true do |t|
     t.string   "name"
@@ -100,14 +105,10 @@ ActiveRecord::Schema.define(:version => 20121002103415) do
   add_index "georgia_slides", ["page_id"], :name => "index_georgia_slides_on_page_id"
 
   create_table "georgia_statuses", :force => true do |t|
-    t.string  "name"
-    t.string  "label"
-    t.string  "icon"
-    t.integer "statusable_id"
-    t.string  "statusable_type"
+    t.string "name"
+    t.string "label"
+    t.string "icon"
   end
-
-  add_index "georgia_statuses", ["statusable_type", "statusable_id"], :name => "index_georgia_statuses_on_statusable_type_and_statusable_id"
 
   create_table "georgia_ui_associations", :force => true do |t|
     t.integer  "page_id",       :null => false
@@ -151,6 +152,18 @@ ActiveRecord::Schema.define(:version => 20121002103415) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "revision_records", :force => true do |t|
+    t.string   "revisionable_type", :limit => 100,                    :null => false
+    t.integer  "revisionable_id",                                     :null => false
+    t.integer  "revision",                                            :null => false
+    t.binary   "data"
+    t.datetime "created_at",                                          :null => false
+    t.boolean  "trash",                            :default => false
+  end
+
+  add_index "revision_records", ["revisionable_id"], :name => "revision_records_id"
+  add_index "revision_records", ["revisionable_type", "created_at", "trash"], :name => "revision_records_type_and_created_at"
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id", :null => false

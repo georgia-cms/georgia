@@ -4,7 +4,7 @@ describe Georgia::Status do
 
   specify {FactoryGirl.build(:status).should be_valid}
 
-  it {should belong_to(:statusable)}
+  it {should have_many(:pages)}
 
   it {should respond_to(:published?)}
   it {should respond_to(:pending_review?)}

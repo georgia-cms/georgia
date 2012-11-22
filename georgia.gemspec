@@ -40,12 +40,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'handlebars_assets'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
+  s.add_dependency 'henry'
 
   s.add_development_dependency "thin"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "debugger"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
+  s.add_development_dependency "rb-inotify"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-spork"
   s.add_development_dependency 'factory_girl_rails'

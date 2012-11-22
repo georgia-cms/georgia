@@ -8,12 +8,10 @@ module Georgia
 
     paginates_per 20
 
-    default_scope includes(:contents)
-
     attr_accessible :template, :slug, :position, :published_at, :published_by_id, :parent_id
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
-    validates :slug, uniqueness: {scope: :ancestry}
+    validates :slug, presence: true, format: {with: /^[a-zA-Z0-9_-]+$/, message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}, uniqueness: {scope: :ancestry}
 
     belongs_to :published_by, class_name: Georgia::User
     belongs_to :updated_by, class_name: Georgia::User
@@ -39,7 +37,11 @@ module Georgia
     pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
     associated_against: { contents: [:title, :text, :excerpt, :keywords] }
 
+    default_scope includes(:contents)
     scope :published, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PUBLISHED})
+
+    before_save :ensure_status
+    before_validation :sanitize_slug
 
     def self.search query
       query.present? ? text_search(query) : scoped
@@ -74,10 +76,6 @@ module Georgia
       self.load_raw_attributes! attributes
     end
 
-    before_save do
-      self.status ||= Status.draft.first
-    end
-
     protected
 
     def load_raw_attributes! attributes
@@ -86,6 +84,15 @@ module Georgia
       end
       self.assign_attributes(attributes, without_protection: true)
       self
+    end
+
+    def ensure_status
+      self.status ||= Status.draft.first
+    end
+
+    def sanitize_slug
+      self.slug ||= ''
+      self.slug.gsub!(/^\/*/, '').gsub!(/\/*$/, '')
     end
 
   end

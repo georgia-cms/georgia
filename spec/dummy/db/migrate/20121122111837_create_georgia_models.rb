@@ -1,10 +1,12 @@
 class CreateGeorgiaModels < ActiveRecord::Migration
-  def up
+  def change
+
     # Create Roles
     create_table :georgia_roles do |t|
       t.string :name
       t.timestamps
     end
+
     # Create RolesUsers Association Table
     create_table :roles_users, id: false do |t|
       t.references :role, null: false
@@ -17,23 +19,27 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :subject
+      t.string :attachment
       t.text :message
-
       t.timestamps
     end
 
     # Create Pages
     create_table :georgia_pages do |t|
-      t.string :template, default: 'one-column'
-      t.string :slug
+      t.string  :template, default: 'one-column'
+      t.string  :slug
       t.integer :parent_id
       t.integer :position
-      t.datetime :published_at
+      t.integer :revision_id
       t.integer :published_by_id
+      t.integer :status_id
+      t.string  :ancestry
       t.timestamps
     end
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :published_by_id
+    add_index :georgia_pages, :status_id
+    add_index :georgia_pages, :ancestry
 
     # Create Content
     create_table :georgia_contents do |t|
@@ -64,15 +70,15 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string  :data_file_name, :null => false
       t.string  :data_content_type
       t.integer :data_file_size
-      
+
       t.integer :assetable_id
       t.string  :assetable_type, :limit => 30
       t.string  :type, :limit => 30
-      
-      # Uncomment it to save images dimensions, if your need it
+
+      # Save images dimensions
       t.integer :width
       t.integer :height
-      
+
       t.timestamps
     end
     add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
@@ -145,14 +151,14 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.timestamps
     end
 
-    # Create Navigation Menus Items
-    create_table :georgia_menu_items do |t|
+    # Create Navigation Links
+    create_table :georgia_links do |t|
       t.integer :menu_id
       t.integer :page_id
       t.integer :position
-      t.boolean :active, default: false
+      t.boolean :dropdown, default: false
     end
-    add_index :georgia_menu_items, [:menu_id, :page_id]
+    add_index :georgia_links, [:menu_id, :page_id]
 
 
     # Create Status
@@ -160,42 +166,9 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :name
       t.string :label
       t.string :icon
-      t.references :statusable, polymorphic: true
     end
-    add_index :georgia_statuses, [:statusable_type, :statusable_id]
 
-  end
+    ActsAsRevisionable::RevisionRecord.create_table
 
-  def down
-    drop_table :georgia_roles
-    drop_table :roles_users
-    drop_table :georgia_messages
-    drop_table :georgia_pages
-    drop_table :georgia_contents
-    drop_table :georgia_slides
-    drop_table :ckeditor_assets
-    drop_table :georgia_users
-    drop_table :georgia_ui_sections
-    drop_table :georgia_widgets
-    drop_table :georgia_ui_associations
-    drop_table :georgia_menus
-    drop_table :georgia_menu_items
-    drop_table :georgia_statuses
-    remove_index :admins_roles, [:admin_id, :role_id]
-    remove_index :georgia_pages, :parent_id
-    remove_index :georgia_pages, :published_by_id
-    remove_index :georgia_contents, [:contentable_type, :contentable_id]
-    remove_index :georgia_contents, :locale
-    remove_index :georgia_contents, :image_id
-    remove_index :georgia_slides, :page_id
-    remove_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"]
-    remove_index "ckeditor_assets", ["assetable_type", "assetable_id"]
-    remove_index :georgia_users, :email
-    remove_index :georgia_users, :reset_password_token
-    remove_index :georgia_ui_associations, :page_id
-    remove_index :georgia_ui_associations, :widget_id
-    remove_index :georgia_ui_associations, :ui_section_id
-    remove_index :georgia_menu_items, [:menu_id, :page_id]
-    remove_index :georgia_statuses, [:statusable_type, :statusable_id]
   end
 end

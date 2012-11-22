@@ -40,12 +40,14 @@ module Georgia
     def update
       @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
 
-      @page.store_revision do
-        @page.update_attributes(params[:page])
-        @page.updated_by = current_user
+      if @page.valid?
+        @page.store_revision do
+          @page.update_attributes(params[:page])
+          @page.updated_by = current_user
+        end
       end
 
-      if @page.save!
+      if @page.save
         redirect_to [:edit, @page], notice: 'Page was successfully updated.'
       else
         build_associations

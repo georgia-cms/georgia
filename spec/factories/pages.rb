@@ -3,5 +3,6 @@ FactoryGirl.define do
     template 'one-column'
     sequence(:slug) {|n| "page#{n}"}
     position 1
+    status
   end
 end
