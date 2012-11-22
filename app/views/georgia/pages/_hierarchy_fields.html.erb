@@ -1,21 +1,26 @@
 <fieldset>
-	<legend>Site Hierarchy</legend>
-	<h3 class='page-header'>Parent Section</h3>
-	<%= f.input :parent_id, collection: Georgia::PageDecorator.decorate(Georgia::Page.all).map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
-	<h3 class='page-header'>Subpages</h3>
-	<p>
-		Move the pages around to change their display position.
-	</p>
-	<% if @page.persisted? and @page.children.any? %>
-	<ul id="subpages" class="nav nav-pills ui-sortable" data-sort-url="<%= sort_pages_url %>">
-		<% Georgia::PageDecorator.decorate(@page.children).each do |page| %>
-		<%= content_tag_for(:li, page, class: 'note rounded') do %>
-		<%= page.title %>
-		<% end -%>
-		<% end -%>
-	</ul>
-	<% else -%>
-	<p class='help-block'>There are no subpages for this page.</p>
-	<% end -%>
-	<p class='help-block'>To include a subpage, go to the desired page and add a parent section.</p>
+  <legend>Site Hierarchy</legend>
+  <h3 class='page-header'>Parent Section</h3>
+  <%= f.input :parent_id, collection: Georgia::PageDecorator.decorate(Georgia::Page.all).map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
+  <h3 class='page-header'>Subpages</h3>
+  <p>
+    Move the pages around to change their display position.
+  </p>
+  <% if @page.persisted? and @page.children.any? %>
+  <ul id="subpages" class="nav nav-pills ui-sortable" data-sort-url="<%= sort_pages_url %>">
+    <% Georgia::PageDecorator.decorate(@page.children).each do |page| %>
+    <%= content_tag_for(:li, page, class: 'note rounded') do %>
+    <%= page.title %>
+    <% end -%>
+    <% end -%>
+  </ul>
+  <% else -%>
+  <p class='help-block'>There are no subpages for this page.</p>
+  <% end -%>
+  <p class='help-block'>To include a subpage, go to the desired page and add a parent section.</p>
 </fieldset>
+
+<div class="form-actions">
+  <%= f.submit nil, class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', pages_url, class: 'btn' %>
+</div>

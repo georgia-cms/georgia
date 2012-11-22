@@ -3,77 +3,64 @@
 <% end %>
 
 <div id='edit_page_panel'>
-	<%= simple_form_for @page, html: {class: 'form-vertical', data: {'page-id' => @page.id}} do |f| %>
-	<div class='row-fluid'>
-		<div class='span2'>
-			<div class='well'>
-				<ul class="nav nav-list">
-					<li class="active">
-						<a href="#home" data-toggle="tab">
-							<%= icon_tag('icon-home') %> Home
-						</a>
-					</li>
-					<li class="nav-header">Content</li>
-					<% @page.contents.each do |content| %>
-					<li>
-						<a href="#<%= content.locale %>" data-toggle="tab">
-							<%= icon_tag('icon-file') %> <%= locale_name(content.locale) %>
-						</a>
-					</li>
-					<% end -%>
-					<li class="nav-header">Other</li>
-					<li>
-						<a href="#hierarchy" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Hierarchy</a>
-					</li>
-					<li>
-						<a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a>
-					</li>
-					<li>
-						<a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a>
-					</li>
- 					<li>
-						<a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a>
-					</li>
-					<% unless @page.new_record? %>
-					<li class="nav-header">Actions</li>
-					<li>
-						<%= link_to_preview @page %>
-					</li>
-					<li>
-						<%= link_to_publish @page %>
-					</li>
-					<li>
-						<%= link_to_unpublish @page %>
-					</li>
-					<li>
-						<%= link_to_review @page %>
-					</li>
-					<li>
-						<%= link_to_delete @page %>
-					</li>
-					<% end -%>
-				</ul>
-			</div>
-		</div>
-		<div class='span10'>
+  <%= simple_form_for @page, html: {class: 'form-vertical', data: {'page-id' => @page.id}} do |f| %>
+  <div class='row-fluid'>
+    <div class='span2'>
+      <div class='well'>
+        <ul class="nav nav-list">
+          <li class="active">
+            <a href="#home" data-toggle="tab">
+              <%= icon_tag('icon-home') %> Home
+            </a>
+          </li>
+          <li class="nav-header">Content</li>
+          <% @page.contents.each do |content| %>
+          <li>
+            <a href="#<%= content.locale %>" data-toggle="tab">
+              <%= icon_tag('icon-file') %> <%= locale_name(content.locale) %>
+            </a>
+          </li>
+          <% end -%>
+          <li class="nav-header">Other</li>
+          <li>
+            <a href="#hierarchy" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Hierarchy</a>
+          </li>
+          <li>
+            <a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a>
+          </li>
+          <li>
+            <a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a>
+          </li>
+          <li>
+            <a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a>
+          </li>
+          <% unless @page.new_record? %>
+          <li class="nav-header">Actions</li>
+          <li>
+            <%= link_to_preview @page %>
+          </li>
+          <li>
+            <%= link_to_publish @page %>
+          </li>
+          <li>
+            <%= link_to_unpublish @page %>
+          </li>
+          <li>
+            <%= link_to_review @page %>
+          </li>
+          <li>
+            <%= link_to_delete @page %>
+          </li>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+    <div class='span10'>
 
-			<div class="tab-content">
+      <div class="tab-content">
 
-				<div class="tab-pane active" id="home">
-
-					<%= f.input :slug, label: 'Page URL', disabled: true,
-          input_html: {value: @page.url, class: 'input-xxlarge', data: {slug: @page.slug}},
-          hint: "The URL is automatically generated from the page title in the default language.<br />Changing this might break important links to your website. We strongly suggest you contact Motion Eleven before editing a slug.<br/>I understand and would like to <a href='#' class='js-allow-slug-edit'>edit anyway</a>." %>
-
-          <fieldset>
-            <legend>Template</legend>
-            <div id='templates'>
-              <%= f.hidden_field :template %>
-              <% Georgia.templates.each do |template| %>
-              <%= render_template template %>
-              <% end -%>
-            </div>
-          </fieldset>
+        <div class="tab-pane active" id="home">
+          <%= render 'main_fields', f: f %>
         </div>
 
         <%= f.simple_fields_for :contents do |c| %>
@@ -94,20 +81,15 @@
          Loading ...
        </div>
 
- 				<div class='tab-pane' id='revisions'>
-					<%= render 'georgia/pages/revisions' %>
-				</div>
+       <div class='tab-pane' id='revisions'>
+        <%= render 'georgia/pages/revisions' %>
+      </div>
 
-			</div>
+    </div>
 
-			<div class="form-actions">
-				<%= f.submit nil, class: 'btn btn-primary' %>
-				<%= link_to 'Cancel', pages_url, class: 'btn' %>
-			</div>
-
-		</div>
-	</div>
-  <% end %>
+  </div>
+</div>
+<% end %>
 </div>
 
 
