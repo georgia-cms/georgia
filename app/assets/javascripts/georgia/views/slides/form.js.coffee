@@ -3,7 +3,8 @@ class Georgia.Views.SlideForm extends Backbone.View
   className: 'slide-form'
 
   events:
-    'click #submit': 'save'
+    'click .bb-create': 'create'
+    'click .bb-update': 'update'
 
   initialize: (options) ->
     @panel = options.panel
@@ -20,13 +21,19 @@ class Georgia.Views.SlideForm extends Backbone.View
     @$('#contents_panel').html(view.render().el)
     this
 
-  save: (event) ->
+  create: (event) ->
     event.preventDefault()
     @model.save @model.attributes,
-      success: @handleSuccess
+      success: () =>
+        @panel.swapPanels()
+        @panel.appendSlide(@model)
+        @panel.notify("#{@model.get('title')} has been successfully created.", 'success')
       error: @panel.handleError
 
-  handleSuccess: (slide, response) =>
-    @panel.swapPanels()
-    @panel.appendSlide(@model)
-    @panel.notify("<em>#{slide.get('title')}</em> has been updated.")
+  update: (event) ->
+    event.preventDefault()
+    @model.save @model.attributes,
+      success: () =>
+        @panel.swapPanels()
+        @panel.notify("#{@model.get('title')} has been successfully updated.", 'success')
+      error: @panel.handleError

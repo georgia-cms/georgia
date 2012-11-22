@@ -5,7 +5,7 @@ class Georgia.Views.Slide extends Backbone.View
 
   events:
     'click .edit_icon': 'edit'
-    'click .remove_icon': 'remove'
+    'click .bb-remove': 'remove'
 
   initialize: (options) ->
     @panel = options.panel
@@ -31,4 +31,6 @@ class Georgia.Views.Slide extends Backbone.View
     event.preventDefault()
     event.stopPropagation()
     @model.destroy
-      success: (model, response) => $(@el).fadeOut(500, -> $(this).remove())
+      success: (slide, response) =>
+        $(@el).fadeOut(500, -> $(this).remove())
+        @panel.notify("<em>#{slide.get('title')}</em> has been deleted.")

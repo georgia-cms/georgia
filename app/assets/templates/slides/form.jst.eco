@@ -5,5 +5,9 @@
 <% end %>
 <div id='contents_panel'></div>
 <div class='form-actions'>
-	<a id='submit' href='#' class='btn'>Save</a>
+  <% if @slide.isNew(): %>
+  <a id='submit' href='#' class='btn btn-primary bb-create'>Create</a>
+  <% else: %>
+  <a id='submit' href='#' class='btn btn-primary bb-update'>Update</a>
+  <% end %>
 </div>
