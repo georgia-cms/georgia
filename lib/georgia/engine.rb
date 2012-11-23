@@ -24,6 +24,10 @@ module Georgia
     require 'ancestry'
     require 'henry'
 
+    initializer :assets do |config|
+      Rails.application.config.assets.precompile += %w( georgia/application.js georgia/application.css )
+    end
+
     initializer 'georgia.action_controller' do |app|
       ActiveSupport.on_load :action_controller do
         helper Georgia::DeviseHelper
@@ -42,5 +46,7 @@ module Georgia
       g.integration_tool :rspec
     end
     config.cache_classes = !(ENV['DRB'] == 'true')
+
+
   end
 end

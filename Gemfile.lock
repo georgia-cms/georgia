@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.2.9)
+    georgia (0.3)
       acts_as_list
       acts_as_revisionable (~> 1.2.2)
       ancestry
