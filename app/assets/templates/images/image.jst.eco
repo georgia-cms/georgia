@@ -1,3 +1,7 @@
-<a href="<%= @image.get('url') %>" class="thumbnail">
-	<img src="<%= @image.get('thumb_url') %>" />
+<a href='#' class='btn bb-star' >
+  <i class='icon-star-empty'></i>
 </a>
+<a href='<%= @image.get('url') %>' class='btn js-lightbox'>
+  <i class='icon-fullscreen'></i>
+</a>
+<img src="<%= @image.get('thumb_url') %>" />

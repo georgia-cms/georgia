@@ -1,17 +1,11 @@
 <legend>
-	Featured Image
-	<div class="pull-right controls">
-		<a href="#" id="previous" class='btn disabled'><i class="icon-arrow-left"></i></a>
-		<a href="#" id="next" class='btn'><i class="icon-arrow-right"></i></a>
-	</div>
+  Featured Image
+  <div class="pull-right .bb-controls">
+    <a href="#" class='bb-prev btn disabled'><i class="icon-arrow-left"></i></a>
+    <a href="#" class='bb-next btn'><i class="icon-arrow-right"></i></a>
+  </div>
 </legend>
-<div class='row'>
-	<ul class="thumbnails">
-		<li id='featured_image' class="span8">
-			<input id="image_id" type="hidden" value="<%= @image.id %>" />
-			<a href="<%= @image.get('url') %>" class="thumbnail">
-				<img src="<%= @image.get('big_thumb_url') %>" />
-			</a>
-		</li>
-	</ul>
+<div class='carousel-holder'>
+  <ul class='nav bb-thumbnails'>
+  </ul>
 </div>

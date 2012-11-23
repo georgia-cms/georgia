@@ -1,15 +1,15 @@
 class Georgia.Models.Content extends Backbone.RelationalModel
 
-  relations: [
+  relations: [{
     type: Backbone.HasOne
     key:  'image'
     relatedModel: 'Georgia.Models.Image'
+    collectionType: 'Georgia.Collections.Images'
     includeInJSON: false
     reverseRelation:
-      type: Backbone.HasOne
       key: 'content'
-      includeInJSON: false
-  ]
+      includeInJSON: 'id'
+  }]
 
   locales:
     en: 'English'

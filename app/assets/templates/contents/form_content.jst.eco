@@ -4,7 +4,7 @@
 			<div class="form-inputs">
 				<div class="control-group string required">
 					<label class="string required control-label" for="title">
-						<abbr title="required">*</abbr> Title
+						Title
 					</label>
 					<div class="controls">
 						<input class="string required" id="title" size="50" type="text" value="<%= @content.get('title') %>">
@@ -12,7 +12,7 @@
 				</div>
 				<div class="control-group text required">
 					<label class="text required control-label" for="text">
-						<abbr title="required">*</abbr> Text
+						Content
 					</label>
 					<div class="controls">
 						<textarea class="text required" id="text" cols="40" rows="15"><%= @content.get('text') %></textarea>

@@ -1,66 +1,57 @@
-class Georgia.Views.ImagesPanel extends Backbone.View
+##= require ./panel.js.coffee
+class Georgia.Views.ImagesPanel extends Georgia.Views.Panel
   template: JST['panels/images']
 
   events:
-    'click .controls #previous': 'previous'
-    'click .controls #next': 'next'
-    'click #featured_image a': 'lightbox'
+    'click .bb-prev': 'previous'
+    'click .bb-next': 'next'
 
-  initialize: ->
-    @image = @model.get('image')
-    @image ?= new Georgia.Models.Image
+  initialize: (options) ->
+    @featured_image = options.featured_image
+    @featured_image ?= new Georgia.Models.Image
     @position = 0
-    @width = 31.623931624
-    @gap = 2.564102564
-    @positions = [
-      {left: "#{(@width*2)+@gap}%", top: '0'}
-      {left: "#{(@width*2)+@gap}%", top: "#{@width}%"}
-      {left: "#{(@width*2)+@gap}%", top: "#{@width*2}%"}
-      {left: "#{@width}%", top: "#{@width*2}%"}
-      {left: "-#{@gap}%", top: "#{@width*2}%"}
-    ]
-    @collection.on('add', @appendImage, this)
 
   render: ->
-    $(@el).html(@template(image: @image))
+    $(@el).html(@template())
     @collection.each(@appendImage)
-    @collection.each(@positionImage)
+    @enableLightBox()
+    @markFeatured()
+    @disableNextIfNeeded()
     this
 
   appendImage: (image) =>
     view = new Georgia.Views.Image(model: image, content: @model)
-    @$('.thumbnails').append(view.render().el)
+    @$('.bb-thumbnails').append(view.render().el)
 
   previous: (event) ->
     event.preventDefault()
-    unless @position <= 0
-      @$('.span4').slice(@position-1,   @position+2).animate({top:  "+=#{@width+@gap}%"}, 300)
-      @$('.span4').slice(@position+2,   @position+5).animate({left: "-=#{@width+@gap}%"}, 300)
+    unless @$('.bb-prev').hasClass('disabled')
+      @$('.bb-thumbnails').animate({top: '+=345px'}, 'fast')
+      @$('.bb-next').removeClass('disabled')
       @position-=1
-      @setArrows()
+    @$('.bb-prev').addClass('disabled') if @reachStart()
 
   next: (event) ->
     event.preventDefault()
-    unless @position >= (@collection.length-5)
-      @$('.span4').slice(@position,   @position+3).animate({top:  "-=#{@width+@gap}%"}, 300)
-      @$('.span4').slice(@position+3, @position+6).animate({left: "+=#{@width+@gap}%"}, 300)
+    unless @$('.bb-next').hasClass('disabled')
+      @$('.bb-thumbnails').animate({top: '-=345px'}, 'fast')
+      @$('.bb-prev').removeClass('disabled')
       @position+=1
-      @setArrows()
+    @$('.bb-next').addClass('disabled') if @reachEnd()
 
-  lightbox: (event) ->
-    event.preventDefault()
-    $(event.currentTarget).lightBox()
+  reachStart: () ->
+    @position is 0
 
-  setArrows: ->
-    @previous = @$('.controls #previous')
-    @next = @$('.controls #next')
-    if @position <= 0 then @previous.addClass('disabled') else @previous.removeClass('disabled')
-    if @position >= (@collection.length-5) then @next.addClass('disabled') else @next.removeClass('disabled')
+  reachEnd: () ->
+    @position >= parseInt(@collection.length/9)
 
-  positionImage: (image, index) =>
-    if index <= 4
-      position = @getPosition(index)
-      $(@$('.thumbnails li')[index+1]).animate({left: position['left'], top: position['top']})
+  enableLightBox: () =>
+    $(@el).find('.js-lightbox').lightBox()
 
-  getPosition: (index) =>
-    @positions[index]
+  markFeatured: () =>
+    $(@el).find(".image-#{@featured_image.id}").addClass('featured')
+    $(@el).find(".image-#{@featured_image.id}").find('.bb-star > i').toggleClass('icon-star icon-star-empty')
+
+
+  disableNextIfNeeded: ->
+    @$('.bb-next').addClass('disabled') unless (@collection.length > 9)

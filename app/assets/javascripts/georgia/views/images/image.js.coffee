@@ -1,21 +1,31 @@
 class Georgia.Views.Image extends Backbone.View
   template: JST['images/image']
   tagName: 'li'
-  className: 'span4'
 
   events:
-    'click a.thumbnail': 'setFeatured'
+    'click .thumbnail': 'preventDefault'
+    'click .bb-star': 'setAsFeatured'
+    'hover .bb-star': 'toggleStar'
 
   initialize: (options) ->
     @content = options.content
+    $(@el).addClass("image-#{@model.id}")
 
   render: ->
     $(@el).html(@template(image: @model))
     this
 
-  setFeatured: (event) =>
+  preventDefault: (event) =>
     event.preventDefault()
-    featured = $(@el).siblings('#featured_image')
-    featured.find('a').attr('href', @model.attributes.url)
-    featured.find('img').attr('src', @model.attributes.big_thumb_url)
+
+  setAsFeatured: (event) =>
+    event.preventDefault()
+    $(@el).siblings('.featured').find('.bb-star > i').toggleClass('icon-star icon-star-empty')
+    $(@el).siblings('.featured').removeClass('featured')
+    $(@el).addClass('featured')
+    $(@el).find('.bb-star > i').removeClass('icon-star-empty')
+    $(@el).find('.bb-star > i').addClass('icon-star')
     @content.trigger('updateImage', @model.id)
+
+  toggleStar: (event) =>
+    $(@el).find('.bb-star > i').toggleClass('icon-star icon-star-empty') unless $(@el).hasClass('featured')
