@@ -5,7 +5,7 @@ class Georgia.Views.SlideshowPanel extends Georgia.Views.Panel
     $(@el).html(@template())
     @collection.each(@appendSlide)
     @$('#slides_tabs').sortable
-      axis: 'x'
+      axis: 'y'
       update: ->
         $.post('/api/slides/sort', $(this).sortable('serialize'))
     .disableSelection()

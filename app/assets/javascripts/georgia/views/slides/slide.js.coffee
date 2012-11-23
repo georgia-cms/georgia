@@ -4,17 +4,17 @@ class Georgia.Views.Slide extends Backbone.View
   className: 'slide'
 
   events:
-    'click .edit_icon': 'edit'
+    'click .bb-edit': 'edit'
     'click .bb-remove': 'remove'
 
   initialize: (options) ->
     @panel = options.panel
     @images = options.images
+    console.log @model
     @id = 'slide_' + @model.id
     $(@el).attr 'id', @id
     $(@el).addClass(@model.attributes.type)
     $(@el).attr('data-slide-id', @model.id)
-    $(@el).css('background', "url('#{@model.image}') no-repeat scroll 0 0 #08C") if @model.image
     @model.on('change', @render, this)
 
   render: ->
