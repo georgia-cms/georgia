@@ -4,12 +4,13 @@
       cursor: pointer;
       position: relative;
       min-height: 100px;
+      width: 800px;
       font-weight: bold;
       text-align: center;
       overflow:hidden;
       margin: 1em 0;
       @include border-radius(5px);
-      @include box-shadow(0 4px 3px 0 #666);
+      @include box-shadow(0 1px 3px 0 #666);
 
       a.btn {
         position: absolute;
