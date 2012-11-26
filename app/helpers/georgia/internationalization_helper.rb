@@ -1,7 +1,7 @@
 # encoding: UTF-8
 module Georgia
   module InternationalizationHelper
-    
+
     LOCALES_HASH = {en: "English", fr: "Français"}
 
     def locale_name(locale)
@@ -17,16 +17,17 @@ module Georgia
       current_locale? :en
     end
 
-    def link_to_locale options={}, html_options={}    
+    def link_to_locale options={}, html_options={}
       options[:text] ||= english? ? "Français" : "English"
+      options[:text] = sanitize(options[:text]) if options[:sanitize]
       options[:locale] ||= english? ? :fr : :en
       html_options[:hreflang] ||= english? ? :fr : :en
-      
+
       link_to(options[:text], {locale: options[:locale]}, html_options)
     end
-    
+
     private
-    
+
     def current_locale?(locale)
       I18n.locale == locale
     end
