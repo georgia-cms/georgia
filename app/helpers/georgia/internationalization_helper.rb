@@ -19,7 +19,7 @@ module Georgia
 
     def link_to_locale options={}, html_options={}
       options[:text] ||= english? ? "Français" : "English"
-      options[:text] = sanitize(options[:text]) if options[:sanitize]
+      options[:text] = normalize(options[:text]) if options[:normalize]
       options[:locale] ||= english? ? :fr : :en
       html_options[:hreflang] ||= english? ? :fr : :en
 
