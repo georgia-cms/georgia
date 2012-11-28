@@ -51,7 +51,7 @@ module Georgia
     def link_to_delete(model)
       return if model.nil? or model.new_record?
       if can? :destroy, model
-        link_to "#{icon_tag('icon-trash')} Delete".html_safe, namespaced_url_for(model), data: {confirm: 'Are you sure?'}, method: :delete
+        link_to "#{icon_tag('icon-trash')} Delete".html_safe, namespaced_url_for(model), class: 'btn btn-danger', data: {confirm: 'Are you sure?'}, method: :delete
       end
     end
 
