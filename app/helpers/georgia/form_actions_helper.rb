@@ -18,24 +18,24 @@ module Georgia
       link_to "#{icon_tag('icon-retweet')} Revert".html_safe, georgia.revert_version_path(revision), method: :post, class: 'btn'
     end
 
-    def link_to_publish(model)
+    def link_to_publish(model, options={})
       return if model.nil? or model.new_record?
       if can? :publish, model
-        link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, namespaced_url_for(model, :publish)
+        link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, namespaced_url_for(model, :publish), options
       end
     end
 
-    def link_to_unpublish(model)
+    def link_to_unpublish(model, options={})
       return if model.nil? or model.new_record?
       if can? :unpublish, model
-        link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, namespaced_url_for(model, :unpublish)
+        link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, namespaced_url_for(model, :unpublish), options
       end
     end
 
-    def link_to_review(model)
+    def link_to_review(model, options={})
       return if model.nil? or model.new_record?
       if can? :ask_for_review, model
-        link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, namespaced_url_for(model, :ask_for_review)
+        link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, namespaced_url_for(model, :ask_for_review), options
       end
     end
 
@@ -48,10 +48,13 @@ module Georgia
       end
     end
 
-    def link_to_delete(model)
+    def link_to_delete(model, options={})
       return if model.nil? or model.new_record?
       if can? :destroy, model
-        link_to "#{icon_tag('icon-trash')} Delete".html_safe, namespaced_url_for(model), class: 'btn btn-danger', data: {confirm: 'Are you sure?'}, method: :delete
+        options[:data] ||= {}
+        options[:data][:confirm] = 'Are you sure?'
+        options[:method] ||= :delete
+        link_to "#{icon_tag('icon-trash')} Delete".html_safe, namespaced_url_for(model), options
       end
     end
 

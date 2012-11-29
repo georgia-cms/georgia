@@ -1,6 +1,8 @@
 require 'spec_helper'
 
+
 describe Georgia::Page do
+
   before :each do
     @page = FactoryGirl.create(:page)
   end
@@ -37,9 +39,11 @@ describe Georgia::Page do
 
   describe '.publish' do
     before { FactoryGirl.create(:status, name: 'Published') }
+
     before :each do
       @user = FactoryGirl.create(:user, first_name: 'Mathieu')
     end
+
     it "should set a published_by user" do
       @page.publish(@user).published_by.should be @user
     end
@@ -77,7 +81,7 @@ describe Georgia::Page do
     end
     it "should set status to draft" do
       @page.publish(@user)
-      @page.unpublish.draft?.should be_true
+      @page.unpublish.draft?.should == true
     end
     it "should set current_revision to nil" do
       @page.publish(@user)
