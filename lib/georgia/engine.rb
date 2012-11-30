@@ -1,6 +1,8 @@
 module Georgia
   class Engine < ::Rails::Engine
+
     isolate_namespace Georgia
+
     require 'rubygems'
     require 'jquery-rails'
     require 'simple_form'
@@ -25,7 +27,8 @@ module Georgia
     require 'henry'
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( georgia/application.js georgia/application.css )
+      Rails.application.config.assets.precompile += %w( georgia/georgia.js georgia/georgia.css )
+      Rails.application.config.assets.precompile += Ckeditor.assets
     end
 
     initializer 'georgia.action_controller' do |app|
@@ -46,7 +49,6 @@ module Georgia
       g.integration_tool :rspec
     end
     config.cache_classes = !(ENV['DRB'] == 'true')
-
 
   end
 end
