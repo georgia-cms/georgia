@@ -1,3 +1,3 @@
-source "http://rubygems.org"
-gem 'henry', git: 'ssh://app@motiononze.com/repos/henry.git'
+source :rubygems
+gem 'henry', git: 'git@git.motioneleven.com:henry.git'
 gemspec
