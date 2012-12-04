@@ -1,4 +1,5 @@
 namespace :georgia do
+
   desc 'Bootstrap Georgia with necessary instances'
   task setup: :environment do
 

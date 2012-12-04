@@ -24,7 +24,7 @@
 //= require underscore
 //= require backbone
 //= require .//backbone-relational
-//= require .//georgia
+//= require .//panels
 //= require_tree ./../../templates/
 //= require_tree .//models
 //= require_tree .//collections
