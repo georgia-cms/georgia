@@ -27,9 +27,8 @@ describe Georgia::Page do
   it {should respond_to(:wait_for_review)}
 
   it {should validate_uniqueness_of(:slug).scoped_to(:ancestry)}
-  it {should validate_presence_of(:slug)}
   it {should validate_format_of(:slug).with('contact')}
-  it {should validate_format_of(:slug).with('COnT4CT')}
+  it {should validate_format_of(:slug).with('COn-T4CT_')}
   it {should validate_format_of(:slug).with('/register-me//')} #should sanitize
   it {should validate_format_of(:slug).not_with('supp/ort').with_message(/can only consist of/)}
   it {should validate_format_of(:template).with('one-column')}

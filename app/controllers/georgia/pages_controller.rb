@@ -16,25 +16,16 @@ module Georgia
       redirect_to edit_page_path(params[:id])
     end
 
-    def new
-      @page = Georgia::PageDecorator.decorate(Page.new)
-      build_associations
-    end
-
     def edit
       @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
       build_associations
     end
 
     def create
-      @page = Georgia::PageDecorator.decorate(Page.new(params[:page]))
-
-      if @page.save
-        redirect_to [:edit, @page], notice: 'Page was successfully created.'
-      else
-        build_associations
-        render action: :new
-      end
+      @page = Page.new
+      @page.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:page][:title])
+      @page.slug = params[:page][:title].try(:parameterize)
+      @page.save
     end
 
     def update
@@ -118,9 +109,9 @@ module Georgia
     def build_associations
       @page.slides.build unless @page.slides.any?
       I18n.available_locales.map(&:to_s).each do |locale|
-        @page.contents << Content.new(locale: locale) unless @page.contents.find_by_locale(locale).present?
+        @page.contents << Content.new(locale: locale) unless @page.contents.select{|c| c.locale == locale}.any?
         @page.slides.each do |slide|
-          slide.contents << Content.new(locale: locale) unless slide.contents.find_by_locale(locale).present?
+          slide.contents << Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
         end
       end
     end

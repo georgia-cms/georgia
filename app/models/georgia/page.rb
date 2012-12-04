@@ -11,7 +11,7 @@ module Georgia
     attr_accessible :template, :slug, :position, :published_at, :published_by_id, :parent_id
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
-    validates :slug, presence: true, format: {with: /^[a-zA-Z0-9_-]+$/, message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}, uniqueness: {scope: :ancestry}
+    validates :slug, format: {with: /^[a-zA-Z0-9_-]+$/, message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}, uniqueness: {scope: :ancestry, message: 'has already been taken'}
 
     belongs_to :published_by, class_name: Georgia::User
     belongs_to :updated_by, class_name: Georgia::User
