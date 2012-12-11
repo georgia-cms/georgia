@@ -17,7 +17,7 @@
 		color:#fff;
 		background: $blue;
 		overflow:hidden;
-		@include border-radius(5px);
+		border-radius: 5px;
 		@include box-shadow(0 4px 3px 0 #666);
 		&.widget-custom {background: $red;}
 	}
@@ -25,7 +25,7 @@
 	.ui_association_list {
 		min-height: 150px;
 		padding: 4px 8px;
-		@include border-radius(4px);
+		border-radius: 4px;
 		background-color: $light_grey;
 		@include linear-gradient($grey, $light_grey);
 
@@ -38,7 +38,7 @@
 			position: relative;
 			color: #FFF;
 			background-color: $green;
-			@include border-radius(4px);
+			border-radius: 4px;
 			@include box-shadow(0 4px 3px 0 #666);
 			&.widget-custom {background-color: $red;}
 		}

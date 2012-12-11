@@ -10,7 +10,7 @@
       overflow:hidden;
       margin: 1em 0;
       background-color: #FFF;
-      @include border-radius(5px);
+      border-radius: 5px;
       @include box-shadow(0 1px 3px 0 #666);
 
       a.btn {

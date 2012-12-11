@@ -22,10 +22,10 @@
    display:block; width:0; /* Firefox 3.0 damage limitation */
 }
 
-.note.rounded {@include border-radius(5px 0 5px 5px);}
+.note.rounded {border-radius: 5px 0 5px 5px;}
 
 .note.rounded:before {
    border-width:8px;
    border-color: #fff #fff transparent transparent;
-   @include border-radius(0 0 0 5px);
+   border-radius: 0 0 0 5px;
 }

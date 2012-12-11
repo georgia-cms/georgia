@@ -39,7 +39,7 @@
   width: 250px;
   height: 250px;
   margin: 0 auto;
-  @include border-radius(4px);
+  border-radius: 4px;
 }
 /* line 38, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .lb-outerContainer:after {
@@ -121,7 +121,7 @@
   padding-top: 5px;
   *zoom: 1;
   width: 100%;
-  @include border-radius(0 0 4px 4px);
+  border-radius: 0 0 4px 4px;
 }
 /* line 38, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
 .lb-dataContainer:after {
