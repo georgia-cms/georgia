@@ -1,0 +1,4 @@
+<div class="btn-group">
+  <div class="btn <%= 'active' if current_page? media_index_url %>"><%= link_to 'All', media_index_url %></div>
+  <%= render @tags %>
+</div>

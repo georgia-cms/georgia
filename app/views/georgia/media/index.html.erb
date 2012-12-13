@@ -1,8 +1,12 @@
 <h1 class='page-header'>
-  <div class="pull-right">
-    <%= link_to "#{icon_tag 'icon-fire'} Purge All Images".html_safe, destroy_all_media_index_url, class: 'btn btn-danger', method: :delete, confirm: 'This will erase ALL images! Are you sure?' %>
+  <div class='row-fluid'>
+    <div class='span3'>Media Library</div>
+    <div class="span8">
+      <div class="pull-right">
+        <%= link_to "#{icon_tag 'icon-fire'} Purge All Images".html_safe, destroy_all_media_index_url, class: 'btn btn-danger', method: :delete, confirm: 'This will erase ALL images! Are you sure?' %>
+      </div>
+    </div>
   </div>
-  Media Library
 </h1>
 
 <div class='row-fluid'>
@@ -16,6 +20,11 @@
     <% end %>
   </div>
   <div class='span9'>
+    <div class="nav-tags">
+      <div id="tags">
+        <%= render 'show_tags' %>
+      </div>
+    </div>
     <div id='pictures' class='gal-holder'>
       <%= render @assets %>
     </div>
@@ -26,10 +35,14 @@
 <script type="text/javascript">$("a[rel='lightbox']").lightBox()</script>
 <script id="template-upload" type="text/x-tmpl">
 <div id="{%=o.size%}" class="upload">
-  {%=o.name%}
-  <div class="progress progress-striped active">
-    <div class="bar" style="width: 0%"></div>
-  </div>
+{%=o.name%}
+<div class="progress progress-striped active">
+<div class="bar" style="width: 0%"></div>
+</div>
 </div>
 </script>
+<% end -%>
+
+<%= content_for :ujs do %>
+
 <% end -%>

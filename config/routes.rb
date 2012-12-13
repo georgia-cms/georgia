@@ -13,6 +13,7 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
+
   post "revisions/:id/revert" => "revisions#revert", :as => :revert_version
 
   resources :pages do
@@ -27,6 +28,8 @@ Georgia::Engine.routes.draw do
       match :unpublish
     end
   end
+
+  get 'media/tags/:tag', to: 'media#index', as: :tag
   resources :media, path: :media do
     collection do
       delete :destroy_all, to: 'media#destroy_all'

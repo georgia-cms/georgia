@@ -24,6 +24,7 @@ module Georgia
     require 'backbone-on-rails'
     require 'jquery-fileupload-rails'
     require 'ancestry'
+    require 'acts-as-taggable-on'
     require 'henry'
 
     initializer :assets do |config|

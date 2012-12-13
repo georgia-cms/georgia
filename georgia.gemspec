@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'handlebars_assets'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
+  s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'henry'
 
   s.add_development_dependency "thin"

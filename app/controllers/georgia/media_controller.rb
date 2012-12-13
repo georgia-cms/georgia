@@ -4,12 +4,27 @@ module Georgia
     load_and_authorize_resource class: "Ckeditor::Asset"
 
     def index
-      @assets = Ckeditor::Asset.all
+      @tags = ActsAsTaggableOn::Tag.all
       @asset = Ckeditor::Picture.new
+
+      if params[:tag]
+        @assets = Ckeditor::Asset.tagged_with(params[:tag])
+      else
+        @assets = Ckeditor::Asset.all
+      end
+
+      @assets = AssetDecorator.decorate(@assets)
     end
 
     def create
       @picture = Ckeditor::Picture.create(params[:picture])
+    end
+
+    def update
+      @picture = Ckeditor::Picture.find(params[:id])
+      @picture.update_attributes(params[:picture])
+      @tags = ActsAsTaggableOn::Tag.all
+      render layout: false
     end
 
     def destroy

@@ -1,0 +1,3 @@
+$('#picture_<%= @picture.id %> .tags, #picture_<%= @picture.id %> .form').toggle()
+$('#picture_<%= @picture.id %> .list-tags').html('<%= escape_javascript render("tags", picture: @picture) %>');
+$('#tags').html('<%= escape_javascript render @tags %>');

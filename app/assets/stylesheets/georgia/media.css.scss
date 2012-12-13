@@ -1,113 +1,139 @@
 .bar {
-    height: 18px;
-    background: green;
+  height: 18px;
+  background: green;
+}
+
+#tags {
+  margin-bottom: 10px;
+  a {
+    font-size: 10pt;
+    font-weight: normal;
+    color: black;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .gal-holder {
+  display: block;
+  overflow: hidden;
+
+  .gal-item {
     display: block;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 200px;
+    margin: 0 8px 12px;
+
+    &:hover .gal-del {
+      display: block;
+    }
+  }
+  .gal-item .gal-del {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .gal-item .gal-del:hover {
+    opacity: 0.7;
+  }
+  .gal-item .gal-upload-holder input {
+    height: 162px;
+  }
+  .gal-item .gal-upload-holder .add:hover {
+    text-decoration: underline;
+  }
+  .gal-item .gal-inner-holder,  .gal-item .gal-upload-holder {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D3D3D3;
+    display: block;
+    margin: 6px 6px 0 0;
+    min-height: 216px;
+    overflow: hidden;
+    padding: 3px;
+    @include box-shadow(0px 1px 10px #bbb);
+  }
+  .gal-item .gal-inner-holder.hover {
+    background: none repeat scroll 0 0 #DFF1FF;
+    border: 1px solid #99CCFF;
+  }
+  .gal-item .gal-inner-holder.selected {
+    background: none repeat scroll 0 0 #B4D9FF;
+    border: 1px solid #6565FE;
+  }
+  .gal-item .gal-upload-holder .add {
+    background: image-url("ckeditor/filebrowser/images/gal_add.png") no-repeat scroll left center transparent;
+    color: #2E5AFF;
+    display: block;
+    font-size: 14px;
+    line-height: 25px;
+    margin: 50px 0 0 10px;
+    padding-left: 33px;
+    text-decoration: none;
+  }
+  .gal-item .gal-inner-holder .img {
+    cursor: pointer;
+    height: 100px;
     overflow: hidden;
 
-    .gal-item {
-        display: block;
-        float: left;
-        overflow: hidden;
-        position: relative;
-        width: 150px;
-        margin: 0 8px 12px;
+    img {
+      width: 100%;
     }
-    .gal-item .gal-del {
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .gal-item .gal-del:hover {
-        opacity: 0.7;
-    }
-    .gal-item .gal-upload-holder input {
-        height: 162px;
-    }
-    .gal-item .gal-upload-holder .add:hover {
-        text-decoration: underline;
-    }
-    .gal-item .gal-inner-holder,  .gal-item .gal-upload-holder {
-        background: none repeat scroll 0 0 #FFFFFF;
-        border: 1px solid #D3D3D3;
-        display: block;
-        margin: 6px 6px 0 0;
-        min-height: 138px;
-        overflow: hidden;
-        padding: 12px;
-    }
-    .gal-item .gal-inner-holder.hover {
-        background: none repeat scroll 0 0 #DFF1FF;
-        border: 1px solid #99CCFF;
-    }
-    .gal-item .gal-inner-holder.selected {
-        background: none repeat scroll 0 0 #B4D9FF;
-        border: 1px solid #6565FE;
-    }
-    .gal-item .gal-upload-holder .add {
-        background: url("/assets/ckeditor/filebrowser/images/gal_add.png") no-repeat scroll left center transparent;
-        color: #2E5AFF;
-        display: block;
-        font-size: 14px;
-        line-height: 25px;
-        margin: 50px 0 0 10px;
-        padding-left: 33px;
-        text-decoration: none;
-    }
-    .gal-item .gal-inner-holder .img {
-        cursor: pointer;
-        height: 100px;
-        overflow: hidden;
-    }
-    .gal-item .gal-inner-holder .img.preloader {
-        height: 73px;
-        padding: 27px 0 0 33px;
-    }
-    .gal-item .gal-inner-holder .img-data {
-        display: block;
-        overflow: hidden;
-        padding-top: 5px;
-    }
-    .gal-item .gal-inner-holder .img-data .img-name {
-        color: #333333;
-        display: block;
-        font-size: 12px;
-        overflow: hidden;
-        padding-bottom: 5px;
-        width: 500px;
-    }
-    .gal-item .gal-inner-holder .img-data .time-size {
-        color: #666666;
-        display: block;
-        font-size: 10px;
-        overflow: hidden;
-    }
-    .gal-item .gal-inner-holder .img-data .time-size .time {
-        display: block;
-        float: left;
-    }
-    .gal-item .gal-inner-holder .img-data .time-size .size {
-        display: block;
-        float: right;
-    }
-    .gal-more {
-        border-top: 1px dashed #D3D3D3;
-        display: block;
-        overflow: hidden;
-        padding: 20px 0;
-        text-align: center;
-    }
-    .gal-more a {
-        background: url("/assets/ckeditor/filebrowser/images/gal_more.gif") no-repeat scroll left center transparent;
-        color: #2E5AFF;
-        font-size: 14px;
-        padding-left: 15px;
-        text-decoration: none;
-    }
-    .gal-more a:hover {
-        text-decoration: underline;
-    }
+  }
+  .gal-item .gal-inner-holder .img.preloader {
+    height: 73px;
+    padding: 27px 0 0 33px;
+  }
+  .gal-item .gal-inner-holder .img-data {
+    display: block;
+    overflow: hidden;
+    padding: 5px 5px 0px;
+    font-size: 11px;
+    color: #666666;
+  }
+  .gal-item .gal-inner-holder .img-data .img-name {
+    color: #333333;
+    display: block;
+    font-size: 12px;
+    overflow: hidden;
+    padding-bottom: 5px;
+    width: 500px;
+  }
+  .gal-item .gal-inner-holder .img-data .time-size {
+    display: block;
+    overflow: hidden;
+  }
+  .gal-item .gal-inner-holder .img-data .time-size .time {
+    display: block;
+    float: left;
+  }
+  .gal-item .gal-inner-holder .img-data .time-size .created-at {
+    display: block;
+    float: right;
+  }
+  .gal-item .gal-inner-holder .img-data .time-size .picture-size {
+    display: block;
+    float: right;
+  }
+  .gal-more {
+    border-top: 1px dashed #D3D3D3;
+    display: block;
+    overflow: hidden;
+    padding: 20px 0;
+    text-align: center;
+  }
+  .gal-more a {
+    background: image-url("ckeditor/filebrowser/images/gal_more.gif") no-repeat scroll left center transparent;
+    color: #2E5AFF;
+    font-size: 14px;
+    padding-left: 15px;
+    text-decoration: none;
+  }
+  .gal-more a:hover {
+    text-decoration: underline;
+  }
+
 }
