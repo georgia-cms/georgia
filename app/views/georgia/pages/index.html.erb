@@ -25,6 +25,7 @@
   <thead>
     <th>Title</th>
     <th>Content</th>
+    <th>Template</th>
     <th>URL</th>
     <th>Status</th>
     <th></th>
@@ -44,4 +45,4 @@
 
 <%= paginate @pages %>
 
-<%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, new_page_url, class: 'btn btn-primary' %>
+<%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary', role: 'button', data: {toggle: 'modal'} %>
