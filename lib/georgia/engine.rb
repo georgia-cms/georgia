@@ -41,6 +41,7 @@ module Georgia
         helper Georgia::UiHelper
         helper Georgia::MenusHelper
         helper Georgia::MetaTagsHelper
+        helper Georgia::TwitterHelper
       end
     end
 
