@@ -1,5 +1,5 @@
 <% if tag %>
-<div class="btn <%= 'active' if current_page? tag_path(tag.name)  %>">
+<div class="btn <%= 'active' if current_page? tag_path(tag.name) %>">
   <%= link_to tag.name, tag_path(tag.name) %>
 </div>
 <% end %>

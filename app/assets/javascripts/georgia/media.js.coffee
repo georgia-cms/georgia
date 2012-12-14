@@ -1,7 +1,7 @@
 jQuery ->
 
   $('.js-edit-tags').click (e) ->
-    e.preventDefault
+    e.preventDefault()
     $(this).closest('.list-tags').find('.tags, .form').toggle()
 
   $('#new_picture').fileupload

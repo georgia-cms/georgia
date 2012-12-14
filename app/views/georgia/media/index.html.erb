@@ -20,14 +20,12 @@
     <% end %>
   </div>
   <div class='span9'>
-    <div class="nav-tags">
-      <div id="tags">
-        <%= render 'show_tags' %>
-      </div>
-    </div>
+    <%= render 'show_tags' %>
+    <%= paginate @assets %>
     <div id='pictures' class='gal-holder'>
       <%= render @assets %>
     </div>
+    <%= paginate @assets %>
   </div>
 </div>
 

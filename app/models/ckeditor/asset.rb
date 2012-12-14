@@ -8,4 +8,8 @@ class Ckeditor::Asset < ActiveRecord::Base
   acts_as_taggable_on :tags
   attr_accessible :tag_list, :description
 
+  paginates_per 15
+
+  scope :latest, order('created_at DESC')
+
 end

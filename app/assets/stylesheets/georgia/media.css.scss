@@ -3,7 +3,7 @@
   background: green;
 }
 
-#tags {
+.nav-tags {
   margin-bottom: 10px;
   a {
     font-size: 10pt;
@@ -12,6 +12,13 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.list-tags {
+  margin: 5px 0;
+  .form {
+    form, input {margin: 0;}
   }
 }
 
@@ -116,7 +123,7 @@
   }
   .gal-item .gal-inner-holder .img-data .time-size .picture-size {
     display: block;
-    float: right;
+    float: left;
   }
   .gal-more {
     border-top: 1px dashed #D3D3D3;

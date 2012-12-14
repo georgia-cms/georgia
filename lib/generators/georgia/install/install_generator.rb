@@ -7,7 +7,12 @@ module Georgia
       include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
 
-      desc "Generate migration for Georgia CMS Models"
+      desc "Installs Georgia CMS:\n
+        * Mounts routes\n
+        * Copies initializer\n
+        * Loads Migration\n
+        * Runs Migration\n
+        * Creates initial instances"
 
       def mount_engine
         route "root to: 'pages#show', slug: 'home'"

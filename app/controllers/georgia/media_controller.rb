@@ -8,9 +8,9 @@ module Georgia
       @asset = Ckeditor::Picture.new
 
       if params[:tag]
-        @assets = Ckeditor::Asset.tagged_with(params[:tag])
+        @assets = Ckeditor::Asset.tagged_with(params[:tag]).includes(:tags).page(params[:page])
       else
-        @assets = Ckeditor::Asset.all
+        @assets = Ckeditor::Asset.latest.includes(:tags).page(params[:page])
       end
 
       @assets = AssetDecorator.decorate(@assets)
