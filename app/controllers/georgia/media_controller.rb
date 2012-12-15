@@ -17,7 +17,7 @@ module Georgia
     end
 
     def create
-      @picture = Ckeditor::Picture.create(params[:picture])
+      @picture = AssetDecorator.decorate(Ckeditor::Picture.create(params[:picture]))
     end
 
     def update
