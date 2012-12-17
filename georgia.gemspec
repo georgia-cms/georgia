@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency "ckeditor"
   s.add_dependency "carrierwave"
   s.add_dependency "mini_magick"
-  s.add_dependency 'therubyracer'
+  # s.add_dependency 'therubyracer', '0.10.2'
   s.add_dependency 'less-rails'
   s.add_dependency 'twitter-bootstrap-rails'
   s.add_dependency 'less-rails'
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails', '~> 3.2.1'
   s.add_dependency 'pg'
   s.add_dependency 'pg_search'
-  s.add_dependency 'backbone-on-rails'
+  s.add_dependency 'backbone-on-rails', '0.9.2.3'
   s.add_dependency 'handlebars_assets'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
