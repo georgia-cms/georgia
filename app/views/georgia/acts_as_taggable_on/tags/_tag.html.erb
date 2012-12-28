@@ -1,5 +1,10 @@
-<% if tag %>
-<div class="btn <%= 'active' if current_page? tag_path(tag.name) %>">
-  <%= link_to tag.name, tag_path(tag.name) %>
-</div>
-<% end %>
+<li class="<%= 'active' if current_page? tag_path(tag.name) %>">
+  <%= link_to tag_path(tag.name) do %>
+  <div class="pull-right">
+    <span class="badge badge-info"><%= tag.taggings.count %></span>
+  </div>
+  <span class='name'>
+    <%= tag.name %>
+  </span>
+  <% end -%>
+</li>

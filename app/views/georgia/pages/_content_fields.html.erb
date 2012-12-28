@@ -1,32 +1,60 @@
-<div class="tab-pane" id="<%= f.object.locale %>">
-  <fieldset class='max-length'>
-    <div class='form-inputs'>
-      <div class="row-fluid">
+<% lang = f.object.locale %>
+<div class="tab-pane" id="<%= lang %>">
+  <ul class="nav nav-tabs">
+    <li class='active'><a href="#<%= lang %>_content" data-toggle="tab">Content</a></li>
+    <li><a href="#<%= lang %>_images" data-toggle="tab">Featured image</a></li>
+  </ul>
 
-        <div class="span8">
-          <fieldset class="max-length">
-            <%= f.input :title %>
-            <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
-            <%= f.input :excerpt, as: :text, input_html: {rows: 3} %>
-          </fieldset>
+  <div class="tab-content">
 
+    <div id="<%= lang %>_content" class="tab-pane active">
+
+      <fieldset class='max-length'>
+        <div class='form-inputs'>
+          <div class="row-fluid">
+
+            <div class="span8">
+              <fieldset class="max-length">
+                <%= f.input :title %>
+                <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
+                <%= f.input :excerpt, as: :text, input_html: {rows: 3} %>
+              </fieldset>
+
+            </div>
+
+            <div class="span4">
+
+              <fieldset class="max-length">
+                <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma separated list of keywords to help search engines' %>
+                <%= f.hidden_field :locale %>
+              </fieldset>
+
+            </div>
+          </div>
         </div>
+      </fieldset>
+    </div>
 
-        <div class="span4">
-
-          <fieldset class="max-length">
-            <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma separated list of keywords to help search engines' %>
-            <%= f.hidden_field :locale %>
-          </fieldset>
-
+    <div id="<%= lang %>_images" class='tab-pane' >
+      <%= f.hidden_field :image_id, class: 'js-featured-image' %>
+      <div class="gallery">
+        <div class="row-fluid">
+          <ul class="thumbnails">
+            <% Ckeditor::Asset.tagged_with(@page.slug).includes(:tags).limit(12).each do |photo| %>
+            <li class="span3">
+              <%= link_to image_tag(photo.url), '#', class: 'thumbnail js-toggle-image', data: {image_id: photo.id} %>
+            </li>
+            <% end -%>
+          </ul>
         </div>
       </div>
     </div>
-  </fieldset>
 
 
-  <div class="form-actions">
-    <%= f.submit nil, class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', :back, class: 'btn' %>
+    <div class="form-actions">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, class: 'btn' %>
+    </div>
   </div>
+
 </div>

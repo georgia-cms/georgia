@@ -1,8 +1,14 @@
 jQuery ->
 
-  $('.js-edit-tags').click (e) ->
-    e.preventDefault()
-    $(this).closest('.list-tags').find('.tags, .form').toggle()
+  Shadowbox.init()
+
+  $('input.js-token-input').each (index, element) ->
+    $(element).select2(
+      placeholder: 'Enter tags'
+      tags: $('#tags ul.nav a span.name').map () -> $(this).text()
+      multiple: true
+      tokenSeparators: [",", " "]
+    ).on('change', (e) -> $(element).closest('form').submit())
 
   $('#new_picture').fileupload
     dataType: "script"

@@ -18,14 +18,20 @@
       <input type="file" name="picture[data]" multiple="">
     </span>
     <% end %>
+    <div id="tags">
+      <div id="scrollable-sections-top-shadow"></div>
+      <%= render 'tags' %>
+    </div>
+    <div id="scrollable-sections-bottom-shadow"></div>
   </div>
   <div class='span9'>
-    <%= render 'show_tags' %>
-    <%= paginate @assets %>
-    <div id='pictures' class='gal-holder'>
-      <%= render @assets %>
+    <div class="row-fluid">
+      <%= paginate @assets %>
+      <ul id='pictures' class='gal-holder thumbnails'>
+        <%= render @assets %>
+      </ul>
+      <%= paginate @assets %>
     </div>
-    <%= paginate @assets %>
   </div>
 </div>
 

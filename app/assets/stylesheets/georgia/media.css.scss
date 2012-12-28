@@ -3,16 +3,19 @@
   background: green;
 }
 
-.nav-tags {
-  margin-bottom: 10px;
-  a {
-    font-size: 10pt;
-    font-weight: normal;
-    color: black;
-    &:hover {
-      text-decoration: none;
-    }
+#tags {
+  margin-top: 50px;
+  height: 400px;
+  overflow: auto;
+  position: relative;
+  .nav.nav-list {
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
+}
+
+.gallery {
+  .thumbnails .active {border: 1px solid #08C;}
 }
 
 .list-tags {
@@ -31,7 +34,6 @@
     float: left;
     overflow: hidden;
     position: relative;
-    width: 200px;
     margin: 0 8px 12px;
 
     &:hover .gal-del {
@@ -83,7 +85,6 @@
   }
   .gal-item .gal-inner-holder .img {
     cursor: pointer;
-    height: 100px;
     overflow: hidden;
 
     img {

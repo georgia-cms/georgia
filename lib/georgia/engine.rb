@@ -25,6 +25,8 @@ module Georgia
     require 'jquery-fileupload-rails'
     require 'ancestry'
     require 'acts-as-taggable-on'
+    require 'select2-rails'
+    require 'shadowbox-rails'
     require 'henry'
 
     initializer :assets do |config|

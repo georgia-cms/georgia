@@ -35,7 +35,7 @@ module Georgia
 
     include PgSearch
     pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
-    associated_against: { contents: [:title, :text, :excerpt, :keywords] }
+      associated_against: { contents: [:title, :text, :excerpt, :keywords] }
 
     default_scope includes(:contents)
     scope :published, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PUBLISHED})

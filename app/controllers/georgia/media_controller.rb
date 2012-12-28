@@ -4,13 +4,15 @@ module Georgia
     load_and_authorize_resource class: "Ckeditor::Asset"
 
     def index
-      @tags = ActsAsTaggableOn::Tag.all
+      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       @asset = Ckeditor::Picture.new
 
       if params[:tag]
-        @assets = Ckeditor::Asset.tagged_with(params[:tag]).includes(:tags).page(params[:page])
+        @assets = Ckeditor::Asset.tagged_with(params[:tag]).includes(:tags).page(params[:page]).per(params[:per])
+      elsif params[:show] == 'orphans'
+        @assets = Ckeditor::Asset.joins('LEFT JOIN taggings on ckeditor_assets.id = taggings.taggable_id').where('taggings.taggable_id IS NULL').page(params[:page]).per(params[:per])
       else
-        @assets = Ckeditor::Asset.latest.includes(:tags).page(params[:page])
+        @assets = Ckeditor::Asset.includes(:tags).page(params[:page]).per(params[:per])
       end
 
       @assets = AssetDecorator.decorate(@assets)
@@ -23,7 +25,7 @@ module Georgia
     def update
       @picture = Ckeditor::Picture.find(params[:id])
       @picture.update_attributes(params[:picture])
-      @tags = ActsAsTaggableOn::Tag.all
+      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       render layout: false
     end
 

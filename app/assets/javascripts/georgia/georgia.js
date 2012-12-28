@@ -16,9 +16,11 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
-//= require georgia/menus
+//= require shadowbox
+//= require select2
 //= require georgia/slugs
 //= require georgia/media
+//= require georgia/menus
 //= require ckeditor/init
 //= require handlebars
 //= require underscore

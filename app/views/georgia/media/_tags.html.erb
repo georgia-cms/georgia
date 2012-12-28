@@ -1,1 +1,9 @@
-<%= raw picture.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+<ul class="nav nav-list">
+  <li class="<%= 'active' if current_page? media_index_url and params[:show] == 'all' %>">
+    <%= link_to 'All tags', media_index_url %>
+  </li>
+  <li class="<%= 'active' if current_page? media_index_url and params[:show] == 'orphans' %>">
+    <%= link_to 'No tags', media_index_url(show: :orphans) %>
+  </li>
+  <%= render @tags %>
+</ul>
