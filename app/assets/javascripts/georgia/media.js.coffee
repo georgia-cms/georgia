@@ -1,6 +1,6 @@
 jQuery ->
 
-  Shadowbox.init()
+  Shadowbox.init({})
 
   $('input.js-token-input').each (index, element) ->
     $(element).select2(

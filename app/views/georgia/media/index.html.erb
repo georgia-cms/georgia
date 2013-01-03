@@ -36,7 +36,6 @@
 </div>
 
 <%= content_for :ujs do %>
-<script type="text/javascript">$("a[rel='lightbox']").lightBox()</script>
 <script id="template-upload" type="text/x-tmpl">
 <div id="{%=o.size%}" class="upload">
 {%=o.name%}
@@ -45,8 +44,4 @@
 </div>
 </div>
 </script>
-<% end -%>
-
-<%= content_for :ujs do %>
-
 <% end -%>

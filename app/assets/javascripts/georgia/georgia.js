@@ -16,8 +16,8 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
-//= require shadowbox
 //= require select2
+//= require shadowbox
 //= require georgia/slugs
 //= require georgia/media
 //= require georgia/menus
