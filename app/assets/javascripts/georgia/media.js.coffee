@@ -5,7 +5,7 @@ jQuery ->
   $('input.js-token-input').each (index, element) ->
     $(element).select2(
       placeholder: 'Enter tags'
-      tags: $('#tags ul.nav a span.name').map () -> $(this).text()
+      tags: $('#tags .js-tag').map () -> $(this).text()
       multiple: true
       tokenSeparators: [",", " "]
     ).on('change', (e) -> $(element).closest('form').submit())

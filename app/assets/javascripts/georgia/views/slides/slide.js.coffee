@@ -10,7 +10,6 @@ class Georgia.Views.Slide extends Backbone.View
   initialize: (options) ->
     @panel = options.panel
     @images = options.images
-    console.log @model
     @id = 'slide_' + @model.id
     $(@el).attr 'id', @id
     $(@el).addClass(@model.attributes.type)

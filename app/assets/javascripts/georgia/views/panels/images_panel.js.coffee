@@ -14,7 +14,6 @@ class Georgia.Views.ImagesPanel extends Georgia.Views.Panel
   render: ->
     $(@el).html(@template())
     @collection.each(@appendImage)
-    @enableLightBox()
     @markFeatured()
     @disableNextIfNeeded()
     this
@@ -44,9 +43,6 @@ class Georgia.Views.ImagesPanel extends Georgia.Views.Panel
 
   reachEnd: () ->
     @position >= parseInt(@collection.length/9)
-
-  enableLightBox: () =>
-    $(@el).find('.js-lightbox').lightBox()
 
   markFeatured: () =>
     $(@el).find(".image-#{@featured_image.id}").addClass('featured')

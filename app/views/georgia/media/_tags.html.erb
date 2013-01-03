@@ -1,9 +1,19 @@
 <ul class="nav nav-list">
   <li class="<%= 'active' if current_page? media_index_url and params[:show] == 'all' %>">
-    <%= link_to 'Any tags', media_index_url %>
+    <%= link_to media_index_url do %>
+    <div class="pull-right">
+      <span class="badge badge-info"><%= Ckeditor::Asset.count %></span>
+    </div>
+    <span class='name'>Any tags</span>
+    <% end -%>
   </li>
   <li class="<%= 'active' if current_page? media_index_url and params[:show] == 'orphans' %>">
-    <%= link_to 'Without tags', media_index_url(show: :orphans) %>
+    <%= link_to media_index_url(show: :orphans) do %>
+    <div class="pull-right">
+      <span class="badge badge-info"><%= Ckeditor::Asset.joins('LEFT JOIN taggings on ckeditor_assets.id = taggings.taggable_id').where('taggings.taggable_id IS NULL').count %></span>
+    </div>
+    <span class='name'>Without tags</span>
+    <% end -%>
   </li>
   <%= render @tags %>
 </ul>
