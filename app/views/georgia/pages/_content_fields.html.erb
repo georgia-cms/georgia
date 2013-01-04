@@ -40,7 +40,7 @@
       <div class="gallery">
         <div class="row-fluid">
           <ul class="thumbnails">
-            <% Ckeditor::Asset.tagged_with(@page.slug).includes(:tags).limit(12).each do |photo| %>
+            <% Ckeditor::Asset.tagged_with(@page.slug).includes(:tags).each do |photo| %>
             <li class="span3">
               <%= link_to image_tag(photo.url), '#', class: 'thumbnail js-toggle-image', data: {image_id: photo.id} %>
             </li>
