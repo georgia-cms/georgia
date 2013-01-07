@@ -80,4 +80,18 @@ namespace :georgia do
     end
   end
 
+  desc "Purge assets that don't have a existing file in the cloud"
+  task purge: :environment do
+    count = 0
+    Ckeditor::Asset.find_each do |asset|
+      begin
+        if !asset.data.file.exists?
+          asset.destroy
+          count += 1
+        end
+      end
+    end
+    puts "#{count} assets purged."
+  end
+
 end
