@@ -1,7 +1,7 @@
 <% if menu %>
 <nav id='<%= menu.name.try(:parameterize) %>'>
   <ul class='nav nav-pills'>
-    <%= render partial: 'menus/link', collection: links %>
+    <%= render partial: 'menus/link', collection: links.decorate %>
   </ul>
 </nav>
 <% end -%>

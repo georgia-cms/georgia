@@ -27,6 +27,7 @@ module Georgia
     require 'acts-as-taggable-on'
     require 'select2-rails'
     require 'shadowbox-rails'
+    require 'fuelux-rails'
     require 'henry'
 
     initializer :assets do |config|

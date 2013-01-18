@@ -3,7 +3,7 @@ module Georgia
 
     def render_menu menu
       return unless menu and menu.is_a? Georgia::Menu
-      links = Georgia::LinkDecorator.decorate(menu.links.ordered)
+      links = menu.links.ordered.decorate
       if links.map(&:dropdown).include? true
         render 'menus/dropdown_menu', menu: menu, links: links
       else
@@ -13,7 +13,7 @@ module Georgia
 
     def render_links menu
       return unless menu and menu.is_a? Georgia::Menu
-      render partial: 'menus/link', collection: Georgia::LinkDecorator.decorate(menu.links.ordered), as: :link
+      render partial: 'menus/link', collection: menu.links.ordered.decorate, as: :link
     end
 
   end

@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "carrierwave"
   s.add_dependency "mini_magick"
   # s.add_dependency 'therubyracer', '0.10.2'
-  s.add_dependency 'less-rails'
   s.add_dependency 'twitter-bootstrap-rails'
   s.add_dependency 'less-rails'
   s.add_dependency "bourbon"
@@ -43,6 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'shadowbox-rails'
   s.add_dependency 'select2-rails'
+  s.add_dependency 'fuelux-rails'
   s.add_dependency 'henry'
 
   s.add_development_dependency "thin"

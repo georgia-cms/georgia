@@ -1,10 +1,9 @@
 module Georgia
-  class LinkDecorator < Georgia::ApplicationDecorator
-    decorates :link, class: Georgia::Link
-    decorates_association :page, with: Georgia::PageDecorator
+  class LinkDecorator < ApplicationDecorator
 
     def url
       text
     end
+
   end
 end

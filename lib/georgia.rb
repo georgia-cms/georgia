@@ -8,6 +8,9 @@ module Georgia
   mattr_accessor :title
   @@title = Rails.application.class.to_s.split("::").first.downcase
 
+  mattr_accessor :url
+  @@url = "http://www.example.com"
+
   def self.setup
     yield self
   end

@@ -1,7 +1,8 @@
 module Georgia
   class PageDecorator < ApplicationDecorator
-    decorates :page, class: Georgia::Page
-    decorates_association :children, with: Georgia::PageDecorator
+    decorates_association :slides
+
+    delegate :current_page, :total_pages, :limit_value, to: :source
 
     PUBLISHED = 'Published'
     PENDING = 'Pending'
@@ -13,16 +14,20 @@ module Georgia
       content.title
     end
 
-    def text
-      h.truncate(h.strip_tags(content.text), length: 100)
+    def excerpt_or_text
+      if content.excerpt and !content.excerpt.blank?
+        h.raw(content.excerpt)
+      else
+        h.truncate(h.strip_tags(content.text), length: 255)
+      end
     end
 
     def url
-      if is_root?
-        "/#{slug}"
-      else
-        "/#{ancestors.map(&:slug).join('/')}/#{slug}"
-      end
+      "/" + (ancestors + [model]).map(&:slug).join("/")
+    end
+
+    def full_url
+      Georgia.url + url
     end
 
     def slug_tag
@@ -33,6 +38,10 @@ module Georgia
       h.content_tag(:span, class: "label label-#{status.try(:label)}") do
         h.raw(h.icon_tag("icon-white #{status.try(:icon)}") + ' ' + status.try(:name))
       end
+    end
+
+    def template_path
+      "pages/templates/#{model.template}"
     end
 
   end
