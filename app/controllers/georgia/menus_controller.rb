@@ -6,7 +6,7 @@ module Georgia
     helper_method :sort_column, :sort_direction
 
     def index
-      @menus = Georgia::Menu.order(sort_column + ' ' + sort_direction).page(params[:page]).decorate
+      @menus = Georgia::Menu.order(sort_column + ' ' + sort_direction).page(params[:page])
     end
 
     def destroy
@@ -39,8 +39,6 @@ module Georgia
       @pages = Georgia::Page.scoped.decorate
       @link = Georgia::Link.new
       @link.menu = @menu
-      # @inactive_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.inactive)
-      # @active_items = Georgia::MenuItemDecorator.decorate(@menu.menu_items.active)
     end
 
     private

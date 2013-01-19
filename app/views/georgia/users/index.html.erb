@@ -2,13 +2,15 @@
 
 <table class="table table-hover">
   <thead>
-  <th>Email</th>
-  <th>Created</th>
-  <th>Roles</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Created</th>
+    <th>Roles</th>
   </thead>
   <tbody>
     <% if @users and @users.any? %>
-      <%= render @users %>
+    <%= render @users %>
     <% else %>
     <tr>
       <td colspan="6">
