@@ -1,14 +1,14 @@
 <fieldset>
   <legend>Site Hierarchy</legend>
   <h3 class='page-header'>Parent Section</h3>
-  <%= f.input :parent_id, collection: Georgia::PageDecorator.decorate(Georgia::Page.all).map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
+  <%= f.input :parent_id, collection: Georgia::Page.scoped.decorate.map{|p| [p.title, p.id]}, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
   <h3 class='page-header'>Subpages</h3>
   <p>
     Move the pages around to change their display position.
   </p>
   <% if @page.persisted? and @page.children.any? %>
   <ul id="subpages" class="nav nav-pills ui-sortable" data-sort-url="<%= sort_pages_url %>">
-    <% Georgia::PageDecorator.decorate(@page.children).each do |page| %>
+    <% @page.children.decorate.each do |page| %>
     <%= content_tag_for(:li, page, class: 'note rounded') do %>
     <%= page.title %>
     <% end -%>

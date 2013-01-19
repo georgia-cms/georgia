@@ -4,11 +4,11 @@ module Georgia
     load_and_authorize_resource class: Georgia::Page
 
     def index
-      @pages = Georgia::PageDecorator.decorate(Georgia::Page.order('updated_at DESC').page(params[:page]))
+      @pages = Georgia::Page.order('updated_at DESC').page(params[:page]).decorate
     end
 
     def search
-      @pages = Georgia::PageDecorator.decorate(Georgia::Page.search(params[:query]).page(params[:page]))
+      @pages = Georgia::Page.search(params[:query]).page(params[:page]).decorate
       render :index
     end
 
@@ -17,7 +17,7 @@ module Georgia
     end
 
     def edit
-      @page = Georgia::PageDecorator.decorate(Georgia::Page.find(params[:id]))
+      @page = Georgia::Page.find(params[:id]).decorate
       build_associations
     end
 
@@ -29,7 +29,7 @@ module Georgia
     end
 
     def update
-      @page = Georgia::PageDecorator.decorate(Page.find(params[:id]))
+      @page = Page.find(params[:id]).decorate
 
       if @page.valid?
         @page.store_revision do
@@ -57,7 +57,7 @@ module Georgia
     end
 
     def publish
-      @page = Georgia::PageDecorator.decorate(Georgia::Page.find(params[:id]))
+      @page = Georgia::Page.find(params[:id]).decorate
       @page.publish current_user
       if @page.save
         # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
@@ -68,7 +68,7 @@ module Georgia
     end
 
     def unpublish
-      @page = Georgia::PageDecorator.decorate(Georgia::Page.find(params[:id]))
+      @page = Georgia::Page.find(params[:id]).decorate
       @page.unpublish
       if @page.save
         # Notifier.notify_users(@page, "#{current_user.name} has unpublished the job '#{@page.title}'").deliver
@@ -79,7 +79,7 @@ module Georgia
     end
 
     def ask_for_review
-      @page = Georgia::PageDecorator.decorate(Georgia::Page.find(params[:id]))
+      @page = Georgia::Page.find(params[:id]).decorate
       @page.wait_for_review
       if @page.save
         # Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
@@ -109,9 +109,9 @@ module Georgia
     def build_associations
       @page.slides.build unless @page.slides.any?
       I18n.available_locales.map(&:to_s).each do |locale|
-        @page.contents << Content.new(locale: locale) unless @page.contents.select{|c| c.locale == locale}.any?
+        @page.contents << Georgia::Content.new(locale: locale) unless @page.contents.select{|c| c.locale == locale}.any?
         @page.slides.each do |slide|
-          slide.contents << Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
+          slide.contents << Georgia::Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
         end
       end
     end

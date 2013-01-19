@@ -1,5 +1,5 @@
-module ActsAsRevisionable
-  class RevisionRecord < Georgia::ApplicationDecorator
+module Georgia
+  class RevisionDecorator < ApplicationDecorator
 
     def current? instance
       model.id == instance.revision_id
@@ -7,7 +7,7 @@ module ActsAsRevisionable
 
     def changed_by
       begin
-        Georgia::UserDecorator.decorate(Georgia::User.find(revision_attributes['updated_by_id'])).name
+        Georgia::User.find(revision_attributes['updated_by_id']).decorate.name
       rescue
         'Unknown'
       end

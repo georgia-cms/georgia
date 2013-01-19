@@ -1,6 +1,6 @@
 module Georgia
   class PageDecorator < ApplicationDecorator
-    decorates_association :slides
+    # decorates_association :slides
 
     delegate :current_page, :total_pages, :limit_value, to: :source
 
@@ -9,10 +9,6 @@ module Georgia
     UNDER_REVIEW = 'Waiting for Review'
     NOT_TRANSLATED = 'Missing Translation'
     SEO_INCOMPLETE = 'SEO Incomplete'
-
-    def title
-      content.title
-    end
 
     def excerpt_or_text
       if content.excerpt and !content.excerpt.blank?

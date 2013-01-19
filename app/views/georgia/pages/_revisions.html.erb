@@ -1,6 +1,7 @@
 <div class='row-fluid'>
   <div class='span8'>
-    <% Georgia::RevisionDecorator.decorate(@page.revision_records).each do |revision| %>
+    <% @page.revision_records.each do |revision| %>
+    <% revision = Georgia::RevisionDecorator.decorate(revision) %>
     <div id='revision_<%= revision.id %>' class="revision<%= ' current' if revision.current? @page %>">
       <div class='row-fluid'>
         <div class='span2'>
@@ -9,7 +10,7 @@
           <% end -%>
         </div>
         <div class='span1'>
-          <span class='number'><%= revision.revision.revision %></span>
+          <span class='number'><%= revision.revision %></span>
         </div>
         <div class='span9'>
           <div class='row-fluid'>
