@@ -10,6 +10,6 @@ Georgia uses available_locales to know which translations should be configured o
   config.i18n.default_locale = :en
   config.i18n.available_locales = [:en]
 
-Then run the generator
+Then run the generator to mount routes, run migrations & setup initial instances.
 
   rails g georgia:install
