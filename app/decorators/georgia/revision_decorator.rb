@@ -1,6 +1,5 @@
-module Georgia
-  class RevisionDecorator < Georgia::ApplicationDecorator
-    decorates :revision, class: ActsAsRevisionable::RevisionRecord
+module ActsAsRevisionable
+  class RevisionRecord < Georgia::ApplicationDecorator
 
     def current? instance
       model.id == instance.revision_id
