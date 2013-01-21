@@ -10,29 +10,17 @@
     <div id="<%= lang %>_content" class="tab-pane active">
 
       <fieldset class='max-length'>
+
         <div class='form-inputs'>
-          <div class="row-fluid">
+          <%= f.input :title %>
+          <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
+          <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Useful for search engines and throughout the site.' %>
+          <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma-separated list of keywords to help search engines, e.g. spiderman, superman, comics, superhero' %>
+          <%= f.hidden_field :locale %>
 
-            <div class="span8">
-              <fieldset class="max-length">
-                <%= f.input :title %>
-                <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
-                <%= f.input :excerpt, as: :text, input_html: {rows: 3} %>
-              </fieldset>
-
-            </div>
-
-            <div class="span4">
-
-              <fieldset class="max-length">
-                <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma separated list of keywords to help search engines' %>
-                <%= f.hidden_field :locale %>
-              </fieldset>
-
-            </div>
-          </div>
         </div>
       </fieldset>
+
     </div>
 
     <div id="<%= lang %>_images" class='tab-pane' >
