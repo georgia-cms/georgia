@@ -7,12 +7,12 @@ module Georgia
 
 
     def search
-      @messages = MessageDecorator.decorate(Message.search(params[:query]).page(params[:page]))
+      @messages = Message.search(params[:query]).page(params[:page]).decorate
       render 'index'
     end
 
     def index
-      @messages = MessageDecorator.decorate(Message.order(sort_column + ' ' + sort_direction).page(params[:page]))
+      @messages = Message.order(sort_column + ' ' + sort_direction).page(params[:page]).decorate
     end
 
     def destroy
@@ -26,7 +26,7 @@ module Georgia
     end
 
     def edit
-      @message = MessageDecorator.decorate(Message.find(params[:id]))
+      @message = Message.find(params[:id]).decorate
     end
 
     def create
