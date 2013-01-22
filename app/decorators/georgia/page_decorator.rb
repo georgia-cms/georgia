@@ -19,7 +19,7 @@ module Georgia
     end
 
     def url
-      "/" + (ancestors + [model]).map(&:slug).join("/")
+      localized_slug + (ancestors + [model]).map(&:slug).join("/")
     end
 
     def full_url
@@ -38,6 +38,10 @@ module Georgia
 
     def template_path
       "pages/templates/#{model.template}"
+    end
+
+    def localized_slug
+      (I18n.available_locales.length > 1) ? "/#{I18n.locale.to_s}/" : '/'
     end
 
   end
