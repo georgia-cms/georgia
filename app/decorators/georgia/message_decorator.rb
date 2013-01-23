@@ -1,5 +1,5 @@
 module Georgia
-  class MessageDecorator < ApplicationDecorator
+  class MessageDecorator < Georgia::ApplicationDecorator
 
     def description
       h.truncate(model.message, :length => 80)
