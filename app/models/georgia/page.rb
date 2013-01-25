@@ -35,7 +35,7 @@ module Georgia
 
     include PgSearch
     pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}},
-      against: [:slug],
+      against: [:slug, :template],
       associated_against: { contents: [:title, :text, :excerpt, :keywords] }
 
     default_scope includes(:contents)
