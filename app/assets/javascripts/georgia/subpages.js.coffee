@@ -1,6 +1,6 @@
 jQuery ->
   $('#subpages').sortable
-    axis: 'x'
+    axis: 'y'
     update: ->
       $.post($(this).data('sort-url'), $(this).sortable('serialize'))
   .disableSelection()

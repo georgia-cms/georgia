@@ -1,4 +1,11 @@
-ul#subpages li {cursor: move;}
+ul#subpages li {
+  cursor: move;
+  padding: 5px;
+  border: 1px solid #EEE;
+  background-color: #FFF;
+  margin-bottom: 2px;
+  h5 {display: inline;}
+}
 ul#slides li {cursor: move;}
 
 .template {

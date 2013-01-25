@@ -15,11 +15,11 @@ module Georgia
         @assets = Ckeditor::Asset.includes(:tags).page(params[:page]).per(params[:per])
       end
 
-      @assets = AssetDecorator.decorate(@assets)
+      @assets = @assets.decorate
     end
 
     def create
-      @picture = AssetDecorator.decorate(Ckeditor::Picture.create(params[:picture]))
+      @picture = Ckeditor::Picture.create(params[:picture]).decorate
     end
 
     def update

@@ -16,5 +16,7 @@ module Georgia
 		accepts_nested_attributes_for :contents
 		attr_accessible :contents_attributes
 
+    scope :ordered, order(:position)
+
 	end
 end

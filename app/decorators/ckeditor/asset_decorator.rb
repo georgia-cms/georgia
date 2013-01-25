@@ -1,4 +1,4 @@
-module Georgia
+module Ckeditor
   class AssetDecorator < Georgia::ApplicationDecorator
 
     def list_all_tags

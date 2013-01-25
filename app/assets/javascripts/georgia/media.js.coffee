@@ -16,7 +16,7 @@ jQuery ->
       types = /(\.|\/)(gif|jpe?g|png)$/i
       file = data.files[0]
       if types.test(file.type) || types.test(file.name)
-        data.context = $(tmpl("template-upload", file))
+        data.context = $("<div id='#{file.size}'' class='upload'>#{file.name}<div class='progress progress-striped active'><div class='bar' style='width: 0%'></div></div></div>")
         $('#new_picture').prepend(data.context)
         data.submit()
       else

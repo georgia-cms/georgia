@@ -42,5 +42,6 @@ class Georgia.Views.Link extends Backbone.View
     event.stopPropagation()
     @model.destroy
       success: (link, response) =>
+        console.log 'Success!!'
         $(@el).fadeOut(500, -> $(this).remove())
         @panel.notify("<em>#{link.get('title')}</em> has been deleted.")
