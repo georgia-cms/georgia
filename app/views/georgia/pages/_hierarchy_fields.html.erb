@@ -12,7 +12,7 @@
       </p>
       <% if @page.persisted? and @page.children.any? %>
       <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
-        <% @page.children.decorate.each do |page| %>
+        <% @page.children.ordered.decorate.each do |page| %>
         <%= content_tag_for(:li, page) do %>
         <%= icon_tag 'icon-align-justify' %>
         <h5><%= page.title %> <small><%= page.url %></small></h5>

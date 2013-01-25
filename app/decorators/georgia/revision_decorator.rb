@@ -1,5 +1,5 @@
 module Georgia
-  class RevisionDecorator < ApplicationDecorator
+  class RevisionDecorator < Georgia::ApplicationDecorator
 
     def current? instance
       model.id == instance.revision_id

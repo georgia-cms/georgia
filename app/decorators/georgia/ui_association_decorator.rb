@@ -1,5 +1,6 @@
 module Georgia
-  class UiAssociationDecorator < ApplicationDecorator
+  class UiAssociationDecorator < Georgia::ApplicationDecorator
+    decorates_association :widget
 
     delegate :text, :excerpt, :featured_image, :url, :title, to: :widget
 

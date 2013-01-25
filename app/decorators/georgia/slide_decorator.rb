@@ -1,5 +1,5 @@
 module Georgia
-  class SlideDecorator < ApplicationDecorator
+  class SlideDecorator < Georgia::ApplicationDecorator
 
     delegate :image, to: :content
 

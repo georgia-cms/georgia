@@ -1,5 +1,5 @@
 module Georgia
-  class LinkDecorator < ApplicationDecorator
+  class LinkDecorator < Georgia::ApplicationDecorator
 
     def url
       text

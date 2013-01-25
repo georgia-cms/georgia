@@ -1,5 +1,5 @@
 module Georgia
-  class PageDecorator < ApplicationDecorator
+  class PageDecorator < Georgia::ApplicationDecorator
     # decorates_association :slides
 
     delegate :current_page, :total_pages, :limit_value, to: :source
