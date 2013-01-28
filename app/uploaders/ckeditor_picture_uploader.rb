@@ -18,10 +18,10 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   def filename
     return unless original_filename
     file_extension = File.extname(original_filename)
-    sanitazed_name = original_filename.to_s.gsub(file_extension, '').gsub(/[^a-zA-Z0-9_-]/, '').downcase
+    sanitized_name = original_filename.to_s.gsub(file_extension, '').gsub(/[^a-zA-Z0-9_-]/, '').downcase
 
-    # "#{sanitazed_name}_#{current_date}#{file_extension}"
-    "#{sanitazed_name}_#{secure_token(10)}#{file_extension}"
+    # "#{sanitized_name}_#{current_date}#{file_extension}"
+    "#{sanitized_name}_#{secure_token(10)}#{file_extension}"
   end
 
 

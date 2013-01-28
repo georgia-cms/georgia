@@ -25,6 +25,7 @@ module Georgia
       @page = Georgia::Page.new
       @page.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:page][:title])
       @page.slug = params[:page][:title].try(:parameterize)
+      @page.updated_by = current_user
       @page.save
     end
 

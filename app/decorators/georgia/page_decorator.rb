@@ -2,13 +2,13 @@ module Georgia
   class PageDecorator < Georgia::ApplicationDecorator
     # decorates_association :slides
 
-    delegate :current_page, :total_pages, :limit_value, to: :source
-
     PUBLISHED = 'Published'
     PENDING = 'Pending'
     UNDER_REVIEW = 'Waiting for Review'
     NOT_TRANSLATED = 'Missing Translation'
     SEO_INCOMPLETE = 'SEO Incomplete'
+
+    delegate :image, to: :content
 
     def excerpt_or_text
       if content.excerpt and !content.excerpt.blank?
