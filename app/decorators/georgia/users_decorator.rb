@@ -1,5 +1,4 @@
 module Georgia
-  class UsersDecorator < Draper::CollectionDecorator
-    delegate :current_page, :total_pages, :limit_value
+  class UsersDecorator < PaginationDecorator
   end
 end

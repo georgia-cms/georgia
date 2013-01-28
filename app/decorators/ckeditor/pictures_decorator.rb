@@ -1,5 +1,4 @@
 module Ckeditor
-  class PicturesDecorator < Draper::CollectionDecorator
-    delegate :current_page, :total_pages, :limit_value
+  class PicturesDecorator < PaginationDecorator
   end
 end
