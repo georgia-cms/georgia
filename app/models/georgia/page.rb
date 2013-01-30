@@ -16,7 +16,7 @@ module Georgia
     belongs_to :published_by, class_name: Georgia::User
     belongs_to :updated_by, class_name: Georgia::User
 
-    has_many :contents, as: :contentable, dependent: :destroy
+    has_many :contents, as: :contentable, dependent: :destroy, class_name: Georgia::Content
     accepts_nested_attributes_for :contents
     attr_accessible :contents_attributes
 
@@ -89,7 +89,7 @@ module Georgia
     end
 
     def ensure_status
-      self.status ||= Status.draft.first
+      self.status ||= Georgia::Status.draft.first
     end
 
     def sanitize_slug

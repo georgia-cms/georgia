@@ -72,7 +72,7 @@ module Georgia
       html << content_tag('li', link_to_group_item_unpublish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_ask_for_review(model, options)) if options[:review]
       html << content_tag('li', link_to_group_item_delete(model, options)) if options[:delete]
-      content_tag 'ul', html.html_safe, class: 'dropdown-menu'
+      content_tag 'ul', html.html_safe, class: 'dropdown-menu pull-right'
     end
 
     def link_to_group_item_publish(model, options={})
