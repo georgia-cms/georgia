@@ -4,7 +4,7 @@
 
 <h1 class="page-header">
   <div class="pull-right">
-    <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary', role: 'button', data: {toggle: 'modal'} %>
+    <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
   </div>
   Pages
 </h1>
@@ -44,4 +44,4 @@
 
 <%= paginate @pages %>
 
-<%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary', role: 'button', data: {toggle: 'modal'} %>
+<%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>

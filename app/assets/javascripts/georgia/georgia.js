@@ -19,6 +19,7 @@
 //= require select2
 //= require shadowbox
 //= require georgia/slugs
+//= require georgia/pages
 //= require georgia/media
 //= require georgia/menus
 //= require ckeditor/init

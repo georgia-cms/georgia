@@ -15,5 +15,9 @@ module Georgia
         render "georgia/pages/templates/custom", template: template
       end
     end
+
+    def parent_page_collection
+      Georgia::Page.scoped.decorate.sort_by(&:title).map{|p| [p.title, p.id]}
+    end
   end
 end
