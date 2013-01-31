@@ -40,6 +40,8 @@ module Georgia
 
     default_scope includes(:contents)
     scope :published, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PUBLISHED})
+    scope :draft, joins(:status).where('georgia_statuses' => {name: Georgia::Status::DRAFT})
+    scope :pending_review, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PENDING_REVIEW})
     scope :ordered, order(:position)
 
     before_save :ensure_status

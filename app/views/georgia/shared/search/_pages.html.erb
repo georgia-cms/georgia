@@ -1,4 +1,6 @@
-<%= form_for :search, url: search_pages_url, html: {class: 'form-search'}, method: :get do |f| %>
-<%= text_field_tag :query, params[:query], class: 'search-query' %>
-<%= f.submit 'Search', name: nil, class: 'btn' %>
-<% end %>
+<%= form_for :search, url: search_pages_url, method: :get do |f| %>
+<div class="input-append search">
+  <%= text_field_tag :query, nil, placeholder: t('search').humanize, class: 'input-medium' %>
+  <button class="btn"><%= icon_tag('icon-search') %></button>
+</div>
+<% end -%>

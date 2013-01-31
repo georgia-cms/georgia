@@ -5,8 +5,8 @@ module Georgia
 
     acts_as_list scope: :menu
 
-    belongs_to :menu
-    belongs_to :page
+    belongs_to :menu, class_name: Georgia::Menu
+    belongs_to :page, class_name: Georgia::Page
 
     has_many :contents, as: :contentable, dependent: :destroy
     accepts_nested_attributes_for :contents

@@ -4,12 +4,27 @@ module Georgia
     load_and_authorize_resource class: Georgia::Page
 
     def index
-      @pages = Georgia::Page.order('updated_at DESC').page(params[:page]).decorate
+      @pages = Georgia::Page.order('updated_at DESC').page(params[:page])
+      # Quick hack for visibility
+      # FIXME: Please add indexed facets with Sphinx or ElasticSearch
+      case params[:status]
+      when Georgia::Status::DRAFT
+        @pages = @pages.draft
+      when Georgia::Status::PUBLISHED
+        @pages = @pages.published
+      when Georgia::Status::PENDING_REVIEW
+        @pages = @pages.pending_review
+      end
+      @pages = @pages.decorate
     end
 
     def search
       @pages = Georgia::Page.search(params[:query]).page(params[:page]).decorate
-      render :index
+      if @pages.length == 1
+        redirect_to page_path(@pages.first)
+      else
+        render :index
+      end
     end
 
     def show
@@ -40,7 +55,7 @@ module Georgia
       end
 
       if @page.save
-        redirect_to [:edit, @page], notice: 'Page was successfully updated.'
+        redirect_to [:edit, @page], notice: "#{@page.decorate.title} was successfully updated."
       else
         build_associations
         render :edit
@@ -51,7 +66,8 @@ module Georgia
       @page = Georgia::Page.find(params[:id])
 
       if @page.destroy
-        redirect_to pages_url, notice: 'Page was successfully deleted.'
+        redirect_to :back, notice: "#{@page.decorate.title} was successfully deleted." and return unless request.referer == page_path(@page)
+        redirect_to pages_url, notice: "#{@page.decorate.title} was successfully deleted."
       else
         redirect_to pages_url, alert: 'Oups. Something went wrong.'
       end
