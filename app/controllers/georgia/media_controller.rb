@@ -3,6 +3,8 @@ module Georgia
 
     load_and_authorize_resource class: "Ckeditor::Asset"
 
+    respond_to :js, only: :destroy
+
     def index
       @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       @asset = Ckeditor::Picture.new
@@ -15,11 +17,29 @@ module Georgia
         @assets = Ckeditor::Asset.includes(:tags).page(params[:page]).per(params[:per])
       end
 
-      @assets = @assets.decorate
+      @assets = @assets.order('updated_at DESC').decorate
     end
 
+    # def create
+    #   @picture = Ckeditor::Picture.create(params[:picture]).decorate
+    # end
+
     def create
-      @picture = Ckeditor::Picture.create(params[:picture]).decorate
+      @picture = Ckeditor::Picture.new(params[:picture])
+      if @picture.save
+        respond_to do |format|
+          format.html {
+            render :json => [@picture.to_jq_upload].to_json,
+            :content_type => 'text/html',
+            :layout => false
+          }
+          format.json {
+            render :json => [@picture.to_jq_upload].to_json
+          }
+        end
+      else
+        render :json => [{:error => "custom_failure"}], :status => 304
+      end
     end
 
     def update
@@ -29,8 +49,14 @@ module Georgia
       render layout: false
     end
 
+
+    # def destroy
+    #   @picture = Ckeditor.picture_model.get!(params[:id]).destroy
+    # end
+
     def destroy
       @picture = Ckeditor.picture_model.get!(params[:id]).destroy
+      # render :json => true
     end
 
     def destroy_all

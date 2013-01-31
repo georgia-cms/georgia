@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
+//= require jquery-fileupload
 //= require twitter/bootstrap
 //= require select2
 //= require shadowbox

@@ -6,7 +6,7 @@ class Ckeditor::Asset < ActiveRecord::Base
   validates :data, presence: true
 
   acts_as_taggable_on :tags
-  attr_accessible :tag_list, :description
+  attr_accessible :tag_list, :description, :data
 
   paginates_per 16
 
