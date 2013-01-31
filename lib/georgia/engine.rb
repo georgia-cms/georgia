@@ -55,5 +55,21 @@ module Georgia
     end
     config.cache_classes = !(ENV['DRB'] == 'true')
 
+    def self.app_path
+      File.expand_path('../../app', called_from)
+    end
+
+    def self.decorator_path name
+      File.expand_path("decorators/georgia/#{name}_decorator.rb", app_path)
+    end
+
+    %w{controller helper mailer model}.each do |resource|
+      class_eval <<-RUBY
+      def self.#{resource}_path(name)
+        File.expand_path("#{resource.pluralize}/invitable/\#{name}.rb", app_path)
+      end
+      RUBY
+    end
+
   end
 end
