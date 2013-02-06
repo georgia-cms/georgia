@@ -9,6 +9,8 @@ module Georgia
     paginates_per 20
 
     attr_accessible :template, :slug, :position, :published_at, :published_by_id, :parent_id
+    # TODO: Allow this for migration purposes only!
+    attr_accessible :created_at, :updated_at
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
     validates :slug, format: {with: /^[a-zA-Z0-9_-]+$/, message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}, uniqueness: {scope: :ancestry, message: 'has already been taken'}

@@ -17,5 +17,8 @@ module Georgia
       query.present? ? text_search(query) : scoped
     end
 
+    # TODO: Allow this for migration purposes only!
+    attr_accessible :created_at, :updated_at
+
   end
 end

@@ -62,13 +62,13 @@
 
 <h1 class='page-header'>Media Library (<%= Ckeditor::Asset.count %>)</h1>
 
-<%= form_for Ckeditor::Picture.new, url: media_index_url, html: { multipart: true, id: "fileupload"  } do |f| %>
+<%= form_for Ckeditor::Picture.new, url: media_index_url, html: { multipart: true, id: "fileupload" } do |f| %>
 <div class="row fileupload-buttonbar">
   <div class="span7">
     <span class="btn btn-success fileinput-button">
       <i class="icon-plus icon-white"></i>
       <span>Add files...</span>
-      <%= f.file_field :data %>
+      <%= f.file_field :data, multiple: true, name: "picture[data]" %>
     </span>
     <button type="submit" class="btn btn-primary start">
       <i class="icon-upload icon-white"></i>

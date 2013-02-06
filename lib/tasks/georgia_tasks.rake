@@ -29,39 +29,6 @@ namespace :georgia do
   end
 
   namespace :migrate do
-    desc 'Migrates all data from old setup into georgia'
-    task data: :environment do
-
-      Georgia::Message.destroy_all
-      Message.find_each do |message|
-        Georgia::Message.create(
-          name: message.name,
-          email: message.email,
-          subject: message.subject,
-          message: message.message
-          )
-      end
-
-      Georgia::Page.destroy_all
-      Page.find_each do |page|
-        Georgia::Page.create(slug: page.slug, parent_id: page.parent_id) do |gp|
-          gp.contents << Georgia::Content.create(
-            locale: 'en',
-            title: page.title,
-            text: page.content,
-            keywords: page.seo_meta_keywords,
-            excerpt: page.seo_meta_description
-            )
-        end
-      end
-
-      @current_user = Georgia::User.first
-
-      Georgia::Page.find_each do |page|
-        page.publish(@current_user).save!
-      end
-
-    end
 
     desc "Saves ancestry from legacy parent_id"
     task ancestry: :environment do
