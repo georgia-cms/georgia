@@ -31,7 +31,7 @@ module Georgia
     require 'henry'
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( georgia/georgia.js georgia/georgia.css )
+      # Rails.application.config.assets.precompile += %w( georgia/georgia.js georgia/georgia.css )
       Rails.application.config.assets.precompile += Ckeditor.assets
     end
 
