@@ -30,10 +30,10 @@ module Georgia
     require 'fuelux-rails'
     require 'henry'
 
-    # initializer :assets do |config|
-    #   Rails.application.config.assets.precompile += %w( georgia/georgia.js georgia/georgia.css )
-    #   Rails.application.config.assets.precompile += Ckeditor.assets
-    # end
+    initializer :assets do |config|
+      Rails.application.config.assets.precompile += %w( georgia/georgia.js georgia/georgia.css )
+      Rails.application.config.assets.precompile += Ckeditor.assets
+    end
 
     initializer 'georgia.action_controller' do |app|
       ActiveSupport.on_load :action_controller do
