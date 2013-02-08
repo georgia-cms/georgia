@@ -5,7 +5,7 @@ jQuery ->
   $('input.js-token-input').each (index, element) ->
     $(element).select2(
       placeholder: 'Enter tags'
-      tags: $('#tags .js-tag').map () -> $(this).text()
+      tags: $('#tags .js-tag').map () -> $(this).text() #once ininitialized, this list stays static. FIXME: either ajax or force refresh.
       multiple: true
       tokenSeparators: [",", " "]
     ).on('change', (e) -> $(element).closest('form').submit())

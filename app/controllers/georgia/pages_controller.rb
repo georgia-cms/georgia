@@ -3,6 +3,8 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Page
 
+    before_filter :prepare_new_page, only: [:index, :search]
+
     def index
       @pages = Georgia::Page.order('updated_at DESC').page(params[:page])
       # Quick hack for visibility
@@ -37,10 +39,9 @@ module Georgia
     end
 
     def create
-      @page = Georgia::Page.new
-      @page.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:page][:title])
-      @page.slug = params[:page][:title].try(:parameterize)
-      @page.updated_by = current_user
+      @page = Georgia::Page.new(params[:page])
+      @page.slug = @page.decorate.title.try(:parameterize)
+      # @page.created_by = current_user
       @page.save
     end
 
@@ -131,6 +132,11 @@ module Georgia
           slide.contents << Georgia::Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
         end
       end
+    end
+
+    def prepare_new_page
+      @page = Georgia::Page.new
+      @page.contents = [Georgia::Content.new(locale: I18n.default_locale)]
     end
 
   end

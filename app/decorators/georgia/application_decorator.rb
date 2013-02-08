@@ -11,18 +11,31 @@ module Georgia
       end
     end
 
-    def updated_at
+    def pretty_created_at
+      model.created_at.strftime('%F')
+    end
+
+    def pretty_updated_at
       model.updated_at.strftime('%F')
     end
 
-    def created_by
-      return '' unless model and model.created_by
-      "#{model.created_by.name} (#{created_at})"
+    def pretty_published_at
+      model.published_at.strftime('%F')
     end
 
-    def updated_by
+    def created_by_name
+      return '' unless model and model.created_by
+      "#{model.created_by.decorate.name} (#{pretty_created_at})"
+    end
+
+    def updated_by_name
       return '' unless model and model.updated_by
-      "#{model.updated_by.name} (#{updated_at})"
+      "#{model.updated_by.decorate.name} (#{pretty_updated_at})"
+    end
+
+    def published_by_name
+      return '' unless model and model.published_by
+      "#{model.published_by.decorate.name} (#{pretty_published_at})"
     end
 
     def success_tag

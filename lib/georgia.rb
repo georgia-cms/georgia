@@ -14,4 +14,5 @@ module Georgia
   def self.setup
     yield self
   end
+
 end
