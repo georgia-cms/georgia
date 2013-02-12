@@ -6,7 +6,7 @@
   <div class="pull-right">
     <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
   </div>
-  Pages
+  Pages (<%= @pages.length %> of <%= Georgia::Page.count %>)
 </h1>
 
 <div class="row-fluid">

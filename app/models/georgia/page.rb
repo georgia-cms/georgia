@@ -26,7 +26,7 @@ module Georgia
     has_many :links, dependent: :destroy
 
     belongs_to :status
-    delegate :published?, :draft?, :pending_review?, to: :status
+    delegate :published?, :draft?, :pending_review?, to: :status, allow_nil: true
 
     has_many :slides, dependent: :destroy
     accepts_nested_attributes_for :slides
