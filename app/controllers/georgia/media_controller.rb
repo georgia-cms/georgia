@@ -67,5 +67,26 @@ module Georgia
       end
     end
 
+    def download_all
+      @files = Ckeditor::Asset.all
+      t = Tempfile.new("tmp-zip-#{Time.now}")
+      Zip::ZipOutputStream.open(t.path) do |zos|
+        @files.each do |file|
+          filename = file.data.file.filename
+          zos.put_next_entry(filename)
+          tmp_file = Tempfile.new(filename)
+          open(file.data.url) do |data|
+            tmp_file.write data.read.force_encoding('UTF-8')
+          end
+          zos.print IO.read(tmp_file)
+          tmp_file.close
+        end
+      end
+      filename = "#{Georgia.title.try(:parameterize)}_assets_#{Time.now.strftime('%Y%m%d%H%M')}.zip"
+      t.close
+
+      send_file t.path, type: "application/zip", disposition: 'attachment', filename: filename
+    end
+
   end
 end

@@ -33,6 +33,7 @@ Georgia::Engine.routes.draw do
   resources :media, path: :media do
     collection do
       delete :destroy_all, to: 'media#destroy_all'
+      get :download_all, to: 'media#download_all'
     end
   end
   resources :users

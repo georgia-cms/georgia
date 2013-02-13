@@ -60,7 +60,12 @@
 </script>
 
 
-<h1 class='page-header'>Media Library (<%= Ckeditor::Asset.count %>)</h1>
+<h1 class='page-header'>
+  Media Library (<%= Ckeditor::Asset.count %>)
+  <div class="pull-right">
+    <%= link_to "#{icon_tag 'icon-download-alt'} Backup All Files".html_safe, download_all_media_index_url, class: 'btn btn-info' %>
+  </div>
+</h1>
 
 <%= form_for Ckeditor::Picture.new, url: media_index_url, html: { multipart: true, id: "fileupload" } do |f| %>
 <div class="row fileupload-buttonbar">

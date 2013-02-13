@@ -28,6 +28,7 @@ module Georgia
     require 'select2-rails'
     require 'shadowbox-rails'
     require 'fuelux-rails'
+    require 'zip/zip'
     require 'henry'
 
     initializer 'georgia.action_controller' do |app|
