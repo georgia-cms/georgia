@@ -1,13 +1,12 @@
-<% lang = f.object.locale %>
-<div class="tab-pane" id="<%= lang %>">
+<div class="tab-pane<%= ' active' if locale == current_locale %>" id="<%= locale %>">
   <ul class="nav nav-tabs">
-    <li class='active'><a href="#<%= lang %>_content" data-toggle="tab">Content</a></li>
-    <li><a href="#<%= lang %>_images" data-toggle="tab">Featured image</a></li>
+    <li class='active'><a href="#<%= locale %>_content" data-toggle="tab">Content</a></li>
+    <li><a href="#<%= locale %>_images" data-toggle="tab">Featured image</a></li>
   </ul>
 
   <div class="tab-content">
 
-    <div id="<%= lang %>_content" class="tab-pane active">
+    <div id="<%= locale %>_content" class="tab-pane active">
 
       <fieldset class='max-length'>
 
@@ -23,7 +22,7 @@
 
     </div>
 
-    <div id="<%= lang %>_images" class='tab-pane' >
+    <div id="<%= locale %>_images" class='tab-pane' >
       <%= f.hidden_field :image_id, class: 'js-featured-image' %>
       <div class="gallery">
         <div class="row-fluid">

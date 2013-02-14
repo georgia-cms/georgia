@@ -17,6 +17,10 @@ module Georgia
       current_locale? :en
     end
 
+    def current_locale
+      I18n.locale.to_s
+    end
+
     def link_to_locale options={}, html_options={}
       options.symbolize_keys!
       options[:text] ||= english? ? "Français" : "English"
