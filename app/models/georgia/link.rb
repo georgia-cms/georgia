@@ -1,16 +1,14 @@
 module Georgia
   class Link < ActiveRecord::Base
 
+    include Georgia::Contentable
+
     attr_accessible :menu_id, :page_id, :dropdown
 
     acts_as_list scope: :menu
 
     belongs_to :menu, class_name: Georgia::Menu
     belongs_to :page, class_name: Georgia::Page
-
-    has_many :contents, as: :contentable, dependent: :destroy
-    accepts_nested_attributes_for :contents
-    attr_accessible :contents_attributes
 
     scope :ordered, order('position ASC')
     scope :active, where(active: true)

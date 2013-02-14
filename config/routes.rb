@@ -1,3 +1,7 @@
+Rails.application.routes.draw do
+  get :preview, to: 'preview#page', as: :preview_page
+end
+
 Georgia::Engine.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -19,13 +23,12 @@ Georgia::Engine.routes.draw do
   resources :pages do
     collection do
       post :sort
-      match :search
+      get :search
     end
     member do
-      match :preview
-      match :ask_for_review
-      match :publish
-      match :unpublish
+      get :ask_for_review
+      get :publish
+      get :unpublish
     end
   end
 
@@ -38,7 +41,7 @@ Georgia::Engine.routes.draw do
   end
   resources :users
   resources :messages do
-    match :search, on: :collection
+    get :search, on: :collection
   end
   resources :menus
   resources :menu_items do

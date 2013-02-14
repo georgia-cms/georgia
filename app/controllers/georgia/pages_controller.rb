@@ -47,15 +47,11 @@ module Georgia
 
     def update
       @page = Page.find(params[:id]).decorate
+      @page.update_attributes(params[:page])
 
       if @page.valid?
-        @page.store_revision do
-          @page.update_attributes(params[:page])
-          @page.updated_by = current_user
-        end
-      end
-
-      if @page.save
+        @page.updated_by = current_user
+        @page.save
         redirect_to [:edit, @page], notice: "#{@page.decorate.title} was successfully updated."
       else
         build_associations
@@ -76,13 +72,12 @@ module Georgia
 
     def publish
       @page = Georgia::Page.find(params[:id]).decorate
-      @page.publish current_user
-      if @page.save
-        # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
-        redirect_to :back, notice: "'#{@page.title}' was successfully published."
-      else
-        render :edit, alert: "Oups. Something went wrong."
+      @page.store_revision do
+        @page.publish current_user
+        @page.save!
       end
+      # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
+      redirect_to :back, notice: "'#{@page.title}' was successfully published."
     end
 
     def unpublish

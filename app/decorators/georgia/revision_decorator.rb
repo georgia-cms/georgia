@@ -7,7 +7,7 @@ module Georgia
 
     def changed_by
       begin
-        Georgia::User.find(revision_attributes['updated_by_id']).decorate.name
+        Georgia::User.find(revision_attributes['published_by_id']).decorate.name
       rescue
         'Unknown'
       end

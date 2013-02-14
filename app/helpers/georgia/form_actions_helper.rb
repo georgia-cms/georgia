@@ -2,9 +2,8 @@ module Georgia
   module FormActionsHelper
 
     def link_to_preview(page, options={})
-      options[:method] = :post
       options[:target] = '_blank'
-      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(page, page: page.attributes.merge(contents: page.contents.map(&:attributes))), options
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(id: page.id), options
     end
 
     def link_to_preview_revision(page, revision, options={})

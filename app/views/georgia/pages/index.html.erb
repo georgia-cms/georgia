@@ -12,7 +12,7 @@
 <div class="row-fluid">
   <div class="span2">
     <%= render 'georgia/shared/search/pages' %>
-    <h3>Sort Pages</h3>
+    <h3>Filter Pages</h3>
     <h5>Status</h5>
     <ul class='nav'>
       <li><%= link_to "Draft (#{Georgia::Page.draft.count})", georgia.pages_url(status: Georgia::Status::DRAFT) %></li>

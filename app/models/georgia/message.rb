@@ -11,7 +11,8 @@ module Georgia
     mount_uploader :attachment, Georgia::AttachmentUploader
 
     include PgSearch
-    pg_search_scope :text_search, against: [:subject, :message, :name, :email], using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
+    pg_search_scope :text_search, against: [:subject, :message, :name, :email],
+      using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
 
     def self.search query
       query.present? ? text_search(query) : scoped

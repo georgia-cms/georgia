@@ -1,22 +1,20 @@
 module Georgia
-	class Slide < ActiveRecord::Base
+  class Slide < ActiveRecord::Base
 
-		acts_as_list scope: :page
+    include Georgia::Contentable
 
-		attr_accessible :position, :page_id
+    acts_as_list scope: :page
 
-		belongs_to :page
+    attr_accessible :position, :page_id
+
+    belongs_to :page
 
     # image is a belongs_to on content
     # Accessable via decorator at the moment
 
-		delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, to: :contents
-
-		has_many :contents, as: :contentable, dependent: :destroy
-		accepts_nested_attributes_for :contents
-		attr_accessible :contents_attributes
+    delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, to: :contents
 
     scope :ordered, order(:position)
 
-	end
+  end
 end
