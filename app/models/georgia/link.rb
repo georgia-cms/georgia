@@ -17,10 +17,11 @@ module Georgia
 
     def copy_from_page! page
       page.contents.each do |content|
+        url_options = (page.contents.length > 1 ? {locale: content.locale} : {})
         contents << Georgia::Content.new(
           locale: content.locale,
           title: content.title,
-          text: page.url
+          text: page.url(url_options)
         )
       end
       self

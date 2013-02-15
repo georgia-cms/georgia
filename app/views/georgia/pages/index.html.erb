@@ -6,7 +6,7 @@
   <div class="pull-right">
     <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
   </div>
-  Pages (<%= @pages.length %> of <%= Georgia::Page.count %>)
+  Pages
 </h1>
 
 <div class="row-fluid">
@@ -19,6 +19,9 @@
       <li><%= link_to "Published (#{Georgia::Page.published.count})", georgia.pages_url(status: Georgia::Status::PUBLISHED) %></li>
       <li><%= link_to "Pending Approval (#{Georgia::Page.pending_review.count})", georgia.pages_url(status: Georgia::Status::PENDING_REVIEW) %></li>
     </ul>
+    <div class="top20">
+      <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
+    </div>
   </div>
   <div class="span10">
     <%= paginate @pages %>
@@ -41,10 +44,12 @@
         </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan='6'>Showing <%= @pages.length %> of <%= Georgia::Page.count %> pages</td>
+        </tr>
+      </tfoot>
     </table>
     <%= paginate @pages %>
   </div>
 </div>
-
-
-<%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>

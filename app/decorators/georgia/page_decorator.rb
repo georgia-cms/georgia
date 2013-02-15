@@ -18,8 +18,8 @@ module Georgia
       end
     end
 
-    def url
-      localized_slug + (ancestors + [model]).map(&:slug).join("/")
+    def url options={}
+      localized_slug(options) + ancestry_url
     end
 
     def full_url
@@ -40,8 +40,16 @@ module Georgia
       "pages/templates/#{model.template}"
     end
 
-    def localized_slug
-      (I18n.available_locales.length > 1) ? "/#{I18n.locale.to_s}/" : '/'
+    def localized_slug options={}
+      if options[:locale].present?
+        "/#{options[:locale]}/"
+      else
+        (I18n.available_locales.length > 1) ? "/#{I18n.locale.to_s}/" : '/'
+      end
+    end
+
+    def ancestry_url
+      (ancestors + [model]).map(&:slug).join("/")
     end
 
   end

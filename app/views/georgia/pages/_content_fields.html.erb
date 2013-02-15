@@ -13,10 +13,11 @@
         <div class='form-inputs'>
           <%= f.input :title %>
           <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
-          <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Useful for search engines and throughout the site.' %>
-          <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma-separated list of keywords to help search engines, e.g. spiderman, superman, comics, superhero' %>
+          <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Try not to go over 225 characters' %>
+          <p class='help-block'><%= icon_tag 'icon-info-sign' %> The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines.</p>
+          <%= f.input :keywords, as: :text, input_html: {rows: 3}, hint: 'Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero' %>
+          <p class='help-block'><%= icon_tag 'icon-info-sign' %> The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.</p>
           <%= f.hidden_field :locale %>
-
         </div>
       </fieldset>
 
