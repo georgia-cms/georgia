@@ -7,8 +7,11 @@ module Georgia
 
     def index
       @pages = Georgia::Page.order('updated_at DESC').page(params[:page])
-      # Quick hack for visibility
-      # FIXME: Please add indexed facets with Sphinx or ElasticSearch
+
+      # Quick and dirty hack for visibility
+      # FIXME: Please add indexed facets with Sphinx or ElasticSearch or add a new BackBone panel view
+      @pages = @pages.where(template: params[:template]) if params[:template].present?
+
       case params[:status]
       when Georgia::Status::DRAFT
         @pages = @pages.draft
@@ -17,6 +20,7 @@ module Georgia
       when Georgia::Status::PENDING_REVIEW
         @pages = @pages.pending_review
       end
+
       @pages = @pages.decorate
     end
 

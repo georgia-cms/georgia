@@ -5,7 +5,6 @@ class Georgia.Views.Link extends Backbone.View
   events:
     'click .bb-edit': 'edit'
     'click .bb-remove': 'remove'
-    'change .bb-dropdown': 'dropdownChanged'
 
   initialize: (options) ->
     @panel = options.panel
@@ -25,17 +24,6 @@ class Georgia.Views.Link extends Backbone.View
     event.stopPropagation()
     @panel.swapPanels()
     @panel.renderForm(@model)
-
-  dropdownChanged: (event) ->
-    event.stopPropagation()
-    field = $(event.currentTarget)
-    @model.set(field.attr('id'), field.prop('checked'))
-    @update()
-
-  update: () ->
-    @model.save @model.attributes,
-      success: @panel.handleSuccess
-      error: @panel.handleError
 
   remove: (event) =>
     event.preventDefault()

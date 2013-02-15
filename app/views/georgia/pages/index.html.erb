@@ -13,11 +13,19 @@
   <div class="span2">
     <%= render 'georgia/shared/search/pages' %>
     <h3>Filter Pages</h3>
+    <%# This should be done with checkboxes, no reloading, possibly using an index, and should be handled by Backbone.js %>
+    <h5><%= link_to 'All', georgia.pages_url %></h5>
     <h5>Status</h5>
     <ul class='nav'>
       <li><%= link_to "Draft (#{Georgia::Page.draft.count})", georgia.pages_url(status: Georgia::Status::DRAFT) %></li>
       <li><%= link_to "Published (#{Georgia::Page.published.count})", georgia.pages_url(status: Georgia::Status::PUBLISHED) %></li>
       <li><%= link_to "Pending Approval (#{Georgia::Page.pending_review.count})", georgia.pages_url(status: Georgia::Status::PENDING_REVIEW) %></li>
+    </ul>
+    <h5>Template</h5>
+    <ul class='nav'>
+      <% Georgia.templates.each do |t| %>
+        <li><%= link_to "#{t} (#{Georgia::Page.where(template: t).count})", georgia.pages_url(template: t) %></li>
+      <% end -%>
     </ul>
     <div class="top20">
       <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>

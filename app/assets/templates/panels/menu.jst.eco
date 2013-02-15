@@ -13,12 +13,11 @@
 
   <div class='span6'>
     <div class='panel active'>
-      <div class='row-fluid'><h2><a href="#" class="pull-right swap-panel new-form">Add a Custom Link »</a></h2></div>
-      <div id="links" class='accordion' data-toggle='false'></div>
+      <a href='#' class='btn btn-primary swap-panel new-form'><i class='icon-plus-sign'></i> Add Link</a>
+      <div id="links" class='accordion top20' data-toggle='false'></div>
       <hr />
     </div>
     <div id='link_form' class='panel' style='display:none;'>
-      <div class='row-fluid'><h2><a href="#" class="pull-right swap-panel">« Back to Menu</a></h2></div>
       <div class='form'></div>
     </div>
   </div>

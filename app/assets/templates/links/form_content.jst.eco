@@ -1,10 +1,10 @@
 <div class='row-fluid'>
-  <div class='span5'>
+  <div class='span12'>
     <fieldset class="max-length">
       <div class="form-inputs">
         <div class="control-group string required">
           <label class="string required control-label" for="title">
-            <abbr title="required">*</abbr> Content
+            <abbr title="required">*</abbr> Title
           </label>
           <div class="controls">
             <input class="string required" id="title" size="50" type="text" value="<%= @content.get('title') %>">
@@ -16,6 +16,7 @@
           </label>
           <div class="controls">
             <input class="string required" id="text" size="50" type="text" value="<%= @content.get('text') %>">
+            <p class='help-block'><i class='icon-info-sign'></i> Can either be a path or a full URL, e.g. <em>/en/about</em> or <em>http://www.google.com/</em></p>
           </div>
         </div>
       </div>

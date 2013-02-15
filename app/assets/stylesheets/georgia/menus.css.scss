@@ -16,7 +16,6 @@
   }
 
   .link {
-    width: 350px;
     background-color: #EEE;
     border-top: 1px solid #DDD;
     padding: 0 10px;
@@ -30,13 +29,6 @@
       margin-top: 2px;
     }
   }
-
-  .accordion-toggle {position:relative;}
-  .accordion-toggle > .js-toggle-chevron {position: absolute;}
-  .js-toggle-chevron.icon-chevron-up {left: 5px;}
-  .js-toggle-chevron.icon-chevron-down {left: -9999px;}
-  .collapsed > .icon-chevron-up {left: -9999px;}
-  .collapsed > .icon-chevron-down {left: 5px;}
 
   #menu_panel > .row-fluid > .span3 {position: relative;}
   #menu_panel > .row-fluid > .span3 > .control-group.check_boxes {margin-bottom: 0;}

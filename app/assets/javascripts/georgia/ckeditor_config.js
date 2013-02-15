@@ -1,6 +1,6 @@
 CKEDITOR.config.baseHref = '/assets/ckeditor/';
 CKEDITOR.config.height = 400;
-CKEDITOR.config.width = '95%';
+CKEDITOR.config.width = '95.5%';
 // CKEDITOR.config.toolbarStartupExpanded = false;
 CKEDITOR.config.toolbar = 'Full';
 CKEDITOR.config.toolbar_Full =

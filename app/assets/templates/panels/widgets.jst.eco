@@ -2,13 +2,9 @@
 
   <div class='span9'>
     <div id='widgets_index' class='panel active'>
-      <div class='row-fluid'>
-        <div class='span12'>
-          <h2><a href="#" class="pull-right swap-panel new-form">Add Widget »</a></h2>
-        </div>
-      </div>
-      <div class='row-fluid'>
-        <div id='ui_widgets' class='span9'>
+      <a href='#' class='btn btn-primary swap-panel new-form'><i class='icon-plus-sign'></i> Add Widget</a>
+      <div class="row-fluid">
+        <div id='ui_widgets' class='span9 top20'>
           <legend>Widgets</legend>
           <p class='help-block'>
             Drag widgets from here to a location on the right to activate them. Click on the trash to deactivate them.
@@ -20,11 +16,6 @@
     </div>
 
     <div id='widget_form' class='panel' style='display:none;'>
-      <div class='row-fluid'>
-        <div class='span12'>
-          <h2><a href="#" class="pull-right swap-panel">« Back to Widgets List</a></h2>
-        </div>
-      </div>
       <div class='form'></div>
     </div>
   </div>

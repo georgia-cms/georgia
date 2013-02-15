@@ -6,8 +6,9 @@
 <div id='contents_panel'></div>
 <div class='form-actions'>
   <% if @widget.isNew(): %>
-  <a id='submit' href='#' class='btn btn-primary bb-create'>Create</a>
+  <a id='submit' href='#' class='btn btn-success bb-create'><i class='icon-ok'></i> Create</a>
   <% else: %>
-  <a id='submit' href='#' class='btn btn-primary bb-update'>Update</a>
+  <a id='submit' href='#' class='btn btn-success bb-update'><i class='icon-ok'></i> Update</a>
   <% end %>
+  <a href='#' class='btn swap-panel'><i class='icon-ban-circle'></i> Cancel</a>
 </div>

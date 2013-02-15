@@ -37,8 +37,9 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
     @pages.each(@appendPage)
     @collection.each(@appendLink)
     @$('#links').sortable
-      update: ->
-        $.post('/api/links/sort', $(this).sortable('serialize'))
+      update: =>
+        $.post('/api/links/sort', @serialize())
+        .done(@notify("Links have been successfully sorted.", 'success'))
     .disableSelection()
     this
 
@@ -60,3 +61,6 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
 
   uncheckAll: () =>
     @$('#pages input[type=checkbox]').prop('checked', false)
+
+  serialize: () =>
+    @$('#links').sortable('serialize')

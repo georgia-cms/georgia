@@ -32,7 +32,7 @@ class Georgia.Views.Panel extends Backbone.View
     @collection.add([{}])
     this
 
-  handleError: (instance, response) ->
+  handleError: (instance, response) =>
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
