@@ -22,8 +22,11 @@ module Georgia
     end
 
     def link_to_locale options={}, html_options={}
-      options.symbolize_keys!
-      options[:text] ||= english? ? "Français" : "English"
+      if options[:symbolized]
+        options[:text] = english? ? 'FR' : 'EN'
+      else
+        options[:text] = english? ? LOCALES_HASH[:fr] : LOCALES_HASH[:en]
+      end
       options[:text] = options[:text].parameterize.humanize if options[:normalized]
       options[:locale] ||= english? ? :fr : :en
       html_options[:hreflang] ||= english? ? :fr : :en
@@ -34,7 +37,7 @@ module Georgia
     private
 
     def current_locale?(locale)
-      I18n.locale == locale
+      I18n.locale == locale.to_sym
     end
 
   end
