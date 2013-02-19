@@ -49,13 +49,9 @@ module Georgia
       render layout: false
     end
 
-
-    # def destroy
-    #   @picture = Ckeditor.picture_model.get!(params[:id]).destroy
-    # end
-
     def destroy
       @picture = Ckeditor.picture_model.get!(params[:id]).destroy
+      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       # render :json => true
     end
 

@@ -32,7 +32,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.integer :position
       t.integer :revision_id
       t.integer :published_by_id
-      t.integer :status_id
       t.string  :ancestry
       t.timestamps
     end
