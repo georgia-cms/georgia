@@ -9,8 +9,6 @@ module Georgia
 
     validates :name, presence: true
 
-    has_many :pages
-
     scope :published, where(name: PUBLISHED)
     scope :draft, where(name: DRAFT)
     scope :pending_review, where(name: PENDING_REVIEW)

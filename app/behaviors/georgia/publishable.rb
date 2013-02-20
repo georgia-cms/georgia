@@ -5,7 +5,7 @@ module Georgia::Publishable
 
   included do
 
-    has_one :status, as: :statusable, class_name: Georgia::Status
+    belongs_to :status, class_name: Georgia::Status
     belongs_to :published_by, class_name: Georgia::User
 
     attr_accessible :published_by_id
