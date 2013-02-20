@@ -28,7 +28,6 @@ module Georgia::Publishable
       # FIXME: Add published_at to migrations and new upgrade
       # self.published_at = Time.zone.now
       self.status = Georgia::Status.published.first
-      self.create_revision! unless new_record?
       self
     end
 
