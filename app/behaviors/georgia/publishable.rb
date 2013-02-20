@@ -26,7 +26,7 @@ module Georgia::Publishable
     def publish(user)
       self.published_by = user
       # FIXME: Add published_at to migrations and new upgrade
-      # self.published_at = Time.zone.now
+      self.published_at = Time.zone.now
       self.status = Georgia::Status.published.first
       self
     end
