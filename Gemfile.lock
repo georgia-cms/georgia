@@ -34,6 +34,7 @@ PATH
       pg
       pg_search
       rails (~> 3.2.8)
+      rubyzip
       sass-rails (~> 3.2.3)
       select2-rails
       shadowbox-rails
