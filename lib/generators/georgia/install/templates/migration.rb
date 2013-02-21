@@ -16,23 +16,24 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Messages
     create_table :georgia_messages do |t|
-      t.string :name
-      t.string :email
-      t.string :subject
-      t.string :attachment
-      t.text :message
+      t.string  :name
+      t.string  :email
+      t.string  :subject
+      t.string  :attachment
+      t.text    :message
       t.timestamps
     end
 
     # Create Pages
     create_table :georgia_pages do |t|
-      t.string  :template, default: 'one-column'
-      t.string  :slug
-      t.integer :parent_id
-      t.integer :position
-      t.integer :revision_id
-      t.integer :published_by_id
-      t.string  :ancestry
+      t.string    :template, default: 'one-column'
+      t.string    :slug
+      t.integer   :parent_id
+      t.integer   :position
+      t.integer   :revision_id
+      t.integer   :published_by_id
+      t.datetime  :published_at
+      t.string    :ancestry
       t.timestamps
     end
     add_index :georgia_pages, :parent_id
