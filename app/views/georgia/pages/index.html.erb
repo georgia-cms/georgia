@@ -3,9 +3,11 @@
 <% end -%>
 
 <h1 class="page-header">
+  <% if can? :create, Georgia::Page %>
   <div class="pull-right">
     <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
   </div>
+  <% end -%>
   Pages
 </h1>
 
@@ -13,7 +15,9 @@
   <div class="span2">
     <%= render 'georgia/shared/search/pages' %>
     <h3>Filter Pages</h3>
+    <%# FIXME, FIX the @#$ out of me. %>
     <%# This should be done with checkboxes, no reloading, possibly using an index, and should be handled by Backbone.js %>
+    <%# Wow, this is crap. %>
     <h5><%= link_to 'All', georgia.pages_url %></h5>
     <h5>Status</h5>
     <ul class='nav'>
@@ -24,12 +28,14 @@
     <h5>Template</h5>
     <ul class='nav'>
       <% Georgia.templates.each do |t| %>
-        <li><%= link_to "#{t} (#{Georgia::Page.where(template: t).count})", georgia.pages_url(template: t) %></li>
+      <li><%= link_to "#{t} (#{Georgia::Page.where(template: t).count})", georgia.pages_url(template: t) %></li>
       <% end -%>
     </ul>
+    <% if can? :create, Georgia::Page %>
     <div class="top20">
       <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
     </div>
+    <% end -%>
   </div>
   <div class="span10">
     <%= paginate @pages %>
