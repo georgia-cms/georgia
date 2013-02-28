@@ -8,7 +8,7 @@ class @Tags
     @options =
       placeholder: 'Enter tags'
       multiple: true
-      tokenSeparators: [",", " "]
+      tokenSeparators: [","]
       tags: () =>
         query = @el.select2('container').find('input.select2-input').val()
         @search(query)
