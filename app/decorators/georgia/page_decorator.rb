@@ -14,7 +14,7 @@ module Georgia
       if content.excerpt and !content.excerpt.blank?
         h.raw(content.excerpt)
       else
-        h.truncate(h.strip_tags(content.text), length: 255)
+        h.truncate(h.strip_tags(content.text), length: 255, separator: ' ').html_safe
       end
     end
 

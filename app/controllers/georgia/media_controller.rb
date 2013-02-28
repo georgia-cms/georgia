@@ -20,10 +20,6 @@ module Georgia
       @assets = @assets.order('updated_at DESC').decorate
     end
 
-    # def create
-    #   @picture = Ckeditor::Picture.create(params[:picture]).decorate
-    # end
-
     def create
       @picture = Ckeditor::Picture.new(params[:picture])
       if @picture.save
@@ -52,7 +48,6 @@ module Georgia
     def destroy
       @picture = Ckeditor.picture_model.get!(params[:id]).destroy
       @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
-      # render :json => true
     end
 
     def destroy_all

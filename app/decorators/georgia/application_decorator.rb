@@ -68,10 +68,11 @@ module Georgia
       @content ||= model.contents.select{|c| c.locale == I18n.locale.to_s}.first || Content.new
     end
 
-    def title    ; h.raw(content.title)    ; end
-    def text     ; h.raw(content.text)     ; end
-    def excerpt  ; h.raw(content.excerpt)  ; end
-    def keywords ; h.raw(content.keywords) ; end
+    def title          ; h.raw(content.title)        ; end
+    def text           ; h.raw(content.text)         ; end
+    def excerpt        ; h.raw(content.excerpt)      ; end
+    def keywords       ; h.raw(content.keyword_list) ; end
+    def featured_image ; content.image               ; end
 
     private
 

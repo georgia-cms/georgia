@@ -5,6 +5,7 @@
 //= require twitter/bootstrap
 //= require select2
 //= require shadowbox
+//= require georgia/tags
 //= require georgia/pages
 //= require georgia/media
 //= require ckeditor/init

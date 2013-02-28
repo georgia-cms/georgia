@@ -17,7 +17,7 @@
           </li>
           <% end -%>
           <li class="nav-header">Other</li>
-          <li><a href="#hierarchy" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Hierarchy</a></li>
+          <li><a href="#relationships" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Relationships</a></li>
           <li><a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a></li>
           <li><a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a></li>
           <li><a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a></li>
@@ -38,27 +38,29 @@
       <div class="tab-content">
 
         <%= f.simple_fields_for :contents do |c| %>
-        <%= render 'georgia/pages/content_fields', f: c, locale: c.object.locale %>
+        <%= render 'georgia/pages/fields/content', f: c, locale: c.object.locale %>
         <% end -%>
 
-        <div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
-          <!-- Backbone Slideshow Panel --> Loading ...
+        <div class='tab-pane' id='relationships'>
+          <%= render 'georgia/pages/fields/relationships', f: f %>
         </div>
 
-        <div class='tab-pane' id='hierarchy'>
-          <%= render 'georgia/pages/hierarchy_fields', f: f %>
+        <div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
+          <!-- Backbone Slideshow Panel -->
+          <i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
         </div>
 
         <div class='tab-pane' id='widgets' data-locales='<%= I18n.available_locales.join(',') %>'>
-          <!-- Backbone Widgets Panel --> Loading ...
+          <!-- Backbone Widgets Panel -->
+          <i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
         </div>
 
         <div class='tab-pane' id='revisions'>
-          <%= render 'georgia/pages/revisions' %>
+          <%= render 'georgia/pages/fields/revisions' %>
         </div>
 
         <div class="tab-pane" id="settings">
-          <%= render 'main_fields', f: f %>
+          <%= render 'georgia/pages/fields/settings', f: f %>
         </div>
 
       </div>

@@ -2,13 +2,8 @@ jQuery ->
 
   Shadowbox.init({})
 
-  $('input.js-token-input').each (index, element) ->
-    $(element).select2(
-      placeholder: 'Enter tags'
-      tags: $('#tags .js-tag').map () -> $(this).text() #once ininitialized, this list stays static. FIXME: either ajax or force refresh.
-      multiple: true
-      tokenSeparators: [",", " "]
-    ).on('change', (e) -> $(element).closest('form').submit())
+  $('#media input.js-token-input').on('change', (e) -> $(this).closest('form').submit())
+
 
   # Initialize the jQuery File Upload widget:
   $('#fileupload').fileupload()

@@ -38,7 +38,7 @@ module Georgia
     end
 
     def edit
-      @page = Georgia::Page.find(params[:id]).decorate
+      @page = Georgia::Page.find(params[:id], include: :contents).decorate
       build_associations
     end
 

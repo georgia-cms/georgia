@@ -1,4 +1,4 @@
-module Georgia
+module ActsAsRevisionable
   class RevisionRecordDecorator < Georgia::ApplicationDecorator
 
     def current? instance

@@ -6,11 +6,12 @@ module Georgia
     include Georgia::Contentable
     include Georgia::Previewable
     include Georgia::Searchable
+    include Georgia::Taggable
 
     acts_as_list scope: :parent
     attr_accessible :position
 
-    acts_as_tree orphan_strategy: :rootify
+    has_ancestry orphan_strategy: :rootify
 
     paginates_per 20
 
@@ -36,6 +37,7 @@ module Georgia
     has_many :widgets, through: :ui_associations
 
     scope :ordered, order(:position)
+    scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
 
     before_validation :sanitize_slug
 
