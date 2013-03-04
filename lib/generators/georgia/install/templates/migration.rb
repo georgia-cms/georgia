@@ -32,6 +32,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.integer   :position
       t.integer   :revision_id
       t.integer   :published_by_id
+      t.integer   :status_id
       t.datetime  :published_at
       t.string    :ancestry
       t.timestamps
@@ -39,6 +40,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :revision_id
+    add_index :georgia_pages, :status_id
     add_index :georgia_pages, :ancestry
 
     # Create Content
