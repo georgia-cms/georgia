@@ -18,7 +18,6 @@ class @Tags
 
   search: (query='') ->
     if query?
-      console.log query
       $.ajax(
         type: 'GET'
         url: '/api/tags/search'
