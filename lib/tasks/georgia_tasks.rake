@@ -45,9 +45,19 @@ namespace :georgia do
       end
 
     end
+
+    desc "Saves keywords to tags list"
+    task tags: :environment do
+
+      Georgia::Content.find_each do |content|
+        content.keyword_list = content.keywords
+        content.save
+      end
+
+    end
   end
 
-  desc "Purge assets that don't have a existing file in the cloud"
+  desc "Purge assets that don't have an existing file in the cloud"
   task purge: :environment do
     count = 0
     Ckeditor::Asset.find_each do |asset|
@@ -60,5 +70,6 @@ namespace :georgia do
     end
     puts "#{count} assets purged."
   end
+
 
 end
