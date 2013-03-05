@@ -67,8 +67,11 @@ module Georgia
       @page = Georgia::Page.find(params[:id])
 
       if @page.destroy
-        redirect_to :back, notice: "#{@page.decorate.title} was successfully deleted." and return unless request.referer == page_path(@page)
-        redirect_to pages_url, notice: "#{@page.decorate.title} was successfully deleted."
+        unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
+          redirect_to :back, notice: "#{@page.decorate.title} was successfully deleted."
+        else
+          redirect_to pages_url, notice: "#{@page.decorate.title} was successfully deleted."
+        end
       else
         redirect_to pages_url, alert: 'Oups. Something went wrong.'
       end
