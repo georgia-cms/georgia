@@ -31,7 +31,13 @@ module Georgia
       options[:locale] ||= english? ? :fr : :en
       html_options[:hreflang] ||= english? ? :fr : :en
 
-      link_to(options[:text], {locale: options[:locale]}, html_options)
+      if page = options[:page]
+        url = page.url(locale: options[:locale])
+      else
+        url = url_for(params.merge(locale: options[:locale]))
+      end
+      
+      link_to(options[:text], url, html_options)
     end
 
     private
