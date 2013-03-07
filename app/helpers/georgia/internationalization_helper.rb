@@ -2,6 +2,17 @@
 module Georgia
   module InternationalizationHelper
 
+    #FIXME: This is all rubish. It should:
+    # - be able to have more than two locales
+    # - not have its own language translation as a constant
+    # - be aware of the current @page object
+    # - most likely be a class, not a helper
+    # - treat the home page differently, because of the slug hack 'home' present in the url, i.e. '/en/home'
+    # - probably have the default_url, set_locale methods of application_controller in the loop
+    # - allow locales to be set by Georgia, not application.rb. Available locales might not mean translatable locales
+    # - be omnipresent: views (link_to_locale), controllers (set_locale), but could also have decorators' contents handled and more
+    # - replace the use of session for the locale, would be stored in the class object
+
     LOCALES_HASH = {en: "English", fr: "Français"}
 
     def locale_name(locale)
@@ -36,7 +47,7 @@ module Georgia
       else
         url = url_for(params.merge(locale: options[:locale]))
       end
-      
+
       link_to(options[:text], url, html_options)
     end
 
