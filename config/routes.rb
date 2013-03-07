@@ -1,11 +1,3 @@
-Rails.application.routes.draw do
-
-  resources :pages, only: [] do
-    get '/preview', to: 'preview#page', as: :preview, on: :member
-  end
-
-end
-
 Georgia::Engine.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'

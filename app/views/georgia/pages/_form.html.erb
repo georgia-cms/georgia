@@ -38,7 +38,7 @@
       <div class="tab-content">
 
         <%= f.simple_fields_for :contents do |c| %>
-        <%= render 'georgia/pages/fields/content', f: c, locale: c.object.locale %>
+        <%= render 'georgia/pages/fields/content', f: c, locale: c.object.locale, slug: @page.slug %>
         <% end -%>
 
         <div class='tab-pane' id='relationships'>
@@ -56,7 +56,7 @@
         </div>
 
         <div class='tab-pane' id='revisions'>
-          <%= render 'georgia/pages/fields/revisions' %>
+          <%= render 'georgia/pages/fields/revisions', revisions: @page.revision_records.decorate %>
         </div>
 
         <div class="tab-pane" id="settings">

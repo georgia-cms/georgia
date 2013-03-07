@@ -7,8 +7,15 @@ module ActsAsRevisionable
 
     def changed_by
       begin
-        Georgia::User.find(revision_attributes['published_by_id']).decorate.name
-      rescue
+        user_id = revision_attributes['published_by_id']
+        user_id ||= revision_attributes['updated_by_id']
+        user_id ||= revision_attributes['created_by_id']
+        if user_id
+          Georgia::User.find(user_id).decorate.name rescue ActiveRecord::RecordNotFound
+        else
+          'Unknown'
+        end
+      ensure
         'Unknown'
       end
     end

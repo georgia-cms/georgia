@@ -67,5 +67,9 @@ module Georgia
       RUBY
     end
 
+    def self.require_specs file
+      Dir["#{File.dirname(file)}/**/*_spec.rb"].each { |f| require f }
+    end
+
   end
 end

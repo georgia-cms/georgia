@@ -6,7 +6,8 @@
     <th></th>
   </thead>
   <tbody>
-    <% @page.revision_records.decorate.each do |revision| %>
+    <% if revisions and revisions.any? %>
+    <% revisions.each do |revision| %>
     <tr id='revision_<%= revision.id %>' class="revision">
       <td>
         <span class='number'><%= revision.revision %></span>
@@ -20,11 +21,13 @@
       </td>
       <td>
         <div class="pull-right">
-          <%#= link_to_preview_revision @page, revision, class: 'btn' %>
           <%= link_to_revert revision %>
         </div>
       </td>
     </tr>
+    <% end -%>
+    <% else -%>
+    <tr><td colspan='4'>There are currently no revisions.</td></tr>
     <% end -%>
   </tbody>
 </table>
