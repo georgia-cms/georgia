@@ -43,6 +43,7 @@ SimpleForm.setup do |config|
     b.use :label_input
     b.use :hint,  :wrap_with => { :tag => :span, :class => :hint }
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
+    b.use :calendar, :wrap_with => { :tag => :i, :class => 'icon-calendar'}
   end
 
   config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
@@ -75,6 +76,19 @@ SimpleForm.setup do |config|
     b.use :label
     b.wrapper :tag => 'div', :class => 'controls' do |input|
       input.wrapper :tag => 'div', :class => 'input-append' do |append|
+        append.use :input
+      end
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
+  config.wrappers :datetime, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |input|
+      input.wrapper :tag => 'div', :class => 'input-append datetimepicker' do |append|
         append.use :input
       end
       input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
