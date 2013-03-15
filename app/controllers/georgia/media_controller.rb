@@ -10,11 +10,11 @@ module Georgia
       @asset = Ckeditor::Picture.new
 
       if params[:tag]
-        @assets = Ckeditor::Asset.tagged_with(params[:tag]).includes(:tags).page(params[:page]).per(params[:per])
+        @assets = Ckeditor::Picture.tagged_with(params[:tag]).includes(:tags).page(params[:page]).per(params[:per])
       elsif params[:show] == 'orphans'
-        @assets = Ckeditor::Asset.joins('LEFT JOIN taggings on ckeditor_assets.id = taggings.taggable_id').where('taggings.taggable_id IS NULL').page(params[:page]).per(params[:per])
+        @assets = Ckeditor::Picture.joins('LEFT JOIN taggings on ckeditor_assets.id = taggings.taggable_id').where('taggings.taggable_id IS NULL').page(params[:page]).per(params[:per])
       else
-        @assets = Ckeditor::Asset.includes(:tags).page(params[:page]).per(params[:per])
+        @assets = Ckeditor::Picture.includes(:tags).page(params[:page]).per(params[:per])
       end
 
       @assets = @assets.order('updated_at DESC').decorate
@@ -59,7 +59,7 @@ module Georgia
     end
 
     def download_all
-      @files = Ckeditor::Asset.all
+      @files = Ckeditor::Picture.all
       t = Tempfile.new("tmp-zip-#{Time.now}")
       Zip::ZipOutputStream.open(t.path) do |zos|
         @files.each do |file|

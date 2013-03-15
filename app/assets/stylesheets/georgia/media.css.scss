@@ -91,6 +91,8 @@
   .gal-item .gal-inner-holder .img {
     cursor: pointer;
     overflow: hidden;
+    min-height: 153px;
+    text-align: center;
 
     img {
       width: 100%;

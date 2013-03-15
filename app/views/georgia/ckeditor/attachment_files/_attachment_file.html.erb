@@ -1,0 +1,30 @@
+<% if attachment_file and attachment_file.data.file.exists? %>
+<%= content_tag(:li, id: dom_id(attachment_file), class: "gal-item span3", data: {url: attachment_file.url_content}) do %>
+<%= link_to image_tag("ckeditor/filebrowser/images/gal_del.png", title: 'delete'), media_path(attachment_file), method: :delete, data: {confirm: 'Are you sure you want to delete this attachment_file?'}, remote: true, class: "fileupload-cancel gal-del" if can? :destroy, Ckeditor::Asset %>
+<div class="fileupload-file gal-inner-holder">
+  <div class="img center">
+    <%= link_to icon_tag('icon-file-alt icon-4x'), attachment_file.url_content, rel: 'shadowbox[gallery]' %>
+  </div>
+  <div class="img-data">
+    <div class="img-name">
+      <%= attachment_file.filename || attachment_file.data.file.filename %>
+    </div>
+    <div class="time-size">
+      <div class="created-at"><%= attachment_file.format_created_at %></div>
+      <div class="fileupload-size size"><%= number_to_human_size(attachment_file.size) %></div>
+    </div>
+
+    <div class='list-tags'>
+      <%= simple_form_for attachment_file, url: media_path(attachment_file), html: {class: 'form-vertical', data: {'attachment_file-id' => attachment_file.id}}, remote: true do |f| %>
+      <%= f.input :tag_list, label: false, input_html: {class: 'input-large js-token-input', data: {load: attachment_file.tags.map{|t| {id: t.id, text: t.name} }}} %>
+      <% end %>
+    </div>
+
+    <div class="pull-right">
+      <%= link_to icon_tag('icon-trash'), media_path(attachment_file), method: :delete, data: {confirm: 'Are you sure you want to delete this attachment_file?'}, remote: true if can? :destroy, Ckeditor::Asset %>
+    </div>
+  </div>
+
+</div>
+<% end -%>
+<% end -%>
