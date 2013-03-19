@@ -40,7 +40,7 @@ module Georgia
 
     def update
       @picture = Ckeditor::Picture.find(params[:id])
-      @picture.update_attributes(params[:asset])
+      @picture.update_attributes(params[:picture])
       @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       render layout: false
     end
