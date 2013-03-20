@@ -21,6 +21,9 @@ module Georgia
     end
 
     def create
+      p_attr = params[:picture]
+      p_attr[:data] = params[:picture][:data].first if params[:picture][:data].is_a? Array
+
       @picture = Ckeditor::Picture.new(params[:picture])
       if @picture.save
         respond_to do |format|
