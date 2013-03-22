@@ -1,6 +1,8 @@
 module Georgia
   class PagesController < Georgia::ApplicationController
 
+    include Georgia::Concerns::Publishable
+
     load_and_authorize_resource class: Georgia::Page
 
     before_filter :prepare_new_page, only: [:index, :search]
@@ -45,7 +47,7 @@ module Georgia
     def create
       @page = Georgia::Page.new(params[:page])
       @page.slug = @page.decorate.title.try(:parameterize)
-      # @page.created_by = current_user
+      @page.created_by = current_user
       @page.save
     end
 
@@ -74,44 +76,6 @@ module Georgia
         end
       else
         redirect_to pages_url, alert: 'Oups. Something went wrong.'
-      end
-    end
-
-    def publish
-      @page = Georgia::Page.find(params[:id]).decorate
-      @page.store_revision do
-        @page.publish current_user
-        @page.save!
-      end
-      # Notifier.notify_users(@page, "#{current_user.name} has published the job '#{@page.title}'").deliver
-      redirect_to :back, notice: "'#{@page.title}' was successfully published."
-    end
-
-    def unpublish
-      @page = Georgia::Page.find(params[:id]).decorate
-      @page.unpublish
-      if @page.save
-        # Notifier.notify_users(@page, "#{current_user.name} has unpublished the job '#{@page.title}'").deliver
-        redirect_to :back, notice: "'#{@page.title}' was successfully unpublished."
-      else
-        render :edit
-      end
-    end
-
-    def ask_for_review
-      @page = Georgia::Page.find(params[:id]).decorate
-      @page.wait_for_review
-      if @page.save
-        # Notifier.notify_editors(@page, "#{current_user.name} is asking you to review job '#{@page.title}'").deliver
-        respond_to do |format|
-          format.html {redirect_to :back, notice: "You have succesfully asked for a review."}
-          format.js { render layout: false }
-        end
-      else
-        respond_to do |format|
-          format.html {redirect_to :back, error: "Something went wrong."}
-          format.js { render layout: false }
-        end
       end
     end
 

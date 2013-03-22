@@ -9,16 +9,16 @@ module Georgia
       'http://www.motioneleven.com'
     end
 
-    def namespaced_url_for(model, action=nil)
+    def namespaced_url_for(instance, action=nil)
       case namespace
       when 'Georgia'
-        georgia.url_for([action, model].compact)
+        georgia.url_for([action, instance].compact)
       when 'Kennedy'
-        kennedy.url_for([action, model].compact)
+        kennedy.url_for([action, instance].compact)
       when 'Admin'
-        main_app.url_for([action, :admin, model].compact)
+        main_app.url_for([action, :admin, instance].compact)
       else
-        main_app.url_for([action, model].compact)
+        main_app.url_for([action, instance].compact)
       end
     end
 

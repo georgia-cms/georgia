@@ -12,5 +12,8 @@ module Georgia
       @role_names ||= roles.map(&:name)
       @role_names.include? role.to_s.titleize
     end
+
+    scope :admins, joins(:roles).where(georgia_roles: {name: 'Admin'})
+
   end
 end
