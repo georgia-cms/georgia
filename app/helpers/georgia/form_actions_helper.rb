@@ -20,21 +20,21 @@ module Georgia
     def link_to_publish(model, options={})
       return if model.nil? or model.new_record?
       if can? :publish, model
-        link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, namespaced_url_for(model, :publish), options
+        link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, namespaced_url_for(model, action: :publish), options
       end
     end
 
     def link_to_unpublish(model, options={})
       return if model.nil? or model.new_record?
       if can? :unpublish, model
-        link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, namespaced_url_for(model, :unpublish), options
+        link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, namespaced_url_for(model, action: :unpublish), options
       end
     end
 
     def link_to_review(model, options={})
       return if model.nil? or model.new_record?
       if can? :ask_for_review, model
-        link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, namespaced_url_for(model, :ask_for_review), options
+        link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, namespaced_url_for(model, action: :ask_for_review), options
       end
     end
 
@@ -60,7 +60,7 @@ module Georgia
     protected
 
     def link_to_group_button(model)
-      link_to(icon_tag('icon-cog'), namespaced_url_for(model, :edit), class: 'btn btn-inverse') +
+      link_to(icon_tag('icon-cog'), namespaced_url_for(model, action: :edit), class: 'btn btn-inverse') +
       link_to(content_tag('span', '', class: 'caret'), '#', class: 'btn btn-inverse dropdown-toggle', data: {toggle: "dropdown"})
     end
 
@@ -75,15 +75,15 @@ module Georgia
     end
 
     def link_to_group_item_publish(model, options={})
-      link_to "#{icon_tag('icon-ok')} Publish".html_safe, namespaced_url_for(model, :publish) if can? :publish, model
+      link_to "#{icon_tag('icon-ok')} Publish".html_safe, namespaced_url_for(model, action: :publish) if can? :publish, model
     end
 
     def link_to_group_item_unpublish(model, options={})
-      link_to "#{icon_tag('icon-ban-circle')} Unpublish".html_safe, namespaced_url_for(model, :unpublish) if can? :unpublish, model
+      link_to "#{icon_tag('icon-ban-circle')} Unpublish".html_safe, namespaced_url_for(model, action: :unpublish) if can? :unpublish, model
     end
 
     def link_to_group_item_edit(model, options={})
-      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, namespaced_url_for(model, :edit) if can? :edit, model
+      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, namespaced_url_for(model, action: :edit) if can? :edit, model
     end
 
     def link_to_group_item_delete(model, options={})
@@ -91,7 +91,7 @@ module Georgia
     end
 
     def link_to_group_item_ask_for_review(model, options={})
-      link_to "#{icon_tag('icon-check')} Ask for review".html_safe, namespaced_url_for(model, :ask_for_review) if can? :ask_for_review, model
+      link_to "#{icon_tag('icon-check')} Ask for review".html_safe, namespaced_url_for(model, action: :ask_for_review) if can? :ask_for_review, model
     end
 
   end

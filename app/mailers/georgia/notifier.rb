@@ -12,15 +12,15 @@ module Georgia
         subject: @message.subject)
     end
 
-    def notify_admins(resource, message)
-      @resource = resource
+    def notify_admins(message, url)
       @message = message
+      @url = url
       domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
       emails_to = (Rails.env.development? ? 'mathieu@motioneleven.com' : Georgia::User.admins.map(&:email))
       mail(
         from: "do-not-reply@#{domain_name}",
         to: emails_to,
-        subject: message
+        subject: @message
       )
     end
 

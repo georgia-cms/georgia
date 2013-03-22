@@ -12,7 +12,7 @@ module Georgia
           @publishable_resource.save!
         end
         message = "#{current_user.decorate.name} has successfully published #{@publishable_resource.title} #{instance_name}."
-        Notifier.notify_admins(@publishable_resource, message).deliver
+        notify(message)
         redirect_to :back, notice: message
       end
 
@@ -21,7 +21,7 @@ module Georgia
         @publishable_resource.unpublish
         if @publishable_resource.save
           message = "#{current_user.decorate.name} has successfully unpublished #{@publishable_resource.title} #{instance_name}."
-          Notifier.notify_admins(@publishable_resource, message).deliver
+          notify(message)
           redirect_to :back, notice: message
         else
           render :edit
@@ -33,7 +33,7 @@ module Georgia
         @publishable_resource.wait_for_review
         if @publishable_resource.save
           message = "#{current_user.decorate.name} is asking you to review #{@publishable_resource.title} #{instance_name}."
-          Notifier.notify_admins(@publishable_resource, message).deliver
+          notify(message)
           redirect_to :back, notice: message
         else
           render :edit
@@ -51,6 +51,10 @@ module Georgia
 
       def instance_name
         controller_name.singularize.titleize
+      end
+
+      def notify(message)
+        Notifier.notify_admins(message, namespaced_url_for(@publishable_resource, {action: :edit, controller: self.class.name})).deliver
       end
 
     end
