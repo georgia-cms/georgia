@@ -31,6 +31,8 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.integer   :parent_id
       t.integer   :position
       t.integer   :revision_id
+      t.integer   :created_by_id
+      t.integer   :updated_by_id
       t.integer   :published_by_id
       t.integer   :status_id
       t.datetime  :published_at
@@ -38,6 +40,8 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.timestamps
     end
     add_index :georgia_pages, :parent_id
+    add_index :georgia_pages, :created_by_id
+    add_index :georgia_pages, :updated_by_id
     add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :revision_id
     add_index :georgia_pages, :status_id
@@ -50,9 +54,9 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :excerpt
       t.string :keywords
       t.string :locale, null: false
-      t.timestamps
       t.references :contentable, polymorphic: true
       t.integer :image_id
+      t.timestamps
     end
     add_index :georgia_contents, [:contentable_type, :contentable_id]
     add_index :georgia_contents, :locale
