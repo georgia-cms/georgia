@@ -59,7 +59,6 @@
 {% } %}
 </script>
 
-
 <h1 class='page-header'>Media Library (<%= Ckeditor::Picture.count %>)</h1>
 
 <%= form_for Ckeditor::Picture.new, url: media_index_url, html: { multipart: true, id: "fileupload" } do |f| %>
