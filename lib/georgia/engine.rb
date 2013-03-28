@@ -19,6 +19,7 @@ module Georgia
     require 'carrierwave'
     require 'draper'
     require 'ancestry'
+    require 'cloudfiles'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'
