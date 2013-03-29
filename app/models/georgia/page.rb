@@ -18,7 +18,7 @@ module Georgia
     attr_accessible :parent_id
 
     belongs_to :updated_by, class_name: Georgia::User
-    # belongs_to :created_by, class_name: Georgia::User
+    belongs_to :created_by, class_name: Georgia::User
 
     # FIXME: Necessary?
     has_many :links, dependent: :destroy
