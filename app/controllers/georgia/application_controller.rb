@@ -3,7 +3,6 @@ module Georgia
 
     layout 'georgia/application'
     helper 'georgia/ui'
-    helper 'georgia/internationalization'
     helper 'georgia/form_actions'
     helper 'georgia/routes'
     helper 'georgia/devise'

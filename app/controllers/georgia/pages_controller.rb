@@ -58,10 +58,16 @@ module Georgia
       if @page.valid?
         @page.updated_by = current_user
         @page.save
-        redirect_to [:edit, @page], notice: "#{@page.decorate.title} was successfully updated."
+        respond_to do |format|
+          format.html { redirect_to [:edit, @page], notice: "#{@page.decorate.title} was successfully updated." }
+          format.js { render layout: false }
+        end
       else
         build_associations
-        render :edit
+        respond_to do |format|
+          format.html { render :edit }
+          format.js { render layout: false }
+        end
       end
     end
 

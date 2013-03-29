@@ -38,7 +38,6 @@ module Georgia
         helper Georgia::DeviseHelper
         helper Georgia::FormActionsHelper
         helper Georgia::FormsHelper
-        helper Georgia::InternationalizationHelper
         helper Georgia::RoutesHelper
         helper Georgia::UiHelper
         helper Georgia::MenusHelper

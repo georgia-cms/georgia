@@ -1,4 +1,4 @@
-<div class="tab-pane<%= ' active' if locale == current_locale %>" id="<%= locale %>">
+<div class="tab-pane<%= ' active' if locale == current_locale.to_s %>" id="<%= locale %>">
   <ul class="nav nav-tabs">
     <li class='active'><a href="#<%= locale %>_content" data-toggle="tab">Content</a></li>
     <li><a href="#<%= locale %>_images" data-toggle="tab">Featured image</a></li>
@@ -38,11 +38,6 @@
           </ul>
         </div>
       </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', :back, class: 'btn' %>
     </div>
   </div>
 
