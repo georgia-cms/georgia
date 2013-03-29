@@ -1,6 +1,5 @@
 module Georgia
   class PageDecorator < Georgia::ApplicationDecorator
-    # decorates_association :slides
 
     PUBLISHED = 'Published'
     PENDING = 'Pending'
@@ -13,7 +12,7 @@ module Georgia
     def excerpt_or_text
       if content.excerpt and !content.excerpt.blank?
         h.raw(content.excerpt)
-      else
+      elsif content.text and !content.text.blank?
         h.truncate(h.strip_tags(content.text), length: 255, separator: ' ').html_safe
       end
     end
