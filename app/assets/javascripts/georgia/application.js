@@ -8,6 +8,7 @@
 //= require georgia/tags
 //= require georgia/pages
 //= require georgia/media
+//= require georgia/spinner
 //= require ckeditor/init
 //= require handlebars
 //= require underscore

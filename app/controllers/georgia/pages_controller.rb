@@ -52,7 +52,7 @@ module Georgia
     end
 
     def update
-      @page = Page.find(params[:id]).decorate
+      @page = Georgia::Page.find(params[:id]).decorate
       @page.update_attributes(params[:page])
 
       if @page.valid?

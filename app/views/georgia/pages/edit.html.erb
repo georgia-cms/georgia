@@ -2,9 +2,10 @@
 <%= render 'georgia/shared/messages', model: @page %>
 <% end %>
 
-<%= simple_form_for @page, remote: true, html: {class: 'form-vertical', data: {'page-id' => @page.id}} do |f| %>
+<%= simple_form_for @page, remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
 <h1 class="page-header">
   <div class="pull-right">
+    <%= icon_tag 'icon-spinner icon-spin', class: 'spinner ', style: 'display:none;' %>
     <button type="submit" class="btn btn-success">
       <i class='icon-check'>&nbsp;</i> Save
     </button>
