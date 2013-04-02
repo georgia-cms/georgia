@@ -5,6 +5,8 @@
 //= require twitter/bootstrap
 //= require select2
 //= require shadowbox
+//= require mousetrap
+//= require georgia/keybindings
 //= require georgia/tags
 //= require georgia/pages
 //= require georgia/media

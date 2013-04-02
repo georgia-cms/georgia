@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fuelux-rails'
   s.add_dependency 'rubyzip'
   s.add_dependency 'cloudfiles'
+  s.add_dependency 'mousetrap-rails'
 
   s.add_development_dependency "thin"
   s.add_development_dependency "sqlite3"
