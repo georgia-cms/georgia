@@ -19,7 +19,7 @@
         <ul class="nav nav-list">
           <li class="nav-header">Content</li>
           <% @page.contents.sort_by(&:locale).each do |content| %>
-          <li class='<%= 'active' if content.locale == current_locale.to_s %>'>
+          <li class='<%= 'active' if content.locale == I18n.locale.to_s %>'>
             <a href="#<%= content.locale %>" data-toggle="tab">
               <%= icon_tag('icon-file') %> <%= t('locale_name', locale: content.locale) %>
             </a>
