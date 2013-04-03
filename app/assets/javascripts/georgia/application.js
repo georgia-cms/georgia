@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery-ui
+//= require georgia/jquery.ui.touch-punch
 //= require jquery_ujs
 //= require jquery-fileupload
 //= require twitter/bootstrap
@@ -7,10 +8,11 @@
 //= require shadowbox
 //= require mousetrap
 //= require georgia/keybindings
+//= require georgia/jquery.mjs.nestedSortable
 //= require georgia/tags
 //= require georgia/pages
 //= require georgia/media
-//= require georgia/spinner
+//= require georgia/form-actions
 //= require ckeditor/init
 //= require handlebars
 //= require underscore

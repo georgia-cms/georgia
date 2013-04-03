@@ -1,6 +1,6 @@
 class Georgia.Views.Link extends Backbone.View
   template: JST['links/link']
-  className: 'link portlet accordion-group'
+  tagName: 'li'
 
   events:
     'click .bb-edit': 'edit'

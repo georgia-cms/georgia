@@ -14,3 +14,8 @@ jQuery ->
         $("form.wait-and-spin [type='submit']").removeClass('btn-info').prop('disabled', false).html("<i class='icon-ok'>&nbsp;</i> Save")
       , 1500)
   )
+
+  $(document).on('click', '.js-refresh', (e) ->
+    e.preventDefault()
+    location.reload()
+  )

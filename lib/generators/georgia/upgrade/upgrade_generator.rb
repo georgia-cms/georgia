@@ -14,7 +14,7 @@ module Georgia
       end
 
       def create_migration
-        migration_template "migration.rb", "db/migrate/create_tags.rb"
+        migration_template "migration.rb", "db/migrate/upgrade_georgia.rb"
       end
 
     end
