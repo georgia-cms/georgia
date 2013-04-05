@@ -1,6 +1,6 @@
 class Georgia.Views.LinkForm extends Backbone.View
   template: JST['links/form']
-  className: 'link-form'
+  className: 'form'
 
   events:
     'click .bb-create': 'create'
@@ -9,6 +9,7 @@ class Georgia.Views.LinkForm extends Backbone.View
   initialize: (options) ->
     @panel = options.panel
     @locales = options.locales
+    @list = options.list
     @contents = @model.get('contents')
     if @contents.length == 0 and @locales.length
       $.each @locales, (index, lang) =>
@@ -20,7 +21,7 @@ class Georgia.Views.LinkForm extends Backbone.View
     this
 
   appendContentForm: (content) =>
-    view = new Georgia.Views.LinksFormContent(model: content)
+    view = new Georgia.Views.LinkFormContent(model: content)
     @$('#form_contents').append(view.render().el)
 
   create: (event) ->
@@ -28,8 +29,8 @@ class Georgia.Views.LinkForm extends Backbone.View
     @model.save @model.attributes,
       success: () =>
         @panel.swapPanels()
-        @panel.appendLink(@model)
-        @panel.notify("#{@model.get('title')} has been successfully created.", 'success')
+        @list.appendLink(@model)
+        @panel.notify("#{@model.get('title')} link has been successfully created.", 'success')
       error: @panel.handleError
 
   update: (event) ->
@@ -37,5 +38,5 @@ class Georgia.Views.LinkForm extends Backbone.View
     @model.save @model.attributes,
       success: () =>
         @panel.swapPanels()
-        @panel.notify("#{@model.get('title')} has been successfully updated.", 'success')
+        @panel.notify("#{@model.get('title')} link has been successfully updated.", 'success')
       error: @panel.handleError

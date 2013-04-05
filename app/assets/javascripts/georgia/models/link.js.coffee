@@ -19,6 +19,15 @@ class Georgia.Models.Link extends Backbone.RelationalModel
     reverseRelation:
       key: 'content'
       includeInJSON: 'id'
+    }, {
+    type: Backbone.HasMany
+    key: 'links'
+    relatedModel: 'Georgia.Models.Link'
+    collectionType: 'Georgia.Collections.Links'
+    includeInJSON: false
+    reverseRelation:
+      key: 'link'
+      includeInJSON: false
     }]
 
   toJSON: ->

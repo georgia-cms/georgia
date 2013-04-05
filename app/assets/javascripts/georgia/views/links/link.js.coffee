@@ -5,6 +5,7 @@ class Georgia.Views.Link extends Backbone.View
   events:
     'click .bb-edit': 'edit'
     'click .bb-remove': 'remove'
+    'click .disclose': 'disclose'
 
   initialize: (options) ->
     @panel = options.panel
@@ -17,7 +18,16 @@ class Georgia.Views.Link extends Backbone.View
 
   render: ->
     $(@el).html(@template(@model.attributes)).fadeIn(500) unless @model.isNew()
+    if @model.get('links').length
+      $(@el).append('<ol></ol>')
+      @model.get('links').each (link) =>
+        view = new Georgia.Views.Link(model: link, panel: @panel)
+        $(@el).find('ol').append(view.render().el)
     this
+
+  appendNestedLink: (link) =>
+    view = new Georgia.Views.Link(model: link, panel: @panel)
+    $(@el).find('ol').append(view.render().el)
 
   edit: (event) ->
     event.preventDefault()
@@ -31,4 +41,8 @@ class Georgia.Views.Link extends Backbone.View
     @model.destroy
       success: (link, response) =>
         $(@el).fadeOut(500, -> $(this).remove())
-        @panel.notify("<em>#{link.get('title')}</em> has been deleted.")
+        @panel.notify("<em>#{link.get('title')}</em> link has been deleted.")
+
+  disclose: (event) =>
+    event.stopPropagation()
+    $(event.target).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded')

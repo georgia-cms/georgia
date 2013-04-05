@@ -1,26 +1,22 @@
-  <h1 class="page-header">
-    <div class="pull-right">
-      <button type="submit" class="btn btn-success bb-save">
-        <i class='icon-ok'>&nbsp;</i> Save
-      </button>
-      <a href="/admin/menus" class="btn js-refresh"><i class="icon-remove"></i> Cancel</a>
-    </div>
-    Editing {{name}} Menu
-  </h1>
+<h1 class="page-header">
+  <div class="pull-right">
+    <button type="submit" class="btn btn-success bb-save">
+      <i class='icon-ok'>&nbsp;</i> Save
+    </button>
+    <a href="/admin/menus" class="btn bb-refresh"><i class="icon-remove"></i> Cancel</a>
+  </div>
+  Editing {{name}} Menu
+</h1>
 
 <div class='row-fluid'>
 
   <div class="span3"></div>
 
   <div class='span6'>
-    <div class='panel active'>
-      <ol id="links" class='top20 sortable'>
-      </ol>
-      <hr />
-      <a href='#' class='btn btn-primary swap-panel bb-new'><i class='icon-plus-sign'></i> Add Link</a>
+    <div id="links_list" class='panel active'>
+      <i class='icon-spinner icon-spin icon-2x'></i> Loading...
     </div>
     <div id='link_form' class='panel' style='display:none;'>
-      <div class='form'></div>
     </div>
   </div>
 
