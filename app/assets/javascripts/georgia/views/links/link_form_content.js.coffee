@@ -1,4 +1,4 @@
-class Georgia.Views.LinksFormContent extends Backbone.View
+class Georgia.Views.LinkFormContent extends Backbone.View
   template: JST['links/form_content']
   className: 'tab-pane'
 

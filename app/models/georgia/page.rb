@@ -12,10 +12,9 @@ module Georgia
     include Georgia::Orderable
 
     has_ancestry orphan_strategy: :rootify
+    attr_accessible :parent_id
 
     paginates_per 20
-
-    attr_accessible :parent_id
 
     belongs_to :updated_by, class_name: Georgia::User
     belongs_to :created_by, class_name: Georgia::User

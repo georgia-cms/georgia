@@ -3,7 +3,10 @@ module Georgia
 
     include Georgia::Contentable
 
-    attr_accessible :menu_id, :page_id, :dropdown
+    has_ancestry orphan_strategy: :destroy
+    attr_accessible :parent_id
+
+    attr_accessible :menu_id
 
     acts_as_list scope: :menu
 
@@ -13,7 +16,6 @@ module Georgia
     scope :ordered, order('position ASC')
     scope :active, where(active: true)
     scope :inactive, where(active: false)
-    default_scope includes(:contents).order(:position)
 
     def copy_from_page! page
       page.contents.each do |content|

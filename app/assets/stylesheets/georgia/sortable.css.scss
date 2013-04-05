@@ -10,15 +10,15 @@
 ol {
   margin: 0;
   padding: 0;
+}
+
+ol.sortable, ol.sortable ol {
+  padding: 0;
   list-style-type: none;
 }
 
-ol.sortable ol {
-  margin: 0 0 0 25px;
-}
-
 .sortable li {
-  margin: 7px 0 0px 0;
+  margin: 5px 0 0 0;
   padding: 0;
 }
 
@@ -28,7 +28,7 @@ ol.sortable ol {
   -moz-border-radius: 3px;
   border-radius: 3px;
   border-color: #D4D4D4 #D4D4D4 #BCBCBC;
-  padding: 5px;
+  padding: 6px;
   margin: 0;
   cursor: move;
   background: #f6f6f6;
@@ -78,14 +78,4 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 
 .sortable li.mjs-nestedSortable-expanded > div > .disclose > span:before {
   content: '- ';
-}
-
-
-.handle {
-  cursor: move;
-  padding: 2px;
-}
-
-li.text {
-  padding: 2px 10px;
 }
