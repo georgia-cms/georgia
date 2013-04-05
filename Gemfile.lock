@@ -24,7 +24,7 @@ PATH
       devise
       differ
       draper
-      fog
+      fog (= 1.10.0)
       font-awesome-sass-rails
       fuelux-rails
       handlebars_assets
@@ -32,6 +32,7 @@ PATH
       jquery-rails
       kaminari
       mini_magick
+      mousetrap-rails
       pg
       pg_search
       rails (~> 3.2.13)
@@ -125,7 +126,7 @@ GEM
       activesupport (>= 3.2.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
-    ckeditor (4.0.2)
+    ckeditor (4.0.4)
       mime-types
       orm_adapter
     cloudfiles (1.5.0.1)
@@ -242,21 +243,22 @@ GEM
       treetop (~> 1.4.8)
     metaclass (0.0.1)
     method_source (0.8.1)
-    mime-types (1.19)
+    mime-types (1.22)
     mini_magick (3.5.0)
       subexec (~> 0.2.1)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
+    mousetrap-rails (0.0.9)
     multi_json (1.7.2)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.6)
-    nokogiri (1.5.5)
+    nokogiri (1.5.9)
     orm_adapter (0.4.0)
     pg (0.15.0)
-    pg_search (0.5.7)
-      activerecord (>= 3)
-      activesupport (>= 3)
+    pg_search (0.6.0)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     polyglot (0.3.3)
     progressbar (0.12.0)
     pry (0.9.10)
