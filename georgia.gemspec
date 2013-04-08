@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg'
   s.add_dependency 'pg_search'
   s.add_dependency 'backbone-on-rails', '0.9.2.3'
+  # s.add_dependency 'backbone-validation-rails'
   s.add_dependency 'handlebars_assets'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'

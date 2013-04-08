@@ -36,6 +36,6 @@ class Georgia.Views.Panel extends Backbone.View
     if response.status == 422
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
-        @notify("#{attribute} #{message}", 'error') for message in messages
+        @notify("#{if attribute == 'base' then '' else attribute} #{message}", 'error') for message in messages
     else
       @notify('Oups. Something went wrong.', 'error')

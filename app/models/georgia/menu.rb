@@ -4,7 +4,6 @@ module Georgia
     attr_accessible :name
 
     has_many :links, dependent: :destroy
-    has_many :pages, through: :links
 
   end
 end
