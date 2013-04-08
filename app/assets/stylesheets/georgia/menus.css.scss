@@ -1,3 +1,7 @@
+#menu_panel {
+  min-height: 450px;
+}
+
 .placeholder {
   outline: 1px dashed #4183C4;
 }
@@ -48,8 +52,8 @@ ol.sortable ol {
 }
 
 .sortable li.mjs-nestedSortable-leaf div {
-  background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #bcccbc 100%);
-  background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#bcccbc 100%);
+  // background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #bcccbc 100%);
+  // background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#bcccbc 100%);
 
 }
 

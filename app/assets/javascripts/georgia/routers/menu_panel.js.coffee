@@ -7,5 +7,5 @@ class Georgia.Routers.MenuPanel extends Backbone.Router
     @menu.fetch(
       success: (model, response, options) ->
         @panel = new Georgia.Views.MenuPanel(model: model)
-        @panel.render()
+        @panel.renderLinks()
     )
