@@ -5,7 +5,7 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Page
 
-    before_filter :prepare_new_page, only: [:index, :search]
+    before_filter :prepare_new_page, only: [:index, :search, :find_by_tag]
 
     def index
       @pages = Georgia::Page.order('updated_at DESC').page(params[:page])
@@ -33,6 +33,11 @@ module Georgia
       else
         render :index
       end
+    end
+
+    def find_by_tag
+      @pages = Georgia::Page.tagged_with(params[:tag]).page(params[:page]).decorate
+      render :index
     end
 
     def show
