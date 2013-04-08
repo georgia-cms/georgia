@@ -31,7 +31,6 @@ module Georgia
     require 'font-awesome-sass-rails'
     require 'select2-rails'
     require 'shadowbox-rails'
-    require 'fuelux-rails'
     require 'mousetrap-rails'
 
     initializer 'georgia.action_controller' do |app|
