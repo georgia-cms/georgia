@@ -7,7 +7,7 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
     'click .bb-refresh': 'refresh'
     'click .bb-save': 'save'
     'click .swap-panel': 'swapPanels'
-    'change .bb-search': 'search'
+    'keydown .bb-search': 'search'
 
   initialize: (options) ->
     @locales = $(@el).data('locales').split(',')

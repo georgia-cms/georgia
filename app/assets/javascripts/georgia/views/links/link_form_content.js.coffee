@@ -11,6 +11,19 @@ class Georgia.Views.LinkFormContent extends Backbone.View
 
   render: ->
     $(@el).html(@template(content: @model))
+    @$('#text').autocomplete(
+      source: '/api/pages/urls'
+      minLength: 2
+      select: (event, ui) =>
+        event.preventDefault()
+        event.stopPropagation()
+        @$('#text').val(ui.item.url)
+      )
+    .data( "autocomplete" )._renderItem = ( ul, item ) ->
+      return $( "<li></li>" )
+        .data( "item.autocomplete", item )
+        .append( "<a>" + item.url + "</a>" )
+        .appendTo( ul )
     this
 
   attributeChanged: (event) ->
