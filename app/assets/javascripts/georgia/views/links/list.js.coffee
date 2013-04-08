@@ -6,12 +6,23 @@ class Georgia.Views.LinksList extends Backbone.View
 
   initialize: (options) ->
     @panel = options.panel
+    @menu_id = $('[data-menu-id]').data('menu-id')
     @collection.on('add', @panel.renderForm, this)
 
   new: (event) ->
     event.preventDefault()
-    @collection.add([{menu_id: $('[data-menu-id]').data('menu-id')}])
+    @collection.add([{menu_id: @menu_id}])
     this
+
+  addLinkFromPage: (page) ->
+    contents = page.get('contents').map (content) ->
+      {
+        locale: content.get('locale')
+        title: content.get('title')
+        text: page.get('url')
+      }
+    @collection.add([{menu_id: @menu_id, contents: contents}])
+    @panel.swapPanels()
 
   render: ->
     $(@el).html(@template)
