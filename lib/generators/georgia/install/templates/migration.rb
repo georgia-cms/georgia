@@ -160,12 +160,10 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     # Create Navigation Links
     create_table :georgia_links do |t|
       t.integer :menu_id
-      t.integer :page_id
       t.integer :position
-      t.boolean :dropdown, default: false
+      t.string :ancestry
     end
-    add_index :georgia_links, [:menu_id, :page_id]
-
+    add_index :georgia_links, :ancestry
 
     # Create Status
     create_table :georgia_statuses do |t|
@@ -190,6 +188,5 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     add_index :taggings, :tag_id
     add_index :taggings, [:taggable_id, :taggable_type, :context]
-
   end
 end
