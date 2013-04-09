@@ -14,6 +14,7 @@ module Georgia
     end
 
     scope :admins, joins(:roles).where(georgia_roles: {name: 'Admin'})
+    scope :editors, joins(:roles).where(georgia_roles: {name: 'Editor'})
 
   end
 end
