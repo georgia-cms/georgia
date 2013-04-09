@@ -4,4 +4,8 @@ Georgia.setup do |config|
 
   # Site title
   # config.title = Rails.application.class.to_s.split("::").first.downcase
+
+  # Site URL
+  # Do not add trailing slash
+  # config.url = 'http://www.example.com'
 end

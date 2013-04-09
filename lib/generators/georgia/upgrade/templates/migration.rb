@@ -3,10 +3,7 @@ class UpgradeGeorgia < ActiveRecord::Migration
   def up
     remove_column :georgia_links, :dropdown
     remove_column :georgia_links, :page_id
-
-    if index_exists?(:georgia_links, [:menu_id, :page_id])
-      remove_index :georgia_links, [:menu_id, :page_id]
-    end
+    remove_index :georgia_links, [:menu_id, :page_id]
 
     add_column :georgia_links, :ancestry, :string
     add_index :georgia_links, :ancestry

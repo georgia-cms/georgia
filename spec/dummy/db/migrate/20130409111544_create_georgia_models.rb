@@ -16,28 +16,34 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Messages
     create_table :georgia_messages do |t|
-      t.string :name
-      t.string :email
-      t.string :subject
-      t.string :attachment
-      t.text :message
+      t.string  :name
+      t.string  :email
+      t.string  :subject
+      t.string  :attachment
+      t.text    :message
       t.timestamps
     end
 
     # Create Pages
     create_table :georgia_pages do |t|
-      t.string  :template, default: 'one-column'
-      t.string  :slug
-      t.integer :parent_id
-      t.integer :position
-      t.integer :revision_id
-      t.integer :published_by_id
-      t.integer :status_id
-      t.string  :ancestry
+      t.string    :template, default: 'one-column'
+      t.string    :slug
+      t.integer   :parent_id
+      t.integer   :position
+      t.integer   :revision_id
+      t.integer   :created_by_id
+      t.integer   :updated_by_id
+      t.integer   :published_by_id
+      t.integer   :status_id
+      t.datetime  :published_at
+      t.string    :ancestry
       t.timestamps
     end
     add_index :georgia_pages, :parent_id
+    add_index :georgia_pages, :created_by_id
+    add_index :georgia_pages, :updated_by_id
     add_index :georgia_pages, :published_by_id
+    add_index :georgia_pages, :revision_id
     add_index :georgia_pages, :status_id
     add_index :georgia_pages, :ancestry
 
@@ -48,9 +54,9 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :excerpt
       t.string :keywords
       t.string :locale, null: false
-      t.timestamps
       t.references :contentable, polymorphic: true
       t.integer :image_id
+      t.timestamps
     end
     add_index :georgia_contents, [:contentable_type, :contentable_id]
     add_index :georgia_contents, :locale
@@ -154,12 +160,10 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     # Create Navigation Links
     create_table :georgia_links do |t|
       t.integer :menu_id
-      t.integer :page_id
       t.integer :position
-      t.boolean :dropdown, default: false
+      t.string :ancestry
     end
-    add_index :georgia_links, [:menu_id, :page_id]
-
+    add_index :georgia_links, :ancestry
 
     # Create Status
     create_table :georgia_statuses do |t|
@@ -170,5 +174,19 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     ActsAsRevisionable::RevisionRecord.create_table
 
+    create_table :tags do |t|
+      t.string :name
+    end
+
+    create_table :taggings do |t|
+      t.references :tag
+      t.references :taggable, :polymorphic => true
+      t.references :tagger, :polymorphic => true
+      t.string :context, :limit => 128
+      t.datetime :created_at
+    end
+
+    add_index :taggings, :tag_id
+    add_index :taggings, [:taggable_id, :taggable_type, :context]
   end
 end

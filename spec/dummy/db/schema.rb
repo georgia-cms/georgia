@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122111837) do
+ActiveRecord::Schema.define(:version => 20130409111544) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(:version => 20121122111837) do
     t.string   "excerpt"
     t.string   "keywords"
     t.string   "locale",           :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
     t.integer  "contentable_id"
     t.string   "contentable_type"
     t.integer  "image_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "georgia_contents", ["contentable_type", "contentable_id"], :name => "index_georgia_contents_on_contentable_type_and_contentable_id"
@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(:version => 20121122111837) do
 
   create_table "georgia_links", :force => true do |t|
     t.integer "menu_id"
-    t.integer "page_id"
     t.integer "position"
-    t.boolean "dropdown", :default => false
+    t.string  "ancestry"
   end
 
-  add_index "georgia_links", ["menu_id", "page_id"], :name => "index_georgia_links_on_menu_id_and_page_id"
+  add_index "georgia_links", ["ancestry"], :name => "index_georgia_links_on_ancestry"
 
   create_table "georgia_menus", :force => true do |t|
     t.string   "name"
@@ -77,17 +76,23 @@ ActiveRecord::Schema.define(:version => 20121122111837) do
     t.integer  "parent_id"
     t.integer  "position"
     t.integer  "revision_id"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
     t.integer  "published_by_id"
     t.integer  "status_id"
+    t.datetime "published_at"
     t.string   "ancestry"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
 
   add_index "georgia_pages", ["ancestry"], :name => "index_georgia_pages_on_ancestry"
+  add_index "georgia_pages", ["created_by_id"], :name => "index_georgia_pages_on_created_by_id"
   add_index "georgia_pages", ["parent_id"], :name => "index_georgia_pages_on_parent_id"
   add_index "georgia_pages", ["published_by_id"], :name => "index_georgia_pages_on_published_by_id"
+  add_index "georgia_pages", ["revision_id"], :name => "index_georgia_pages_on_revision_id"
   add_index "georgia_pages", ["status_id"], :name => "index_georgia_pages_on_status_id"
+  add_index "georgia_pages", ["updated_by_id"], :name => "index_georgia_pages_on_updated_by_id"
 
   create_table "georgia_roles", :force => true do |t|
     t.string   "name"
@@ -171,5 +176,22 @@ ActiveRecord::Schema.define(:version => 20121122111837) do
   end
 
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
 end
