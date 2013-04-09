@@ -9,12 +9,19 @@ module Georgia
 
     belongs_to :page
 
-    # image is a belongs_to on content
-    # Accessable via decorator at the moment
 
-    delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, to: :contents
+    delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, :image, to: :contents, allow_nil: true
 
     scope :ordered, order(:position)
+
+    validate :page_association
+
+    protected
+
+    # Validations
+    def page_association
+      errors.add(:base, "An association to a page is required.") unless page_id.present?
+    end
 
   end
 end
