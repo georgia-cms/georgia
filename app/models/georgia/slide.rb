@@ -9,7 +9,6 @@ module Georgia
 
     belongs_to :page
 
-
     delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, :image, to: :contents, allow_nil: true
 
     scope :ordered, order(:position)

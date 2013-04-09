@@ -17,7 +17,7 @@ class Georgia.Views.SlideshowPanel extends Georgia.Views.Panel
 
   new: (event) ->
     event.preventDefault()
-    @collection.add([{page_id: $('#edit_page_panel form').data('page-id')}])
+    @collection.add([{page_id: $('[data-page-id]').data('page-id')}])
     this
 
   renderForm: (slide) =>
