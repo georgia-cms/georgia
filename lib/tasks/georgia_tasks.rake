@@ -5,7 +5,7 @@ namespace :georgia do
 
     # Create an admin user to start playing around
     # Also creates the two main roles
-    support = Georgia::User.create(first_name: 'Motion Eleven', last_name: 'Support', email: 'support@motioneleven.com', password: 'motion11', password_confirmation: 'motion11') do |user|
+    support = Georgia::User.create(first_name: 'Motion Eleven', last_name: 'Support', email: 'webmaster@motioneleven.com', password: 'motion11', password_confirmation: 'motion11') do |user|
       user.roles << Georgia::Role.create(name: 'Admin')
       user.roles << Georgia::Role.create(name: 'Editor')
     end
