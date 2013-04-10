@@ -1,3 +1,4 @@
+CKEDITOR.config.allowedContent = true;
 CKEDITOR.config.baseHref = '/assets/ckeditor/';
 CKEDITOR.config.height = 400;
 CKEDITOR.config.width = '95.5%';
