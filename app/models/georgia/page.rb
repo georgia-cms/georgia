@@ -1,15 +1,16 @@
 module Georgia
   class Page < ActiveRecord::Base
 
+    include Georgia::Contentable
+    include Georgia::Orderable
     include Georgia::Publishable
     include Georgia::Revisionable
-    include Georgia::Contentable
-    include Georgia::Previewable
     include Georgia::Searchable
-    include Georgia::Taggable
     include Georgia::Slugable
+    include Georgia::Taggable
     include Georgia::Templatable
-    include Georgia::Orderable
+
+    acts_as_list scope: :parent #override orderable to include scope
 
     has_ancestry orphan_strategy: :rootify
     attr_accessible :parent_id
@@ -26,7 +27,6 @@ module Georgia
 
     # FIXME: Must be turned into polymorphic to allow associations to other classes such as Kennedy::Post
     has_many :ui_associations, dependent: :destroy
-    has_many :ui_sections, through: :ui_associations
     has_many :widgets, through: :ui_associations
 
     scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}

@@ -76,7 +76,6 @@ shared_examples "a publishable model" do
 
     describe 'published' do
       it "returns records where status is 'Published'" do
-        # expect(described_class.name.underscore.gsub(/\//, '_').to_sym).to eq(:georgia_page)
         described_class.destroy_all
         @published = FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Published'))
         FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Draft'))
@@ -85,11 +84,21 @@ shared_examples "a publishable model" do
     end
 
     describe 'draft' do
-      it "returns records where status is 'Draft'"
+      it "returns records where status is 'Draft'" do
+        described_class.destroy_all
+        @draft = FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Draft'))
+        FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Pending Review'))
+        expect(described_class.draft).to eq([@draft])
+      end
     end
 
     describe 'pending_review' do
-      it "returns records where status is 'Pending Review'"
+      it "returns records where status is 'Pending Review'" do
+        described_class.destroy_all
+        @pending_review = FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Pending Review'))
+        FactoryGirl.create(model_name, status: FactoryGirl.build(:georgia_status, name: 'Draft'))
+        expect(described_class.pending_review).to eq([@pending_review])
+      end
     end
 
   end

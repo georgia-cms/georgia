@@ -61,19 +61,4 @@ describe Georgia::Link do
 
   end
 
-  describe '.ordered' do
-
-    before :each do
-      Georgia::Link.destroy_all
-    end
-
-    it 'returns links ordered by position' do
-      @fourth = FactoryGirl.create(:georgia_link, position: 4, contents: [FactoryGirl.build(:georgia_content, title: 'fourth', text: '/foo')])
-      @third = FactoryGirl.create(:georgia_link, position: 3, contents: [FactoryGirl.build(:georgia_content, title: 'third', text: '/foo')])
-      @first = FactoryGirl.create(:georgia_link, position: 1, contents: [FactoryGirl.build(:georgia_content, title: 'first', text: '/foo')])
-      @second = FactoryGirl.create(:georgia_link, position: 2, contents: [FactoryGirl.build(:georgia_content, title: 'second', text: '/foo')])
-      expect(Georgia::Link.ordered.to_a).to eq([@first, @second, @third, @fourth])
-    end
-  end
-
 end

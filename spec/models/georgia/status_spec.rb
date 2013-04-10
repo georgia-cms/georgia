@@ -4,45 +4,66 @@ describe Georgia::Status do
 
   specify {FactoryGirl.build(:georgia_status).should be_valid}
 
-  it {should respond_to(:published?)}
-  it {should respond_to(:pending_review?)}
-  it {should respond_to(:draft?)}
+  it { should respond_to :name, :label, :icon }
 
-  context "when status is published" do
-    before { @status = FactoryGirl.build(:georgia_status, name: 'Published') }
-    it "should be published?" do
-      @status.published?.should be_true
+  it {should respond_to(:published?)}
+  it {should respond_to(:draft?)}
+  it {should respond_to(:pending_review?)}
+
+  it {should validate_presence_of(:name)}
+
+  describe 'status booleans' do
+
+    let(:status) { FactoryGirl.build(:georgia_status, name: status_name) }
+
+    describe '#published?' do
+
+      subject { status.published? }
+
+      context "when status is published" do
+        let(:status_name) { 'Published' }
+        it { should be_true }
+      end
+
+      context 'when status is not published' do
+        let(:status_name) { 'Foo Bar' }
+        it { should be_false }
+      end
+
     end
-    it "should not be draft?" do
-      @status.draft?.should be_false
+
+    describe '#draft?' do
+
+      subject { status.draft? }
+
+      context "when status is draft" do
+        let(:status_name) { 'Draft' }
+        it { should be_true }
+      end
+
+      context 'when status is not draft' do
+        let(:status_name) { 'Foo Bar' }
+        it { should be_false }
+      end
+
     end
-    it "should not be pending_review?" do
-      @status.pending_review?.should be_false
+
+    describe '#pending_review?' do
+
+      subject { status.pending_review? }
+
+      context "when status is pending review" do
+        let(:status_name) { 'Pending Review' }
+        it { should be_true }
+      end
+
+      context 'when status is not pending_review' do
+        let(:status_name) { 'Foo Bar' }
+        it { should be_false }
+      end
+
     end
-  end
-  context "when status is draft" do
-    before { @status = FactoryGirl.build(:georgia_status, name: 'Draft') }
-    it "should not be published?" do
-      @status.published?.should be_false
-    end
-    it "should be draft?" do
-      @status.draft?.should be_true
-    end
-    it "should not be pending_review?" do
-      @status.pending_review?.should be_false
-    end
-  end
-  context "when status is pending review" do
-    before { @status = FactoryGirl.build(:georgia_status, name: 'Pending Review') }
-    it "should not be published?" do
-      @status.published?.should be_false
-    end
-    it "should not be draft?" do
-      @status.draft?.should be_false
-    end
-    it "should be pending_review?" do
-      @status.pending_review?.should be_true
-    end
+
   end
 
 end

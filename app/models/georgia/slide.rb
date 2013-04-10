@@ -2,16 +2,12 @@ module Georgia
   class Slide < ActiveRecord::Base
 
     include Georgia::Contentable
+    include Georgia::Orderable
 
     acts_as_list scope: :page
-
-    attr_accessible :position, :page_id
+    attr_accessible :page_id
 
     belongs_to :page
-
-    delegate :title, :text, :excerpt, :keywords, :published_by, :published_at, :image, to: :contents, allow_nil: true
-
-    scope :ordered, order(:position)
 
     validate :page_association
 

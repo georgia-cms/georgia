@@ -18,6 +18,9 @@ describe Georgia::UserDecorator do
   end
 
   describe '#roles_names' do
+
+    it "is pending"
+
   end
 
 

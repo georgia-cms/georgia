@@ -10,6 +10,8 @@ describe Georgia::User do
   it {should allow_mass_assignment_of(:email)}
   it {should allow_mass_assignment_of(:password)}
   it {should allow_mass_assignment_of(:password_confirmation)}
+  it {should allow_mass_assignment_of(:remember_me)}
+  it {should allow_mass_assignment_of(:role_ids)}
 
   it {should validate_presence_of(:email)}
   it {should validate_presence_of(:password)}
@@ -18,22 +20,38 @@ describe Georgia::User do
 
   it {should respond_to :has_role?}
 
-  describe 'abilities' do
+  describe '#has_role?' do
 
-    subject { ability }
+    let(:user) { FactoryGirl.build(:georgia_user, roles: [FactoryGirl.build(:georgia_role, name: 'Admin')]) }
+    subject { user.has_role? role_name }
 
-    let(:ability) { Ability.new(user) }
-
-    context "when is an admin" do
-      let(:user){ FactoryGirl.build(:admin) }
-      it { should be_able_to(:manage, :all) }
+    context 'when user has given role' do
+      let(:role_name) { 'Admin' }
+      it { should be_true }
     end
 
-    context "when is an editor" do
-      let(:user) { FactoryGirl.build(:editor) }
-      it { should be_able_to(:publish, :all) }
+    context 'when user does not have given role' do
+      let(:role_name) { 'Editor' }
+      it { should be_false }
     end
 
+  end
+
+  describe 'scopes' do
+
+    let (:admin) { FactoryGirl.create(:admin) }
+    let (:editor) { FactoryGirl.create(:editor) }
+
+    describe '.admins' do
+      subject { Georgia::User.admins }
+      it {should include admin}
+      it {should_not include editor}
+    end
+    describe '.editors' do
+      subject { Georgia::User.editors }
+      it {should include editor}
+      it {should_not include admin}
+    end
   end
 
 end

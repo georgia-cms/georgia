@@ -5,7 +5,7 @@ module Georgia::Orderable
 
   included do
 
-    acts_as_list scope: :parent
+    acts_as_list
     attr_accessible :position
 
     scope :ordered, order(:position)

@@ -13,13 +13,6 @@ describe Georgia::Message do
   it {should_not allow_value('whereis@waldo').for(:email)}
   it {should_not allow_value('@waldo.com').for(:email)}
 
-  describe '.search' do
-
-    it 'allows for full text search by query' do
-      Georgia::Message.should respond_to :search
-      pending 'Change test db to postgresql'
-    end
-
-  end
+  it_behaves_like 'a searchable model'
 
 end
