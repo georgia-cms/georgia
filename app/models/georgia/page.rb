@@ -19,9 +19,6 @@ module Georgia
     belongs_to :updated_by, class_name: Georgia::User
     belongs_to :created_by, class_name: Georgia::User
 
-    # FIXME: Necessary?
-    has_many :links, dependent: :destroy
-
     # FIXME: Must be turned into polymorphic to allow associations to other classes such as Kennedy::Post
     has_many :slides, dependent: :destroy
     accepts_nested_attributes_for :slides

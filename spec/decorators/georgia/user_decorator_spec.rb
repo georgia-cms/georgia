@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Georgia::UserDecorator do
 
-  subject {Georgia::UserDecorator.decorate(FactoryGirl.build(:user).decorate)}
+  subject {Georgia::UserDecorator.decorate(FactoryGirl.build(:georgia_user).decorate)}
 
   it_behaves_like 'a decorator'
   it {should respond_to :name}
@@ -11,7 +11,7 @@ describe Georgia::UserDecorator do
   describe '#name' do
 
     it "should match the first and last name" do
-      user = Georgia::UserDecorator.decorate(FactoryGirl.build(:user, first_name: 'Bob', last_name: 'Bison'))
+      user = Georgia::UserDecorator.decorate(FactoryGirl.build(:georgia_user, first_name: 'Bob', last_name: 'Bison'))
       user.name.should match 'Bob Bison'
     end
 

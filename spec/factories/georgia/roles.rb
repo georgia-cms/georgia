@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :role, class: Georgia::Role do
+  factory :georgia_role, class: Georgia::Role do
     name 'visitor'
   end
 end

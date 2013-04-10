@@ -18,14 +18,9 @@ module Georgia::Publishable
     scope :draft, joins(:status).where('georgia_statuses' => {name: Georgia::Status::DRAFT})
     scope :pending_review, joins(:status).where('georgia_statuses' => {name: Georgia::Status::PENDING_REVIEW})
 
-    def wait_for_review
-      self.status = Georgia::Status.pending_review.first
-      self
-    end
 
     def publish(user)
       self.published_by = user
-      # FIXME: Add published_at to migrations and new upgrade
       self.published_at = Time.zone.now
       self.status = Georgia::Status.published.first
       self
@@ -33,6 +28,11 @@ module Georgia::Publishable
 
     def unpublish
       self.status = Georgia::Status.draft.first
+      self
+    end
+
+    def wait_for_review
+      self.status = Georgia::Status.pending_review.first
       self
     end
 
