@@ -3,7 +3,7 @@ require 'cancan/matchers'
 
 describe Georgia::User do
 
-  specify {FactoryGirl.build(:user).should be_valid}
+  specify {FactoryGirl.build(:georgia_user).should be_valid}
 
   it {should allow_mass_assignment_of(:first_name)}
   it {should allow_mass_assignment_of(:last_name)}

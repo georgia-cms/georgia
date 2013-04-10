@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :status, class: Georgia::Status do
+  factory :georgia_status, class: Georgia::Status do
     name 'no name'
     label ''
     icon ''

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Georgia::PageDecorator do
 
-  subject {Georgia::PageDecorator.decorate(FactoryGirl.build(:page))}
+  subject {Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page))}
 
   it_behaves_like 'a decorator'
 
@@ -14,7 +14,7 @@ describe Georgia::PageDecorator do
   describe '#template_path' do
 
     it "returns the partial path corresponding to the template" do
-      page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page, template: 'contact'))
+      page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page, template: 'contact'))
       page.template_path.should match 'pages/templates/contact'
     end
 
@@ -25,16 +25,16 @@ describe Georgia::PageDecorator do
     context 'with only one locale' do
 
       it 'returns a relative path' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page, slug: 'foo'))
+        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page, slug: 'foo'))
         page.url.should match '/foo'
       end
 
       context 'with ancestry' do
 
         it 'prepends the ancestors slugs' do
-          root = FactoryGirl.create(:page, slug: 'foo')
-          descendant = FactoryGirl.create(:page, slug: 'bar', parent: root)
-          page = FactoryGirl.create(:page, slug: 'gong', parent: descendant)
+          root = FactoryGirl.create(:georgia_page, slug: 'foo')
+          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
+          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
           Georgia::PageDecorator.decorate(page).url.should match '/foo/bar/gong'
         end
 
@@ -50,16 +50,16 @@ describe Georgia::PageDecorator do
       end
 
       it 'prepends the current locale' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page, slug: 'foo'))
+        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page, slug: 'foo'))
         page.url.should match '/en/foo'
       end
 
       context 'with ancestry' do
 
         it 'prepends the current locale followed by ancestors slugs' do
-          root = FactoryGirl.create(:page, slug: 'foo')
-          descendant = FactoryGirl.create(:page, slug: 'bar', parent: root)
-          page = FactoryGirl.create(:page, slug: 'gong', parent: descendant)
+          root = FactoryGirl.create(:georgia_page, slug: 'foo')
+          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
+          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
           Georgia::PageDecorator.decorate(page).url.should match '/en/foo/bar/gong'
         end
 
@@ -73,8 +73,8 @@ describe Georgia::PageDecorator do
     context 'with an excerpt' do
 
       it 'returns #excerpt' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page))
-        page.contents << FactoryGirl.build(:content, text: nil)
+        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page))
+        page.contents << FactoryGirl.build(:georgia_content, text: nil)
         page.excerpt_or_text.should match page.contents.first.excerpt
       end
 
@@ -83,8 +83,8 @@ describe Georgia::PageDecorator do
     context 'without an excerpt' do
 
       it 'truncates #text' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page))
-        page.contents << FactoryGirl.build(:content, excerpt: nil)
+        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page))
+        page.contents << FactoryGirl.build(:georgia_content, excerpt: nil)
         page.contents.first.text.should match /^#{page.excerpt_or_text}.*/
       end
 
@@ -93,8 +93,8 @@ describe Georgia::PageDecorator do
     context 'without an excerpt or text' do
 
       it 'returns nil' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:page))
-        page.contents << FactoryGirl.build(:content, text: nil, excerpt: nil)
+        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page))
+        page.contents << FactoryGirl.build(:georgia_content, text: nil, excerpt: nil)
         page.excerpt_or_text.should be_nil
       end
 

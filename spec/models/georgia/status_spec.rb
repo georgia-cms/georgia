@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe Georgia::Status do
 
-  specify {FactoryGirl.build(:status).should be_valid}
+  specify {FactoryGirl.build(:georgia_status).should be_valid}
 
   it {should respond_to(:published?)}
   it {should respond_to(:pending_review?)}
   it {should respond_to(:draft?)}
 
   context "when status is published" do
-    before { @status = FactoryGirl.build(:status, name: 'Published') }
+    before { @status = FactoryGirl.build(:georgia_status, name: 'Published') }
     it "should be published?" do
       @status.published?.should be_true
     end
@@ -21,7 +21,7 @@ describe Georgia::Status do
     end
   end
   context "when status is draft" do
-    before { @status = FactoryGirl.build(:status, name: 'Draft') }
+    before { @status = FactoryGirl.build(:georgia_status, name: 'Draft') }
     it "should not be published?" do
       @status.published?.should be_false
     end
@@ -33,7 +33,7 @@ describe Georgia::Status do
     end
   end
   context "when status is pending review" do
-    before { @status = FactoryGirl.build(:status, name: 'Pending Review') }
+    before { @status = FactoryGirl.build(:georgia_status, name: 'Pending Review') }
     it "should not be published?" do
       @status.published?.should be_false
     end

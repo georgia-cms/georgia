@@ -17,7 +17,6 @@ module Georgia
     validate do |link|
       link.contents.each do |content|
         errors.add(:base, "Must have a label") unless content.title.present?
-        errors.add(:base, "Must have a url") unless content.text.present?
         errors.add(:base, "URL must start with a forward slash (/) or http") unless content.text =~ Regexp.new('(^/)|(^http)')
       end
     end
