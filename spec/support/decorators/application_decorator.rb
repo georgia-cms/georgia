@@ -15,4 +15,12 @@ shared_examples "a decorator" do
     it {should respond_to(:keywords)}
     it {should respond_to(:image)}
   end
+
+  it 'must properly test created_by_name'
+  it 'must properly test updated_by_name'
+  it 'must properly test published_by_name'
+  it 'must properly test pretty_created_at'
+  it 'must properly test pretty_updated_at'
+  it 'must properly test pretty_published_at'
+
 end
