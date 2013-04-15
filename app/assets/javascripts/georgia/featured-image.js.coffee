@@ -1,11 +1,8 @@
 jQuery ->
 
-  $('.js-featured-image').each (index, e) ->
-    $(".js-toggle-image[data-image-id=#{$(e).val()}]").addClass('active')
-
-  $('.js-toggle-image').click (e) ->
+  $("[data-featured-image='toggle']").click (e) ->
     e.preventDefault()
-    $('.js-toggle-image').removeClass('active')
+    pane = $(this).closest('.tab-pane')
+    pane.find("[data-featured-image='toggle']").removeClass('active')
     $(this).addClass('active')
-    input = $(this).closest('.tab-pane').find('.js-featured-image')
-    input.val($(this).data('image-id'))
+    pane.find("[data-featured-image='input']").val($(this).data('featured-image-id'))

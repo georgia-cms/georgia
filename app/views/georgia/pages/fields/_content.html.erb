@@ -1,12 +1,7 @@
-<div class="tab-pane<%= ' active' if locale == I18n.locale.to_s %>" id="<%= locale %>">
-  <ul class="nav nav-tabs">
-    <li class='active'><a href="#<%= locale %>_content" data-toggle="tab">Content</a></li>
-    <li><a href="#<%= locale %>_images" data-toggle="tab">Featured image</a></li>
-  </ul>
+<div class="tab-pane<%= ' active' if locale == I18n.locale.to_s %>" id="<%= locale %>-content">
 
-  <div class="tab-content">
-
-    <div id="<%= locale %>_content" class="tab-pane active">
+  <div class="row-fluid">
+    <div class="span9">
 
       <fieldset class='max-length'>
 
@@ -22,18 +17,24 @@
           <%= f.hidden_field :locale %>
         </div>
       </fieldset>
-
     </div>
 
-    <div id="<%= locale %>_images" class='tab-pane' >
-      <%= f.hidden_field :image_id, class: 'js-featured-image' %>
+    <div class="span3">
+      <legend>Featured Image</legend>
+      <%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
       <div class="gallery">
         <div class="row-fluid">
           <ul class="thumbnails">
-            <% Ckeditor::Asset.tagged_with(slug).includes(:tags).each do |photo| %>
-            <li class="span3">
-              <%= link_to image_tag(photo.url), '#', class: 'thumbnail js-toggle-image', data: {image_id: photo.id} %>
+            <% if Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).any? %>
+            <% Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).each do |photo| %>
+            <li class="span12">
+              <%= link_to image_tag(photo.url(:big_thumb)), '#', class: "thumbnail #{'active' if photo.id == f.object.image_id}", data: {'featured-image' => 'toggle', 'featured-image-id' => photo.id} %>
             </li>
+            <% end -%>
+            <% else -%>
+            <p class="help-block">
+              <%= icon_tag 'icon-info-sign' %> To select a featured image, you must first add a tag corresponding to this page's slug.
+            </p>
             <% end -%>
           </ul>
         </div>

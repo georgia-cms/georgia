@@ -14,7 +14,7 @@
       </td>
       <td>
         <em><%= revision.changed_at %> ago by <strong><%= revision.changed_by %></strong></em><br/>
-        <%= revision.created_at(format: :long) %>
+        <%= l revision.created_at, format: :long %>
       </td>
       <td class='muted'>
         <%= icon_tag 'icon-info-sign' %> Feature coming soon.
