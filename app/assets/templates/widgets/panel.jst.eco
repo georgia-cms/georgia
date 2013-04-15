@@ -2,14 +2,20 @@
 
   <div class='span9'>
     <div id='widgets_index' class='panel active'>
-      <a href='#' class='btn btn-primary swap-panel new-form'><i class='icon-plus-sign'></i> Add Widget</a>
       <div class="row-fluid">
-        <div id='ui_widgets' class='span9 top20'>
-          <legend>Widgets</legend>
+        <div id='ui_widgets' class='span9'>
+          <legend>
+            <div class="pull-right">
+              <a href='#' class='btn bb-swap-panel bb-new'><i class='icon-plus-sign'></i> Add Widget</a>
+            </div>
+            Widgets
+          </legend>
           <p class='help-block'>
-            Drag widgets from here to a location on the right to activate them. Click on the trash to deactivate them.
+            <i class='icon-info-sign'></i> Drag widgets to a location on the right to activate them.
           </p>
-          <ul id="widgets_list"></ul>
+          <div class="row-fluid">
+            <ul id="widgets_list"></ul>
+          </div>
         </div>
         <div id='ui_sections' class='span3'></div>
       </div>

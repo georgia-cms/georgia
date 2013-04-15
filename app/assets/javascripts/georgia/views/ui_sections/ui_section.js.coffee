@@ -2,10 +2,10 @@ class Georgia.Views.UiSection extends Backbone.View
   template: JST['ui_sections/ui_section']
   tagName: 'fieldset'
 
-  initialize: ->
-    @ui_associations = @model.get('ui_associations')
+  # collection refers to ui_associations
+  initialize: (options) ->
+    @panel = options.panel
     @model.on('change', @render, this)
-    @ui_associations.on('add', @appendUiAssociation, this)
 
   render: ->
     $(@el).html(@template(ui_section: @model))
@@ -16,25 +16,22 @@ class Georgia.Views.UiSection extends Backbone.View
       drop: ( event, ui ) =>
         ui.draggable.draggable('option','revert',true)
         @createUiAssociation(event, ui)
-    @ui_associations.each(@appendUiAssociation)
+    @collection.each(@appendUiAssociation)
     this
 
   appendUiAssociation: (ui_assoc) =>
-    view = new Georgia.Views.UiAssociation(model: ui_assoc)
+    view = new Georgia.Views.UiAssociation(model: ui_assoc, panel: @panel)
     @$('.ui_association_list').append(view.render().el)
 
-  createUiAssociation: (event, ui) ->
+  createUiAssociation: (event, ui) =>
     event.preventDefault()
-    attributes = 
-      widget_id: $(ui.draggable).data('widget-id')
-      ui_section_id: @model.id
-      page_id: $(@el).closest('form').data('page-id')
-    @ui_associations.create {ui_association: attributes},
-      wait: true
-      error: @handleError
-
-  handleError: (ui_assoc, response) ->
-    if response.status == 422
-      errors = $.parseJSON(response.responseText).errors
-      for attribute, messages of errors
-        alert "#{attribute} #{message}" for message in messages
+    @collection.create({
+        widget_id: $(ui.draggable).data('widget-id')
+        page_id: $('[data-page-id]').data('page-id')
+        ui_section_id: @model.id
+      },
+      success: (model, xhr, options) =>
+        @appendUiAssociation(model)
+        @panel.notify("#{model.get('title')} widget has been successfully added.", 'success')
+      error: @panel.handleError
+    )

@@ -7,8 +7,7 @@ class Georgia.Views.Link extends Backbone.View
     'click .bb-remove': 'remove'
     'click .disclose': 'disclose'
 
-  # @model is a link
-  # @collection are nested links
+  # @collection refers to nested links
   initialize: (options) ->
     @panel = options.panel
     $(@el).attr('id', "link_#{@model.id}")

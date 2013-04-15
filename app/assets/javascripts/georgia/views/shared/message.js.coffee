@@ -7,5 +7,5 @@ class Georgia.Views.Message extends Backbone.View
     $(@el).addClass("alert alert-#{@status}")
 
   render: ->
-    $(@el).html(@template(message: @message)).fadeIn(500)
+    $(@el).html(@template(message: @message)).fadeIn(300)
     this

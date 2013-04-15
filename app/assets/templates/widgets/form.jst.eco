@@ -10,5 +10,5 @@
   <% else: %>
   <a id='submit' href='#' class='btn btn-success bb-update'><i class='icon-ok'></i> Update</a>
   <% end %>
-  <a href='#' class='btn swap-panel'><i class='icon-ban-circle'></i> Cancel</a>
+  <a href='#' class='btn bb-swap-panel'><i class='icon-ban-circle'></i> Cancel</a>
 </div>

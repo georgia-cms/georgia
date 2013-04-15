@@ -5,14 +5,16 @@ class Georgia.Views.UiAssociation extends Backbone.View
   events:
     'click .remove_icon': 'remove'
 
-  initialize: ->
-    @model.on('change', @render, this)
+  initialize: (options) ->
+    @panel = options.panel
 
   render: ->
-    $(@el).html(@template(ui_association: @model)).fadeIn(500)
+    $(@el).html(@template(@model.attributes)).fadeIn(500)
     this
 
   remove: (event) ->
     event.preventDefault()
     @model.destroy
-      success: (model, response) => $(@el).fadeOut(500, -> $(this).remove())
+      success: (model, response, options) =>
+        $(@el).fadeOut(300, -> $(this).remove())
+        @panel.notify("<em>#{model.get('title')}</em> association has been deleted.")
