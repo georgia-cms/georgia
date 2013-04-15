@@ -1,4 +1,4 @@
-shared_examples "a publishable model" do
+shared_examples "a statusable model" do
 
   it { should respond_to :published?, :pending_review?, :draft? }
   it { should respond_to :publish, :unpublish, :wait_for_review }

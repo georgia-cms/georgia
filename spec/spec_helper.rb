@@ -7,32 +7,37 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
+  require 'capybara-webkit'
   require 'factory_girl_rails'
   require 'shoulda-matchers'
   require 'draper/test/rspec_integration'
+  require 'database_cleaner'
+  require 'simplecov'
+
+  DatabaseCleaner.strategy = :truncation
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  Capybara.javascript_driver = :webkit
+
   RSpec.configure do |config|
     config.mock_with :rspec
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
     config.infer_base_class_for_anonymous_controllers = false
 
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
 
-    # config.include Devise::TestHelpers, :type => :controller
-    # config.include Devise::TestHelpers, :type => :helper
+    config.include AuthenticationHelpers
   end
 
 end
 
 Spork.each_run do
+  DatabaseCleaner.clean
   FactoryGirl.reload
-  require 'simplecov'
   SimpleCov.start 'rails' do
-    command_name 'RSpec'
     add_filter 'spec'
     add_filter 'config'
 

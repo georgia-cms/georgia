@@ -13,7 +13,7 @@ describe Georgia::Page do
   it {should allow_value('sidebar-left').for(:template)}
   it {should allow_value('sidebar-right').for(:template)}
 
-  it_behaves_like 'a publishable model'
+  it_behaves_like 'a statusable model'
   it_behaves_like 'a revisionable model'
   it_behaves_like 'a contentable model'
   it_behaves_like 'a searchable model'

@@ -1,3 +1,3 @@
 source :rubygems
-gem 'henry', git: 'git@git.motioneleven.com:motioneleven/henry.git'
+gem 'henry', path: '../henry'
 gemspec

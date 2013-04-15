@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409111544) do
+ActiveRecord::Schema.define(:version => 20130412142513) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -73,15 +73,15 @@ ActiveRecord::Schema.define(:version => 20130409111544) do
   create_table "georgia_pages", :force => true do |t|
     t.string   "template",        :default => "one-column"
     t.string   "slug"
-    t.integer  "parent_id"
     t.integer  "position"
+    t.integer  "parent_id"
     t.integer  "revision_id"
     t.integer  "created_by_id"
     t.integer  "updated_by_id"
     t.integer  "published_by_id"
     t.integer  "status_id"
-    t.datetime "published_at"
     t.string   "ancestry"
+    t.datetime "published_at"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(:version => 20130409111544) do
   add_index "georgia_users", ["reset_password_token"], :name => "index_georgia_users_on_reset_password_token", :unique => true
 
   create_table "georgia_widgets", :force => true do |t|
-    t.integer  "position"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

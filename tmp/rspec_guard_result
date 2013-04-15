@@ -1,1 +1,6 @@
-
+./spec/decorators/georgia/page_decorator_spec.rb:59
+./spec/features/authentication/login_spec.rb:15
+./spec/features/authentication/login_spec.rb:21
+./spec/features/georgia/settings_spec.rb:8
+./spec/features/pages/index_spec.rb:14
+./spec/features/pages/index_spec.rb:21

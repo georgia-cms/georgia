@@ -39,6 +39,10 @@ describe Georgia::User do
 
   describe 'scopes' do
 
+    before :each do
+      Georgia::User.destroy_all
+    end
+
     let (:admin) { FactoryGirl.create(:admin) }
     let (:editor) { FactoryGirl.create(:editor) }
 

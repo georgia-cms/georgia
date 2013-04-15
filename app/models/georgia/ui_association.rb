@@ -1,7 +1,7 @@
 module Georgia
   class UiAssociation < ActiveRecord::Base
 
-    include Georgia::Orderable
+    include Georgia::Concerns::Orderable
     acts_as_list scope: :page
 
     belongs_to :page, touch: true

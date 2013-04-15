@@ -8,6 +8,7 @@ shared_examples "a orderable model" do
     describe '.ordered' do
 
       it 'returns links ordered by position' do
+        described_class.destroy_all
         @fourth = FactoryGirl.create(model_name, position: 4)
         @third = FactoryGirl.create(model_name, position: 3)
         @first = FactoryGirl.create(model_name, position: 1)

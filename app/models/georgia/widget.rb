@@ -1,7 +1,7 @@
 module Georgia
 	class Widget < ActiveRecord::Base
 
-    include Georgia::Contentable
+    include Concerns::Contentable
 
 		has_many :ui_associations, dependent: :destroy
 		has_many :ui_sections, through: :ui_associations

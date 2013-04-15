@@ -1,7 +1,5 @@
 Georgia::Engine.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
-
   devise_for :users,
   class_name: "Georgia::User",
   path: '/',
@@ -12,7 +10,6 @@ Georgia::Engine.routes.draw do
   devise_scope :user do
     get '/logout', to: 'users/sessions#destroy'
   end
-
 
   post "revisions/:id/revert" => "revisions#revert", :as => :revert_version
 

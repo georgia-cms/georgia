@@ -1,7 +1,7 @@
 module Georgia
   class Link < ActiveRecord::Base
 
-    include Georgia::Contentable
+    include Concerns::Contentable
 
     has_ancestry orphan_strategy: :destroy
     attr_accessible :parent_id

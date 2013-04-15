@@ -30,4 +30,5 @@ feature 'User signs in' do
     fill_in 'Password', with: password
     click_button 'Log In'
   end
+
 end

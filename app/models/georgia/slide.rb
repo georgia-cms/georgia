@@ -1,8 +1,8 @@
 module Georgia
   class Slide < ActiveRecord::Base
 
-    include Georgia::Contentable
-    include Georgia::Orderable
+    include Georgia::Concerns::Contentable
+    include Georgia::Concerns::Orderable
 
     acts_as_list scope: :page
     attr_accessible :page_id

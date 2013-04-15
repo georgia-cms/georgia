@@ -1,14 +1,14 @@
 module Georgia
   class Page < ActiveRecord::Base
 
-    include Georgia::Contentable
-    include Georgia::Orderable
-    include Georgia::Publishable
-    include Georgia::Revisionable
-    include Georgia::Searchable
-    include Georgia::Slugable
-    include Georgia::Taggable
-    include Georgia::Templatable
+    include Concerns::Contentable
+    include Concerns::Statusable
+    include Concerns::Revisionable
+    include Concerns::Searchable
+    include Concerns::Slugable
+    include Concerns::Taggable
+    include Concerns::Templatable
+    include Concerns::Orderable
 
     acts_as_list scope: :parent #override orderable to include scope
 
