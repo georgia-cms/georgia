@@ -46,5 +46,5 @@ class Georgia.Views.LinksList extends Backbone.View
     this
 
   appendLink: (link) =>
-    view = new Georgia.Views.Link(model: link, panel: @panel)
+    view = new Georgia.Views.Link(model: link, collection: link.get('links'), panel: @panel)
     @$('.sortable').append(view.render().el)

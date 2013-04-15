@@ -1,5 +1,6 @@
+##= require ../shared/panel.js.coffee
 class Georgia.Views.WidgetsPanel extends Georgia.Views.Panel
-  template: JST['panels/widgets']
+  template: JST['widgets/panel']
 
   initialize: (options) ->
     @images = options.images

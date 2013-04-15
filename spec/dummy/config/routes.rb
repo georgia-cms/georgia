@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   root to: 'application#index'
 
+  resources :pages do
+    get 'preview', on: :member, to: 'pages#preview'
+  end
+
 end

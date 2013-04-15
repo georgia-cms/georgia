@@ -7,27 +7,24 @@ class Georgia.Views.Link extends Backbone.View
     'click .bb-remove': 'remove'
     'click .disclose': 'disclose'
 
+  # @model is a link
+  # @collection are nested links
   initialize: (options) ->
     @panel = options.panel
-    @id = 'link_' + @model.id
-    $(@el).attr 'id', @id
-    $(@el).addClass(@model.attributes.type)
-    $(@el).attr('data-link-id', @model.id)
+    $(@el).attr('id', "link_#{@model.id}")
     @model.on('change:title', @render, this)
     @model.on('change:text', @render, this)
 
   render: ->
     $(@el).html(@template(@model.attributes)).fadeIn(500) unless @model.isNew()
-    if @model.get('links').length
-      $(@el).append('<ol></ol>')
-      @model.get('links').each (link) =>
-        view = new Georgia.Views.Link(model: link, panel: @panel)
-        $(@el).find('ol').append(view.render().el)
+    if @collection.length
+      @collection.each(@appendNestedLink)
     this
 
   appendNestedLink: (link) =>
-    view = new Georgia.Views.Link(model: link, panel: @panel)
-    $(@el).find('ol').append(view.render().el)
+    view = new Georgia.Views.Link(model: link, collection: link.get('links'), panel: @panel)
+    $(@el).append('<ol></ol>')
+    $(@el).find('ol').first().append(view.render().el)
 
   edit: (event) ->
     event.preventDefault()

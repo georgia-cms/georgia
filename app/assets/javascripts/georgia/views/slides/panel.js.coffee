@@ -1,5 +1,6 @@
+##= require ../shared/panel.js.coffee
 class Georgia.Views.SlideshowPanel extends Georgia.Views.Panel
-  template: JST['panels/slideshow']
+  template: JST['slides/panel']
 
   render: ->
     $(@el).html(@template())

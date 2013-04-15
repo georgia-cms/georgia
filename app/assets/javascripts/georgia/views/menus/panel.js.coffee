@@ -1,6 +1,6 @@
-##= require ./panel.js.coffee
+##= require ../shared/panel.js.coffee
 class Georgia.Views.MenuPanel extends Georgia.Views.Panel
-  template: JST['panels/menu']
+  template: JST['menus/panel']
   el: '#menu_panel'
 
   events:

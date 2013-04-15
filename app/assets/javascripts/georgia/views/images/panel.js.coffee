@@ -1,6 +1,6 @@
-##= require ./panel.js.coffee
+##= require ../shared/panel.js.coffee
 class Georgia.Views.ImagesPanel extends Georgia.Views.Panel
-  template: JST['panels/images']
+  template: JST['images/panel']
 
   events:
     'click .bb-prev': 'previous'
