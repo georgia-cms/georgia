@@ -7,7 +7,7 @@ describe 'Georgia' do
     context 'by default' do
       it 'uses the application name' do
         visit georgia.root_url
-        expect(page).to have_title "Dummy App CMS"
+        expect(page).to have_title "Georgia CMS"
       end
     end
 

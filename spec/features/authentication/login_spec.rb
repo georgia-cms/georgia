@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'User signs in' do
 
-  before :each do
+  before :all do
     FactoryGirl.create(:admin, email: 'test@me.com', password: '1234-get-the-kittens-out-the-door', password_confirmation: '1234-get-the-kittens-out-the-door')
   end
 

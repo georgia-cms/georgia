@@ -3,9 +3,9 @@ include Warden::Test::Helpers
 
 module AuthenticationHelpers
   def create_logged_in_user
-    user = FactoryGirl.create(:admin)
-    login(user)
-    user
+    @user ||= FactoryGirl.create(:admin)
+    login(@user)
+    @user
   end
 
   def login(user)
