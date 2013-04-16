@@ -12,6 +12,7 @@ class Georgia.Views.WidgetsPanel extends Georgia.Views.Panel
   render: ->
     $(@el).html(@template())
     @ui_sections.fetch(
+      data: {page_id: $('[data-page-id]').data('page-id')}
       success: () =>
         @ui_sections.each(@appendUiSection)
     )
