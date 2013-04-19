@@ -43,6 +43,7 @@ module Georgia
         helper Georgia::MenusHelper
         helper Georgia::MetaTagsHelper
         helper Georgia::TwitterHelper
+        helper Georgia::InternationalizationHelper
       end
     end
 
