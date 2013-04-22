@@ -13,6 +13,7 @@ module Georgia
         attr_accessible :published_by_id, :published_at
 
         delegate :published?, :draft?, :pending_review?, to: :status, allow_nil: true
+        delegate :name, to: :status, allow_nil: true, prefix: true
 
         before_save :ensure_status, on: :create
 

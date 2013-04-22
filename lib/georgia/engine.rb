@@ -20,6 +20,8 @@ module Georgia
     require 'draper'
     require 'ancestry'
     require 'cloudfiles'
+    require 'sunspot_rails'
+    require 'sunspot_solr'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'

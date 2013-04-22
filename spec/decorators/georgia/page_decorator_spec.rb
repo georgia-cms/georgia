@@ -20,54 +20,6 @@ describe Georgia::PageDecorator do
 
   end
 
-  describe  '#url' do
-
-    context 'with only one locale' do
-
-      it 'returns a relative path' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page, slug: 'foo'))
-        page.url.should match '/foo'
-      end
-
-      context 'with ancestry' do
-
-        it 'prepends the ancestors slugs' do
-          root = FactoryGirl.create(:georgia_page, slug: 'foo')
-          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
-          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
-          Georgia::PageDecorator.decorate(page).url.should match '/foo/bar/gong'
-        end
-
-      end
-
-    end
-
-    context 'with multiple available locales' do
-
-      before :each do
-        I18n.available_locales = [:en, :fr]
-        I18n.locale = :en
-      end
-
-      it 'prepends the current locale' do
-        page = Georgia::PageDecorator.decorate(FactoryGirl.build(:georgia_page, slug: 'foo'))
-        page.url.should match '/en/foo'
-      end
-
-      context 'with ancestry' do
-
-        it 'prepends the current locale followed by ancestors slugs' do
-          root = FactoryGirl.create(:georgia_page, slug: 'foo')
-          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
-          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
-          Georgia::PageDecorator.decorate(page).url.should match '/en/foo/bar/gong'
-        end
-
-      end
-
-    end
-  end
-
   describe '#excerpt_or_text' do
 
     context 'with an excerpt' do

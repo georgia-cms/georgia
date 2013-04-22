@@ -2,6 +2,7 @@ shared_examples "a statusable model" do
 
   it { should respond_to :published?, :pending_review?, :draft? }
   it { should respond_to :publish, :unpublish, :wait_for_review }
+  it { should respond_to :status_name }
 
   it { should belong_to :status }
   it { should belong_to :published_by }

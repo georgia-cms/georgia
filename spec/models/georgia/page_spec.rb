@@ -30,5 +30,52 @@ describe Georgia::Page do
       end
     end
   end
+    describe  '#url' do
+
+    context 'with only one locale' do
+
+      it 'returns a relative path' do
+        page = FactoryGirl.build(:georgia_page, slug: 'foo')
+        page.url.should match '/foo'
+      end
+
+      context 'with ancestry' do
+
+        it 'prepends the ancestors slugs' do
+          root = FactoryGirl.create(:georgia_page, slug: 'foo')
+          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
+          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
+          page.url.should match '/foo/bar/gong'
+        end
+
+      end
+
+    end
+
+    context 'with multiple available locales' do
+
+      before :each do
+        I18n.available_locales = [:en, :fr]
+        I18n.locale = :en
+      end
+
+      it 'prepends the current locale' do
+        page = FactoryGirl.build(:georgia_page, slug: 'foo')
+        page.url.should match '/en/foo'
+      end
+
+      context 'with ancestry' do
+
+        it 'prepends the current locale followed by ancestors slugs' do
+          root = FactoryGirl.create(:georgia_page, slug: 'foo')
+          descendant = FactoryGirl.create(:georgia_page, slug: 'bar', parent: root)
+          page = FactoryGirl.create(:georgia_page, slug: 'gong', parent: descendant)
+          page.url.should match '/en/foo/bar/gong'
+        end
+
+      end
+
+    end
+  end
 
 end

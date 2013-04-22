@@ -4,7 +4,6 @@ module Georgia
     include Concerns::Contentable
     include Concerns::Statusable
     include Concerns::Revisionable
-    include Concerns::Searchable
     include Concerns::Slugable
     include Concerns::Taggable
     include Concerns::Templatable
@@ -30,6 +29,46 @@ module Georgia
     has_many :widgets, through: :ui_associations
 
     scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
+
+    searchable do
+      text :url
+      text :status_name
+      text :template
+      text :titles do
+        contents.map(&:title).join(', ')
+      end
+      text :contents do
+        contents.map(&:text).join(', ')
+      end
+      text :excerpts do
+        contents.map(&:excerpt).join(', ')
+      end
+      text :keywords do
+        contents.map(&:text).join(', ')
+      end
+      text :tags do
+        tag_list.join(', ')
+      end
+      string :status_name
+      string :template
+      string :tag_list, stored: true, multiple: true
+    end
+
+
+    def url options={}
+      '/' + localized_slug(options) + ancestry_url
+    end
+
+    protected
+
+    def localized_slug options={}
+      locale = options[:locale] || I18n.locale.to_s
+      (I18n.available_locales.length > 1) ? "#{locale}/" : ''
+    end
+
+    def ancestry_url
+      (ancestors + [self]).map(&:slug).join('/')
+    end
 
   end
 end

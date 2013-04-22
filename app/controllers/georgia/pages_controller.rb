@@ -5,34 +5,26 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Page
 
-    before_filter :prepare_new_page, only: [:index, :search, :find_by_tag]
+    before_filter :prepare_new_page, only: [:search, :find_by_tag]
 
     def index
-      @pages = Georgia::Page.order('updated_at DESC').page(params[:page])
-
-      # Quick and dirty hack for visibility
-      # FIXME: Please add indexed facets with Sphinx or ElasticSearch or add a new BackBone panel view
-      @pages = @pages.where(template: params[:template]) if params[:template].present?
-
-      case params[:status]
-      when Georgia::Status::DRAFT
-        @pages = @pages.draft
-      when Georgia::Status::PUBLISHED
-        @pages = @pages.published
-      when Georgia::Status::PENDING_REVIEW
-        @pages = @pages.pending_review
-      end
-
-      @pages = @pages.decorate
+      redirect_to action: :search
     end
 
     def search
-      @pages = Georgia::Page.search(params[:query]).page(params[:page]).decorate
-      if @pages.length == 1
-        redirect_to page_path(@pages.first)
-      else
-        render :index
+      session[:search_params] = params
+      @search = Georgia::Page.search do
+        fulltext params[:query] do
+          fields(:url, :status_name, :template, :titles, :excerpts, :contents, :keywords, :tags)
+        end
+        facet :status_name, :template, :tag_list
+        with(:status_name, params[:s]) unless params[:s].blank?
+        with(:template, params[:t]) unless params[:t].blank?
+        with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
+        order_by params[:o], (params[:dir] || :desc) unless params[:o].blank?
+        paginate(page: params[:page], per_page: (params[:per] || 25))
       end
+      @pages = @search.results.map(&:decorate)
     end
 
     def find_by_tag

@@ -19,5 +19,16 @@ module Georgia
     def parent_page_collection
       Georgia::Page.scoped.decorate.sort_by(&:title).map{|p| [p.title, p.id]}
     end
+
+    def facets_inputs facets=[]
+      facets.map do |f|
+        if params[f] and !params[f].empty?
+          params[f].map do |v|
+            hidden_field_tag(f, v, name: "#{f}[]")
+          end
+        end
+      end.flatten.join().html_safe
+    end
+
   end
 end
