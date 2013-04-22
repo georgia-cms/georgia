@@ -7,6 +7,7 @@ namespace :georgia do
 
   task upgrade: :environment do
     Rake::Task['georgia:assets:rename'].execute
+    Rake::Task['georgia:reindex'].execute
   end
 
   namespace :assets do
@@ -44,6 +45,10 @@ namespace :georgia do
 
     end
 
+  end
+
+  task reindex: :environment do
+    Georgia::Page.reindex
   end
 
 end
