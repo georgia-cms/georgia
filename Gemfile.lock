@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.3)
+    georgia (0.4)
       acts-as-taggable-on
       acts_as_list
       acts_as_revisionable (~> 1.2.2)
@@ -40,7 +40,7 @@ PATH
 PATH
   remote: ../henry
   specs:
-    henry (0.0.7)
+    henry (0.4)
       jbuilder
 
 GEM

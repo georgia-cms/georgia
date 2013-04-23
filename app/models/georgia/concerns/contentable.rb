@@ -14,11 +14,12 @@ module Georgia
           @content ||= contents.select{|c| c.locale == I18n.locale.to_s}.first || Georgia::Content.new
         end
 
-        def title     ; content.title        ; end
-        def text      ; content.text         ; end
-        def excerpt   ; content.excerpt      ; end
-        def keywords  ; content.keyword_list ; end
-        def image     ; content.image        ; end
+        def title         ; content.title        ; end
+        def text          ; content.text         ; end
+        def excerpt       ; content.excerpt      ; end
+        def keywords      ; content.keywords     ; end
+        def keyword_list  ; content.keyword_list ; end
+        def image         ; content.image        ; end
       end
 
       module ClassMethods
