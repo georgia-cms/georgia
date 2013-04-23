@@ -1,11 +1,11 @@
 module Georgia
   module FormsHelper
 
-    def sortable(column, title = nil)
-      title ||= column.titleize
-      css_class = (column == sort_column ? "current #{sort_direction}" : nil)
-      direction = (column == sort_column && sort_direction == "asc" ? "desc" : "asc")
-      link_to title, {sort: column, direction: direction}, {class: css_class}
+    def sortable(column, title=nil)
+      title ||= column.humanize
+      direction = (column.to_s == params[:o] && params[:dir] == "asc" ? "desc" : "asc")
+      icon = direction == "asc" ? icon_tag('icon-chevron-up') : icon_tag('icon-chevron-down')
+      "#{title} #{link_to(icon, georgia.search_pages_url(session[:search_params].merge({o: column, dir: direction})))}".html_safe
     end
 
     def render_template template

@@ -4,16 +4,14 @@ describe 'pages#index' do
 
   before :each do
     create_logged_in_user
-    visit georgia.pages_path
+    visit georgia.search_pages_url
   end
 
   describe 'create' do
 
     context 'with a valid title' do
       it 'redirects to edit page', js: true do
-        within 'h1' do
-          click_link('Add Page')
-        end
+        click_link('Add Page')
         fill_in 'Title', with: 'Foo'
         click_button('Create')
         page.should have_selector('h1', text: "Editing 'Foo'")
@@ -22,9 +20,7 @@ describe 'pages#index' do
 
     context 'with an invalid title' do
       it 'displays an error message', js: true do
-        within 'h1' do
-          click_link('Add Page')
-        end
+        click_link('Add Page')
         fill_in 'Title', with: '#@$%^&'
         click_button('Create')
         expect(page).to have_selector('.alert-error', text: "You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)")

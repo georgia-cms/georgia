@@ -22,15 +22,10 @@ module Georgia
       "#{model.published_by.decorate.name} (#{pretty_published_at})"
     end
 
-    def content
-      @content ||= model.contents.select{|c| c.locale == I18n.locale.to_s}.first || Content.new
-    end
-
-    def title     ; h.raw(content.title)        ; end
-    def text      ; h.raw(content.text)         ; end
-    def excerpt   ; h.raw(content.excerpt)      ; end
-    def keywords  ; h.raw(content.keyword_list) ; end
-    def image     ; content.image               ; end
+    def title     ; h.raw(model.title)        ; end
+    def text      ; h.raw(model.text)         ; end
+    def excerpt   ; h.raw(model.excerpt)      ; end
+    def keywords  ; h.raw(model.keyword_list) ; end
 
   end
 end

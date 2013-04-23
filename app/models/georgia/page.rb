@@ -50,8 +50,13 @@ module Georgia
         tag_list.join(', ')
       end
       string :status_name
+      string :url
+      string :title
       string :template
-      string :tag_list, stored: true, multiple: true
+      string :tag_list, stored: true, multiple: true #Facets
+      string :tags do #Ordering
+        tag_list.join(', ')
+      end
     end
 
 

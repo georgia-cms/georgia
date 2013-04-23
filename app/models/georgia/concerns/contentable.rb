@@ -9,6 +9,16 @@ module Georgia
         has_many :contents, as: :contentable, dependent: :destroy, class_name: Georgia::Content
         accepts_nested_attributes_for :contents
         attr_accessible :contents_attributes
+
+        def content
+          @content ||= contents.select{|c| c.locale == I18n.locale.to_s}.first || Georgia::Content.new
+        end
+
+        def title     ; content.title        ; end
+        def text      ; content.text         ; end
+        def excerpt   ; content.excerpt      ; end
+        def keywords  ; content.keyword_list ; end
+        def image     ; content.image        ; end
       end
 
       module ClassMethods
