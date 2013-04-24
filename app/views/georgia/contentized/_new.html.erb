@@ -1,9 +1,8 @@
-<div id='new_page' class="modal hide fade">
-  <%= simple_form_for @page, url: georgia.pages_url, remote: true, html: {class: 'form-vertical'} do |f| %>
+<div id='new_instance' class="modal hide fade">
+  <%= simple_form_for @contentable_instance, remote: true, html: {class: 'form-vertical'} do |f| %>
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>New Page</h3>
   </div>
 
   <div class="modal-body">

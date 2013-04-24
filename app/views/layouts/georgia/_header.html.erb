@@ -38,6 +38,8 @@
             </li>
             <% end -%>
 
+            <%= render 'layouts/nancy/header' if defined? Nancy %>
+
             <% if defined? Kennedy %>
             <% if can? :manage, Kennedy::Post %>
 

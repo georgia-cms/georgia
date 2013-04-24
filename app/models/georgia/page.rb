@@ -9,6 +9,8 @@ module Georgia
     include Concerns::Templatable
     include Concerns::Orderable
 
+    attr_accessible :type
+
     acts_as_list scope: :parent #override orderable to include scope
 
     has_ancestry orphan_strategy: :rootify
@@ -57,22 +59,6 @@ module Georgia
       string :tags do #Ordering
         tag_list.join(', ')
       end
-    end
-
-
-    def url options={}
-      '/' + localized_slug(options) + ancestry_url
-    end
-
-    protected
-
-    def localized_slug options={}
-      locale = options[:locale] || I18n.locale.to_s
-      (I18n.available_locales.length > 1) ? "#{locale}/" : ''
-    end
-
-    def ancestry_url
-      (ancestors + [self]).map(&:slug).join('/')
     end
 
   end

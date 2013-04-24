@@ -14,7 +14,8 @@ module Georgia
       end
 
       def create_migration
-        migration_template "migration.rb", "db/migrate/upgrade_georgia.rb"
+        migration_template "add_type_to_georgia_pages.rb", "db/migrate/add_type_to_georgia_pages.rb"
+        migration_template "add_position_to_georgia_widgets.rb", "db/migrate/add_position_to_georgia_widgets.rb"
       end
 
     end

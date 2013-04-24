@@ -23,12 +23,15 @@ module Georgia
       @current_ability ||= Ability.new(current_user)
     end
 
+    # FIXME: should pass the router instead of inferring from the instance module name
     def namespaced_url_for(instance, options={})
       case namespace(options)
       when 'Georgia'
         georgia.url_for([options[:action], instance].compact)
       when 'Kennedy'
         kennedy.url_for([options[:action], instance].compact)
+      when 'Nancy'
+        nancy.url_for([options[:action], instance].compact)
       when 'Admin'
         main_app.url_for([options[:action], :admin, instance].compact)
       else

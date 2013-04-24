@@ -1,14 +1,14 @@
 <%= content_for :ujs do %>
-<%= render 'new' %>
+<%= render 'georgia/contentized/new' %>
 <% end -%>
 
 <div class="row-fluid">
   <div class="span2">
-    <%= render 'facets' %>
+    <%= render 'georgia/contentized/facets' %>
   </div>
   <div class="span10">
 
-    <%= render 'header' %>
+    <%= render 'georgia/contentized/header' %>
 
     <table class="table table-hover">
       <thead>
@@ -20,12 +20,12 @@
         <th></th>
       </thead>
       <tbody>
-        <% if @pages and @pages.any? %>
-        <%= render @pages %>
+        <% if @contentable_instances and @contentable_instances.any? %>
+        <%= render @contentable_instances %>
         <% else %>
         <tr>
           <td colspan="6">
-            There are currently no pages.
+            There are currently no results.
           </td>
         </tr>
         <% end %>

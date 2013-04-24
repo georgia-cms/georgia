@@ -1,4 +1,4 @@
-class UpgradeGeorgia < ActiveRecord::Migration
+class AddPositionToGeorgiaWidgets < ActiveRecord::Migration
 
   def up
     remove_column :georgia_widgets, :position
