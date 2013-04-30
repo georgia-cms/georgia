@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412142513) do
+ActiveRecord::Schema.define(:version => 20130430144143) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130412142513) do
   end
 
   create_table "georgia_pages", :force => true do |t|
+    t.string   "type"
     t.string   "template",        :default => "one-column"
     t.string   "slug"
     t.integer  "position"

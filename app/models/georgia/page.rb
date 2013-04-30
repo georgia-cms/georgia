@@ -9,8 +9,6 @@ module Georgia
     include Concerns::Templatable
     include Concerns::Orderable
 
-    attr_accessible :type
-
     acts_as_list scope: :parent #override orderable to include scope
 
     has_ancestry orphan_strategy: :rootify
@@ -51,12 +49,13 @@ module Georgia
       text :tags do
         tag_list.join(', ')
       end
+      string :type
       string :status_name
       string :url
       string :title
       string :template
-      string :tag_list, stored: true, multiple: true #Facets
-      string :tags do #Ordering
+      string :tag_list, stored: true, multiple: true #Facets (multiple)
+      string :tags do #Ordering (single list)
         tag_list.join(', ')
       end
     end

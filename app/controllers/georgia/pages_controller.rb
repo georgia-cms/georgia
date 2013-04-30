@@ -18,6 +18,11 @@ module Georgia
           fields(:url, :status_name, :template, :titles, :excerpts, :contents, :keywords, :tags)
         end
         facet :status_name, :template, :tag_list
+        # FIXME: There should be a different common parent for subtypes of Georgia::Page
+        #   Georgia::Content <- Georgia::Translation
+        #     |            \
+        # Georgia::Page    Nancy::JobOffer
+        with(:type, nil) # ensure it's not a subtype of Georgia::Page
         with(:status_name, params[:s]) unless params[:s].blank?
         with(:template, params[:t]) unless params[:t].blank?
         with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?

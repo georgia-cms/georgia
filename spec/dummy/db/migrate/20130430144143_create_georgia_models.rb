@@ -26,6 +26,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Pages
     create_table :georgia_pages do |t|
+      t.string    :type
       t.string    :template, default: 'one-column'
       t.string    :slug
       t.integer   :position
