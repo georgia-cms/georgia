@@ -5,6 +5,16 @@ describe Georgia::Link do
 
   it { should belong_to :menu }
 
+  describe 'slug' do
+
+    it 'matches the end of the url' do
+      @link = FactoryGirl.build(:georgia_link)
+      @link.contents << FactoryGirl.build(:georgia_content, text: '/en/foo-3-4/bar-1-2')
+      expect(@link.slug).to eq('bar-1-2')
+    end
+
+  end
+
   describe 'validation' do
 
     before :each do

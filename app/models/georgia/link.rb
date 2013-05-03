@@ -20,5 +20,10 @@ module Georgia
         errors.add(:base, "URL must start with a forward slash (/) or http") unless content.text =~ Regexp.new('(^/)|(^http)')
       end
     end
+
+    # returns only the last part of the url
+    def slug
+      @slug ||= text.match(/([\w-]*)$/)[0]
+    end
   end
 end
