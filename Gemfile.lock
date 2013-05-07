@@ -43,6 +43,21 @@ PATH
     henry (0.4)
       jbuilder
 
+PATH
+  remote: ../kennedy
+  specs:
+    kennedy (0.0.1)
+      draper
+      georgia
+      rails (~> 3.2.8)
+
+PATH
+  remote: ../nancy
+  specs:
+    nancy (0.4)
+      georgia (~> 0.4)
+      henry (~> 0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -396,6 +411,8 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   henry!
+  kennedy!
+  nancy!
   rails_best_practices
   rb-inotify
   rspec-rails

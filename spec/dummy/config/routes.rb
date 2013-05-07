@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount Georgia::Engine => '/admin'
   mount Henry::Engine => '/api'
+  mount Kennedy::Engine => '/admin'
+  mount Nancy::Engine => '/admin'
 
   resources :messages, only: [:create]
 
