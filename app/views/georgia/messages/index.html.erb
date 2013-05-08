@@ -15,6 +15,7 @@
   <thead>
     <th><%= sortable 'last_name', 'Name' %></th>
     <th><%= sortable 'email', 'Email' %></th>
+    <th><%= sortable 'phone', 'Phone' %></th>
     <th><%= sortable 'subject', 'Subject' %></th>
     <th>Message</th>
     <th><%= sortable 'created_at', 'Sent' %></th>
@@ -29,6 +30,9 @@
       </td>
       <td>
         <%= message.email %>
+      </td>
+      <td>
+        <%= message.phone %>
       </td>
       <td>
         <%= message.subject %>
