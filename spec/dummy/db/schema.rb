@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430144143) do
+ActiveRecord::Schema.define(:version => 20130508153518) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20130430144143) do
     t.datetime "published_at"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "url"
   end
 
   add_index "georgia_pages", ["ancestry"], :name => "index_georgia_pages_on_ancestry"

@@ -11,6 +11,7 @@ describe 'pages#index' do
 
     context 'with a valid title' do
       it 'redirects to edit page', js: true do
+        pending('Waiting for capybara-webkit to be compatible with Capybara 2.1')
         click_link('Add Page')
         fill_in 'Title', with: 'Foo'
         click_button('Create')
@@ -20,6 +21,7 @@ describe 'pages#index' do
 
     context 'with an invalid title' do
       it 'displays an error message', js: true do
+        pending('Waiting for capybara-webkit to be compatible with Capybara 2.1')
         click_link('Add Page')
         fill_in 'Title', with: '#@$%^&'
         click_button('Create')
