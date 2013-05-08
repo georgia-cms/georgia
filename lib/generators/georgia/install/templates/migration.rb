@@ -30,6 +30,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string    :type
       t.string    :template, default: 'one-column'
       t.string    :slug
+      t.string    :url
       t.integer   :position
       t.integer   :parent_id
       t.integer   :revision_id
@@ -41,6 +42,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.datetime  :published_at
       t.timestamps
     end
+    add_index :georgia_pages, :url
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :created_by_id
     add_index :georgia_pages, :updated_by_id
