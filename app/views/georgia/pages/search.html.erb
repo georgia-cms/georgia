@@ -21,7 +21,9 @@
       </thead>
       <tbody>
         <% if @pages and @pages.any? %>
-        <%= render @pages %>
+          <% @pages.each do |page| %>
+            <%= render "georgia/pages/page", page: Georgia::PageDecorator.decorate(page) %>
+          <% end %>
         <% else %>
         <tr>
           <td colspan="6">

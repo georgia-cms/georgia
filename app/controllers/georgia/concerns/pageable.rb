@@ -5,6 +5,7 @@ module Georgia
     module Pageable
       extend ActiveSupport::Concern
       include Georgia::Concerns::Searchable
+      include Georgia::Concerns::Publishable
 
       included do
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
@@ -12,14 +13,11 @@ module Georgia
         rescue_from 'ActionView::MissingTemplate' do |exception|
           render_default_template(exception.path)
         end
-
-        rescue_from 'Draper::UninferrableDecoratorError' do |exception|
-          default_decorator
-        end
       end
 
       def find_by_tag
-        @pages = model.tagged_with(params[:tag]).page(params[:page]).decorate
+        @pages = model.tagged_with(params[:tag]).page(params[:page])
+        @pages = Georgia::PagesDecorator.decorate(@pages)
         render :index
       end
 
@@ -29,28 +27,28 @@ module Georgia
       end
 
       def edit
-        @page = model.find(params[:id], include: :contents).decorate
+        @page = model.find(params[:id], include: :contents)
+        @page = Georgia::PageDecorator.decorate(@page)
         build_associations
       end
 
       def create
         @page = model.new(params[:page])
-        @page.slug = @page.decorate.title.try(:parameterize)
-        p @page.slug
+        @page.slug = decorate(@page).title.try(:parameterize)
         @page.created_by = current_user
-        p @page.created_by
         @page.save!
       end
 
       def update
-        @page = model.find(params[:id]).decorate
+        @page = model.find(params[:id])
+        @page = decorate(@page)
         @page.update_attributes(params[:page])
 
         if @page.valid?
           @page.updated_by = current_user
           @page.save
           respond_to do |format|
-            format.html { redirect_to [:edit, @page], notice: "#{@page.decorate.title} was successfully updated." }
+            format.html { redirect_to [:edit, @page], notice: "#{decorate(@page).title} was successfully updated." }
             format.js { render layout: false }
           end
         else
@@ -67,9 +65,9 @@ module Georgia
 
         if @page.destroy
           unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
-            redirect_to :back, notice: "#{@page.decorate.title} was successfully deleted."
+            redirect_to :back, notice: "#{decorate(@page).title} was successfully deleted."
           else
-            redirect_to pages_url, notice: "#{@page.decorate.title} was successfully deleted."
+            redirect_to pages_url, notice: "#{decorate(@page).title} was successfully deleted."
           end
         else
           redirect_to pages_url, alert: 'Oups. Something went wrong.'
@@ -109,9 +107,9 @@ module Georgia
       rescue ActionView::MissingTemplate
         render "georgia/pages/#{path}"
       end
-
-      def default_decorator
-        PageDecorator.decorate self
+      
+      def decorate page
+        Georgia::PageDecorator.decorate(page)
       end
 
     end

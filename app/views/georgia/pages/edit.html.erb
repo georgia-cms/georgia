@@ -2,7 +2,7 @@
 <%= render 'georgia/shared/messages', model: @page %>
 <% end %>
 
-<%= simple_form_for @page, remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
+<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
 <h1 class="page-header">
   <div class="pull-right">
     <button type="submit" class="btn btn-success">
@@ -65,7 +65,7 @@
         </div>
 
         <div class='tab-pane' id='revisions'>
-          <%= render 'georgia/pages/fields/revisions', revisions: @page.revision_records.decorate %>
+          <%= render 'georgia/pages/fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
         </div>
 
         <div class="tab-pane" id="settings">

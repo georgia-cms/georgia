@@ -20,16 +20,16 @@
         Move the pages around to change their display position.
       </p>
       <% if @page.persisted? and @page.has_children? %>
-      <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
-        <% @page.children.ordered.decorate.each do |page| %>
-        <%= content_tag_for(:li, page) do %>
-        <%= icon_tag 'icon-align-justify' %>
-        <h5><%= page.title %> <small><%= page.url %></small></h5>
-        <% end -%>
-        <% end -%>
-      </ul>
+        <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
+          <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
+            <%= content_tag_for(:li, page) do %>
+              <%= icon_tag 'icon-align-justify' %>
+              <h5><%= page.title %> <small><%= page.url %></small></h5>
+            <% end -%>
+          <% end -%>
+        </ul>
       <% else -%>
-      <p class='help-block'>There are no subpages for this page.</p>
+        <p class='help-block'>There are no subpages for this page.</p>
       <% end -%>
       <p class='help-block'><%= icon_tag 'icon-info-sign' %> To include a subpage, go to the desired page and add a parent section. Sorry for the inconvenience, this feature is coming soon.</p>
     </fieldset>
