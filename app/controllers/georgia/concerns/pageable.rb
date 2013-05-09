@@ -36,8 +36,10 @@ module Georgia
       def create
         @page = model.new(params[:page])
         @page.slug = @page.decorate.title.try(:parameterize)
+        p @page.slug
         @page.created_by = current_user
-        @page.save
+        p @page.created_by
+        @page.save!
       end
 
       def update
