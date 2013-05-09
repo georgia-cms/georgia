@@ -18,10 +18,6 @@ module Georgia
         end
       end
 
-      def index
-        redirect_to action: :search
-      end
-
       def find_by_tag
         @pages = model.tagged_with(params[:tag]).page(params[:page]).decorate
         render :index

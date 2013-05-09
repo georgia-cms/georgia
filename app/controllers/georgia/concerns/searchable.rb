@@ -4,6 +4,11 @@ module Georgia
   module Concerns
     module Searchable
       extend ActiveSupport::Concern
+
+      def index
+        redirect_to action: :search
+      end
+
       def search
         session[:search_params] = params
         @search = model.search do
