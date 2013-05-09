@@ -42,13 +42,13 @@ module Georgia
 
     helper_method :model
 
-    protected
-
     def model
       self.class.to_s.gsub(/Controller/,'').singularize.constantize
     rescue NameError
       self.class.to_s.gsub(/Controller/,'').gsub(/\w+::/,'').singularize.constantize
     end
+
+    protected
 
     def namespace(options={})
       controller_class = options[:controller] || self.class.to_s
