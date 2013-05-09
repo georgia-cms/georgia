@@ -45,7 +45,9 @@ module Georgia
     protected
 
     def model
-      model_name = self.class.to_s.gsub(/Controller/,'').singularize.constantize
+      self.class.to_s.gsub(/Controller/,'').singularize.constantize
+    rescue NameError
+      self.class.to_s.gsub(/Controller/,'').gsub(/\w+::/,'').singularize.constantize
     end
 
     def namespace(options={})
