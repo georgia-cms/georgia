@@ -13,7 +13,6 @@ module Georgia
         end
       end
 
-
       def render_default_template(path)
         render "pages/#{path}"
       rescue ActionView::MissingTemplate
