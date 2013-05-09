@@ -12,8 +12,7 @@ module Georgia
         validates :slug, format: {with: /^[a-zA-Z0-9_-]+$/, message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}, uniqueness: {scope: :ancestry, message: 'has already been taken'}
 
         before_validation :sanitize_slug
-        after_create :update_url
-        before_update :update_url
+        after_save :update_url
 
         protected
 
@@ -22,12 +21,16 @@ module Georgia
           self.slug.gsub!(/^\/*/, '').gsub!(/\/*$/, '')
         end
 
-        # FIXME: should only be apply if slug_changed? or one of the ancestors' slug changed
         def update_url
-          self.update_column(:url, ('/' + ancestry_url))
+          if slug_changed?
+            self.update_column(:url, '/' + self.ancestry_url)
+            if !self.new_record? and self.has_children?
+              self.descendants.each do |descendant|
+                descendant.update_column(:url, '/' + descendant.ancestry_url)
+              end
+            end
+          end
         end
-
-        private
 
         def ancestry_url
           (ancestors + [self]).map(&:slug).join('/')
