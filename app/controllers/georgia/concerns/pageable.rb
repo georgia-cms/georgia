@@ -8,15 +8,14 @@ module Georgia
 
       included do
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
+
         rescue_from 'ActionView::MissingTemplate' do |exception|
           render_default_template(exception.path)
         end
-      end
 
-      def render_default_template(path)
-        render "pages/#{path}"
-      rescue ActionView::MissingTemplate
-        render "georgia/pages/#{path}"
+        rescue_from 'Draper::UninferrableDecoratorError' do |exception|
+          default_decorator
+        end
       end
 
       def index
@@ -104,6 +103,19 @@ module Georgia
         @page = model.new
         @page.contents = [Georgia::Content.new(locale: I18n.default_locale)]
       end
+
+      private
+
+      def render_default_template(path)
+        render "pages/#{path}"
+      rescue ActionView::MissingTemplate
+        render "georgia/pages/#{path}"
+      end
+
+      def default_decorator
+        PageDecorator.decorate self
+      end
+
     end
   end
 end
