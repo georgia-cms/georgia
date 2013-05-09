@@ -30,7 +30,8 @@ module Georgia
       end
 
       def show
-        redirect_to edit_page_path(params[:id])
+        @page = model.find(params[:id])
+        redirect_to [:edit, @page]
       end
 
       def edit
