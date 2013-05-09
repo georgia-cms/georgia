@@ -40,7 +40,13 @@ module Georgia
     end
     helper_method :namespaced_url_for
 
+    helper_method :model
+
     protected
+
+    def model
+      model_name = self.class.to_s.gsub(/Controller/,'').singularize.constantize
+    end
 
     def namespace(options={})
       controller_class = options[:controller] || self.class.to_s

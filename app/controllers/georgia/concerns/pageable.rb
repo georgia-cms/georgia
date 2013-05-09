@@ -4,14 +4,11 @@ module Georgia
   module Concerns
     module Pageable
       extend ActiveSupport::Concern
+      include Georgia::Concerns::Searchable
 
       included do
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
         rescue_from ActionView::MissingTemplate, with: :render_default_template
-      end
-
-      def model
-        model_name = self.class.to_s.gsub(/Controller/,'').singularize.constantize
       end
 
       def render_default_template
@@ -20,27 +17,6 @@ module Georgia
 
       def index
         redirect_to action: :search
-      end
-
-      def search
-        session[:search_params] = params
-        @search = model.search do
-          fulltext params[:query] do
-            fields(:url, :status_name, :template, :titles, :excerpts, :contents, :keywords, :tags)
-          end
-          facet :status_name, :template, :tag_list
-          # FIXME: There should be a different common parent for subtypes of model
-          #   Georgia::Content <- Georgia::Translation
-          #     |            \
-          # model    Nancy::JobOffer
-          with(:type, nil) # ensure it's not a subtype of model
-          with(:status_name, params[:s]) unless params[:s].blank?
-          with(:template, params[:t]) unless params[:t].blank?
-          with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
-          order_by params[:o], (params[:dir] || :desc) unless params[:o].blank?
-          paginate(page: params[:page], per_page: (params[:per] || 25))
-        end
-        @pages = @search.results.map(&:decorate)
       end
 
       def find_by_tag
