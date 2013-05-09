@@ -8,11 +8,16 @@ module Georgia
 
       included do
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
-        rescue_from ActionView::MissingTemplate, with: :render_default_template
+        rescue_from 'ActionView::MissingTemplate' do |exception|
+          render_default_template(exception.path)
+        end
       end
 
-      def render_default_template
-        render "pages/#{exception.path}"
+
+      def render_default_template(path)
+        render "pages/#{path}"
+      rescue ActionView::MissingTemplate
+        render "georgia/pages/#{path}"
       end
 
       def index
