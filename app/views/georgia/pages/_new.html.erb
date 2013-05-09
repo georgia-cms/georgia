@@ -9,7 +9,6 @@
   <div class="modal-body">
     <%= f.simple_fields_for :contents do |c| %>
     <%= c.input :locale, as: :hidden %>
-    <%= c.input :type, as: "hidden", input_html: {value: controller.model}  %>
     <%= c.input :title, autofocus: true %>
     <% end -%>
   </div>
