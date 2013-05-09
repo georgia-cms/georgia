@@ -1,18 +1,18 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
     <% if @search %>
-    <li class="nav-header">Status</li>
-    <% @search.facet(:status_name).rows.each do |facet| %>
-    <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :s} %>
-    <% end -%>
-    <li class="nav-header">Template</li>
-    <% @search.facet(:template).rows.each do |facet| %>
-    <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :t} %>
-    <% end -%>
-    <li class="nav-header">Tags</li>
-    <% @search.facet(:tag_list).rows.each do |facet| %>
-    <%= render partial: 'georgia/facets/array_facet', locals: {facet: facet, filter: :tg, multiple: true} %>
-    <% end -%>
+      <li class="nav-header">Status</li>
+      <% @search.facet(:status_name).rows.each do |facet| %>
+        <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :s} %>
+      <% end -%>
+      <li class="nav-header">Template</li>
+      <% @search.facet(:template).rows.each do |facet| %>
+        <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :t} %>
+      <% end -%>
+      <li class="nav-header">Tags</li>
+      <% @search.facet(:tag_list).rows.each do |facet| %>
+        <%= render partial: 'georgia/facets/array_facet', locals: {facet: facet, filter: :tg, multiple: true} %>
+      <% end -%>
     <% end -%>
   </ul>
 </div>
