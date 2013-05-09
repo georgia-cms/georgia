@@ -13,6 +13,7 @@ module Georgia
         rescue_from 'ActionView::MissingTemplate' do |exception|
           render_default_template(exception.path)
         end
+      end
 
       def find_by_tag
         @pages = model.tagged_with(params[:tag]).page(params[:page])
