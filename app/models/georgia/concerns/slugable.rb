@@ -14,6 +14,10 @@ module Georgia
         before_validation :sanitize_slug
         after_save :update_url
 
+        def set_url
+          self.update_column(:url, '/' + self.ancestry_url)
+        end
+
         protected
 
         def sanitize_slug
@@ -23,12 +27,8 @@ module Georgia
 
         def update_url
           if slug_changed?
-            self.update_column(:url, '/' + self.ancestry_url)
-            if !self.new_record? and self.has_children?
-              self.descendants.each do |descendant|
-                descendant.update_column(:url, '/' + descendant.ancestry_url)
-              end
-            end
+            self.set_url
+            self.descendants.each(&:set_url) if !self.new_record? and self.has_children?
           end
         end
 
