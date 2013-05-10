@@ -67,10 +67,10 @@ module Georgia
           unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
             redirect_to :back, notice: "#{decorate(@page).title} was successfully deleted."
           else
-            redirect_to pages_url, notice: "#{decorate(@page).title} was successfully deleted."
+            redirect_to @page, notice: "#{decorate(@page).title} was successfully deleted."
           end
         else
-          redirect_to pages_url, alert: 'Oups. Something went wrong.'
+          redirect_to @page, alert: 'Oups. Something went wrong.'
         end
       end
 
