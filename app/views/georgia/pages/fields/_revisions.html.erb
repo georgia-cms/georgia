@@ -7,27 +7,28 @@
   </thead>
   <tbody>
     <% if revisions and revisions.any? %>
-    <% revisions.decorate.each do |revision| %>
-    <tr id='revision_<%= revision.id %>' class="revision">
-      <td>
-        <span class='number'><%= revision.revision %></span>
-      </td>
-      <td>
-        <em><%= revision.changed_at %> ago by <strong><%= revision.changed_by %></strong></em><br/>
-        <%= l revision.created_at, format: :long %>
-      </td>
-      <td class='muted'>
-        <%= icon_tag 'icon-info-sign' %> Feature coming soon.
-      </td>
-      <td>
-        <div class="pull-right">
-          <%= link_to_revert revision %>
-        </div>
-      </td>
-    </tr>
-    <% end -%>
+      <% revisions.each do |revision| %>
+        <% revision = revision.decorate %>
+        <tr id='revision_<%= revision.id %>' class="revision">
+          <td>
+            <span class='number'><%= revision.revision %></span>
+          </td>
+          <td>
+            <em><%= revision.changed_at %> ago by <strong><%= revision.changed_by %></strong></em><br/>
+            <%= l revision.created_at, format: :long %>
+          </td>
+          <td class='muted'>
+            <%= icon_tag 'icon-info-sign' %> Feature coming soon.
+          </td>
+          <td>
+            <div class="pull-right">
+              <%= link_to_revert revision %>
+            </div>
+          </td>
+        </tr>
+      <% end -%>
     <% else -%>
-    <tr><td colspan='4'>There are currently no revisions.</td></tr>
+      <tr><td colspan='4'>There are currently no revisions.</td></tr>
     <% end -%>
   </tbody>
 </table>
