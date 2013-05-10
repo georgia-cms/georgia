@@ -7,7 +7,8 @@ namespace :georgia do
 
   task upgrade: :environment do
     Rake::Task['georgia:assets:rename'].execute
-    Rake::Task['georgia:reindex'].execute
+    Rake::Task['georgia:pages:update_url'].execute
+    Rake::Task['georgia:pages:reindex'].execute
   end
 
   namespace :assets do
@@ -47,8 +48,17 @@ namespace :georgia do
 
   end
 
-  task reindex: :environment do
-    Georgia::Page.reindex
+  namespace :pages do
+
+    task update_url: :environment do
+      Georgia::Page.find_each(&:set_url)
+      Georgia::Page.reindex
+    end
+
+    task reindex: :environment do
+      Georgia::Page.reindex
+    end
+
   end
 
 end
