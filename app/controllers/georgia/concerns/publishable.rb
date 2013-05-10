@@ -6,7 +6,7 @@ module Georgia
       extend ActiveSupport::Concern
 
       def publish
-        @publishable_resource = associated_model.find(params[:id]).decorate
+        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
         @publishable_resource.store_revision do
           @publishable_resource.publish current_user
           @publishable_resource.save!
@@ -17,7 +17,7 @@ module Georgia
       end
 
       def unpublish
-        @publishable_resource = associated_model.find(params[:id]).decorate
+        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
         @publishable_resource.unpublish
         if @publishable_resource.save
           message = "#{current_user.decorate.name} has successfully unpublished #{@publishable_resource.title} #{instance_name}."
@@ -29,7 +29,7 @@ module Georgia
       end
 
       def ask_for_review
-        @publishable_resource = associated_model.find(params[:id]).decorate
+        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
         @publishable_resource.wait_for_review
         if @publishable_resource.save
           message = "#{current_user.decorate.name} is asking you to review #{@publishable_resource.title} #{instance_name}."
