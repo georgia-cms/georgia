@@ -4,23 +4,24 @@ module Georgia
   module Concerns
     module Publishable
       extend ActiveSupport::Concern
+      include Helpers
 
       def publish
-        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
-        @publishable_resource.store_revision do
-          @publishable_resource.publish current_user
-          @publishable_resource.save!
+        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
+        @page.store_revision do
+          @page.publish current_user
+          @page.save!
         end
-        message = "#{current_user.decorate.name} has successfully published #{@publishable_resource.title} #{instance_name}."
+        message = "#{current_user.decorate.name} has successfully published #{@page.title} #{instance_name}."
         notify(message)
         redirect_to :back, notice: message
       end
 
       def unpublish
-        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
-        @publishable_resource.unpublish
-        if @publishable_resource.save
-          message = "#{current_user.decorate.name} has successfully unpublished #{@publishable_resource.title} #{instance_name}."
+        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
+        @page.unpublish
+        if @page.save
+          message = "#{current_user.decorate.name} has successfully unpublished #{@page.title} #{instance_name}."
           notify(message)
           redirect_to :back, notice: message
         else
@@ -29,10 +30,10 @@ module Georgia
       end
 
       def ask_for_review
-        @publishable_resource = Georgia::PageDecorator.decorate associated_model.find(params[:id])
-        @publishable_resource.wait_for_review
-        if @publishable_resource.save
-          message = "#{current_user.decorate.name} is asking you to review #{@publishable_resource.title} #{instance_name}."
+        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
+        @page.wait_for_review
+        if @page.save
+          message = "#{current_user.decorate.name} is asking you to review #{@page.title} #{instance_name}."
           notify(message)
           redirect_to :back, notice: message
         else
@@ -41,20 +42,9 @@ module Georgia
       end
 
       private
-      def associated_model
-        begin
-          self.class.name.sub('Controller', '').singularize.constantize
-        rescue NameError
-          controller_name.singularize.camelize.safe_constantize
-        end
-      end
-
-      def instance_name
-        controller_name.singularize.titleize
-      end
 
       def notify(message)
-        Notifier.notify_editors(message, url_for(@publishable_resource, {action: :edit, controller: self.class.name})).deliver if Rails.env.production?
+        Notifier.notify_editors(message, url_for(@page, {action: :edit, controller: self.class.name})).deliver if Rails.env.production?
       end
 
     end

@@ -4,6 +4,7 @@ module Georgia
   module Concerns
     module Searchable
       extend ActiveSupport::Concern
+      include Helpers
 
       def index
         redirect_to action: :search
@@ -23,7 +24,7 @@ module Georgia
           order_by params[:o], (params[:dir] || :desc) unless params[:o].blank?
           paginate(page: params[:page], per_page: (params[:per] || 25))
         end
-        @pages = Georgia::PageDecorator.decorate @search.results
+        @pages = Georgia::PageDecorator.decorate(@search.results)
       end
     end
   end

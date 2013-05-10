@@ -4,8 +4,7 @@ module Georgia
   module Concerns
     module Pageable
       extend ActiveSupport::Concern
-      include Georgia::Concerns::Searchable
-      include Georgia::Concerns::Publishable
+      include Helpers
 
       included do
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
@@ -107,7 +106,7 @@ module Georgia
       rescue ActionView::MissingTemplate
         render "georgia/pages/#{path}"
       end
-      
+
       def decorate page
         Georgia::PageDecorator.decorate(page)
       end

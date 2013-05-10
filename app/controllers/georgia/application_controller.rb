@@ -23,20 +23,5 @@ module Georgia
       @current_ability ||= Ability.new(current_user)
     end
 
-    helper_method :model
-
-    def model
-      self.class.to_s.gsub(/Controller/,'').singularize.constantize
-    rescue NameError
-      self.class.to_s.gsub(/Controller/,'').gsub(/\w+::/,'').singularize.constantize
-    end
-
-    protected
-
-    def namespace(options={})
-      controller_class = options[:controller] || self.class.to_s
-      @namespace ||= controller_class.split('::').first
-    end
-
   end
 end

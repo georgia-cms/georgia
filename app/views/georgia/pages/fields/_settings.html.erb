@@ -1,6 +1,6 @@
-<%= f.input :slug, label: 'Page URL', disabled: true,
+<%= f.input :slug, label: "#{instance_name.titleize} URL", disabled: true,
 input_html: {value: @page.url, class: 'input-xxlarge', data: {slug: @page.slug}},
-hint: "The URL is automatically generated from the page title in the default language.<br />Changing this might break important links to your website. We strongly suggest you contact Motion Eleven before editing a slug.<br/>I understand and would like to <a href='#' class='js-allow-slug-edit'>edit anyway</a>." %>
+hint: "#{icon_tag 'icon-warning-sign'} The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language. Updating the slug might break important links to your website. We strongly suggest you contact Motion Eleven before editing a slug. All subpages of this #{instance_name} will be automatically updated.<br/>I understand and would like to #{link_to 'edit anyway', '#', class: 'js-allow-slug-edit' }." %>
 
 <fieldset>
   <legend>Template</legend>
