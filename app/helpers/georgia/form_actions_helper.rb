@@ -87,7 +87,7 @@ module Georgia
     end
 
     def link_to_group_item_delete(model, options={})
-      link_to "#{icon_tag('icon-trash')} Delete".html_safe, url_for(controller:'pages'), data: {confirm: 'Are you sure?'}, method: :delete if can? :destroy, model
+      link_to "#{icon_tag('icon-trash')} Delete".html_safe, url_for(controller:controller_name), data: {confirm: 'Are you sure?'}, method: :delete if can? :destroy, model
     end
 
     def link_to_group_item_ask_for_review(model, options={})
