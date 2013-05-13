@@ -44,7 +44,7 @@ module Georgia
       private
 
       def notify(message)
-        Notifier.notify_editors(message, url_for(@page, {action: :edit, controller: self.class.name})).deliver if Rails.env.production?
+        Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
       end
 
     end
