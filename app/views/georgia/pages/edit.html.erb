@@ -47,11 +47,11 @@
       <div class="tab-content">
 
         <%= f.simple_fields_for :contents do |c| %>
-        <%= render_partial_or_default 'fields/content', f: c, locale: c.object.locale, slug: @page.slug %>
+        <%= render_partial_or_default 'fields/content', controller, f: c, locale: c.object.locale, slug: @page.slug %>
         <% end -%>
 
         <div class='tab-pane' id='relationships'>
-          <%= render_partial_or_default 'fields/relationships', f: f %>
+          <%= render_partial_or_default 'fields/relationships', controller, f: f %>
         </div>
 
         <div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="tab-pane" id="settings">
-          <%= render_partial_or_default 'fields/settings', f: f %>
+          <%= render_partial_or_default 'fields/settings', controller, f: f %>
         </div>
 
       </div>

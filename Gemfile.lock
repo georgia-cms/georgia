@@ -48,8 +48,7 @@ PATH
   specs:
     kennedy (0.4.0)
       draper
-      georgia (= 0.4)
-      henry (= 0.4)
+      georgia
       rails (~> 3.2.8)
 
 PATH
