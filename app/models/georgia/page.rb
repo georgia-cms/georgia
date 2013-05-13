@@ -49,7 +49,7 @@ module Georgia
       text :url
       text :template
       text :status_name
-      string :type #ensure it's nil so it's not a subtype of Georgia::Page, FIXME!
+      string :type
       string :title
       string :excerpt
       string :text

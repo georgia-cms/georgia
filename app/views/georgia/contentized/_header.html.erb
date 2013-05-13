@@ -5,6 +5,7 @@
       <%= facets_inputs([:tg]) %>
       <%= hidden_field_tag :s, params[:s] if params[:s] %>
       <%= hidden_field_tag :t, params[:t] if params[:t] %>
+      <%= hidden_field_tag :ty, params[:ty] if params[:ty] %>
       <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
       <button class="btn"><%= icon_tag('icon-search') %></button>
     </div>

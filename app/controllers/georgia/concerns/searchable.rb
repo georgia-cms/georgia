@@ -17,7 +17,6 @@ module Georgia
             fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :status_name)
           end
           facet :status_name, :template, :tag_list
-          with(:type, nil) # ensure it's not a subtype of model
           with(:status_name, params[:s]) unless params[:s].blank?
           with(:template, params[:t]) unless params[:t].blank?
           with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
