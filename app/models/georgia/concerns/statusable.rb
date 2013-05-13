@@ -10,8 +10,6 @@ module Georgia
         belongs_to :status, class_name: Georgia::Status
         belongs_to :published_by, class_name: Georgia::User
 
-        attr_accessible :published_by_id, :published_at
-
         delegate :published?, :draft?, :pending_review?, to: :status, allow_nil: true
         delegate :name, to: :status, allow_nil: true, prefix: true
 
