@@ -47,11 +47,11 @@
       <div class="tab-content">
 
         <%= f.simple_fields_for :contents do |c| %>
-        <%= render 'georgia/pages/fields/content', f: c, locale: c.object.locale, slug: @page.slug %>
+        <%= render_partial_or_default 'fields/content', f: c, locale: c.object.locale, slug: @page.slug %>
         <% end -%>
 
         <div class='tab-pane' id='relationships'>
-          <%= render 'georgia/pages/fields/relationships', f: f %>
+          <%= render_partial_or_default 'fields/relationships', f: f %>
         </div>
 
         <div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
@@ -65,11 +65,11 @@
         </div>
 
         <div class='tab-pane' id='revisions'>
-          <%= render 'georgia/pages/fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
+          <%= render_partial_or_default 'fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
         </div>
 
         <div class="tab-pane" id="settings">
-          <%= render 'georgia/pages/fields/settings', f: f %>
+          <%= render_partial_or_default 'fields/settings', f: f %>
         </div>
 
       </div>
