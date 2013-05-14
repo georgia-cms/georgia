@@ -16,7 +16,7 @@ module Georgia
       end
     end
 
-    protected 
+    protected
     def render_default view, locals
       render "georgia/pages/#{view}", locals
     end
