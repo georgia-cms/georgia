@@ -41,6 +41,7 @@ module Georgia
             tag_list.join(', ')
           end
         end
+
       end
 
     end
