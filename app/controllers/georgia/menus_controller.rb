@@ -3,17 +3,8 @@ module Georgia
 
     load_and_authorize_resource class: 'Georgia::Menu'
 
-    helper_method :sort_column, :sort_direction
-
     def index
-      @menus = Georgia::Menu.order(sort_column + ' ' + sort_direction).page(params[:page])
-    end
-
-    def destroy
-      @menu = Georgia::Menu.find(params[:id])
-      @menu.destroy
-
-      redirect_to menus_url
+      @menus = Georgia::Menu.scoped.page(params[:page])
     end
 
     def new
@@ -24,9 +15,9 @@ module Georgia
       @menu = Georgia::Menu.new(params[:menu])
 
       if @menu.save
-        redirect_to [:edit, @menu], notice: "#{@menu.name} was successfully sent."
+        redirect_to [:edit, @menu], notice: "#{@menu.name} was successfully created."
       else
-        render action: "new"
+        render :new
       end
     end
 
@@ -36,19 +27,13 @@ module Georgia
 
     def edit
       @menu = Georgia::Menu.find(params[:id])
-      @pages = Georgia::Page.scoped.decorate
-      @link = Georgia::Link.new
-      @link.menu = @menu
     end
 
-    private
+    def destroy
+      @menu = Georgia::Menu.find(params[:id])
+      @menu.destroy
 
-    def sort_column
-      Georgia::Menu.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+      redirect_to menus_url
     end
   end
 end
