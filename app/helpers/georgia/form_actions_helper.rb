@@ -75,23 +75,23 @@ module Georgia
     end
 
     def link_to_group_item_publish(model, options={})
-      link_to "#{icon_tag('icon-ok')} Publish".html_safe, url_for(controller: controller_name,id: model.id, action: :publish) if can? :publish, model
+      link_to "#{icon_tag('icon-ok')} Publish".html_safe, url_for(controller: controller_name, id: model.id, action: :publish) if can? :publish, model
     end
 
     def link_to_group_item_unpublish(model, options={})
-      link_to "#{icon_tag('icon-ban-circle')} Unpublish".html_safe, url_for(controller: controller_name,id: model.id, action: :unpublish) if can? :unpublish, model
+      link_to "#{icon_tag('icon-ban-circle')} Unpublish".html_safe, url_for(controller: controller_name, id: model.id, action: :unpublish) if can? :unpublish, model
     end
 
     def link_to_group_item_edit(model, options={})
-      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, url_for(controller: controller_name,id: model.id, action: :edit) if can? :edit, model
+      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, url_for(controller: controller_name, id: model.id, action: :edit) if can? :edit, model
     end
 
     def link_to_group_item_delete(model, options={})
-      link_to "#{icon_tag('icon-trash')} Delete".html_safe, url_for(controller:controller_name), data: {confirm: 'Are you sure?'}, method: :delete if can? :destroy, model
+      link_to "#{icon_tag('icon-trash')} Delete".html_safe, url_for(controller: controller_name, id: model.id, action: :destroy), data: {confirm: 'Are you sure?'}, method: :delete if can? :destroy, model
     end
 
     def link_to_group_item_ask_for_review(model, options={})
-      link_to "#{icon_tag('icon-check')} Ask for review".html_safe, url_for(controller: controller_name,id: model.id, action: :ask_for_review) if can? :ask_for_review, model
+      link_to "#{icon_tag('icon-check')} Ask for review".html_safe, url_for(controller: controller_name, id: model.id, action: :ask_for_review) if can? :ask_for_review, model
     end
 
   end

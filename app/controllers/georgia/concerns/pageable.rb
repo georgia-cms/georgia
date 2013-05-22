@@ -61,15 +61,12 @@ module Georgia
 
       def destroy
         @page = model.find(params[:id])
-
-        if @page.destroy
-          unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
-            redirect_to :back, notice: "#{decorate(@page).title} was successfully deleted."
-          else
-            redirect_to @page, notice: "#{decorate(@page).title} was successfully deleted."
-          end
+        @message = "#{@page.title} was successfully deleted."
+        @page.destroy
+        unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
+          redirect_to :back, notice: @message
         else
-          redirect_to @page, alert: 'Oups. Something went wrong.'
+          redirect_to @page, notice: @message
         end
       end
 
