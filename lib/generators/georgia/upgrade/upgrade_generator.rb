@@ -20,6 +20,14 @@ module Georgia
         migration_template "add_url_to_georgia_pages.rb", "db/migrate/add_url_to_georgia_pages.rb"
       end
 
+      def migrate
+        rake 'db:migrate'
+      end
+
+      def upgrade
+        rake 'georgia:upgrade'
+      end
+
     end
   end
 end
