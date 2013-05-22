@@ -73,7 +73,7 @@ module Georgia
       def sort
         if params[:page]
           params[:page].each_with_index do |id, index|
-            Page.update_all({position: index+1}, {id: id})
+            model.update_all({position: index+1}, {id: id})
           end
         end
         render nothing: true
