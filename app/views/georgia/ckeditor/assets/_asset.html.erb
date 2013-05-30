@@ -1,6 +1,6 @@
 <tr id='<%= dom_id(asset) %>'>
   <td>
-    <%#= image_tag "georgia/content-types/#{asset.data_content_type}.png", alt: 'asset.data_content_type' %>
+    <%= image_tag "georgia/content-types/#{asset.extension}.jpg", alt: 'asset.data_content_type' if asset.extension %>
   </td>
   <td>
     <%= asset.filename || asset.data.file.filename %>
