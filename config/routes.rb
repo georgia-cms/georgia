@@ -38,15 +38,6 @@ Georgia::Engine.routes.draw do
     get :search, on: :collection
   end
   resources :menus
-  resources :menu_items do
-    collection do
-      post :add
-      post :remove
-      post :sort
-      post :activate
-      post :deactivate
-    end
-  end
 
   match '/search/messages', to: 'search#messages'
 
