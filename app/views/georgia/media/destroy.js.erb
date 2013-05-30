@@ -1,6 +1,4 @@
-<% if @picture.destroyed? %>
-$("#assets #picture_<%= @picture.id %>").remove();
+<% if @asset.destroyed? %>
+$("#assets #asset_<%= @asset.id %>").remove();
 $('#tags').html("<%= escape_javascript render('tags') %>");
-<% else %>
-$("#new_picture").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>Couldn't delete image.</div>");
 <% end %>

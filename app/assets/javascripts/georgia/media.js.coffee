@@ -4,7 +4,6 @@ jQuery ->
 
   $('#media input.js-token-input').on('change', (e) -> $(this).closest('form').submit())
 
-
   # Initialize the jQuery File Upload widget:
   $('#fileupload').fileupload()
 

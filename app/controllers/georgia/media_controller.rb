@@ -33,9 +33,7 @@ module Georgia
       if @asset.save
         respond_to do |format|
           format.html {
-            render :json => [@asset.to_jq_upload].to_json,
-            :content_type => 'text/html',
-            :layout => false
+            render json: [@asset.to_jq_upload].to_json, content_type: 'text/html', layout: false
           }
           format.json {
             render json: {files: [@asset.to_jq_upload]}.to_json
@@ -54,7 +52,7 @@ module Georgia
     end
 
     def destroy
-      @asset = Ckeditor.asset_model.get!(params[:id]).destroy
+      @asset = Ckeditor::Asset.find(params[:id]).destroy
       @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
     end
 
