@@ -1,5 +1,0 @@
-<% if @asset.new_record? %>
-$("#new_asset").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button><%= j @asset.errors.full_messages.join(', ').html_safe %></div>");
-<% else %>
-  $("table#assets tbody").prepend("<%= j render(@asset) %>");
-<% end %>
