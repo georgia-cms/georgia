@@ -16,18 +16,15 @@ module Georgia
       end
 
       def create_migration
-        migration_template "add_type_to_georgia_pages.rb", "db/migrate/add_type_to_georgia_pages.rb"
-        migration_template "add_position_to_georgia_widgets.rb", "db/migrate/add_position_to_georgia_widgets.rb"
-        migration_template "add_phone_to_georgia_messages.rb", "db/migrate/add_phone_to_georgia_messages.rb"
-        migration_template "add_url_to_georgia_pages.rb", "db/migrate/add_url_to_georgia_pages.rb"
+        # migration_template "add_type_to_georgia_pages.rb", "db/migrate/add_type_to_georgia_pages.rb"
       end
 
       def migrate
-        rake 'db:migrate'
+        # rake 'db:migrate'
       end
 
       def upgrade
-        rake 'georgia:upgrade'
+        # rake 'georgia:upgrade'
       end
 
     end
