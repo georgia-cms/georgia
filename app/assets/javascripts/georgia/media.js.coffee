@@ -11,7 +11,6 @@ jQuery ->
   # set options here!
   $('#fileupload').fileupload('option',
     maxFileSize: 2000000,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
     maxNumberOfFiles: 50
   )
 
