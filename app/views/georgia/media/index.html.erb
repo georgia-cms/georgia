@@ -101,12 +101,23 @@
     <div id="scrollable-sections-bottom-shadow"></div>
   </div>
   <div class='span9'>
-    <div class="row-fluid">
-      <%= paginate @assets %>
-      <ul id='assets' class='gal-holder thumbnails'>
+    <table id='assets' class='table table-stripped'>
+      <thead>
+        <th>Thumbnail</th>
+        <th>Filename</th>
+        <th>Size</th>
+        <th>Dimensions</th>
+        <th>Tags</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% if @assets.any? %>
         <%= render @assets %>
-      </ul>
-      <%= paginate @assets %>
-    </div>
+        <% else %>
+        <tr><td colspan='6'>There are no assets uploaded to your Media Library.</td></tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @assets %>
   </div>
 </div>
