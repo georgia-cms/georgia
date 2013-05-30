@@ -44,11 +44,7 @@ module Georgia
       private
 
       def notify(message)
-<<<<<<< HEAD
-        Notifier.notify_admins(message, namespaced_url_for(@publishable_resource, {action: :edit, controller: self.class.name})).deliver if Rails.env.production?
-=======
         Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
->>>>>>> 0.4
       end
 
     end
