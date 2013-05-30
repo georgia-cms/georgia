@@ -10,14 +10,12 @@ class Georgia.Views.Widget extends Backbone.View
   initialize: (options) ->
     @panel = options.panel
     @images = options.images
-    @id = 'widget_' + @model.id
-    $(@el).attr 'id', @id
-    $(@el).addClass(@model.attributes.type)
+    $(@el).attr('id', "widget_#{@model.id}")
     $(@el).attr('data-widget-id', @model.id)
     @model.on('change', @render, this)
 
   render: ->
-    $(@el).html(@template(widget: @model)).fadeIn(500)
+    $(@el).html(@template(widget: @model)).fadeIn(300)
     $(@el).draggable
       revert: 'invalid'
       stack: '#widgets'

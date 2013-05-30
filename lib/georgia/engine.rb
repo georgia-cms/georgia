@@ -19,6 +19,9 @@ module Georgia
     require 'carrierwave'
     require 'draper'
     require 'ancestry'
+    require 'cloudfiles'
+    require 'sunspot_rails'
+    require 'sunspot_solr'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'
@@ -30,19 +33,19 @@ module Georgia
     require 'font-awesome-sass-rails'
     require 'select2-rails'
     require 'shadowbox-rails'
-    require 'fuelux-rails'
+    require 'mousetrap-rails'
 
     initializer 'georgia.action_controller' do |app|
       ActiveSupport.on_load :action_controller do
         helper Georgia::DeviseHelper
         helper Georgia::FormActionsHelper
         helper Georgia::FormsHelper
-        helper Georgia::InternationalizationHelper
         helper Georgia::RoutesHelper
         helper Georgia::UiHelper
         helper Georgia::MenusHelper
         helper Georgia::MetaTagsHelper
         helper Georgia::TwitterHelper
+        helper Georgia::InternationalizationHelper
       end
     end
 
@@ -66,10 +69,6 @@ module Georgia
         File.expand_path("#{resource.pluralize}/invitable/\#{name}.rb", app_path)
       end
       RUBY
-    end
-
-    def self.require_specs file
-      Dir["#{File.dirname(file)}/**/*_spec.rb"].each { |f| require f }
     end
 
   end

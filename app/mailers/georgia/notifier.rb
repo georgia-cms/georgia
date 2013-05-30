@@ -16,12 +16,26 @@ module Georgia
       @message = message
       @url = url
       domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
-      emails_to = (Rails.env.development? ? 'mathieu@motioneleven.com' : Georgia::User.admins.map(&:email))
+      emails_to = (Rails.env.development? ? 'dev@motioneleven.com' : Georgia::User.admins.map(&:email))
       mail(
         from: "do-not-reply@#{domain_name}",
         to: emails_to,
         subject: @message
-      )
+        )
+    end
+
+    def notify_editors(message, url)
+      @message = message
+      @url = url
+      domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
+      emails_to = (Rails.env.development? ? 'dev@motioneleven.com' : Georgia::User.editors.map(&:email))
+      unless emails_to.empty?
+        mail(
+          from: "do-not-reply@#{domain_name}",
+          to: emails_to,
+          subject: @message
+          )
+      end
     end
 
   end

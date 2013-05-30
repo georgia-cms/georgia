@@ -1,3 +1,4 @@
+CKEDITOR.config.ignoreEmptyParagraph = false;
 CKEDITOR.config.allowedContent = true;
 CKEDITOR.config.baseHref = '/assets/ckeditor/';
 CKEDITOR.config.height = 400;

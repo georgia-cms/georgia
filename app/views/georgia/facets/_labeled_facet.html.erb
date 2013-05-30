@@ -1,0 +1,9 @@
+<li>
+  <% if params[filter] and params[filter].include? facet.value %>
+  <span class="pull-right"><%= link_to icon_tag('icon-remove'), url_for(params.merge(filter => (params[filter] - [facet.value]))) %></span>
+  <%= state_label_tag facet.value %>
+  <% else -%>
+  <span class="badge badge-info pull-right"><%= facet.count %></span>
+  <%= link_to state_label_tag(facet.value), url_for(params.merge(filter => ((params[filter] || []) + [facet.value]))) %>
+  <% end -%>
+</li>

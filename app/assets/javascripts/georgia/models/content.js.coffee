@@ -14,6 +14,7 @@ class Georgia.Models.Content extends Backbone.RelationalModel
   locales:
     en: 'English'
     fr: 'Français'
+    ru: 'Russian'
 
   localeName: (locale) ->
     @locales[locale]

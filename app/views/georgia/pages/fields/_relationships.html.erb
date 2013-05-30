@@ -2,40 +2,38 @@
   <div class="span6">
     <fieldset>
       <legend>Parent Section</legend>
-      <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the page doesn't belong to any section." %>
+      <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the #{instance_name} doesn't belong to any section." %>
     </fieldset>
     <fieldset>
       <legend>Tags</legend>
       <%= f.input :tag_list, label: false, input_html: {class: 'input-xxlarge js-token-input'} %>
       <p class="help-block">
         Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.<br />
-        e.g. Interested in <em>tag name</em>? Have you tried <a href='#'>Baseball</a> or <a href='#'>Criquet</a>?
+        e.g. Interested in <em>Quidish</em>? Have you tried <a href='#'>Baseball</a> or <a href='#'>Criquet</a>?
       </p>
     </fieldset>
-    <div class="form-actions">
-      <%= f.submit nil, class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', pages_url, class: 'btn' %>
-    </div>
   </div>
   <div class="span6">
     <fieldset>
       <legend>Subpages</legend>
       <p>
-        Move the pages around to change their display position.
+        Move the <%= instance_name.pluralize %> around to change their display position.
       </p>
       <% if @page.persisted? and @page.has_children? %>
-      <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
-        <% @page.children.ordered.decorate.each do |page| %>
-        <%= content_tag_for(:li, page) do %>
-        <%= icon_tag 'icon-align-justify' %>
-        <h5><%= page.title %> <small><%= page.url %></small></h5>
-        <% end -%>
-        <% end -%>
-      </ul>
+        <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
+          <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
+            <%= content_tag_for(:li, page) do %>
+              <%= icon_tag 'icon-align-justify' %>
+              <h5><%= page.title %> <small><%= page.url %></small></h5>
+            <% end -%>
+          <% end -%>
+        </ul>
       <% else -%>
-      <p class='help-block'>There are no subpages for this page.</p>
+        <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
       <% end -%>
-      <p class='help-block'><%= icon_tag 'icon-info-sign' %> To include a subpage, go to the desired page and add a parent section. Sorry for the inconvenience, this feature is coming soon.</p>
+      <p class='help-block'>
+        <%= icon_tag 'icon-info-sign' %> To include a subpage, go to the desired <%= instance_name %> and add a parent section. Sorry for the inconvenience, this feature is coming soon.
+      </p>
     </fieldset>
   </div>
 </div>

@@ -18,6 +18,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     create_table :georgia_messages do |t|
       t.string  :name
       t.string  :email
+      t.string  :phone
       t.string  :subject
       t.string  :attachment
       t.text    :message
@@ -26,19 +27,22 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Pages
     create_table :georgia_pages do |t|
+      t.string    :type
       t.string    :template, default: 'one-column'
       t.string    :slug
-      t.integer   :parent_id
+      t.string    :url
       t.integer   :position
+      t.integer   :parent_id
       t.integer   :revision_id
       t.integer   :created_by_id
       t.integer   :updated_by_id
       t.integer   :published_by_id
       t.integer   :status_id
-      t.datetime  :published_at
       t.string    :ancestry
+      t.datetime  :published_at
       t.timestamps
     end
+    add_index :georgia_pages, :url
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :created_by_id
     add_index :georgia_pages, :updated_by_id
@@ -105,28 +109,11 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-      ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
-
-      ## Lockable
-      # t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
-
-      ## Token authenticatable
-      # t.string :authentication_token
-
       t.timestamps
     end
 
     add_index :georgia_users, :email,                :unique => true
     add_index :georgia_users, :reset_password_token, :unique => true
-    # add_index :georgia_users, :confirmation_token,   :unique => true
-    # add_index :georgia_users, :unlock_token,         :unique => true
-    # add_index :georgia_users, :authentication_token, :unique => true
 
     # Create UI Sections
     create_table :georgia_ui_sections do |t|
@@ -135,7 +122,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     # Create Widgets
     create_table :georgia_widgets do |t|
-      t.integer :position
       t.timestamps
     end
 
@@ -160,12 +146,10 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     # Create Navigation Links
     create_table :georgia_links do |t|
       t.integer :menu_id
-      t.integer :page_id
       t.integer :position
-      t.boolean :dropdown, default: false
+      t.string :ancestry
     end
-    add_index :georgia_links, [:menu_id, :page_id]
-
+    add_index :georgia_links, :ancestry
 
     # Create Status
     create_table :georgia_statuses do |t|
@@ -190,6 +174,5 @@ class CreateGeorgiaModels < ActiveRecord::Migration
 
     add_index :taggings, :tag_id
     add_index :taggings, [:taggable_id, :taggable_type, :context]
-
   end
 end

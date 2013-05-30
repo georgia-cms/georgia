@@ -1,24 +1,24 @@
 module Georgia
   class UiAssociation < ActiveRecord::Base
 
-   acts_as_list scope: :page
+    include Georgia::Concerns::Orderable
+    acts_as_list scope: :page
 
-   belongs_to :page, touch: true
-   belongs_to :widget, touch: true
-   belongs_to :ui_section, touch: true
-   attr_accessible :position, :widget_id, :ui_section_id, :page_id
+    belongs_to :page, touch: true
+    belongs_to :widget, touch: true
+    belongs_to :ui_section, touch: true
+    attr_accessible :position, :widget_id, :ui_section_id, :page_id
 
-   default_scope includes(:widget)
+    validate :associations
 
-   scope :footer, joins(:ui_section).where(georgia_ui_sections: {name: 'Footer'})
-   scope :submenu, joins(:ui_section).where(georgia_ui_sections: {name: 'Submenu'})
-   scope :sidebar, joins(:ui_section).where(georgia_ui_sections: {name: 'Sidebar'})
+    protected
 
-   scope :for_page, lambda {|page_id| where(page_id: page_id)}
+    # Validations
+    def associations
+      errors.add(:base, "An association to a page is required.") unless page_id.present?
+      errors.add(:base, "An association to a UI Section is required.") unless ui_section_id.present?
+      errors.add(:base, "An association to a Widget is required.") unless widget_id.present?
+    end
 
-   validates :page_id, presence: true
-   validates :ui_section_id, presence: true
-   validates :widget_id, presence: true
-
- end
+  end
 end

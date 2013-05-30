@@ -1,7 +1,5 @@
 Georgia::Engine.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
-
   devise_for :users,
   class_name: "Georgia::User",
   path: '/',
@@ -13,13 +11,13 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
-
   post "revisions/:id/revert" => "revisions#revert", :as => :revert_version
 
   resources :pages do
     collection do
       post :sort
       get :search
+      get "with_tag/:tag", to: "pages#find_by_tag"
     end
     member do
       get :ask_for_review
@@ -52,6 +50,6 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
-  root to: 'pages#index'
+  root to: 'pages#search'
 
 end

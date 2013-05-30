@@ -3,9 +3,12 @@ Georgia.setup do |config|
   # config.templates = %w(one-column sidebar-left sidebar-right)
 
   # Site title
-  # config.title = Rails.application.class.to_s.split("::").first.downcase
+  # config.title = 'Georgia'
 
   # Site URL
   # Do not add trailing slash
   # config.url = 'http://www.example.com'
+
+  # Georgia Additional Headers
+  # config.header += %w()
 end

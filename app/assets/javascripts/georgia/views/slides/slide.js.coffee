@@ -11,13 +11,10 @@ class Georgia.Views.Slide extends Backbone.View
     @panel = options.panel
     @images = options.images
     @id = 'slide_' + @model.id
-    $(@el).attr 'id', @id
-    $(@el).addClass(@model.attributes.type)
-    $(@el).attr('data-slide-id', @model.id)
     @model.on('change', @render, this)
 
   render: ->
-    $(@el).html(@template(slide: @model)).fadeIn(500)
+    $(@el).html(@template(@model.attributes)).fadeIn(500)
     this
 
   edit: (event) ->

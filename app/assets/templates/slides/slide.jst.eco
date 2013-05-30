@@ -1,4 +1,0 @@
-<h2><%= @slide.get('title') %></h2>
-<a href='#' class='btn bb-edit'><i class='icon-edit'></i></a>
-<a href='#' class='btn bb-remove'><i class='icon-trash'></i></a>
-<img src='<%= @slide.get('image') %>' />

@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="span6">
+    <%= form_for :search, url: url_for(controller: controller_name, action: "search"), method: :get, html: {class: 'form-inline'} do |f| %>
+    <div class="input-append search">
+      <%= facets_inputs([:tg]) %>
+      <%= hidden_field_tag :s, params[:s] if params[:s] %>
+      <%= hidden_field_tag :t, params[:t] if params[:t] %>
+      <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
+      <button class="btn"><%= icon_tag('icon-search') %></button>
+    </div>
+
+    <% if @search %>
+    <div class="top10">
+      <div class="pull-right">
+        <label class='select' for='per'>Per page:&nbsp;</label>
+        <%= select_tag :per, options_for_select([25,50,100,250,500], params[:per]), class: 'input-mini' %>
+      </div>
+      <p class='help-block'>
+        Showing <%= @search.hits.count %> of <%= @search.total %> results
+      </p>
+    </div>
+    <% end -%>
+    <% end -%>
+
+  </div>
+  <div class="span6">
+    <% if can? :create, model %>
+    <div class="pull-right">
+      <%= link_to "#{icon_tag('icon-plus-sign')} Add #{instance_name.titleize}".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
+    </div>
+    <% end -%>
+  </div>
+</div>

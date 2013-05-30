@@ -6,10 +6,13 @@ module Georgia
   @@templates = %w(one-column sidebar-left sidebar-right)
 
   mattr_accessor :title
-  @@title = Rails.application.class.to_s.split("::").first.downcase
+  @@title = "Georgia"
 
   mattr_accessor :url
   @@url = "http://www.example.com"
+
+  mattr_accessor :header
+  @@header = %w()
 
   def self.setup
     yield self

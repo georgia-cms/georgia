@@ -32,8 +32,6 @@ table tr.disabled td {text-decoration: line-through;}
 
 // Bootstrap Overrides
 body {padding-top: 80px;}
-.navbar .nav > li > a {line-height: 29px;}
-.dropdown .caret {margin-top: 13px;}
 
 
 // Layout
@@ -46,9 +44,6 @@ fieldset.max-length .form-inputs { input, textarea {width: 95%;}}
 .open .dropdown-menu li > a:focus > [class^="icon-"],
 .open .dropdown-submenu:hover > a > [class^="icon-"],
 .nav-list > li.active > a > [class^="icon-"] {background-image: none;}
-
-.handle {cursor: move;}
-
 
 #scrollable-sections-top-shadow {
   border-top: 1px solid #EBEBEB;
@@ -81,5 +76,8 @@ fieldset.max-length .form-inputs { input, textarea {width: 95%;}}
 .row-fluid ul.thumbnails li.span4:nth-child(3n + 4) { margin-left : 0px; clear: both; }
 .row-fluid ul.thumbnails li.span3:nth-child(4n + 5) { margin-left : 0px; clear: both; }
 
+.top10 {padding-top: 10px;}
 .top20 {padding-top: 20px;}
 table.top20 {margin-top: 20px;}
+
+.nowrap {white-space: nowrap;}

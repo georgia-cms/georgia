@@ -6,10 +6,9 @@ class Georgia.Models.UiSection extends Backbone.RelationalModel
     relatedModel: 'Georgia.Models.UiAssociation',
     collectionType: 'Georgia.Collections.UiAssociations',
     reverseRelation: {
-      key: 'ui_section'
+      key: 'ui_section_id'
       includeInJSON: 'id'
     }
   }]
-
 
 Georgia.Models.UiSection.setup()

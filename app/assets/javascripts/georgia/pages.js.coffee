@@ -1,5 +1,8 @@
 jQuery ->
 
+  $('select#per').change (e) ->
+    $(this).closest('form').submit()
+
   $('#new_page').on('shown', -> $('input#page_title').focus())
 
   $('#subpages').sortable
