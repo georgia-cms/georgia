@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'henry', '0.5.0'
   s.add_dependency 'rails', '~> 3.2.13'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'devise'
   s.add_dependency 'cancan'
   s.add_dependency 'simple_form'

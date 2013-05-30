@@ -1,5 +1,5 @@
 //= require jquery
-//= require jquery-ui
+//= require jquery.ui.all
 //= require georgia/jquery.ui.touch-punch
 //= require jquery_ujs
 //= require jquery-fileupload

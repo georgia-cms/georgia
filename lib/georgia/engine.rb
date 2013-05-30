@@ -29,6 +29,7 @@ module Georgia
     require 'bourbon'
     require 'jquery-fileupload-rails'
     require 'jquery-rails'
+    require 'jquery-ui-rails'
     require 'bootstrap-rails'
     require 'font-awesome-sass-rails'
     require 'select2-rails'
