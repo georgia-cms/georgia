@@ -5,16 +5,4 @@ class Ckeditor::Picture < Ckeditor::Asset
 
   mount_uploader :data, CkeditorPictureUploader, mount_on: :data_file_name
 
-  attr_accessible :data
-
-  def to_jq_upload
-    {
-      "name" => read_attribute(:data),
-      "size" => data.size,
-      "url" => data.url,
-      "thumbnail_url" => data.thumb.url,
-      "delete_url" => media_path(:id => id),
-      "delete_type" => "DELETE"
-    }
-  end
 end

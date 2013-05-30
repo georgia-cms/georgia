@@ -17,6 +17,10 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
 
   process :read_dimensions
 
+  version :tiny do
+    process resize_to_fill: [65, 65]
+  end
+
   version :thumb do
     process resize_to_fill: [160, 120]
   end
@@ -28,18 +32,5 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   version :content do
     process resize_to_limit: [800, 800]
   end
-
-  # Process Black and White version
-  # def colorspace(tone)
-  #   manipulate! do |img|
-  #     img.colorspace(tone)
-  #     img = yield(img) if block_given?
-  #     img
-  #   end
-  # end
-
-  # version :bw do
-  #   process colorspace: 'Gray'
-  # end
 
 end
