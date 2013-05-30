@@ -17,7 +17,7 @@ module Georgia
       def mount_engine
         route "root to: 'pages#show', slug: 'home'"
         route "resources :messages, only: [:create]"
-        route "get '/:slug(/:slug)(/:slug)', to: 'pages#show', as: :page"
+        route "get '*path', to: 'pages#show', as: :page"
         route "resources :pages, only: [] do
           post '/preview', to: 'pages#preview', as: :preview, on: :member
         end"

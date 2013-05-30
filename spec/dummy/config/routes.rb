@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount Georgia::Engine => '/admin'
   mount Henry::Engine => '/api'
-  mount Kennedy::Engine => '/admin'
-  mount Nancy::Engine => '/admin'
 
   resources :messages, only: [:create]
 
@@ -13,6 +11,6 @@ Rails.application.routes.draw do
   end
   root to: 'pages#show', slug: 'home'
 
-  get '/:slug(/:slug)(/:slug)', to: 'pages#show', as: :page
+  get '/*path', to: 'pages#show', as: :page
 
 end
