@@ -1,1 +1,1 @@
-rvm use 2.0.0@georgia --create
+rvm use 2.0.0-p195@georgia --create
