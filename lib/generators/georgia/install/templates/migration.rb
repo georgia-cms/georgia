@@ -55,7 +55,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     create_table :georgia_contents do |t|
       t.string :title
       t.text :text
-      t.string :excerpt
+      t.text :excerpt
       t.string :keywords
       t.string :locale, null: false
       t.references :contentable, polymorphic: true

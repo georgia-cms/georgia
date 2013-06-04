@@ -1,6 +1,7 @@
 == 0.5.0
 
 - Revamp Media Library
+- Fix contents excerpt from string to text
 
 == 0.4
 
