@@ -1,5 +1,7 @@
 == 0.5.0
 
+- Revamp Media Library
+
 == 0.4
 
 - Add rackspace_region: :ord to your carrierwave file
