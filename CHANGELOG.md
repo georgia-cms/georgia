@@ -1,3 +1,7 @@
+== 0.5.1
+
+- Fix menu editing jquery autocomplete error
+
 == 0.5.0
 
 - Revamp Media Library
