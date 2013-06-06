@@ -19,7 +19,7 @@ class Georgia.Views.LinkFormContent extends Backbone.View
         event.stopPropagation()
         @$('#text').val(ui.item.url)
       )
-    .data( "autocomplete" )._renderItem = ( ul, item ) ->
+    .data('ui-autocomplete')._renderItem = ( ul, item ) ->
       return $( "<li></li>" )
         .data( "item.autocomplete", item )
         .append( "<a>" + item.url + "</a>" )
