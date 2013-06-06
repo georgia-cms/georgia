@@ -16,11 +16,11 @@ module Georgia
       end
 
       def create_migration
-        # migration_template "change_georgia_content_excerpt_to_text.rb", "db/migrate/change_georgia_content_excerpt_to_text.rb"
+        migration_template "change_georgia_content_excerpt_to_text.rb", "db/migrate/change_georgia_content_excerpt_to_text.rb"
       end
 
       def migrate
-        # rake 'db:migrate'
+        rake 'db:migrate'
       end
 
     end
