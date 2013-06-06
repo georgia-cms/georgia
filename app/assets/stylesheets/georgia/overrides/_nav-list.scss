@@ -1,11 +1,11 @@
-.nav-list {
+// Overrides list of page results on menu search
+#page_results .nav-list {
   padding: 0;
   margin: 0;
-}
-
-.nav-list > li > a {
-  padding: 5px 10px;
-  margin: 5px 0;
-  background-color: #eee;
-  border-radius: 4px;
+  > li > a {
+    padding: 5px 10px;
+    margin: 5px 0;
+    background-color: #eee;
+    border-radius: 4px;
+  }
 }
