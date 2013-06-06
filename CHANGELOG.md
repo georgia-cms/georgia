@@ -1,6 +1,7 @@
 == 0.5.1
 
 - Fix menu editing jquery autocomplete error
+- Fix tags editing on picture assets
 
 == 0.5.0
 
