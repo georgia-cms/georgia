@@ -15,6 +15,12 @@ module Georgia
         def search
           session[:search_params] = params
           @search = model.search do
+            if model == Georgia::Page
+              with(:type, nil) # FIXME: Even a Page should be a subtype of this 'contentable' model
+            else
+              with(:type, model.to_s) # Search only of the given model
+            end
+
             fulltext params[:query] do
               fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :status_name)
             end

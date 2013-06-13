@@ -31,13 +31,5 @@ module Georgia
 
     scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
 
-    class << self
-
-      def extra_search_params
-        Proc.new { with(:type, nil) }
-      end
-
-    end
-
   end
 end
