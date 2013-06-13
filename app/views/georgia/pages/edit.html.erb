@@ -8,6 +8,7 @@
     <button type="submit" class="btn btn-success">
       <i class='icon-ok'>&nbsp;</i> Save
     </button>
+    <%= link_to "Visit #{icon_tag 'icon-long-arrow-right'}".html_safe, @page.url, class: 'btn btn-info', target: '_blank' %>
     <%= link_to "#{icon_tag 'icon-remove'} Cancel".html_safe, :back, class: 'btn' %>
   </div>
   Editing '<%= @page.title %>'

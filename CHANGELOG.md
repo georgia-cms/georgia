@@ -4,6 +4,7 @@
 - Fix tags editing on picture assets
 - Use font-awesome-rails instead of font-awesome-sass-rails
 - Fix url updating on ancestry
+- Add visit button on page#edit
 
 == 0.5.0
 
