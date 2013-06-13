@@ -1,0 +1,25 @@
+.subpage {
+  cursor: move;
+  padding: 5px;
+  border: 1px solid #EEE;
+  background-color: #FFF;
+  margin-bottom: 2px;
+}
+
+.subpage-handle {
+  float: left;
+  padding: 10px;
+}
+
+.subpage-edit-link {
+  float: right;
+  padding: 10px;
+}
+
+.subpage-info__title {
+  margin: 0;
+}
+
+.subpage-info__url {
+  display: inline-block;
+}
