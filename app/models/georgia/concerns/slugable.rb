@@ -26,7 +26,7 @@ module Georgia
         end
 
         def update_url
-          if slug_changed?
+          if slug_changed? or ancestry_changed?
             self.set_url
             self.descendants.each(&:set_url) if !self.new_record? and self.has_children?
           end
