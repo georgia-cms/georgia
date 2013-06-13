@@ -2,6 +2,7 @@
 
 - Fix menu editing jquery autocomplete error
 - Fix tags editing on picture assets
+- Use font-awesome-rails instead of font-awesome-sass-rails
 
 == 0.5.0
 
