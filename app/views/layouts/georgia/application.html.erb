@@ -7,7 +7,12 @@
   <%= stylesheet_link_tag    "georgia/application", media: 'all' %>
   <%= javascript_include_tag "georgia/application" %>
   <%= csrf_meta_tags %>
-  <!--[if IE]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--[if lt IE 8]>
+    <%= stylesheet_link_tag "font-awesome-ie7.min.css", media: "all" %>
+  <![endif]-->
   <%= favicon_link_tag %>
   <%= yield :head %>
 </head>
