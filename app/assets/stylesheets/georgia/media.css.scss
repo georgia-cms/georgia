@@ -18,3 +18,14 @@
     form, input {margin: 0;}
   }
 }
+
+.media-link {
+  display: block;
+  background: asset-data-url('georgia/transparent.jpg') repeat scroll 0 0 transparent;
+  width: 160px;
+  height: 120px;
+}
+
+.media-image {
+  width: 100%;
+}
