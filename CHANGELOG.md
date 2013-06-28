@@ -5,6 +5,8 @@
 - Use font-awesome-rails instead of font-awesome-sass-rails
 - Fix url updating on ancestry
 - Add visit button on page#edit
+- Remove image panel carousel
+- Add photoshop-like bg behind images to show transparency
 
 == 0.5.0
 
