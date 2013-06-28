@@ -1,6 +1,6 @@
 jQuery ->
 
-  Shadowbox.init({})
+  Shadowbox.init()
 
   $('#media input.js-token-input').on('change', (e) -> $(this).closest('form').submit())
 
