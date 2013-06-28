@@ -1,10 +1,4 @@
-<legend>
-  Featured Image
-  <div class="pull-right .bb-controls">
-    <a href="#" class='bb-prev btn disabled'><i class="icon-arrow-left"></i></a>
-    <a href="#" class='bb-next btn'><i class="icon-arrow-right"></i></a>
-  </div>
-</legend>
+<legend>Featured Image</legend>
 <div class='carousel-holder'>
   <ul class='nav bb-thumbnails'>
   </ul>
