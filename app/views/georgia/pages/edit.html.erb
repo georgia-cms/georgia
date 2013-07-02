@@ -48,7 +48,7 @@
       <div class="tab-content">
 
         <%= f.simple_fields_for :contents do |c| %>
-        <%= render_partial_or_default 'fields/content', controller, f: c, locale: c.object.locale, slug: @page.slug %>
+          <%= render_partial_or_default 'fields/content', controller, f: c, locale: c.object.locale, slug: @page.slug, page_form: f %>
         <% end -%>
 
         <div class='tab-pane' id='relationships'>
