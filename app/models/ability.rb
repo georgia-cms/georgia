@@ -6,16 +6,14 @@ class Ability
   def initialize(user)
     user ||= Georgia::User.new
 
-    user.roles.each do |role|
-      if role.name == 'Admin'
-        can :manage, :all
-      end
-
-      if role.name == 'Editor'
-        can :publish, :all
-        can :unpublish, :all
-        can :ask_for_review, :all
-      end
+    if user.has_role? 'Admin'
+      can :manage, :all
+    elsif user.has_role? 'Editor'
+      can :manage, :all
+      cannot :manage, Georgia::User
+    else # or if user is Guest
+      can [:read, :edit, :update, :search, :ask_for_review], :all
+      cannot :manage, Georgia::User
     end
   end
 end
