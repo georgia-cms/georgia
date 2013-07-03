@@ -23,6 +23,10 @@ module Georgia
         rake 'db:migrate'
       end
 
+      def create_guest_role
+        rake 'georgia:upgrade'
+      end
+
     end
   end
 end
