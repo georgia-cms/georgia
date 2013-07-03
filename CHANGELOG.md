@@ -7,6 +7,7 @@
 - Add visit button on page#edit
 - Remove image panel carousel
 - Add photoshop-like bg behind images to show transparency
+- Add Guest role
 
 == 0.5.0
 
