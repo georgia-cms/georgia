@@ -12,8 +12,8 @@ module Georgia
       @role_names.include? role.to_s.titleize
     end
 
-    scope :admins, joins(:roles).where(georgia_roles: {name: 'Admin'})
-    scope :editors, joins(:roles).where(georgia_roles: {name: 'Editor'})
+    scope :admins, includes(:roles).where(georgia_roles: {name: 'Admin'})
+    scope :editors, includes(:roles).where(georgia_roles: {name: 'Editor'})
 
   end
 end
