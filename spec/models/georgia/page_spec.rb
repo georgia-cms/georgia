@@ -21,6 +21,7 @@ describe Georgia::Page do
   it_behaves_like 'a slugable model'
   it_behaves_like 'a templatable model'
   it_behaves_like 'a orderable model'
+  it_behaves_like 'a clonable model'
 
   describe 'scopes' do
     describe '.not_self' do

@@ -1,6 +1,7 @@
 == 0.5.2
 
 - Add 'wait-and-spin' to menu saving button
+- Add clonable concern to create a clone of a specific Georgia::Page
 
 == 0.5.1
 

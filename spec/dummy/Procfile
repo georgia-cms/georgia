@@ -1,1 +1,2 @@
 solr:   bundle exec rake sunspot:solr:run
+solr-test:   bundle exec rake sunspot:solr:run RAILS_ENV=test

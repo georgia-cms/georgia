@@ -34,6 +34,7 @@
           <li><a href="#settings" data-toggle="tab"><%= icon_tag('icon-cogs') %> Settings</a></li>
           <% unless @page.new_record? %>
           <li class="nav-header">Actions</li>
+          <li><%= link_to_clone @page %></li>
           <li><%= link_to_preview @page %></li>
           <li><%= link_to_publish @page %></li>
           <li><%= link_to_unpublish @page %></li>

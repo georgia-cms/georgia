@@ -9,6 +9,7 @@ module Georgia
     include Georgia::Concerns::Templatable
     include Georgia::Concerns::Orderable
     include Georgia::Concerns::Indexable
+    include Georgia::Concerns::Clonable
 
     acts_as_list scope: :parent #override orderable to include scope
 
