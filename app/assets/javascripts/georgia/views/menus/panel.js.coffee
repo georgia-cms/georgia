@@ -17,10 +17,16 @@ class Georgia.Views.MenuPanel extends Georgia.Views.Panel
     @results = new Georgia.Views.PageMenuResults(collection: @pages, panel: @, list: @list)
 
   save: () =>
-    @model.save {tree: @$('.sortable').nestedSortable('toArray', {startDepthCount: 0})},
+    @$('.bb-save').prop('disabled', true).html("<i class='icon-spinner icon-spin'>&nbsp;</i> Saving...")
+    @model.save({tree: @$('.sortable').nestedSortable('toArray', {startDepthCount: 0})},
       success: () =>
+        @$('.bb-save').addClass('btn-info').html("<i class='icon-check'>&nbsp;</i> Saved")
         @notify("#{@model.get('name')} menu has been successfully updated.", 'success')
-      error: @handleError
+        setTimeout(
+          () => @$('.bb-save').removeClass('btn-info').prop('disabled', false).html("<i class='icon-ok'>&nbsp;</i> Save")
+          1500
+        )
+      error: @handleError)
 
   search: (event) =>
     @pages.search($('.bb-search').val(),

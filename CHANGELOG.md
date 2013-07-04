@@ -1,3 +1,7 @@
+== 0.5.2
+
+- Add 'wait-and-spin' to menu saving button
+
 == 0.5.1
 
 - Fix menu editing jquery autocomplete error
