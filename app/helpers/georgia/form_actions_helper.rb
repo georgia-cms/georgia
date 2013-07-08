@@ -3,7 +3,7 @@ module Georgia
 
     def link_to_preview(page, options={})
       options[:target] = '_blank'
-      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(id: page.id), options
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, page.preview_url, options if can? :preview, page
     end
 
     def link_to_preview_revision(page, revision, options={})
@@ -74,6 +74,7 @@ module Georgia
     def link_to_group_list(model, options={})
       html = ""
       html << content_tag('li', link_to_group_item_edit(model, options))
+      html << content_tag('li', link_to_group_item_preview(model, options)) if options[:preview]
       html << content_tag('li', link_to_group_item_clone(model, options)) if options[:clone]
       html << content_tag('li', link_to_group_item_publish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_unpublish(model, options)) if options[:publish]
@@ -84,6 +85,11 @@ module Georgia
 
     def link_to_group_item_clone(model, options={})
       link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name, id: model.id, action: :clone) if can? :clone, model
+    end
+
+    def link_to_group_item_preview(model, options={})
+      options[:target] = '_blank'
+      link_to("#{icon_tag('icon-eye-open')} Preview".html_safe, model.preview_url, options) if can? :preview, model
     end
 
     def link_to_group_item_publish(model, options={})
