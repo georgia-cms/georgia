@@ -14,11 +14,15 @@ module Georgia
         before_validation :sanitize_slug
         after_save :update_url
 
-        def set_url
-          self.update_column(:url, '/' + self.ancestry_url)
+        def preview_url
+          @preview_url = "#{self.url}?preview=1"
         end
 
         protected
+
+        def set_url
+          self.update_column(:url, '/' + self.ancestry_url)
+        end
 
         def sanitize_slug
           self.slug ||= ''
