@@ -32,5 +32,13 @@ module Georgia
 
     scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
 
+    before_create :assign_uuid
+
+    protected
+
+    def assign_uuid
+      self.uuid = UUIDTools::UUID.timestamp_create.to_s
+    end
+
   end
 end

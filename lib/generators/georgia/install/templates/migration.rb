@@ -40,6 +40,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.integer   :status_id
       t.string    :ancestry
       t.datetime  :published_at
+      t.uuid      :uuid
       t.timestamps
     end
     add_index :georgia_pages, :url
@@ -48,15 +49,16 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     add_index :georgia_pages, :updated_by_id
     add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :revision_id
-    add_index :georgia_pages, :status_id
     add_index :georgia_pages, :ancestry
+    add_index :georgia_pages, :uuid
+    add_index :georgia_pages, :state
 
     # Create Content
     create_table :georgia_contents do |t|
+      t.string :locale, null: false
       t.string :title
       t.text :text
       t.text :excerpt
-      t.string :locale, null: false
       t.references :contentable, polymorphic: true
       t.integer :image_id
       t.timestamps

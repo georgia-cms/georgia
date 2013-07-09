@@ -2,6 +2,7 @@
 
 - Add 'wait-and-spin' to menu saving button
 - Add clonable concern to create a clone of a specific Georgia::Page
+- Add uuid to Georgia::Page to links between revisions of the same page
 
 == 0.5.1
 

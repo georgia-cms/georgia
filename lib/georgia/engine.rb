@@ -10,7 +10,6 @@ module Georgia
     require 'devise'
     require 'cancan'
     require 'acts_as_list'
-    require 'acts_as_revisionable'
     require 'acts-as-taggable-on'
     require 'kaminari'
     require 'pg'
@@ -22,6 +21,10 @@ module Georgia
     require 'cloudfiles'
     require 'sunspot_rails'
     require 'sunspot_solr'
+    require 'state_machine'
+    require 'activerecord-postgres-hstore'
+    require 'activerecord-postgres-uuid'
+    require 'uuidtools'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'

@@ -32,4 +32,12 @@ describe Georgia::Page do
     end
   end
 
+  describe 'uuid', focus: true do
+    it 'creates a new uuid for each newly created page' do
+      @page = FactoryGirl.create(:georgia_page)
+      print @page.inspect
+      expect(@page.uuid).to match /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
+    end
+  end
+
 end
