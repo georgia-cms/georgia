@@ -56,7 +56,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :title
       t.text :text
       t.text :excerpt
-      t.string :keywords
       t.string :locale, null: false
       t.references :contentable, polymorphic: true
       t.integer :image_id
