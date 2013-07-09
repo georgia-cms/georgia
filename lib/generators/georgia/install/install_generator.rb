@@ -18,9 +18,6 @@ module Georgia
         route "root to: 'pages#show', slug: 'home'"
         route "resources :messages, only: [:create]"
         route "get '*path', to: 'pages#show', as: :page"
-        route "resources :pages, only: [] do
-          post '/preview', to: 'pages#preview', as: :preview, on: :member
-        end"
         route "mount Georgia::Engine => '/admin'"
         route "mount Henry::Engine => '/api'"
         route "mount Ckeditor::Engine => '/ckeditor'"
@@ -42,7 +39,7 @@ module Georgia
         rake "db:migrate"
       end
 
-      def boostrap
+      def bootstrap
         rake "georgia:setup"
       end
 
