@@ -18,6 +18,7 @@ module Georgia
           @preview_url = "#{self.url}?preview=1"
         end
 
+        # Must stay public for #update_url on descendants
         def set_url
           self.update_column(:url, '/' + self.ancestry_url)
         end
