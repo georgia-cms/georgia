@@ -8,7 +8,7 @@
     <%= picture.filename || picture.data.file.filename %>
   </td>
   <td>
-    <%= number_to_human_size(picture.size) %>
+    <%= picture.data.file.exists? ? number_to_human_size(picture.size) : 'File not found' %>
   </td>
   <td>
     <%= picture.width %>x<%= picture.height %>
