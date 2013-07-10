@@ -20,7 +20,7 @@
         Move the <%= instance_name.pluralize %> around to change their display position.
       </p>
       <% if @page.persisted? and @page.has_children? %>
-      <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_url %>">
+      <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
         <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
         <%= content_tag_for(:li, page, class: 'subpage') do %>
         <%= icon_tag 'icon-align-justify subpage-handle' %>
