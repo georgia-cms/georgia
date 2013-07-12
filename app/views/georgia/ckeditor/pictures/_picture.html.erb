@@ -1,4 +1,4 @@
-<tr id='<%= dom_id(picture) %>'>
+<tr id='asset_<%= picture.id %>'>
   <td>
     <%= link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do %>
       <%= image_tag picture.url(:thumb), title: (picture.filename || picture.data.file.filename), class: 'media-image' %>
