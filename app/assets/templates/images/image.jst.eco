@@ -4,4 +4,4 @@
 <a href='<%= @image.get('url') %>' class='btn' rel='shadowbox[gallery]'>
   <i class='icon-fullscreen'></i>
 </a>
-<img src="<%= @image.get('thumb_url') %>" />
+<img src="<%= @image.get('thumb_url') %>" class='bg-transparent' />
