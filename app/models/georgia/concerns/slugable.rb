@@ -18,11 +18,11 @@ module Georgia
           @preview_url = "#{self.url}?preview=1"
         end
 
-        protected
-
         def set_url
           self.update_column(:url, '/' + self.ancestry_url)
         end
+
+        protected
 
         def sanitize_slug
           self.slug ||= ''
