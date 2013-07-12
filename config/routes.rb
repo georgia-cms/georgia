@@ -27,13 +27,7 @@ Georgia::Engine.routes.draw do
     end
   end
 
-  get 'media/tags/:tag', to: 'media#index', as: :tag
-  resources :media, path: :media do
-    collection do
-      delete :destroy_all, to: 'media#destroy_all'
-      get :download_all, to: 'media#download_all'
-    end
-  end
+  resources :media, path: :media
   resources :users
   resources :messages do
     get :search, on: :collection

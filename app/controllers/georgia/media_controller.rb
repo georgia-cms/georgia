@@ -6,18 +6,18 @@ module Georgia
     respond_to :js, only: :destroy
 
     def index
-      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       @asset = Ckeditor::Asset.new
-
-      if params[:tag]
-        @assets = Ckeditor::Asset.tagged_with(params[:tag]).includes(:tags).page(params[:page]).per(params[:per])
-      elsif params[:show] == 'orphans'
-        @assets = Ckeditor::Asset.joins('LEFT JOIN taggings on ckeditor_assets.id = taggings.taggable_id').where('taggings.taggable_id IS NULL').page(params[:page]).per(params[:per])
-      else
-        @assets = Ckeditor::Asset.includes(:tags).page(params[:page]).per(params[:per])
+      session[:search_params] = params
+      @search = Ckeditor::Asset.search do
+        fulltext params[:query] do
+          fields(:filename, :tags)
+        end
+        facet :tags#, extra: [:any, :none]
+        with(:tags).all_of(params[:tg]) unless params[:tg].blank?
+        order_by (params[:o] || :updated_at), (params[:dir] || :desc)
+        paginate(page: params[:page], per_page: (params[:per] || 20))
       end
-
-      @assets = @assets.order('updated_at DESC').decorate
+      @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
     end
 
     def create

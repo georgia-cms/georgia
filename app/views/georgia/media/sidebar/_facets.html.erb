@@ -1,0 +1,10 @@
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <% if @search %>
+      <li class="nav-header">Tags</li>
+      <% @search.facet(:tags).rows.each do |facet| %>
+        <%= render partial: 'georgia/facets/array_facet', locals: {facet: facet, filter: :tg, multiple: true} %>
+      <% end -%>
+    <% end -%>
+  </ul>
+</div>

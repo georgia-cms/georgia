@@ -30,4 +30,15 @@ class Ckeditor::Asset < ActiveRecord::Base
     self.try(:data).try(:file).try(:extension)
   end
 
+  searchable do
+    text :filename, stored: true
+    text :tags do
+      tag_list.join(', ')
+    end
+    string :tags, stored: true, multiple: true do
+      tag_list
+    end
+    time :updated_at
+  end
+
 end
