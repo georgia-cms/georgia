@@ -5,6 +5,10 @@
       <% @search.facet(:extension).rows.each do |facet| %>
         <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :e} %>
       <% end -%>
+      <li class="nav-header">File Size</li>
+      <% @search.facet(:size).rows.each do |facet| %>
+        <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :s} %>
+      <% end -%>
       <li class="nav-header">Tags</li>
       <% @search.facet(:tags).rows.each do |facet| %>
         <%= render partial: 'georgia/facets/array_facet', locals: {facet: facet, filter: :tg, multiple: true} %>
