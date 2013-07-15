@@ -8,7 +8,8 @@
   <td>
     <%= asset.data.file.exists? ? number_to_human_size(asset.size) : 'File not found' %>
   </td>
-  <td></td>
+  <td></td> <%# dimensions %>
+  <td></td> <%# featured tag %>
   <td>
     <%= simple_form_for asset, url: media_path(asset), html: {class: 'form-vertical', data: {'asset-id' => asset.id}}, remote: true do |f| %>
     <%= f.input :tag_list, label: false, input_html: {class: 'input-large js-token-input', data: {load: asset.tags.map{|t| {id: t.id, text: t.name} }}} %>
