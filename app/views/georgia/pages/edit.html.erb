@@ -1,89 +1,89 @@
 <%= content_for :messages do %>
-<%= render 'georgia/shared/messages', model: @page %>
+	<%= render 'georgia/shared/messages', model: @page %>
 <% end %>
 
 <%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
-<h1 class="page-header">
-  <div class="pull-right">
-    <button type="submit" class="btn btn-success">
-      <i class='icon-ok'>&nbsp;</i> Save
-    </button>
-    <%= link_to "Visit #{icon_tag 'icon-long-arrow-right'}".html_safe, @page.url, class: 'btn btn-info', target: '_blank' %>
-    <%= link_to "#{icon_tag 'icon-remove'} Cancel".html_safe, :back, class: 'btn' %>
-  </div>
-  Editing '<%= @page.title %>'
-</h1>
-<div id='edit_page_panel'>
-  <div class='row-fluid'>
-    <div class='span2'>
-      <div class='well'>
-        <ul class="nav nav-list">
-          <li class="nav-header">Content</li>
-          <% @page.contents.sort_by(&:locale).each do |content| %>
-          <li class='<%= 'active' if content.locale == I18n.locale.to_s %>'>
-            <a href="#<%= content.locale %>-content" data-toggle="tab">
-              <%= icon_tag('icon-file') %> <%= t("locales.#{content.locale}") %>
-            </a>
-          </li>
-          <% end -%>
-          <li class="nav-header">Other</li>
-          <li><a href="#relationships" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Relationships</a></li>
-          <li><a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a></li>
-          <li><a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a></li>
-          <li><a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a></li>
-          <li><a href="#settings" data-toggle="tab"><%= icon_tag('icon-cogs') %> Settings</a></li>
-          <% unless @page.new_record? %>
-          <li class="nav-header">Actions</li>
-          <li><%= link_to_clone @page %></li>
-          <li><%= link_to_preview @page %></li>
-          <li><%= link_to_publish @page %></li>
-          <li><%= link_to_unpublish @page %></li>
-          <li><%= link_to_review @page %></li>
-          <li><%= link_to_delete @page %></li>
-          <% end -%>
-        </ul>
-      </div>
-    </div>
-    <div class='span10'>
+	<h1 class="page-header">
+		<div class="pull-right">
+			<button type="submit" class="btn btn-success">
+				<i class='icon-ok'>&nbsp;</i> Save
+			</button>
+			<%= link_to "Visit #{icon_tag 'icon-long-arrow-right'}".html_safe, @page.url, class: 'btn btn-info', target: '_blank' %>
+			<%= link_to "#{icon_tag 'icon-remove'} Cancel".html_safe, :back, class: 'btn' %>
+		</div>
+		Editing '<%= @page.title %>'
+	</h1>
+	<div id='edit_page_panel'>
+		<div class='row-fluid'>
+			<div class='span2'>
+				<div class='well'>
+					<ul class="nav nav-list">
+						<li class="nav-header">Content</li>
+						<% @page.contents.sort_by(&:locale).each do |content| %>
+							<li class='<%= 'active' if content.locale == I18n.locale.to_s %>'>
+								<a href="#<%= content.locale %>-content" data-toggle="tab">
+									<%= icon_tag('icon-file') %> <%= t("locales.#{content.locale}") %>
+								</a>
+							</li>
+						<% end -%>
+						<li class="nav-header">Other</li>
+						<li><a href="#relationships" data-toggle="tab"><%= icon_tag('icon-list-alt') %> Relationships</a></li>
+						<li><a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a></li>
+						<li><a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a></li>
+						<li><a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions</a></li>
+						<li><a href="#settings" data-toggle="tab"><%= icon_tag('icon-cogs') %> Settings</a></li>
+						<% unless @page.new_record? %>
+							<li class="nav-header">Actions</li>
+							<li><%= link_to_clone @page %></li>
+							<li><%= link_to_preview @page %></li>
+							<li><%= link_to_publish @page %></li>
+							<li><%= link_to_unpublish @page %></li>
+							<li><%= link_to_review @page %></li>
+							<li><%= link_to_delete @page %></li>
+						<% end -%>
+					</ul>
+				</div>
+			</div>
+			<div class='span10'>
 
-      <div class="tab-content">
+				<div class="tab-content">
 
-        <%= f.simple_fields_for :contents do |c| %>
-          <%= render_partial_or_default 'fields/content', controller, f: c, locale: c.object.locale, slug: @page.slug, page_form: f %>
-        <% end -%>
+					<%= f.simple_fields_for :contents do |c| %>
+						<%= render_partial_or_default 'fields/content', controller, f: c, locale: c.object.locale, slug: @page.slug, page_form: f %>
+					<% end -%>
 
-        <div class='tab-pane' id='relationships'>
-          <%= render_partial_or_default 'fields/relationships', controller, f: f %>
-        </div>
+					<div class='tab-pane' id='relationships'>
+						<%= render_partial_or_default 'fields/relationships', controller, f: f %>
+					</div>
 
-        <div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
-          <!-- Backbone Slideshow Panel -->
-          <i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
-        </div>
+					<div class="tab-pane" id="slideshow" data-locales='<%= I18n.available_locales.join(',') %>'>
+						<!-- Backbone Slideshow Panel -->
+						<i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
+					</div>
 
-        <div class='tab-pane' id='widgets' data-locales='<%= I18n.available_locales.join(',') %>'>
-          <!-- Backbone Widgets Panel -->
-          <i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
-        </div>
+					<div class='tab-pane' id='widgets' data-locales='<%= I18n.available_locales.join(',') %>'>
+						<!-- Backbone Widgets Panel -->
+						<i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
+					</div>
 
-        <div class='tab-pane' id='revisions'>
-          <%= render_partial_or_default 'fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
-        </div>
+					<div class='tab-pane' id='revisions'>
+						<%= render_partial_or_default 'fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
+					</div>
 
-        <div class="tab-pane" id="settings">
-          <%= render_partial_or_default 'fields/settings', controller, f: f %>
-        </div>
+					<div class="tab-pane" id="settings">
+						<%= render_partial_or_default 'fields/settings', controller, f: f %>
+					</div>
 
-      </div>
+				</div>
 
-    </div>
-  </div>
-</div>
+			</div>
+		</div>
+	</div>
 <% end %>
 
 
 <%= content_for :ujs do %>
-<script type="text/javascript">
-$(function() { Georgia.init(); });
-</script>
+	<script type="text/javascript">
+		$(function() { Georgia.init(); });
+	</script>
 <% end -%>
