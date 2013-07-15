@@ -20,7 +20,7 @@ module Georgia
         with(:extension, params[:e]) unless params[:e].blank?
         with(:tags).any_of(params[:tg]) unless params[:tg].blank?
         order_by (params[:o] || :updated_at), (params[:dir] || :desc)
-        paginate(page: params[:page], per_page: (params[:per] || 20))
+        paginate(page: params[:page], per_page: (params[:per] || 25))
       end
       @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
     end
