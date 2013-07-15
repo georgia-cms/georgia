@@ -5,7 +5,7 @@ class Ckeditor::Asset < ActiveRecord::Base
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Georgia::Concerns::Taggable
 
-  delegate :url, :current_path, :size, :content_type, :filename, to: :data
+  delegate :url, :current_path, :size, :content_type, to: :data
 
   mount_uploader :data, CkeditorAttachmentFileUploader, mount_on: :data_file_name
 
@@ -26,8 +26,12 @@ class Ckeditor::Asset < ActiveRecord::Base
     }
   end
 
+  # FIXME: Shouldn't we store extension and filename in the db?
   def extension
     self.try(:data).try(:file).try(:extension)
+  end
+  def filename
+    self.try(:data).try(:file).try(:filename)
   end
 
   searchable do
@@ -37,6 +41,9 @@ class Ckeditor::Asset < ActiveRecord::Base
     end
     string :tags, stored: true, multiple: true do
       tag_list
+    end
+    string :extension, stored: true do
+      extension.try(:downcase)
     end
     time :updated_at
   end

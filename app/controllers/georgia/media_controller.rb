@@ -6,14 +6,19 @@ module Georgia
     respond_to :js, only: :destroy
 
     def index
+      redirect_to action: :search
+    end
+
+    def search
       @asset = Ckeditor::Asset.new
       session[:search_params] = params
       @search = Ckeditor::Asset.search do
         fulltext params[:query] do
           fields(:filename, :tags)
         end
-        facet :tags#, extra: [:any, :none]
-        with(:tags).all_of(params[:tg]) unless params[:tg].blank?
+        facet :tags, :extension#, extra: [:any, :none]
+        with(:extension, params[:e]) unless params[:e].blank?
+        with(:tags).any_of(params[:tg]) unless params[:tg].blank?
         order_by (params[:o] || :updated_at), (params[:dir] || :desc)
         paginate(page: params[:page], per_page: (params[:per] || 20))
       end
