@@ -40,7 +40,7 @@ module Georgia
       end
 
       def bootstrap
-        rake "georgia:setup"
+        rake "georgia:install"
       end
 
     end
