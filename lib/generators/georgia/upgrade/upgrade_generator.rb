@@ -16,15 +16,13 @@ module Georgia
       end
 
       def create_migration
-        migration_template "change_georgia_content_excerpt_to_text.rb", "db/migrate/change_georgia_content_excerpt_to_text.rb"
+        migration_template "drop_georgia_statuses.rb", "db/migrate/drop_georgia_statuses.rb"
+        migration_template "add_uuid_to_georgia_pages.rb", "db/migrate/add_uuid_to_georgia_pages.rb"
+        migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
       end
 
       def migrate
         rake 'db:migrate'
-      end
-
-      def create_guest_role
-        rake 'georgia:upgrade'
       end
 
     end
