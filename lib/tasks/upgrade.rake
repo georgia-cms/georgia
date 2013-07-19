@@ -1,28 +1,21 @@
 namespace :georgia do
 
+  desc "Upgrade Georgia"
   task upgrade: :environment do
-    Rake::Task['georgia:roles:create_guest'].execute
-    Rake::Task['georgia:roles:unset_editor_from_admin'].execute
+    Rake::Task['georgia:migrate:statuses'].execute
   end
 
-  namespace :roles do
+  namespace :migrate do
 
-    task create_guest: :environment do
-      Georgia::Role.find_or_create_by_name('Guest')
-    end
+    desc "Move Georgia::Status to state_machine"
+    task statuses: :environment do
 
-    task unset_editor_from_admin: :environment do
-      admin_role = Georgia::Role.find_by_name('Admin')
-      editor_role = Georgia::Role.find_by_name('Editor')
-
-      Georgia::User.admins.find_each do |user|
-        # remove all editor role associations
-        user.roles.delete(editor_role)
-
-        # remove doubled associations
-        user.roles.delete(admin_role)
-        user.roles << admin_role
+      Georgia::Page.find_each do |page|
+        status = page.status.name.parameterize.underscore
+        page.state = status
+        page.save!
       end
+
     end
 
   end

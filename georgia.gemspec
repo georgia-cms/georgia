@@ -52,6 +52,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activerecord-postgres-hstore'
   s.add_dependency 'activerecord-postgres-uuid'
   s.add_dependency 'uuidtools'
+  s.add_dependency 'state_machine'
 
   s.add_development_dependency 'thin'
   s.add_development_dependency 'sqlite3'

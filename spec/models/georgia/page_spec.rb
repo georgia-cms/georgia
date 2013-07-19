@@ -16,6 +16,7 @@ describe Georgia::Page do
   it_behaves_like 'a statusable model'
   it_behaves_like 'a revisionable model'
   it_behaves_like 'a contentable model'
+  it_behaves_like 'a statable model'
   it_behaves_like 'a searchable model'
   it_behaves_like 'a taggable model'
   it_behaves_like 'a slugable model'

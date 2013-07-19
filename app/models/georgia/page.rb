@@ -4,6 +4,7 @@ module Georgia
     include Georgia::Concerns::Contentable
     include Georgia::Concerns::Statusable
     include Georgia::Concerns::Revisionable
+    include Georgia::Concerns::Statable
     include Georgia::Concerns::Slugable
     include Georgia::Concerns::Taggable
     include Georgia::Concerns::Templatable

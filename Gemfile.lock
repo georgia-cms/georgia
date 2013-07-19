@@ -35,9 +35,11 @@ PATH
       select2-rails
       shadowbox-rails
       simple_form
+      state_machine
       sunspot_rails
       sunspot_solr
       therubyracer
+      uuidtools
 
 PATH
   remote: ../henry
@@ -345,6 +347,7 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    state_machine (1.2.0)
     subexec (0.2.3)
     sunspot (2.0.0)
       pr_geohash (~> 1.0)

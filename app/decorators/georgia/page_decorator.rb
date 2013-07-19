@@ -10,8 +10,8 @@ module Georgia
     end
 
     def status_tag
-      h.content_tag(:span, class: "label label-#{status.try(:label)}") do
-        h.raw(h.icon_tag("icon-white #{status.try(:icon)}") + ' ' + status.try(:name))
+      h.content_tag(:span, class: "label label-#{human_state_name}") do
+        human_state_name
       end
     end
 
