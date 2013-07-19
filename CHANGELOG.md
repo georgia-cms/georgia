@@ -3,6 +3,9 @@
 - Add 'wait-and-spin' to menu saving button
 - Add clonable concern to create a clone of a specific Georgia::Page
 - Add uuid to Georgia::Page to links between revisions of the same page
+- Add frontable controller concern: show and preview of Georgia::Page based on request url
+- Add state_machine on Georgia::Page
+- Replace ActsAsRevisionable by full copies of a Georgia::Page and its associations on publishing/storing
 
 == 0.5.1
 
