@@ -5,6 +5,9 @@ describe Georgia::User do
 
   specify {FactoryGirl.build(:georgia_user).should be_valid}
 
+  let (:admin) { FactoryGirl.create(:admin) }
+  let (:editor) { FactoryGirl.create(:editor) }
+
   it {should allow_mass_assignment_of(:first_name)}
   it {should allow_mass_assignment_of(:last_name)}
   it {should allow_mass_assignment_of(:email)}
@@ -43,9 +46,6 @@ describe Georgia::User do
       Georgia::User.destroy_all
     end
 
-    let (:admin) { FactoryGirl.create(:admin) }
-    let (:editor) { FactoryGirl.create(:editor) }
-
     describe '.admins' do
       subject { Georgia::User.admins }
       it {should include admin}
@@ -56,6 +56,23 @@ describe Georgia::User do
       it {should include editor}
       it {should_not include admin}
     end
+  end
+
+  describe '.publish' do
+
+    before :each do
+      @page = FactoryGirl.create(:georgia_page)
+      admin.publish(@page)
+    end
+
+    it "marks a page as 'published'" do
+      expect(@page.published?).to be_true
+    end
+
+    it "marks a page as published by himself" do
+      expect(@page.published_by).to be admin
+    end
+
   end
 
 end

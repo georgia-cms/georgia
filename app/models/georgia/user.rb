@@ -15,5 +15,10 @@ module Georgia
     scope :admins, includes(:roles).where(georgia_roles: {name: 'Admin'})
     scope :editors, includes(:roles).where(georgia_roles: {name: 'Editor'})
 
+    def publish page
+      page.published_by = self
+      page.publish
+    end
+
   end
 end
