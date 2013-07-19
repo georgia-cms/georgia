@@ -22,10 +22,10 @@ module Georgia
             end
 
             fulltext params[:query] do
-              fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :status_name)
+              fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :state)
             end
-            facet :status_name, :template, :tag_list
-            with(:status_name, params[:s]) unless params[:s].blank?
+            facet :state, :template, :tag_list
+            with(:state, params[:s]) unless params[:s].blank?
             with(:template, params[:t]) unless params[:t].blank?
             with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
             order_by params[:o], (params[:dir] || :desc) unless params[:o].blank?

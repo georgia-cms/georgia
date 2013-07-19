@@ -30,14 +30,14 @@ module Georgia
               end
               text :url
               text :template
-              text :status_name
+              text :state
               string :type
               string :title
               string :excerpt
               string :text
               string :url
               string :template
-              string :status_name
+              string :state
               string :keywords, stored: true, multiple: true do
                 contents.map(&:keyword_list).flatten
               end
