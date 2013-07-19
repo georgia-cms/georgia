@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  mount Georgia::Engine => '/admin'
   mount Henry::Engine => '/api'
+  mount Georgia::Engine => '/admin'
 
+  get '*path', to: 'pages#show', as: :page
   resources :messages, only: [:create]
-
-  resources :pages do
-    get 'preview', on: :member, to: 'pages#preview'
-  end
   root to: 'pages#show', slug: 'home'
-
-  get '/*path', to: 'pages#show', as: :page
 
 end

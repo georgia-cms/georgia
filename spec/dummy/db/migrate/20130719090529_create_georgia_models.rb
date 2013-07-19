@@ -18,6 +18,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     create_table :georgia_messages do |t|
       t.string  :name
       t.string  :email
+      t.string  :phone
       t.string  :subject
       t.string  :attachment
       t.text    :message
@@ -29,6 +30,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string    :type
       t.string    :template, default: 'one-column'
       t.string    :slug
+      t.string    :url
       t.integer   :position
       t.integer   :parent_id
       t.integer   :revision_id
@@ -38,23 +40,26 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.integer   :status_id
       t.string    :ancestry
       t.datetime  :published_at
+      t.uuid      :uuid
+      t.string    :state
       t.timestamps
     end
+    add_index :georgia_pages, :url
     add_index :georgia_pages, :parent_id
     add_index :georgia_pages, :created_by_id
     add_index :georgia_pages, :updated_by_id
     add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :revision_id
-    add_index :georgia_pages, :status_id
     add_index :georgia_pages, :ancestry
+    add_index :georgia_pages, :uuid
+    add_index :georgia_pages, :state
 
     # Create Content
     create_table :georgia_contents do |t|
+      t.string :locale, null: false
       t.string :title
       t.text :text
-      t.string :excerpt
-      t.string :keywords
-      t.string :locale, null: false
+      t.text :excerpt
       t.references :contentable, polymorphic: true
       t.integer :image_id
       t.timestamps
@@ -154,8 +159,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :label
       t.string :icon
     end
-
-    ActsAsRevisionable::RevisionRecord.create_table
 
     create_table :tags do |t|
       t.string :name

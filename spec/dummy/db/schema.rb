@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508153518) do
+ActiveRecord::Schema.define(:version => 20130719090529) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -30,11 +30,10 @@ ActiveRecord::Schema.define(:version => 20130508153518) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "georgia_contents", :force => true do |t|
+    t.string   "locale",           :null => false
     t.string   "title"
     t.text     "text"
-    t.string   "excerpt"
-    t.string   "keywords"
-    t.string   "locale",           :null => false
+    t.text     "excerpt"
     t.integer  "contentable_id"
     t.string   "contentable_type"
     t.integer  "image_id"
@@ -63,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20130508153518) do
   create_table "georgia_messages", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "phone"
     t.string   "subject"
     t.string   "attachment"
     t.text     "message"
@@ -70,31 +70,8 @@ ActiveRecord::Schema.define(:version => 20130508153518) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "georgia_pages", :force => true do |t|
-    t.string   "type"
-    t.string   "template",        :default => "one-column"
-    t.string   "slug"
-    t.integer  "position"
-    t.integer  "parent_id"
-    t.integer  "revision_id"
-    t.integer  "created_by_id"
-    t.integer  "updated_by_id"
-    t.integer  "published_by_id"
-    t.integer  "status_id"
-    t.string   "ancestry"
-    t.datetime "published_at"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "url"
-  end
-
-  add_index "georgia_pages", ["ancestry"], :name => "index_georgia_pages_on_ancestry"
-  add_index "georgia_pages", ["created_by_id"], :name => "index_georgia_pages_on_created_by_id"
-  add_index "georgia_pages", ["parent_id"], :name => "index_georgia_pages_on_parent_id"
-  add_index "georgia_pages", ["published_by_id"], :name => "index_georgia_pages_on_published_by_id"
-  add_index "georgia_pages", ["revision_id"], :name => "index_georgia_pages_on_revision_id"
-  add_index "georgia_pages", ["status_id"], :name => "index_georgia_pages_on_status_id"
-  add_index "georgia_pages", ["updated_by_id"], :name => "index_georgia_pages_on_updated_by_id"
+# Could not dump table "georgia_pages" because of following StandardError
+#   Unknown type 'uuid' for column 'uuid'
 
   create_table "georgia_roles", :force => true do |t|
     t.string   "name"
@@ -158,18 +135,6 @@ ActiveRecord::Schema.define(:version => 20130508153518) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "revision_records", :force => true do |t|
-    t.string   "revisionable_type", :limit => 100,                    :null => false
-    t.integer  "revisionable_id",                                     :null => false
-    t.integer  "revision",                                            :null => false
-    t.binary   "data"
-    t.datetime "created_at",                                          :null => false
-    t.boolean  "trash",                            :default => false
-  end
-
-  add_index "revision_records", ["revisionable_id"], :name => "revision_records_id"
-  add_index "revision_records", ["revisionable_type", "created_at", "trash"], :name => "revision_records_type_and_created_at"
 
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id", :null => false
