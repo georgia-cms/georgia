@@ -8,8 +8,6 @@ module Georgia
       included do
         load_and_authorize_resource class: Georgia::Page
 
-        before_filter :prepare_menus
-
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
@@ -18,7 +16,8 @@ module Georgia
           if params[:preview] and can? :preview, Georgia::Page
             #TODO: Should display a message somewhere to advise that this is a preview version only seen by admins
           else
-            #@page = @page.reify  # Restore the latest published revision of the given page
+            # Restore the latest published revision of the given page
+            #@page = @page.reify
             not_found unless @page and @page.published?
           end
 
@@ -31,11 +30,6 @@ module Georgia
         # Use when provided url doesn't match any the Georgia::Pages
         def not_found
           raise ActionController::RoutingError.new('Not Found')
-        end
-
-        def prepare_menus
-          @main_menu = Georgia::Menu.find_by_name('Main', include: {links: :contents})
-          @footer_menu = Georgia::Menu.find_by_name('Footer', include: {links: :contents})
         end
       end
 
