@@ -20,7 +20,7 @@ Georgia::Engine.routes.draw do
       get "with_tag/:tag", to: "pages#find_by_tag"
     end
     member do
-      get :clone
+      get :copy
       get :ask_for_review
       get :publish
       get :unpublish

@@ -17,10 +17,10 @@ module Georgia
       link_to "#{icon_tag('icon-retweet')} Revert".html_safe, georgia.revert_version_path(revision), method: :post, class: 'btn'
     end
 
-    def link_to_clone(model, options={})
+    def link_to_copy(model, options={})
       return if model.nil? or model.new_record?
-      if can? :clone, model
-        link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name,id: model.id, action: :clone), options
+      if can? :copy, model
+        link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name,id: model.id, action: :copy), options
       end
     end
 
@@ -75,7 +75,7 @@ module Georgia
       html = ""
       html << content_tag('li', link_to_group_item_edit(model, options))
       html << content_tag('li', link_to_group_item_preview(model, options)) if options[:preview]
-      html << content_tag('li', link_to_group_item_clone(model, options)) if options[:clone]
+      html << content_tag('li', link_to_group_item_copy(model, options)) if options[:copy]
       html << content_tag('li', link_to_group_item_publish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_unpublish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_ask_for_review(model, options)) if options[:review]
@@ -83,8 +83,8 @@ module Georgia
       content_tag 'ul', html.html_safe, class: 'dropdown-menu pull-right'
     end
 
-    def link_to_group_item_clone(model, options={})
-      link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name, id: model.id, action: :clone) if can? :clone, model
+    def link_to_group_item_copy(model, options={})
+      link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name, id: model.id, action: :copy) if can? :copy, model
     end
 
     def link_to_group_item_preview(model, options={})

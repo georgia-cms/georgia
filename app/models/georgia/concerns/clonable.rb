@@ -7,19 +7,47 @@ module Georgia
 
       included do
 
+        def clone options={}
+          clone_with_associations(options)
+        end
+
+        def copy options={}
+          options[:copy] ||= true
+          copy = clone_with_associations(options)
+          copy.save!
+          copy
+        end
+
+        private
+
         # Clones a page and its associations (slides, widgets & contents)
         # Returns newly created clone
-        def clone_with_associations
-          new_clone = self.dup
+        def clone_with_associations options={}
+          raise 'Instance must be persisted to be cloned' if self.new_record?
 
-          # alter the slug to have an original url
-          new_clone.slug = self.slug + '-copy'
+          if options[:as]
+            new_clone = self.dup.becomes(options[:as])
+          else
+            new_clone = self.dup
+          end
+
+          if options[:copy]
+            # alter the slug to have an original url
+            new_clone.slug = self.slug + '-copy'
+          end
+
+          # clone tags
+          self.tags.each do |tag|
+            new_clone.tags << tag
+          end
 
           # clone contents
           self.contents.each do |content|
             new_content = content.dup
-            # alter the title to keep original title unique
-            new_content.title = "#{content.title} (Copy)"
+            if options[:copy]
+              # alter the title to keep original title unique
+              new_content.title = "#{content.title} (Copy)"
+            end
             new_content.save!
             new_clone.contents << new_content
           end
@@ -38,8 +66,6 @@ module Georgia
             new_slide.save!
             new_clone.slides << new_slide
           end
-
-          new_clone.save!
 
           new_clone
         end

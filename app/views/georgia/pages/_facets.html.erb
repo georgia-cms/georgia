@@ -1,8 +1,8 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
     <% if @search %>
-      <li class="nav-header">Status</li>
-      <% @search.facet(:status_name).rows.each do |facet| %>
+      <li class="nav-header">State</li>
+      <% @search.facet(:state).rows.each do |facet| %>
         <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :s} %>
       <% end -%>
       <li class="nav-header">Template</li>

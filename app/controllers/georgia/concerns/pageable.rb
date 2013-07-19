@@ -69,10 +69,10 @@ module Georgia
           end
         end
 
-        def clone
+        def copy
           @page = model.find(params[:id])
-          @clone = @page.clone_with_associations
-          redirect_to [:edit, @clone], notice: "Do not forget to change your url"
+          @copy = @page.copy
+          redirect_to [:edit, @copy], notice: "Do not forget to change your url"
         end
 
         def sort

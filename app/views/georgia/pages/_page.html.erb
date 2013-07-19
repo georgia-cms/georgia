@@ -1,4 +1,4 @@
-<tr class="page <%= page.status.try(:label) %>">
+<tr class="page <%= page.state %>">
   <td>
     <%= page.title %>
   </td>
@@ -15,6 +15,6 @@
     <%= page.status_tag %>
   </td>
   <td class="actions">
-    <%= link_to_group_edit page, publish: true, review: true, delete: true, clone: true, preview: true %>
+    <%= link_to_group_edit page, publish: true, review: true, delete: true, copy: true, preview: true %>
   </td>
 </tr>
