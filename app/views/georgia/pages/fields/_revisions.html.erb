@@ -1,1 +1,9 @@
-<h2 class="page-header">To be implemented.</h2>
+<fieldset>
+  <ul class="revisions-list">
+    <% revisions.each do |revision| %>
+      <li>
+        Created On: <%= revision.created_at %>
+      </li>
+    <% end -%>
+  </ul>
+</fieldset>

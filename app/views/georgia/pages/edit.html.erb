@@ -67,7 +67,7 @@
 					</div>
 
 					<div class='tab-pane' id='revisions'>
-						<%= render_partial_or_default 'fields/revisions', revisions: Georgia::PageDecorator.decorate(@page.revision_records) %>
+						<%= render_partial_or_default 'fields/revisions', revisions: @page.revisions %>
 					</div>
 
 					<div class="tab-pane" id="settings">
