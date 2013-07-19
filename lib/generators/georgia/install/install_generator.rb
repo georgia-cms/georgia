@@ -15,12 +15,12 @@ module Georgia
         * Creates initial instances"
 
       def mount_engine
-        route "root to: 'pages#show', slug: 'home'"
-        route "resources :messages, only: [:create]"
-        route "get '*path', to: 'pages#show', as: :page"
         route "mount Georgia::Engine => '/admin'"
         route "mount Henry::Engine => '/api'"
         route "mount Ckeditor::Engine => '/ckeditor'"
+        route "root to: 'pages#show', slug: 'home'"
+        route "resources :messages, only: [:create]"
+        route "get '*path', to: 'pages#show', as: :page"
       end
 
       def self.next_migration_number(dirname)
@@ -31,8 +31,9 @@ module Georgia
         migration_template "migration.rb", "db/migrate/create_georgia_models.rb"
       end
 
-      def copy_config
+      def copy_templates
         template "config/initializers/georgia.rb"
+        template "app/controllers/pages_controller.rb"
       end
 
       def migrate
