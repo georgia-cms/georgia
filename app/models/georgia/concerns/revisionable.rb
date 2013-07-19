@@ -6,11 +6,16 @@ module Georgia
       extend ActiveSupport::Concern
 
       included do
-        acts_as_revisionable associations: [:children, {contents: :image}, :keyword_list, {slides: {contents: :image}}, {ui_associations: :widgets}], dependent: :keep, on_destroy: true
-        belongs_to :current_revision, class_name: ActsAsRevisionable::RevisionRecord, foreign_key: :revision_id
+        has_many :revisions, foreign_key: :uuid, primary_key: :uuid
+
+        def store_as_revision
+          Georgia::Revision.store(self)
+        end
+
       end
 
       module ClassMethods
+
       end
     end
   end
