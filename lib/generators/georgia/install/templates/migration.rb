@@ -41,6 +41,7 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string    :ancestry
       t.datetime  :published_at
       t.uuid      :uuid
+      t.string    :state
       t.timestamps
     end
     add_index :georgia_pages, :url
@@ -158,8 +159,6 @@ class CreateGeorgiaModels < ActiveRecord::Migration
       t.string :label
       t.string :icon
     end
-
-    ActsAsRevisionable::RevisionRecord.create_table
 
     create_table :tags do |t|
       t.string :name
