@@ -11,8 +11,6 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
-  post "revisions/:id/revert" => "revisions#revert", :as => :revert_version
-
   resources :pages do
     collection do
       post :sort
@@ -21,6 +19,7 @@ Georgia::Engine.routes.draw do
     end
     member do
       get :copy
+      get :store
       get :ask_for_review
       get :publish
       get :unpublish
