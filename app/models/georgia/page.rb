@@ -3,14 +3,13 @@ module Georgia
 
     include Georgia::Concerns::Contentable
     include Georgia::Concerns::Statusable
-    include Georgia::Concerns::Revisionable
-    include Georgia::Concerns::Statable
-    include Georgia::Concerns::Slugable
     include Georgia::Concerns::Taggable
     include Georgia::Concerns::Templatable
     include Georgia::Concerns::Orderable
     include Georgia::Concerns::Indexable
     include Georgia::Concerns::Clonable
+    include Georgia::Concerns::Previewable
+    include Georgia::Concerns::Slugable
 
     acts_as_list scope: :parent #override orderable to include scope
 
@@ -32,14 +31,6 @@ module Georgia
     has_many :widgets, through: :ui_associations
 
     scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
-
-    before_create :assign_uuid
-
-    protected
-
-    def assign_uuid
-      self.uuid = UUIDTools::UUID.timestamp_create.to_s
-    end
 
   end
 end

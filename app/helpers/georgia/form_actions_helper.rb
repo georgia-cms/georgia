@@ -24,6 +24,13 @@ module Georgia
       end
     end
 
+    def link_to_store(model, options={})
+      return if model.nil? or model.new_record?
+      if can? :store, model
+        link_to "#{icon_tag('icon-download')} Store".html_safe, url_for(controller: controller_name,id: model.id, action: :store), options
+      end
+    end
+
     def link_to_publish(model, options={})
       return if model.nil? or model.new_record?
       if can? :publish, model
@@ -76,6 +83,7 @@ module Georgia
       html << content_tag('li', link_to_group_item_edit(model, options))
       html << content_tag('li', link_to_group_item_preview(model, options)) if options[:preview]
       html << content_tag('li', link_to_group_item_copy(model, options)) if options[:copy]
+      html << content_tag('li', link_to_group_item_store(model, options)) if options[:store]
       html << content_tag('li', link_to_group_item_publish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_unpublish(model, options)) if options[:publish]
       html << content_tag('li', link_to_group_item_ask_for_review(model, options)) if options[:review]
@@ -85,6 +93,10 @@ module Georgia
 
     def link_to_group_item_copy(model, options={})
       link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name, id: model.id, action: :copy) if can? :copy, model
+    end
+
+    def link_to_group_item_store(model, options={})
+      link_to "#{icon_tag('icon-download')} Store".html_safe, url_for(controller: controller_name, id: model.id, action: :store) if can? :store, model
     end
 
     def link_to_group_item_preview(model, options={})

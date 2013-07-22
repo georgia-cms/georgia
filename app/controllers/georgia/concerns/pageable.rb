@@ -71,6 +71,12 @@ module Georgia
           redirect_to [:edit, @copy], notice: "Do not forget to change your url"
         end
 
+        def store
+          @page = model.find(params[:id])
+          @page.store_as_revision
+          redirect_to [:edit, @page], notice: "Successfully stored a new revision"
+        end
+
         def sort
           if params[:page]
             params[:page].each_with_index do |id, index|

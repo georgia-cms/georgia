@@ -9,16 +9,10 @@ module Georgia
 
         attr_accessible :slug, :url
 
-        validates :slug,
-          format:     {with: /^[a-zA-Z0-9_-]+$/,  message: 'can only consist of letters, numbers, dash (-) and underscore (_)'},
-          uniqueness: {scope: :ancestry, message: 'has already been taken'}
+        validates :slug, format: {with: /^[a-zA-Z0-9_-]+$/,  message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}
 
         before_validation :sanitize_slug
         after_save :update_url
-
-        def preview_url
-          @preview_url = "#{self.url}?preview=1"
-        end
 
         # Must stay public for #update_url on descendants
         def set_url

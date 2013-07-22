@@ -16,8 +16,9 @@ module Georgia
     scope :editors, includes(:roles).where(georgia_roles: {name: 'Editor'})
 
     def publish page
-      page.published_by = self
+      page.update_attribute(:published_by, self)
       page.publish
+      page.save!
     end
 
   end

@@ -8,10 +8,7 @@ module Georgia
 
       def publish
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        @page.store_revision do
-          @page.publish current_user
-          @page.save!
-        end
+        current_user.publish @page
         message = "#{current_user.decorate.name} has successfully published #{@page.title} #{instance_name}."
         notify(message)
         redirect_to :back, notice: message
@@ -19,7 +16,7 @@ module Georgia
 
       def unpublish
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        @page.unpublish
+        @page.draft
         if @page.save
           message = "#{current_user.decorate.name} has successfully unpublished #{@page.title} #{instance_name}."
           notify(message)

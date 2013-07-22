@@ -14,7 +14,10 @@
   <td class="labels">
     <%= page.status_tag %>
   </td>
+  <td>
+    <%= page.revisions.count %>
+  </td>
   <td class="actions">
-    <%= link_to_group_edit page, publish: true, review: true, delete: true, copy: true, preview: true %>
+    <%= link_to_group_edit page, publish: true, review: true, delete: true, copy: true, preview: true, store: true %>
   </td>
 </tr>

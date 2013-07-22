@@ -17,7 +17,7 @@ module Georgia
     end
 
     def parent_page_collection
-      Georgia::Page.scoped.decorate.sort_by(&:title).map{|p| [p.title, p.id]}
+      Georgia::MetaPage.scoped.sort_by(&:title).map{|p| [p.title, p.id]}
     end
 
     def facets_inputs facets=[]

@@ -13,9 +13,7 @@ describe Georgia::Page do
   it {should allow_value('sidebar-left').for(:template)}
   it {should allow_value('sidebar-right').for(:template)}
 
-  it_behaves_like 'a revisionable model'
   it_behaves_like 'a contentable model'
-  it_behaves_like 'a statable model'
   it_behaves_like 'a searchable model'
   it_behaves_like 'a taggable model'
   it_behaves_like 'a slugable model'
@@ -29,13 +27,6 @@ describe Georgia::Page do
         @page = FactoryGirl.create(:georgia_page)
         expect(Georgia::Page.not_self(@page)).not_to include @page
       end
-    end
-  end
-
-  describe 'uuid' do
-    it 'creates a new uuid for each newly created page' do
-      @page = FactoryGirl.create(:georgia_page)
-      expect(@page.uuid).to match /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
     end
   end
 

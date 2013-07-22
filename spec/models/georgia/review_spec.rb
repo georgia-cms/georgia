@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Georgia::Revision do
+describe Georgia::Review do
 
   it { should belong_to :meta_page }
 

@@ -17,7 +17,7 @@ shared_examples "a clonable model" do
     it 'duplicates contents' do
       instance.contents << FactoryGirl.create(:georgia_content)
       @clone = instance.clone
-      expect(@clone.contents.length).to be 1
+      @clone.should have(1).contents
       expect(@clone.contents.first.title).to eql instance.contents.first.title
     end
 
@@ -25,14 +25,14 @@ shared_examples "a clonable model" do
       instance.ui_associations << FactoryGirl.create(:georgia_ui_association)
       instance.ui_associations << FactoryGirl.create(:georgia_ui_association)
       @clone = instance.clone
-      expect(@clone.ui_associations.length).to be 2
+      @clone.should have(2).ui_associations
     end
 
     it 'duplicates slides & its contents' do
       instance.slides << FactoryGirl.create(:georgia_slide, contents: [FactoryGirl.create(:georgia_content, title: 'Yeehaw')])
       instance.slides << FactoryGirl.create(:georgia_slide)
       @clone = instance.clone
-      expect(@clone.slides.length).to be 2
+      @clone.should have(2).slides
       expect(@clone.slides.first.contents.first.title).to eql 'Yeehaw'
     end
 

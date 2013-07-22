@@ -11,7 +11,7 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
-  resources :pages do
+  resources :meta_pages, path: 'pages' do
     collection do
       post :sort
       get :search
@@ -39,6 +39,6 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
-  root to: 'pages#search'
+  root to: 'meta_pages#search'
 
 end

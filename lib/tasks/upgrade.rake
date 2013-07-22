@@ -7,13 +7,19 @@ namespace :georgia do
 
   namespace :migrate do
 
-    desc "Move Georgia::Status to state_machine"
+    desc "Move Georgia::Status to OO Page"
     task statuses: :environment do
 
-      Georgia::Page.find_each do |page|
-        status = page.status.name.parameterize.underscore
-        page.state = status
-        page.save!
+      Georgia::Page.published.each do |page|
+        draft = page.clone(as: Georgia::Draft)
+        draft.save
+        page.type = 'Georgia::PublishedPage'
+        page.save(validate: false)
+      end
+      
+      Georgia::Page.draft.each do |page|
+        page.type = 'Georgia::Draft'
+        page.save(validate: false)
       end
 
     end

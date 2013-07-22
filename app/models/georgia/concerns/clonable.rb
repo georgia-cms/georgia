@@ -25,11 +25,7 @@ module Georgia
         def clone_with_associations options={}
           raise 'Instance must be persisted to be cloned' if self.new_record?
 
-          if options[:as]
-            new_clone = self.dup.becomes(options[:as])
-          else
-            new_clone = self.dup
-          end
+          new_clone = self.dup
 
           if options[:copy]
             # alter the slug to have an original url
@@ -65,6 +61,11 @@ module Georgia
             new_slide.contents = slide.contents.dup
             new_slide.save!
             new_clone.slides << new_slide
+          end
+          
+          if options[:as]
+            new_clone.type = options[:as].to_s
+            new_clone.becomes(options[:as])
           end
 
           new_clone

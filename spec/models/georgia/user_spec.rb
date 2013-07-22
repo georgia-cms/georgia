@@ -61,16 +61,17 @@ describe Georgia::User do
   describe '.publish' do
 
     before :each do
-      @page = FactoryGirl.create(:georgia_page)
-      admin.publish(@page)
-    end
-
-    it "marks a page as 'published'" do
-      expect(@page.published?).to be_true
+      @page = FactoryGirl.create(:georgia_meta_page)
     end
 
     it "marks a page as published by himself" do
-      expect(@page.published_by).to be admin
+      admin.publish(@page)
+      expect(@page.published_by).to eql(admin)
+    end
+
+    it "call .publish on page" do
+      @page.should_receive :publish
+      admin.publish(@page)
     end
 
   end
