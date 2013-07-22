@@ -62,11 +62,7 @@ module Georgia
           @page = model.find(params[:id])
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
-          unless (request.referer == page_url(@page)) or (request.referer == edit_page_url(@page))
-            redirect_to :back, notice: @message
-          else
-            redirect_to @page, notice: @message
-          end
+          redirect_to [:search, model], notice: @message
         end
 
         def copy
