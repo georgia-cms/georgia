@@ -11,11 +11,24 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
+  scope '/pages' do
+    resources :drafts do
+      collection do
+        get :search
+      end
+    end
+    resources :reviews do
+      collection do
+        get :search
+      end
+    end
+  end
+
   resources :meta_pages, path: 'pages' do
     collection do
       post :sort
       get :search
-      get "with_tag/:tag", to: "pages#find_by_tag"
+      get "with_tag/:tag", to: "meta_pages#find_by_tag"
     end
     member do
       get :copy

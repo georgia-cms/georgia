@@ -5,7 +5,6 @@ shared_examples "a revisionable model" do
   let(:instance) { FactoryGirl.create(model_name) }
 
   it { should respond_to :store_as_revision }
-  it { should respond_to :store_as_review }
   it { should respond_to :store_as_draft }
 
   it { should have_one :published_page }
@@ -34,12 +33,6 @@ shared_examples "a revisionable model" do
         instance.draft
         expect(instance.state?(:draft)).to be_true
       end
-
-    end
-
-    describe 'ask_for_review' do
-
-      it { should respond_to :ask_for_review }
 
     end
 

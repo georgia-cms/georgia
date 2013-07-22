@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
 
   config.include AuthenticationHelpers
+  config.include FactoryGirl::Syntax::Methods
 end
 
 SimpleCov.start 'rails' do

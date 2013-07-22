@@ -28,12 +28,9 @@ module Georgia
             transition all => :draft
           end
 
-          event :ask_for_review
-
         end
 
         alias_method :unpublish, :draft
-        alias_method :wait_for_review, :ask_for_review
 
         def status_name
           warn "[DEPRECATION] `status_name` is deprecated.  Please use `human_state_name` instead."
@@ -42,10 +39,6 @@ module Georgia
 
         def store_as_revision
           Georgia::Revision.store(self)
-        end
-
-        def store_as_review
-          Georgia::Review.store(self)
         end
 
         def store_as_draft
