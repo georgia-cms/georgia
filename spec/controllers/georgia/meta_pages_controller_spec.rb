@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Georgia::PagesController do
+describe Georgia::MetaPagesController do
   include Devise::TestHelpers
 
   before :all do
-    @page = FactoryGirl.create :georgia_page
+    @page = create :georgia_meta_page
   end
 
   before :each do
     controller.class.skip_before_filter :authenticate_user!
-    controller.stub current_user: FactoryGirl.create(:admin)
+    controller.stub current_user: create(:admin)
   end
 
   describe "GET search" do
