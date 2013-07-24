@@ -4,7 +4,13 @@
 @import "select2";
 @import "shadowbox";
 @import "mousetrap";
-@import "variables";
+
+@import "settings/*";
+@import "components/*";
+@import "modules/*";
+@import "overrides/*";
+
+// To be moved following SMACSS principles
 @import "layout";
 @import "header";
 @import "pages";
@@ -19,7 +25,3 @@
 @import "jquery.fileupload-ui";
 @import "pagination";
 @import "autocomplete";
-
-@import "components/*";
-@import "modules/*";
-@import "overrides/*";
