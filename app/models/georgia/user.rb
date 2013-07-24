@@ -21,5 +21,13 @@ module Georgia
       page.save!
     end
 
+    def name
+      [first_name, last_name].join(' ')
+    end
+
+    def roles_names
+      roles.map(&:name).join(', ')
+    end
+
   end
 end
