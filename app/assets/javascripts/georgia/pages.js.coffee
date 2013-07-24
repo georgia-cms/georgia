@@ -21,3 +21,7 @@ jQuery ->
     $(slug).attr('disabled', false)
     $(slug).val($(slug).data('slug'))
     $(slug).focus()
+
+  $('.js-toggle-revisions').click (event) ->
+    id = $(this).data('page-id')
+    $("[data-page-id=#{id}]").not($(this)).toggle()

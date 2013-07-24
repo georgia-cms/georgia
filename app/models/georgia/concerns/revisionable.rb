@@ -37,14 +37,6 @@ module Georgia
           human_state_name
         end
 
-        def store_as_revision
-          Georgia::Revision.store(self)
-        end
-
-        def store_as_draft
-          Georgia::Draft.store(self)
-        end
-
       end
 
       module ClassMethods
@@ -57,11 +49,6 @@ module Georgia
         def draft
           warn "[DEPRECATION] `draft` is deprecated.  Please use `with_states(:draft)` instead."
           with_states(:draft)
-        end
-
-        def pending_review
-          warn "[DEPRECATION] `pending_review` is deprecated.  Please use `with_states(:pending_review)` instead."
-          with_states(:pending_review)
         end
 
       end

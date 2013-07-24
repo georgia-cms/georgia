@@ -1,4 +1,4 @@
-<tr class="page <%= page.state %>">
+<tr class="page state-<%= page.state %> js-toggle-revisions" data-page-id="<%= page.id %>">
   <td>
     <%= page.title %>
   </td>
@@ -18,6 +18,46 @@
     <%= page.revisions.count %>
   </td>
   <td class="actions">
-    <%= link_to_group_edit page, publish: true, review: true, delete: true, copy: true, preview: true, store: true %>
+    <%= link_to_group_details page, publish: true, delete: true, copy: true, preview: true %>
+  </td>
+</tr>
+
+<% if page.reviews.any? %>
+  <% page.reviews.each do |review| %>
+    <tr class='hide review' data-page-id="<%= page.id %>">
+      <td>
+        <%= icon_tag 'icon-long-arrow-right' %>
+        <span class="label label-warning">In Review</span>
+      </td>
+      <td colspan='5'>
+        Last updated <%= review.updated_at.strftime('%F - %H:%M') %> by <%= review.created_by.name %>
+      </td>
+      <td class='actions'>
+        <%= link_to_group_edit review, publish: true, delete: true, preview: true %>
+      </td>
+    </tr>
+  <% end -%>
+<% end -%>
+
+<% if page.drafts.any? %>
+  <% page.drafts.each do |draft| %>
+    <tr class='hide draft' data-page-id="<%= page.id %>">
+      <td>
+        <%= icon_tag 'icon-long-arrow-right' %>
+        <span class="label label-info">Draft</span>
+      </td>
+      <td colspan='5'>
+        Last updated <%= draft.updated_at.strftime('%F - %H:%M') %> by <%= draft.created_by.name %>
+      </td>
+      <td class='actions'>
+        <%= link_to_group_edit draft, review: true, delete: true, copy: true, preview: true %>
+      </td>
+    </tr>
+  <% end -%>
+<% end -%>
+
+<tr class='hide' data-page-id="<%= page.id %>">
+  <td colspan='7'>
+    <%= icon_tag 'icon-long-arrow-right' %> <%= link_to_draft page %>
   </td>
 </tr>

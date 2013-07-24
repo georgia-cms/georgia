@@ -9,14 +9,26 @@ module Georgia
       end
     end
 
-    def status_tag
-      h.content_tag(:span, class: "label label-#{human_state_name}") do
-        human_state_name
+    def status_tag(options={})
+      options[:class] ||= ''
+      options[:class] << ' label'
+      if model.is_a? Georgia::MetaPage
+        options[:class] << " label-#{human_state_name}"
+        h.content_tag(:span, human_state_name, options)
+      else
+        options[:class] << " label-#{non_namespaced_class_name}"
+        h.content_tag(:span, non_namespaced_class_name, options)
       end
     end
 
     def template_path
       "pages/templates/#{model.template}"
+    end
+
+    private
+
+    def non_namespaced_class_name
+      @non_namespaced_class_name ||= model.class.to_s.underscore.gsub(/.*\/(.*)/, '\1')
     end
 
   end

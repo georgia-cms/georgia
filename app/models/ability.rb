@@ -12,7 +12,7 @@ class Ability
       can :manage, :all
       cannot :manage, Georgia::User
     else # or if user is Guest
-      can [:read, :edit, :update, :search, :ask_for_review], :all
+      can [:read, :edit, :update, :search, :draft, :review], :all
       cannot :manage, Georgia::User
     end
   end

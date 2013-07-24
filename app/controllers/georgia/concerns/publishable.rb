@@ -9,7 +9,7 @@ module Georgia
       def publish
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
         current_user.publish @page
-        message = "#{current_user.decorate.name} has successfully published #{@page.title} #{instance_name}."
+        message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
         notify(message)
         redirect_to :back, notice: message
       end
@@ -18,7 +18,7 @@ module Georgia
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
         @page.draft
         if @page.save
-          message = "#{current_user.decorate.name} has successfully unpublished #{@page.title} #{instance_name}."
+          message = "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
           notify(message)
           redirect_to :back, notice: message
         else
@@ -26,16 +26,29 @@ module Georgia
         end
       end
 
-      def ask_for_review
+      def draft
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        @page.wait_for_review
-        if @page.save
-          message = "#{current_user.decorate.name} is asking you to review #{@page.title} #{instance_name}."
+        @draft = @page.store_as_draft
+        @draft.update_attribute(:created_by, current_user)
+        redirect_to georgia.edit_draft_path(@draft), notice: "You successfully started a new draft of #{@draft.title}. Ask for review when completed."
+      end
+
+      def review
+        @page = model.find(params[:id])
+        if @page.wait_for_review
+          @page.update_attribute(:updated_by, current_user)
+          message = "#{current_user.name} is asking you to review #{@page.title} #{instance_name}."
           notify(message)
-          redirect_to :back, notice: message
+          redirect_to :search, notice: message
         else
           render :edit
         end
+      end
+
+      def store
+        @page = model.find(params[:id])
+        @page.store_as_revision
+        redirect_to [:edit, @page], notice: "Successfully stored a new revision"
       end
 
       private

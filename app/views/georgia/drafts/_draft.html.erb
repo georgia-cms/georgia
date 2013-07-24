@@ -1,0 +1,17 @@
+<tr class="page state-<%= page.state %>">
+  <td>
+    <%= page.title %>
+  </td>
+  <td>
+    <%= page.template %>
+  </td>
+  <td>
+    <%= page.url %>
+  </td>
+  <td>
+    <%= page.tag_list %>
+  </td>
+  <td class="actions">
+    <%= link_to_group_edit page, review: true, delete: true, copy: true, preview: true %>
+  </td>
+</tr>

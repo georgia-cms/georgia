@@ -14,7 +14,15 @@ Georgia::Engine.routes.draw do
   scope '/pages' do
     resources :drafts do
       collection do
+        post :sort
         get :search
+        get "with_tag/:tag", to: "meta_pages#find_by_tag"
+      end
+      member do
+        get :copy
+        get :draft
+        get :review
+        get :publish
       end
     end
     resources :reviews do
@@ -33,7 +41,8 @@ Georgia::Engine.routes.draw do
     member do
       get :copy
       get :store
-      get :ask_for_review
+      get :draft
+      get :review
       get :publish
       get :unpublish
     end

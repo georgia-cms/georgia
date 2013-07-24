@@ -9,8 +9,9 @@
         <i class='icon-ok'>&nbsp;</i> Save
       </button>
       <%= link_to "Visit #{icon_tag 'icon-long-arrow-right'}".html_safe, @page.url, class: 'btn btn-info', target: '_blank' %>
-      <%= link_to "#{icon_tag 'icon-remove'} Cancel".html_safe, :back, class: 'btn' %>
+      <%= link_to "#{icon_tag 'icon-reply'} Back".html_safe, :back, class: 'btn' %>
     </div>
+    <%= @page.status_tag(class: 'label-big') %>
     Editing '<%= @page.title %>'
   </h1>
   <div id='edit_page_panel'>
@@ -31,17 +32,12 @@
             <li><a href="#slideshow" data-toggle="tab"><%= icon_tag('icon-picture') %> Slideshow</a></li>
             <li><a href="#widgets" data-toggle="tab"><%= icon_tag('icon-briefcase') %> Widgets</a></li>
             <li><a href="#settings" data-toggle="tab"><%= icon_tag('icon-cogs') %> Settings</a></li>
-            <li class="nav-header">Revisioning</li>
-            <li><a href="#drafts" data-toggle="tab"><%= icon_tag('icon-tags') %> Drafts <span class='badge badge-info pull-right'><%= @page.drafts.count %></span></a></li>
-            <li><a href="#reviews" data-toggle="tab"><%= icon_tag('icon-tags') %> Reviews <span class='badge badge-info pull-right'><%= @page.reviews.count %></span></a></li>
-            <li><a href="#revisions" data-toggle="tab"><%= icon_tag('icon-tags') %> Revisions <span class='badge badge-info pull-right'><%= @page.revisions.count %></span></a></li>
+
             <% unless @page.new_record? %>
               <li class="nav-header">Actions</li>
               <li><%= link_to_copy @page %></li>
-              <li><%= link_to_store @page %></li>
               <li><%= link_to_preview @page %></li>
               <li><%= link_to_publish @page %></li>
-              <li><%= link_to_unpublish @page %></li>
               <li><%= link_to_review @page %></li>
               <li><%= link_to_delete @page %></li>
             <% end -%>
@@ -68,10 +64,6 @@
           <div class='tab-pane' id='widgets' data-locales='<%= I18n.available_locales.join(',') %>'>
             <!-- Backbone Widgets Panel -->
             <i class="icon-spinner icon-spin icon-2x pull-left"></i> Loading ...
-          </div>
-
-          <div class='tab-pane' id='revisions'>
-            <%= render_partial_or_default 'fields/revisions', revisions: @page.revisions %>
           </div>
 
           <div class="tab-pane" id="settings">
