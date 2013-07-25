@@ -26,7 +26,8 @@
           <% @page.drafts.find_each do |draft| %>
             <h5>
               <%= link_to 'edit', [:edit, draft], class: 'pull-right' %>
-              <%= draft.title %> - <small>updated <%= time_ago_in_words draft.updated_at %></small>
+              <span class="muted">#<%= draft.id %></span>
+              <%= draft.title %> - <small>updated <%= time_ago_in_words draft.updated_at %> ago</small>
             </h5>
           <% end -%>
         </ul>
@@ -38,8 +39,9 @@
         <h3>In Review</h3>
           <% @page.reviews.find_each do |review| %>
             <h5>
-              <%= link_to 'show', review, class: 'pull-right' %>
-              <%= review.title %> - <small>updated <%= time_ago_in_words review.updated_at %></small>
+              <%= link_to 'edit', [:edit, review], class: 'pull-right' %>
+              <span class="muted">#<%= review.id %></span>
+              <%= review.title %> - <small>updated <%= time_ago_in_words review.updated_at %> ago</small>
             </h5>
           <% end -%>
       </div>
@@ -49,8 +51,9 @@
         <h3>Revisions</h3>
           <% @page.revisions.find_each do |revision| %>
             <h5>
-              <%= link_to 'show', revision, class: 'pull-right' %>
-              <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %></small>
+              <%= link_to 'preview', revision.preview_url, class: 'pull-right' %>
+              <span class="muted">#<%= revision.id %></span>
+              <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
             </h5>
           <% end -%>
       </div>
