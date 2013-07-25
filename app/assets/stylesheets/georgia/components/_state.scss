@@ -1,11 +1,11 @@
 tr.state-draft td:first-child {
-  border-left: 4px solid $blue;
+  border-left: 8px solid $blue;
 }
 
 tr.state-review td:first-child {
-  border-left: 4px solid $yellow;
+  border-left: 8px solid $yellow;
 }
 
 tr.state-published td:first-child {
-  border-left: 4px solid $green;
+  border-left: 8px solid $green;
 }
