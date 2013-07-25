@@ -6,6 +6,6 @@ module Georgia
     has_many :widgets, through: :ui_associations
     has_many :pages, through: :ui_associations
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
   end
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Georgia::Widget do
 
-  specify { FactoryGirl.build(:georgia_widget).should be_valid }
+  specify { build(:georgia_widget).should be_valid }
 
   it { should have_many(:ui_associations) }
   it { should have_many(:ui_sections) }
@@ -13,16 +13,17 @@ describe Georgia::Widget do
   describe 'scopes' do
 
     before :all do
-      @footer_widget = FactoryGirl.create(:georgia_widget)
-      @sidebar_widget = FactoryGirl.create(:georgia_widget)
-      @submenu_widget = FactoryGirl.create(:georgia_widget)
-      FactoryGirl.create(:georgia_ui_association, widget: @footer_widget, ui_section: FactoryGirl.create(:georgia_ui_section, name: 'Footer'))
-      FactoryGirl.create(:georgia_ui_association, widget: @sidebar_widget, ui_section: FactoryGirl.create(:georgia_ui_section, name: 'Sidebar'))
-      FactoryGirl.create(:georgia_ui_association, widget: @submenu_widget, ui_section: FactoryGirl.create(:georgia_ui_section, name: 'Submenu'))
+      @footer_widget = create(:georgia_widget)
+      @sidebar_widget = create(:georgia_widget)
+      @submenu_widget = create(:georgia_widget)
+      create(:georgia_ui_association, widget: @footer_widget, ui_section: create(:georgia_ui_section, name: 'Footer'))
+      create(:georgia_ui_association, widget: @sidebar_widget, ui_section: create(:georgia_ui_section, name: 'Sidebar'))
+      create(:georgia_ui_association, widget: @submenu_widget, ui_section: create(:georgia_ui_section, name: 'Submenu'))
     end
 
     after :all do
       Georgia::Page.destroy_all
+      Georgia::UiSection.destroy_all
     end
 
     describe '.footer' do
@@ -48,8 +49,8 @@ describe Georgia::Widget do
 
     describe '.for_page' do
       it 'returns widgets for a given page' do
-        page = FactoryGirl.create(:georgia_page)
-        FactoryGirl.create(:georgia_ui_association, widget: @footer_widget, page: page)
+        page = create(:georgia_page)
+        create(:georgia_ui_association, widget: @footer_widget, page: page)
         expect(Georgia::Widget.for_page(page)).to include @footer_widget
       end
     end
