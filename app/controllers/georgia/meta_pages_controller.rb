@@ -7,8 +7,9 @@ module Georgia
     include Georgia::Concerns::Publishable
     include Georgia::Concerns::Searchable
 
-    def show
-      @page = Georgia::PageDecorator.decorate(Georgia::MetaPage.find(params[:id]))
+    def details
+      @publisher = Georgia::Publisher.new(params[:id])
+      @page = Georgia::PageDecorator.decorate(@publisher.meta_page)
     end
 
   end

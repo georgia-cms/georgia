@@ -5,8 +5,9 @@ module Georgia
 
     delegate :published?, :draft?, to: :meta_page, allow_nil: :true
 
-    def initialize uuid
+    def initialize uuid, options={}
       @uuid = uuid
+      @user = options.fetch(:user, Georgia::User.new)
     end
 
     def publish page

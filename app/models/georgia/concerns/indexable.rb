@@ -51,7 +51,7 @@ module Georgia
         end
 
         searchable do
-          instance_eval &Georgia::Page.indexable_fields
+          instance_eval &self.indexable_fields
         end
 
       end

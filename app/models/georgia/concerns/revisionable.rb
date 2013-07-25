@@ -43,6 +43,8 @@ module Georgia
           human_state_name
         end
 
+        delegate :drafts, :reviews, :revisions, to: :publisher
+
         def publisher
           @publisher ||= Georgia::Publisher.new(self.uuid)
         end

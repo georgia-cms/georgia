@@ -74,7 +74,7 @@ module Georgia
       instance = (model.decorated? ? model.object : model)
       if can? :show, instance
         content_tag 'div', class: 'btn-group' do
-          link_to_group_button(instance) + link_to_group_list(instance, options)
+          link_to_group_button(instance, action: :details) + link_to_group_list(instance, options)
         end
       end
     end
