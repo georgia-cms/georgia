@@ -15,20 +15,6 @@ module Georgia
     scope :admins, includes(:roles).where(georgia_roles: {name: 'Admin'})
     scope :editors, includes(:roles).where(georgia_roles: {name: 'Editor'})
 
-    def publish page
-      page.update_attribute(:published_by, self)
-      page.publish
-      page.save!
-    end
-
-    def approve review
-      page = review.becomes(Georgia::MetaPage)
-      page.publish
-      page.update_attribute(:published_by, self)
-      page.save!
-      page
-    end
-
     def name
       [first_name, last_name].join(' ')
     end

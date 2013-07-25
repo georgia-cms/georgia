@@ -7,7 +7,9 @@ module Georgia
       include Helpers
 
       included do
+
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
+        before_filter :prepare_publisher, only: [:show, :edit, :update, :destroy, :copy]
 
         rescue_from 'ActionView::MissingTemplate' do |exception|
           render_default_template(exception.path)
@@ -20,13 +22,10 @@ module Georgia
         end
 
         def show
-          @page = model.find(params[:id])
           redirect_to [:edit, @page]
         end
 
         def edit
-          @page = model.find(params[:id], include: :contents)
-          @page = Georgia::PageDecorator.decorate(@page)
           build_associations
         end
 
@@ -38,8 +37,6 @@ module Georgia
         end
 
         def update
-          @page = model.find(params[:id])
-          @page = decorate(@page)
           @page.update_attributes(params[:page])
 
           if @page.valid?
@@ -59,14 +56,12 @@ module Georgia
         end
 
         def destroy
-          @page = model.find(params[:id])
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
           redirect_to [:search, model], notice: @message
         end
 
         def copy
-          @page = model.find(params[:id])
           @copy = @page.copy
           redirect_to [:edit, @copy], notice: "Do not forget to change your url"
         end
@@ -105,9 +100,16 @@ module Georgia
           render "georgia/pages/#{path}"
         end
 
+        def prepare_publisher
+          @page = model.find(params[:id], include: :contents)
+          @page = decorate(@page)
+          @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
+        end
+
         def decorate page
           Georgia::PageDecorator.decorate(page)
         end
+
       end
 
     end

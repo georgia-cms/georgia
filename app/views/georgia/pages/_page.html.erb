@@ -14,22 +14,34 @@
   <td class="labels">
     <%= page.status_tag %>
   </td>
-  <td>
-    <%= page.revisions.count %>
+  <td class="labels">
+    <span class="badge badge-info">
+      <%= page.publisher.drafts.count %>
+    </span>
+  </td>
+  <td class="labels">
+    <span class="badge badge-info">
+      <%= page.publisher.reviews.count %>
+    </span>
+  </td>
+  <td class="labels">
+    <span class="badge badge-info">
+      <%= page.publisher.revisions.count %>
+    </span>
   </td>
   <td class="actions">
     <%= link_to_group_details page, publish: true, delete: true, copy: true, preview: true %>
   </td>
 </tr>
 
-<% if page.reviews.any? %>
-  <% page.reviews.each do |review| %>
+<% if page.publisher.reviews.any? %>
+  <% page.publisher.reviews.each do |review| %>
     <tr class='hide review' data-page-id="<%= page.id %>">
       <td>
         <%= icon_tag 'icon-long-arrow-right' %>
         <span class="label label-warning">In Review</span>
       </td>
-      <td colspan='5'>
+      <td colspan='7'>
         Last updated <%= review.updated_at.strftime('%F - %H:%M') %> by <%= review.created_by.name %>
       </td>
       <td class='actions'>
@@ -39,14 +51,14 @@
   <% end -%>
 <% end -%>
 
-<% if page.drafts.any? %>
-  <% page.drafts.each do |draft| %>
+<% if page.publisher.drafts.any? %>
+  <% page.publisher.drafts.each do |draft| %>
     <tr class='hide draft' data-page-id="<%= page.id %>">
       <td>
         <%= icon_tag 'icon-long-arrow-right' %>
         <span class="label label-info">Draft</span>
       </td>
-      <td colspan='5'>
+      <td colspan='7'>
         Last updated <%= draft.updated_at.strftime('%F - %H:%M') %> by <%= draft.created_by.name %>
       </td>
       <td class='actions'>
@@ -57,7 +69,7 @@
 <% end -%>
 
 <tr class='hide' data-page-id="<%= page.id %>">
-  <td colspan='7'>
+  <td colspan='9'>
     <%= icon_tag 'icon-long-arrow-right' %> <%= link_to_draft page %>
   </td>
 </tr>

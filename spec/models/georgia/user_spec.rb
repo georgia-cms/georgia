@@ -58,40 +58,4 @@ describe Georgia::User do
     end
   end
 
-  describe '.publish' do
-
-    before :each do
-      @page = create(:georgia_meta_page)
-    end
-
-    it "marks a page as published by himself" do
-      admin.publish(@page)
-      expect(@page.published_by).to eql(admin)
-    end
-
-    it "call .publish on page" do
-      @page.should_receive :publish
-      admin.publish(@page)
-    end
-
-  end
-
-  describe '.approve' do
-
-    before :each do
-      @page = create(:georgia_review)
-    end
-
-    it "marks a page as published by himself" do
-      admin.approve(@page)
-      expect(@page.published_by).to eql(admin)
-    end
-
-    it "call .publish on review" do
-      @page.should_receive :publish
-      admin.approve(@page)
-    end
-
-  end
-
 end

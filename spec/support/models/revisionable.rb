@@ -4,24 +4,7 @@ shared_examples "a revisionable model" do
   let(:model_name) { described_class.name.underscore.gsub(/\//, '_').to_sym }
   let(:instance) { create(model_name) }
 
-  it { should respond_to :store_as_revision }
-  it { should respond_to :store_as_draft }
-
-  it { should have_one :published_page }
-  it { should have_many :drafts }
-  it { should have_many :reviews }
-  it { should have_many :revisions }
-
-  describe 'storing' do
-
-    it 'duplicates itself to create a new Georgia::Revision' do
-      instance.store_as_revision
-      revision = instance.revisions.first
-      expect(revision.persisted?).to be_true
-      expect(revision).to be_a Georgia::Revision
-    end
-
-  end
+  it { should respond_to :publisher }
 
   describe 'events' do
 
@@ -41,26 +24,19 @@ shared_examples "a revisionable model" do
       it { should respond_to :publish }
 
       before :each do
+        @time_now = Time.parse("Wed, 10 Apr 2013 14:18:22 UTC +00:00")
+        Time.stub(:now).and_return(@time_now)
         @observer = Georgia::MetaPageObserver.instance
         @observer.before_publish(instance, nil)
+        instance.publish
       end
 
       it "marks as 'published'" do
-        instance.publish
         expect(instance.state?(:published)).to be_true
       end
 
       it "assigns published_at to current time" do
-        @time_now = Time.parse("Wed, 10 Apr 2013 14:18:22 UTC +00:00")
-        Time.stub(:now).and_return(@time_now)
-        instance.publish
         expect(instance.published_at).to eq(@time_now)
-      end
-
-      it "stores a new revision" do
-        instance.should_receive :store_as_revision
-        instance.publish
-        instance.should have_at_least(1).revisions
       end
 
     end

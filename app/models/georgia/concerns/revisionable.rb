@@ -18,8 +18,20 @@ module Georgia
             transition all => :published
           end
 
+          event :unpublish do
+            transition all => :draft
+          end
+
           event :draft do
             transition all => :draft
+          end
+
+          event :review do
+            transition all => :review
+          end
+
+          event :store do
+            transition all => :revision
           end
 
         end
@@ -29,6 +41,10 @@ module Georgia
         def status_name
           warn "[DEPRECATION] `status_name` is deprecated.  Please use `human_state_name` instead."
           human_state_name
+        end
+
+        def publisher
+          @publisher ||= Georgia::Publisher.new(self.uuid)
         end
 
       end

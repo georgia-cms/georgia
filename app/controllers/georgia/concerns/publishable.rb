@@ -6,53 +6,52 @@ module Georgia
       extend ActiveSupport::Concern
       include Helpers
 
-      def publish
-        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        current_user.publish @page
-        message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
-        notify(message)
-        redirect_to :back, notice: message
-      end
+      included do
 
-      def unpublish
-        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        @page.draft
-        if @page.save
+        before_filter :prepare_publisher, only: [:publish, :unpublish, :draft, :review, :store]
+
+        def publish
+          @publisher.publish(@page)
+          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+          notify(message)
+          redirect_to :back, notice: message
+        end
+
+        def unpublish
+          @publisher.unpublish
           message = "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
           notify(message)
           redirect_to :back, notice: message
-        else
-          render :edit
         end
-      end
 
-      def draft
-        @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-        @draft = @page.store_as_draft
-        @draft.update_attribute(:created_by, current_user)
-        @draft.update_attribute(:updated_by, current_user)
-        redirect_to georgia.edit_draft_path(@draft), notice: "You successfully started a new draft of #{@draft.title}. Ask for review when completed."
-      end
+        def draft
+          @publisher.draft(@page)
+          redirect_to :back, notice: "You successfully started a new draft of #{@draft.title}. Ask for review when completed."
+        end
 
-      def review
-        @page = model.find(params[:id])
-        @review = @page.wait_for_review
-        @review.update_attribute(:updated_by, current_user)
-        message = "#{current_user.name} is asking you to review #{@page.title} #{instance_name}."
-        notify(message)
-        redirect_to [:search, model], notice: message
-      end
+        def review
+          @publisher.unpublish(@page)
+          notify("#{current_user.name} is asking you to review #{@page.title} #{instance_name}.")
+          redirect_to :back, notice: message
+        end
 
-      def store
-        @page = model.find(params[:id])
-        @page.store_as_revision
-        redirect_to [:edit, @page], notice: "Successfully stored a new revision"
-      end
+        def store
+          @publisher.store(@page)
+          message = "#{current_user.name} stored #{@page.title} #{instance_name}."
+          redirect_to :back, notice: message
+        end
 
-      private
+        private
 
-      def notify(message)
-        Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
+        def prepare_publisher
+          @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
+          @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
+        end
+
+        def notify(message)
+          Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
+        end
+
       end
 
     end
