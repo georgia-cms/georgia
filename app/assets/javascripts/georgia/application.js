@@ -14,7 +14,7 @@
 //= require georgia/media
 //= require georgia/form-actions
 //= require ckeditor/init
-//= require handlebars
+//= require handlebars.runtime
 //= require underscore
 //= require backbone
 //= require .//backbone-relational
