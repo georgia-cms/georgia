@@ -21,6 +21,14 @@ module Georgia
       page.save!
     end
 
+    def approve review
+      page = review.becomes(Georgia::MetaPage)
+      page.publish
+      page.update_attribute(:published_by, self)
+      page.save!
+      page
+    end
+
     def name
       [first_name, last_name].join(' ')
     end

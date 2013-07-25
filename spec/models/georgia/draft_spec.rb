@@ -9,7 +9,7 @@ describe Georgia::Draft do
 
   describe '.ask_for_review' do
 
-    it 'draft becomes a review' do
+    it 'becomes a review' do
       draft = create(:georgia_draft)
       review = draft.ask_for_review
       expect(review).to be_a Georgia::Review

@@ -27,4 +27,16 @@ describe Georgia::MetaPage do
 
   end
 
+  describe '#publish' do
+
+    it "changes the state to 'published'"
+
+  end
+
+  describe '#unpublish' do
+
+    it "changes the state to 'draft'"
+
+  end
+
 end

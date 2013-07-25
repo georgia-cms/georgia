@@ -3,10 +3,10 @@ require 'cancan/matchers'
 
 describe Georgia::User do
 
-  specify {FactoryGirl.build(:georgia_user).should be_valid}
+  specify {build(:georgia_user).should be_valid}
 
-  let (:admin) { FactoryGirl.create(:admin) }
-  let (:editor) { FactoryGirl.create(:editor) }
+  let (:admin) { create(:admin) }
+  let (:editor) { create(:editor) }
 
   it {should allow_mass_assignment_of(:first_name)}
   it {should allow_mass_assignment_of(:last_name)}
@@ -25,7 +25,7 @@ describe Georgia::User do
 
   describe '#has_role?' do
 
-    let(:user) { FactoryGirl.build(:georgia_user, roles: [FactoryGirl.build(:georgia_role, name: 'Admin')]) }
+    let(:user) { build(:georgia_user, roles: [build(:georgia_role, name: 'Admin')]) }
     subject { user.has_role? role_name }
 
     context 'when user has given role' do
@@ -61,7 +61,7 @@ describe Georgia::User do
   describe '.publish' do
 
     before :each do
-      @page = FactoryGirl.create(:georgia_meta_page)
+      @page = create(:georgia_meta_page)
     end
 
     it "marks a page as published by himself" do
@@ -72,6 +72,24 @@ describe Georgia::User do
     it "call .publish on page" do
       @page.should_receive :publish
       admin.publish(@page)
+    end
+
+  end
+
+  describe '.approve' do
+
+    before :each do
+      @page = create(:georgia_review)
+    end
+
+    it "marks a page as published by himself" do
+      admin.approve(@page)
+      expect(@page.published_by).to eql(admin)
+    end
+
+    it "call .publish on review" do
+      @page.should_receive :publish
+      admin.approve(@page)
     end
 
   end

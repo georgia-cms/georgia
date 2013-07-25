@@ -8,6 +8,11 @@ module Georgia
     end
     alias_method :human_state_name, :state_name
 
+    def publish
+      self.update_attribute(:type, 'Georgia::MetaPage')
+      self.becomes(Georgia::MetaPage)
+    end
+
     class << self
 
       def store page

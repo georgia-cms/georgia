@@ -7,18 +7,12 @@ module Georgia
 
       included do
 
-        belongs_to :published_by, class_name: Georgia::User
-
-        has_one :published_page, foreign_key: :uuid, primary_key: :uuid
-        has_many :drafts, foreign_key: :uuid, primary_key: :uuid
-        has_many :revisions, foreign_key: :uuid, primary_key: :uuid
-        has_many :reviews, foreign_key: :uuid, primary_key: :uuid
-
-        # Look for PublishedStateObserver for callbacks on `publish`, `ask_for_review`, `revision` and `draft`
         state_machine :state, initial: :draft do
 
           state :published
           state :draft
+          state :review
+          state :revision
 
           event :publish do
             transition all => :published

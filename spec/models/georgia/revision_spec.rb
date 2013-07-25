@@ -6,4 +6,8 @@ describe Georgia::Revision do
 
   it_behaves_like 'a storable model'
 
+  it 'revives as draft'
+  it 'revives as review'
+  it 'revives as meta'
+
 end

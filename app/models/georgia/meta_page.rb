@@ -1,7 +1,11 @@
 module Georgia
   class MetaPage < Georgia::Page
 
-    include Georgia::Concerns::Revisionable
+    belongs_to :published_by, class_name: Georgia::User
+
+    has_many :drafts, foreign_key: :uuid, primary_key: :uuid
+    has_many :revisions, foreign_key: :uuid, primary_key: :uuid
+    has_many :reviews, foreign_key: :uuid, primary_key: :uuid
 
     validates :slug, uniqueness: {scope: :ancestry, message: 'has already been taken'}
 

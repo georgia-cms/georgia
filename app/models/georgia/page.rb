@@ -10,6 +10,7 @@ module Georgia
     include Georgia::Concerns::Clonable
     include Georgia::Concerns::Previewable
     include Georgia::Concerns::Slugable
+    include Georgia::Concerns::Revisionable
 
     acts_as_list scope: :parent #override orderable to include scope
 
