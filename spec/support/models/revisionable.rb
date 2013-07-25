@@ -1,8 +1,8 @@
 shared_examples "a revisionable model" do
 
-  let(:current_user) { FactoryGirl.build(:georgia_user) }
+  let(:current_user) { build(:georgia_user) }
   let(:model_name) { described_class.name.underscore.gsub(/\//, '_').to_sym }
-  let(:instance) { FactoryGirl.create(model_name) }
+  let(:instance) { create(model_name) }
 
   it { should respond_to :store_as_revision }
   it { should respond_to :store_as_draft }
@@ -52,7 +52,7 @@ shared_examples "a revisionable model" do
 
       it "assigns published_at to current time" do
         @time_now = Time.parse("Wed, 10 Apr 2013 14:18:22 UTC +00:00")
-        Time.stub!(:now).and_return(@time_now)
+        Time.stub(:now).and_return(@time_now)
         instance.publish
         expect(instance.published_at).to eq(@time_now)
       end
