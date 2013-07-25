@@ -2,3 +2,6 @@
   font-size: 1em;
   line-height: 1em;
 }
+
+.label-published { @extend .label-success; }
+.label-draft { @extend .label-info; }
