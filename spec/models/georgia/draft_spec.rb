@@ -11,8 +11,8 @@ describe Georgia::Draft do
 
     it 'draft becomes a review' do
       draft = create(:georgia_draft)
-      revision = draft.ask_for_review
-      expect(revision).to be_a Georgia::Review
+      review = draft.ask_for_review
+      expect(review).to be_a Georgia::Review
     end
 
   end

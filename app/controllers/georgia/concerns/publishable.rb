@@ -30,19 +30,17 @@ module Georgia
         @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
         @draft = @page.store_as_draft
         @draft.update_attribute(:created_by, current_user)
+        @draft.update_attribute(:updated_by, current_user)
         redirect_to georgia.edit_draft_path(@draft), notice: "You successfully started a new draft of #{@draft.title}. Ask for review when completed."
       end
 
       def review
         @page = model.find(params[:id])
-        if @page.wait_for_review
-          @page.update_attribute(:updated_by, current_user)
-          message = "#{current_user.name} is asking you to review #{@page.title} #{instance_name}."
-          notify(message)
-          redirect_to :search, notice: message
-        else
-          render :edit
-        end
+        @review = @page.wait_for_review
+        @review.update_attribute(:updated_by, current_user)
+        message = "#{current_user.name} is asking you to review #{@page.title} #{instance_name}."
+        notify(message)
+        redirect_to [:search, model], notice: message
       end
 
       def store
