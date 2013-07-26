@@ -1,11 +1,7 @@
 module Georgia
-  class MetaPagesController < Georgia::ApplicationController
+  class MetaPagesController < Georgia::PagesController
 
     load_and_authorize_resource class: Georgia::MetaPage
-
-    include Georgia::Concerns::Pageable
-    include Georgia::Concerns::Publishable
-    include Georgia::Concerns::Searchable
 
     def details
       @publisher = Georgia::Publisher.new(params[:id])
