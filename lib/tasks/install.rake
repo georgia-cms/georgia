@@ -21,13 +21,13 @@ namespace :georgia do
     Georgia::UiSection.create(name: 'Sidebar')
 
     # Creates the home page, mother of all pages
-    page = Georgia::Page.create(slug: 'home') do |page|
+    page = Georgia::MetaPage.create(slug: 'home') do |page|
       page.contents << Georgia::Content.new(
         locale: 'en',
         title: 'Home'
       )
     end
-    # page.publish(support_user).save!
+    Georgia::Page.reindex
 
   end
 
