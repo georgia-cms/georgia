@@ -32,6 +32,14 @@ module Georgia
             new_clone.slug = self.slug + '-copy'
           end
 
+          if options[:as]
+            new_clone.type = options[:as].to_s
+            new_clone = new_clone.becomes(options[:as])
+          end
+
+          # Gives an ID to store associations
+          new_clone.save
+
           # clone tags
           self.tags.each do |tag|
             new_clone.tags << tag
@@ -44,14 +52,13 @@ module Georgia
               # alter the title to keep original title unique
               new_content.title = "#{content.title} (Copy)"
             end
-            new_content.save!
+            new_content.contentable = new_clone
             new_clone.contents << new_content
           end
 
           # clone ui_associations
           self.ui_associations.each do |ui_assoc|
             new_ui_assoc = ui_assoc.dup
-            new_ui_assoc.save!
             new_clone.ui_associations << new_ui_assoc
           end
 
@@ -59,13 +66,7 @@ module Georgia
           self.slides.each do |slide|
             new_slide = slide.dup
             new_slide.contents = slide.contents.dup
-            new_slide.save!
             new_clone.slides << new_slide
-          end
-          
-          if options[:as]
-            new_clone.type = options[:as].to_s
-            new_clone.becomes(options[:as])
           end
 
           new_clone
