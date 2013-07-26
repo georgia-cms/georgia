@@ -1,12 +1,10 @@
 module Georgia
   class MetaPage < Georgia::Page
 
-    include Georgia::Concerns::Indexable
-
     validates :slug, uniqueness: {scope: :ancestry, message: 'has already been taken'}
 
     def to_param
-      uuid
+      self.uuid
     end
 
     class << self
