@@ -9,7 +9,7 @@ module Georgia
       included do
 
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
-        before_filter :prepare_publisher, only: [:show, :edit, :update, :destroy, :copy]
+        before_filter :prepare_page, only: [:show, :edit, :update, :destroy, :copy]
 
         rescue_from 'ActionView::MissingTemplate' do |exception|
           render_default_template(exception.path)
@@ -75,7 +75,7 @@ module Georgia
           render nothing: true
         end
 
-        protected
+        private
 
         def build_associations
           @page.slides.build unless @page.slides.any?
@@ -92,17 +92,14 @@ module Georgia
           @page.contents = [Georgia::Content.new(locale: I18n.default_locale)]
         end
 
-        private
-
         def render_default_template(path)
           render "pages/#{path}"
         rescue ActionView::MissingTemplate
           render "georgia/pages/#{path}"
         end
 
-        def prepare_publisher
-          @page = model.find(params[:id], include: :contents)
-          @page = decorate(@page)
+        def prepare_page
+          @page = decorate(model.find(params[:id]))
           @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
         end
 
