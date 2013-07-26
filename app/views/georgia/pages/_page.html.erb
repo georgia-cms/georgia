@@ -30,7 +30,7 @@
     </span>
   </td>
   <td class="actions">
-    <%= link_to_group_details page, publish: true, delete: true, copy: true, preview: true %>
+    <%= Georgia::EditMetaPageButton.new(self, page, publish: can?(:publish, page), delete: can?(:delete, page), copy: can?(:copy, page), preview: can?(:preview, page)).render if can? :edit, page %>
   </td>
 </tr>
 
@@ -45,7 +45,7 @@
         Last updated <%= review.updated_at.strftime('%F - %H:%M') %> by <%= review.created_by.name %>
       </td>
       <td class='actions'>
-        <%= link_to_group_edit review, publish: true, delete: true, preview: true %>
+        <%= Georgia::EditPageButton.new(self, review, publish: (can?(:publish, review)), delete: (can?(:delete, review)), preview: (can?(:preview, review))).render %>
       </td>
     </tr>
   <% end -%>
@@ -62,7 +62,7 @@
         Last updated <%= draft.updated_at.strftime('%F - %H:%M') %> by <%= draft.created_by.name %>
       </td>
       <td class='actions'>
-        <%= link_to_group_edit draft, review: true, delete: true, copy: true, preview: true %>
+        <%= Georgia::EditPageButton.new(self, draft, review: (can?(:review, draft)), delete: (can?(:delete, draft)), copy: (can?(:copy, draft)), preview: (can?(:preview, draft))).render %>
       </td>
     </tr>
   <% end -%>
