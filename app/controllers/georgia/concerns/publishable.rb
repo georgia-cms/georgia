@@ -8,7 +8,7 @@ module Georgia
 
       included do
 
-        before_filter :prepare_publisher, only: [:publish, :unpublish, :draft, :review, :store]
+        before_filter :prepare_publisher, only: [:publish, :unpublish, :draft, :review, :store, :approve]
 
         def publish
           @publisher.publish(@page)
@@ -25,14 +25,24 @@ module Georgia
         end
 
         def draft
-          @publisher.draft(@page)
-          redirect_to :back, notice: "You successfully started a new draft of #{@draft.title}. Ask for review when completed."
+          @draft = @publisher.create_draft
+          redirect_to [:edit, @publisher.meta_page, @draft], notice: "You successfully started a new draft of #{@draft.title}. Submit for review when completed."
         end
 
         def review
-          @publisher.unpublish(@page)
+          @draft = model.find(params[:id])
+          @review = @publisher.review(@draft)
           notify("#{current_user.name} is asking you to review #{@page.title} #{instance_name}.")
-          redirect_to :back, notice: message
+          redirect_to [:edit, @publisher.meta_page, @review], notice: "You successfully submited #{@review.title} for review."
+        end
+
+        def approve
+          @review = model.find(params[:id])
+          @page = @publisher.approve(@review)
+          @page.save!
+          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+          notify(message)
+          redirect_to [:details, @page], notice: message
         end
 
         def store
@@ -44,8 +54,9 @@ module Georgia
         private
 
         def prepare_publisher
-          @page = Georgia::PageDecorator.decorate(model.find(params[:id]))
-          @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
+          uuid = params[:meta_page_id] || params[:id]
+          @publisher = Georgia::Publisher.new(uuid, user: current_user)
+          @page = Georgia::PageDecorator.decorate(@publisher.meta_page)
         end
 
         def notify(message)

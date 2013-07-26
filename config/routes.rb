@@ -34,6 +34,7 @@ Georgia::Engine.routes.draw do
         get :store
         get :draft
         get :review
+        get :approve
         get :publish
         get :unpublish
       end

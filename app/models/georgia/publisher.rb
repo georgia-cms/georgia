@@ -1,7 +1,7 @@
 module Georgia
   class Publisher
 
-    attr_accessor :uuid
+    attr_accessor :uuid, :user
 
     delegate :published?, :draft?, to: :meta_page, allow_nil: :true
 
@@ -11,28 +11,37 @@ module Georgia
     end
 
     def publish page
-      revision = change_state(meta_page, Georgia::Revision)
-      meta_page = change_state(page, Georgia::MetaPage)
-      meta_page.publish
+      page.publish
+      change_state(meta_page, Georgia::Revision)
+      change_state(page, Georgia::MetaPage)
+    end
+
+    def approve review
+      review.publish
+      change_state(meta_page, Georgia::Revision)
+      change_state(review, Georgia::MetaPage)
     end
 
     def unpublish
       meta_page.unpublish
     end
 
-    def review page
-      change_state(page, Georgia::Review)
-      page.review
+    def review draft
+      draft.review
+      change_state(draft, Georgia::Review)
     end
 
     def store page
-      change_state(page, Georgia::Revision)
       page.store
+      change_state(page, Georgia::Revision)
     end
 
-    def draft page
-      change_state(page, Georgia::Draft)
-      page.draft
+    def create_draft
+      draft = meta_page.clone(as: Georgia::Draft)
+      draft.created_by = user
+      draft.draft
+      draft.save
+      draft
     end
 
     # Associations
