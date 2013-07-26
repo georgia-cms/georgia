@@ -5,3 +5,4 @@
 
 .label-published { @extend .label-success; }
 .label-draft { @extend .label-info; }
+.label-review { @extend .label-warning; }
