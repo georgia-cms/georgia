@@ -1,6 +1,10 @@
 module Georgia
   class MetaPagesController < Georgia::PagesController
 
+    def show
+      render :details
+    end
+
     def details
       @publisher = Georgia::Publisher.new(params[:id])
       @page = Georgia::PageDecorator.decorate(@publisher.meta_page)
