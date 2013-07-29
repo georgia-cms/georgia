@@ -70,6 +70,7 @@
 
 <tr class='hide' data-page-id="<%= page.id %>">
   <td colspan='9'>
-    <%= icon_tag 'icon-long-arrow-right' %> <%= link_to_draft page %>
+    <%= icon_tag 'icon-long-arrow-right' %>
+    <%= link_to 'Start a new draft', [:draft, page.becomes(Georgia::MetaPage)] %>
   </td>
 </tr>

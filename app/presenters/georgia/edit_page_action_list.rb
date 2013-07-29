@@ -31,10 +31,6 @@ module Georgia
       link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, instance.preview_url, target: '_blank'
     end
 
-    def link_to_draft
-      link_to 'Start a new draft', [:draft, meta_page, instance]
-    end
-
     def link_to_copy
       link_to "#{icon_tag('icon-copy')} Copy".html_safe, [:copy, meta_page, instance]
     end
