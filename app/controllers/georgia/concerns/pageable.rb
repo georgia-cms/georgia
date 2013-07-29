@@ -58,7 +58,7 @@ module Georgia
         def destroy
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
-          redirect_to [:search, model], notice: @message
+          redirect_to [:details, @publisher.meta_page], notice: @message
         end
 
         def copy
