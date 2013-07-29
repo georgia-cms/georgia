@@ -8,8 +8,7 @@
       <button type="submit" class="btn btn-success">
         <i class='icon-ok'>&nbsp;</i> Save
       </button>
-      <%= link_to "Visit #{icon_tag 'icon-long-arrow-right'}".html_safe, @page.url, class: 'btn btn-info', target: '_blank' %>
-      <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, @publisher.meta_page, class: 'btn' %>
+      <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, [:details, @publisher.meta_page], class: 'btn', data: {confirm: 'Did you first save your changes?'} %>
     </div>
     <%= @page.status_tag(class: 'label-big') %>
     Editing '<%= @page.title %>'
