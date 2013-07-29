@@ -32,7 +32,8 @@
           <% else -%>
             <h5 class='muted'>There are no drafts so far. <%= link_to 'Start one', [:draft, @page.model] %></h5>
           <% end -%>
-          <%= link_to 'Start a new draft', [:draft, @page.model] %>
+          <hr />
+          <%= link_to "#{icon_tag 'icon-paste'} Start a new draft".html_safe, [:draft, @page.model], class: 'btn btn-primary' %>
         </div>
         <div class="span4">
           <h3 class='page-header'>In Review</h3>
