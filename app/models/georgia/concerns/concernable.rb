@@ -7,7 +7,7 @@ module Georgia
 
       included do
         # Defines helper methods for available actions on classes extending concerns. Default value is false until the concern itself redefines the method and set to true
-        [:publishable?, :unpublishable?, :approvable?, :previewable?, :reviewable?, :draftable?, :approvable?, :copyable?].each do |action|
+        [:publishable?, :unpublishable?, :approvable?, :previewable?, :reviewable?, :draftable?, :approvable?, :copyable?, :draftable?].each do |action|
           define_method(action){false}
         end
       end

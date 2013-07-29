@@ -13,10 +13,12 @@ module Georgia
 
     def render
       html = ""
+      html << content_tag(:li, link_to_draft) if instance.draftable? and can?(:copy, instance)
       html << content_tag(:li, link_to_copy) if instance.copyable? and can?(:copy, instance)
       html << content_tag(:li, link_to_preview) if instance.previewable? and can?(:preview, instance)
       html << content_tag(:li, link_to_approve) if instance.approvable? and can?(:approve, instance)
-      html << content_tag(:li, link_to_publish) if instance.publishable? and can?(:publish, instance)
+      html << content_tag(:li, link_to_publish) if instance.publishable? and can?(:publish, instance) and !instance.published?
+      html << content_tag(:li, link_to_unpublish) if instance.publishable? and can?(:unpublish, instance) and instance.published?
       html << content_tag(:li, link_to_review) if instance.reviewable? and can?(:review, instance)
       html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe

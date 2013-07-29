@@ -9,6 +9,14 @@ module Georgia
       self.uuid
     end
 
+    def draftable?
+      true
+    end
+
+    def publishable?
+      true
+    end
+
     class << self
 
       def find(uuid, args={})
