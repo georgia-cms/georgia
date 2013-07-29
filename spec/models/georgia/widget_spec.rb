@@ -21,11 +21,6 @@ describe Georgia::Widget do
       create(:georgia_ui_association, widget: @submenu_widget, ui_section: create(:georgia_ui_section, name: 'Submenu'))
     end
 
-    after :all do
-      Georgia::Page.destroy_all
-      Georgia::UiSection.destroy_all
-    end
-
     describe '.footer' do
       subject { Georgia::Widget.footer }
       it {should include @footer_widget}

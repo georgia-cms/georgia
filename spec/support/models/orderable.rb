@@ -8,12 +8,13 @@ shared_examples "a orderable model" do
     describe '.ordered' do
 
       it 'returns links ordered by position' do
-        described_class.destroy_all
-        @fourth = FactoryGirl.create(model_name, position: 4)
-        @third = FactoryGirl.create(model_name, position: 3)
-        @first = FactoryGirl.create(model_name, position: 1)
-        @second = FactoryGirl.create(model_name, position: 2)
-        expect(described_class.ordered.to_a).to eq([@first, @second, @third, @fourth])
+        DatabaseCleaner.clean
+        @fourth = create(model_name, position: 4)
+        @third = create(model_name, position: 3)
+        @first = create(model_name, position: 1)
+        @second = create(model_name, position: 2)
+        described_class.ordered.to_a.should have(4).items
+        expect(described_class.ordered.to_a).to eql([@first, @second, @third, @fourth])
       end
 
     end

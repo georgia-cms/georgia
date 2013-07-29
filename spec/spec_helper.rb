@@ -12,9 +12,6 @@ require 'draper/test/rspec_integration'
 require 'database_cleaner'
 require 'simplecov'
 
-# DatabaseCleaner.clean
-# DatabaseCleaner.strategy = :truncation
-
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 Capybara.javascript_driver = :webkit
@@ -30,6 +27,15 @@ RSpec.configure do |config|
 
   config.include AuthenticationHelpers
   config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.start
+  end
+
+  config.after(:suite) do
+    DatabaseCleaner.clean
+  end
 end
 
 SimpleCov.start 'rails' do

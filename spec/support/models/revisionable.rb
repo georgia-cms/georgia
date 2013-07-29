@@ -46,18 +46,18 @@ shared_examples "a revisionable model" do
   describe 'scopes' do
 
     before :each do
-      described_class.destroy_all
+      DatabaseCleaner.clean
     end
 
     it "returns records in a 'draft' state" do
-      @draft = FactoryGirl.create(model_name)
+      @draft = create(model_name)
       instance.publish
       expect(described_class.with_state(:draft)).to eq([@draft])
       expect(described_class.with_state(:draft)).not_to include(instance)
     end
 
     it "returns records in a 'published' state" do
-      @draft = FactoryGirl.create(model_name)
+      @draft = create(model_name)
       instance.publish
       expect(described_class.with_state(:published)).to eq([instance])
       expect(described_class.with_state(:published)).not_to include(@draft)
