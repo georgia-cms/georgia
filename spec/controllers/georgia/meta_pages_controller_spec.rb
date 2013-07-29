@@ -19,8 +19,8 @@ describe Georgia::MetaPagesController do
     end
   end
 
-  it "should render the show action" do
-    get :show, {use_route: :admin, id: @page.id}
+  it "should render the details action" do
+    get :details, {use_route: :admin, id: @page.uuid}
     assigns(:page).should eq @page
   end
 end
