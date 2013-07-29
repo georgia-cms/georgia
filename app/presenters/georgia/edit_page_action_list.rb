@@ -18,6 +18,7 @@ module Georgia
       html << content_tag(:li, link_to_approve) if instance.approvable? and can?(:approve, instance)
       html << content_tag(:li, link_to_publish) if instance.publishable? and can?(:publish, instance)
       html << content_tag(:li, link_to_review) if instance.reviewable? and can?(:review, instance)
+      html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe
     end
 
@@ -60,7 +61,7 @@ module Georgia
       options[:data] ||= {}
       options[:data][:confirm] = 'Are you sure?'
       options[:method] ||= :delete
-      link_to "#{icon_tag('icon-trash')} Delete".html_safe, [:show, meta_page, instance], options
+      link_to "#{icon_tag('icon-trash')} Delete".html_safe, [meta_page, instance], options
     end
 
   end
