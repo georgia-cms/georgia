@@ -37,7 +37,7 @@ module Georgia
     end
 
     def create_draft
-      draft = meta_page.clone(as: Georgia::Draft)
+      draft = meta_page.clone_as(Georgia::Draft)
       draft.created_by = user
       draft.draft
       draft.save

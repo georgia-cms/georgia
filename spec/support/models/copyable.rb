@@ -4,6 +4,7 @@ shared_examples "a copyable model" do
   let(:instance) { create(model_name) }
 
   it { should respond_to :copy }
+  it { should respond_to :clone_as }
 
   it 'should be copyable?' do
     expect(instance.copyable?).to be_true

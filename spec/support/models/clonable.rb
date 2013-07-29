@@ -4,7 +4,6 @@ shared_examples "a clonable model" do
   let(:instance) { create(model_name) }
 
   it { should respond_to :clone }
-  it { should respond_to :clone_as }
 
   it 'should be clonable?' do
     expect(instance.clonable?).to be_true

@@ -18,10 +18,10 @@ module Georgia
     # Returns an exact persisted version of itself with all Georgia::Page associations
     # The result is altered to return an object of a different class supported by STI
     def clone_as klass
-      clone
       duplicate.update_attribute(:type, klass.to_s)
+      duplicate.becomes(klass).save!
+      clone
       duplicate.becomes(klass)
-      duplicate
     end
 
     # Returns an exact persisted version of itself with all Georgia::Page associations
@@ -30,6 +30,7 @@ module Georgia
       alter_slug
       clone
       alter_title
+      duplicate.save!
       duplicate
     end
 
@@ -44,9 +45,6 @@ module Georgia
       clone_contents
       clone_ui_associations
       clone_slides
-
-      duplicate.save!
-      duplicate
     end
 
     def clone_contents
