@@ -2,20 +2,16 @@ require 'active_support/concern'
 
 module Georgia
   module Concerns
-    module Clonable
+    module Copyable
       extend ActiveSupport::Concern
 
       included do
 
-        def clone
-          Georgia::Clone.new(self).clone
+        def copy
+          Georgia::Clone.new(self).copy
         end
 
-        def clone_as klass
-          Georgia::Clone.new(self).clone_as(klass)
-        end
-
-        def clonable?
+        def copyable?
           true
         end
 

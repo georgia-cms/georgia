@@ -8,6 +8,8 @@ describe Georgia::MetaPage do
 
   it { should validate_uniqueness_of(:slug).scoped_to(:ancestry) }
 
+  it_behaves_like 'a copyable model'
+
   describe 'uuid' do
     it 'creates a new uuid for each newly created page' do
       @page = create(:georgia_meta_page)

@@ -1,6 +1,8 @@
 module Georgia
   class MetaPage < Georgia::Page
 
+    include Georgia::Concerns::Copyable
+
     validates :slug, uniqueness: {scope: :ancestry, message: 'has already been taken'}
 
     def to_param
@@ -9,7 +11,7 @@ module Georgia
 
     class << self
 
-      def find(uuid)
+      def find(uuid, args={})
         @publisher = Georgia::Publisher.new(uuid)
         @page = @publisher.meta_page
       end
