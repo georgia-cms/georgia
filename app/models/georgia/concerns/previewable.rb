@@ -11,6 +11,10 @@ module Georgia
           @preview_url = "#{self.url}?preview=1"
         end
 
+        def previewable?
+          true
+        end
+
       end
 
     end
