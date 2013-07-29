@@ -32,15 +32,15 @@ module Georgia
     end
 
     def link_to_draft
-      link_to 'Start a new draft', [:draft, instance]
+      link_to 'Start a new draft', [:draft, meta_page, instance]
     end
 
     def link_to_copy
-      link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for(controller: controller_name, id: model.id, action: :copy)
+      link_to "#{icon_tag('icon-copy')} Copy".html_safe, [:copy, meta_page, instance]
     end
 
     def link_to_store
-      link_to "#{icon_tag('icon-download')} Store".html_safe, url_for(controller: controller_name, id: model.id, action: :store)
+      link_to "#{icon_tag('icon-download')} Store".html_safe, [:store, meta_page, instance]
     end
 
     def link_to_approve
@@ -48,15 +48,15 @@ module Georgia
     end
 
     def link_to_publish
-      link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, url_for(controller: controller_name, id: model.id, action: :publish)
+      link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, [:publish, meta_page]
     end
 
     def link_to_unpublish
-      link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, url_for(controller: controller_name, id: model.id, action: :unpublish), data: {confirm: 'Are you sure?'}
+      link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, [:unpublish, meta_page], data: {confirm: 'Are you sure?'}
     end
 
     def link_to_review
-      link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, url_for(controller: controller_name, id: model.id, action: :review)
+      link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, [:review, meta_page, instance]
     end
 
     def link_to_delete
@@ -64,7 +64,7 @@ module Georgia
       options[:data] ||= {}
       options[:data][:confirm] = 'Are you sure?'
       options[:method] ||= :delete
-      link_to "#{icon_tag('icon-trash')} Delete".html_safe, url_for(controller: controller_name,id: model.id, action: :show), options
+      link_to "#{icon_tag('icon-trash')} Delete".html_safe, [:show, meta_page, instance], options
     end
 
   end
