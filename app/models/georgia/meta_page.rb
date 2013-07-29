@@ -9,8 +9,8 @@ module Georgia
 
     class << self
 
-      def find(id)
-        @publisher = Georgia::Publisher.new(id)
+      def find(uuid)
+        @publisher = Georgia::Publisher.new(uuid)
         @page = @publisher.meta_page
       end
 
