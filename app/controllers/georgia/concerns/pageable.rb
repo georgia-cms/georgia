@@ -29,13 +29,6 @@ module Georgia
           build_associations
         end
 
-        def create
-          @page = model.new(params[:page])
-          @page.slug = decorate(@page).title.try(:parameterize)
-          @page.created_by = current_user
-          @page.save!
-        end
-
         def update
           @page.update_attributes(params[:page])
 

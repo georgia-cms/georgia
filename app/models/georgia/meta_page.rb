@@ -17,14 +17,5 @@ module Georgia
       true
     end
 
-    class << self
-
-      def find(uuid, args={})
-        @publisher = Georgia::Publisher.new(uuid)
-        @page = @publisher.meta_page
-      end
-
-    end
-
   end
 end
