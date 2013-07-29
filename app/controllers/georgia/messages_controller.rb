@@ -1,7 +1,7 @@
 module Georgia
   class MessagesController < Georgia::ApplicationController
 
-    load_and_authorize_resource class: 'Georgia::Message'
+    load_and_authorize_resource class: Georgia::Message
 
     helper_method :sort_column, :sort_direction
 

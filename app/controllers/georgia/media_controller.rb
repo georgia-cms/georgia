@@ -1,7 +1,7 @@
 module Georgia
   class MediaController < Georgia::ApplicationController
 
-    load_and_authorize_resource class: "Ckeditor::Asset"
+    load_and_authorize_resource class: Ckeditor::Asset
 
     respond_to :js, only: :destroy
 

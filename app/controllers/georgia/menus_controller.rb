@@ -1,7 +1,7 @@
 module Georgia
   class MenusController < Georgia::ApplicationController
 
-    load_and_authorize_resource class: 'Georgia::Menu'
+    load_and_authorize_resource class: Georgia::Menu
 
     def index
       @menus = Georgia::Menu.scoped.page(params[:page])
