@@ -6,22 +6,19 @@ module Georgia
       extend ActiveSupport::Concern
 
       included do
-        load_and_authorize_resource class: Georgia::Page
 
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
-          @page = Georgia::Page.find_by_url(request.path)
+          @page = Georgia::MetaPage.where(url: request.path).published.first || not_found
+          @page = Georgia::PageDecorator.decorate(@page)
+        end
 
-          if params[:preview] and can? :preview, Georgia::Page
-            #TODO: Should display a message somewhere to advise that this is a preview version only seen by admins
-          else
-            # Restore the latest published revision of the given page
-            #@page = @page.reify
-            not_found unless @page and @page.published?
-          end
-
-          @page = @page.decorate
+        def preview
+          @page = Georgia::Page.find(params[:id])
+          @page = Georgia::PageDecorator.decorate(@page)
+          authorize! :preview, @page
+          render :show
         end
 
         protected
