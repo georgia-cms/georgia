@@ -45,7 +45,7 @@
         Last updated <%= review.updated_at.strftime('%F - %H:%M') %> by <%= review.created_by.name %>
       </td>
       <td class='actions'>
-        <%= Georgia::EditPageButton.new(self, review, publish: (can?(:publish, review)), delete: (can?(:delete, review)), preview: (can?(:preview, review))).render %>
+        <%= Georgia::EditPageButton.new(self, review).render %>
       </td>
     </tr>
   <% end -%>
