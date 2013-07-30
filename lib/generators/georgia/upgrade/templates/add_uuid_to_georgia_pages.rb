@@ -9,4 +9,5 @@ class AddUuidToGeorgiaPages < ActiveRecord::Migration
     remove_column :georgia_pages, :uuid
     remove_index  :georgia_pages, :uuid
   end
+
 end

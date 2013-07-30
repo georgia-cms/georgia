@@ -16,7 +16,6 @@ module Georgia
       end
 
       def create_migration
-        migration_template "drop_georgia_statuses.rb", "db/migrate/drop_georgia_statuses.rb"
         migration_template "add_uuid_to_georgia_pages.rb", "db/migrate/add_uuid_to_georgia_pages.rb"
         migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
       end
