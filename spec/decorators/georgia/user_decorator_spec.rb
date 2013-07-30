@@ -4,7 +4,6 @@ describe Georgia::UserDecorator do
 
   subject {Georgia::UserDecorator.decorate(FactoryGirl.build(:georgia_user).decorate)}
 
-  it_behaves_like 'a decorator'
   it {should respond_to :name}
   it {should respond_to :roles_names}
 
