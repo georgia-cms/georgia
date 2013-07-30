@@ -5,6 +5,8 @@ module Georgia
     DRAFT = 'Draft'
     PENDING_REVIEW = 'Pending Review'
 
+    has_many :pages
+
     attr_accessible :name, :label, :icon
 
     validates :name, presence: true
