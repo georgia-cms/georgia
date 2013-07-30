@@ -30,6 +30,10 @@ module Georgia
         rake 'db:migrate'
       end
 
+      def run_upgrade_task
+        rake 'georgia:upgrade'
+      end
+
     end
   end
 end
