@@ -15,18 +15,15 @@ module Georgia
         ActiveRecord::Generators::Base.next_migration_number(number)
       end
 
-      def create_migration
-        migration_template "add_uuid_to_georgia_pages.rb", "db/migrate/add_uuid_to_georgia_pages.rb"
-        migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
-      end
-
       def add_preview_route
         route "resources :pages, only: [] do
     get :preview, on: :member
   end"
       end
 
-      def migrate
+      def run_migrations
+        migration_template "add_uuid_to_georgia_pages.rb", "db/migrate/add_uuid_to_georgia_pages.rb"
+        migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
         rake 'db:migrate'
       end
 
