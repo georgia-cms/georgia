@@ -21,6 +21,12 @@ module Georgia
         migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
       end
 
+      def add_preview_route
+        route "resources :pages, only: [] do
+    get :preview, on: :member
+  end"
+      end
+
       def migrate
         rake 'db:migrate'
       end

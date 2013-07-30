@@ -7,10 +7,6 @@ module Georgia
 
       included do
 
-        def preview_url
-          @preview_url = "#{self.url}?preview=1"
-        end
-
         def previewable?
           true
         end

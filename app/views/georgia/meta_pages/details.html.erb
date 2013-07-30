@@ -54,7 +54,7 @@
           <% if @page.revisions.any? %>
             <% @page.revisions.find_each do |revision| %>
             <h5>
-              <%= link_to 'preview', revision.preview_url, class: 'pull-right' %>
+              <%= link_to 'preview', main_app.preview_page_path(revision), class: 'pull-right', target: '_blank' %>
               <span class="muted">#<%= revision.id %></span>
               <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
             </h5>

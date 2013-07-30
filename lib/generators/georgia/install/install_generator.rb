@@ -15,12 +15,17 @@ module Georgia
         * Creates initial instances"
 
       def mount_engine
-        route "mount Georgia::Engine => '/admin'"
-        route "mount Henry::Engine => '/api'"
-        route "mount Ckeditor::Engine => '/ckeditor'"
-        route "root to: 'pages#show', slug: 'home'"
-        route "resources :messages, only: [:create]"
+        # Must be in reverse order to keep priorities
         route "get '*path', to: 'pages#show', as: :page"
+        route "root to: 'pages#show', slug: 'home'"
+
+        route "resources :messages, only: [:create]"
+        route "resources :pages, only: [] do
+    get :preview, on: :member
+  end"
+        route "mount Georgia::Engine => '/admin'
+  mount Henry::Engine => '/api'
+  mount Ckeditor::Engine => '/ckeditor'\n"
       end
 
       def self.next_migration_number(dirname)

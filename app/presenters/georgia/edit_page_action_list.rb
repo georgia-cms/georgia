@@ -3,7 +3,7 @@ module Georgia
 
     attr_accessor :view, :instance, :actions
 
-    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :can?, to: :view, prefix: false
+    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, to: :view, prefix: false
 
     def initialize view, instance, actions={}
       @view = view
@@ -31,7 +31,7 @@ module Georgia
     end
 
     def link_to_preview
-      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, instance.preview_url, target: '_blank'
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, main_app.preview_page_path(instance), target: '_blank'
     end
 
     def link_to_copy
