@@ -26,6 +26,7 @@ module Georgia
     require 'activerecord-postgres-uuid'
     require 'uuidtools'
     require 'sendgrid'
+    require 'routing_concerns'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'

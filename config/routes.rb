@@ -11,8 +11,7 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
-  resources :meta_pages, path: 'pages' do
-
+  concern :pageable do
     collection do
       post :sort
       get :search
@@ -40,6 +39,8 @@ Georgia::Engine.routes.draw do
       end
     end
   end
+
+  resources :meta_pages, path: 'pages', concerns: [:pageable]
 
   resources :media, path: :media do
     collection do
