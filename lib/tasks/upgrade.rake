@@ -2,8 +2,9 @@ namespace :georgia do
 
   desc "Upgrade Georgia"
   task upgrade: :environment do
-    Rake::Task['georgia:migrate:uuid'].execute
     Rake::Task['georgia:migrate:statuses'].execute
+    Rake::Task['georgia:migrate:uuid'].execute
+    Rake::Task['sunspot:reindex'].execute
   end
 
   namespace :migrate do
@@ -11,18 +12,18 @@ namespace :georgia do
     desc "Move Georgia::Status to OO Page"
     task statuses: :environment do
 
-      published_status = Georgia::Status.find_by_name('Published')
-      draft_status = Georgia::Status.find_by_name('Draft')
+      # Initialize all pages with state 'draft'
+      Georgia::Page.update_all(state: 'draft')
 
-      published_status.pages.find_each do |page|
-        draft = page.clone_as(Georgia::Draft)
-        draft.save
+      # Initialize all pages (no subclasses) as MetaPage
+      Georgia::Page.where(type: nil).find_each do |page|
         page.update_attribute(:type, 'Georgia::MetaPage')
-        page.publish
       end
 
-      draft_status.pages.find_each do |page|
-        page.update_attribute(:type, 'Georgia::Draft')
+      # All used-to-be published pages are turned into MetaPage and published
+      published_status = Georgia::Status.find_by_name('Published')
+      published_status.pages.find_each do |page|
+        page.publish
       end
 
     end
