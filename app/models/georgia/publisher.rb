@@ -1,25 +1,26 @@
 module Georgia
   class Publisher
 
-    attr_accessor :uuid, :user
+    attr_accessor :uuid, :meta_klass, :user
 
     delegate :published?, :draft?, to: :meta_page, allow_nil: :true
 
     def initialize uuid, options={}
       @uuid = uuid
+      @meta_klass = options.fetch(:class, inferred_class)
       @user = options.fetch(:user, Georgia::User.new)
     end
 
     def publish page
       page.publish
       change_state(meta_page, Georgia::Revision)
-      change_state(page, Georgia::MetaPage)
+      change_state(page, meta_klass)
     end
 
     def approve review
       review.publish
       change_state(meta_page, Georgia::Revision)
-      change_state(review, Georgia::MetaPage)
+      change_state(review, meta_klass)
     end
 
     def unpublish
@@ -51,7 +52,7 @@ module Georgia
     end
 
     def meta_page
-      Georgia::MetaPage.where(uuid: uuid).limit(1).first
+      meta_klass.where(uuid: uuid).limit(1).first
     end
 
     def reviews
@@ -71,6 +72,10 @@ module Georgia
     def change_state page, model
       page.update_attribute(:type, model.to_s)
       page.becomes(model)
+    end
+
+    def inferred_class
+      (pages.map(&:type) - ['Georgia::Draft', 'Georgia::Review', 'Georgia::Revision']).first.constantize
     end
 
   end
