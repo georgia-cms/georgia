@@ -8,11 +8,11 @@ module Georgia
     end
 
     def link_to_draft
-      link_to "#{icon_tag('icon-paste')} Start a new Draft".html_safe, [:draft, instance]
+      link_to "#{icon_tag('icon-paste')} Start a new Draft".html_safe, url_for_meta_action(:draft)
     end
 
     def link_to_copy
-      link_to "#{icon_tag('icon-copy')} Copy".html_safe, [:copy, instance]
+      link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for_meta_action(:copy)
     end
 
     def link_to_delete

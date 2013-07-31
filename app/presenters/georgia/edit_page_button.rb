@@ -24,7 +24,7 @@ module Georgia
     end
 
     def group_button
-      link_to(icon_tag('icon-cog'), [:edit, meta_page, instance].compact, class: 'btn btn-inverse') +
+      link_to(icon_tag('icon-cog'), [:edit, meta_page, instance], class: 'btn btn-inverse') +
       link_to(content_tag('span', '', class: 'caret'), '#', group_button_options)
     end
 

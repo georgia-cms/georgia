@@ -15,22 +15,22 @@
     <%= page.status_tag %>
   </td>
   <td class="labels">
-    <span class="badge badge-info">
+    <span class="badge">
       <%= page.publisher.drafts.count %>
     </span>
   </td>
   <td class="labels">
-    <span class="badge badge-info">
+    <span class="badge">
       <%= page.publisher.reviews.count %>
     </span>
   </td>
   <td class="labels">
-    <span class="badge badge-info">
+    <span class="badge">
       <%= page.publisher.revisions.count %>
     </span>
   </td>
   <td class="actions">
-    <%= Georgia::EditMetaPageButton.new(self, page, publish: can?(:publish, page), delete: can?(:delete, page), copy: can?(:copy, page), preview: can?(:preview, page)).render if can? :edit, page %>
+    <%= Georgia::EditMetaPageButton.new(self, page).render if can? :edit, page %>
   </td>
 </tr>
 
@@ -62,7 +62,7 @@
         Last updated <%= draft.updated_at.strftime('%F - %H:%M') %> by <%= draft.created_by.name %>
       </td>
       <td class='actions'>
-        <%= Georgia::EditPageButton.new(self, draft, review: (can?(:review, draft)), delete: (can?(:delete, draft)), copy: (can?(:copy, draft)), preview: (can?(:preview, draft))).render %>
+        <%= Georgia::EditPageButton.new(self, draft).render %>
       </td>
     </tr>
   <% end -%>
@@ -71,6 +71,6 @@
 <tr class='hide' data-page-id="<%= page.id %>">
   <td colspan='9'>
     <%= icon_tag 'icon-long-arrow-right' %>
-    <%= link_to 'Start a new draft', [:draft, page.becomes(Georgia::MetaPage)] %>
+    <%= link_to 'Start a new draft', url_for(controller: controller_name, action: :draft, id: page.to_param) %>
   </td>
 </tr>

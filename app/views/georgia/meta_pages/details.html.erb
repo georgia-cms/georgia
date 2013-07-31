@@ -30,10 +30,10 @@
               </h5>
             <% end -%>
           <% else -%>
-            <h5 class='muted'>There are no drafts so far. <%= link_to 'Start one', [:draft, @page.model] %></h5>
+            <h5 class='muted'>There are no drafts so far. <%= link_to 'Start one', url_for(controller: controller_name, action: :draft, id: @page.model.to_param) %></h5>
           <% end -%>
           <hr />
-          <%= link_to "#{icon_tag 'icon-paste'} Start a new draft".html_safe, [:draft, @page.model], class: 'btn btn-primary' %>
+          <%= link_to "#{icon_tag 'icon-paste'} Start a new draft".html_safe, url_for(controller: controller_name, action: :draft, id: @page.model.to_param), class: 'btn btn-primary' %>
         </div>
         <div class="span4">
           <h3 class='page-header'>In Review</h3>
