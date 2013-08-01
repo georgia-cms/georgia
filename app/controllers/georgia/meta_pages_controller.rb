@@ -11,7 +11,7 @@ module Georgia
     end
 
     def create
-      @page = Georgia::MetaPage.new(params[:page])
+      @page = model.new(params[:page])
       @page.slug = decorate(@page).title.try(:parameterize)
       @page.created_by = current_user
       @page.save!
@@ -20,13 +20,13 @@ module Georgia
     def destroy
       @message = "#{@page.title} was successfully deleted."
       @publisher.pages.destroy_all
-      redirect_to search_meta_pages_url, notice: @message
+      redirect_to [:search, model], notice: @message
     end
 
     private
 
     def prepare_page
-      @page = decorate(Georgia::MetaPage.find_by_uuid(params[:id]))
+      @page = decorate(model.find_by_uuid(params[:id]))
       @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
     end
 
