@@ -1,27 +1,32 @@
 //= require jquery
 //= require jquery.ui.all
-//= require georgia/jquery.ui.touch-punch
 //= require jquery_ujs
 //= require jquery-fileupload
 //= require twitter/bootstrap
 //= require select2
 //= require shadowbox
 //= require mousetrap
-//= require georgia/keybindings
-//= require georgia/jquery.mjs.nestedSortable
-//= require georgia/tags
-//= require georgia/pages
-//= require georgia/media
-//= require georgia/form-actions
+
 //= require ckeditor/init
+//= require_tree .//ckeditor
+
 //= require handlebars.runtime
 //= require underscore
 //= require backbone
-//= require .//backbone-relational
-//= require .//panels
 //= require_tree ./../../templates/
 //= require_tree .//models
 //= require_tree .//collections
 //= require_tree .//views
 //= require_tree .//routers
-//= require_tree .
+
+//= require .//backbone-relational
+//= require .//bootstrap
+//= require .//featured-image
+//= require .//form-actions
+//= require .//jquery.mjs.nestedSortable
+//= require .//jquery.ui.touch-punch
+//= require .//keybindings
+//= require .//media
+//= require .//pages
+//= require .//panels
+//= require .//tags
