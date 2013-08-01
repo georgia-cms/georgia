@@ -15,6 +15,8 @@ module Georgia
       page.publish
       change_state(meta_page, Georgia::Revision)
       change_state(page, meta_klass)
+      # Must reindex to ensure that the record gets deleted from the index
+      meta_klass.reindex
     end
 
     def approve review
