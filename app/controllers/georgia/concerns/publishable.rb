@@ -11,7 +11,7 @@ module Georgia
         before_filter :prepare_publisher, only: [:publish, :unpublish, :draft, :review, :store, :approve]
 
         def publish
-          @publisher.publish(@page)
+          @publisher.publish
           message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
           notify(message)
           redirect_to :back, notice: message
@@ -39,7 +39,6 @@ module Georgia
         def approve
           @review = model.find(params[:id])
           @page = @publisher.approve(@review)
-          @page.save!
           message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
           notify(message)
           redirect_to [:details, @page], notice: message

@@ -11,22 +11,18 @@ module Georgia
       @user = options.fetch(:user, Georgia::User.new)
     end
 
-    def publish page
-      page.publish
-      change_state(meta_page, Georgia::Revision)
-      change_state(page, meta_klass)
-      # Must reindex to ensure that the record gets deleted from the index
-      meta_klass.reindex
+    def publish
+      meta_page.publish
+    end
+
+    def unpublish
+      meta_page.unpublish
     end
 
     def approve review
       review.publish
       change_state(meta_page, Georgia::Revision)
       change_state(review, meta_klass)
-    end
-
-    def unpublish
-      meta_page.unpublish
     end
 
     def review draft
