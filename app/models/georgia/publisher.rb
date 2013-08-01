@@ -69,11 +69,14 @@ module Georgia
 
     def change_state page, model
       page.update_attribute(:type, model.to_s)
-      page.becomes(model)
+      # ensure the page gets reindexed in the right bucket
+      foo = page.becomes(model)
+      Sunspot.index! foo
+      foo
     end
 
     def inferred_class
-      (pages.map(&:type) - ['Georgia::Draft', 'Georgia::Review', 'Georgia::Revision']).first.constantize
+      @inferred_class ||= (pages.map(&:type) - ['Georgia::Draft', 'Georgia::Review', 'Georgia::Revision']).first.constantize
     end
 
   end

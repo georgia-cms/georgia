@@ -19,8 +19,8 @@ module Georgia
     # The result is altered to return an object of a different class supported by STI
     def clone_as klass
       duplicate.update_attribute(:type, klass.to_s)
-      duplicate.becomes(klass).save!
       clone
+      Sunspot.index! duplicate
       duplicate.becomes(klass)
     end
 

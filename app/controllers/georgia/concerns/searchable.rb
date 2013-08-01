@@ -19,6 +19,7 @@ module Georgia
               fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :state)
             end
             facet :state, :template, :tag_list
+            with(:type, model.to_s) # ensure pages indexed in the wrong bucket don't get displayed
             with(:state, params[:s]) unless params[:s].blank?
             with(:template, params[:t]) unless params[:t].blank?
             with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
