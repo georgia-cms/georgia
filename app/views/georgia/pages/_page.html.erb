@@ -71,6 +71,6 @@
 <tr class='hide' data-page-id="<%= page.id %>">
   <td colspan='9'>
     <%= icon_tag 'icon-long-arrow-right' %>
-    <%= link_to 'Start a new draft', url_for(controller: controller_name, action: :draft, id: page.to_param) %>
+    <%= link_to 'Start a new draft', [:draft, page.model] %>
   </td>
 </tr>
