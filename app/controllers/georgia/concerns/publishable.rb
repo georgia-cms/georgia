@@ -54,13 +54,18 @@ module Georgia
         private
 
         def prepare_publisher
-          uuid = params[:meta_page_id] || params[:id]
+          uuid = inferred_meta_page_id
           @publisher = Georgia::Publisher.new(uuid, user: current_user)
           @page = Georgia::PageDecorator.decorate(@publisher.meta_page)
         end
 
         def notify(message)
           Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
+        end
+
+        def inferred_meta_page_id
+          meta_page_key = params.keys.select{|k| k.match(/.*_id$/)}.first
+          params.fetch(meta_page_key, params[:id])
         end
 
       end
