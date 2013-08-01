@@ -27,8 +27,10 @@ module Georgia
         rake 'db:migrate'
       end
 
-      def run_upgrade_task
-        rake 'georgia:upgrade'
+      def run_upgrade_tasks
+        rake 'georgia:upgrade:statuses'
+        rake 'georgia:upgrade:uuid'
+        rake 'georgia:upgrade:reindex'
       end
 
     end
