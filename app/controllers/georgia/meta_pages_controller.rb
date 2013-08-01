@@ -17,6 +17,12 @@ module Georgia
       @page.save!
     end
 
+    def copy
+      @copy = @page.copy
+      @copy.unpublish #in case
+      redirect_to [:details, @copy], notice: "Do not forget to change your url"
+    end
+
     def destroy
       @message = "#{@page.title} was successfully deleted."
       @publisher.pages.destroy_all

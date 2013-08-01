@@ -27,6 +27,7 @@ module Georgia
     # Returns an exact persisted version of itself with all Georgia::Page associations
     # The resulting instance has a '(Copy)' title and '-copy' slug
     def copy
+      alter_uuid
       alter_slug
       clone
       alter_title
@@ -85,6 +86,11 @@ module Georgia
       new_content.contentable = contentable
       new_content.save
       new_content
+    end
+
+    # alter the uuid to have an original uuid
+    def alter_uuid
+      duplicate.update_attribute(:uuid, UUIDTools::UUID.timestamp_create.to_s)
     end
 
     # alter the slug to have an original url

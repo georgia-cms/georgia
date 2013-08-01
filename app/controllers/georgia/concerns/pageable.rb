@@ -54,11 +54,6 @@ module Georgia
           redirect_to [:details, @publisher.meta_page], notice: @message
         end
 
-        def copy
-          @copy = @page.copy
-          redirect_to [:edit, @copy], notice: "Do not forget to change your url"
-        end
-
         def sort
           if params[:page]
             params[:page].each_with_index do |id, index|
