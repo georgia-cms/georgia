@@ -15,22 +15,10 @@ module Georgia
         ActiveRecord::Generators::Base.next_migration_number(number)
       end
 
-      def add_preview_route
-        route "resources :pages, only: [] do
-    get :preview, on: :member
-  end"
-      end
-
       def run_migrations
-        migration_template "add_uuid_to_georgia_pages.rb", "db/migrate/add_uuid_to_georgia_pages.rb"
-        migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
-        rake 'db:migrate'
       end
 
       def run_upgrade_tasks
-        rake 'georgia:upgrade:statuses'
-        rake 'georgia:upgrade:uuid'
-        rake 'georgia:upgrade:reindex'
       end
 
     end
