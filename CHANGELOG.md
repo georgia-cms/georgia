@@ -1,3 +1,9 @@
+== 0.6.1
+
+- Fix messages view
+- Move Twitter Bootstrap & Font-Awesome css to their CDN
+- Move path discovery to its own module (Georgia::Paths)
+
 == 0.6.0
 
 - Add uuid to Georgia::Page to links between revisions of the same page
