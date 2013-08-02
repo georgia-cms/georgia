@@ -1,7 +1,7 @@
 == 0.6.1
 
 - Fix messages view
-- Move Twitter Bootstrap & Font-Awesome css to their CDN
+- Use Bootstrap CDN for font-awesome Twitter Bootstrap & Font-Awesome
 - Move path discovery to its own module (Georgia::Paths)
 
 == 0.6.0
