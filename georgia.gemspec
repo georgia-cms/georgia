@@ -28,25 +28,25 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
   s.add_dependency 'therubyracer'
-  s.add_dependency 'anjlab-bootstrap-rails'
-  s.add_dependency 'font-awesome-rails'
+  s.add_dependency 'anjlab-bootstrap-rails' #should use CDN version
+  s.add_dependency 'font-awesome-rails' #should use CDN version
   s.add_dependency 'bourbon'
-  s.add_dependency 'sass-rails',   '~> 3.2.3'
-  s.add_dependency 'coffee-rails', '~> 3.2.1'
-  s.add_dependency 'backbone-on-rails', '0.9.2.3'
+  s.add_dependency 'sass-rails',   '~> 3.2.3' # no need to specify version?
+  s.add_dependency 'coffee-rails', '~> 3.2.1' # no need to specify version?
+  s.add_dependency 'backbone-on-rails', '0.9.2.3' #should be upgraded
   s.add_dependency 'handlebars_assets'
-  s.add_dependency 'jquery-fileupload-rails'
+  s.add_dependency 'jquery-fileupload-rails' # should use remotipart instead
   s.add_dependency 'ancestry'
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'shadowbox-rails'
   s.add_dependency 'select2-rails'
-  s.add_dependency 'rubyzip'
-  s.add_dependency 'cloudfiles'
+  s.add_dependency 'rubyzip'    # not sure it's really needed
+  s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
-  s.add_dependency 'pg'
-  s.add_dependency 'pg_search'
+  s.add_dependency 'pg' # should be database agnostic
+  s.add_dependency 'pg_search' # should be remove
   s.add_dependency 'sunspot_rails'
-  s.add_dependency 'sunspot_solr'
+  s.add_dependency 'sunspot_solr' # should be a development requirement and installed properly on production
   s.add_dependency 'activerecord-postgres-hstore'
   s.add_dependency 'activerecord-postgres-uuid'
   s.add_dependency 'uuidtools'
