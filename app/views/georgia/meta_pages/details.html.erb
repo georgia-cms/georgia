@@ -4,7 +4,14 @@
 
 <h1 class="page-header">
   <%= @page.status_tag(class: 'label-big') %>
-  <%= @page.title %> <small><%= @page.url %></small>
+  <%= @page.title %>
+  <small>
+    <% if @page.published? %>
+      <%= link_to @page.url, @page.url, target: '_blank' %>
+    <% else -%>
+      <%= @page.url %>
+    <% end -%>
+  </small>
 </h1>
 
 <div id='edit_page_panel'>
@@ -39,11 +46,11 @@
           <h3 class='page-header'>In Review</h3>
           <% if @page.reviews.any? %>
             <% @page.reviews.find_each do |review| %>
-            <h5>
-              <%= link_to 'edit', [:edit, @page.model, review], class: 'pull-right' %>
-              <span class="muted">#<%= review.id %></span>
-              <%= review.title %> - <small>updated <%= time_ago_in_words review.updated_at %> ago</small>
-            </h5>
+              <h5>
+                <%= link_to 'edit', [:edit, @page.model, review], class: 'pull-right' %>
+                <span class="muted">#<%= review.id %></span>
+                <%= review.title %> - <small>updated <%= time_ago_in_words review.updated_at %> ago</small>
+              </h5>
             <% end -%>
           <% else -%>
             <h5 class='muted'>There is nothing to review at the moment.</h5>
@@ -53,11 +60,11 @@
           <h3 class='page-header'>Revisions</h3>
           <% if @page.revisions.any? %>
             <% @page.revisions.find_each do |revision| %>
-            <h5>
-              <%= link_to 'preview', main_app.preview_page_path(revision), class: 'pull-right', target: '_blank' %>
-              <span class="muted">#<%= revision.id %></span>
-              <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
-            </h5>
+              <h5>
+                <%= link_to 'preview', main_app.preview_page_path(revision), class: 'pull-right', target: '_blank' %>
+                <span class="muted">#<%= revision.id %></span>
+                <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
+              </h5>
             <% end -%>
           <% else -%>
             <h5 class='muted'>There are no revisions yet.</h5>
