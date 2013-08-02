@@ -2,6 +2,7 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery-fileupload
+//= require twitter/bootstrap
 //= require select2
 //= require shadowbox
 //= require mousetrap
