@@ -35,8 +35,6 @@ module Georgia
     require 'jquery-fileupload-rails'
     require 'jquery-rails'
     require 'jquery-ui-rails'
-    require 'bootstrap-rails'
-    require 'font-awesome-rails'
     require 'select2-rails'
     require 'shadowbox-rails'
     require 'mousetrap-rails'

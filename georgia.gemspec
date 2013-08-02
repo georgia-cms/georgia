@@ -28,8 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
   s.add_dependency 'therubyracer'
-  s.add_dependency 'anjlab-bootstrap-rails' #should use CDN version
-  s.add_dependency 'font-awesome-rails' #should use CDN version
   s.add_dependency 'bourbon'
   s.add_dependency 'sass-rails',   '~> 3.2.3' # no need to specify version?
   s.add_dependency 'coffee-rails', '~> 3.2.1' # no need to specify version?
