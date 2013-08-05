@@ -9,13 +9,5 @@ module Georgia
       self.uuid
     end
 
-    def draftable?
-      true
-    end
-
-    def publishable?
-      true
-    end
-
   end
 end

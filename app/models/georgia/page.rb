@@ -1,7 +1,6 @@
 module Georgia
   class Page < ActiveRecord::Base
 
-    include Georgia::Concerns::Concernable
     include Georgia::Concerns::Contentable
     include Georgia::Concerns::Statusable
     include Georgia::Concerns::Taggable
