@@ -17,7 +17,7 @@ module Georgia
     end
 
     def parent_page_collection
-      Georgia::MetaPage.scoped.sort_by(&:title).map{|p| [p.title, p.id]}
+      Georgia::MetaPage.includes(:contents).sort_by(&:title).map{|p| [p.title, p.id]}
     end
 
     def facets_inputs facets=[]
