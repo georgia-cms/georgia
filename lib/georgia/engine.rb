@@ -24,6 +24,9 @@ module Georgia
     require 'sunspot_rails'
     require 'sunspot_solr'
     require 'state_machine'
+    require 'activerecord-postgres-hstore'
+    require 'activerecord-postgres-uuid'
+    require 'uuidtools'
     require 'sendgrid'
     require 'routing_concerns'
 
