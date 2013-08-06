@@ -46,9 +46,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg_search' # should be remove
   s.add_dependency 'sunspot_rails'
   s.add_dependency 'sunspot_solr' # should be a development requirement and installed properly on production
-  s.add_dependency 'activerecord-postgres-hstore'
-  s.add_dependency 'activerecord-postgres-uuid'
-  s.add_dependency 'uuidtools'
   s.add_dependency 'state_machine'
   s.add_dependency 'sendgrid'
   s.add_dependency 'routing_concerns'
