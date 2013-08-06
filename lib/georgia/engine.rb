@@ -59,8 +59,6 @@ module Georgia
       app.config.assets.precompile += %w(font-awesome-ie7.min.css)
     end
 
-    config.active_record.observers = ['Georgia::MetaPageObserver']
-
     config.generators do |g|
       g.test_framework :rspec
       g.integration_tool :rspec
