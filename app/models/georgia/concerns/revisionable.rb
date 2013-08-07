@@ -7,85 +7,22 @@ module Georgia
 
       included do
 
-        # Defines helper methods for available actions on classes extending concerns. Default value is false until the concern itself redefines the method and set to true
-        [:publishable?, :unpublishable?, :approvable?, :previewable?, :reviewable?, :draftable?, :approvable?, :copyable?, :draftable?].each do |action|
-          define_method(action){false}
-        end
+        has_many :revisions, as: :revisionable, dependent: :destroy
+        belongs_to :current_revision, class_name: Georgia::Revision, foreign_key: :revision_id
 
-        state_machine :state, initial: :draft do
+        delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, to: :current_revision, allow_nil: true
+        delegate :content, to: :current_revision
 
-          state :published do
-            def draftable?
-              true
-            end
-
-            def publishable?
-              true
-            end
-          end
-
-          state :draft do
-            include Georgia::Concerns::Clonable
-
-            def reviewable?
-              true
-            end
-          end
-          state :review do
-            def approvable?
-              true
-            end
-          end
-          state :revision do
-          end
-
-          event :publish do
-            transition all => :published
-          end
-
-          event :unpublish do
-            transition all => :draft
-          end
-
-          event :draft do
-            transition all => :draft
-          end
-
-          event :review do
-            transition all => :review
-          end
-
-          event :store do
-            transition all => :revision
-          end
-
-        end
-
-        alias_method :unpublish, :draft
-
-        def status_name
-          warn "[DEPRECATION] `status_name` is deprecated.  Please use `human_state_name` instead."
-          human_state_name
-        end
-
-        delegate :drafts, :reviews, :revisions, to: :publisher
-
-        def publisher
-          @publisher ||= Georgia::Publisher.new(self.uuid)
-        end
-
-      end
-
-      module ClassMethods
-
-        def published
-          warn "[DEPRECATION] `published` is deprecated.  Please use `with_states(:published)` instead."
-          with_states(:published)
-        end
+        delegate :draft?, :review?, :published?, :revision?, to: :current_revision
 
         def draft
-          warn "[DEPRECATION] `draft` is deprecated.  Please use `with_states(:draft)` instead."
-          with_states(:draft)
+          revision = Georgia::Clone.new(self).draft
+          self.revisions << revision
+          revision
+        end
+
+        def publish(revision)
+          self.update_attribute(:revision_id, revision.id)
         end
 
       end

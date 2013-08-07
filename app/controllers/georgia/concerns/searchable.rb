@@ -19,7 +19,11 @@ module Georgia
               fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :state)
             end
             facet :state, :template, :tag_list
-            with(:type, model.to_s) # ensure pages indexed in the wrong bucket don't get displayed
+            if model == Georgia::Page
+              with(:type, nil) # Georgia::Page is sort of abstract and doesn't save a type
+            else
+              with(:type, model.to_s) # ensure pages indexed in the wrong bucket don't get displayed
+            end
             with(:state, params[:s]) unless params[:s].blank?
             with(:template, params[:t]) unless params[:t].blank?
             with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
@@ -27,7 +31,7 @@ module Georgia
             paginate(page: params[:page], per_page: (params[:per] || 25))
             instance_eval &model.extra_search_params if model.respond_to? :extra_search_params
           end
-          @pages = Georgia::PageDecorator.decorate(@search.results)
+          @pages = Georgia::PageDecorator.decorate_collection(@search.results)
         end
 
       end

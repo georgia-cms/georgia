@@ -9,11 +9,6 @@ module Georgia
       included do
 
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
-        before_filter :prepare_page, only: [:show, :edit, :update, :destroy, :copy]
-
-        rescue_from 'ActionView::MissingTemplate' do |exception|
-          render_default_template(exception.path)
-        end
 
         def find_by_tag
           @pages = model.tagged_with(params[:tag]).page(params[:page])
@@ -22,77 +17,66 @@ module Georgia
         end
 
         def show
-          redirect_to [:edit, @page]
+          @page = model.find(params[:id]).decorate
         end
 
         def edit
-          build_associations
+          @page = model.find(params[:id]).decorate
         end
 
-        def update
-          @page.update_attributes(params[:page])
-
-          if @page.valid?
-            @page.updated_by = current_user
-            @page.save
-            respond_to do |format|
-              format.html { redirect_to [:edit, @page], notice: "#{decorate(@page).title} was successfully updated." }
-              format.js { render layout: false }
+        def create
+          @page = model.new(slug: params[:title].try(:parameterize))
+          if @page.save
+            @page.revisions.create(template: 'one-column') do |rev|
+              rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
             end
-          else
-            build_associations
-            respond_to do |format|
-              format.html { render :edit }
-              format.js { render layout: false }
-            end
+            @page.update_attribute(:current_revision, @page.revisions.first)
           end
+        end
+
+        def copy
+          @copy = @page.copy
+          redirect_to [:edit, @copy], notice: "Do not forget to change your url"
+        end
+
+        def preview
+          @page = model.find(params[:id])
+          redirect_to @page.url
         end
 
         def destroy
+          @page = model.find(params[:id])
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
-          redirect_to [:details, @publisher.meta_page], notice: @message
+          redirect_to [:search, model], notice: @message
         end
 
-        def sort
-          if params[:page]
-            params[:page].each_with_index do |id, index|
-              model.update_all({position: index+1}, {id: id})
-            end
-          end
-          render nothing: true
+        def draft
+          @page = model.find(params[:id])
+          @draft = @page.draft
+          redirect_to [:edit, @page, @draft], notice: "You successfully started a new draft of #{@draft.title}. Submit for review when completed."
+        end
+
+        def publish
+          @page = model.find(params[:id])
+          @page.current_revision.publish
+          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+          notify(message)
+          redirect_to :back, notice: message
+        end
+
+        def unpublish
+          @page = model.find(params[:id])
+          @page.current_revision.unpublish
+          message = "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
+          notify(message)
+          redirect_to :back, notice: message
         end
 
         private
 
-        def build_associations
-          @page.slides.build unless @page.slides.any?
-          I18n.available_locales.map(&:to_s).each do |locale|
-            @page.contents << Georgia::Content.new(locale: locale) unless @page.contents.select{|c| c.locale == locale}.any?
-            @page.slides.each do |slide|
-              slide.contents << Georgia::Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
-            end
-          end
-        end
-
         def prepare_new_page
           @page = model.new
-          @page.contents = [Georgia::Content.new(locale: I18n.default_locale)]
-        end
-
-        def render_default_template(path)
-          render "pages/#{path}"
-        rescue ActionView::MissingTemplate
-          render "georgia/pages/#{path}"
-        end
-
-        def prepare_page
-          @page = decorate(model.find(params[:id]))
-          @publisher = Georgia::Publisher.new(@page.uuid, user: current_user)
-        end
-
-        def decorate page
-          Georgia::PageDecorator.decorate(page)
         end
 
       end

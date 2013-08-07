@@ -14,16 +14,16 @@ module Georgia
           def indexable_fields
             Proc.new {
               text :title, stored: true do
-                contents.map(&:title).join(', ')
+                revisions.map{|r| r.contents.map(&:title)}.flatten.uniq.join(', ')
               end
               text :excerpt, stored: true do
-                contents.map(&:excerpt).join(', ')
+                revisions.map{|r| r.contents.map(&:excerpt)}.flatten.uniq.join(', ')
               end
               text :text do
-                contents.map(&:text).join(', ')
+                revisions.map{|r| r.contents.map(&:text)}.flatten.uniq.join(', ')
               end
               text :keywords do
-                contents.map(&:keyword_list).flatten.join(', ')
+                revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq.join(', ')
               end
               text :tags do
                 tag_list.join(', ')
@@ -39,7 +39,7 @@ module Georgia
               string :template
               string :state
               string :keywords, stored: true, multiple: true do
-                contents.map(&:keyword_list).flatten
+                revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq
               end
               string :tag_list, stored: true, multiple: true #Facets (multiple)
               string :tags do #Ordering (single list)
