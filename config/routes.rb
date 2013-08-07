@@ -19,28 +19,28 @@ Georgia::Engine.routes.draw do
     end
 
     member do
+      get :preview
       get :draft
       get :publish
       get :unpublish
       get :copy
       get :store
-      get :details
     end
 
-    resources :drafts, :reviews, :revisions do
+    resources :revisions do
       member do
-        get :copy
-        get :store
-        get :draft
+        get :preview
         get :review
         get :approve
-        get :publish
+        get :store
+        get :decline
         get :unpublish
+        get :revert
       end
     end
   end
 
-  resources :meta_pages, path: 'pages', concerns: [:pageable]
+  resources :pages, concerns: [:pageable]
 
   resources :media, path: :media do
     collection do
@@ -55,6 +55,6 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
-  root to: 'meta_pages#search'
+  root to: 'pages#search'
 
 end
