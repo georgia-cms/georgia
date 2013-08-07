@@ -4,9 +4,9 @@ module Georgia
     include Georgia::Concerns::Orderable
     acts_as_list scope: :page
 
-    belongs_to :page, touch: true
-    belongs_to :widget, touch: true
-    belongs_to :ui_section, touch: true
+    belongs_to :page, class_name: Georgia::Revision
+    belongs_to :widget
+    belongs_to :ui_section
     attr_accessible :position, :widget_id, :ui_section_id, :page_id
 
     validate :associations

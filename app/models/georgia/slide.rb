@@ -7,7 +7,7 @@ module Georgia
     acts_as_list scope: :page
     attr_accessible :page_id
 
-    belongs_to :page
+    belongs_to :page, class_name: Georgia::Revision
 
     validate :page_association
 
