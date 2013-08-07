@@ -7,10 +7,7 @@
   </div>
 
   <div class="modal-body">
-    <%= f.simple_fields_for :contents do |c| %>
-    <%= c.input :locale, as: :hidden %>
-    <%= c.input :title, autofocus: true %>
-    <% end -%>
+    <%= text_field_tag :title %>
   </div>
 
   <div class="modal-footer">

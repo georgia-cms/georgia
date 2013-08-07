@@ -1,6 +1,6 @@
 <% if @page.valid? %>
-window.location.href = '<%= url_for [:details, @page] %>';
+  window.location.href = '<%= url_for(@page) %>';
 <% else -%>
-$('#new_page .modal-body').prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)</div>");
-$('input#page_title').closest('.control-group').addClass('error');
+  $('#new_page .modal-body').prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)</div>");
+  $('input#title').closest('.control-group').addClass('error');
 <% end %>

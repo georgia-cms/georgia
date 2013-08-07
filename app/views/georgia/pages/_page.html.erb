@@ -16,53 +16,53 @@
   </td>
   <td class="labels">
     <span class="badge">
-      <%= page.publisher.drafts.count %>
+      <%= page.revisions.drafts.count %>
     </span>
   </td>
   <td class="labels">
     <span class="badge">
-      <%= page.publisher.reviews.count %>
+      <%= page.revisions.reviews.count %>
     </span>
   </td>
   <td class="labels">
     <span class="badge">
-      <%= page.publisher.revisions.count %>
+      <%= page.revisions.stored.count %>
     </span>
   </td>
   <td class="actions">
-    <%= Georgia::EditMetaPageButton.new(self, page).render if can? :edit, page %>
+    <%= Georgia::EditPageButton.new(self, page).render if can? :edit, page %>
   </td>
 </tr>
 
-<% if page.publisher.reviews.any? %>
-  <% page.publisher.reviews.each do |review| %>
+<% if page.revisions.reviews.any? %>
+  <% page.revisions.reviews.each do |review| %>
     <tr class='hide review' data-page-id="<%= page.id %>">
       <td>
         <%= icon_tag 'icon-long-arrow-right' %>
         <span class="label label-warning">In Review</span>
       </td>
       <td colspan='7'>
-        Last updated <%= review.updated_at.strftime('%F - %H:%M') %> by <%= review.created_by.name %>
+        Last updated <%= review.updated_at.strftime('%F - %H:%M') %>
       </td>
       <td class='actions'>
-        <%= Georgia::EditPageButton.new(self, review).render %>
+        <%= Georgia::EditRevisionButton.new(self, review).render %>
       </td>
     </tr>
   <% end -%>
 <% end -%>
 
-<% if page.publisher.drafts.any? %>
-  <% page.publisher.drafts.each do |draft| %>
+<% if page.revisions.drafts.any? %>
+  <% page.revisions.drafts.each do |draft| %>
     <tr class='hide draft' data-page-id="<%= page.id %>">
       <td>
         <%= icon_tag 'icon-long-arrow-right' %>
         <span class="label label-info">Draft</span>
       </td>
       <td colspan='7'>
-        Last updated <%= draft.updated_at.strftime('%F - %H:%M') %> by <%= draft.created_by.name %>
+        Last updated <%= draft.updated_at.strftime('%F - %H:%M') %>
       </td>
       <td class='actions'>
-        <%= Georgia::EditPageButton.new(self, draft).render %>
+        <%= Georgia::EditRevisionButton.new(self, draft).render %>
       </td>
     </tr>
   <% end -%>
