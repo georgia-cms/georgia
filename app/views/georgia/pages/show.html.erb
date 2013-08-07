@@ -20,7 +20,7 @@
       <div class="well">
         <ul class="nav nav-list">
           <li class="nav-header">Actions</li>
-          <%= Georgia::EditMetaPageActionList.new(self, @page).render %>
+          <%= Georgia::EditPageActionList.new(self, @page).render %>
         </ul>
       </div>
     </div>
@@ -28,8 +28,8 @@
       <div class="row-fluid">
         <div class="span4">
           <h3 class='page-header'>Drafts</h3>
-          <% if @page.drafts.any? %>
-            <% @page.drafts.find_each do |draft| %>
+          <% if @page.revisions.drafts.any? %>
+            <% @page.revisions.drafts.find_each do |draft| %>
               <h5>
                 <%= link_to 'edit', [:edit, @page.model, draft], class: 'pull-right' %>
                 <span class="muted">#<%= draft.id %></span>
@@ -37,15 +37,15 @@
               </h5>
             <% end -%>
           <% else -%>
-            <h5 class='muted'>There are no drafts so far. <%= link_to 'Start one', url_for(controller: controller_name, action: :draft, id: @page.model.to_param) %></h5>
+            <p class='muted'>There are no drafts so far. <%= link_to 'Start one', url_for(controller: controller_name, action: :draft, id: @page.model.to_param) %></p>
           <% end -%>
           <hr />
           <%= link_to "#{icon_tag 'icon-paste'} Start a new draft".html_safe, url_for(controller: controller_name, action: :draft, id: @page.model.to_param), class: 'btn btn-primary' %>
         </div>
         <div class="span4">
           <h3 class='page-header'>In Review</h3>
-          <% if @page.reviews.any? %>
-            <% @page.reviews.find_each do |review| %>
+          <% if @page.revisions.reviews.any? %>
+            <% @page.revisions.reviews.find_each do |review| %>
               <h5>
                 <%= link_to 'edit', [:edit, @page.model, review], class: 'pull-right' %>
                 <span class="muted">#<%= review.id %></span>
@@ -53,13 +53,13 @@
               </h5>
             <% end -%>
           <% else -%>
-            <h5 class='muted'>There is nothing to review at the moment.</h5>
+            <p class='muted'>There is nothing to review at the moment.</p>
           <% end -%>
         </div>
         <div class="span4">
           <h3 class='page-header'>Revisions</h3>
-          <% if @page.revisions.any? %>
-            <% @page.revisions.find_each do |revision| %>
+          <% if @page.revisions.stored.any? %>
+            <% @page.revisions.stored.find_each do |revision| %>
               <h5>
                 <%= link_to 'preview', main_app.preview_page_path(revision), class: 'pull-right', target: '_blank' %>
                 <span class="muted">#<%= revision.id %></span>
@@ -67,7 +67,7 @@
               </h5>
             <% end -%>
           <% else -%>
-            <h5 class='muted'>There are no revisions yet.</h5>
+            <p class='muted'>There are no revisions yet.</p>
           <% end -%>
         </div>
       </div>
