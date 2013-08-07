@@ -10,13 +10,13 @@ module Georgia
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
-          @page = Georgia::MetaPage.where(url: request.path).published.first || not_found
+          @page = Georgia::Page.where(url: request.path).published.first || not_found
           @page = Georgia::PageDecorator.decorate(@page)
         end
 
         def preview
-          @page = Georgia::Page.find(params[:id])
-          @page = Georgia::PageDecorator.decorate(@page)
+          @page = Georgia::Page.find(params[:id]).decorate
+          @page.current_revision = Georgia::Revision.find(params[:revision])
           authorize! :preview, @page
           render :show
         end
