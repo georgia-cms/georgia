@@ -10,23 +10,18 @@ namespace :georgia do
       user.roles << Georgia::Role.create(name: 'Editor')
     end
 
-    # Create the publishing statuses
-    Georgia::Status.create(name: 'Published', label: 'success', icon: 'icon-eye-open')
-    Georgia::Status.create(name: 'Pending Review', label: 'warning', icon: 'icon-time')
-    Georgia::Status.create(name: 'Draft', label: 'error', icon: 'icon-eye-close')
-    Georgia::Status.create(name: 'Incomplete', label: 'info', icon: 'icon-exclamation-sign')
-
     # Creates the default main UI sections
     Georgia::UiSection.create(name: 'Footer')
     Georgia::UiSection.create(name: 'Sidebar')
 
     # Creates the home page, mother of all pages
-    page = Georgia::MetaPage.create(slug: 'home') do |page|
-      page.contents << Georgia::Content.new(
-        locale: 'en',
-        title: 'Home'
-      )
-    end
+    page = Georgia::Page.create(slug: 'home')
+    revision = Georgia::Revision.create(state: :draft, template: 'one-column')
+    content = Georgia::Content.create(locale: 'en', title: 'Home')
+    revision.contents << content
+    page.revisions << revision
+    page.current_revision = revision
+    page.save
     Georgia::Page.reindex
 
   end

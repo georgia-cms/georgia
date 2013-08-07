@@ -28,31 +28,26 @@ class CreateGeorgiaModels < ActiveRecord::Migration
     # Create Pages
     create_table :georgia_pages do |t|
       t.string    :type
-      t.string    :template, default: 'one-column'
       t.string    :slug
       t.string    :url
       t.integer   :position
       t.integer   :parent_id
       t.integer   :revision_id
-      t.integer   :created_by_id
-      t.integer   :updated_by_id
-      t.integer   :published_by_id
-      t.integer   :status_id
       t.string    :ancestry
-      t.datetime  :published_at
-      t.uuid      :uuid
-      t.string    :state
       t.timestamps
     end
     add_index :georgia_pages, :url
     add_index :georgia_pages, :parent_id
-    add_index :georgia_pages, :created_by_id
-    add_index :georgia_pages, :updated_by_id
-    add_index :georgia_pages, :published_by_id
     add_index :georgia_pages, :revision_id
     add_index :georgia_pages, :ancestry
-    add_index :georgia_pages, :uuid
-    add_index :georgia_pages, :state
+
+    # Create Revisions
+    create_table :georgia_revisions do |t|
+      t.string :state, default: 'draft'
+      t.string :template
+      t.references :revisionable, polymorphic: true
+      t.timestamps
+    end
 
     # Create Content
     create_table :georgia_contents do |t|
