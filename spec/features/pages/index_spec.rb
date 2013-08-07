@@ -4,7 +4,7 @@ describe 'pages#index' do
 
   before :each do
     create_logged_in_user
-    visit georgia.search_meta_pages_url
+    visit georgia.search_pages_url
   end
 
   describe 'create' do

@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 module AuthenticationHelpers
   def create_logged_in_user
-    @user ||= FactoryGirl.create(:admin)
+    @user ||= create(:admin)
     login(@user)
     @user
   end

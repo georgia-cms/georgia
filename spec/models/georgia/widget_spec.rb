@@ -44,7 +44,7 @@ describe Georgia::Widget do
 
     describe '.for_page' do
       it 'returns widgets for a given page' do
-        page = create(:georgia_page)
+        page = create(:georgia_revision)
         create(:georgia_ui_association, widget: @footer_widget, page: page)
         expect(Georgia::Widget.for_page(page)).to include @footer_widget
       end

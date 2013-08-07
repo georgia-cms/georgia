@@ -1,4 +1,4 @@
-shared_examples "a searchable model" do
+shared_examples "a indexable model" do
 
   let(:model_name) { described_class.name.underscore.gsub(/\//, '_').to_sym }
   let(:instance) { create(model_name) }
@@ -10,7 +10,11 @@ shared_examples "a searchable model" do
     end
 
     it 'in full text mode by query' do
-      instance.contents << build(:georgia_content, title: 'Wise Wiesel')
+      revision = create(:georgia_revision)
+      revision.contents << build(:georgia_content, title: 'Wise Wiesel')
+      instance.revisions << revision
+      instance.current_revision = revision
+      instance.save
       described_class.reindex
       search = described_class.search do
         fulltext 'Wise' do

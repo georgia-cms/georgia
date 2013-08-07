@@ -9,6 +9,7 @@ shared_examples "a slugable model" do
   it {should allow_value('COn-T4CT_').for(:slug)}
   it {should allow_value('/register-me//').for(:slug)}
   it {should_not allow_value('supp/ort').for(:slug).with_message(/can only consist of/)}
+  it { should validate_uniqueness_of(:slug).scoped_to(:ancestry) }
 
   it 'sanitizes the slug by removing the first and last forward slashes' do
     instance = FactoryGirl.create(model_name, slug: '///leftover//')

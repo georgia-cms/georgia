@@ -4,7 +4,6 @@ describe Georgia::LinkDecorator do
 
   subject {Georgia::LinkDecorator.decorate(FactoryGirl.build(:georgia_link))}
 
-  it_behaves_like 'a decorator'
   it { should respond_to :url}
 
   describe '#url' do

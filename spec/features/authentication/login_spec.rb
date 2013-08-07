@@ -4,7 +4,7 @@ feature 'User signs in' do
 
   before :all do
     unless Georgia::User.find_by_email 'test@me.com'
-      FactoryGirl.create(:admin, email: 'test@me.com', password: '1234-get-the-kittens-out-the-door', password_confirmation: '1234-get-the-kittens-out-the-door')
+      create(:admin, email: 'test@me.com', password: '1234-get-the-kittens-out-the-door', password_confirmation: '1234-get-the-kittens-out-the-door')
     end
   end
 

@@ -5,7 +5,6 @@ describe Georgia::Slide do
   specify {FactoryGirl.build(:georgia_slide).should be_valid}
 
   it { should belong_to :page }
-
   it { should respond_to :page_id }
 
   it_behaves_like 'a contentable model'

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Georgia::MetaPagesController do
+describe Georgia::PagesController do
   include Devise::TestHelpers
 
   before :all do
-    @page = create :georgia_meta_page
+    @page = create :georgia_page
   end
 
   before :each do
@@ -19,8 +19,8 @@ describe Georgia::MetaPagesController do
     end
   end
 
-  it "should render the details action" do
-    get :details, {use_route: :admin, id: @page.uuid}
+  it "should render the page" do
+    get :show, use_route: :admin, id: @page.id
     assigns(:page).should eq @page
   end
 end
