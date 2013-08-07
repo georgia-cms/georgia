@@ -3,6 +3,8 @@
 - Fix messages view
 - Use Bootstrap CDN for font-awesome Twitter Bootstrap & Font-Awesome
 - Move path discovery to its own module (Georgia::Paths)
+- Remove MetaPage and move references back to Page
+- Introduce Georgia::Revision
 
 == 0.6.0
 
