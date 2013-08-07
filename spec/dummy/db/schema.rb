@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719173129) do
+ActiveRecord::Schema.define(:version => 20130806175343) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(:version => 20130719173129) do
 # Could not dump table "georgia_pages" because of following StandardError
 #   Unknown type 'uuid' for column 'uuid'
 
+  create_table "georgia_revisions", :force => true do |t|
+    t.string   "state",             :default => "draft"
+    t.string   "template"
+    t.integer  "revisionable_id"
+    t.string   "revisionable_type"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
   create_table "georgia_roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -82,11 +91,13 @@ ActiveRecord::Schema.define(:version => 20130719173129) do
   create_table "georgia_slides", :force => true do |t|
     t.integer  "position"
     t.integer  "page_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "revision_id"
   end
 
   add_index "georgia_slides", ["page_id"], :name => "index_georgia_slides_on_page_id"
+  add_index "georgia_slides", ["revision_id"], :name => "index_georgia_slides_on_revision_id"
 
   create_table "georgia_statuses", :force => true do |t|
     t.string "name"
@@ -101,9 +112,11 @@ ActiveRecord::Schema.define(:version => 20130719173129) do
     t.integer  "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "revision_id"
   end
 
   add_index "georgia_ui_associations", ["page_id"], :name => "index_georgia_ui_associations_on_page_id"
+  add_index "georgia_ui_associations", ["revision_id"], :name => "index_georgia_ui_associations_on_revision_id"
   add_index "georgia_ui_associations", ["ui_section_id"], :name => "index_georgia_ui_associations_on_ui_section_id"
   add_index "georgia_ui_associations", ["widget_id"], :name => "index_georgia_ui_associations_on_widget_id"
 
