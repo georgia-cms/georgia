@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module Georgia
   module Concerns
-    module Pageable
+    module Publishing
       extend ActiveSupport::Concern
       include Helpers
 
