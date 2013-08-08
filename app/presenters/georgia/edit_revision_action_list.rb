@@ -13,14 +13,10 @@ module Georgia
 
     def render
       html = ""
-      # Replaces by looking at revision's available events
-      # html << content_tag(:li, link_to_draft) if can?(:copy, instance)
-      # html << content_tag(:li, link_to_copy) if can?(:copy, instance)
       html << content_tag(:li, link_to_preview) if can?(:preview, instance)
-      # html << content_tag(:li, link_to_approve) if can?(:approve, instance)
-      # html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
-      # html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
-      # html << content_tag(:li, link_to_review) if can?(:review, instance)
+      html << content_tag(:li, link_to_review) if can?(:review, instance) and instance.state_events.include?(:review)
+      html << content_tag(:li, link_to_approve) if can?(:approve, instance) and instance.state_events.include?(:approve)
+      html << content_tag(:li, link_to_decline) if can?(:decline, instance) and instance.state_events.include?(:decline)
       html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe
     end
@@ -32,27 +28,19 @@ module Georgia
     end
 
     def link_to_preview
-      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, url_for_page_action(:preview), target: '_blank'
+      link_to "#{icon_tag('icon-eye-open')} Preview".html_safe, url_for_action(:preview), target: '_blank'
     end
 
-    def link_to_copy
-      link_to "#{icon_tag('icon-copy')} Copy".html_safe, url_for_page_action(:copy)
+    def link_to_review
+      link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, url_for_action(:review)
     end
 
     def link_to_approve
       link_to "#{icon_tag('icon-thumbs-up')} Approve".html_safe, url_for_action(:approve)
     end
 
-    def link_to_publish
-      link_to "#{icon_tag('icon-thumbs-up')} Publish".html_safe, url_for_page_action(:publish)
-    end
-
-    def link_to_unpublish
-      link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, url_for_page_action(:unpublish), data: {confirm: 'Are you sure?'}
-    end
-
-    def link_to_review
-      link_to "#{icon_tag('icon-flag')} Ask for Review".html_safe, url_for_action(:review)
+    def link_to_decline
+      link_to "#{icon_tag('icon-thumbs-down')} Decline".html_safe, url_for_action(:decline)
     end
 
     def link_to_delete
@@ -65,10 +53,6 @@ module Georgia
 
     def url_for_action action
       url_for([action, page, instance])
-    end
-
-    def url_for_page_action action
-      url_for([action, page])
     end
 
   end
