@@ -2,7 +2,7 @@
   <%= render 'georgia/shared/messages', model: @revision %>
 <% end %>
 
-<%= simple_form_for @revision, as: :revision, url: url_for( controller: controller_name, action: :update, id: @revision.id), remote: true, html: {class: 'form-vertical wait-and-spin', data: {'revision-id' => @revision.id}} do |f| %>
+<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-vertical wait-and-spin', data: {'revision-id' => @revision.id}} do |f| %>
   <h1 class="revision-header">
     <div class="pull-right">
       <button type="submit" class="btn btn-success">
