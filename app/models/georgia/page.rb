@@ -6,6 +6,7 @@ module Georgia
     include Georgia::Concerns::Previewable
     include Georgia::Concerns::Slugable
     include Georgia::Concerns::Revisionable
+    include Georgia::Concerns::Publishable
     include Georgia::Concerns::Indexable
     include Georgia::Concerns::Copyable
     include Georgia::Concerns::Treeable
