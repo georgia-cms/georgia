@@ -21,7 +21,7 @@ module Georgia
           revision
         end
 
-        def publish(revision)
+        def approve_revision
           current_revision.store if current_revision
           self.update_attribute(:revision_id, revision.id)
         end

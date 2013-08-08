@@ -41,8 +41,8 @@ module Georgia
             transition :revision => :published
           end
 
-          after_transition any => :published do |revision, transition|
-            revision.revisionable.publish(revision)
+          before_transition any => :published do |revision, transition|
+            revision.revisionable.approve_revision(revision)
           end
 
         end
