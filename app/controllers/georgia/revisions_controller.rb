@@ -5,7 +5,7 @@ module Georgia
 
     include Georgia::Concerns::Revisioning
 
-    before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :copy]
+    before_filter :prepare_revision
 
     rescue_from 'ActionView::MissingTemplate' do |exception|
       render_default_template(exception.path)
@@ -70,5 +70,6 @@ module Georgia
     def decorate revision
       Georgia::RevisionDecorator.decorate(revision)
     end
+
   end
 end
