@@ -51,28 +51,6 @@ module Georgia
           redirect_to [:search, model], notice: @message
         end
 
-        def draft
-          @page = model.find(params[:id])
-          @draft = @page.draft
-          redirect_to [:edit, @page, @draft], notice: "You successfully started a new draft of #{@draft.title}. Submit for review when completed."
-        end
-
-        def publish
-          @page = model.find(params[:id])
-          @page.current_revision.publish
-          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
-          notify(message)
-          redirect_to :back, notice: message
-        end
-
-        def unpublish
-          @page = model.find(params[:id])
-          @page.current_revision.unpublish
-          message = "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
-          notify(message)
-          redirect_to :back, notice: message
-        end
-
         private
 
         def prepare_new_page

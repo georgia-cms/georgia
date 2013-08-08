@@ -2,6 +2,7 @@ module Georgia
   class PagesController < Georgia::ApplicationController
 
     include Georgia::Concerns::Pageable
+    include Georgia::Concerns::Publishing
     include Georgia::Concerns::Searchable
 
     def sort
