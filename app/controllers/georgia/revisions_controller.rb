@@ -5,6 +5,7 @@ module Georgia
 
     include Georgia::Concerns::Notifying
     include Georgia::Concerns::Revisioning
+    include Georgia::Concerns::Previewing
 
     before_filter :prepare_revision
 
