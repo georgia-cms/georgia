@@ -18,7 +18,7 @@ module Georgia
           @revision.approve
           message = "#{current_user.name} has successfully approved and published #{@revision.title} #{instance_name}."
           notify(message)
-          redirect_to [:show, @page], notice: message
+          redirect_to @page, notice: message
         end
 
         def decline
@@ -32,13 +32,13 @@ module Georgia
           @revision.revert
           message = "#{current_user.name} has successfully published #{@revision.title} #{instance_name}."
           notify(message)
-          redirect_to [:show, @page], notice: message
+          redirect_to @page, notice: message
         end
 
         private
 
         def notify(message)
-          Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
+          Notifier.notify_editors(message, url_for([:edit, @page, @revision])).deliver
         end
 
       end
