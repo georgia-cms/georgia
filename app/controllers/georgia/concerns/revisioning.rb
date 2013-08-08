@@ -12,27 +12,27 @@ module Georgia
 
         def review
           @revision.review
-          notify("#{current_user.name} is asking you to review #{@page.title} #{instance_name}.")
-          redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@review.title} for review."
+          notify("#{current_user.name} is asking you to review #{@revision.title}.")
+          redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
         end
 
         def approve
           @revision.approve
-          message = "#{current_user.name} has successfully approved and published #{@page.title} #{instance_name}."
+          message = "#{current_user.name} has successfully approved and published #{@revision.title} #{instance_name}."
           notify(message)
           redirect_to [:show, @page], notice: message
         end
 
         def decline
           @revision.decline
-          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+          message = "#{current_user.name} has successfully published #{@revision.title} #{instance_name}."
           notify(message)
           redirect_to [:edit, @page, @revision], notice: message
         end
 
         def revert
           @revision.revert
-          message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+          message = "#{current_user.name} has successfully published #{@revision.title} #{instance_name}."
           notify(message)
           redirect_to [:show, @page], notice: message
         end
