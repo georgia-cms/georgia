@@ -17,6 +17,11 @@ module Georgia
           self.update_attribute(:public, false)
         end
 
+        def public?
+          self.public
+        end
+        alias_method :published?, :public?
+
       end
 
       module ClassMethods

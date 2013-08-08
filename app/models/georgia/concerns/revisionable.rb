@@ -13,7 +13,7 @@ module Georgia
         delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, to: :current_revision, allow_nil: true
         delegate :content, to: :current_revision
 
-        delegate :draft?, :review?, :published?, :revision?, to: :current_revision
+        delegate :draft?, :review?, :revision?, to: :current_revision
 
         def draft
           revision = Georgia::Clone.new(self).draft
