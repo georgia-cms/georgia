@@ -44,15 +44,6 @@ module Georgia
       redirect_to @page, notice: @message
     end
 
-    def sort
-      if params[:revision]
-        params[:revision].each_with_index do |id, index|
-          model.update_all({position: index+1}, {id: id})
-        end
-      end
-      render nothing: true
-    end
-
     private
 
     def build_associations
