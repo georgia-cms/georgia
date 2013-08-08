@@ -1,4 +1,4 @@
-<tr class="page state-<%= page.state %> js-toggle-revisions" data-page-id="<%= page.id %>">
+<tr class="page state-<%= page.public? ? 'published' : 'unpublished' %> js-toggle-revisions" data-page-id="<%= page.id %>">
   <td>
     <%= page.title %>
   </td>
@@ -12,7 +12,7 @@
     <%= page.tag_list %>
   </td>
   <td class="labels">
-    <%= page.status_tag %>
+    <%= page.state_icon %>
   </td>
   <td class="labels">
     <span class="badge">
