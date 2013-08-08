@@ -8,8 +8,6 @@ module Georgia
 
       included do
 
-        before_filter :prepare_revision, only: [:review, :approve, :decline, :revert]
-
         def review
           @revision.review
           notify("#{current_user.name} is asking you to review #{@revision.title}.")
@@ -38,11 +36,6 @@ module Georgia
         end
 
         private
-
-        def prepare_revision
-          @page = Georgia::Page.find(params[:page_id])
-          @revision = Georgia::Revision.find(params[:id])
-        end
 
         def notify(message)
           Notifier.notify_editors(message, url_for(action: :edit, controller: controller_name, id: @page.id)).deliver
