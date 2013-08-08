@@ -8,9 +8,9 @@ namespace :georgia do
 
       Georgia::Page.find_each do |page|
         page.revisions.create( state: page.state, template: page.template, revisionable: page ) do |rev|
-          page.contents.update_all (contentable: rev)
-          page.slides.update_all (revision: rev)
-          page.ui_associations.update_all (revision: rev)
+          page.contents.update_all(contentable: rev)
+          page.slides.update_all(revision: rev)
+          page.ui_associations.update_all(revision: rev)
         end
       end
 
