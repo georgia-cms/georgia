@@ -65,8 +65,8 @@ module Georgia
     end
 
     def prepare_revision
-      @page = Georgia::Page.find(params[:page_id])
       @revision = decorate(model.find(params[:id]))
+      @page = @revision.revisionable
     end
 
     def decorate revision
