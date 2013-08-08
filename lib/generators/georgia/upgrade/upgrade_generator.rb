@@ -19,6 +19,7 @@ module Georgia
         migration_template "create_georgia_revisions.rb", "db/migrate/create_georgia_revisions.rb"
         migration_template "add_revision_id_to_georgia_slides.rb", "db/migrate/add_revision_id_to_georgia_slides.rb"
         migration_template "add_revision_id_to_georgia_ui_associations.rb", "db/migrate/add_revision_id_to_georgia_ui_associations.rb"
+        migration_template "add_public_to_georgia_pages.rb", "db/migrate/add_public_to_georgia_pages.rb"
         rake 'db:migrate'
       end
 

@@ -7,6 +7,16 @@ module Georgia
 
       included do
 
+        scope :published, where(public: true)
+
+        def publish
+          self.update_attribute(:public, true)
+        end
+
+        def unpublish
+          self.update_attribute(:public, false)
+        end
+
       end
 
       module ClassMethods
