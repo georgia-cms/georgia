@@ -3,6 +3,7 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Revision
 
+    include Georgia::Concerns::Notifying
     include Georgia::Concerns::Revisioning
 
     before_filter :prepare_revision

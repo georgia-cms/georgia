@@ -35,12 +35,6 @@ module Georgia
           redirect_to @page, notice: message
         end
 
-        private
-
-        def notify(message)
-          Notifier.notify_editors(message, url_for([:edit, @page, @revision])).deliver
-        end
-
       end
 
     end
