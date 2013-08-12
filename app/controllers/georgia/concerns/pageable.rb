@@ -9,19 +9,12 @@ module Georgia
       included do
 
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
+        before_filter :prepare_page, only: [:show, :edit, :update, :copy, :preview, :destroy]
 
         def find_by_tag
           @pages = model.tagged_with(params[:tag]).page(params[:page])
           @pages = Georgia::PagesDecorator.decorate(@pages)
           render :index
-        end
-
-        def show
-          @page = model.find(params[:id]).decorate
-        end
-
-        def edit
-          @page = model.find(params[:id]).decorate
         end
 
         def create
@@ -35,7 +28,6 @@ module Georgia
         end
 
         def update
-          @page = model.find(params[:id]).decorate
           @page.update_attributes(params[:page])
           respond_to do |format|
             format.html { render :edit, notice: "#{decorate(@revision).title} was successfully updated." }
@@ -49,12 +41,10 @@ module Georgia
         end
 
         def preview
-          @page = model.find(params[:id])
           redirect_to @page.url
         end
 
         def destroy
-          @page = model.find(params[:id])
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
           redirect_to [:search, model], notice: @message
@@ -64,6 +54,10 @@ module Georgia
 
         def prepare_new_page
           @page = model.new
+        end
+
+        def prepare_page
+          @page = model.find(params[:id]).decorate
         end
 
       end
