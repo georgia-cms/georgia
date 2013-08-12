@@ -5,9 +5,6 @@ describe Georgia::User do
 
   specify {build(:georgia_user).should be_valid}
 
-  let (:admin) { create(:admin) }
-  let (:editor) { create(:editor) }
-
   it {should allow_mass_assignment_of(:first_name)}
   it {should allow_mass_assignment_of(:last_name)}
   it {should allow_mass_assignment_of(:email)}
@@ -47,15 +44,27 @@ describe Georgia::User do
     end
 
     describe '.admins' do
-      subject { Georgia::User.admins }
-      it {should include admin}
-      it {should_not include editor}
+
+      it "returns records in a 'draft' state" do
+        admin = create(:admin)
+        editor = create(:editor)
+        expect(Georgia::User.admins).to eq([admin])
+        expect(Georgia::User.admins).not_to include(editor)
+      end
+
     end
+
     describe '.editors' do
-      subject { Georgia::User.editors }
-      it {should include editor}
-      it {should_not include admin}
+
+      it "returns records in a 'published' state" do
+        admin = create(:admin)
+        editor = create(:editor)
+        expect(Georgia::User.editors).to eq([editor])
+        expect(Georgia::User.editors).not_to include(admin)
+      end
+
     end
+
   end
 
 end
