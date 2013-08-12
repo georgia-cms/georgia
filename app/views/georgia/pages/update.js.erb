@@ -1,0 +1,9 @@
+$('input, textarea').closest('.control-group').removeClass('error');
+<% @page.errors.each do |error, message| %>
+$('#page_<%= error.to_s %>').closest('.control-group').addClass('error');
+<% end %>
+<% if @page.valid? %>
+$('#edit_page').prepend("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert'>×</button>Good job! It's updated.</div>");
+<% else %>
+$('#edit_page').prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>Oh darn! What did you do?</div>");
+<% end -%>

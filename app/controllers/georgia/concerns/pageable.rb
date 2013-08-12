@@ -34,6 +34,15 @@ module Georgia
           end
         end
 
+        def update
+          @page = model.find(params[:id]).decorate
+          @page.update_attributes(params[:page])
+          respond_to do |format|
+            format.html { render :edit, notice: "#{decorate(@revision).title} was successfully updated." }
+            format.js { render layout: false }
+          end
+        end
+
         def copy
           @copy = @page.copy
           redirect_to [:edit, @copy], notice: "Do not forget to change your url"
