@@ -89,6 +89,7 @@ GEM
       rails (>= 3, < 5)
     acts_as_list (0.3.0)
       activerecord (>= 3.0)
+    addressable (2.3.5)
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
     anjlab-bootstrap-rails (2.3.1.2)
@@ -227,6 +228,8 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
     libv8 (3.11.8.17)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -400,6 +403,7 @@ DEPENDENCIES
   foreman
   georgia!
   henry!
+  launchy
   pry
   pry-rails
   rails_best_practices
