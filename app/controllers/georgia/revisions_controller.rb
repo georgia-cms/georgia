@@ -25,7 +25,6 @@ module Georgia
       @revision.update_attributes(params[:revision])
 
       if @revision.valid?
-        @revision.updated_by = current_user
         @revision.save
         respond_to do |format|
           format.html { redirect_to [:edit, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
