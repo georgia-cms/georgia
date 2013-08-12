@@ -4,7 +4,7 @@ require "georgia/engine"
 module Georgia
 
   mattr_accessor :templates
-  @@templates = %w(one-column sidebar-left sidebar-right)
+  @@templates = %w(default one-column sidebar-left sidebar-right)
 
   mattr_accessor :title
   @@title = "Georgia"

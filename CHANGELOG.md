@@ -5,6 +5,7 @@
 - Move path discovery to its own module (Georgia::Paths)
 - Remove MetaPage and move references back to Page
 - Introduce Georgia::Revision
+- Add default template
 
 == 0.6.0
 
