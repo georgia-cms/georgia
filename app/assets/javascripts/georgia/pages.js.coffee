@@ -14,7 +14,7 @@ jQuery ->
   $('#templates .template').click ->
     $('#templates .template').removeClass('active')
     $(this).addClass('active')
-    $('input#page_template').val($(this).attr('id'))
+    $('input#revision_template').val($(this).attr('id'))
 
   $('.js-allow-slug-edit').click (event) ->
     slug = $(this).parent().siblings('input')

@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>Template</legend>
+  <div id='templates'>
+    <%= f.hidden_field :template %>
+    <% Georgia.templates.each do |template| %>
+    <%= render_template template %>
+    <% end -%>
+  </div>
+</fieldset>
