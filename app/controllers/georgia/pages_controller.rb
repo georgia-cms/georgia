@@ -5,15 +5,7 @@ module Georgia
     include Georgia::Concerns::Notifying
     include Georgia::Concerns::Publishing
     include Georgia::Concerns::Searchable
-
-    def sort
-      if params[:page]
-        params[:page].each_with_index do |id, index|
-          model.update_all({position: index+1}, {id: id})
-        end
-      end
-      render nothing: true
-    end
+    include Georgia::Concerns::Sorting
 
   end
 end
