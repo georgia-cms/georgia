@@ -4,6 +4,7 @@ module Georgia
     def render
       html = ""
       html << content_tag(:li, link_to_draft) if can?(:draft, instance)
+      html << content_tag(:li, link_to_edit) if can?(:edit, instance)
       html << content_tag(:li, link_to_copy) if can?(:copy, instance)
       html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
       html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
@@ -19,6 +20,10 @@ module Georgia
 
     def link_to_draft
       link_to "#{icon_tag('icon-paste')} Start a new Draft".html_safe, url_for_action(:draft)
+    end
+
+    def link_to_edit
+      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, url_for_action(:edit)
     end
 
     def link_to_copy
