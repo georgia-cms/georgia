@@ -6,8 +6,10 @@ module Georgia
       html << content_tag(:li, link_to_draft) if can?(:draft, instance)
       html << content_tag(:li, link_to_edit) if can?(:edit, instance)
       html << content_tag(:li, link_to_copy) if can?(:copy, instance)
-      html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
-      html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
+      if instance.current_revision and instance.current_revision.published?
+        html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
+        html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
+      end
       html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe
     end
