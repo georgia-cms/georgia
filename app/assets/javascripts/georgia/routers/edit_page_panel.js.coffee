@@ -9,7 +9,7 @@ class Georgia.Routers.EditPagePanel extends Backbone.Router
   index:  ->
     @slides = new Georgia.Collections.Slides()
     new Georgia.Views.SlideshowPanel(el: '#slideshow', collection: @slides, images: @images)
-    @slides.fetch({data: {page_id: $('[data-page-id]').data('page-id')}})
+    @slides.fetch({data: {page_id: $('[data-revision-id]').data('revision-id')}})
 
     @widgets = new Georgia.Collections.Widgets()
     @widgets.fetch()
