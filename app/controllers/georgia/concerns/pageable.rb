@@ -17,6 +17,12 @@ module Georgia
           render :index
         end
 
+        def show
+        end
+
+        def edit
+        end
+
         def create
           @page = model.new(slug: params[:title].try(:parameterize))
           if @page.save
