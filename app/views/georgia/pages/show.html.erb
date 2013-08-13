@@ -25,6 +25,14 @@
       </div>
     </div>
     <div class="span10">
+      <% if @page.current_revision and @page.current_revision.published? %>
+        <h4 class="page-header"><%= icon_tag 'icon-flag' %> Current Revision</h4>
+        <h5>
+          <span class="muted">#<%= @page.current_revision.id %></span>
+          <%= @page.current_revision.title %> - <small>last updated <%= time_ago_in_words @page.current_revision.updated_at %> ago</small>
+        </h5>
+        <hr />
+      <% end -%>
       <div class="row-fluid">
         <div class="span4">
           <h3 class='page-header'>Drafts</h3>
@@ -57,7 +65,7 @@
           <% end -%>
         </div>
         <div class="span4">
-          <h3 class='page-header'>Revisions</h3>
+          <h3 class='page-header'>Past Revisions</h3>
           <% if @page.revisions.stored.any? %>
             <% @page.revisions.stored.find_each do |revision| %>
               <h5>
