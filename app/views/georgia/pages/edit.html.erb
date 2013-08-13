@@ -31,6 +31,12 @@
   </div>
   <div class='span10'>
 
+    <% if extra_fields? %>
+      <div class="well">
+        <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
+      </div>
+    <% end -%>
+
     <div class="row-fluid">
       <div class="span6">
 
@@ -81,7 +87,6 @@
         </fieldset>
       </div>
     </div>
-    <%= render partial: extra_fields_path, locals: {f: f, page: @page} if extra_fields? %>
   </div>
 </div>
 <% end %>
