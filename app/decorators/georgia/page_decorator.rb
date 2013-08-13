@@ -20,7 +20,11 @@ module Georgia
       options[:class] ||= ''
       options[:class] << ' label'
       options[:class] << " label-#{public? ? 'success' : 'warning'}"
-      h.content_tag(:span, (public? ? 'public' : 'private'), options)
+      h.content_tag(:span, state, options)
+    end
+
+    def state
+      public? ? 'public' : 'private'
     end
 
   end

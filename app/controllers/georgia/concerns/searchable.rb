@@ -16,7 +16,7 @@ module Georgia
           session[:search_params] = params
           @search = model.search do
             fulltext params[:query] do
-              fields(:title, :excerpt, :text, :keywords, :tags, :url, :template, :state)
+              fields(:title, :excerpt, :text, :keywords, :tags, :url, :template)
             end
             facet :state, :template, :tag_list
             if model == Georgia::Page

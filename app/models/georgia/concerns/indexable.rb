@@ -30,14 +30,15 @@ module Georgia
               end
               text :url
               text :template
-              text :state
               string :type
               string :title
               string :excerpt
               string :text
               string :url
               string :template
-              string :state
+              string :state do
+                public? ? 'public' : 'private'
+              end
               string :keywords, stored: true, multiple: true do
                 revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq
               end

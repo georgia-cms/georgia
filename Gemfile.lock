@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.6.1)
+    georgia (0.6.2)
       activerecord-postgres-hstore
       activerecord-postgres-uuid
       acts-as-taggable-on
