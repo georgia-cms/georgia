@@ -11,7 +11,14 @@
     <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, @page, class: 'btn', data: {confirm: 'Did you first save your changes?'} %>
   </div>
   <%= @page.status_tag(class: 'label-big') %>
-  Editing '<%= @page.title %>'
+  <%= @page.title %>
+  <small>
+    <% if @page.public? %>
+      <%= link_to @page.url, @page.url, target: '_blank' %>
+    <% else -%>
+      <%= @page.url %>
+    <% end -%>
+  </small>
 </h1>
 <div class='row-fluid'>
   <div class='span2'>

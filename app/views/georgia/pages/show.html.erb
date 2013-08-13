@@ -6,7 +6,7 @@
   <%= @page.status_tag(class: 'label-big') %>
   <%= @page.title %>
   <small>
-    <% if @page.published? %>
+    <% if @page.public? %>
       <%= link_to @page.url, @page.url, target: '_blank' %>
     <% else -%>
       <%= @page.url %>
