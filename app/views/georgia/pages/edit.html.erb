@@ -74,6 +74,7 @@
         </fieldset>
       </div>
     </div>
+    <%= render partial: extra_fields_path, locals: {f: f, page: @page} if extra_fields? %>
   </div>
 </div>
 <% end %>

@@ -30,5 +30,20 @@ module Georgia
       end.flatten.join().html_safe
     end
 
+    def extra_fields?
+      lookup_context.exists?('extra-fields', ["#{klass_folder}/fields"], true)
+    end
+
+    def extra_fields_path
+      "#{klass_folder}/fields/extra-fields"
+    end
+
+    private
+
+    def klass_folder
+      klass = @page.try(:decorated?) ? @page.model.class : @page.class
+      @klass_folder ||= klass.to_s.underscore.pluralize
+    end
+
   end
 end
