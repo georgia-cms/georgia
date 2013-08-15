@@ -10,7 +10,7 @@ module Georgia
 
     acts_as_list scope: :menu
 
-    belongs_to :menu, class_name: Georgia::Menu
+    belongs_to :menu, class_name: Georgia::Menu, touch: true
 
     scope :ordered, order('position ASC')
 

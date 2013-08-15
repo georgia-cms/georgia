@@ -6,7 +6,7 @@ module Georgia
     include Georgia::Concerns::Previewable
     include Georgia::Concerns::Statable
 
-    belongs_to :revisionable, polymorphic: true
+    belongs_to :revisionable, polymorphic: true, touch: true
 
     has_many :slides, dependent: :destroy, foreign_key: :page_id
     accepts_nested_attributes_for :slides
