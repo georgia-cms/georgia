@@ -15,6 +15,11 @@ module Georgia
         ActiveRecord::Generators::Base.next_migration_number(number)
       end
 
+      def run_migrations
+        migration_template "add_anti_spam_to_messages.rb", "db/migrate/add_anti_spam_to_messages.rb"
+        rake 'db:migrate'
+      end
+
     end
   end
 end

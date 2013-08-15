@@ -52,6 +52,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'state_machine'
   s.add_dependency 'sendgrid'
   s.add_dependency 'routing_concerns'
+  s.add_dependency 'rakismet'
+  s.add_dependency 'sidekiq'
 
   s.add_development_dependency 'thin'
   s.add_development_dependency 'sqlite3'

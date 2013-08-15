@@ -29,6 +29,8 @@ module Georgia
     require 'uuidtools'
     require 'sendgrid'
     require 'routing_concerns'
+    require 'rakismet'
+    require 'sidekiq'
 
     require 'backbone-on-rails'
     require 'handlebars_assets'
