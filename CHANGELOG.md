@@ -1,11 +1,24 @@
+== 0.6.4
+
+- Add rakismet to avoid spam
+
+== 0.6.3
+
+- Fix navigation menus editing
+- Fix Backbone slides and widgets
+- Fix small bugs introduce from new revisioning flow
+
+== 0.6.2
+
+- Remove MetaPage and move references back to Page
+- Add default template
+- Introduce Georgia::Revision
+
 == 0.6.1
 
 - Fix messages view
 - Use Bootstrap CDN for font-awesome Twitter Bootstrap & Font-Awesome
 - Move path discovery to its own module (Georgia::Paths)
-- Remove MetaPage and move references back to Page
-- Introduce Georgia::Revision
-- Add default template
 
 == 0.6.0
 
