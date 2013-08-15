@@ -27,7 +27,7 @@ class Georgia.Views.UiSection extends Backbone.View
     event.preventDefault()
     @collection.create({
         widget_id: $(ui.draggable).data('widget-id')
-        page_id: $('[data-page-id]').data('page-id')
+        page_id: $('[data-revision-id]').data('revision-id')
         ui_section_id: @model.id
       },
       success: (model, xhr, options) =>
