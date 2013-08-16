@@ -10,19 +10,24 @@ module Georgia
 
     mount_uploader :attachment, Georgia::AttachmentUploader
 
-    include PgSearch
-    pg_search_scope :text_search, against: [:subject, :message, :name, :email, :phone],
-      using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}
-
-    def self.search query
-      query.present? ? text_search(query) : scoped
-    end
-
     # Anti Spam: check https://github.com/joshfrench/rakismet for more details
     include Rakismet::Model
     rakismet_attrs author: :name, author_email: :email, content: :message, comment_type: 'message'
     attr_accessible :user_ip, :user_agent, :referrer, :spam, :verified_at
     attr_accessor :permalink, :author_url
+
+    # Search
+    searchable do
+      text :name
+      text :email
+      text :message
+      text :subject
+      text :phone
+      string :spam do
+        spam ? 'spam' : 'clean'
+      end
+      time :created_at
+    end
 
   end
 end

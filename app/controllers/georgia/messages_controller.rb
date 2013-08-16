@@ -3,16 +3,14 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Message
 
-    helper_method :sort_column, :sort_direction
+    before_filter :prepare_search, only: [:search, :edit]
 
-
-    def search
-      @messages = Message.search(params[:query]).page(params[:page]).decorate
-      render 'index'
-    end
 
     def index
-      @messages = Message.order(sort_column + ' ' + sort_direction).page(params[:page]).decorate
+      redirect_to action: :search
+    end
+
+    def search
     end
 
     def destroy
@@ -20,9 +18,6 @@ module Georgia
       @message.destroy
 
       redirect_to messages_url
-    end
-
-    def new
     end
 
     def edit
@@ -39,12 +34,17 @@ module Georgia
 
     private
 
-    def sort_column
-      Message.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-    end
-
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    def prepare_search
+      @search = Georgia::Message.search do
+        fulltext params[:query] do
+          fields(:name, :email, :message, :subject, :phone)
+        end
+        facet :spam
+        with(:spam, params[:s]) unless params[:s].blank?
+        order_by (params[:o] || :created_at), (params[:dir] || :desc)
+        paginate(page: params[:page], per_page: (params[:per] || 25))
+      end
+      @messages = Georgia::MessageDecorator.decorate_collection(@search.results)
     end
 
   end

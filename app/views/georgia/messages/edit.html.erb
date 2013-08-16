@@ -1,34 +1,44 @@
-<h1 class="page-header"><%= @message.subject %></h1>
-<p>
-  <%= @message.message %>
-</p>
-<hr />
-<p>
-  <b>Phone</b>: <%= @message.phone %>
-</p>
-<p>
-  <b>Written by</b>: <%= @message.name %>
-</p>
-<p>
-  <b>Sent on</b>: <%= @message.created_at %>
-</p>
-<p>
-  <b>From</b>: <%= link_to @message.referrer, @message.referrer %>
-</p>
-<p>
-  <b>User IP</b>: <%= @message.user_ip %>
-</p>
-<p>
-  <b>User Agent</b>: <%= @message.user_agent %>
-</p>
-<p>
-  <b>Attachment</b>:
-  <% if @message.attachment.try(:file) and @message.attachment.file.exists? %>
-    <%= link_to @message.attachment.file.filename, @message.attachment.url %>
-  <% else -%>
-    <span class='muted'>There were no attachment.</span>
-  <% end -%>
-</p>
-<div class="form-actions">
-  <%= link_to "&laquo; Back".html_safe, georgia.messages_url, class: 'btn' %>
+<div class="row-fluid">
+  <div class="span2">
+    <%= render 'georgia/messages/facets' %>
+  </div>
+  <div class="span10">
+
+    <%= render 'georgia/messages/header' %>
+
+    <h1 class="page-header"><%= @message.subject %></h1>
+    <p>
+      <%= @message.message %>
+    </p>
+    <hr />
+    <p>
+      <b>Phone</b>: <%= @message.phone %>
+    </p>
+    <p>
+      <b>Written by</b>: <%= @message.name %>
+    </p>
+    <p>
+      <b>Sent on</b>: <%= @message.created_at %>
+    </p>
+    <p>
+      <b>From</b>: <%= link_to @message.referrer, @message.referrer %>
+    </p>
+    <p>
+      <b>User IP</b>: <%= @message.user_ip %>
+    </p>
+    <p>
+      <b>User Agent</b>: <%= @message.user_agent %>
+    </p>
+    <p>
+      <b>Attachment</b>:
+      <% if @message.attachment.try(:file) and @message.attachment.file.exists? %>
+        <%= link_to @message.attachment.file.filename, @message.attachment.url %>
+      <% else -%>
+        <span class='muted'>There were no attachment.</span>
+      <% end -%>
+    </p>
+    <div class="form-actions">
+      <%= link_to "&laquo; Back".html_safe, georgia.messages_url, class: 'btn' %>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,24 @@
+<div class="row-fluid">
+  <div class="span6">
+    <%= form_for :search, url: georgia.search_messages_url, method: :get, html: {class: 'form-inline'} do |f| %>
+      <div class="input-append search">
+        <%= hidden_field_tag :s, params[:s] if params[:s] %>
+        <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
+        <button class="btn"><%= icon_tag('icon-search') %></button>
+      </div>
+
+      <% if @search %>
+        <div class="top10">
+          <div class="pull-right">
+            <label class='select' for='per'>Per page:&nbsp;</label>
+            <%= select_tag :per, options_for_select([25,50,100,250,500], params[:per]), class: 'input-mini' %>
+          </div>
+          <p class='help-block'>
+            Showing <%= @search.hits.count %> of <%= @search.total %> results
+          </p>
+        </div>
+      <% end -%>
+    <% end -%>
+
+  </div>
+</div>
