@@ -13,12 +13,12 @@
 
 <table class="table table-hover">
   <thead>
-    <th><%= sortable 'last_name', 'Name' %></th>
-    <th><%= sortable 'email', 'Email' %></th>
-    <th><%= sortable 'phone', 'Phone' %></th>
-    <th><%= sortable 'subject', 'Subject' %></th>
-    <th>Message</th>
-    <th><%= sortable 'created_at', 'Sent' %></th>
+    <th class='nowrap'><%= sortable 'last_name', 'Name' %></th>
+    <th class='nowrap'><%= sortable 'email', 'Email' %></th>
+    <th class='nowrap'><%= sortable 'phone', 'Phone' %></th>
+    <th class='nowrap'><%= sortable 'subject', 'Subject' %></th>
+    <th class='nowrap'>Message</th>
+    <th class='nowrap'><%= sortable 'created_at', 'Sent' %></th>
     <th></th>
   </thead>
   <tbody>
@@ -41,7 +41,7 @@
         <%= message.description %>
       </td>
       <td>
-        <%= message.created_at %>
+        <%= message.created_at.strftime('%F') %>
       </td>
       <td class="actions">
         <%= link_to 'show', [:edit, message] %>
