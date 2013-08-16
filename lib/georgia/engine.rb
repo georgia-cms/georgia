@@ -15,7 +15,6 @@ module Georgia
     require 'acts-as-taggable-on'
     require 'kaminari'
     require 'pg'
-    require 'pg_search'
     require 'ckeditor'
     require 'carrierwave'
     require 'draper'
