@@ -1,6 +1,9 @@
 == 0.6.4
 
 - Add rakismet to avoid spam
+- Revamp messages dashboard on solr
+- Fix UI issues with media library
+- Fix users editing
 
 == 0.6.3
 
