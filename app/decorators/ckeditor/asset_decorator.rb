@@ -5,5 +5,9 @@ module Ckeditor
       h.raw model.tags.map{ |t| h.link_to t.name, h.tag_path(t) }.join(', ')
     end
 
+    def filename_truncated
+      h.truncate((filename || data.file.filename), length: 30)
+    end
+
   end
 end
