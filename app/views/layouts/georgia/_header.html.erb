@@ -22,7 +22,7 @@
 
             <% if can? :manage, Georgia::Message %>
             <li class="dropdown<%= ' active' if controller_name == 'messages' %>">
-              <%= link_to "Messages", georgia.messages_url %>
+              <%= link_to "Messages", georgia.search_messages_url %>
             </li>
             <% end -%>
 
