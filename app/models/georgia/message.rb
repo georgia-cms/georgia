@@ -16,6 +16,9 @@ module Georgia
     attr_accessible :user_ip, :user_agent, :referrer, :spam, :verified_at
     attr_accessor :permalink, :author_url
 
+    scope :spam, where(spam: true)
+    scope :ham, where(spam: false)
+
     # Search
     searchable do
       text :name

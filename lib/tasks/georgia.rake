@@ -43,5 +43,19 @@ namespace :georgia do
     puts "#{count} assets purged."
   end
 
+  namespace :messages do
+
+    desc "Send to Akismet all unverified messages"
+    task verify: :environment do
+      puts "Check for spam. Currently have #{Georgia::Message.spam.count} spam and #{Georgia::Message.ham.count} ham messages."
+      puts "Checking #{Georgia::Message.where(verified_at: nil).count} unverified messages."
+      Georgia::Message.where(verified_at: nil).find_each do |message|
+        message.update_attributes(spam: message.spam?, verified_at: Time.zone.now)
+      end
+      puts "Check completed. #{Georgia::Message.spam.count} spam. #{Georgia::Message.ham.count} ham."
+    end
+
+  end
+
 
 end
