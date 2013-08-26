@@ -21,4 +21,13 @@
     <% end -%>
 
   </div>
+  <div class="span6">
+    <div class="pull-right">
+      <% if Georgia::Message.spam.count.zero? %>
+        <%= link_to "#{icon_tag('icon-trash')} Purge Spam Messages".html_safe, '#', class: "btn btn-danger disabled", disabled: 'disabled' %>
+      <% else -%>
+        <%= link_to "#{icon_tag('icon-trash')} Purge Spam Messages".html_safe, destroy_all_spam_messages_path, class: "btn btn-danger" %>
+      <% end -%>
+    </div>
+  </div>
 </div>

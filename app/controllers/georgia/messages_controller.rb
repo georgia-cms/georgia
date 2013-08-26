@@ -20,6 +20,14 @@ module Georgia
       redirect_to messages_url
     end
 
+    def destroy_all_spam
+      if Message.spam.destroy_all
+        redirect_to :back, notice: 'All spam messages have been successfully deleted.'
+      else
+        redirect_to :back, alert: 'Oups. Something went wrong.'
+      end
+    end
+
     def edit
       @message = Message.find(params[:id]).decorate
     end
