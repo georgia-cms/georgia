@@ -9,12 +9,12 @@ module Georgia
     end
 
     def meta_description description
-      return unless description
+      return unless description.present?
       tag :meta, name: 'description', content: description
     end
 
     def meta_keywords keywords
-      return unless keywords
+      return unless keywords.present?
       tag :meta, name: 'keywords', content: keywords
     end
 

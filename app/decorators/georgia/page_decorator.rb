@@ -2,7 +2,7 @@ module Georgia
   class PageDecorator < Georgia::ApplicationDecorator
     decorates_association :current_revision
 
-    delegate :excerpt_or_text, to: :current_revision
+    delegate :excerpt_or_text, :meta_description, to: :current_revision
 
     def template_path
       "pages/templates/#{current_revision.template}"

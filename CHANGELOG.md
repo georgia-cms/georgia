@@ -4,6 +4,7 @@
 - Revamp messages dashboard on solr
 - Fix UI issues with media library
 - Fix users editing
+- Add meta_description, different to excerpt_or_text
 
 == 0.6.3
 

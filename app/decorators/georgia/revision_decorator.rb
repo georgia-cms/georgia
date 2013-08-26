@@ -2,10 +2,18 @@ module Georgia
   class RevisionDecorator < Georgia::ApplicationDecorator
 
     def excerpt_or_text
-      if content.excerpt and !content.excerpt.blank?
+      if content.excerpt.present?
         h.raw(content.excerpt)
-      elsif content.text and !content.text.blank?
+      elsif content.text.present?
         h.truncate(h.strip_tags(content.text), length: 255, separator: ' ').html_safe
+      end
+    end
+
+    def meta_description
+      if content.excerpt.present?
+        content.excerpt.squish
+      elsif content.text.present?
+        h.truncate(h.strip_tags(content.text).squish, length: 240, separator: ' ').html_safe
       end
     end
 
