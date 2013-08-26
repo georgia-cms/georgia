@@ -3,7 +3,7 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Message
 
-    before_filter :prepare_search, only: [:search, :edit]
+    before_filter :prepare_search, only: [:search, :edit, :spam, :ham]
 
 
     def index
@@ -22,6 +22,26 @@ module Georgia
 
     def edit
       @message = Message.find(params[:id]).decorate
+    end
+
+    def spam
+      @message = Message.find(params[:id])
+      if @message.spam!
+        @message.update_attribute(:spam, true)
+        redirect_to :back, notice: 'Message successfully marked as spam.'
+      else
+        redirect_to :back, alert: 'Oups. Something went wrong.'
+      end
+    end
+
+    def ham
+      @message = Message.find(params[:id])
+      if @message.ham! == false
+        @message.update_attribute(:spam, false)
+        redirect_to :back, notice: 'Message successfully marked as ham.'
+      else
+        redirect_to :back, alert: 'Oups. Something went wrong.'
+      end
     end
 
     def create

@@ -1,7 +1,17 @@
-tr.state-unpublished td:first-child {
-  border-left: 8px solid $red;
+tr.state-unpublished, tr.state-spam {
+  td:first-child {
+    border-left: 8px solid $red;
+  }
+  td {
+    background-color: #f2dede;
+  }
 }
 
-tr.state-published td:first-child {
-  border-left: 8px solid $green;
+tr.state-published, tr.state-ham {
+  td:first-child {
+    border-left: 8px solid $green;
+  }
+  td {
+    background-color: #dff0d8;
+  }
 }

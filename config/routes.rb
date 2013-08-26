@@ -49,7 +49,13 @@ Georgia::Engine.routes.draw do
   end
   resources :users
   resources :messages do
-    get :search, on: :collection
+    collection do
+      get :search
+    end
+    member do
+      get :spam
+      get :ham
+    end
   end
   resources :menus
 
