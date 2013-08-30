@@ -30,7 +30,7 @@ PATH
       rails (~> 3.2.13)
       rakismet
       routing_concerns
-      rubyzip
+      rubyzip (= 0.9.9)
       sass-rails (~> 3.2.3)
       select2-rails
       sendgrid

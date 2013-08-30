@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'shadowbox-rails'
   s.add_dependency 'select2-rails'
-  s.add_dependency 'rubyzip'    # not sure it's really needed
+  s.add_dependency 'rubyzip', '0.9.9'    # not sure it's really needed
   s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
   s.add_dependency 'pg' # should be database agnostic
