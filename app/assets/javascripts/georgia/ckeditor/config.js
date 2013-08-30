@@ -1,3 +1,4 @@
+var CKEDITOR_BASEPATH = '/assets/ckeditor/';
 CKEDITOR.config.ignoreEmptyParagraph = false;
 CKEDITOR.config.allowedContent = true;
 CKEDITOR.config.baseHref = '/assets/ckeditor/';
