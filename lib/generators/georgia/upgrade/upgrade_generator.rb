@@ -16,7 +16,7 @@ module Georgia
       end
 
       def run_migrations
-        migration_template "add_anti_spam_to_messages.rb", "db/migrate/add_anti_spam_to_messages.rb"
+        migration_template "add_contents_counter_cache_to_images.rb", "db/migrate/add_contents_counter_cache_to_images.rb"
         rake 'db:migrate'
       end
 

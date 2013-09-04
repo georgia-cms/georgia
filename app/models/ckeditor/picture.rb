@@ -5,11 +5,7 @@ class Ckeditor::Picture < Ckeditor::Asset
   has_many :contents, foreign_key: :image_id, class_name: Georgia::Content
 
   def featured?
-    @featured ||= contents.any?
-  end
-
-  def featured_count
-    @featured_count ||= contents.count
+    @featured ||= !contents_count.zero?
   end
 
 end

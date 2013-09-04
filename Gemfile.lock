@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.6.4)
+    georgia (0.6.5)
       activerecord-postgres-hstore
       activerecord-postgres-uuid
       acts-as-taggable-on
@@ -27,6 +27,7 @@ PATH
       mini_magick
       mousetrap-rails
       pg
+      pg_search
       rails (~> 3.2.13)
       rakismet
       routing_concerns
@@ -251,6 +252,10 @@ GEM
     orm_adapter (0.4.0)
     pg (0.16.0)
     pg-hstore (1.2.0)
+    pg_search (0.7.0)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     polyglot (0.3.3)
     pr_geohash (1.0.0)
     pry (0.9.12.2)
