@@ -8,7 +8,7 @@
     <button type="submit" class="btn btn-success">
       <i class='icon-ok'>&nbsp;</i> Save
     </button>
-    <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, @page, class: 'btn', data: {confirm: 'Did you first save your changes?'} %>
+    <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, @page, class: 'btn' %>
   </div>
   <%= @page.status_tag(class: 'label-big') %>
   <%= @page.title %>
