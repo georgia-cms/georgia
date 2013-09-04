@@ -1,4 +1,3 @@
 <% if @asset.destroyed? %>
-$("#assets #asset_<%= @asset.id %>").remove();
-$('#tags').html("<%= escape_javascript render('tags') %>");
+  $("#assets #asset_<%= @asset.id %>").remove();
 <% end %>
