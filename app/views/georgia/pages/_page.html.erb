@@ -1,4 +1,4 @@
-<tr class="page state-<%= page.public? ? 'published' : 'unpublished' %> js-toggle-revisions" data-page-id="<%= page.id %>">
+<tr class="page state-<%= page.public? ? 'published' : 'unpublished' %>" data-page-id="<%= page.id %>">
   <td>
     <%= page.title %>
   </td>
@@ -14,63 +14,10 @@
   <td class="labels">
     <%= page.state_icon %>
   </td>
-  <td class="labels">
-    <span class="badge">
-      <%= page.revisions.drafts.count %>
-    </span>
-  </td>
-  <td class="labels">
-    <span class="badge">
-      <%= page.revisions.reviews.count %>
-    </span>
-  </td>
-  <td class="labels">
-    <span class="badge">
-      <%= page.revisions.stored.count %>
-    </span>
+  <td>
+    <em>updated <%= time_ago_in_words page.updated_at %> ago</em>
   </td>
   <td class="actions">
     <%= Georgia::EditPageButton.new(self, page).render if can? :edit, page %>
-  </td>
-</tr>
-
-<% if page.revisions.reviews.any? %>
-  <% page.revisions.reviews.each do |review| %>
-    <tr class='hide review' data-page-id="<%= page.id %>">
-      <td>
-        <%= icon_tag 'icon-long-arrow-right' %>
-        <span class="label label-warning">In Review</span>
-      </td>
-      <td colspan='7'>
-        Last updated <%= review.updated_at.strftime('%F - %H:%M') %>
-      </td>
-      <td class='actions'>
-        <%= Georgia::EditRevisionButton.new(self, review).render %>
-      </td>
-    </tr>
-  <% end -%>
-<% end -%>
-
-<% if page.revisions.drafts.any? %>
-  <% page.revisions.drafts.each do |draft| %>
-    <tr class='hide draft' data-page-id="<%= page.id %>">
-      <td>
-        <%= icon_tag 'icon-long-arrow-right' %>
-        <span class="label label-info">Draft</span>
-      </td>
-      <td colspan='7'>
-        Last updated <%= draft.updated_at.strftime('%F - %H:%M') %>
-      </td>
-      <td class='actions'>
-        <%= Georgia::EditRevisionButton.new(self, draft).render %>
-      </td>
-    </tr>
-  <% end -%>
-<% end -%>
-
-<tr class='hide' data-page-id="<%= page.id %>">
-  <td colspan='9'>
-    <%= icon_tag 'icon-long-arrow-right' %>
-    <%= link_to 'Start a new draft', [:draft, page.model] %>
   </td>
 </tr>
