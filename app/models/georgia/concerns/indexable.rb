@@ -46,6 +46,7 @@ module Georgia
               string :tags do #Ordering (single list)
                 tag_list.join(', ')
               end
+              time :updated_at # default for ordering
             }
           end
 

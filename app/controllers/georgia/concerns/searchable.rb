@@ -27,7 +27,7 @@ module Georgia
             with(:state, params[:s]) unless params[:s].blank?
             with(:template, params[:t]) unless params[:t].blank?
             with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
-            order_by params[:o], (params[:dir] || :desc) unless params[:o].blank?
+            order_by (params[:o] || :updated_at), (params[:dir] || :desc)
             paginate(page: params[:page], per_page: (params[:per] || 25))
             instance_eval &model.extra_search_params if model.respond_to? :extra_search_params
           end

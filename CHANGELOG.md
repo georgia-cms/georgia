@@ -5,6 +5,7 @@
 - Fix UI issues with media library
 - Fix users editing
 - Add meta_description, different to excerpt_or_text
+- Order by updated_at
 
 == 0.6.3
 
