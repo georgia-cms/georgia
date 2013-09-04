@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
   s.add_dependency 'pg' # should be database agnostic
+  s.add_dependency 'pg_search' # should be remove
   s.add_dependency 'sunspot_rails'
   s.add_dependency 'sunspot_solr' # should be a development requirement and installed properly on production
   s.add_dependency 'activerecord-postgres-hstore'
