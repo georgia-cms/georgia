@@ -22,7 +22,7 @@ module Georgia
 
           # Reviews
           event :approve do
-            transition :review => :published
+            transition [:draft, :review] => :published
           end
           event :decline do
             transition :review => :draft
