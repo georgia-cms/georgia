@@ -3,8 +3,8 @@ module Georgia
 
     def render
       html = ""
-      html << content_tag(:li, link_to_draft) if can?(:draft, instance)
-      html << content_tag(:li, link_to_edit) if can?(:edit, instance)
+      html << content_tag(:li, link_to_edit) if can?(:draft, instance)
+      html << content_tag(:li, link_to_settings) if can?(:edit, instance)
       html << content_tag(:li, link_to_copy) if can?(:copy, instance)
       if instance.current_revision and instance.current_revision.published?
         html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
@@ -20,12 +20,12 @@ module Georgia
       @page ||= instance
     end
 
-    def link_to_draft
-      link_to "#{icon_tag('icon-paste')} Start a new Draft".html_safe, url_for_action(:draft)
+    def link_to_edit
+      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, url_for_action(:draft)
     end
 
-    def link_to_edit
-      link_to "#{icon_tag('icon-pencil')} Edit".html_safe, url_for_action(:edit)
+    def link_to_settings
+      link_to "#{icon_tag('icon-cogs')} Settings".html_safe, url_for_action(:edit)
     end
 
     def link_to_copy
