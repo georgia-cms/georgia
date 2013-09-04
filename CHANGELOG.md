@@ -1,3 +1,7 @@
+== 0.6.5
+
+- Add contents counter cache to Ckeditor::Asset
+
 == 0.6.4
 
 - Add rakismet to avoid spam
