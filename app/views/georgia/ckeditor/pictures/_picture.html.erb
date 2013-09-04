@@ -23,7 +23,7 @@
     <%= f.input :tag_list, label: false, input_html: {class: 'input-large js-token-input', data: {load: picture.tags.map{|t| {id: t.id, text: t.name} }}} %>
     <% end %>
   </td>
-  <td class='actions'>
+  <td class='actions nowrap'>
     <%= link_to "#{icon_tag('icon-download')} Download".html_safe, picture.url, class: 'btn btn-info', target: '_blank' %>
     <%= link_to "#{icon_tag('icon-trash')} Delete".html_safe, media_path(picture), method: :delete, data: {confirm: "#{'This picture is featured in one or many areas of the website. You should first replace it before deleting it. ' if picture.featured?}Are you sure you want to delete this picture?"}, remote: true, class: 'btn btn-danger' if can? :destroy, Ckeditor::Asset %>
   </td>
