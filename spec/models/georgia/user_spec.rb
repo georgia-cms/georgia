@@ -37,34 +37,4 @@ describe Georgia::User do
 
   end
 
-  describe 'scopes' do
-
-    before :each do
-      Georgia::User.destroy_all
-    end
-
-    describe '.admins' do
-
-      it "returns records in a 'draft' state" do
-        admin = create(:admin)
-        editor = create(:editor)
-        expect(Georgia::User.admins).to eq([admin])
-        expect(Georgia::User.admins).not_to include(editor)
-      end
-
-    end
-
-    describe '.editors' do
-
-      it "returns records in a 'published' state" do
-        admin = create(:admin)
-        editor = create(:editor)
-        expect(Georgia::User.editors).to eq([editor])
-        expect(Georgia::User.editors).not_to include(admin)
-      end
-
-    end
-
-  end
-
 end
