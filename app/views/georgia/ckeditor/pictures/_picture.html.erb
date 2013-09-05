@@ -1,14 +1,14 @@
 <tr id='asset_<%= picture.id %>'>
   <td>
     <%= link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do %>
-      <%= image_tag picture.url(:tiny), title: (picture.filename || picture.data.file.filename), class: 'media-image' %>
+      <%= image_tag picture.url(:tiny), title: picture.data_file_name, class: 'media-image' %>
     <% end %>
   </td>
   <td>
     <%= link_to picture.filename_truncated, picture.url, target: '_blank' %>
   </td>
   <td class='nowrap'>
-    <%= picture.data.file.exists? ? number_to_human_size(picture.size) : content_tag(:span, 'File not found', class: 'muted') %>
+    <%= number_to_human_size(picture.data_file_size) %>
   </td>
   <td>
     <%= picture.width %>x<%= picture.height %>

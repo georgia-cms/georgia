@@ -27,12 +27,8 @@ class Ckeditor::Asset < ActiveRecord::Base
     }
   end
 
-  # FIXME: Shouldn't we store extension and filename in the db?
   def extension
-    self.try(:data).try(:file).try(:extension)
-  end
-  def filename
-    self.try(:data).try(:file).try(:filename)
+    @extension ||= data_content_type.gsub(/.*\/(.*)/, '\1')
   end
 
   searchable do

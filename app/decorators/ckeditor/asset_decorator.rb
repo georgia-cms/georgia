@@ -6,7 +6,7 @@ module Ckeditor
     end
 
     def filename_truncated
-      h.truncate((filename || data.file.filename), length: 30)
+      h.truncate(data_file_name, length: 30)
     end
 
   end
