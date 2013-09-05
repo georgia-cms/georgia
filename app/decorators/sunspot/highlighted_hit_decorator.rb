@@ -1,5 +1,5 @@
 module Sunspot
-  class HighlightedHitDecorator < Georgia::ApplicationDecorator
+  class HighlightedHitDecorator < ::ApplicationDecorator
 
     def method_missing(meth, *args, &block)
       if source.highlights(meth) and source.highlights(meth).present?
