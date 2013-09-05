@@ -1,14 +1,13 @@
+<%= form_for :search, url: search_media_index_path, method: :get, html: {class: 'form-inline'} do |f| %>
+  <div class="input-append search">
+    <%= facets_inputs([:tg]) %>
+    <%= hidden_field_tag :e, params[:e] if params[:e] %>
+    <%= hidden_field_tag :s, params[:s] if params[:s] %>
+    <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
+    <button class="btn"><%= icon_tag('icon-search') %></button>
+  </div>
 
-    <%= form_for :search, url: search_media_index_path, method: :get, html: {class: 'form-inline'} do |f| %>
-    <div class="input-append search">
-      <%= facets_inputs([:tg]) %>
-      <%= hidden_field_tag :e, params[:e] if params[:e] %>
-      <%= hidden_field_tag :s, params[:s] if params[:s] %>
-      <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
-      <button class="btn"><%= icon_tag('icon-search') %></button>
-    </div>
-
-    <% if @search %>
+  <% if @search %>
     <div class="top10">
       <div class="pull-right">
         <label class='select' for='per'>Per page:&nbsp;</label>
@@ -19,6 +18,6 @@
       </p>
     </div>
     <hr />
-    <% end -%>
+  <% end -%>
 
-    <% end %>
+<% end %>

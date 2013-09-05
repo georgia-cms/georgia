@@ -2,17 +2,11 @@
   <ul class="nav nav-list">
     <% if @search %>
       <li class="nav-header">Extension</li>
-      <% @search.facet(:extension).rows.each do |facet| %>
-        <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :e} %>
-      <% end -%>
+      <%= render partial: 'georgia/facets/facet', collection: @search.facet(:extension).rows, as: :facet, locals: {filter: :e} %>
       <li class="nav-header">File Size</li>
-      <% @search.facet(:size).rows.each do |facet| %>
-        <%= render partial: 'georgia/facets/facet', locals: {facet: facet, filter: :s} %>
-      <% end -%>
+      <%= render partial: 'georgia/facets/facet', collection: @search.facet(:size).rows, as: :facet, locals: {filter: :s} %>
       <li class="nav-header">Tags</li>
-      <% @search.facet(:tags).rows.each do |facet| %>
-        <%= render partial: 'georgia/facets/array_facet', locals: {facet: facet, filter: :tg, multiple: true} %>
-      <% end -%>
+      <%= render partial: 'georgia/facets/facet', collection: @search.facet(:tags).rows, as: :facet, locals: {filter: :tg, multiple: true} %>
     <% end -%>
   </ul>
 </div>

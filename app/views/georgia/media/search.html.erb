@@ -62,33 +62,33 @@
 <h1 class='page-header'>Media Library (<%= Ckeditor::Asset.count %>)</h1>
 
 <%= form_for Ckeditor::Asset.new, url: media_index_path, html: { multipart: true, id: "fileupload" } do |f| %>
-<div class="row fileupload-buttonbar">
-  <div class="span7">
-    <span class="btn btn-success fileinput-button">
-      <i class="icon-plus icon-white"></i>
-      <span>Add files...</span>
-      <%= f.file_field :data, multiple: true, name: "asset[data]" %>
-    </span>
-    <button type="submit" class="btn btn-primary start">
-      <i class="icon-upload icon-white"></i>
-      <span>Start upload</span>
-    </button>
-    <button type="reset" class="btn btn-warning cancel">
-      <i class="icon-ban-circle icon-white"></i>
-      <span>Cancel upload</span>
-    </button>
-  </div>
-  <div class="span5">
-    <div class="progress progress-success progress-striped active fade">
-      <div class="bar" style="width:0%;"></div>
+  <div class="row fileupload-buttonbar">
+    <div class="span7">
+      <span class="btn btn-success fileinput-button">
+        <i class="icon-plus icon-white"></i>
+        <span>Add files...</span>
+        <%= f.file_field :data, multiple: true, name: "asset[data]" %>
+      </span>
+      <button type="submit" class="btn btn-primary start">
+        <i class="icon-upload icon-white"></i>
+        <span>Start upload</span>
+      </button>
+      <button type="reset" class="btn btn-warning cancel">
+        <i class="icon-ban-circle icon-white"></i>
+        <span>Cancel upload</span>
+      </button>
+    </div>
+    <div class="span5">
+      <div class="progress progress-success progress-striped active fade">
+        <div class="bar" style="width:0%;"></div>
+      </div>
     </div>
   </div>
-</div>
-<div class="fileupload-loading"></div>
-<br />
-<table class="table table-striped">
-  <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-</table>
+  <div class="fileupload-loading"></div>
+  <br />
+  <table class="table table-striped">
+    <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+  </table>
 <% end %>
 
 <div class='row-fluid'>
@@ -109,9 +109,9 @@
       </thead>
       <tbody>
         <% if @assets.any? %>
-        <%= render @assets %>
+          <%= render @assets %>
         <% else %>
-        <tr><td colspan='6'>There are no assets uploaded to your Media Library.</td></tr>
+          <tr><td colspan='6'>There are no assets uploaded to your Media Library.</td></tr>
         <% end %>
       </tbody>
     </table>

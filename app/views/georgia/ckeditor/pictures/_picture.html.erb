@@ -20,7 +20,7 @@
   </td>
   <td>
     <%= simple_form_for picture, as: :asset, url: media_path(picture), html: {class: 'form-vertical', data: {'picture-id' => picture.id}}, remote: true do |f| %>
-    <%= f.input :tag_list, label: false, input_html: {class: 'input-large js-token-input', data: {load: picture.tags.map{|t| {id: t.id, text: t.name} }}} %>
+      <%= f.input :tag_list, label: false, input_html: {class: 'input-large js-token-input', data: {load: picture.tags.map{|t| {id: t.id, text: t.name} }}} %>
     <% end %>
   </td>
   <td class='actions nowrap'>
