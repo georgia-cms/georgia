@@ -25,11 +25,13 @@ module Georgia
               text :keywords do
                 revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq.join(', ')
               end
+              text :template do
+                revisions.map(&:template).uniq.join(', ')
+              end
               text :tags do
                 tag_list.join(', ')
               end
               text :url
-              text :template
               string :type
               string :title
               string :excerpt

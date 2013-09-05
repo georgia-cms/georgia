@@ -2,8 +2,6 @@ PATH
   remote: .
   specs:
     georgia (0.6.5)
-      activerecord-postgres-hstore
-      activerecord-postgres-uuid
       acts-as-taggable-on
       acts_as_list
       ancestry
@@ -42,7 +40,6 @@ PATH
       sunspot_rails
       sunspot_solr
       therubyracer
-      uuidtools
 
 PATH
   remote: ../henry
@@ -74,13 +71,6 @@ GEM
       activesupport (= 3.2.14)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-postgres-hstore (0.7.6)
-      activerecord (>= 3.1)
-      pg-hstore (>= 1.1.5)
-      rake
-    activerecord-postgres-uuid (0.0.1)
-      activerecord (>= 3.1.0)
-      pg (>= 0.12.0)
     activeresource (3.2.14)
       activemodel (= 3.2.14)
       activesupport (= 3.2.14)
@@ -251,7 +241,6 @@ GEM
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     pg (0.16.0)
-    pg-hstore (1.2.0)
     pg_search (0.7.0)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -402,7 +391,6 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
     uniform_notifier (1.2.0)
-    uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.7)

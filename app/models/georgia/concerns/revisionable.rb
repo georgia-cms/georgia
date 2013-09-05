@@ -11,8 +11,8 @@ module Georgia
         belongs_to :current_revision, class_name: Georgia::Revision, foreign_key: :revision_id
 
         delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, to: :current_revision, allow_nil: true
-        delegate :content, :slides, :widgets, to: :current_revision
-        delegate :draft?, :review?, :revision?, to: :current_revision
+        delegate :template, :content, :slides, :widgets, to: :current_revision, allow_nil: true
+        delegate :draft?, :review?, :revision?, to: :current_revision, allow_nil: true
 
         def draft
           revision = Georgia::Clone.new(self).draft

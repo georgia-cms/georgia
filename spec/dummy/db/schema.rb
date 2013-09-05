@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904203413) do
+ActiveRecord::Schema.define(:version => 20130905163557) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                                 :null => false
@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(:version => 20130904203413) do
     t.string   "type",              :limit => 30
     t.integer  "width"
     t.integer  "height"
+    t.integer  "contents_count",                  :default => 0
+    t.integer  "integer",                         :default => 0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
-    t.integer  "contents_count",                  :default => 0
   end
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
@@ -71,8 +72,23 @@ ActiveRecord::Schema.define(:version => 20130904203413) do
     t.datetime "updated_at", :null => false
   end
 
-# Could not dump table "georgia_pages" because of following StandardError
-#   Unknown type 'uuid' for column 'uuid'
+  create_table "georgia_pages", :force => true do |t|
+    t.string   "type"
+    t.string   "slug"
+    t.string   "url"
+    t.integer  "position"
+    t.integer  "parent_id"
+    t.integer  "revision_id"
+    t.string   "ancestry"
+    t.boolean  "public",      :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "georgia_pages", ["ancestry"], :name => "index_georgia_pages_on_ancestry"
+  add_index "georgia_pages", ["parent_id"], :name => "index_georgia_pages_on_parent_id"
+  add_index "georgia_pages", ["revision_id"], :name => "index_georgia_pages_on_revision_id"
+  add_index "georgia_pages", ["url"], :name => "index_georgia_pages_on_url"
 
   create_table "georgia_revisions", :force => true do |t|
     t.string   "state",             :default => "draft"
@@ -92,34 +108,20 @@ ActiveRecord::Schema.define(:version => 20130904203413) do
   create_table "georgia_slides", :force => true do |t|
     t.integer  "position"
     t.integer  "page_id"
+    t.integer  "revision_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "revision_id"
-  end
-
-  add_index "georgia_slides", ["page_id"], :name => "index_georgia_slides_on_page_id"
-  add_index "georgia_slides", ["revision_id"], :name => "index_georgia_slides_on_revision_id"
-
-  create_table "georgia_statuses", :force => true do |t|
-    t.string "name"
-    t.string "label"
-    t.string "icon"
   end
 
   create_table "georgia_ui_associations", :force => true do |t|
     t.integer  "page_id",       :null => false
     t.integer  "widget_id",     :null => false
     t.integer  "ui_section_id", :null => false
+    t.integer  "revision_id",   :null => false
     t.integer  "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "revision_id"
   end
-
-  add_index "georgia_ui_associations", ["page_id"], :name => "index_georgia_ui_associations_on_page_id"
-  add_index "georgia_ui_associations", ["revision_id"], :name => "index_georgia_ui_associations_on_revision_id"
-  add_index "georgia_ui_associations", ["ui_section_id"], :name => "index_georgia_ui_associations_on_ui_section_id"
-  add_index "georgia_ui_associations", ["widget_id"], :name => "index_georgia_ui_associations_on_widget_id"
 
   create_table "georgia_ui_sections", :force => true do |t|
     t.string "name"

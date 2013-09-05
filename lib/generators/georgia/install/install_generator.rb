@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'rails/generators/migration'
+require 'rails/generators/active_record'
 
 module Georgia
   module Generators
@@ -28,21 +29,32 @@ module Georgia
   mount Ckeditor::Engine => '/ckeditor'\n"
       end
 
-      def self.next_migration_number(dirname)
-        Time.now.strftime("%Y%m%d%H%M%S")
+      def self.next_migration_number(number)
+        ActiveRecord::Generators::Base.next_migration_number(number)
       end
 
-      def create_migration
-        migration_template "migration.rb", "db/migrate/create_georgia_models.rb"
+      def run_migrations
+        migration_template "db/migrate/create_ckeditor_assets.rb", "db/migrate/create_ckeditor_assets.rb"
+        migration_template "db/migrate/create_georgia_contents.rb", "db/migrate/create_georgia_contents.rb"
+        migration_template "db/migrate/create_georgia_links.rb", "db/migrate/create_georgia_links.rb"
+        migration_template "db/migrate/create_georgia_menus.rb", "db/migrate/create_georgia_menus.rb"
+        migration_template "db/migrate/create_georgia_messages.rb", "db/migrate/create_georgia_messages.rb"
+        migration_template "db/migrate/create_georgia_pages.rb", "db/migrate/create_georgia_pages.rb"
+        migration_template "db/migrate/create_georgia_revisions.rb", "db/migrate/create_georgia_revisions.rb"
+        migration_template "db/migrate/create_georgia_roles.rb", "db/migrate/create_georgia_roles.rb"
+        migration_template "db/migrate/create_georgia_slides.rb", "db/migrate/create_georgia_slides.rb"
+        migration_template "db/migrate/create_georgia_ui_associations.rb", "db/migrate/create_georgia_ui_associations.rb"
+        migration_template "db/migrate/create_georgia_ui_sections.rb", "db/migrate/create_georgia_ui_sections.rb"
+        migration_template "db/migrate/create_georgia_users.rb", "db/migrate/create_georgia_users.rb"
+        migration_template "db/migrate/create_georgia_widgets.rb", "db/migrate/create_georgia_widgets.rb"
+        migration_template "db/migrate/create_roles_users.rb", "db/migrate/create_roles_users.rb"
+        migration_template "db/migrate/create_tags.rb", "db/migrate/create_tags.rb"
+        rake "db:migrate"
       end
 
       def copy_templates
         template "config/initializers/georgia.rb"
         template "app/controllers/pages_controller.rb"
-      end
-
-      def migrate
-        rake "db:migrate"
       end
 
       def bootstrap
