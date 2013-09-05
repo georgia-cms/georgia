@@ -22,7 +22,7 @@ module Georgia
         with(:tags).any_of(params[:tg]) unless params[:tg].blank?
         Ckeditor::Asset::SIZE_RANGE.each{|k,v| with(:size, v) if params[:s] == k }
         order_by (params[:o] || :updated_at), (params[:dir] || :desc)
-        paginate(page: params[:page], per_page: (params[:per] || 25))
+        paginate(page: params[:page], per_page: (params[:per] || 10))
       end
       @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
     end

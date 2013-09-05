@@ -1,6 +1,7 @@
 == 0.6.5
 
 - Add contents counter cache to Ckeditor::Asset
+- Fix media library speed issue
 
 == 0.6.4
 
