@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905163557) do
+ActiveRecord::Schema.define(:version => 20130905180919) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                                 :null => false
@@ -108,16 +108,14 @@ ActiveRecord::Schema.define(:version => 20130905163557) do
   create_table "georgia_slides", :force => true do |t|
     t.integer  "position"
     t.integer  "page_id"
-    t.integer  "revision_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "georgia_ui_associations", :force => true do |t|
     t.integer  "page_id",       :null => false
     t.integer  "widget_id",     :null => false
     t.integer  "ui_section_id", :null => false
-    t.integer  "revision_id",   :null => false
     t.integer  "position"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false

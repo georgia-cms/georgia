@@ -5,7 +5,6 @@ class CreateGeorgiaUiAssociations < ActiveRecord::Migration
       t.references :page, null: false, index: true
       t.references :widget, null: false, index: true
       t.references :ui_section, null: false, index: true
-      t.references :revision, null: false, index: true
       t.integer :position
       t.timestamps
     end

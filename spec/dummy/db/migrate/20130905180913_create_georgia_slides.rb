@@ -4,7 +4,6 @@ class CreateGeorgiaSlides < ActiveRecord::Migration
     create_table :georgia_slides do |t|
       t.integer :position
       t.references :page, index: true
-      t.references :revision, index: true
       t.timestamps
     end
   end

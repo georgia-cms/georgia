@@ -2,6 +2,7 @@
 
 - Add contents counter cache to Ckeditor::Asset
 - Fix media library speed issue
+- Fix install generator
 
 == 0.6.4
 
