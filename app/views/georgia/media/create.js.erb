@@ -1,0 +1,7 @@
+$('#assets').prepend("<%= j render(@assets) %>");
+$('.js-token-input').taggable();
+$('#media input.js-token-input').on('change', function(e) {$(this).closest('form').submit();});
+$('.btn-file-upload-text').html("<i class='icon-check'>&nbsp;</i> Uploaded");
+setTimeout( function(){
+  $('.btn-file-upload-text').html("<i class='icon-plus'>&nbsp;</i> Select files...")
+}, 1500);

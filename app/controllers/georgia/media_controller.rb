@@ -28,26 +28,18 @@ module Georgia
     end
 
     def create
-      p_attr = params[:asset]
-      p_attr[:data] = params[:asset][:data].first if params[:asset][:data].is_a? Array
-
-      if p_attr[:data].content_type.match(/^image/)
-        @asset = Ckeditor::Picture.new(params[:asset])
-      else
-        @asset = Ckeditor::Asset.new(params[:asset])
-      end
-
-      if @asset.save
-        respond_to do |format|
-          format.html {
-            render json: [@asset.to_jq_upload].to_json, content_type: 'text/html', layout: false
-          }
-          format.json {
-            render json: {files: [@asset.to_jq_upload]}.to_json
-          }
+      @assets = []
+      if params[:assets] and params[:assets].any?
+        params[:assets].each do |asset|
+          if asset.content_type.match(/^image/)
+            @asset = Ckeditor::Picture.new(data: asset)
+          else
+            @asset = Ckeditor::Asset.new(data: asset)
+          end
+          if @asset.save
+            @assets << @asset.decorate
+          end
         end
-      else
-        render :json => [{:error => "custom_failure"}], :status => 304
       end
     end
 
@@ -55,7 +47,7 @@ module Georgia
       @asset = Ckeditor::Asset.find(params[:id])
       @asset.update_attributes(params[:asset])
       @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
-      render layout: false
+      render nothing: true
     end
 
     def destroy
