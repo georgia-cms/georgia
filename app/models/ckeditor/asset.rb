@@ -6,7 +6,7 @@ class Ckeditor::Asset < ActiveRecord::Base
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Georgia::Concerns::Taggable
 
-  delegate :url, :current_path, :size, :content_type, to: :data
+  delegate :url, :current_path, :content_type, to: :data
 
   mount_uploader :data, CkeditorAttachmentFileUploader, mount_on: :data_file_name
 
