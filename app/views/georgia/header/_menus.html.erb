@@ -1,0 +1,5 @@
+<% if can? :manage, Georgia::Menu %>
+  <li class="dropdown<%= ' active' if controller_name == 'menus' %>">
+    <%= link_to "Menus", georgia.menus_url %>
+  </li>
+<% end -%>

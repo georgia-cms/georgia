@@ -1,0 +1,5 @@
+<% if can? :manage, Ckeditor::Asset %>
+  <li class="dropdown<%= ' active' if controller_name == 'media' %>">
+    <%= link_to "Media", georgia.media_index_url %>
+  </li>
+<% end -%>

@@ -14,32 +14,8 @@
           <% if signed_in? %>
           <ul class="nav">
 
-            <% if can? :manage, Georgia::Page %>
-            <li class="dropdown<%= ' active' if controller_name == 'pages' %>">
-              <%= link_to "Pages", georgia.search_pages_url %>
-            </li>
-            <% end -%>
-
-            <% if can? :manage, Georgia::Message %>
-            <li class="dropdown<%= ' active' if controller_name == 'messages' %>">
-              <%= link_to "Messages", georgia.search_messages_url %>
-            </li>
-            <% end -%>
-
-            <% if can? :manage, Georgia::Menu %>
-            <li class="dropdown<%= ' active' if controller_name == 'menus' %>">
-              <%= link_to "Menus", georgia.menus_url %>
-            </li>
-            <% end -%>
-
-            <% if can? :manage, Ckeditor::Asset %>
-            <li class="dropdown<%= ' active' if controller_name == 'media' %>">
-              <%= link_to "Media", georgia.media_index_url %>
-            </li>
-            <% end -%>
-
             <% Georgia.header.each do |partial| %>
-            <%= render(partial: "georgia/header/#{partial}") %>
+              <%= render(partial: "georgia/header/#{partial}") %>
             <% end -%>
 
           </ul>

@@ -9,6 +9,7 @@ Georgia.setup do |config|
   # Do not add trailing slash
   # config.url = 'http://www.example.com'
 
-  # Georgia Additional Headers
-  # config.header += %w()
+  # Georgia Headers
+  # Add to this list or simply change order
+  # config.header = %w(pages menus messages media)
 end
