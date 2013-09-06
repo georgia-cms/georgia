@@ -13,10 +13,7 @@ ActsAsTaggableOn.remove_unused_tags = true
 # ActsAsTaggableOn.strict_case_match = true
 
 ActsAsTaggableOn::Tag.class_eval do
-  include PgSearch
-  pg_search_scope :text_search, using: {tsearch: {dictionary: 'english', prefix: true, any_word: true}}, against: :name
-
-  def self.search query
-    query.present? ? text_search(query) : scoped
+  searchable do
+    text :name
   end
 end
