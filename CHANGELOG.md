@@ -1,3 +1,8 @@
+== 0.6.6
+
+- Fix jquery-file-upload to add files directly to table
+- Remove pg_search implementation on Tags and add to solr
+
 == 0.6.5
 
 - Add contents counter cache to Ckeditor::Asset
