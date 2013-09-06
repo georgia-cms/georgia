@@ -19,11 +19,8 @@ module Georgia
               fields(:title, :excerpt, :text, :keywords, :tags, :url, :template)
             end
             facet :state, :template, :tag_list
-            if model == Georgia::Page
-              with(:type, nil) # Georgia::Page is sort of abstract and doesn't save a type
-            else
-              with(:type, model.to_s) # ensure pages indexed in the wrong bucket don't get displayed
-            end
+            # ensure pages indexed in the wrong bucket don't get displayed
+            with(:class_name, model.to_s)
             with(:state, params[:s]) unless params[:s].blank?
             with(:template, params[:t]) unless params[:t].blank?
             with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?

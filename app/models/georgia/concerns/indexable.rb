@@ -32,7 +32,9 @@ module Georgia
                 tag_list.join(', ')
               end
               text :url
-              string :type
+              string :class_name do
+                self.class.name
+              end
               string :title
               string :excerpt
               string :text
