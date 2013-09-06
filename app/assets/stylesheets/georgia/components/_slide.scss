@@ -1,0 +1,27 @@
+.slide {
+  cursor: pointer;
+  position: relative;
+  min-height: 100px;
+  width: 800px;
+  font-weight: bold;
+  text-align: center;
+  overflow:hidden;
+  margin: 1em 0;
+  background-color: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #666;
+
+  a.btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    z-index: 99;
+  }
+  a.bb-edit {
+    right: 30px;
+  }
+}
