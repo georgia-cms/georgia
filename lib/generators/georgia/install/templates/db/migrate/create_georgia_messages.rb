@@ -8,6 +8,7 @@ class CreateGeorgiaMessages < ActiveRecord::Migration
       t.string  :subject
       t.string  :attachment
       t.text    :message
+      t.boolean :spam, default: false
       t.timestamps
     end
   end
