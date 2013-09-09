@@ -34,6 +34,7 @@ module Georgia
         end
 
         def update
+          # FIXME: Throw an error if update_attributes returns false
           @page.update_attributes(params[:page])
           respond_to do |format|
             format.html { render :edit, notice: "#{decorate(@revision).title} was successfully updated." }
