@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    georgia (0.6.5)
+    georgia (0.6.6.pre)
       acts-as-taggable-on
       acts_as_list
       ancestry

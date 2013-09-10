@@ -1,5 +1,7 @@
 jQuery ->
 
+  $(".js-select2").select2()
+
   $('select#per').change (e) ->
     $(this).closest('form').submit()
 

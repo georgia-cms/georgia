@@ -17,7 +17,7 @@ module Georgia
     end
 
     def parent_page_collection
-      Georgia::Page.not_self(@page).joins(current_revision: :contents).sort_by(&:title).map{|p| [p.title, p.id]}
+      @parent_page_collection ||= Georgia::Page.not_self(@page).joins(current_revision: :contents).uniq.sort_by(&:title).map{|p| [p.title, p.id]}
     end
 
     def facets_inputs facets=[]

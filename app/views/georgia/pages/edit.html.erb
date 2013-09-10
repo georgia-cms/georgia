@@ -59,7 +59,7 @@
         <fieldset>
           <legend>Hierarchy</legend>
           <h4>Parent</h4>
-          <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the #{instance_name} doesn't belong to any section." %>
+          <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the #{instance_name} doesn't belong to any section.", input_html: {class: 'js-select2'} %>
           <hr />
           <h4>Subpages</h4>
           <p>
