@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+
+  # Convenient method to create and check for spam
+  # Requires main application to have a messages/create.js.erb template and the form to be set remote: true
+  # FIXME: Should handle multiple response formats and provides default templates
   def create
     @message = Georgia::Message.new(params[:message])
     @message.referrer = request.referrer
