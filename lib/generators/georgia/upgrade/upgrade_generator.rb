@@ -16,8 +16,16 @@ module Georgia
       end
 
       def run_migrations
+        migration_template "add_public_to_georgia_pages.rb", "db/migrate/add_public_to_georgia_pages.rb"
+        migration_template "add_state_to_georgia_pages.rb", "db/migrate/add_state_to_georgia_pages.rb"
+        migration_template "add_anti_spam_to_messages.rb", "db/migrate/add_anti_spam_to_messages.rb"
+        migration_template "create_georgia_revisions.rb", "db/migrate/create_georgia_revisions.rb"
         migration_template "add_contents_counter_cache_to_images.rb", "db/migrate/add_contents_counter_cache_to_images.rb"
         rake 'db:migrate'
+      end
+
+      def run_tasks
+
       end
 
     end
