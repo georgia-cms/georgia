@@ -25,8 +25,7 @@ namespace :georgia do
 
     Georgia::Page.find_each do |page|
       begin
-        page.revisions.create( state: page.state, template: page.template )
-        revision = page.revisions.first
+        revision = page.revisions.create( state: page.state, template: page.template )
         page.current_revision = revision
         page.contents.update_all(contentable_id: revision.id, contentable_type: 'Georgia::Revision')
         page.slides.update_all(page_id: revision.id)
