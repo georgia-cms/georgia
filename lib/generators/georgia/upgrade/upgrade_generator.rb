@@ -25,7 +25,8 @@ module Georgia
       end
 
       def run_tasks
-
+        rake 'georgia:statuses'
+        rake 'georgia:revisions'
       end
 
     end
