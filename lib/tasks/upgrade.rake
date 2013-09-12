@@ -11,12 +11,6 @@ namespace :georgia do
 
     puts 'Migrating state, template and contents from pages to revisions.'
     Georgia::Page.class_eval do
-      attr_accessible :template
-      has_many :contents, as: :contentable, dependent: :destroy, class_name: Georgia::Content
-      has_many :slides, dependent: :destroy, foreign_key: :page_id
-      has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
-      has_many :widgets, through: :ui_associations
-
       # Stop delegation
       def template
         Georgia::Page.where(id: self.id).pluck(:template).first
@@ -26,13 +20,12 @@ namespace :georgia do
     Georgia::Page.find_each do |page|
       begin
         revision = page.revisions.create( state: page.state, template: page.template )
-        page.current_revision = revision
-        page.contents.update_all(contentable_id: revision.id, contentable_type: 'Georgia::Revision')
-        page.slides.update_all(page_id: revision.id)
-        page.ui_associations.update_all(page_id: revision.id)
-        revision.save!
-        page.update_attribute(:public, true) if page.state == 'published'
+        Georgia::Content.where(contentable_id: page.id, contentable_type: 'Georgia::Page').update_all(contentable_id: revision.id, contentable_type: 'Georgia::Revision')
+        Georgia::Slide.where(page_id: page.id).update_all(page_id: revision.id)
+        Georgia::UiAssociation.where(page_id: page.id).update_all(page_id: revision.id)
+        page.update_attribute(:revision_id, revision.id)
         page.save!
+        page.publish
       rescue => ex
         puts ex.message
       end
