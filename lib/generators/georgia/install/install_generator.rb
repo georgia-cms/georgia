@@ -17,8 +17,8 @@ module Georgia
 
       def mount_engine
         # Must be in reverse order to keep priorities
-        route "get '*path', to: 'pages#show', as: :page"
-        route "root to: 'pages#show', slug: 'home'"
+        route "get '*request_path', to: 'pages#show', as: :page"
+        route "root to: 'pages#show', request_path: 'home'"
 
         route "resources :messages, only: [:create]"
         route "resources :pages, only: [] do

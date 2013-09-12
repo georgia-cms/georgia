@@ -9,12 +9,13 @@ module Georgia
 
         # Loads the page according to request url
         # Restore the latest published revision of the given page
-        # FIXME: Need to add localization abilities, e.g. ('/en | /fr')
         def show
-          @page = Georgia::Page.where(url: request.path).includes(current_revision: :contents).published.first || not_found
+          @page = Georgia::Page.where(url: "/#{params[:request_path]}").includes(current_revision: :contents).published.first || not_found
           @page = Georgia::PageDecorator.decorate(@page)
         end
 
+        # Loads the page according to given id
+        # Temporarily set the given revision to preview as the 'current_revision'
         def preview
           @page = Georgia::Page.find(params[:id]).decorate
           @page.current_revision = Georgia::Revision.find(params[:revision_id])
