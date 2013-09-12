@@ -6,7 +6,14 @@ namespace :assets do
     @connection = CloudFilesConnection.new
 
     Ckeditor::Picture.find_each do |asset|
-      TransferablePicture.new(asset, @connection.container).process
+      retries = 0
+      begin
+        TransferablePicture.new(asset, @connection.container).process
+      rescue => e
+        puts e.message
+        retries = retries + 1
+        retry unless retries > 5
+      end
     end
   end
 
