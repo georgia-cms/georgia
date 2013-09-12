@@ -1,5 +1,15 @@
 namespace :assets do
 
+  desc "Move assets to new folder structure with asset's id in folder path"
+  task rename: :environment do
+
+    @connection = CloudFilesConnection.new
+
+    Ckeditor::Picture.find_each do |asset|
+      TransferablePicture.new(asset, @connection.container).process
+    end
+  end
+
   desc "Download all assets"
   task download: :environment do
 
