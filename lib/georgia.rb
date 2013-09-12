@@ -1,5 +1,6 @@
 require "georgia/paths"
 require "georgia/engine"
+require "georgia/assets"
 
 module Georgia
 
