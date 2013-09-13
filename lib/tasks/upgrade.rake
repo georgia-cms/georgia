@@ -3,7 +3,7 @@ namespace :georgia do
   desc "Move Georgia::Status to OO Page"
   task statuses: :environment do
     puts "Initialize all pages with state 'draft'"
-    Georgia::Page.update_all(state: 'draft')
+    Georgia::Page.where(state: nil).update_all(state: 'draft')
   end
 
   desc "Create Revisions for each Page"
