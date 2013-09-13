@@ -19,13 +19,13 @@ namespace :georgia do
 
     Georgia::Page.find_each do |page|
       begin
-        revision = page.revisions.create( state: page.state, template: page.template )
+        revision = page.revisions.create( state: 'published', template: page.template )
         Georgia::Content.where(contentable_id: page.id, contentable_type: 'Georgia::Page').update_all(contentable_id: revision.id, contentable_type: 'Georgia::Revision')
         Georgia::Slide.where(page_id: page.id).update_all(page_id: revision.id)
         Georgia::UiAssociation.where(page_id: page.id).update_all(page_id: revision.id)
         page.update_attribute(:revision_id, revision.id)
         page.save!
-        page.publish
+        page.publish if page.state == 'published'
       rescue => ex
         puts ex.message
       end
