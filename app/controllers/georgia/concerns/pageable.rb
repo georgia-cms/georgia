@@ -26,7 +26,7 @@ module Georgia
         def create
           @page = model.new(slug: params[:title].try(:parameterize))
           if @page.save
-            @page.revisions.create(template: 'default') do |rev|
+            @page.revisions.create(template: Georgia.templates.first) do |rev|
               rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
             end
             @page.update_attribute(:current_revision, @page.revisions.first)
