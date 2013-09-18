@@ -4,7 +4,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="Content-Language" content="en-US" />
   <title><%= Georgia.title %> CMS</title>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <%= stylesheet_link_tag    "georgia/application", media: 'all' %>
   <%= javascript_include_tag "georgia/application" %>
@@ -19,12 +18,12 @@
   <%= yield :head %>
 </head>
 <body id="<%= controller_name %>" class="georgia <%= action_name %>">
-  <div class="container-fluid">
-    <%= render 'layouts/georgia/messages' %>
-    <%= render 'layouts/georgia/header' %>
+  <%= render 'layouts/georgia/header' %>
+  <%= render 'layouts/georgia/sidebar' %>
+  <main id="main">
     <%= yield %>
-  </div>
-  <%= render 'layouts/georgia/footer' %>
+    <%= render 'layouts/georgia/footer' %>
+  </section>
   <%= yield :ujs %>
 </body>
 </html>

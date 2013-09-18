@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency 'henry', '0.5.0'
+  s.add_dependency 'henry'
   s.add_dependency 'rails', '~> 3.2.13'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'therubyracer'
   s.add_dependency 'anjlab-bootstrap-rails' # needed for loading individual javascript components
   s.add_dependency 'bourbon'
+  s.add_dependency 'neat'
   s.add_dependency 'sass-rails',   '~> 3.2.3' # no need to specify version?
   s.add_dependency 'coffee-rails', '~> 3.2.1' # no need to specify version?
   s.add_dependency 'backbone-on-rails', '0.9.2.3' #should be upgraded
@@ -40,11 +41,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'shadowbox-rails'
   s.add_dependency 'select2-rails'
-  s.add_dependency 'rubyzip', '0.9.9'    # not sure it's really needed
+  s.add_dependency 'rubyzip'
   s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
-  s.add_dependency 'pg' # should be database agnostic
-  s.add_dependency 'pg_search' # should be remove
   s.add_dependency 'sunspot_rails'
   s.add_dependency 'sunspot_solr' # should be a development requirement and installed properly on production
   s.add_dependency 'state_machine'

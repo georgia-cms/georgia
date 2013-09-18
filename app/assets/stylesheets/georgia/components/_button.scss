@@ -1,5 +1,48 @@
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  // Default
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #ebebeb;
+}
+
 .btn-file-upload {
   position: relative;
   overflow: hidden;
   margin: 20px 0;
+}
+
+.btn-close {
+  position: absolute; // needs parent to be relative
+  z-index: $z-btn--close;
+  width: 25px;
+  height: 25px;
+  top: -10px;
+  right: -10px;
+  background-color: $grey;
+  color: $white;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-align: center;
+  padding-top: 3px;
+  border-radius: 15px;
+  &:hover { color: $white;}
 }

@@ -1,0 +1,22 @@
+<div id='page_form' class="modal">
+  <%= link_to "&times;".html_safe, "#", class: 'btn-close js-close' %>
+  <%= simple_form_for(@page, as: :page, remote: true, html: {class: 'form-vertical'}) do |f| %>
+
+    <div class="modal-header">
+      <h3 class='modal-title'>New <%= instance_name.titleize %></h3>
+    </div>
+
+    <div class="modal-content">
+      <%= label_tag :title %>
+      <%= text_field_tag :title %>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">
+        <i class='icon-check'>&nbsp;</i> Create
+      </button>
+      <%= link_to 'Back', '#', class: 'btn js-close' %>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+.pagination {
+  height: 36px;
+  margin: 18px 0;
+}
+.pagination {
+  span {
+    float: left;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-left-width: 0;
+  }
+  span:first-child { border-left-width: 1px; }
+  a, .current, .gap {
+    display: block;
+    padding: 0 14px;
+    line-height: 34px;
+  }
+}
+.pagination a:hover,
+.pagination .active a {
+  background-color: #f5f5f5;
+}
+.pagination .current, .pagination .active a {
+  color: #999999;
+  background-color: transparent;
+  cursor: default;
+}

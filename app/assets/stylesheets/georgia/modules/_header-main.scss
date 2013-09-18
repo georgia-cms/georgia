@@ -1,0 +1,11 @@
+.header-main {
+  .header-checkbox {
+    @include span-columns(1 of 8);
+  }
+  .header-actions {
+    @include span-columns(6 of 8);
+  }
+  .header-pagination {
+    @include span-columns(1 of 8);
+  }
+}

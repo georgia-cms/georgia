@@ -30,3 +30,4 @@
 //= require georgia/media
 //= require georgia/pages
 //= require georgia/tags
+//= require georgia/modal

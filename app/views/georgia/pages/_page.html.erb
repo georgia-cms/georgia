@@ -1,23 +1,13 @@
-<tr class="page state-<%= page.public? ? 'published' : 'unpublished' %>" data-page-id="<%= page.id %>">
+<tr class="page">
   <td>
-    <%= page.title %>
-  </td>
-  <td>
-    <%= page.template %>
-  </td>
-  <td>
-    <%= page.url %>
+    <%= check_box_tag :selected %>
   </td>
   <td>
     <%= page.tag_list %>
-  </td>
-  <td class="labels">
-    <%= page.state_icon %>
+    <%= link_to page.title, [:edit, page] %>
+    <small><%= page.url %></small>
   </td>
   <td>
-    <em>updated <%= time_ago_in_words page.updated_at %> ago</em>
-  </td>
-  <td class="actions">
-    <%= Georgia::EditPageButton.new(self, page).render if can? :edit, page %>
+    <em><%= page.updated_at.strftime('%F') %></em>
   </td>
 </tr>

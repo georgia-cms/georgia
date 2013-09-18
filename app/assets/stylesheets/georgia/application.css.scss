@@ -1,23 +1,16 @@
 @import "bourbon";
+@import "neat";
+@import "normalize";
+
+// Vendors
 @import "select2";
 @import "shadowbox";
 @import "mousetrap";
 
+// SMACCS
+@import "mixins/*";
 @import "settings/*";
+@import "layout/*";
 @import "components/*";
 @import "modules/*";
-@import "overrides/*";
 @import "vendor/*";
-
-// To be moved following SMACSS principles
-@import "layout";
-@import "header";
-@import "pages";
-@import "menus";
-@import "media";
-@import "jquery-ui";
-@import "widgets";
-@import "revisions";
-@import "images";
-@import "pagination";
-@import "autocomplete";
