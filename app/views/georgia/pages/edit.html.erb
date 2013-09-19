@@ -1,92 +1,77 @@
-<%= content_for :messages do %>
-<%= render 'georgia/shared/messages', model: @page %>
-<% end %>
-
 <%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
-<h1 class="page-header">
-  <div class="pull-right">
-    <button type="submit" class="btn btn-success">
-      <i class='icon-ok'>&nbsp;</i> Save
+  <header class='header-main'>
+    <%= link_to icon_tag('level-up icon-rotate-270'), :back, class: 'btn-back' %>
+    <ul class='nav'>
+      <%= Georgia::EditPageActionList.new(self, @page, class: 'btn').render %>
+    </ul>
+    <button type="submit" class="btn-save">
+      <%= icon_tag 'ok' %> Save
     </button>
-    <%= link_to "#{icon_tag 'icon-dashboard'} Dashboard".html_safe, @page, class: 'btn' %>
-  </div>
-  <%= @page.status_tag(class: 'label-big') %>
-  <%= @page.title %>
-  <small>
-    <% if @page.public? %>
-      <%= link_to @page.url, @page.url, target: '_blank' %>
-    <% else -%>
-      <%= @page.url %>
-    <% end -%>
-  </small>
-</h1>
-<div class='row-fluid'>
-  <div class='span2'>
-    <div class="well">
-      <ul class="nav nav-list">
-        <li class="nav-header">Actions</li>
-        <%= Georgia::EditPageActionList.new(self, @page).render %>
-      </ul>
-    </div>
-  </div>
-  <div class='span10'>
+  </header>
+  <div class='body-main'>
+    <h1>
+      <%= @page.title %>
+      <small>
+        <% if @page.public? %>
+        <%= link_to @page.url, @page.url, target: '_blank' %>
+        <% else -%>
+        <%= @page.url %>
+        <% end -%>
+      </small>
+    </h1>
 
     <% if extra_fields? %>
-      <div class="well">
-        <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
-      </div>
+    <div class="well">
+      <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
+    </div>
     <% end -%>
 
-    <div class="row-fluid">
-      <div class="span6">
+    <fieldset>
+      <legend>URL</legend>
+      <%= f.input :slug, label: "#{instance_name.titleize} URL", disabled: true, input_html: {value: @page.url, class: 'input-xxlarge', data: {slug: @page.slug}}, hint: "#{icon_tag 'icon-warning-sign'} The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language. Updating the slug might break important links to your website. We strongly suggest you contact Motion Eleven before editing a slug. All subpages of this #{instance_name} will be automatically updated.<br/>I understand and would like to #{link_to 'edit anyway', '#', class: 'js-allow-slug-edit' }." %>
+    </fieldset>
 
-        <fieldset>
-          <legend>URL</legend>
-          <%= f.input :slug, label: "#{instance_name.titleize} URL", disabled: true, input_html: {value: @page.url, class: 'input-xxlarge', data: {slug: @page.slug}}, hint: "#{icon_tag 'icon-warning-sign'} The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language. Updating the slug might break important links to your website. We strongly suggest you contact Motion Eleven before editing a slug. All subpages of this #{instance_name} will be automatically updated.<br/>I understand and would like to #{link_to 'edit anyway', '#', class: 'js-allow-slug-edit' }." %>
-        </fieldset>
+    <fieldset>
+      <legend>Tags</legend>
+      <%= f.input :tag_list, label: false, input_html: {class: 'input-xxlarge js-token-input'} %>
+      <p class="help-block">
+        Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.<br />
+        e.g. Interested in <em>Quidish</em>? Have you tried <a href='#'>Baseball</a> or <a href='#'>Criquet</a>?
+      </p>
+    </fieldset>
 
-        <fieldset>
-          <legend>Tags</legend>
-          <%= f.input :tag_list, label: false, input_html: {class: 'input-xxlarge js-token-input'} %>
-          <p class="help-block">
-            Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.<br />
-            e.g. Interested in <em>Quidish</em>? Have you tried <a href='#'>Baseball</a> or <a href='#'>Criquet</a>?
-          </p>
-        </fieldset>
-      </div>
-
-      <div class="span6">
-        <fieldset>
-          <legend>Hierarchy</legend>
-          <h4>Parent</h4>
-          <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the #{instance_name} doesn't belong to any section.", input_html: {class: 'js-select2'} %>
-          <hr />
-          <h4>Subpages</h4>
-          <p>
-            Move the <%= instance_name.pluralize %> around to change their display position.
-          </p>
-          <% if @page.persisted? and @page.has_children? %>
-          <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
-            <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
-            <%= content_tag_for(:li, page, class: 'subpage') do %>
-            <%= icon_tag 'icon-align-justify subpage-handle' %>
+    <fieldset>
+      <legend>Hierarchy</legend>
+      <h4>Parent</h4>
+      <%= f.input :parent_id, collection: parent_page_collection, label: false, hint: "Leave empty if the #{instance_name} doesn't belong to any section.", input_html: {class: 'js-select2'} %>
+      <hr />
+      <h4>Subpages</h4>
+      <p>
+        Move the <%= instance_name.pluralize %> around to change their display position.
+      </p>
+      <% if @page.persisted? and @page.has_children? %>
+      <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
+        <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
+          <%= content_tag_for(:li, page, class: 'subpage') do %>
+            <%= icon_tag 'align-justify subpage-handle' %>
             <%= link_to icon_tag('icon-long-arrow-right'), edit_page_path(page), class: 'subpage-edit-link' %>
             <div class="subpage-info">
               <h5 class='subpage-info__title'><%= page.title %></h5>
               <small class='subpage-info__url'><%= page.url %></small>
             </div>
-            <% end -%>
-            <% end -%>
-          </ul>
-          <% else -%>
-          <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
           <% end -%>
-          <p class='help-block'>
-            <%= icon_tag 'icon-info-sign' %> To include a subpage, go to the desired <%= instance_name %> and add a parent section. Sorry for the inconvenience, this feature is coming soon.
-          </p>
-        </fieldset>
-      </div>
-    </div>
+        <% end -%>
+      </ul>
+      <% else -%>
+        <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
+      <% end -%>
+      <p class='help-block'>
+        <%= icon_tag 'info-sign' %> To include a subpage, go to the desired <%= instance_name %> and add a parent section. Sorry for the inconvenience, this feature is coming soon.
+      </p>
+    </fieldset>
   </div>
-</div>
+  <footer>
+    <hr />
+    <%= link_to "#{icon_tag('trash')} Delete".html_safe, @page, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn' %>
+  </footer>
 <% end %>

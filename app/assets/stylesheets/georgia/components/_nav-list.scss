@@ -6,5 +6,8 @@
 
 .nav {
   @extend .nav-list;
-  > li { float: left;}
+  > li {
+    float: left;
+    padding-right: 5px;
+  }
 }

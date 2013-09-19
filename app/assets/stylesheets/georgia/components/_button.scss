@@ -30,6 +30,18 @@
   margin: 20px 0;
 }
 
+.btn-back {
+  @extend .btn;
+  padding: 6px 20px;
+  float: left;
+  margin-right: 100px;
+}
+
+.btn-save {
+  @extend .btn;
+  float: right;
+}
+
 .btn-close {
   position: absolute; // needs parent to be relative
   z-index: $z-btn--close;

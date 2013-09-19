@@ -1,14 +1,14 @@
 module Georgia
   class EditRevisionActionList
 
-    attr_accessor :view, :instance, :actions
+    attr_accessor :view, :instance, :options
 
     delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, to: :view, prefix: false
 
-    def initialize view, instance, actions={}
+    def initialize view, instance, options={}
       @view = view
       @instance = (instance.decorated? ? instance.object : instance)
-      @actions = actions
+      @options = options
     end
 
     def render
