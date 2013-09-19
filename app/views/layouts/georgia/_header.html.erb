@@ -6,7 +6,7 @@
 
   <% if signed_in? %>
     <div class="header-search-form">
-      <%= form_for :search, url: url_for(controller: controller_name, action: "search"), method: :get do |f| %>
+      <%= form_for :search, url: url_for(controller: 'pages', action: "search"), method: :get do |f| %>
         <%= facets_inputs([:tg]) %>
         <%= hidden_field_tag :s, params[:s] if params[:s] %>
         <%= hidden_field_tag :t, params[:t] if params[:t] %>

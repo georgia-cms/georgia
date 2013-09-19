@@ -1,45 +1,32 @@
-<div class="tab-pane<%= ' active' if locale == I18n.locale.to_s %>" id="<%= locale %>-content">
+<fieldset>
+  <%= f.input :title %>
+  <%= f.input :text, as: :ckeditor, label: 'Content', input_html: {toolbar: 'Full'} %>
+</fieldset>
+<fieldset>
+  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Try not to go over 225 characters' %>
+  <p class='help-block'><%= icon_tag 'info-sign' %> The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines.</p>
+  <%= f.input :keyword_list, label: 'Keywords', hint: 'Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero', input_html: {class: 'input-xxlarge js-token-input', 'data-token' => 'keywords'} %>
+  <p class='help-block'>
+    <%= icon_tag 'info-sign' %> The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.
+  </p>
+</fieldset>
 
+<legend>Featured Image</legend>
+<%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
+<div class="gallery">
   <div class="row-fluid">
-    <div class="span9">
-
-      <fieldset class='max-length'>
-
-        <div class='form-inputs'>
-          <%= f.input :title %>
-          <%= f.input :text, as: :ckeditor, label: false, input_html: {toolbar: 'Full'} %>
-          <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Try not to go over 225 characters' %>
-          <p class='help-block'><%= icon_tag 'icon-info-sign' %> The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines.</p>
-          <%= f.input :keyword_list, label: 'Keywords', hint: 'Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero', input_html: {class: 'input-xxlarge js-token-input', 'data-token' => 'keywords'} %>
-          <p class='help-block'>
-            <%= icon_tag 'icon-info-sign' %> The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.
-          </p>
-          <%= f.hidden_field :locale %>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="span3">
-      <legend>Featured Image</legend>
-      <%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
-      <div class="gallery">
-        <div class="row-fluid">
-          <ul class="thumbnails">
-            <% if Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).any? %>
-            <% Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).each do |photo| %>
-            <li class="span12">
-              <%= link_to image_tag(photo.url(:big_thumb)), '#', class: "thumbnail #{'active' if photo.id == f.object.image_id}", data: {'featured-image' => 'toggle', 'featured-image-id' => photo.id} %>
-            </li>
-            <% end -%>
-            <% else -%>
-            <p class="help-block">
-              <%= icon_tag 'icon-info-sign' %> To select a featured image, you must first add a tag corresponding to this <%= instance_name %>'s slug.
-            </p>
-            <% end -%>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <ul class="thumbnails">
+      <% if Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).any? %>
+      <% Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).each do |photo| %>
+      <li class="span12">
+        <%= link_to image_tag(photo.url(:big_thumb)), '#', class: "thumbnail #{'active' if photo.id == f.object.image_id}", data: {'featured-image' => 'toggle', 'featured-image-id' => photo.id} %>
+      </li>
+      <% end -%>
+      <% else -%>
+      <p class="help-block">
+        <%= icon_tag 'info-sign' %> To select a featured image, you must first add a tag corresponding to this <%= instance_name %>'s slug.
+      </p>
+      <% end -%>
+    </ul>
   </div>
-
 </div>

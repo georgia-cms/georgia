@@ -1,0 +1,16 @@
+.widget {
+  @include clearfix;
+  position: relative;
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #DDD;
+  margin-bottom: 10px;
+  .thumbnail {
+    float: left;
+    width: 120px;
+    margin-right: 10px;
+  }
+  .content-heading {
+    margin: 0 0 5px 0;
+  }
+}
