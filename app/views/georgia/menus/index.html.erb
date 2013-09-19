@@ -12,10 +12,10 @@
       <tr>
         <td><%= menu.name %></td>
         <td class='actions'>
-          <%= link_to "#{icon_tag 'icon-pencil'} Edit".html_safe, [:edit, menu], class: 'btn' %>
+          <%= link_to "#{icon_tag 'pencil'} Edit".html_safe, [:edit, menu], class: 'btn' %>
         </td>
         <td>
-          <%= link_to "#{icon_tag 'icon-remove'} Destroy".html_safe, menu, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' %>
+          <%= link_to "#{icon_tag 'remove'} Destroy".html_safe, menu, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' %>
         </td>
       </tr>
     <% end -%>
@@ -31,4 +31,4 @@
 
 <%= paginate @menus %>
 
-<%= link_to "#{icon_tag 'icon-plus-sign'} Add Menu".html_safe, new_menu_url, class: 'btn btn-primary' %>
+<%= link_to "#{icon_tag 'plus-sign'} Add Menu".html_safe, new_menu_url, class: 'btn btn-primary' %>

@@ -5,7 +5,7 @@
   <td><%= user.created_at.strftime('%F %H:%M') %></td>
   <td><%= user.roles_names %></td>
   <td class='actions nowrap'>
-    <%= link_to "#{icon_tag 'icon-cog'} edit".html_safe, [:edit, user], class: 'btn' if can?(:edit, user) %>
-    <%= link_to "#{icon_tag 'icon-remove'} delete".html_safe, user, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' if can?(:delete, user) %>
+    <%= link_to "#{icon_tag 'cog'} edit".html_safe, [:edit, user], class: 'btn' if can?(:edit, user) %>
+    <%= link_to "#{icon_tag 'remove'} delete".html_safe, user, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' if can?(:delete, user) %>
   </td>
 </tr>

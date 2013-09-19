@@ -3,7 +3,7 @@
 <% end %>
 
 <div id='menu_panel' data-menu-name='<%= @menu.name %>' data-menu-id='<%= @menu.id %>' data-locales='<%= I18n.available_locales.join(',') %>'>
-  <%= icon_tag 'icon-spinner icon-spin' %> Loading...
+  <%= icon_tag 'spinner icon-spin' %> Loading...
 </div>
 
 <%= content_for :ujs do %>

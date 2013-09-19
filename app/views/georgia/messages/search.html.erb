@@ -28,11 +28,11 @@
               <td class='nowrap'><%= message.created_at.strftime('%F %H:%M') %></td>
               <td class="actions nowrap">
                 <% if message.spam %>
-                  <%= link_to icon_tag('icon-thumbs-up'), [:ham, message], class: 'btn btn-success' %>
+                  <%= link_to icon_tag('thumbs-up'), [:ham, message], class: 'btn btn-success' %>
                 <% else -%>
-                  <%= link_to icon_tag('icon-thumbs-down'), [:spam, message], class: 'btn btn-danger' %>
+                  <%= link_to icon_tag('thumbs-down'), [:spam, message], class: 'btn btn-danger' %>
                 <% end -%>
-                <%= link_to icon_tag('icon-cog'), [:edit, message], class: 'btn btn-inverse' %>
+                <%= link_to icon_tag('cog'), [:edit, message], class: 'btn btn-inverse' %>
               </td>
             </tr>
           <% end -%>

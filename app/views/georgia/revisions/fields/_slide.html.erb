@@ -1,3 +1,2 @@
-<%= f.input :title %>
-<%= f.input :text, label: 'Content', input_html: {rows: 3} %>
-<%= f.input :image, as: :file %>
+<%= f.input :image, as: :file, wrapper_html: {class: 'input-horizontal'} %>
+<%= f.input :text, label: 'Content', input_html: {rows: 3}, wrapper_html: {class: 'input-horizontal'} %>

@@ -2,79 +2,88 @@
 <%= render 'georgia/shared/messages', model: @revision %>
 <% end %>
 
-<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin form-horizontal'} do |f| %>
-  <header class='header-main'>
-    <%= link_to_back %>
-    <%= button_to_save %>
-  </header>
-  <section class="body-main">
-    <%= f.simple_fields_for @revision.content do |c| %>
-      <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
-    <% end -%>
-    <%= f.input :template, collection: Georgia.templates %>
-    <fieldset>
-      <h3>Slides</h3>
-      <div class="fieldset-help">
-        <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn' %>
-      </div>
-      <div class="fieldset-fields">
-        <%= f.simple_fields_for @revision.slides.map(&:content) do |c| %>
-          <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
-        <% end -%>
-      </div>
-    </fieldset>
-    <fieldset>
-      <h3>Widgets</h3>
-      <div class="fieldset-fields">
-        <div class="control-group">
-          <label>Sidebar</label>
-          <div class="controls">
-            <div class="widget">
-              <%= link_to_close %>
-              <%= image_tag 'http://dummyimage.com/120x90/EEE/333', class: 'thumbnail' %>
-              <div class="content">
-                <h5 class='content-heading'>All Solutions</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              </div>
-            </div>
-            <div class="widget">
-              <%= link_to_close %>
-              <div class="content">
-                <h5 class='content-heading'>Ask TelcoBridges</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              </div>
-            </div>
-            <%= select_tag :widget, "", prompt: 'Select a widget' %>
-            <%= link_to 'Add', '#', class: 'btn' %>
-          </div>
-        </div>
-        <div class="control-group">
-          <label>Footer</label>
-          <div class="controls">
-            <div class="widget">
-              <%= link_to_close %>
-              <div class="content">
-                <h5 class='content-heading'>Product Footer</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-              </div>
-            </div>
-            <%= select_tag :widget, "", prompt: 'Select a widget' %>
-            <%= link_to 'Add', '#', class: 'btn' %>
-          </div>
-        </div>
-      </div>
-    </fieldset>
+<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin'} do |f| %>
+<header class='header-main'>
+  <%= link_to_back %>
+  <%= button_to_save %>
+</header>
+<section class="body-main">
+  <%= f.simple_fields_for @revision.content do |c| %>
+  <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
+  <% end -%>
 
-  </section>
-  <footer>
-    <hr />
-    <%= link_to "#{icon_tag('trash')} Delete".html_safe, [@page, @revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn' %>
-  </footer>
+  <fieldset>
+    <div class="fieldset-help">
+      <legend>Template</legend>
+    </div>
+    <%= f.input :template, collection: Georgia.templates, label: false %>
+  </fieldset>
+  <fieldset>
+    <div class="fieldset-help">
+      <legend>Slides</legend>
+      <p>
+        <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn' %>
+      </p>
+    </div>
+    <div class="fieldset-fields">
+      <%= f.simple_fields_for @revision.slides.map(&:content) do |c| %>
+      <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
+      <% end -%>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div class="fieldset-help">
+      <legend>Widgets</legend>
+    </div>
+    <div class="control-group input-horizontal">
+      <label>Sidebar</label>
+      <div class="widgets">
+        <div class="widget">
+          <%= link_to_close %>
+          <%= image_tag 'http://dummyimage.com/120x90/EEE/333', class: 'thumbnail' %>
+          <div class="content">
+            <h5 class='content-heading'>All Solutions</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          </div>
+        </div>
+        <div class="widget">
+          <%= link_to_close %>
+          <div class="content">
+            <h5 class='content-heading'>Ask TelcoBridges</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          </div>
+        </div>
+        <%= select_tag :widget, "", prompt: 'Select a widget' %>
+        <%= link_to 'Add', '#', class: 'btn' %>
+      </div>
+    </div>
+    <div class="control-group input-horizontal">
+      <label>Footer</label>
+      <div class="widgets">
+        <div class="widget">
+          <%= link_to_close %>
+          <div class="content">
+            <h5 class='content-heading'>Product Footer</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+          </div>
+        </div>
+        <%= select_tag :widget, "", prompt: 'Select a widget' %>
+        <%= link_to 'Add', '#', class: 'btn' %>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+</section>
+<footer>
+  <hr />
+  <%= link_to "#{icon_tag('trash')} Delete".html_safe, [@page, @revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn' %>
+</footer>
 <% end %>
 
 
 <%= content_for :ujs do %>
-  <script type="text/javascript">
-    $(function() { Georgia.init(); });
-  </script>
+<script type="text/javascript">
+$(function() { Georgia.init(); });
+</script>
 <% end -%>

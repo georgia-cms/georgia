@@ -1,32 +1,21 @@
 <fieldset>
+  <div class="fieldset-help">
+    <legend>Page Content</legend>
+  </div>
+  <legend>Page Content</legend>
   <%= f.input :title %>
-  <%= f.input :text, as: :ckeditor, label: 'Content', input_html: {toolbar: 'Full'} %>
+  <%= f.input :text, label: 'Content', as: :ckeditor, input_html: {toolbar: 'Full'} %>
 </fieldset>
 <fieldset>
-  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: 'Describe in a short paragraph what this page is about. Try not to go over 225 characters' %>
-  <p class='help-block'><%= icon_tag 'info-sign' %> The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines.</p>
-  <%= f.input :keyword_list, label: 'Keywords', hint: 'Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero', input_html: {class: 'input-xxlarge js-token-input', 'data-token' => 'keywords'} %>
-  <p class='help-block'>
-    <%= icon_tag 'info-sign' %> The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.
-  </p>
-</fieldset>
-
-<legend>Featured Image</legend>
-<%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
-<div class="gallery">
-  <div class="row-fluid">
-    <ul class="thumbnails">
-      <% if Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).any? %>
-      <% Ckeditor::Asset.tagged_with([slug] + @page.tags, any: true).includes(:tags).each do |photo| %>
-      <li class="span12">
-        <%= link_to image_tag(photo.url(:big_thumb)), '#', class: "thumbnail #{'active' if photo.id == f.object.image_id}", data: {'featured-image' => 'toggle', 'featured-image-id' => photo.id} %>
-      </li>
-      <% end -%>
-      <% else -%>
-      <p class="help-block">
-        <%= icon_tag 'info-sign' %> To select a featured image, you must first add a tag corresponding to this <%= instance_name %>'s slug.
-      </p>
-      <% end -%>
-    </ul>
+  <div class="fieldset-help">
+    <legend>SEO</legend>
   </div>
-</div>
+  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: "Describe in a short paragraph what this page is about. Try not to go over 225 characters. #{icon_tag('info-sign')} The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines." %>
+  <%= f.input :keyword_list, label: 'Keywords', hint: "Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero. #{icon_tag('info-sign')} The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.", input_html: {class: 'js-token-input', 'data-token' => 'keywords'} %>
+</fieldset>
+<fieldset>
+  <legend>Featured Image</legend>
+  <div class="fieldset-help">
+  </div>
+  <%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
+</fieldset>

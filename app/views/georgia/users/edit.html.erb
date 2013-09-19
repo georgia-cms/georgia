@@ -16,7 +16,7 @@
       <%= link_to 'Cancel', :back, class: 'btn' %>
 
       <div class="pull-right">
-        <%= link_to "#{icon_tag 'icon-remove'} delete".html_safe, @user, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' if can?(:delete, @user) %>
+        <%= link_to "#{icon_tag 'remove'} delete".html_safe, @user, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' if can?(:delete, @user) %>
       </div>
     </div>
 

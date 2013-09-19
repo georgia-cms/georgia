@@ -7,7 +7,7 @@
       <%= hidden_field_tag :t, params[:t] if params[:t] %>
       <%= hidden_field_tag :ty, params[:ty] if params[:ty] %>
       <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
-      <button class="btn"><%= icon_tag('icon-search') %></button>
+      <button class="btn"><%= icon_tag('search') %></button>
     </div>
 
     <% if @search %>
@@ -28,7 +28,7 @@
   <div class="span6">
     <% if can? :create, Georgia::Page %>
     <div class="pull-right">
-      <%= link_to "#{icon_tag('icon-plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
+      <%= link_to "#{icon_tag('plus-sign')} Add Page".html_safe, '#new_page', class: 'btn btn-primary js-new-page', role: 'button', data: {toggle: 'modal'} %>
     </div>
     <% end -%>
   </div>
