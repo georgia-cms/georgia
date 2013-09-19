@@ -4,9 +4,16 @@
   <ul class='nav'>
     <%= Georgia::EditPageActionList.new(self, @page, class: 'btn').render %>
   </ul>
-  <button type="submit" class="btn-save">
-    <%= icon_tag 'ok' %> Save
-  </button>
+  <ul class='nav' style='float: right;'>
+    <li>
+      <%= link_to 'Save & Publish', '#', class: 'btn' %>
+    </li>
+    <li>
+      <button type="submit" class="btn">
+        <%= icon_tag 'ok' %> Save
+      </button>
+    </li>
+  </ul>
 </header>
 <div class='body-main'>
   <h1>
