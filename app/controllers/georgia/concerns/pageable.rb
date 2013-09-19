@@ -18,6 +18,7 @@ module Georgia
         end
 
         def show
+          redirect_to [:edit, @page]
         end
 
         def edit

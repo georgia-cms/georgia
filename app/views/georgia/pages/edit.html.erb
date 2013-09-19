@@ -69,6 +69,33 @@
         <%= icon_tag 'info-sign' %> To include a subpage, go to the desired <%= instance_name %> and add a parent section. Sorry for the inconvenience, this feature is coming soon.
       </p>
     </fieldset>
+    <div class="pipeline">
+      <h4>In the pipeline</h4>
+      <% @page.revisions.drafts.find_each do |draft| %>
+        <h5>
+          <%= link_to 'edit', [:edit, @page.model, draft], class: 'pull-right' %>
+          <span class="muted">#<%= draft.id %></span>
+          <%= draft.title %> - <small>updated <%= time_ago_in_words draft.updated_at %> ago</small>
+        </h5>
+      <% end -%>
+    </div>
+    <div class="revisions">
+      <h4>Revisions</h4>
+      <% if @page.revisions.stored.any? %>
+        <% @page.revisions.stored.find_each do |revision| %>
+          <h5>
+            <div class="pull-right">
+              <%= link_to 'preview', [:preview, @page, revision], target: '_blank' %> |
+              <%= link_to 'revert', [:revert, @page, revision] %>
+            </div>
+            <span class="muted">#<%= revision.id %></span>
+            <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
+          </h5>
+        <% end -%>
+      <% else -%>
+        <p class='muted'>There are no revisions yet.</p>
+      <% end -%>
+    </div>
   </div>
   <footer>
     <hr />
