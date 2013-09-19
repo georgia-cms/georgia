@@ -1,6 +1,11 @@
 module Georgia
   module UiHelper
 
+    def avatar_url(user, options={})
+      gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+      "http://gravatar.com/avatar/#{gravatar_id}.png?s=32&d=mm"
+    end
+
     def icon_tag icon_name, options={}
       options[:class] ||= ''
       options[:class] << "icon-#{icon_name}"
