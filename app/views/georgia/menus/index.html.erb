@@ -1,34 +1,33 @@
-<h1 class="page-header">Navigation Menus</h1>
+<%= render 'header' %>
 
-<table class="table table-hover">
-  <thead>
-  <th>Name</th>
-  <th></th>
-  <th></th>
-  </thead>
-  <tbody>
-    <% if @menus and @menus.any? %>
-    <% @menus.each do |menu| %>
-      <tr>
-        <td><%= menu.name %></td>
-        <td class='actions'>
-          <%= link_to "#{icon_tag 'pencil'} Edit".html_safe, [:edit, menu], class: 'btn' %>
-        </td>
-        <td>
-          <%= link_to "#{icon_tag 'remove'} Destroy".html_safe, menu, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure?' %>
-        </td>
-      </tr>
-    <% end -%>
-    <% else %>
-    <tr>
-      <td colspan="6">
-        There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<section class="body-main">
 
-<%= paginate @menus %>
+  <fieldset>
+    <div class="fieldset-help">
+      <legend>Menus</legend>
+      <p class="hint">
+        Link lists help your visitors navigate around your website.
+      </p>
+      <p>
+        <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn' %>
+      </p>
+    </div>
+    <div class="fieldset-fields">
+      <% if @menus and @menus.any? %>
+        <%= render @menus %>
+      <% else %>
+        <p>There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url %></p>
+      <% end %>
+    </div>
+  </fieldset>
+
+</section>
 
 <%= link_to "#{icon_tag 'plus-sign'} Add Menu".html_safe, new_menu_url, class: 'btn btn-primary' %>
+
+
+<%= content_for :ujs do %>
+<script type="text/javascript">
+$(function() { Georgia.initMenuPanel(); });
+</script>
+<% end -%>
