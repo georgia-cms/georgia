@@ -1,5 +1,5 @@
 <%= content_for :messages do %>
-<%= render 'georgia/shared/messages', model: @revision %>
+  <%= render 'georgia/shared/messages', model: @revision %>
 <% end %>
 
 <%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin'} do |f| %>
@@ -9,7 +9,7 @@
 </header>
 <section class="body-main">
   <%= f.simple_fields_for @revision.content do |c| %>
-  <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
+    <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
   <% end -%>
 
   <fieldset>
