@@ -4,9 +4,22 @@
     text-align: center;
   }
   .timestamp {
+    @extend .nowrap;
+    width: 100px;
     text-align: right;
   }
   td {
     padding: 2px 4px;
+  }
+  .small {
+    @extend .nowrap;
+    width: 70px;
+  }
+  .tiny {
+    @extend .nowrap;
+    width: 25px;
+  }
+  .thumbnail {
+    width: 65px;
   }
 }

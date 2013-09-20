@@ -1,36 +1,20 @@
-<h1 class='page-header'>Media Library (<%= Ckeditor::Asset.count %>)</h1>
 
-<span class="btn btn-success btn-file-upload">
-  <span class='btn-file-upload-text'>
-    <%= icon_tag 'plus' %> Select files...
-  </span>
-  <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
-</span>
+<%= render 'header' %>
 
-<div class='row-fluid'>
-  <div class='span3'>
-    <%= render 'georgia/media/sidebar/facets' %>
-  </div>
-  <div class='span9'>
-    <%= render 'georgia/media/search' %>
-    <table id='assets' class='table table-stripped'>
-      <thead>
-        <th>Thumbnail</th>
-        <th>Filename</th>
-        <th>Size</th>
-        <th>Dimensions</th>
-        <th>Featured</th>
-        <th>Tags</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% if @assets.any? %>
-          <%= render @assets %>
-        <% else %>
-          <tr><td colspan='6'>There are no assets uploaded to your Media Library.</td></tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @assets %>
-  </div>
-</div>
+<section class="body-main">
+
+  <table class="table-results">
+    <tbody>
+      <% if @assets and @assets.any? %>
+        <%= render @assets %>
+      <% else %>
+        <tr>
+          <td colspan="6">
+            There are currently no assets.
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</section>
