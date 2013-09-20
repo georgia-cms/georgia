@@ -1,9 +1,0 @@
-<li>
-  <% if params[filter] == facet.value %>
-  <span class="pull-right"><%= link_to icon_tag('remove'), url_for(params.merge(filter => nil)) %></span>
-  <%= facet.value %>
-  <% else -%>
-  <span class="badge badge-info pull-right"><%= facet.count %></span>
-  <%= link_to facet.value, url_for(params.merge(filter => facet.value)) %>
-  <% end -%>
-</li>
