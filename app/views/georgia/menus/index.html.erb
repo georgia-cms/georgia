@@ -24,10 +24,3 @@
 </section>
 
 <%= link_to "#{icon_tag 'plus-sign'} Add Menu".html_safe, new_menu_url, class: 'btn btn-primary' %>
-
-
-<%= content_for :ujs do %>
-<script type="text/javascript">
-$(function() { Georgia.initMenuPanel(); });
-</script>
-<% end -%>
