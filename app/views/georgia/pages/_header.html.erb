@@ -16,7 +16,9 @@
   <% if @search %>
     <div class="header-pagination">
       <span><%= @search.hits.count %> of <%= @search.total %></span>
-      <%= paginate(@search.hits) %>
+      <%= link_to icon_tag('chevron-left'), '#', class: 'btn' %>
+      <%= link_to icon_tag('chevron-right'), '#', class: 'btn' %>
+      <%#= paginate(@search.hits) %>
     </div>
   <% end -%>
 </header>
