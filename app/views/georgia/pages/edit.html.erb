@@ -28,9 +28,7 @@
   </h1>
 
   <% if extra_fields? %>
-  <div class="well">
     <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
-  </div>
   <% end -%>
 
   <fieldset>
@@ -91,6 +89,7 @@
       <% if @page.revisions.drafts.any? %>
         <% @page.revisions.drafts.find_each do |draft| %>
           <p class='revision'>
+            <span class='tag'>draft</span>
             <span class="muted">#<%= draft.id %></span>
             <%= draft.title %> - <small>updated <%= time_ago_in_words draft.updated_at %> ago</small>
           </p>
