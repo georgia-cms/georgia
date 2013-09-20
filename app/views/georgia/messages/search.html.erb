@@ -1,50 +1,19 @@
-<div class="row-fluid">
-  <div class="span2">
-    <%= render 'georgia/messages/facets' %>
-  </div>
-  <div class="span10">
+<%= render 'header' %>
 
-    <%= render 'georgia/messages/header' %>
+<section class="body-main">
 
-    <table class="table table-hover">
-      <thead>
-        <th class='nowrap'><%= sortable 'name' %></th>
-        <th class='nowrap'><%= sortable 'email' %></th>
-        <th class='nowrap'><%= sortable 'phone' %></th>
-        <th class='nowrap'><%= sortable 'subject' %></th>
-        <th class='nowrap'><%= sortable 'message' %></th>
-        <th class='nowrap'><%= sortable 'created_at', 'Sent' %></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% if @messages and @messages.any? %>
-          <% @messages.each do |message| %>
-            <tr class='state-<%= message.spam ? 'spam' : 'ham' %>'>
-              <td><%= message.name %></td>
-              <td><%= message.email %></td>
-              <td class='nowrap'><%= message.phone_or_none %></td>
-              <td><%= message.subject_truncated %></td>
-              <td><%= message.message_truncated %></td>
-              <td class='nowrap'><%= message.created_at.strftime('%F %H:%M') %></td>
-              <td class="actions nowrap">
-                <% if message.spam %>
-                  <%= link_to icon_tag('thumbs-up'), [:ham, message], class: 'btn btn-success' %>
-                <% else -%>
-                  <%= link_to icon_tag('thumbs-down'), [:spam, message], class: 'btn btn-danger' %>
-                <% end -%>
-                <%= link_to icon_tag('cog'), [:edit, message], class: 'btn btn-inverse' %>
-              </td>
-            </tr>
-          <% end -%>
-        <% else %>
-          <tr>
-            <td colspan="6">
-              There are currently no messages.
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @search.hits %>
-  </div>
-</div>
+  <table class="table-results">
+    <tbody>
+      <% if @messages and @messages.any? %>
+        <%= render @messages %>
+      <% else %>
+        <tr>
+          <td colspan="6">
+            There are currently no messages.
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</section>

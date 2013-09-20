@@ -1,0 +1,17 @@
+<tr id='<%= dom_id(message) %>' class='message'>
+  <td class='checkbox'>
+    <%= check_box_tag :selected %>
+  </td>
+  <td><%= message.name %></td>
+  <td>
+    <%= message.subject_truncated %>
+    <small><em><%= message.message_truncated %></em></small>
+  </td>
+  <td class='small'><%= message.phone_or_none %></td>
+  <td class='tiny'>
+    <%= icon_tag('paper-clip') %>
+  </td>
+  <td class='timestamp'>
+    <%= message.created_at.strftime('%F %H:%M') %>
+  </td>
+</tr>

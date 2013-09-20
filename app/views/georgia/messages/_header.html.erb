@@ -1,33 +1,25 @@
-<div class="row-fluid">
-  <div class="span6">
-    <%= form_for :search, url: georgia.search_messages_url, method: :get, html: {class: 'form-inline'} do |f| %>
-      <div class="input-append search">
-        <%= hidden_field_tag :s, params[:s] if params[:s] %>
-        <%= text_field_tag :query, params[:query], class: 'input-xxlarge' %>
-        <button class="btn"><%= icon_tag('search') %></button>
-      </div>
-
-      <% if @search %>
-        <div class="top10">
-          <div class="pull-right">
-            <label class='select' for='per'>Per page:&nbsp;</label>
-            <%= select_tag :per, options_for_select([25,50,100,250,500], params[:per]), class: 'input-mini' %>
-          </div>
-          <p class='help-block'>
-            Showing <%= @search.hits.count %> of <%= @search.total %> results
-          </p>
-        </div>
-      <% end -%>
-    <% end -%>
-
-  </div>
-  <div class="span6">
-    <div class="pull-right">
-      <% if Georgia::Message.spam.count.zero? %>
-        <%= link_to "#{icon_tag('trash')} Purge Spam Messages".html_safe, '#', class: "btn btn-danger disabled", disabled: 'disabled' %>
-      <% else -%>
-        <%= link_to "#{icon_tag('trash')} Purge Spam Messages".html_safe, destroy_all_spam_messages_path, class: "btn btn-danger" %>
-      <% end -%>
+<header class='header-main'>
+  <div class="header-checkbox">
+    <div class="btn">
+      <%= check_box_tag :selected %>
+      <%= icon_tag('caret-down') %>
     </div>
   </div>
-</div>
+  <div class="header-actions">
+    <%= link_to icon_tag('thumbs-up-alt'), '#', class: 'btn' %>
+    <%= link_to icon_tag('thumbs-down-alt'), '#', class: 'btn' %>
+    <%= link_to icon_tag('trash'), '#', class: 'btn' %>
+    <div class="btn">
+      <%= link_to icon_tag('tags'), '#' %>
+      <%= icon_tag('caret-down') %>
+    </div>
+  </div>
+  <% if @search %>
+    <div class="header-pagination">
+      <span><%= params[:page] || '1' %>-<%= @search.hits.count %> of <%= @search.total %></span>
+      <%= link_to icon_tag('chevron-left'), '#', class: 'btn' %>
+      <%= link_to icon_tag('chevron-right'), '#', class: 'btn' %>
+      <%#= paginate(@search.hits) %>
+    </div>
+  <% end -%>
+</header>
