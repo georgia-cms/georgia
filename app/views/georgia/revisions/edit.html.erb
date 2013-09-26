@@ -5,7 +5,16 @@
 <%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin'} do |f| %>
 <header class='header-main'>
   <%= link_to_back %>
-  <%= button_to_save %>
+  <ul class='nav' style='float: right;'>
+    <li>
+      <%= link_to 'Save & Publish', '#', class: 'btn' %>
+    </li>
+    <li>
+      <button type="submit" class="btn">
+        <%= icon_tag 'ok' %> Save
+      </button>
+    </li>
+  </ul>
 </header>
 <section class="body-main">
   <%= f.simple_fields_for @revision.content do |c| %>
