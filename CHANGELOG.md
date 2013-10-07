@@ -1,3 +1,11 @@
+== 0.6.8
+
+- Fix ordering slides in Backbone
+
+== 0.6.7
+
+- Minor bugs and fixes
+
 == 0.6.6
 
 - Fix jquery-file-upload to add files directly to table

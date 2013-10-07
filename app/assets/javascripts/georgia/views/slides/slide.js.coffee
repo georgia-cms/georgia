@@ -14,7 +14,7 @@ class Georgia.Views.Slide extends Backbone.View
     @model.on('change', @render, this)
 
   render: ->
-    $(@el).html(@template(@model.attributes)).fadeIn(500)
+    $(@el).attr('id', @id).html(@template(@model.attributes)).fadeIn(500)
     this
 
   edit: (event) ->
