@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905180919) do
+ActiveRecord::Schema.define(:version => 20131016140847) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                                 :null => false
@@ -68,8 +68,14 @@ ActiveRecord::Schema.define(:version => 20130905180919) do
     t.string   "subject"
     t.string   "attachment"
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "spam",        :default => false
+    t.datetime "verified_at"
+    t.string   "permalink"
+    t.string   "user_ip"
+    t.string   "user_agent"
+    t.string   "referrer"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "georgia_pages", :force => true do |t|
