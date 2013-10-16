@@ -4,15 +4,14 @@ Rails.application.routes.draw do
   mount Henry::Engine => '/api'
   mount Ckeditor::Engine => '/ckeditor'
 
-
   resources :pages, only: [] do
     get :preview, on: :member
   end
 
   resources :messages, only: [:create]
 
-  root to: 'pages#show', slug: 'home'
+  root to: 'pages#show', request_path: 'home'
 
-  get '*path', to: 'pages#show', as: :page
+  get '*request_path', to: 'pages#show', as: :page
 
 end
