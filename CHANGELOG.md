@@ -1,3 +1,7 @@
+== 0.6.9
+
+- Fight back UTF-8 Invalid Byte Sequences
+
 == 0.6.8
 
 - Fix ordering slides in Backbone
