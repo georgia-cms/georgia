@@ -1,14 +1,16 @@
 class MessagesController < ApplicationController
 
   # Convenient method to create and check for spam
-  # Requires main application to have a messages/create.js.erb template and the form to be set remote: true
-  # FIXME: Should handle multiple response formats and provides default templates
   def create
     @message = Georgia::Message.new(message_params)
-    if @message.valid?
-      SpamWorker.perform_async(@message.id) if @message.save
+    if @message.valid? and @message.save
+      SpamWorker.perform_async(@message.id)
     end
-    render layout: false
+    respond_to do |format|
+      # FIXME: Add translated flash message on success and failure
+      format.html { redirect_to :back }
+      format.js   { render layout: false }
+    end
   end
 
   private
