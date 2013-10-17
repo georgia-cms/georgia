@@ -1,6 +1,7 @@
 == 0.6.9
 
 - Fight back UTF-8 Invalid Byte Sequences
+- MessagesController redirects to :back on create in html format
 
 == 0.6.8
 
