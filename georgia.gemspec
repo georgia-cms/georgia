@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency 'henry'
-  s.add_dependency 'rails', '~> 3.2.13'
+  s.add_dependency 'rails', '~> 3.2.15' # forces a Rails update on our applications
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'devise'
@@ -28,15 +28,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'ckeditor'
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
-  s.add_dependency 'therubyracer'
-  s.add_dependency 'anjlab-bootstrap-rails' # needed for loading individual javascript components
   s.add_dependency 'bourbon'
   s.add_dependency 'neat'
-  s.add_dependency 'sass-rails',   '~> 3.2.3' # no need to specify version?
-  s.add_dependency 'coffee-rails', '~> 3.2.1' # no need to specify version?
-  s.add_dependency 'backbone-on-rails', '0.9.2.3' #should be upgraded
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'coffee-rails'
+  s.add_dependency 'backbone-on-rails'
   s.add_dependency 'handlebars_assets'
-  s.add_dependency 'jquery-fileupload-rails' # should use remotipart instead
+  s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'shadowbox-rails'
