@@ -1,7 +1,8 @@
 module Georgia
   class ApplicationController < ActionController::Base
 
-    layout 'georgia/application'
+    layout :layout_by_resource
+
     helper 'georgia/ui'
     helper 'georgia/routes'
     helper 'georgia/devise'
@@ -12,7 +13,7 @@ module Georgia
     before_filter :authenticate_user!, except: :login
 
     def login
-      render 'users/sessions/new'
+      render 'users/sessions/new', layout: 'devise'
     end
 
     def home
@@ -20,6 +21,12 @@ module Georgia
 
     def current_ability
       @current_ability ||= Ability.new(current_user)
+    end
+
+    private
+
+    def layout_by_resource
+      devise_controller? ? "georgia/devise" : "georgia/application"
     end
 
   end

@@ -1,16 +1,12 @@
-<div class="center-box well">
-  <div class="logo">
-    <%= image_tag 'georgia/logo.png', alt: '' %>
-  </div>
+<div class="login-form">
+
+  <h1 class='login-logo'>Georgia</h1>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-
-    <%= f.input :email %>
-    <%= f.input :password %>
-
-    <div class="form-actions">
-      <%= f.submit 'Log In', class: 'btn' %>  
+    <div class="login-form-inputs">
+      <%= f.input :email, label: false, placeholder: 'Email' %>
+      <%= f.input :password, label: false, placeholder: 'Password' %>
     </div>
-
+    <%= f.submit 'Log In', class: 'btn input-login' %>
   <% end %>
 </div>

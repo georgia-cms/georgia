@@ -1,3 +1,40 @@
+%input {
+  width: 100%;
+  border: 0;
+  padding: 10px;
+  line-height: 1em;
+  font-weight: bold;
+  &:focus {
+    border: 0;
+    outline: none;
+  }
+  @include placeholder {
+    text-transform: uppercase;
+  }
+}
+
+input.string, input.email, input.password, input.numeric, select, textarea {
+  @extend %input;
+  background-color: $bg-input;
+  color: $font-input;
+  border-radius: 10px;
+}
+
+.input-login {
+  @extend %input;
+  background-color: $bg-input-login;
+  color: $font-input-login;
+}
+
+div.input {
+  margin-bottom: 10px;
+}
+div.input.file {
+  margin-bottom: 0;
+}
+
+.select2-container { width: 100%; }
+
 .input-file-upload {
   position: absolute;
   top: 0;
@@ -9,6 +46,15 @@
   font-size: 23px;
   direction: ltr;
   cursor: pointer;
+}
+
+.field_with_errors {
+  input, select, textarea {
+    border: 1px solid red;
+  }
+  span.error {
+    color: red;
+  }
 }
 
 .input-search {

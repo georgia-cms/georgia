@@ -1,0 +1,16 @@
+.hide {
+  display: none;
+  @include opacity(0);
+  pointer-events: none;
+}
+.show {
+  display: block;
+  @include opacity(1);
+  pointer-events: auto;
+}
+.clear {
+  clear: both;
+}
+.half {
+  max-width: 50%;
+}

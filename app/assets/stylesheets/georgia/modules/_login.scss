@@ -1,0 +1,22 @@
+.login-form {
+  width: 330px;
+  margin: 5% auto 0;
+  text-align: center;
+
+  .control-group {
+    margin-left: 0;
+  }
+
+}
+
+.login-logo {
+  text-align: center;
+  color: $white;
+}
+
+.login-form-inputs {
+  background-color: $white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}

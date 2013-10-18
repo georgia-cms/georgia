@@ -1,21 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta http-equiv="Content-Language" content="en-US" />
-  <title><%= Georgia.title %> CMS</title>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <%= stylesheet_link_tag    "georgia/application", media: 'all' %>
-  <%= javascript_include_tag "georgia/application" %>
-  <%= csrf_meta_tags %>
-  <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <!--[if lt IE 8]>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet">
-  <![endif]-->
-  <%= favicon_link_tag %>
-  <%= yield :head %>
+  <%= render 'layouts/georgia/head' %>
 </head>
 <body id="<%= controller_name %>" class="georgia <%= action_name %>">
   <%= render 'layouts/georgia/header' %>
