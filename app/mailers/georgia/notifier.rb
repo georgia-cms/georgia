@@ -13,7 +13,6 @@ module Georgia
     end
 
     def notify_admins(message, url)
-      return if Rails.env.development? or Rails.env.test?
       @message = message
       @url = url
       domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
@@ -28,7 +27,6 @@ module Georgia
     end
 
     def notify_editors(message, url)
-      return if Rails.env.development? or Rails.env.test?
       @message = message
       @url = url
       domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
