@@ -1,3 +1,3 @@
 module Georgia
-  VERSION = "0.6.13.pre"
+  VERSION = "0.6.13"
 end
