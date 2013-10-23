@@ -1,6 +1,8 @@
-== 0.6.12
+== 0.6.13
 
 - Add caching by default on pages#show
+
+== 0.6.12 (yanked)
 
 == 0.6.11
 
