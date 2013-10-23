@@ -29,6 +29,12 @@ module Georgia
       string :spam do
         spam ? 'spam' : 'clean'
       end
+      # For sorting:
+      string :name
+      string :email
+      string :phone
+      string :subject
+      string :message
       time :created_at
     end
 

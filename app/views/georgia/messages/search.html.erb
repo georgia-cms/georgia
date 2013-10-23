@@ -8,12 +8,12 @@
 
     <table class="table table-hover">
       <thead>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Subject</th>
-        <th>Message</th>
-        <th>Sent</th>
+        <th class='nowrap'><%= sortable 'name' %></th>
+        <th class='nowrap'><%= sortable 'email' %></th>
+        <th class='nowrap'><%= sortable 'phone' %></th>
+        <th class='nowrap'><%= sortable 'subject' %></th>
+        <th class='nowrap'><%= sortable 'message' %></th>
+        <th class='nowrap'><%= sortable 'created_at', 'Sent' %></th>
         <th></th>
       </thead>
       <tbody>
