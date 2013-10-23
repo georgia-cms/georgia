@@ -10,6 +10,7 @@ module Georgia
     include Georgia::Concerns::Indexable
     include Georgia::Concerns::Copyable
     include Georgia::Concerns::Treeable
+    include Georgia::Concerns::Cacheable
 
     acts_as_list scope: :parent #override Concerns::Orderable to include scope
 

@@ -9,7 +9,7 @@ module Georgia
       included do
 
         before_filter :prepare_new_page, only: [:search, :find_by_tag]
-        before_filter :prepare_page, only: [:show, :edit, :update, :copy, :preview, :destroy]
+        before_filter :prepare_page, only: [:show, :edit, :update, :copy, :preview, :destroy, :flush_cache]
 
         def find_by_tag
           @pages = model.tagged_with(params[:tag]).page(params[:page])
@@ -55,6 +55,14 @@ module Georgia
           @message = "#{@page.title} was successfully deleted."
           @page.destroy
           redirect_to [:search, model], notice: @message
+        end
+
+        def flush_cache
+          if expire_action(@page.cache_key)
+            redirect_to :back, notice: "Cache was successfully cleared for #{@page.url}"
+          else
+            redirect_to :back, alert: "Oups. Either there wasn't any cache to start with or something went wrong."
+          end
         end
 
         private

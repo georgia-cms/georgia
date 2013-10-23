@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController, focus: true do
+describe MessagesController do
 
   before :each do
     SpamWorker.stub(:perform_async).and_return(true)

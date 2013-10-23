@@ -10,6 +10,7 @@ module Georgia
         html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
         html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
       end
+      html << content_tag(:li, link_to_flush_cache) if can?(:flush_cache, instance)
       html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe
     end
@@ -38,6 +39,10 @@ module Georgia
 
     def link_to_unpublish
       link_to "#{icon_tag('icon-thumbs-down')} Unpublish".html_safe, url_for_action(:unpublish), data: {confirm: 'Are you sure?'}
+    end
+
+    def link_to_flush_cache
+      link_to "#{icon_tag('icon-fire-extinguisher ')} Flush Cache".html_safe, url_for_action(:flush_cache), method: :post
     end
 
     def link_to_delete

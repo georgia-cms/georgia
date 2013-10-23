@@ -12,6 +12,7 @@ describe Georgia::Page do
   it_behaves_like 'a indexable model'
   it_behaves_like 'a copyable model'
   it_behaves_like 'a treeable model'
+  it_behaves_like 'a cacheable model'
 
   describe 'scopes' do
     describe '.not_self' do

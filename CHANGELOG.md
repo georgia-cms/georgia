@@ -1,3 +1,7 @@
+== 0.6.12
+
+- Add caching by default on pages#show
+
 == 0.6.11
 
 - Add solr tasks to reindex by model (pages, messages & assets)

@@ -7,6 +7,9 @@ module Georgia
 
       included do
 
+        caches_action :show, cache_path: :page_cache_key.to_proc
+        cache_sweeper :navigation_sweeper, only: :show
+
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
@@ -30,6 +33,11 @@ module Georgia
         def not_found
           raise ActionController::RoutingError.new('Not Found')
         end
+
+        def page_cache_key
+          Georgia::Page.where(url: "/#{params[:request_path]}").first.cache_key
+        end
+
       end
 
     end
