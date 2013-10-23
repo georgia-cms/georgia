@@ -1,3 +1,8 @@
+== 0.6.10
+
+- Messages are sent even in dev and test mode (use letter_opener)
+- Messages list can be sorted by header
+
 == 0.6.9
 
 - Fight back UTF-8 Invalid Byte Sequences
