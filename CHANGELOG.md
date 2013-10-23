@@ -1,3 +1,7 @@
+== 0.6.11
+
+- Add solr tasks to reindex by model (pages, messages & assets)
+
 == 0.6.10
 
 - Messages are sent even in dev and test mode (use letter_opener)
