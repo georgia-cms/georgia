@@ -1,5 +1,5 @@
 module Georgia
-  class MediaController < Georgia::ApplicationController
+  class MediaController < ApplicationController
 
     load_and_authorize_resource class: Ckeditor::Asset
 

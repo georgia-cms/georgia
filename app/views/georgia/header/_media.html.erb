@@ -1,5 +1,3 @@
 <% if can? :manage, Ckeditor::Asset %>
-  <li class="dropdown<%= ' active' if controller_name == 'media' %>">
-    <%= link_to "Media", georgia.media_index_url %>
-  </li>
+  <%= sidebar_navigation_link 'Media', georgia.media_index_url, controller: 'media', icon: 'picture' %>
 <% end -%>

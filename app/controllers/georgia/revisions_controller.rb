@@ -1,5 +1,5 @@
 module Georgia
-  class RevisionsController < Georgia::ApplicationController
+  class RevisionsController < ApplicationController
 
     load_and_authorize_resource class: Georgia::Revision
 

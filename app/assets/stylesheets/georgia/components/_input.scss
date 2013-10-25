@@ -13,11 +13,16 @@
   }
 }
 
-input.string, input.email, input.password, input.numeric, select, textarea {
+input.string, input.email, input.password, input.numeric, input.input-search, select, textarea {
   @extend %input;
   background-color: $bg-input;
   color: $font-input;
   border-radius: 10px;
+}
+
+input.input-search {
+  padding: 5px;
+  width: 400px;
 }
 
 .input-login {
@@ -55,8 +60,4 @@ div.input.file {
   span.error {
     color: red;
   }
-}
-
-.input-search {
-  width: 400px;
 }

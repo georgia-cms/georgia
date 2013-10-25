@@ -6,7 +6,7 @@
 
   <% if signed_in? %>
     <div class="header-search-form">
-      <%= form_for :search, url: url_for(controller: 'pages', action: "search"), method: :get do |f| %>
+      <%= form_for :search, url: georgia.search_pages_url, method: :get do |f| %>
         <%= facets_inputs([:tg]) %>
         <%= hidden_field_tag :s, params[:s] if params[:s] %>
         <%= hidden_field_tag :t, params[:t] if params[:t] %>
@@ -19,12 +19,15 @@
 
     <div class="header-profile">
       <ul class="nav">
-        <li>
-          <%= icon_tag('envelope-alt') %>
+        <li class='mail'>
+          <%= link_to icon_tag('envelope'), '#' %>
         </li>
-        <li>
-          <%= image_tag avatar_url(current_user), alt: '' %>
-          <%= link_to "#{current_user.email} #{icon_tag('caret-down')}".html_safe, '', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' %>
+        <li class='user'>
+          <%= link_to '', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
+            <%= image_tag avatar_url(current_user), alt: '' %>
+            <span class="user-name"><%= current_user.email %></span>
+            <%= icon_tag('angle-down') %>
+          <% end -%>
         </li>
       </ul>
     </div>

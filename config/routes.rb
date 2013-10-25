@@ -63,6 +63,6 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
-  root to: 'pages#search'
+  root to: 'dashboard#index'
 
 end

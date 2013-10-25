@@ -1,5 +1,29 @@
 #sidebar {
-  position: fixed;
-  top: 80px;
-  left: 0;
+  position: absolute;
+  z-index: $z-sidebar;
+  top: 60px;
+  bottom: 0;
+  width: $width-sidebar;
+  background-image: image-url('georgia/bg-body-bar.jpg');
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#sidebar {
+  .nav-list li {
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #2E2E2E;
+    a {
+      padding: 10px 15px;
+      margin: 0;
+      color: $white;
+      display: block;
+    }
+    .icon {
+      display: inline-block;
+      text-align: center;
+      width: 1.25em;
+      margin-right: 5px;
+    }
+  }
 }

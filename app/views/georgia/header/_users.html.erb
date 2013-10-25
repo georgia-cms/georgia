@@ -1,0 +1,3 @@
+<% if can? :manage, Georgia::User %>
+  <%= sidebar_navigation_link 'Users', georgia.users_url, controller: 'users', icon: 'user' %>
+<% end -%>

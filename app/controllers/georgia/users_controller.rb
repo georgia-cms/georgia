@@ -1,5 +1,5 @@
 module Georgia
-  class UsersController < Georgia::ApplicationController
+  class UsersController < ApplicationController
 
     load_and_authorize_resource class: Georgia::User
 

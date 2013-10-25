@@ -1,5 +1,5 @@
 module Georgia
-  class PagesController < Georgia::ApplicationController
+  class PagesController < ApplicationController
 
     include Georgia::Concerns::Pageable
     include Georgia::Concerns::Notifying

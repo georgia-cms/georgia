@@ -1,53 +1,47 @@
-#header {
-  width: 100%;
-  height: 80px;
-  padding: 0 10px;
-  position: fixed;
-  top: 0;
-  z-index: $z-header;
-  background-color: $white;
-
-  .header-logo {
-    float: left;
-    width: 150px;
-    padding-top: 10px;
-  }
-  .header-search-form {
-    @include span-columns(5 of 8);
-    padding-top: 10px;
-  }
-  .header-profile {
-    @include span-columns(2 of 8);
-    padding-top: 10px;
-    .nav {float: right;}
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
 }
 
-#sidebar {
-  position: absolute;
-  z-index: $z-sidebar;
-  top: 80px;
-  left: 0;
-  width: 150px;
-  background-color: $white;
+// Tables
+// td:first-child {width: 20%;}
+td.labels {width: 72px; padding: 4px; text-align: center;}
+td.actions {
+  width: 80px;
+  padding: 4px;
+  div.btn-group {float: right;}
 }
 
-#main {
-  padding: 130px 0 0 160px;
-  position: relative;
-  width: 100%;
-  .header-main {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    padding-left: 160px;
-    height: 50px;
-    width: 100%;
-    z-index: $z-main-header;
-    background-color: $white;
-  }
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
-#footer {
-  clear: both;
-}
+th .asc {background-image: url('up_arrow.gif');}
+th .desc {background-image: url('down_arrow.gif');}
+
+table tr.disabled td {text-decoration: line-through;}
+
+// Layout
+#slides .new a {padding: 35px;}
+.light {color: #676767; }
+fieldset.max-length .form-inputs { input, textarea {width: 95%;}}
+
+.open .dropdown-menu li > a:hover > [class^="icon-"],
+.open .dropdown-menu li > a:focus > [class^="icon-"],
+.open .dropdown-submenu:hover > a > [class^="icon-"],
+.nav-list > li.active > a > [class^="icon-"] {background-image: none;}
+
+.row-fluid ul.thumbnails li.span12 + li { margin-left : 0px; clear: both; }
+.row-fluid ul.thumbnails li.span6:nth-child(2n + 3) { margin-left : 0px; clear: both; }
+.row-fluid ul.thumbnails li.span4:nth-child(3n + 4) { margin-left : 0px; clear: both; }
+.row-fluid ul.thumbnails li.span3:nth-child(4n + 5) { margin-left : 0px; clear: both; }
+
+.top10 {padding-top: 10px;}
+.top20 {padding-top: 20px;}
+table.top20 {margin-top: 20px;}
+
+.nowrap {white-space: nowrap;}

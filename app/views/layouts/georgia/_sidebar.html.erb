@@ -1,12 +1,7 @@
 <aside id="sidebar">
   <ul class="nav-list">
     <% Georgia.header.each do |partial| %>
-    <%= render(partial: "georgia/header/#{partial}") %>
-    <% end -%>
-    <% if can? :manage, Georgia::User %>
-      <li class="dropdown<%= ' active' if controller_name == 'users' %>">
-        <%= link_to "Users", georgia.users_url %>
-      </li>
+      <%= render(partial: "georgia/header/#{partial}") %>
     <% end -%>
   </ul>
 

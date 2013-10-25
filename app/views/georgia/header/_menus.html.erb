@@ -1,5 +1,3 @@
 <% if can? :manage, Georgia::Menu %>
-  <li class="dropdown<%= ' active' if controller_name == 'menus' %>">
-    <%= link_to "Menus", georgia.menus_url %>
-  </li>
+  <%= sidebar_navigation_link 'Menus', georgia.menus_url, controller: 'menus', icon: 'align-justify' %>
 <% end -%>

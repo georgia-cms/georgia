@@ -1,5 +1,3 @@
 <% if can? :manage, Georgia::Page %>
-  <li class="dropdown<%= ' active' if controller_name == 'pages' %>">
-    <%= link_to "Pages", georgia.search_pages_url %>
-  </li>
+  <%= sidebar_navigation_link 'Pages', georgia.search_pages_url, controller: 'pages', icon: 'file' %>
 <% end -%>

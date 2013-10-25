@@ -1,5 +1,5 @@
 module Georgia
-  class MenusController < Georgia::ApplicationController
+  class MenusController < ApplicationController
 
     load_and_authorize_resource class: Georgia::Menu
 

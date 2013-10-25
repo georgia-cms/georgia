@@ -1,0 +1,15 @@
+#main {
+  padding: 150px 0 0 ($width-sidebar+20);
+  position: relative;
+  width: 100%;
+  .header-main {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    padding-left: ($width-sidebar+20);
+    height: 50px;
+    width: 100%;
+    z-index: $z-main-header;
+    background-color: $white;
+  }
+}
