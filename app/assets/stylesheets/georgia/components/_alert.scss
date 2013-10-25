@@ -1,0 +1,33 @@
+.alert {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  border-radius: 4px;
+  .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    line-height: 20px;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: .4;
+      filter: alpha(opacity=40);
+    }
+  }
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}

@@ -1,11 +1,16 @@
-<%= content_for :ujs do %>
-  <%= render 'georgia/pages/new' %>
-<% end -%>
-
 <%= render 'header' %>
 <section class="body-main">
 
   <table class="table-results">
+    <thead>
+      <th class='checkbox'>
+        <%= check_box_tag :selected %>
+      </th>
+      <th>Title</th>
+      <th></th>
+      <th>Template</th>
+      <th></th>
+    </thead>
     <tbody>
       <% if @pages and @pages.any? %>
         <% @pages.each do |page| %>
@@ -14,11 +19,18 @@
               <%= check_box_tag :selected %>
             </td>
             <td>
+              <b><%= link_to page.title, [:edit, page] %></b>
+            </td>
+            <td>
               <% page.tag_list.each do |tag| %>
-                <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
+                <%= link_to '#' do %>
+                  <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
+                <% end -%>
               <% end -%>
-              <%= link_to page.title, [:edit, page] %>
               <small><%= page.url %></small>
+            </td>
+            <td>
+              <%= page.template %>
             </td>
             <td class='timestamp'>
               <em><%= page.updated_at.strftime('%F') %></em>

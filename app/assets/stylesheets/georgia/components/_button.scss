@@ -46,14 +46,11 @@
   z-index: $z-btn--close;
   width: 25px;
   height: 25px;
-  top: -10px;
-  right: -10px;
-  background-color: $grey;
+  top: 5px;
+  right: 5px;
   color: $white;
   font-weight: bold;
   font-size: 1.4em;
   text-align: center;
-  padding-top: 3px;
-  border-radius: 15px;
   &:hover { color: $white;}
 }

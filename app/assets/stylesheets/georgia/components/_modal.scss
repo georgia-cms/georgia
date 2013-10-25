@@ -1,12 +1,13 @@
 %modal {
   border-radius: 5px;
   @extend .hide;
-  background-color: $white;
+  background-color: $font;
+  color: $white;
   position: fixed;
   top: 10%;
   left: 50%;
   @include transition(all 0.4s ease);
-  box-shadow: 0 1px 3px $grey;
+  box-shadow: 0 1px 3px $font;
 
   /* Hidden */
   @include opacity(0);
@@ -29,6 +30,15 @@
   width: $modal-width;
   margin-left: -($modal-width/2);
   .modal-content { height: 350px; }
+}
+
+.modal--small {
+  @extend %modal;
+  $modal-width: 400px;
+  width: $modal-width;
+  margin-left: -($modal-width/2);
+  .modal-content { min-height: 50px; }
+  .modal-title { font-size: 1.2em; }
 }
 
 .modal-header { margin-bottom: 20px; }

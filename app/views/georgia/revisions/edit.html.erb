@@ -2,7 +2,7 @@
   <%= render 'georgia/shared/messages', model: @revision %>
 <% end %>
 
-<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin'} do |f| %>
+<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin form-with-helpers'} do |f| %>
 <header class='header-main'>
   <%= link_to_back %>
   <ul class='nav' style='float: right;'>

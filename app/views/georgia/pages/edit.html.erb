@@ -1,4 +1,4 @@
-<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
+<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical form-with-helpers wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
 <header class='header-main'>
   <%= link_to icon_tag('level-up icon-rotate-270'), :back, class: 'btn-back' %>
   <ul class='nav'>
