@@ -7,7 +7,7 @@
   width: 100%;
   .header-main {
     position: fixed;
-    top: 50px;
+    top: $height-header;
     left: 0;
     padding-left: ($width-sidebar+20);
     padding-right: $padding-main;

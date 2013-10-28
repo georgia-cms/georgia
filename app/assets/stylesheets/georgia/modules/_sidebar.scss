@@ -1,7 +1,7 @@
 #sidebar {
   position: fixed;
   z-index: $z-sidebar;
-  top: 50px;
+  top: $height-header;
   bottom: 0;
   width: $width-sidebar;
   background-image: image-url('georgia/bg-body-bar.jpg');
