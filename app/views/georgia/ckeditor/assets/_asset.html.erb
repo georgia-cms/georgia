@@ -1,6 +1,7 @@
 <tr id='<%= dom_id(asset) %>' class='asset'>
   <td class='checkbox'>
-    <%= check_box_tag :selected %>
+    <%= checkboxable_tag "asset_#{asset.id}" %>
+  </td>
   </td>
   <td class='thumbnail'>
     <%= link_to asset.url do %>

@@ -1,6 +1,6 @@
 <tr id='asset_<%= picture.id %>' class='asset'>
   <td class='checkbox'>
-    <%= check_box_tag :selected %>
+    <%= checkboxable_tag "asset_#{picture.id}" %>
   </td>
   <td class='thumbnail'>
     <%= link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do %>

@@ -1,26 +1,10 @@
 <header class='header-main'>
-  <div class="header-checkbox">
-    <div class="btn">
-      <%= check_box_tag :selected %>
-      <%= icon_tag('caret-down') %>
-    </div>
-  </div>
-  <div class="header-actions">
-    <span class="btn btn-success btn-file-upload">
-      <span class='btn-file-upload-text'>
-        <%= icon_tag 'plus' %> Select files...
-      </span>
-      <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
+  <span class="btn btn-success btn-file-upload">
+    <span class='btn-file-upload-text'>
+      <%= icon_tag 'plus' %> Select files...
     </span>
-    <%= link_to "#{icon_tag('download')} Download".html_safe, '#', class: 'btn', target: '_blank' %>
-    <%= link_to "#{icon_tag('trash')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure you want to delete this picture?"}, remote: true, class: 'btn btn-danger' if can? :destroy, Ckeditor::Asset %>
-  </div>
-  <% if @search %>
-    <div class="header-pagination">
-      <span><%= params[:page] || '1' %>-<%= @search.hits.count %> of <%= @search.total %></span>
-      <%= link_to icon_tag('chevron-left'), '#', class: 'btn' %>
-      <%= link_to icon_tag('chevron-right'), '#', class: 'btn' %>
-      <%#= paginate(@search.hits) %>
-    </div>
-  <% end -%>
+    <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
+  </span>
+  <%= link_to "#{icon_tag('download')} Download".html_safe, '#', class: 'btn', target: '_blank' %>
+  <%= link_to "#{icon_tag('trash')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure you want to delete this picture?"}, remote: true, class: 'btn btn-danger' if can? :destroy, Ckeditor::Asset %>
 </header>
