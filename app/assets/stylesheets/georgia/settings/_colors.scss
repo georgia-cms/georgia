@@ -1,7 +1,7 @@
 $white: #FFF;
 $light_blue: #7ebde5;
-$light_grey: #fafbfd;
-$grey: #EEEEEE;
+$light_grey: #eaebed;
+$grey: #2E2E2E;
 
 $red: #a72622;
 $orange: #ed661d;
@@ -16,8 +16,19 @@ $bg-devised: $black;
 $bg-header: $black;
 $bg-input: $white;
 $bg-input-login: $white;
+$bg-header-main: $light_grey;
 
 $font: $black;
 $font-muted: $grey;
 $font-input: $black;
 $font-input-login: $black;
+
+$border-header-main: darken($light_grey, 5%);
+
+
+$btn-color: $white;
+$btn-bg: $grey;
+$btn-border: $grey;
+// $btn-color: #FFF;
+// $btn-bg: #527180;
+// $btn-border: #527180;

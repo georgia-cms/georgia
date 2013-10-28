@@ -19,9 +19,9 @@
   user-select: none;
 
   // Default
-  color: #FFF;
-  background-color: #527180;
-  border-color: #527180;
+  color: $btn-color;
+  background-color: $btn-bg;
+  border-color: $btn-border;
 }
 
 .btn-file-upload {

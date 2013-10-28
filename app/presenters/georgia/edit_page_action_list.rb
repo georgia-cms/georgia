@@ -41,7 +41,7 @@ module Georgia
     end
 
     def link_to_flush_cache
-      link_to "#{icon_tag('icon-fire-extinguisher ')} Flush Cache".html_safe, url_for_action(:flush_cache), method: :post
+      link_to "#{icon_tag('fire-extinguisher')} Flush Cache".html_safe, url_for_action(:flush_cache), options.merge(method: :post)
     end
 
     def link_to_delete

@@ -6,7 +6,7 @@
   top: 0;
   z-index: $z-header;
   background-image: image-url('georgia/bg-body-bar.jpg');
-  border-bottom: 1px solid #2E2E2E;
+  border-bottom: 1px solid $grey;
 
   .header-logo {
     float: left;
@@ -23,9 +23,7 @@
     @include span-columns(3 of 8);
     text-align: right;
     .nav {float: right;}
-    li {
-      padding: 0 4px;
-    }
+    li { padding: 0 4px; }
     a {
       display: block;
       color: $white;
@@ -33,14 +31,10 @@
       padding: 15px 10px;
       line-height: 20px;
     }
-    .user {
-      img { vertical-align: middle; }
-    }
+    .user img { vertical-align: middle; }
     .mail {
-      a {
-        padding-top: 20px;
-      }
-      i {font-size: 1.25em;}
+      a { padding-top: 20px; }
+      i { font-size: 1.25em; }
     }
   }
 
