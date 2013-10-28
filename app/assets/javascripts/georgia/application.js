@@ -19,6 +19,7 @@
 //= require_tree .//collections
 //= require_tree .//views
 //= require_tree .//routers
+//= require_tree .//vendor
 
 //= require georgia/bootstrap
 //= require georgia/featured-image

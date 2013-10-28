@@ -1,21 +1,13 @@
-<%= content_for :messages do %>
-  <%= render 'georgia/shared/messages', model: @revision %>
-<% end %>
-
 <%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'wait-and-spin form-with-helpers'} do |f| %>
-<header class='header-main'>
-  <%= link_to_back %>
-  <ul class='nav' style='float: right;'>
-    <li>
-      <%= link_to 'Save & Publish', '#', class: 'btn' %>
-    </li>
-    <li>
-      <button type="submit" class="btn">
-        <%= icon_tag 'ok' %> Save
-      </button>
-    </li>
-  </ul>
-</header>
+  <header class='header-main'>
+    <%= link_to_back %>
+    <ul class='nav'>
+      <%= revision_action_list(self, @revision) %>
+    </ul>
+    <div class="header-actions">
+      <%= button_to_save %>
+    </div>
+  </header>
 <section class="body-main">
   <%= f.simple_fields_for @revision.content do |c| %>
     <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
@@ -27,6 +19,7 @@
     </div>
     <%= f.input :template, collection: Georgia.templates, label: false %>
   </fieldset>
+
   <fieldset>
     <div class="fieldset-help">
       <legend>Slides</legend>
@@ -40,6 +33,7 @@
       <% end -%>
     </div>
   </fieldset>
+
   <fieldset>
     <div class="fieldset-help">
       <legend>Widgets</legend>
@@ -63,7 +57,7 @@
           </div>
         </div>
         <%= select_tag :widget, "", prompt: 'Select a widget' %>
-        <%= link_to 'Add', '#', class: 'btn' %>
+        <%= link_to "#{icon_tag('plus')} Add".html_safe, '#', class: 'btn' %>
       </div>
     </div>
     <div class="control-group input-horizontal">
@@ -77,16 +71,15 @@
           </div>
         </div>
         <%= select_tag :widget, "", prompt: 'Select a widget' %>
-        <%= link_to 'Add', '#', class: 'btn' %>
+        <%= link_to "#{icon_tag('plus')} Add".html_safe, '#', class: 'btn' %>
       </div>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
 
 </section>
 <footer>
   <hr />
-  <%= link_to "#{icon_tag('trash')} Delete".html_safe, [@page, @revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn' %>
+  <%= link_to_delete [@page, @revision] %>
 </footer>
 <% end %>
 

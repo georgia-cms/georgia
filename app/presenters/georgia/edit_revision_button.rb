@@ -11,7 +11,7 @@ module Georgia
       @actions = actions
     end
 
-    def render
+    def to_s
       content_tag 'div', class: 'btn-group' do
         group_button + group_list
       end
@@ -31,7 +31,7 @@ module Georgia
     def group_list
       html = ""
       html << content_tag(:li, link_to_edit)
-      html << EditRevisionActionList.new(view, instance).render
+      html << EditRevisionActionList.new(view, instance)
       content_tag :ul, html.html_safe, class: 'dropdown-menu pull-right'
     end
 

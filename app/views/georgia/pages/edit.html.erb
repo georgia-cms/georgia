@@ -1,22 +1,15 @@
 <%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical form-with-helpers wait-and-spin', data: {'page-id' => @page.id}} do |f| %>
 <header class='header-main'>
-  <%= link_to icon_tag('level-up icon-rotate-270'), :back, class: 'btn-back' %>
+  <%= link_to_back %>
   <ul class='nav'>
-    <%= Georgia::EditPageActionList.new(self, @page, class: 'btn').render %>
+    <%= page_action_list(self, @page) %>
   </ul>
-  <%= button_to_save %>
+  <div class="header-actions">
+    <%= button_to_save %>
+  </div>
 </header>
 <div class='body-main'>
-  <h1>
-    <%= @page.title %>
-    <small>
-      <% if @page.public? %>
-      <%= link_to @page.url, @page.url, target: '_blank' %>
-      <% else -%>
-      <%= @page.url %>
-      <% end -%>
-    </small>
-  </h1>
+  <h1><%= icon_tag 'cog' %> Page Settings</h1>
 
   <% if extra_fields? %>
     <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
@@ -24,19 +17,25 @@
 
   <fieldset>
     <div class="fieldset-help">
-      <legend>URL & Handle</legend>
-      <p class="hint">
-        The URL is automatically generated from the <%= instance_name %>'s hierarchy and title in the default language.
-      </p>
+      <legend>
+        URL & Handle
+        <%= tooltip_tag(icon_tag('info-circle'), "The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language.") %>
+      </legend>
     </div>
-    <%= f.input :slug, label: false, input_html: {value: @page.url, data: {slug: @page.slug}} %>
+    <%= f.input :slug, label: false, wrapper: :prepend do %>
+      <span class="add-on"><%= Georgia.url %></span>
+      <%= f.input_field :slug, value: @page.url, data: {slug: @page.slug} %>
+    <% end -%>
   </fieldset>
 
   <fieldset>
     <div class="fieldset-help">
-      <legend>Tags</legend>
+      <legend>
+        Tags
+        <%= tooltip_tag(icon_tag('info-circle'), "Tags can later be used to show similar pages or pages sharing the same tags.") %>
+      </legend>
       <p class="hint">
-        Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.
+        Use tags to help Georgia understand what this page is about.
       </p>
     </div>
     <%= f.input :tag_list, label: false, input_html: {class: 'js-token-input'} %>
@@ -73,6 +72,6 @@
 </div>
 <footer>
   <hr />
-  <%= link_to "#{icon_tag('trash')} Delete".html_safe, @page, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn' %>
+  <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, @page, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete' %>
 </footer>
 <% end %>

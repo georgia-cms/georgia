@@ -6,12 +6,8 @@
     <b><%= link_to page.title, [:edit, page] %></b>
   </td>
   <td>
-    <% page.tag_list.each do |tag| %>
-      <%= link_to '#' do %>
-        <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
-      <% end -%>
-    <% end -%>
-    <small><%= page.url %></small>
+    <%= page_tag_list(page) %>
+    <span class='muted'><%= page.url %></span>
   </td>
   <td>
     <%= page.template %>

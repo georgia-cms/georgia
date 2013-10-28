@@ -5,21 +5,4 @@
   padding-right: $padding-main;
   position: relative;
   width: 100%;
-  .header-main {
-    position: fixed;
-    top: $height-header;
-    left: 0;
-    padding-left: ($width-sidebar+20);
-    padding-right: $padding-main;
-    padding-top: 20px;
-    height: 75px;
-    width: 100%;
-    z-index: $z-header-main;
-    background-color: $white;
-    border-bottom: 1px solid $border-header-main;
-    background-color: $bg-header-main;
-  }
-  .header-pagination {
-    text-align: right;
-  }
 }

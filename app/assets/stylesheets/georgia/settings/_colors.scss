@@ -26,12 +26,26 @@ $font-input: $black;
 $font-input-login: $black;
 
 $border-header-main: darken($light_grey, 5%);
+$border-input: darken($light_grey, 5%);
 
 
 $btn-color: $white;
 $btn-bg: $grey;
 $btn-bg-hover: darken($grey, 5%);
 $btn-border: $grey;
-// $btn-color: #FFF;
-// $btn-bg: #527180;
-// $btn-border: #527180;
+
+$btn-delete-bg: $red;
+$btn-delete-border: $red;
+$btn-delete-bg-hover: lighten($red, 5%);
+
+$btn-save-bg: $green;
+$btn-save-border: $green;
+$btn-save-bg-hover: darken($green, 5%);
+
+$btn-primary-bg: $orange;
+$btn-primary-border: $orange;
+$btn-primary-bg-hover: darken($orange, 5%);
+
+$btn-action-bg: $yellow;
+$btn-action-border: $yellow;
+$btn-action-bg-hover: darken($yellow, 5%);

@@ -7,35 +7,57 @@
   z-index: $z-header;
   background-image: image-url('georgia/bg-body-bar.jpg');
   border-bottom: 1px solid $grey;
+}
 
-  .header-logo {
-    float: left;
-    width: $width-sidebar;
-    padding-top: 20px;
+.header-logo {
+  float: left;
+  width: $width-sidebar;
+  padding-top: 20px;
+}
+
+.header-search-form {
+  @include span-columns(4 of 8);
+  padding-top: 10px;
+}
+
+.header-profile {
+  @include span-columns(3 of 8);
+  text-align: right;
+  .nav {float: right;}
+  li { padding: 0 4px; }
+  a {
+    display: block;
+    color: $white;
+    margin: 0;
+    padding: 15px 10px;
+    line-height: 20px;
   }
-
-  .header-search-form {
-    @include span-columns(4 of 8);
-    padding-top: 10px;
+  .user img { vertical-align: middle; }
+  .mail {
+    a { padding-top: 20px; }
+    i { font-size: 1.25em; }
   }
+}
 
-  .header-profile {
-    @include span-columns(3 of 8);
-    text-align: right;
-    .nav {float: right;}
-    li { padding: 0 4px; }
-    a {
-      display: block;
-      color: $white;
-      margin: 0;
-      padding: 15px 10px;
-      line-height: 20px;
-    }
-    .user img { vertical-align: middle; }
-    .mail {
-      a { padding-top: 20px; }
-      i { font-size: 1.25em; }
-    }
-  }
+.header-main {
+  position: fixed;
+  top: $height-header;
+  left: 0;
+  padding-left: ($width-sidebar+20);
+  padding-right: $padding-main;
+  padding-top: 20px;
+  height: 75px;
+  width: 100%;
+  z-index: $z-header-main;
+  background-color: $white;
+  border-bottom: 1px solid $border-header-main;
+  background-color: $bg-header-main;
+}
 
+.header-pagination {
+  text-align: right;
+}
+
+.header-actions {
+  float: right;
 }

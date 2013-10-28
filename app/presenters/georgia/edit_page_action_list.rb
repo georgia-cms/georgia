@@ -1,7 +1,7 @@
 module Georgia
   class EditPageActionList < EditRevisionActionList
 
-    def render
+    def to_s
       html = ""
       html << content_tag(:li, link_to_edit) if can?(:draft, instance)
       html << content_tag(:li, link_to_copy) if can?(:copy, instance)
@@ -10,7 +10,6 @@ module Georgia
         html << content_tag(:li, link_to_unpublish) if can?(:unpublish, instance) and instance.published?
       end
       html << content_tag(:li, link_to_flush_cache) if can?(:flush_cache, instance)
-      # html << content_tag(:li, link_to_delete) if can?(:delete, instance)
       html.html_safe
     end
 

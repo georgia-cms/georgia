@@ -4,11 +4,9 @@
   }
   th { text-align: left; }
   td, th {
-    background-color: #f9f9f9;
     padding: 10px 4px;
     border-bottom: 1px solid #ddd;
   }
-  td a { color: $font; }
   .checkbox {
     width: 35px;
     text-align: center;
@@ -43,7 +41,8 @@
     width: 100px;
     max-width: 100px;
     text-align: right;
-    font-size: 0.8em;
+    font-size: 0.9em;
+    padding: 4px 8px;
   }
   .timestamp--long {
     @extend .timestamp;

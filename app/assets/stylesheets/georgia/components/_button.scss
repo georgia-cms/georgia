@@ -41,11 +41,6 @@
   margin-right: 100px;
 }
 
-.btn-save {
-  @extend .btn;
-  float: right;
-}
-
 .btn-close {
   position: absolute; // needs parent to be relative
   z-index: $z-btn--close;
@@ -61,9 +56,40 @@
     text-decoration: none;
     color: $light_grey;
   }
+  &:visited {
+    color: $white;
+  }
 }
 
 .btn-pagination {
   @extend .btn;
   padding: 5px 10px;
+}
+
+.btn-save {
+  @extend .btn;
+  background-color: $btn-save-bg;
+  border-color: $btn-save-border;
+  &:hover { background-color: $btn-save-bg-hover; }
+}
+
+.btn-delete {
+  @extend .btn;
+  background-color: $btn-delete-bg;
+  border-color: $btn-delete-border;
+  &:hover { background-color: $btn-delete-bg-hover; }
+}
+
+.btn-primary {
+  @extend .btn;
+  background-color: $btn-primary-bg;
+  border-color: $btn-primary-border;
+  &:hover { background-color: $btn-primary-bg-hover; }
+}
+
+.btn-action {
+  @extend .btn;
+  background-color: $btn-action-bg;
+  border-color: $btn-action-border;
+  &:hover { background-color: $btn-action-bg-hover; }
 }

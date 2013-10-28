@@ -1,11 +1,14 @@
 fieldset {
   border: 0;
-  margin-bottom: 20px;
+  margin: 0 0 40px;
+  padding: 0;
 }
 
 label, legend {
-  color: #000;
   font-weight: bold;
+}
+legend {
+  font-size: 1.4em;
 }
 
 .input-horizontal {

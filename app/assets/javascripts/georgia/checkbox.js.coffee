@@ -1,12 +1,3 @@
-# CheckboxTree is used on the settings page to allow for tree-like structure of checkboxes
-# It makes use of a data-attribute to go around a bug where you can't uncheck programatically on certain browsers.
-# Use data-checked attribute to set either:
-# - checked
-# - unchecked
-# - indeterminate
-
-# TODO: Once you've updated the parent based on its siblings, you'd need to check for the other level of ancestry too.
-
 class @Checkboxable
 
   constructor: (element) ->
@@ -68,12 +59,14 @@ class @Checkboxable
       @setState(e, 'checked')
       $(e).prop('indeterminate', false)
       $(e).prop('checked', true)
+      $(e).closest('tr').addClass('selected')
 
   uncheck: (el) =>
     $(el).each (index, e) =>
       @setState(e, 'uncheck')
       $(e).prop('indeterminate', false)
       $(e).prop('checked', false)
+      $(e).closest('tr').removeClass('selected')
 
   indeterminate: (el) =>
     $(el).each (i, e) =>
@@ -99,5 +92,5 @@ $.fn.actsAsCheckboxable = () ->
     new Checkboxable($(this))
 
 jQuery ->
-  $(".js-checkboxable").each ->
+  $("table.js-checkboxable").each ->
     $(this).actsAsCheckboxable()

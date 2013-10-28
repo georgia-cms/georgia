@@ -1,9 +1,8 @@
 %input {
-  width: 100%;
   border: 0;
-  padding: 10px;
+  padding: 8px;
   line-height: 1em;
-  font-weight: bold;
+  font-weight: normal;
   &:focus {
     border: 0;
     outline: none;
@@ -38,8 +37,6 @@ div.input.file {
   margin-bottom: 0;
 }
 
-.select2-container { width: 100%; }
-
 .input-file-upload {
   position: absolute;
   top: 0;
@@ -59,5 +56,27 @@ div.input.file {
   }
   span.error {
     color: red;
+  }
+}
+
+.input-prepend {
+  white-space: nowrap;
+  input {
+    width: initial;
+    height: 36px;
+  }
+  .add-on {
+    height: 36px;
+    vertical-align: top;
+    margin-right: -5px;
+    display: inline-block;
+    width: auto;
+    padding: 10px 5px;
+    font-weight: normal;
+    line-height: 1em;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
   }
 }

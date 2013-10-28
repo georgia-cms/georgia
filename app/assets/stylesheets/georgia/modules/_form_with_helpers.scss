@@ -17,7 +17,7 @@
     font-variant: italic;
   }
   input.string, input.email, input.password, input.numeric, input.input-search, select, textarea {
-    background-color: $beige;
+    border: 1px solid $border-input;
     border-radius: 0;
   }
 }
