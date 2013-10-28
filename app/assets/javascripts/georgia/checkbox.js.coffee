@@ -92,9 +92,7 @@ class @Checkboxable
     $(el).data('state')
 
   setState: (el, state) ->
-    console.log 'State before: ' + $(el).data('state')
     $(el).data('state', state)
-    console.log 'State after: ' + $(el).data('state')
 
 $.fn.actsAsCheckboxable = () ->
   @each ->
