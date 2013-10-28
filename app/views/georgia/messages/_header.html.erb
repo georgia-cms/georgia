@@ -1,25 +1,9 @@
 <header class='header-main'>
-  <div class="header-checkbox">
-    <div class="btn">
-      <%= check_box_tag :selected %>
-      <%= icon_tag('caret-down') %>
-    </div>
+  <%= link_to icon_tag('thumbs-up-alt'), '#', class: 'btn' %>
+  <%= link_to icon_tag('thumbs-down-alt'), '#', class: 'btn' %>
+  <%= link_to icon_tag('trash'), '#', class: 'btn' %>
+  <div class="btn">
+    <%= link_to icon_tag('tags'), '#' %>
+    <%= icon_tag('caret-down') %>
   </div>
-  <div class="header-actions">
-    <%= link_to icon_tag('thumbs-up-alt'), '#', class: 'btn' %>
-    <%= link_to icon_tag('thumbs-down-alt'), '#', class: 'btn' %>
-    <%= link_to icon_tag('trash'), '#', class: 'btn' %>
-    <div class="btn">
-      <%= link_to icon_tag('tags'), '#' %>
-      <%= icon_tag('caret-down') %>
-    </div>
-  </div>
-  <% if @search %>
-    <div class="header-pagination">
-      <span><%= params[:page] || '1' %>-<%= @search.hits.count %> of <%= @search.total %></span>
-      <%= link_to icon_tag('chevron-left'), '#', class: 'btn' %>
-      <%= link_to icon_tag('chevron-right'), '#', class: 'btn' %>
-      <%#= paginate(@search.hits) %>
-    </div>
-  <% end -%>
 </header>

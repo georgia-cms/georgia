@@ -1,17 +1,19 @@
 <tr id='<%= dom_id(message) %>' class='message'>
   <td class='checkbox'>
-    <%= check_box_tag :selected %>
+    <%= checkboxable_tag dom_id(message) %>
   </td>
   <td><%= message.name %></td>
   <td>
-    <%= message.subject_truncated %>
-    <small><em><%= message.message_truncated %></em></small>
+    <span class="subject-message">
+      <span class="subject"><%= message.subject_truncated %></span>
+      <small class='muted'><%= message.message_truncated %></small>
+    </span>
   </td>
-  <td class='small'><%= message.phone_or_none %></td>
+  <td><span class="phone"><%= message.phone_or_none %></span></td>
   <td class='tiny'>
     <%= icon_tag('paper-clip') %>
   </td>
-  <td class='timestamp'>
+  <td class='timestamp--long'>
     <%= message.created_at.strftime('%F %H:%M') %>
   </td>
 </tr>

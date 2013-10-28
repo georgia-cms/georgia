@@ -6,11 +6,11 @@ module Georgia
     end
 
     def subject_truncated
-      subject.present? ? h.truncate(subject, length: 60) : h.content_tag(:span, 'no subject', class: 'muted')
+      h.truncate(subject, length: 60, separator: ' ').html_safe if subject.present?
     end
 
     def message_truncated
-      h.truncate(message, length: 120)
+      h.truncate(message, length: 200, separator: ' ').html_safe if message.present?
     end
 
   end

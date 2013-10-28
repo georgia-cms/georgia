@@ -1,0 +1,53 @@
+.table-results {
+  tr:first-child td {
+    border-top: 1px solid #ddd;
+  }
+  th { text-align: left; }
+  td, th {
+    background-color: #f9f9f9;
+    padding: 10px 4px;
+    border-bottom: 1px solid #ddd;
+  }
+  td a { color: $font; }
+  .checkbox {
+    width: 35px;
+    text-align: center;
+  }
+  .phone {
+    @extend .ellipsis;
+    width: 120px;
+    max-width: 120px;
+  }
+  .small {
+    @extend .nowrap;
+    width: 70px;
+    max-width: 70px;
+  }
+  .tiny {
+    @extend .nowrap;
+    width: 25px;
+    max-width: 25px;
+  }
+  .thumbnail {
+    @extend .nowrap;
+    width: 65px;
+    max-width: 65px;
+  }
+  .subject-message {
+    @extend .nowrap;
+    @extend .ellipsis;
+    max-width: 900px;
+  }
+  .timestamp {
+    @extend .nowrap;
+    width: 100px;
+    max-width: 100px;
+    text-align: right;
+    font-size: 0.8em;
+  }
+  .timestamp--long {
+    @extend .timestamp;
+    width: 125px;
+    max-width: 125px;
+  }
+}
