@@ -19,14 +19,7 @@
     border-bottom: 1px solid $border-header-main;
     background-color: $bg-header-main;
   }
-  .header-checkbox {
-    @include span-columns(1);
-  }
-  .header-actions {
-    @include span-columns(9);
-  }
   .header-pagination {
-    @include span-columns(2);
     text-align: right;
   }
 }

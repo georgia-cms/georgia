@@ -25,3 +25,12 @@
   background-color: transparent;
   cursor: default;
 }
+
+.pagination-count {
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+.header-pagination a {
+  @extend .btn-pagination;
+}

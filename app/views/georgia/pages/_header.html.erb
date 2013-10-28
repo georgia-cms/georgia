@@ -1,24 +1,8 @@
 <header class='header-main'>
-  <div class="header-checkbox">
-    <div class="btn">
-      <%= check_box_tag :selected %>
-      <%= icon_tag('caret-down') %>
-    </div>
-  </div>
-  <div class="header-actions">
-    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn' %>
-    <%= content_for :ujs do %>
-      <%= render 'georgia/shared/forms/page' %>
-    <% end -%>
-    <%= link_to "Copy", '#', class: 'btn' %>
-    <%= link_to "Unpublish", '#', class: 'btn' %>
-  </div>
-  <% if @search %>
-    <div class="header-pagination">
-      <span><%= @search.hits.count %> of <%= @search.total %></span>
-      <%= link_to icon_tag('chevron-left'), '#', class: 'btn' %>
-      <%= link_to icon_tag('chevron-right'), '#', class: 'btn' %>
-      <%#= paginate(@search.hits) %>
-    </div>
+  <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn' %>
+  <%= content_for :ujs do %>
+    <%= render 'georgia/shared/forms/page' %>
   <% end -%>
+  <%= link_to "Copy", '#', class: 'btn' %>
+  <%= link_to "Unpublish", '#', class: 'btn' %>
 </header>

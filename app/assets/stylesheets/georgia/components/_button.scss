@@ -54,3 +54,8 @@
   text-align: center;
   &:hover { color: $white;}
 }
+
+.btn-pagination {
+  @extend .btn;
+  padding: 5px 10px;
+}
