@@ -22,6 +22,11 @@
   color: $btn-color;
   background-color: $btn-bg;
   border-color: $btn-border;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $btn-bg-hover;
+  }
 }
 
 .btn-file-upload {
@@ -52,7 +57,10 @@
   font-weight: bold;
   font-size: 1.4em;
   text-align: center;
-  &:hover { color: $white;}
+  &:hover {
+    text-decoration: none;
+    color: $light_grey;
+  }
 }
 
 .btn-pagination {

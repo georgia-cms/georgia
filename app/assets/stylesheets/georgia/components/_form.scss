@@ -2,23 +2,12 @@ fieldset {
   border: 0;
   margin-bottom: 20px;
 }
-.fieldset-help {
-  width: 20%;
-  float: left;
-  padding-right: 20px;
+
+label, legend {
+  color: #000;
+  font-weight: bold;
 }
-.fieldset-fields {
-  padding-left: 20%;
-}
-legend { margin: 0 0 10px 0; }
-.form-with-helpers .control-group {
-  margin-left: 20%;
-  margin-bottom: 20px;
-}
-.hint {
-  color: #999;
-  font-variant: italic;
-}
+
 .input-horizontal {
   label {
     width: 100px;
@@ -26,8 +15,4 @@ legend { margin: 0 0 10px 0; }
     float: left;
     text-align: right;
   }
-}
-label, legend {
-  color: #000;
-  font-weight: bold;
 }

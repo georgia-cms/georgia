@@ -36,8 +36,7 @@
     <div class="fieldset-help">
       <legend>Tags</legend>
       <p class="hint">
-        Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.<br />
-        e.g. Interested in <em>Quidish</em>? Have you tried <a href='#'>Baseball</a> or <a href='#'>Criquet</a>?
+        Use tags to help Georgia understand what this page is about. Tags can later be used to show similar pages or pages sharing the same tags.
       </p>
     </div>
     <%= f.input :tag_list, label: false, input_html: {class: 'js-token-input'} %>
@@ -68,38 +67,6 @@
         </ul>
       <% else -%>
         <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
-      <% end -%>
-    </div>
-  </fieldset>
-  <fieldset>
-    <div class="fieldset-help">
-      <legend>Revisions</legend>
-    </div>
-    <div class="control-group">
-      <%= label_tag :pipeline, 'In the pipeline' %>
-      <% if @page.revisions.drafts.any? %>
-        <% @page.revisions.drafts.find_each do |draft| %>
-          <p class='revision'>
-            <span class='tag'>draft</span>
-            <span class="muted">#<%= draft.id %></span>
-            <%= draft.title %> - <small>updated <%= time_ago_in_words draft.updated_at %> ago</small>
-          </p>
-        <% end -%>
-      <% else -%>
-        <p class='muted'>There is nothing in the pipeline.</p>
-      <% end -%>
-    </div>
-    <div class="control-group">
-      <%= label_tag :revisions %>
-      <% if @page.revisions.stored.any? %>
-        <% @page.revisions.stored.find_each do |revision| %>
-          <p class='revision'>
-            <span class="muted">#<%= revision.id %></span>
-            <%= revision.title %> - <small>stored <%= time_ago_in_words revision.updated_at %> ago</small>
-          </p>
-        <% end -%>
-      <% else -%>
-        <p class='muted'>There are no revisions yet.</p>
       <% end -%>
     </div>
   </fieldset>

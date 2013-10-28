@@ -13,7 +13,7 @@
   .nav-list li {
     border-top: 1px solid #555;
     border-bottom: 1px solid #2E2E2E;
-    &.active {
+    &.active, &:hover {
       background-color: #2E2E2E;
       border-top: 1px solid #222;
     }
@@ -22,6 +22,7 @@
       margin: 0;
       color: $white;
       display: block;
+      &:hover { text-decoration: none; }
     }
     .icon {
       display: inline-block;
