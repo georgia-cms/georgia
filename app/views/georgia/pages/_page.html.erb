@@ -1,13 +1,22 @@
 <tr class="page">
-  <td>
-    <%= check_box_tag :selected %>
+  <td class='checkbox'>
+    <%= check_box_tag "page_#{page.id}", nil, true %>
   </td>
   <td>
-    <%= page.tag_list %>
-    <%= link_to page.title, [:edit, page] %>
+    <b><%= link_to page.title, [:edit, page] %></b>
+  </td>
+  <td>
+    <% page.tag_list.each do |tag| %>
+      <%= link_to '#' do %>
+        <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
+      <% end -%>
+    <% end -%>
     <small><%= page.url %></small>
   </td>
   <td>
+    <%= page.template %>
+  </td>
+  <td class='timestamp'>
     <em><%= page.updated_at.strftime('%F') %></em>
   </td>
 </tr>

@@ -1,25 +1,21 @@
-input[type="radio"], input[type="checkbox"] {
-  margin-top: 2px;
-  padding: 0;
-  box-sizing: border-box;
-  font: -webkit-small-control;
-  color: initial;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-}
-input[type="checkbox"]:hover, .checkbox input[type="checkbox"]:hover, .checkbox-inline input[type="checkbox"]:hover {
-  border-color: #c6c6c6;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
-  box-shadow: none \9;
+input[type="checkbox"]:checked::after {
+  position: absolute;
+  left: -5px;
+  display: block;
+  content: image-url('georgia/checkmark.png');
+  top: -5px;
+  width: 21px;
+  height: 21px;
 }
 
-input[type="radio"], .radio input[type="radio"], .radio-inline input[type="radio"], input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
+  border: initial;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: normal;
+  margin: 2px 0 0;
+  outline: none;
   position: relative;
   width: 13px;
   height: 13px;
@@ -29,4 +25,16 @@ input[type="radio"], .radio input[type="radio"], .radio-inline input[type="radio
   border-radius: 1px;
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #c6c6c6;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+    box-shadow: none \9;
+  }
+
+  &:checked {
+    background: #fff;
+  }
 }

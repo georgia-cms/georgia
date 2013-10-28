@@ -13,30 +13,7 @@
     </thead>
     <tbody>
       <% if @pages and @pages.any? %>
-        <% @pages.each do |page| %>
-          <tr class="page">
-            <td class='checkbox'>
-              <%= check_box_tag :selected %>
-            </td>
-            <td>
-              <b><%= link_to page.title, [:edit, page] %></b>
-            </td>
-            <td>
-              <% page.tag_list.each do |tag| %>
-                <%= link_to '#' do %>
-                  <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
-                <% end -%>
-              <% end -%>
-              <small><%= page.url %></small>
-            </td>
-            <td>
-              <%= page.template %>
-            </td>
-            <td class='timestamp'>
-              <em><%= page.updated_at.strftime('%F') %></em>
-            </td>
-          </tr>
-        <% end %>
+        <%= render partial: 'georgia/pages/page', collection: @pages, as: :page %>
       <% else %>
         <tr>
           <td colspan="6">
