@@ -1,10 +1,10 @@
 <%= render 'header' %>
 <section class="body-main">
 
-  <table class="table-results">
+  <table class="table-results js-checkboxable">
     <thead>
       <th class='checkbox'>
-        <%= check_box_tag :pages %>
+        <%= check_box_tag :pages, nil, false, data: {checkbox: 'all', state: 'uncheck'} %>
       </th>
       <th>Title</th>
       <th colspan='3'>

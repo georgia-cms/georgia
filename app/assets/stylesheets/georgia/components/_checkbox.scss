@@ -1,11 +1,18 @@
-input[type="checkbox"]:checked::after {
+input[type="checkbox"]:checked::after,
+input[type="checkbox"]:indeterminate::after {
   position: absolute;
   left: -5px;
   display: block;
-  content: image-url('georgia/checkmark.png');
   top: -5px;
   width: 21px;
   height: 21px;
+}
+
+input[type="checkbox"]:checked::after {
+  content: image-url('georgia/checkmark.png');
+}
+input[type="checkbox"]:indeterminate::after {
+  content: image-url('georgia/indeterminate.png');
 }
 
 input[type="radio"],
@@ -34,7 +41,7 @@ input[type="checkbox"] {
     box-shadow: none \9;
   }
 
-  &:checked {
+  &:checked, &:indeterminate {
     background: #fff;
   }
 }

@@ -17,45 +17,45 @@ table {
   border-color: gray;
 }
 
-input, textarea, keygen, select, button, isindex, meter, progress {
-  -webkit-writing-mode: horizontal-tb;
-}
-input, textarea, keygen, select, button, isindex {
-  margin: 0em;
-  font: -webkit-small-control;
-  color: initial;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: start;
-}
+// input, textarea, keygen, select, button, isindex, meter, progress {
+//   -webkit-writing-mode: horizontal-tb;
+// }
+// input, textarea, keygen, select, button, isindex {
+//   margin: 0em;
+//   font: -webkit-small-control;
+//   color: initial;
+//   letter-spacing: normal;
+//   word-spacing: normal;
+//   text-transform: none;
+//   text-indent: 0px;
+//   text-shadow: none;
+//   display: inline-block;
+//   text-align: start;
+// }
 
-button, input, select[multiple], textarea {
-  background-image: none;
-}
-input, button, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
+// button, input, select[multiple], textarea {
+//   background-image: none;
+// }
+// input, button, select, textarea {
+//   font-family: inherit;
+//   font-size: inherit;
+//   line-height: inherit;
+// }
 
-input, input[type="password"], input[type="search"], isindex {
-  -webkit-appearance: textfield;
-  padding: 1px;
-  background-color: white;
-  border: 2px inset;
-  border-image-source: initial;
-  border-image-slice: initial;
-  border-image-width: initial;
-  border-image-outset: initial;
-  border-image-repeat: initial;
-  -webkit-rtl-ordering: logical;
-  -webkit-user-select: text;
-  cursor: auto;
-}
+// input, input[type="password"], input[type="search"], isindex {
+//   -webkit-appearance: textfield;
+//   padding: 1px;
+//   background-color: white;
+//   border: 2px inset;
+//   border-image-source: initial;
+//   border-image-slice: initial;
+//   border-image-width: initial;
+//   border-image-outset: initial;
+//   border-image-repeat: initial;
+//   -webkit-rtl-ordering: logical;
+//   -webkit-user-select: text;
+//   cursor: auto;
+// }
 
 // Tables
 // td:first-child {width: 20%;}
