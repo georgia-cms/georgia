@@ -3,7 +3,7 @@ module Georgia
 
     def to_s
       html = ""
-      html << content_tag(:li, link_to_edit) if can?(:draft, instance)
+      html << content_tag(:li, link_to_edit) if can?(:edit, instance)
       html << content_tag(:li, link_to_copy) if can?(:copy, instance)
       if instance.current_revision and instance.current_revision.published?
         html << content_tag(:li, link_to_publish) if can?(:publish, instance) and !instance.published?
@@ -20,11 +20,11 @@ module Georgia
     end
 
     def link_to_edit
-      link_to "#{icon_tag('pencil')} Edit".html_safe, url_for_action(:draft), options
+      link_to "#{icon_tag('pencil')} Edit".html_safe, url_for_action(:edit), options
     end
 
     def link_to_settings
-      link_to "#{icon_tag('cogs')} Settings".html_safe, url_for_action(:edit), options
+      link_to "#{icon_tag('cogs')} Settings".html_safe, url_for_action(:settings), options
     end
 
     def link_to_copy

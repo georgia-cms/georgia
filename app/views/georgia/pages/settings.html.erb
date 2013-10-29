@@ -1,0 +1,77 @@
+<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical form-with-helpers js-spin-and-roll', data: {'page-id' => @page.id}} do |f| %>
+  <header class='header-main'>
+    <%= link_to_back %>
+    <ul class='nav'>
+      <%= page_action_list(self, @page) %>
+    </ul>
+    <div class="header-actions">
+      <%= button_to_save %>
+    </div>
+  </header>
+  <div class='body-main'>
+    <h1><%= icon_tag 'cog' %> Page Settings</h1>
+
+    <% if extra_fields? %>
+      <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
+    <% end -%>
+
+    <fieldset>
+      <div class="fieldset-help">
+        <legend>
+          URL & Handle
+          <%= tooltip_tag(icon_tag('info-circle'), "The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language.") %>
+        </legend>
+      </div>
+      <%= f.input :slug, label: false, wrapper: :prepend do %>
+        <span class="add-on"><%= Georgia.url %></span>
+        <%= f.input_field :slug, value: @page.url, data: {slug: @page.slug} %>
+      <% end -%>
+    </fieldset>
+
+    <fieldset>
+      <div class="fieldset-help">
+        <legend>
+          Tags
+          <%= tooltip_tag(icon_tag('info-circle'), "Tags can later be used to show similar pages or pages sharing the same tags.") %>
+        </legend>
+        <p class="hint">
+          Use tags to help Georgia understand what this page is about.
+        </p>
+      </div>
+      <%= f.input :tag_list, label: false, input_html: {class: 'js-token-input'} %>
+    </fieldset>
+
+    <fieldset>
+      <div class="fieldset-help">
+        <legend>Hierarchy</legend>
+        <p class='hint'>
+          Move the <%= instance_name.pluralize %> around to change their display position.
+        </p>
+      </div>
+      <%= f.input :parent_id, collection: parent_page_collection, label: 'Parent', hint: "Leave empty if the #{instance_name} doesn't belong to any section.", input_html: {class: 'js-select2'} %>
+      <div class="control-group">
+        <%= label_tag :subpages %>
+        <% if @page.persisted? and @page.has_children? %>
+          <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
+            <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
+              <%= content_tag_for(:li, page, class: 'subpage') do %>
+                <%= icon_tag 'align-justify subpage-handle' %>
+                <%= link_to icon_tag('long-arrow-right'), edit_page_path(page), class: 'subpage-edit-link' %>
+                <div class="subpage-info">
+                  <h5 class='subpage-info__title'><%= page.title %></h5>
+                  <small class='subpage-info__url'><%= page.url %></small>
+                </div>
+              <% end -%>
+            <% end -%>
+          </ul>
+        <% else -%>
+          <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
+        <% end -%>
+      </div>
+    </fieldset>
+  </div>
+  <footer>
+    <hr />
+    <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, @page, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete' %>
+  </footer>
+<% end %>

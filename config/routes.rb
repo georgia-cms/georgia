@@ -25,6 +25,7 @@ Georgia::Engine.routes.draw do
       get :unpublish
       get :copy
       get :store
+      get :settings
       post :flush_cache
     end
 
