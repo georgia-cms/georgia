@@ -32,8 +32,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'neat'
   s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
-  s.add_dependency 'backbone-on-rails'
-  s.add_dependency 'handlebars_assets'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
   s.add_dependency 'acts-as-taggable-on'

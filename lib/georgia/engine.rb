@@ -27,8 +27,6 @@ module Georgia
     require 'rakismet'
     require 'sidekiq'
 
-    require 'backbone-on-rails'
-    require 'handlebars_assets'
     require 'sass-rails'
     require 'bourbon'
     require 'neat'
