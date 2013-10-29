@@ -4,31 +4,54 @@
   top: $height-header;
   bottom: 0;
   width: $width-sidebar;
-  background-image: image-url('georgia/bg-body-bar.jpg');
+  background-color: $bg-sidebar;
   overflow: hidden;
   box-sizing: border-box;
+  border-right: 1px solid #e2e2e2;
 }
 
 #sidebar {
-  .nav-list li {
-    border-top: 1px solid #555;
-    border-bottom: 1px solid #2E2E2E;
-    &.active, &:hover {
-      background-color: #2E2E2E;
-      border-top: 1px solid #222;
-    }
+  li {
     a {
-      padding: 10px 15px;
-      margin: 0;
-      color: $white;
       display: block;
-      &:hover { text-decoration: none; }
-    }
-    .icon {
-      display: inline-block;
-      text-align: center;
-      width: 1.25em;
-      margin-right: 5px;
+      text-decoration: none;
+      border-bottom: 1px solid #e2e2e2;
+      font-weight: 400;
+      padding: 12px 15px;
+      margin: 0;
+      &:hover {
+        background-color: #eee;
+        text-decoration: none;
+        .icon { color: #a2a2a2; }
+      }
     }
   }
+  li.active {
+    > a {
+      background-color: $teal;
+      border-bottom-color: transparent;
+      color: #FFF;
+      border: none;
+    }
+    .icon { color: #FFF; }
+    .arrow { display: none; }
+  }
+  .submenu {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    .title { padding-left: 35px; }
+    li.active > a {
+      background-color: #eee;
+      color: $font-link;
+    }
+  }
+  .icon {
+    display: inline-block;
+    text-align: center;
+    width: 1.25em;
+    margin-right: 5px;
+    color: #bbb;
+  }
+  .arrow { float: right; }
 }

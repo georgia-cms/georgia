@@ -93,3 +93,8 @@
   border-color: $btn-action-border;
   &:hover { background-color: $btn-action-bg-hover; }
 }
+
+.btn--jumbo {
+  padding: 10px 40px;
+  font-size: 1.4em;
+}

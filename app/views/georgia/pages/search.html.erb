@@ -2,27 +2,24 @@
 
 <section class="body-main">
 
-  <table class="table-results js-checkboxable">
-    <thead>
-      <th class='checkbox'>
-        <%= checkboxable_all_tag :pages %>
-      </th>
-      <th>Title</th>
-      <th colspan='3'>
-        <%= pagination_tag(self, @search) %>
-      </th>
-    </thead>
-    <tbody>
-      <% if @pages and @pages.any? %>
+  <% if @pages and @pages.any? %>
+    <table class="table-results js-checkboxable">
+      <thead>
+        <th class='checkbox'>
+          <%= checkboxable_all_tag :pages %>
+        </th>
+        <th>Title</th>
+        <th colspan='3'>
+          <%= pagination_tag(self, @search) %>
+        </th>
+      </thead>
+      <tbody>
         <%= render partial: 'georgia/pages/page', collection: @pages, as: :page %>
-      <% else %>
-        <tr>
-          <td colspan="6">
-            There are currently no <%= instance_name.pluralize %>.
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  <% else -%>
+    <h1>Yikes! There are <%= pluralize(0, instance_name.humanize.downcase) %>.</h1>
+    <%= link_to "Get Started", '#page_form', class: 'js-modal btn-primary btn--jumbo' %>
+  <% end -%>
 
 </section>

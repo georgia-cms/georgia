@@ -3,21 +3,22 @@ $light_blue: #7ebde5;
 $light_grey: #eaebed;
 $grey: #575757;
 
-$red: #a72622;
+$red: #e02222;
 $orange: #ed661d;
 $yellow: #edb12d;
 $green: #00ad61;
-$teal: #008896;
-$blue: $teal;
+$teal: #28b779;
 $black: #2b2b2b;
 $beige: #f3e6ce;
+$blue: #0362fd;
 
 $bg-devised: $black;
-$bg-header: $black;
+$bg-header: #434343;
 $bg-input: $white;
 $bg-input-login: $white;
 $bg-footer: $white;
 $bg-header-main: #ecf5fb;
+$bg-sidebar: #fafafa;
 
 $font: $black;
 $font-muted: $grey;
@@ -42,9 +43,9 @@ $btn-save-bg: $green;
 $btn-save-border: $green;
 $btn-save-bg-hover: darken($green, 5%);
 
-$btn-primary-bg: $orange;
-$btn-primary-border: $orange;
-$btn-primary-bg-hover: darken($orange, 5%);
+$btn-primary-bg: $blue;
+$btn-primary-border: $blue;
+$btn-primary-bg-hover: #4d90fe;
 
 $btn-action-bg: $yellow;
 $btn-action-border: $yellow;
