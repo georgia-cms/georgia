@@ -1,5 +1,5 @@
 module Georgia
-  class EditRevisionActionList
+  class RevisionActionList
 
     attr_accessor :view, :instance, :options
 
@@ -14,6 +14,7 @@ module Georgia
     def to_s
       html = ""
       html << content_tag(:li, link_to_preview) if can?(:preview, instance)
+      html << content_tag(:li, link_to_page_settings) if can?(:settings, page)
       # html << content_tag(:li, link_to_review) if can?(:review, instance) and instance.state_events.include?(:review)
       # html << content_tag(:li, link_to_approve) if can?(:approve, instance) and instance.state_events.include?(:approve)
       # html << content_tag(:li, link_to_decline) if can?(:decline, instance) and instance.state_events.include?(:decline)
@@ -28,6 +29,10 @@ module Georgia
 
     def link_to_preview
       link_to "#{icon_tag('eye')} Preview".html_safe, url_for_action(:preview), options.reverse_merge(target: '_blank')
+    end
+
+    def link_to_page_settings
+      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, page], options
     end
 
     def link_to_review

@@ -1,5 +1,5 @@
 module Georgia
-  class EditPageActionList < EditRevisionActionList
+  class PageActionList < RevisionActionList
 
     def to_s
       html = ""
