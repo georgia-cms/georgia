@@ -1,8 +1,8 @@
 .btn {
   text-decoration: none;
   display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
+  padding: 5px 10px;
+  margin: 0;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.428571429;
@@ -11,7 +11,6 @@
   vertical-align: middle;
   cursor: pointer;
   border: 1px solid transparent;
-  border-radius: 4px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -89,6 +88,7 @@
 
 .btn-action {
   @extend .btn;
+  margin-right: 8px;
   background-color: $btn-action-bg;
   border-color: $btn-action-border;
   &:hover { background-color: $btn-action-bg-hover; }

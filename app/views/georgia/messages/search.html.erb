@@ -10,13 +10,7 @@
       <th>Name</th>
       <th>Message</th>
       <th colspan='3'>
-        <% if @search %>
-          <div class="header-pagination">
-            <span class='pagination-count'><%= search_count(@search) %></span>
-            <%= link_to_previous_page @search.hits, icon_tag('chevron-left') %>
-            <%= link_to_next_page @search.hits, icon_tag('chevron-right') %>
-          </div>
-        <% end -%>
+        <%= pagination_tag(self, @search) %>
       </th>
     </thead>
     <tbody>

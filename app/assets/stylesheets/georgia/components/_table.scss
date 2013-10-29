@@ -2,7 +2,7 @@ table {
   width: 100%;
   max-width: 100%;
 
-  tr.selected td {
+  tr.is-selected td {
     background-color: $bg-header-main;
   }
 }

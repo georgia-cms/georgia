@@ -19,10 +19,10 @@ class @Checkboxable
       when 'uncheck'
         @check(@select_all)
         @check(@checkboxes) if @checkboxes.length
-      # indeterminate, going checked
+      # indeterminate, going unchecked
       when 'indeterminate'
-        @check(@select_all)
-        @check(@checkboxes) if @checkboxes.length
+        @uncheck(@select_all)
+        @uncheck(@checkboxes) if @checkboxes.length
       # checked, going unchecked
       else
         @uncheck(@select_all)
@@ -59,14 +59,14 @@ class @Checkboxable
       @setState(e, 'checked')
       $(e).prop('indeterminate', false)
       $(e).prop('checked', true)
-      $(e).closest('tr').addClass('selected')
+      $(e).closest('tr').addClass('is-selected')
 
   uncheck: (el) =>
     $(el).each (index, e) =>
       @setState(e, 'uncheck')
       $(e).prop('indeterminate', false)
       $(e).prop('checked', false)
-      $(e).closest('tr').removeClass('selected')
+      $(e).closest('tr').removeClass('is-selected')
 
   indeterminate: (el) =>
     $(el).each (i, e) =>
