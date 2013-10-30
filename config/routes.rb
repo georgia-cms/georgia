@@ -11,6 +11,14 @@ Georgia::Engine.routes.draw do
     get '/logout', to: 'users/sessions#destroy'
   end
 
+  namespace :api do
+    resources :media do
+      collection do
+        get :pictures
+      end
+    end
+  end
+
   concern :pageable do
     collection do
       post :sort

@@ -1,13 +1,28 @@
+@mixin modal-size($width, $height) {
+  width: $width;
+  height: $height;
+  margin-left: -($width/2);
+  margin-top: -($height/2);
+}
+
 %modal {
-  border-radius: 5px;
   @extend .hide;
-  background-color: $font;
-  color: $white;
   position: fixed;
-  top: 10%;
-  left: 50%;
-  @include transition(all 0.4s ease);
+  @include transition(opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out);
   box-shadow: 0 1px 3px $font;
+
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  padding: 0;
+  margin-left: -250px;
+  background-color: $white;
+  border: 1px solid #999999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
 
   /* Hidden */
   @include opacity(0);
@@ -21,39 +36,51 @@
     pointer-events: auto;
     @extend .show;
   }
-  padding: 30px;
+  .btn-close { z-index: $z-btn--close; }
 }
 
 .modal {
   @extend %modal;
-  $modal-width: 600px;
-  width: $modal-width;
-  margin-left: -($modal-width/2);
-  .modal-content { height: 350px; }
+  @include modal-size(600px, 390px);
 }
 
 .modal--small {
   @extend %modal;
-  $modal-width: 420px;
-  width: $modal-width;
-  margin-left: -($modal-width/2);
-  .modal-content { min-height: 50px; }
+  @include modal-size(420px, 100px);
   .modal-title { font-size: 1.2em; }
 }
 
-.modal-header { margin-bottom: 20px; }
+.modal--media {
+  @extend %modal;
+  @include modal-size(730px, 640px);
+  .modal-content-actions {
+    @include row;
+    margin-bottom: 20px;
+    .search {float: right;}
+  }
+}
+
+.modal-header {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #EFEFEF;
+}
 .modal-title {
-  font-size: 2em;
+  font-size: 1.8em;
   margin: 0;
 }
 
 .modal-content {
+  padding: 20px;
   overflow-y: auto;
   @include row();
 }
 
 .modal-footer {
-  margin-top: 20px;
+  padding: 19px 20px 20px;
+  margin-top: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
   text-align: right;
   clear: both;
 }

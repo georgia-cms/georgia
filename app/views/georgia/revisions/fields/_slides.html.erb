@@ -1,0 +1,13 @@
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Slides</legend>
+    <p>
+      <%= link_to "#{icon_tag 'plus'} Add slide".html_safe, '#', class: 'btn' %>
+    </p>
+  </div>
+  <div class="control-group">
+    <%= f.simple_fields_for @revision.slides.map(&:content) do |c| %>
+      <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
+    <% end -%>
+  </div>
+</fieldset>

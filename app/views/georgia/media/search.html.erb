@@ -9,13 +9,7 @@
         <%= checkboxable_all_tag :assets %>
       </th>
       <th colspan='7'>
-      <% if @search %>
-        <div class="header-pagination">
-          <span class='pagination-count'><%= search_count(@search) %></span>
-          <%= link_to_previous_page @search.hits, icon_tag('chevron-left') %>
-          <%= link_to_next_page @search.hits, icon_tag('chevron-right') %>
-        </div>
-      <% end -%>
+        <%= pagination_tag(self, @search) %>
       </th>
     </thead>
     <tbody>

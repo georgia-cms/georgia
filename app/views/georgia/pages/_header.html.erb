@@ -1,10 +1,10 @@
 <header class='header-main'>
-  <%= content_for :ujs do %>
-    <%= render 'georgia/shared/forms/page' %>
-  <% end -%>
   <%#= link_to "#{icon_tag('copy')} Copy".html_safe, '#', class: 'btn-action' %>
   <%#= link_to "#{icon_tag('thumbs-o-down')} Unpublish".html_safe, '#', class: 'btn-action' %>
   <div class="header-actions">
     <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn-primary' %>
   </div>
+  <%= content_for :footer do %>
+    <%= render 'georgia/shared/forms/page' %>
+  <% end -%>
 </header>

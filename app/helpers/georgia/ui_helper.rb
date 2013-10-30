@@ -12,6 +12,11 @@ module Georgia
       content_tag :i, nil, options
     end
 
+    def spinner_tag options={}
+      options[:class] = options.fetch(:class, 'spinner')
+      content_tag :div, icon_tag('spinner fa-spin fa-4x'), options
+    end
+
     def link_to_close text=icon_tag('times'), options={}
       link_to text, "#", options.reverse_merge(class: 'btn-close js-close')
     end

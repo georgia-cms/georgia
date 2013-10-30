@@ -42,21 +42,17 @@
 
 .btn-close {
   position: absolute; // needs parent to be relative
-  z-index: $z-btn--close;
   width: 25px;
   height: 25px;
   top: 5px;
   right: 5px;
-  color: $white;
   font-weight: bold;
   font-size: 1.4em;
   text-align: center;
+  color: #cbcbcb;
   &:hover {
+    color: #e2e2e2;
     text-decoration: none;
-    color: $light_grey;
-  }
-  &:visited {
-    color: $white;
   }
 }
 

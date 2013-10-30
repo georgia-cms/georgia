@@ -1,9 +1,24 @@
 .media-link {
   display: block;
-  width: 65px;
-  height: 65px;
 }
 
 .media-image {
   width: 100%;
+}
+.media-featured {
+  .media-link {
+    width: 160px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
+}
+
+.picture {
+  @include span-columns(3);
+  text-align: center;
+  .media-link {
+    width: 160px;
+    height: 120px;
+    margin-bottom: 5px;
+  }
 }

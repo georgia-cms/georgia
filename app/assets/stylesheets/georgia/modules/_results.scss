@@ -11,6 +11,10 @@
     width: 35px;
     text-align: center;
   }
+  .media-link {
+    width: 65px;
+    height: 65px;
+  }
   .phone {
     @extend .ellipsis;
     width: 120px;

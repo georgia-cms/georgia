@@ -1,0 +1,44 @@
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Widgets</legend>
+    <p class='hint'>
+      <%= link_to "Manage Widgets", '#', class: 'btn' %>
+    </p>
+  </div>
+  <div class="control-group input-horizontal">
+    <label>Sidebar</label>
+    <div class="widgets">
+      <div class="widget">
+        <%= link_to_close %>
+        <%= image_tag 'http://dummyimage.com/120x90/EEE/333', class: 'thumbnail' %>
+        <div class="content">
+          <h5 class='content-heading'>All Solutions</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+      </div>
+      <div class="widget">
+        <%= link_to_close %>
+        <div class="content">
+          <h5 class='content-heading'>Ask TelcoBridges</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+      </div>
+      <%= select_tag :widget, "", prompt: 'Select a widget' %>
+      <%= link_to "Add", '#', class: 'btn' %>
+    </div>
+  </div>
+  <div class="control-group input-horizontal">
+    <label>Footer</label>
+    <div class="widgets">
+      <div class="widget">
+        <%= link_to_close %>
+        <div class="content">
+          <h5 class='content-heading'>Product Footer</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        </div>
+      </div>
+      <%= select_tag :widget, "", prompt: 'Select a widget' %>
+      <%= link_to "Add", '#', class: 'btn' %>
+    </div>
+  </div>
+</fieldset>

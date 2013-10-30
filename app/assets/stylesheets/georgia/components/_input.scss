@@ -4,19 +4,15 @@
   line-height: 1em;
   font-weight: normal;
   &:focus {
-    border: 0;
     outline: none;
-  }
-  @include placeholder {
-    text-transform: uppercase;
   }
 }
 
 input.string, input.email, input.password, input.numeric, input.input-search, select, textarea {
   @extend %input;
   background-color: $bg-input;
+  border: 1px solid #cbcbcb;
   color: $font-input;
-  border-radius: 10px;
 }
 
 input.input-search {

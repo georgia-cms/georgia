@@ -3,13 +3,16 @@
   margin: 18px 0;
 }
 .pagination {
-  span {
+  ul {
+    list-style: none outside none;
+  }
+  span, li {
     float: left;
     text-decoration: none;
     border: 1px solid #ddd;
     border-left-width: 0;
   }
-  span:first-child { border-left-width: 1px; }
+  span:first-child, li:first-child { border-left-width: 1px; }
   a, .current, .gap {
     display: block;
     padding: 0 14px;

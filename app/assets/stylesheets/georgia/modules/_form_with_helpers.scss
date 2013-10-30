@@ -1,3 +1,10 @@
+body.edit {
+  .body-main {
+    width: 80%;
+    position: relative;
+  }
+}
+
 .form-with-helpers {
   .fieldset-help {
     width: 200px;
@@ -8,7 +15,7 @@
     padding-left: 200px;
   }
   legend { margin: 0 0 10px 0; }
-  .control-group {
+  fieldset > .control-group {
     margin-left: 200px;
     margin-bottom: 20px;
   }
@@ -16,7 +23,10 @@
     color: #999;
     font-variant: italic;
   }
-  input.string, input.email, input.password, input.numeric, input.input-search, select, textarea {
+  input.string, textarea, .select2-container {
+    width: 100%;
+  }
+  input.string, textarea, select {
     border: 1px solid $border-input;
     border-radius: 0;
   }

@@ -15,6 +15,7 @@
 //= require georgia/jquery.ui.touch-punch
 //= require georgia/keybindings
 //= require georgia/media
+//= require georgia/media-library
 //= require georgia/pages
 //= require georgia/tags
 //= require georgia/modal

@@ -8,13 +8,28 @@
 <fieldset>
   <div class="fieldset-help">
     <legend>SEO</legend>
+    <p class="hint">
+      The excerpt and keywords will be included as &lsaquo;meta&rsaquo; description and keywords tags, useful for search engines.
+    </p>
   </div>
-  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: "Describe in a short paragraph what this page is about. Try not to go over 225 characters. #{icon_tag('info-sign')} The excerpt will be included as a &lsaquo;meta&rsaquo; description tag, useful for search engines." %>
-  <%= f.input :keyword_list, label: 'Keywords', hint: "Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero. #{icon_tag('info-sign')} The keywords will be included as a &lsaquo;meta&rsaquo; keywords tag, useful for search engines.", input_html: {class: 'js-token-input', 'data-token' => 'keywords'} %>
+  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: "Describe in a short paragraph what this page is about." %>
+  <%= f.input :keyword_list, label: 'Keywords', hint: "Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero.", input_html: {class: 'js-token-input', 'data-token' => 'keywords'} %>
 </fieldset>
 <fieldset>
-  <legend>Featured Image</legend>
   <div class="fieldset-help">
+    <legend>Featured Image</legend>
   </div>
-  <%= f.hidden_field :image_id, data: {'featured-image' => 'input'} %>
+  <div class="control-group">
+    <div id="revision_content_image" class='media-featured'>
+      <div class='media-image'>
+        <% if f.object.image and f.object.image.url.present? %>
+          <%= image_tag f.object.image.url %>
+        <% else -%>
+          <%= image_tag 'http://lorempixel.com/160/120/cats/', alt: '' %>
+        <% end -%>
+      </div>
+      <%= f.hidden_field :image_id %>
+      <%= link_to 'Choose Image', '#media_library', class: 'btn-primary js-modal js-media-library', data: {media: '#revision_content_image'} %>
+    </div>
+  </div>
 </fieldset>

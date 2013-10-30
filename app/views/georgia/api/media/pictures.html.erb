@@ -1,0 +1,17 @@
+<% if @pictures and @pictures.any? %>
+  <%= pagination_tag self, @search %>
+  <hr />
+  <% @pictures.in_groups_of(4, false) do |pictures| %>
+    <div class="row">
+      <% pictures.each do |picture| %>
+        <div class="picture">
+          <%= link_to '#', class: 'media-link bg-transparent', data: {media: 'picture', 'media-id' => picture.id} do %>
+            <%= image_tag picture.url(:thumb), title: picture.data_file_name, class: 'media-image' %>
+          <% end %>
+        </div>
+      <% end -%>
+    </div>
+  <% end -%>
+<% else -%>
+  <h3>Yikes! I couldn't find any pictures matching your search.</h3>
+<% end -%>
