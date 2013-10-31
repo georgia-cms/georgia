@@ -1,10 +1,12 @@
 <div class="control-group input-horizontal">
   <label><%= ui_section.name %></label>
-  <div class="widgets">
+  <div class="widgets js-nested-widgets" data-ui-section="<%= ui_section.id %>" data-revision="<%= @revision.id %>">
     <ul class="nav-list js-sortable">
-      <%= render partial: 'georgia/widgets/portlet', collection: ui_section.widgets.for_revision(@revision), as: :widget %>
+      <% ui_section.ui_associations.for_revision(@revision).each do |ui_association| %>
+        <%= widget_portlet(self, ui_association) %>
+      <% end -%>
     </ul>
     <%= select_tag :widget, widgets_collection, prompt: 'Select a widget' %>
-    <%= link_to "Add", '#', class: 'btn' %>
+    <%= link_to "Add", '#', class: 'btn js-add-widget' %>
   </div>
 </div>

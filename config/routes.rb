@@ -12,7 +12,7 @@ Georgia::Engine.routes.draw do
   end
 
   namespace :api do
-    resources :media do
+    resources :media, only: [] do
       collection do
         get :pictures
       end
@@ -70,6 +70,7 @@ Georgia::Engine.routes.draw do
   end
   resources :menus
   resources :widgets
+  resources :ui_associations, path: 'ui-associations', only: [:new]
 
   match '/search/messages', to: 'search#messages'
 

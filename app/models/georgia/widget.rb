@@ -12,8 +12,6 @@ module Georgia
     scope :submenu, joins(:ui_sections).where(georgia_ui_sections: {name: 'Submenu'})
     scope :sidebar, joins(:ui_sections).where(georgia_ui_sections: {name: 'Sidebar'})
 
-    scope :for_revision, lambda {|revision| includes(:ui_associations).where(georgia_ui_associations: {page_id: revision.id}).uniq}
-
     validate :content_presence
 
     def content_presence

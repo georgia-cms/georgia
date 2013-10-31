@@ -24,3 +24,4 @@
 //= require georgia/checkbox
 //= require georgia/forms
 //= require georgia/widgets
+//= require georgia/nested_widgets

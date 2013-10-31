@@ -10,6 +10,8 @@ module Georgia
 
     attr_accessible :position, :widget_id, :ui_section_id, :page_id
 
+    scope :for_revision, lambda {|revision| where(page_id: revision.id)}
+
     validate :associations
 
     protected

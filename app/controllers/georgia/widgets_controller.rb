@@ -7,14 +7,6 @@ module Georgia
       @widgets = Widget.order(:created_at).page(params[:page]).in_groups_of(4, false)
     end
 
-    def show
-      redirect_to edit_widget_path(params[:id])
-    end
-
-    def new
-      @widget = Widget.new
-    end
-
     def edit
       @widget = Widget.find(params[:id])
     end
@@ -46,8 +38,19 @@ module Georgia
 
     def destroy
       @widget = Widget.find(params[:id])
-      @widget.destroy
-      redirect_to widgets_url, notice: "Widget was successfully deleted."
+      if @widget.destroy
+        respond_to do |format|
+          format.html { redirect_to widgets_url, notice: "Widget was successfully deleted." }
+          format.js { head :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { render :index, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
+      end
+
+
     end
 
   end

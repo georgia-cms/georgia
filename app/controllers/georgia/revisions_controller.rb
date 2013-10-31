@@ -19,6 +19,7 @@ module Georgia
 
     def edit
       build_associations
+      @ui_sections = Georgia::UiSection.all
     end
 
     def update

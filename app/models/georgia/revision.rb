@@ -6,6 +6,7 @@ module Georgia
     include Georgia::Concerns::Previewable
     include Georgia::Concerns::Statable
 
+    has_one :page, foreign_key: :revision_id
     belongs_to :revisionable, polymorphic: true, touch: true
 
     has_many :slides, dependent: :destroy, foreign_key: :page_id
@@ -14,8 +15,8 @@ module Georgia
 
     has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
     has_many :widgets, through: :ui_associations
-
-    has_one :page, foreign_key: :revision_id
+    accepts_nested_attributes_for :widgets, allow_destroy: true
+    attr_accessible :widgets_attributes
 
   end
 end

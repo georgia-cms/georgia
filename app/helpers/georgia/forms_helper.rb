@@ -16,8 +16,12 @@ module Georgia
       end
     end
 
-    def portlet_tag options={}, &block
-      content_tag :li, class: 'portlet' do
+    def widget_portlet view, ui_association, args={}
+      Georgia::WidgetPortlet.new(view, ui_association, args)
+    end
+
+    def portlet_tag portlet, options={}, &block
+      content_tag :li, class: 'portlet', id: dom_id(portlet), data: {portlet: portlet.id} do
         content_tag(:span, icon_tag('resize-vertical'), class: 'handle') + capture(&block)
       end
     end
