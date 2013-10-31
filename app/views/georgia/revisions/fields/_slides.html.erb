@@ -6,8 +6,10 @@
     </p>
   </div>
   <div class="control-group">
-    <%= f.simple_fields_for @revision.slides.map(&:content) do |c| %>
-      <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
+    <%= f.simple_fields_for :slides, @revision.slides do |s| %>
+      <%= s.simple_fields_for :contents, s.object.content do |c| %>
+        <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
+      <% end -%>
     <% end -%>
   </div>
 </fieldset>

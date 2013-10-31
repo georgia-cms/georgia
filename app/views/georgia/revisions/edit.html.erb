@@ -9,7 +9,7 @@
     </div>
   </header>
   <section class="body-main">
-    <%= f.simple_fields_for @revision.content do |c| %>
+    <%= f.simple_fields_for :contents, @revision.content do |c| %>
       <%= render partial: 'georgia/revisions/fields/content', locals: {f: c, locale: c.object.locale, slug: @page.slug, revision_form: f} %>
     <% end -%>
 

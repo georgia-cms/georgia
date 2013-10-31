@@ -18,24 +18,25 @@ module Georgia
     end
 
     def edit
-      build_associations
+      # build_associations
       @ui_sections = Georgia::UiSection.all
     end
 
     def update
       @revision.update_attributes(params[:revision])
 
-      if @revision.valid?
-        @revision.save
+      if @revision.save
         respond_to do |format|
           format.html { redirect_to [:edit, @page, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
           format.js { render layout: false }
         end
       else
-        build_associations
         respond_to do |format|
-          format.html { render :edit }
-          format.js { render layout: false }
+          format.html {
+            build_associations
+            render :edit
+          }
+          format.js { head :internal_server_error }
         end
       end
     end

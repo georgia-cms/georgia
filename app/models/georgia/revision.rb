@@ -14,9 +14,9 @@ module Georgia
     attr_accessible :slides_attributes
 
     has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
+    accepts_nested_attributes_for :ui_associations, allow_destroy: true
+    attr_accessible :ui_associations_attributes
     has_many :widgets, through: :ui_associations
-    accepts_nested_attributes_for :widgets, allow_destroy: true
-    attr_accessible :widgets_attributes
 
   end
 end

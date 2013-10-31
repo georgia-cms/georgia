@@ -16,6 +16,7 @@ module Georgia
     def to_s
       portlet_tag(@widget) do |p|
         hidden_field_tag("revision[ui_associations_attributes][#{id}][_destroy]", 0, class: 'js-destroy') +
+        (hidden_field_tag("revision[ui_associations_attributes][#{id}][id]", id) if persisted?) +
         hidden_field_tag("revision[ui_associations_attributes][#{id}][ui_section_id]", @ui_section.id) +
         hidden_field_tag("revision[ui_associations_attributes][#{id}][widget_id]", @widget.id) +
         hidden_field_tag("revision[ui_associations_attributes][#{id}][page_id]", @revision.id) +
@@ -32,6 +33,12 @@ module Georgia
 
     def id
       @id ||= @ui_association.persisted? ? @ui_association.id : Time.now.to_i
+    end
+
+    private
+
+    def persisted?
+      @ui_association.persisted?
     end
 
   end
