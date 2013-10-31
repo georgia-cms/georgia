@@ -1,13 +1,14 @@
 .portlet {
-  padding-left: 10px;
+  cursor: pointer;
   margin-bottom: 10px;
   line-height: 35px;
   background-color: #4b8df8;
   color: $white;
 
   .handle {
-    margin-right: 5px;
+    margin: 0 15px;
   }
+
   .actions {
     float: right;
     a {

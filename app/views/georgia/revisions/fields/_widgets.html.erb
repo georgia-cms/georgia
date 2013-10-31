@@ -5,20 +5,5 @@
       <%= link_to "#{icon_tag('cogs')} Manage Widgets".html_safe, widgets_path, class: 'btn' %>
     </p>
   </div>
-  <div class="control-group input-horizontal">
-    <label>Sidebar</label>
-    <div class="widgets">
-      <%= render partial: 'georgia/widgets/portlet', collection: @revision.widgets, as: :widget %>
-      <%= select_tag :widget, widgets_collection, prompt: 'Select a widget' %>
-      <%= link_to "Add", '#', class: 'btn' %>
-    </div>
-  </div>
-  <div class="control-group input-horizontal">
-    <label>Footer</label>
-    <div class="widgets">
-      <%= render partial: 'georgia/widgets/portlet', collection: @revision.widgets, as: :widget %>
-      <%= select_tag :widget, widgets_collection, prompt: 'Select a widget' %>
-      <%= link_to "Add", '#', class: 'btn' %>
-    </div>
-  </div>
+  <%= render partial: 'georgia/revisions/fields/ui_section', collection: Georgia::UiSection.all, as: :ui_section %>
 </fieldset>

@@ -17,8 +17,8 @@ module Georgia
     end
 
     def portlet_tag options={}, &block
-      content_tag :div, class: 'portlet' do
-        content_tag(:span, icon_tag('reorder'), class: 'handle') + capture(&block)
+      content_tag :li, class: 'portlet' do
+        content_tag(:span, icon_tag('resize-vertical'), class: 'handle') + capture(&block)
       end
     end
 

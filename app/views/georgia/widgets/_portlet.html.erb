@@ -1,7 +1,6 @@
 <%= portlet_tag(widget) do |p| %>
-  <%= widget.title %>
+  <span class="title"><%= widget.title %></span>
   <div class="actions">
-    <%= link_to icon_tag('pencil'), '#', class: 'btn-action' %>
-    <%= link_to icon_tag('trash-o'), '#', class: 'btn-delete' %>
+    <%= link_to icon_tag('times'), '#', class: 'btn-delete' %>
   </div>
 <% end -%>
