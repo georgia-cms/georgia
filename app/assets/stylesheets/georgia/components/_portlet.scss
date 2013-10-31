@@ -1,0 +1,22 @@
+.portlet {
+  padding-left: 10px;
+  margin-bottom: 10px;
+  line-height: 35px;
+  background-color: #4b8df8;
+  color: $white;
+
+  .handle {
+    margin-right: 5px;
+  }
+  .actions {
+    float: right;
+    a {
+      margin-right: 0;
+      margin-left: 0;
+      display: inline-block;
+      height: 35px;
+      width: 35px;
+      float: left;
+    }
+  }
+}

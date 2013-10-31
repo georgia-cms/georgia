@@ -16,8 +16,18 @@ module Georgia
       end
     end
 
+    def portlet_tag options={}, &block
+      content_tag :div, class: 'portlet' do
+        content_tag(:span, icon_tag('reorder'), class: 'handle') + capture(&block)
+      end
+    end
+
     def parent_page_collection
       @parent_page_collection ||= Georgia::Page.not_self(@page).joins(current_revision: :contents).uniq.sort_by(&:title).map{|p| [p.title, p.id]}
+    end
+
+    def widgets_collection
+      @widgets_collection ||= options_from_collection_for_select(Georgia::Widget.all, :id, :title)
     end
 
     def facets_inputs facets=[]

@@ -12,11 +12,13 @@ class @Widget
     @editLink.bind('click', @showForm)
     @cancelLink.bind('click', @hideForm)
 
-  showForm: () =>
+  showForm: (event) =>
+    event.preventDefault()
     @widget.addClass('hide')
     @widgetForm.removeClass('hide')
 
-  hideForm: () =>
+  hideForm: (event) =>
+    event.preventDefault()
     @widgetForm.addClass('hide')
     @widget.removeClass('hide')
 
