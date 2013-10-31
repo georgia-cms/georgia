@@ -69,6 +69,7 @@ Georgia::Engine.routes.draw do
     end
   end
   resources :menus
+  resources :widgets
 
   match '/search/messages', to: 'search#messages'
 

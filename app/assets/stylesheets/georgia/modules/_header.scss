@@ -52,6 +52,10 @@
   background-color: $white;
   border-bottom: 1px solid $border-header-main;
   background-color: $bg-header-main;
+  @include opacity(0.9);
+  h1 {
+    margin-top: 0;
+  }
 }
 
 .header-pagination {

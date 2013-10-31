@@ -14,7 +14,7 @@ module Georgia
   @@url = "http://www.example.com"
 
   mattr_accessor :header
-  @@header = %w(dashboard pages menus messages media users)
+  @@header = %w(dashboard pages menus messages media users widgets)
 
   def self.setup
     yield self

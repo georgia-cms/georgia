@@ -26,7 +26,8 @@ module Georgia
     end
 
     def link_to_delete url, options={}
-      link_to "#{icon_tag('trash-o')} Delete".html_safe, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete')
+      text = options.delete(:text) { "#{icon_tag('trash-o')} Delete".html_safe }
+      link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete')
     end
 
     def button_to_save

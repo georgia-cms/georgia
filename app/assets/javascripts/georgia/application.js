@@ -21,3 +21,4 @@
 //= require georgia/modal
 //= require georgia/checkbox
 //= require georgia/forms
+//= require georgia/widgets

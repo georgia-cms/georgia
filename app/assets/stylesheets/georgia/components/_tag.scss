@@ -8,13 +8,15 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,0,0,.2);
 
   // default
-  color: $white;
-  background-color: #999999;
+  color: #647f9e;
+  background-color: #e9f3ff;
 
   a {
-    color: $grey;
+    color: #647f9e;
     text-decoration: none;
     &:hover {text-decoration: none;}
   }

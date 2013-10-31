@@ -1,0 +1,3 @@
+<% if can? :manage, Georgia::Widget %>
+  <%= sidebar_navigation_link 'Widgets', georgia.widgets_path, controller: 'widgets', icon: 'wrench' %>
+<% end -%>

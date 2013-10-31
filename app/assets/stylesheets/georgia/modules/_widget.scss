@@ -1,13 +1,54 @@
 .widgets {
   padding-left: 110px;
 }
+
 .widget {
+  @extend .box;
+  margin-bottom: 10px;
+}
+
+.row .widget {
+  @include span-columns(3);
+}
+
+.widget-header {
+  @extend .box-header;
+  margin-bottom: 0;
+}
+.widget-title {
+  @extend .box-title;
+}
+.widget-content {
+  @extend .box-content;
+  height: 200px;
+}
+.widget-footer {
+  @extend .box-footer;
+  .widget-action {
+    margin-left: 10px;
+  }
+  .widget-featured {
+    float: left;
+    text-align: left;
+  }
+}
+.widget-title--ellipsed {
+  @extend .widget-title;
+  @extend .ellipsis;
+  width: 250px;
+}
+
+.widget-form {
+  .widget-title {
+    input {width: 100%;}
+  }
+}
+
+fieldset .widget {
   @include clearfix;
   position: relative;
   width: 100%;
   padding: 10px;
-  border: 1px solid #DDD;
-  margin-bottom: 10px;
   .thumbnail {
     float: left;
     width: 120px;

@@ -1,0 +1,19 @@
+<header class='header-main'>
+  <%= link_to_back %>
+  <h1>Widgets</h1>
+</header>
+
+<section class="body-main">
+
+  <% if @widgets and @widgets.any? %>
+    <% @widgets.each do |widget_row| %>
+      <div class="row">
+        <%= render widget_row %>
+      </div>
+    <% end -%>
+  <% else -%>
+    <h1>Yikes! There are 0 widgets.</h1>
+    <%= link_to "Get Started", '#page_form', class: 'js-modal btn-primary btn--jumbo' %>
+  <% end -%>
+
+</section>

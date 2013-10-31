@@ -4,9 +4,10 @@ module Georgia
     include Georgia::Concerns::Orderable
     acts_as_list scope: :page
 
-    belongs_to :page, class_name: Georgia::Revision
+    belongs_to :revision, class_name: Georgia::Revision, foreign_key: :page_id
     belongs_to :widget
     belongs_to :ui_section
+
     attr_accessible :position, :widget_id, :ui_section_id, :page_id
 
     validate :associations

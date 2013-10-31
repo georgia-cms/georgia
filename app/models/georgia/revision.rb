@@ -15,5 +15,7 @@ module Georgia
     has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
     has_many :widgets, through: :ui_associations
 
+    has_one :page, foreign_key: :revision_id
+
   end
 end
