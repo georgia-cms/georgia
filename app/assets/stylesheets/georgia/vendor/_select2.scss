@@ -1,1 +1,18 @@
 .select2-container { width: initial; }
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  @extend .tag;
+  padding: 4px 6px 4px 18px !important;
+  background-image: none;
+  background-color: #FFF;
+}
+.select2-dropdown-open.select2-drop-above .select2-choice,
+.select2-dropdown-open.select2-drop-above .select2-choices {
+  background-image: none;
+  background-color: #FFF;
+}
+
+.select2-container-multi .select2-search-choice-close {
+  top: 2px;
+  left: 4px;
+}
