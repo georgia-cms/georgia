@@ -17,6 +17,14 @@ module Georgia
       content_tag :div, icon_tag('spinner fa-spin fa-4x'), options
     end
 
+    def picture_tag picture, options={}
+      return unless picture and picture.url.present?
+      format = options.fetch(:format, :tiny)
+      link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do
+        image_tag(picture.url(format), title: picture.data_file_name, class: 'media-image')
+      end
+    end
+
     def link_to_close text=icon_tag('times'), options={}
       link_to text, "#", options.reverse_merge(class: 'btn-close js-close')
     end

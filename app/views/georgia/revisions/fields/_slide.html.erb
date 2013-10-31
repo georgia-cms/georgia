@@ -5,11 +5,7 @@
   <div class="slide-image">
     <div id="revision_slide_content_image" class='media-featured'>
       <div class='media-image'>
-        <% if f.object.image and f.object.image.url.present? %>
-          <%= image_tag f.object.image.url %>
-        <% else -%>
-          <%= image_tag 'http://lorempixel.com/160/120/cats/', alt: '' %>
-        <% end -%>
+        <%= picture_tag(f.object.image, format: :thumb) %>
       </div>
       <%= f.hidden_field :image_id %>
     </div>
