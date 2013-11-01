@@ -16,12 +16,20 @@ module Georgia
       end
     end
 
-    def widget_portlet view, ui_association, args={}
-      Georgia::WidgetPortlet.new(view, ui_association, args)
+    def choose_image_tag imageable, args={}
+      Georgia::MediaLibrary.new(self, imageable, args).to_s
+    end
+
+    def widget_portlet_tag ui_association, args={}
+      Georgia::WidgetPortlet.new(self, ui_association, args)
+    end
+
+    def slide_portlet_tag slide, args={}
+      Georgia::SlidePortlet.new(self, slide, args)
     end
 
     def portlet_tag portlet, options={}, &block
-      content_tag :li, class: 'portlet', id: dom_id(portlet), data: {portlet: portlet.id} do
+      content_tag :li, options.reverse_merge(class: 'portlet', id: dom_id(portlet), data: {portlet: portlet.id}) do
         content_tag(:span, icon_tag('resize-vertical'), class: 'handle') + capture(&block)
       end
     end

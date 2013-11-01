@@ -2,14 +2,16 @@
   <div class="fieldset-help">
     <legend>Slides</legend>
     <p>
-      <%= link_to "#{icon_tag 'plus'} Add slide".html_safe, '#', class: 'btn' %>
+      <%= link_to "#{icon_tag 'plus'} Add slide".html_safe, '#', class: 'btn js-add-slide' %>
     </p>
   </div>
   <div class="control-group">
-    <%= f.simple_fields_for :slides, @revision.slides do |s| %>
-      <%= s.simple_fields_for :contents, s.object.content do |c| %>
-        <%= render partial: 'georgia/revisions/fields/slide', locals: {f: c} %>
-      <% end -%>
-    <% end -%>
+    <div class="slides js-slides">
+      <ul class="nav-list js-sortable">
+        <% @revision.slides.each do |slide| %>
+          <%= slide_portlet_tag(slide) %>
+        <% end -%>
+      </ul>
+    </div>
   </div>
 </fieldset>

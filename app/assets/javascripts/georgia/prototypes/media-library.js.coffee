@@ -17,22 +17,17 @@ class @MediaLibrary
     @performQuery(url)
 
   changePage: (event) =>
-    event.stopPropagation()
-    event.preventDefault()
+    @stopEvent(event)
     @loadSpinner()
     url = $(event.currentTarget).attr('href')
     @performQuery(url)
 
   select: (event) =>
-    event.stopPropagation()
-    event.preventDefault()
-    $('.js-close').trigger('click')
+    @stopEvent(event)
+    @closeMediaLibrary()
     picture = $(event.currentTarget).clone()
-    @target.find('.media-image').html(picture)
+    @target.find('.js-media-image').html(picture)
     @target.find('input').val(picture.data('media-id'))
-
-  setTarget: (target) =>
-    @target = $(target)
 
   performQuery: (url) ->
     $.ajax(
@@ -41,18 +36,22 @@ class @MediaLibrary
         query: @query
     ).done( (data) => @picturesContainer.html(data) )
 
-  loadSpinner: () =>
-    @picturesContainer.html(@spinnerTag())
+  setTarget: (target) => @target = $(target)
+  closeMediaLibrary: -> $('.js-close').trigger('click')
+  loadSpinner: => @picturesContainer.html(@spinnerTag())
+  stopEvent: (event) ->
+    event.stopPropagation()
+    event.preventDefault()
 
-  query: () =>
-    @search.val()
-
-  spinnerTag: () ->
-    "<div class='spinner'><i class='fa fa-spinner fa-4x'></i></div>"
+  query: => @search.val()
+  spinnerTag: -> "<div class='spinner'><i class='fa fa-spinner fa-4x'></i></div>"
 
 jQuery ->
-  if $(".js-media-library").length
+  # If the media library modal is loaded,
+  # Create a js object
+  # When the 'choose image' button is clicked, reset the target
+  if $("#media_library").length
     mediaLibrary = new MediaLibrary($("#media_library"))
-    $(".js-media-library").each ->
-      target = $(this).data('media')
-      $(this).click -> mediaLibrary.setTarget(target)
+    $('body').on('click', '.js-media-library', () ->
+      mediaLibrary.setTarget($(this).data('media'))
+    )

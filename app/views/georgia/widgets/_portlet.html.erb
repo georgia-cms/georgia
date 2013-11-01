@@ -1,8 +1,0 @@
-<% widget_id = widget.persisted? ? widget.id : Time.now.to_i %>
-<%= portlet_tag(widget) do |p| %>
-  <%= f.hidden_field :_destroy %>
-  <%= f.hidden_field :ui_section_id %>
-  <%= f.hidden_field :widget_id %>
-  <span class="title"><%= widget.title %></span>
-  <div class="actions"><%= link_to icon_tag('times'), '#', class: 'btn-delete js-remove-widget' %></div>
-<% end -%>

@@ -1,16 +1,11 @@
 module Georgia
-  class WidgetPortlet
-
-    attr_accessor :view_context
-
-    delegate :render, :portlet_tag, :content_tag, :icon_tag, :link_to, :hidden_field_tag, to: :view_context
+  class WidgetPortlet < Portlet
 
     def initialize view_context, ui_association, args={}
-      @view_context = view_context
-      @ui_association = ui_association
       @widget = args.fetch(:widget, ui_association.widget)
       @ui_section = args.fetch(:ui_section, ui_association.ui_section)
       @revision = args.fetch(:revision, ui_association.revision)
+      super
     end
 
     def to_s
@@ -29,16 +24,6 @@ module Georgia
 
     def title
       @widget.title
-    end
-
-    def id
-      @id ||= @ui_association.persisted? ? @ui_association.id : Time.now.to_i
-    end
-
-    private
-
-    def persisted?
-      @ui_association.persisted?
     end
 
   end

@@ -71,6 +71,7 @@ Georgia::Engine.routes.draw do
   resources :menus
   resources :widgets
   resources :ui_associations, path: 'ui-associations', only: [:new]
+  resources :slides, only: [:new]
 
   match '/search/messages', to: 'search#messages'
 

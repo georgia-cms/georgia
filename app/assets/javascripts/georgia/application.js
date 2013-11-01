@@ -17,11 +17,6 @@
 //= require georgia/jquery.ui.touch-punch
 //= require georgia/keybindings
 //= require georgia/media
-//= require georgia/media-library
 //= require georgia/pages
-//= require georgia/tags
 //= require georgia/modal
-//= require georgia/checkbox
-//= require georgia/forms
-//= require georgia/widgets
-//= require georgia/nested_widgets
+//= require_tree .//prototypes

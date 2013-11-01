@@ -24,6 +24,11 @@ module Georgia
       @current_ability ||= Ability.new(current_user)
     end
 
+    def current_locale
+      I18n.locale
+    end
+    helper_method :current_locale
+
     private
 
     def layout_by_resource

@@ -20,12 +20,6 @@
     <legend>Featured Image</legend>
   </div>
   <div class="control-group">
-    <div id="revision_content_image" class='media-featured'>
-      <div class='media-image'>
-        <%= picture_tag(f.object.image, format: :thumb) %>
-      </div>
-      <%= f.hidden_field :image_id %>
-      <%= link_to 'Choose Image', '#media_library', class: 'btn-primary js-modal js-media-library', data: {media: '#revision_content_image'} %>
-    </div>
+    <%= choose_image_tag(f.object, target: 'revision_content_image', input: f.hidden_field(:image_id)) %>
   </div>
 </fieldset>

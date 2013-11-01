@@ -1,14 +1,11 @@
 .slide {
-  @include row;
-  position: relative;
-  padding: 20px;
-  border: 1px solid #DDD;
-  margin-bottom: 10px;
-
-  .slide-image {
-    @include span-columns(3);
-  }
-  .slide-text {
-    @include span-columns(9);
-  }
+  width: 85%;
+  display: inline-block;
+  margin: 5px 0;
+}
+.slide-image {
+  @include span-columns(3);
+}
+.slide-text {
+  @include span-columns(9);
 }

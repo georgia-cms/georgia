@@ -1,10 +1,6 @@
 module Georgia
   module InternationalizationHelper
 
-    def current_locale
-      I18n.locale
-    end
-
     def available_locales
       I18n.available_locales
     end

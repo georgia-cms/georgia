@@ -10,12 +10,13 @@ module Georgia
     belongs_to :revisionable, polymorphic: true, touch: true
 
     has_many :slides, dependent: :destroy, foreign_key: :page_id
-    accepts_nested_attributes_for :slides
+    accepts_nested_attributes_for :slides, allow_destroy: true
     attr_accessible :slides_attributes
 
     has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
     accepts_nested_attributes_for :ui_associations, allow_destroy: true
     attr_accessible :ui_associations_attributes
+
     has_many :widgets, through: :ui_associations
 
   end

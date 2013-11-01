@@ -1,4 +1,4 @@
-class @NestedWidget
+class @WidgetPortlet
 
   constructor: (element) ->
     @element = $(element)
@@ -34,10 +34,10 @@ class @NestedWidget
 
 
 
-$.fn.nestedWidget = () ->
+$.fn.widgetPortlet = () ->
   @each ->
-    new NestedWidget($(this))
+    new WidgetPortlet($(this))
 
 jQuery ->
   $(".js-nested-widgets").each () ->
-    $(this).nestedWidget()
+    $(this).widgetPortlet()
