@@ -7,7 +7,7 @@ module Georgia
     include Georgia::Concerns::Sorting
 
     before_filter :prepare_new_page, only: [:search, :find_by_tag]
-    before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :destroy, :flush_cache]
+    before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :flush_cache]
 
     # FIXME: Still needed?
     def find_by_tag
@@ -56,10 +56,14 @@ module Georgia
       redirect_to @page.url
     end
 
+    # Destroy multiple pages
     def destroy
-      @message = "#{@page.title} was successfully deleted."
-      @page.destroy
-      redirect_to [:search, model], notice: @message
+      ids = params[:id].split(',')
+      if @pages = Page.destroy(ids)
+        render layout: false
+      else
+        head :internal_server_error
+      end
     end
 
     def flush_cache
