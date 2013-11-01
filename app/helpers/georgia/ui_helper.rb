@@ -38,10 +38,6 @@ module Georgia
       link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete')
     end
 
-    def button_to_save
-      content_tag :button, "#{icon_tag 'check'} Save".html_safe, type: "submit", class: "btn-save"
-    end
-
     def tooltip_tag text, tooltip, options={}
       content_tag(:span, icon_tag('info-circle'), options.reverse_merge(title: tooltip, class: 'js-tooltip', data: {placement: 'right'}))
     end

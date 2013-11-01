@@ -16,7 +16,7 @@ class @Checkboxable
   updateCheckboxes: () =>
     switch @getState(@select_all)
       # uncheck, going checked
-      when 'uncheck'
+      when 'unchecked'
         @check(@select_all)
         @check(@checkboxes) if @checkboxes.length
       # indeterminate, going unchecked
@@ -31,7 +31,7 @@ class @Checkboxable
   updateCheckbox: (el) =>
     switch @getState(el)
       # uncheck, going checked
-      when 'uncheck'
+      when 'unchecked'
         @check(el)
       # checked, going unchecked
       else
@@ -50,7 +50,7 @@ class @Checkboxable
       # all siblings are sharing the same state
       switch states[0]
         # if all unchecked, set parent as unchecked
-        when 'uncheck' then @uncheck(@select_all)
+        when 'unchecked' then @uncheck(@select_all)
         # if all checked, set parent as checked
         when 'checked' then @check(@select_all)
 
@@ -63,7 +63,7 @@ class @Checkboxable
 
   uncheck: (el) =>
     $(el).each (index, e) =>
-      @setState(e, 'uncheck')
+      @setState(e, 'unchecked')
       $(e).prop('indeterminate', false)
       $(e).prop('checked', false)
       $(e).closest('tr').removeClass('is-selected')
@@ -81,11 +81,9 @@ class @Checkboxable
     )
     result
 
-  getState: (el) ->
-    $(el).data('state')
+  getState: (el)        -> $(el).data('state')
+  setState: (el, state) -> $(el).data('state', state)
 
-  setState: (el, state) ->
-    $(el).data('state', state)
 
 $.fn.actsAsCheckboxable = () ->
   @each ->

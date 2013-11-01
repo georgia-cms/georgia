@@ -46,39 +46,36 @@ module Georgia
     def update
       @asset = Ckeditor::Asset.find(params[:id])
       @asset.update_attributes(params[:asset])
-      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
       render nothing: true
     end
 
+    # Destroy multiple assets
     def destroy
-      @asset = Ckeditor::Asset.find(params[:id]).destroy
-      @tags = ActsAsTaggableOn::Tag.all.sort_by{|x| x.taggings.count}.reverse
-    end
-
-    def destroy_all
-      if Ckeditor::Asset.destroy_all
-        redirect_to media_index_url, notice: 'Successfully purged all images'
+      if Ckeditor::Asset.destroy(params[:ids])
+        head :ok
       else
-        redirect_to media_index_url, notice: 'Oups. Something went wrong'
+        head :internal_server_error
       end
     end
 
-    def download_all
-      @files = Ckeditor::Asset.all
-      t = Tempfile.new("tmp-zip-#{Time.now}")
-      Zip::ZipOutputStream.open(t.path) do |zos|
+    # Download multiple assets as a zip file
+    def download
+      ids = params[:ids].split(',')
+      @files = Ckeditor::Asset.find(ids)
+      t = Tempfile.new("tmp-zip-#{Time.now.to_i}")
+      Zip::OutputStream.open(t.path) do |zos|
         @files.each do |file|
-          filename = file.data.file.filename
+          filename = file.filename
           zos.put_next_entry(filename)
           tmp_file = Tempfile.new(filename)
-          open(file.data.url) do |data|
+          open(file.url) do |data|
             tmp_file.write data.read.force_encoding('UTF-8')
           end
           zos.print IO.read(tmp_file)
           tmp_file.close
         end
       end
-      filename = "#{Georgia.title.try(:parameterize)}_assets_#{Time.now.strftime('%Y%m%d%H%M')}.zip"
+      filename = "#{Georgia.title.try(:parameterize) || 'georgia'}_assets_#{Time.now.strftime('%Y%m%d%H%M%S')}.zip"
       t.close
 
       send_file t.path, type: "application/zip", disposition: 'attachment', filename: filename

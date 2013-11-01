@@ -16,6 +16,10 @@ module Georgia
       end
     end
 
+    def button_to_save
+      content_tag :button, "#{icon_tag 'check'} Save".html_safe, type: "submit", class: "btn-save"
+    end
+
     def choose_image_tag imageable, args={}
       Georgia::MediaLibrary.new(self, imageable, args).to_s
     end

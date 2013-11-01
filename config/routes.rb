@@ -55,6 +55,7 @@ Georgia::Engine.routes.draw do
   resources :media, path: :media do
     collection do
       get :search
+      post :download
     end
   end
   resources :users
