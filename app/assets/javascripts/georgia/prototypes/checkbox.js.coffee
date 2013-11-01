@@ -9,7 +9,7 @@ class @Checkboxable
     @checkboxes.bind('click', @update)
 
   update: (event) =>
-    element = $("##{event.target.id}")
+    element = $(event.currentTarget)
     @updateCheckbox(element)
     @updateSelectAll()
 
