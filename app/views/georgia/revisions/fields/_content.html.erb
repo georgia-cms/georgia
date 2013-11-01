@@ -22,11 +22,7 @@
   <div class="control-group">
     <div id="revision_content_image" class='media-featured'>
       <div class='media-image'>
-        <% if f.object.image and f.object.image.url.present? %>
-          <%= image_tag f.object.image.url %>
-        <% else -%>
-          <%= image_tag 'http://lorempixel.com/160/120/cats/', alt: '' %>
-        <% end -%>
+        <%= picture_tag(f.object.image, format: :thumb) %>
       </div>
       <%= f.hidden_field :image_id %>
       <%= link_to 'Choose Image', '#media_library', class: 'btn-primary js-modal js-media-library', data: {media: '#revision_content_image'} %>
