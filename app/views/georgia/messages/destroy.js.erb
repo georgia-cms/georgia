@@ -1,0 +1,3 @@
+<% @messages.each do |m| %>
+  $('tr#message_<%= m.id %>').remove()
+<% end -%>

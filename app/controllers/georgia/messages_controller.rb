@@ -13,11 +13,14 @@ module Georgia
     def search
     end
 
+    # Destroy multiple assets
     def destroy
-      @message = Message.find(params[:id])
-      @message.destroy
-
-      redirect_to messages_url
+      ids = params[:id].split(',')
+      if @messages = Message.destroy(ids)
+        render layout: false
+      else
+        head :internal_server_error
+      end
     end
 
     def destroy_all_spam

@@ -1,8 +1,8 @@
 <header class='header-main'>
-  <%= link_to icon_tag('thumbs-up'), '#', class: 'btn-action' %>
-  <%= link_to icon_tag('thumbs-down'), '#', class: 'btn-action' %>
-  <%= link_to icon_tag('trash-o'), '#', class: 'btn-action' %>
-  <%= link_to '#', class: 'btn-action' do %>
-    <%= icon_tag('tags') %> <%= icon_tag('caret-down') %>
-  <% end -%>
+  <%= link_to icon_tag('thumbs-up'), '#', class: 'btn-action js-ham hide' %>
+  <%= link_to icon_tag('thumbs-down'), '#', class: 'btn-action js-spam hide' %>
+  <%= link_to icon_tag('trash-o'), '#', class: 'btn-action js-delete hide' %>
+  <%#= link_to '#', class: 'btn-action' do %>
+    <%#= icon_tag('tags') %> <%#= icon_tag('caret-down') %>
+  <%# end -%>
 </header>
