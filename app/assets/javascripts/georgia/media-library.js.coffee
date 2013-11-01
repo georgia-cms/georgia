@@ -29,11 +29,10 @@ class @MediaLibrary
     $('.js-close').trigger('click')
     picture = $(event.currentTarget).clone()
     @target.find('.media-image').html(picture)
-    @target.find('input').val(picture.data('picture-id'))
+    @target.find('input').val(picture.data('media-id'))
 
   setTarget: (target) =>
     @target = $(target)
-    console.log "Target set to: #{target}"
 
   performQuery: (url) ->
     $.ajax(
