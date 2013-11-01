@@ -31,9 +31,7 @@
     max-width: 25px;
   }
   .thumbnail {
-    @extend .nowrap;
     width: 65px;
-    max-width: 65px;
   }
   .subject-message {
     @extend .nowrap;

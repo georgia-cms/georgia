@@ -29,8 +29,10 @@
 }
 
 .btn-file-upload {
+  @extend .btn-save;
   position: relative;
   overflow: hidden;
+  margin-right: 100px;
 }
 
 .btn-back {
