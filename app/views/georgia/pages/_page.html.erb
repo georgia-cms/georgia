@@ -1,6 +1,6 @@
 <tr class="page">
   <td class='checkbox'>
-    <%= checkboxable_tag "page_#{page.id}" %>
+    <%= checkboxable_tag page %>
   </td>
   <td>
     <b><%= link_to page.title, [:edit, page] %></b>
