@@ -59,6 +59,8 @@ module Georgia
     end
 
     # Download multiple assets as a zip file
+    # TODO: We could send via AJAX with jquery.fileDownload plugin
+    # We could then have a download spinner while the request is processing, even a progress bar
     def download
       ids = params[:ids].split(',')
       @files = Ckeditor::Asset.find(ids)
