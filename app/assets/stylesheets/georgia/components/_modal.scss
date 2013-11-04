@@ -42,7 +42,7 @@
 
 .modal--small {
   @extend %modal;
-  @include modal-size(420px, 100px);
+  @include modal-size(420px, 250px);
   .modal-title { font-size: 1.2em; }
 }
 
