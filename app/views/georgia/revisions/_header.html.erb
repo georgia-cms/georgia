@@ -1,9 +1,8 @@
 <header class='header-main'>
   <%= link_to_back search_pages_path %>
-  <ul class='nav'>
-    <%= page_actions_tag(@page, @revision) %>
-  </ul>
+  <h1 class='header-title'><%= @page.title %></h1>
   <div class="header-actions">
+    <%= page_actions_tag(@page, @revision) %>
     <%= button_to_save %>
   </div>
 </header>

@@ -3,7 +3,7 @@ module Georgia
 
     attr_accessor :view, :page, :revision, :options
 
-    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, to: :view
+    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, :caret_tag, to: :view
 
     def initialize view, page, revision, options={}
       @view = view
@@ -13,6 +13,13 @@ module Georgia
     end
 
     def to_s
+      content_tag :div, class: 'btn-group' do
+        link_to("Actions #{caret_tag}".html_safe, '#', role: :button, class: 'btn btn-warning', id: 'page_actions', data: {toggle: 'dropdown', target: '#'}) +
+        content_tag(:ul, action_list, class: 'dropdown-menu', role: :menu)
+      end
+    end
+
+    def action_list
       html = ""
       html << content_tag(:li, link_to_edit) if can?(:edit, page)
       html << content_tag(:li, link_to_settings) if can?(:settings, page)

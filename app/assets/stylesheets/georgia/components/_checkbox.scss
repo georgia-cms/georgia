@@ -41,7 +41,8 @@ input[type="checkbox"] {
     box-shadow: none \9;
   }
 
-  &:checked, &:indeterminate {
+  &:checked, &:indeterminate, &:focus {
     background: #fff;
+    outline: 0;
   }
 }
