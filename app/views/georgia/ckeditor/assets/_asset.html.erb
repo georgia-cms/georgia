@@ -1,9 +1,9 @@
 <tr id='<%= dom_id(asset) %>' class='asset'>
-  <td class='checkbox'>
+  <td class='checkbox-cell'>
     <%= checkboxable_tag "asset_#{asset.id}" %>
   </td>
   </td>
-  <td class='thumbnail'>
+  <td class='thumbnail-cell'>
     <%= link_to asset.url do %>
       <%= image_tag "georgia/content-types/#{asset.extension}.jpg", alt: asset.data_content_type if asset.data_content_type %>
     <% end %>

@@ -1,8 +1,8 @@
 <tr id='asset_<%= picture.id %>' class='asset'>
-  <td class='checkbox'>
+  <td class='checkbox-cell'>
     <%= checkboxable_tag picture %>
   </td>
-  <td class='thumbnail'>
+  <td class='thumbnail-cell'>
     <%= link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do %>
       <%= image_tag picture.url(:tiny), title: picture.data_file_name, class: 'media-image' %>
     <% end %>
