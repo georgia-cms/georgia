@@ -23,6 +23,7 @@ module Georgia
         html << content_tag(:li, link_to_unpublish) if can?(:unpublish, page) and page.published?
       end
       html << content_tag(:li, link_to_flush_cache) if can?(:flush_cache, page)
+      html << content_tag(:li, link_to_revisions) if can?(:index, Revision)
       html.html_safe
     end
 
@@ -78,6 +79,10 @@ module Georgia
       options[:data][:confirm] = 'Are you sure?'
       options[:method] ||= :delete
       link_to "#{icon_tag('icon-trash')} Delete".html_safe, page, options
+    end
+
+    def link_to_revisions
+      link_to "#{icon_tag('copy')} Revisions".html_safe, [page, :revisions], options
     end
 
   end

@@ -1,13 +1,5 @@
 <%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll'} do |f| %>
-  <header class='header-main'>
-    <%= link_to_back %>
-    <ul class='nav'>
-      <%= page_actions_tag(@page, @revision) %>
-    </ul>
-    <div class="header-actions">
-      <%= button_to_save %>
-    </div>
-  </header>
+  <%= render 'header' %>
   <section class="body-main">
     <%= f.simple_fields_for :contents, @revision.content do |c| %>
       <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
