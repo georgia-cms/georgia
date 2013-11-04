@@ -30,7 +30,7 @@ module Georgia
     private
 
     def link_to_preview
-      link_to "#{icon_tag('eye')} Preview".html_safe, [:preview, page], options.reverse_merge(target: '_blank')
+      link_to "#{icon_tag('eye')} Preview".html_safe, [:preview, page, revision], options.reverse_merge(target: '_blank')
     end
 
     def link_to_settings
