@@ -1,6 +1,6 @@
 SimpleForm.setup do |config|
 
-  config.wrappers :default, :class => 'control-group', :tag => 'div',  :error_class => 'error',
+  config.wrappers :default, :class => 'form-group', :tag => 'div',  :error_class => 'error',
     :hint_class => :field_with_hint, :error_class => :field_with_errors do |b|
 
     b.use :html5
@@ -11,11 +11,9 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
-    b.wrapper :tag => 'div', :class => 'controls' do |ba|
-      ba.use :input
-      ba.use :hint,  :wrap_with => { :tag => :div, :class => :hint }
-      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
-    end
+    b.use :input, input_html: {class: 'form-control'}
+    b.use :hint,  :wrap_with => { :tag => :div, :class => :hint }
+    b.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
   end
 
   config.default_wrapper = :default
