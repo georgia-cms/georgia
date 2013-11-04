@@ -27,8 +27,6 @@ class @PagesTable
     @deleteBtn.removeClass('hide')
 
   hideActions: () =>
-    @spamBtn.addClass('hide')
-    @hamBtn.addClass('hide')
     @deleteBtn.addClass('hide')
 
   stopEvent: (event) ->
