@@ -4,6 +4,7 @@ module Georgia
     load_and_authorize_resource class: Georgia::Revision
 
     before_filter :prepare_page
+    before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :review, :approve, :decline, :revert, :preview]
 
     def index
       @revisions = @page.revisions
@@ -14,15 +15,13 @@ module Georgia
     end
 
     def edit
-      @revision = Revision.find(params[:id])
       @ui_sections = Georgia::UiSection.all
     end
 
+    # Stores a copy of the current revision before updating
     def update
-      @revision = Revision.find(params[:id])
-      @revision.update_attributes(params[:revision])
 
-      if @revision.save
+      if @revision.update_attributes(params[:revision])
         respond_to do |format|
           format.html { redirect_to [:edit, @page, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
           format.js { render layout: false }
@@ -39,7 +38,6 @@ module Georgia
     end
 
     def destroy
-      @revision = Revision.find(params[:id])
       @message = "#{@revision.title} was successfully deleted."
       @revision.destroy
       redirect_to @page, notice: @message
@@ -59,29 +57,27 @@ module Georgia
 
     def approve
       @revision.approve
-      message = "#{current_user.name} has successfully approved and published #{@revision.title} #{instance_name}."
-      notify(message)
-      redirect_to @page, notice: message
+      redirect_to @page, notice: "#{current_user.name} has successfully approved and published #{@revision.title}."
     end
 
     def decline
       @revision.decline
-      message = "#{current_user.name} has successfully published #{@revision.title} #{instance_name}."
-      notify(message)
-      redirect_to [:edit, @page, @revision], notice: message
+      redirect_to [:edit, @page, @revision], notice: "#{current_user.name} has successfully published #{@revision.title}."
     end
 
     def revert
       @revision.revert
-      message = "#{current_user.name} has successfully published #{@revision.title} #{instance_name}."
-      notify(message)
-      redirect_to @page, notice: message
+      redirect_to @page, notice: "#{current_user.name} has successfully published #{@revision.title}."
     end
 
     private
 
     def prepare_page
       @page = Page.find(params[:page_id])
+    end
+
+    def prepare_revision
+      @revision = Revision.find(params[:id])
     end
 
   end
