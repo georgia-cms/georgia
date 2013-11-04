@@ -42,7 +42,7 @@ Georgia::Engine.routes.draw do
         get :approve
         get :store
         get :decline
-        get :revert
+        get :restore
       end
     end
   end

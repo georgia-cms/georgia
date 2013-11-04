@@ -16,8 +16,8 @@ module Georgia
 
         def draft
           revision = Georgia::Clone.new(self).draft
-          self.revisions << revision
-          revision
+          revision.revisionable = self
+          revision.save
         end
 
         def approve_revision revision

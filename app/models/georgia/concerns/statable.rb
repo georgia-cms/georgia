@@ -37,7 +37,7 @@ module Georgia
           end
 
           # Revisions
-          event :revert do
+          event :restore do
             transition :revision => :published
           end
 

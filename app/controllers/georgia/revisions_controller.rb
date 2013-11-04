@@ -4,10 +4,10 @@ module Georgia
     load_and_authorize_resource class: Georgia::Revision
 
     before_filter :prepare_page
-    before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :review, :approve, :decline, :revert, :preview]
+    before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :review, :approve, :decline, :restore, :preview]
 
     def index
-      @revisions = @page.revisions
+      @revisions = @page.revisions.order('created_at DESC').reject{|r| r == @page.current_revision}
     end
 
     def show
@@ -20,6 +20,7 @@ module Georgia
 
     # Stores a copy of the current revision before updating
     def update
+      store_revision if @revision.is_current_revision?
 
       if @revision.update_attributes(params[:revision])
         respond_to do |format|
@@ -65,8 +66,8 @@ module Georgia
       redirect_to [:edit, @page, @revision], notice: "#{current_user.name} has successfully published #{@revision.title}."
     end
 
-    def revert
-      @revision.revert
+    def restore
+      @revision.restore
       redirect_to @page, notice: "#{current_user.name} has successfully published #{@revision.title}."
     end
 
@@ -78,6 +79,13 @@ module Georgia
 
     def prepare_revision
       @revision = Revision.find(params[:id])
+    end
+
+    def store_revision
+      if @page.draft
+        revision = @page.revisions.last
+        revision.store
+      end
     end
 
   end

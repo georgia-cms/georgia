@@ -19,5 +19,9 @@ module Georgia
 
     has_many :widgets, through: :ui_associations
 
+    def is_current_revision?
+      revisionable && revisionable.revision_id == self.revisionable_id
+    end
+
   end
 end

@@ -81,17 +81,13 @@ module Georgia
     # Publishes the page
     def publish
       @page.publish
-      message = "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
-      notify(message)
-      redirect_to :back, notice: message
+      redirect_to :back, notice: "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
     end
 
     # Unpublishes the page
     def unpublish
       @page.unpublish
-      message = "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
-      notify(message)
-      redirect_to :back, notice: message
+      redirect_to :back, notice: "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
     end
 
     # Sorts subpages/children from pages#settings
