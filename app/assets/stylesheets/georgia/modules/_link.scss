@@ -1,0 +1,30 @@
+.links {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  ol {
+    list-style: none outside none;
+    padding: 0;
+    margin: 0 0 0 20px;
+  }
+  li {
+    margin: 10px 0;
+  }
+
+  .placeholder {
+    background-color: #cbcbcb;
+  }
+
+  .link {
+    background-color: $white;
+  }
+  .toggle {
+    float: right;
+  }
+}
+
+.link-form {
+  padding: 4px 6px;
+  border: 1px solid #cbcbcb;
+  cursor: pointer;
+}

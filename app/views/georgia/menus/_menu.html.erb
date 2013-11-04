@@ -1,14 +1,6 @@
-<h3><%= menu.name %></h3>
-<% menu.links.each do |link| %>
-  <div class='link'>
-    <span class="pull-right">
-      <a href='#' class='bb-edit'><i class='icon-edit icon-white'></i></a>
-      <a href='#' class='bb-remove'><i class='icon-trash icon-white'></i></a>
-    </span>
-    <span class="disclose pull-left"><span></span></span>
-    <span class="handle pull-left"><i class="icon-th">&nbsp;</i></span>
-    <span class='text'>
-      <strong><%= link.title %></strong> <small class='muted'><%= link.text %></small>
-    </span>
+<div class="menu">
+  <span class="menu-name"><%= link_to menu.name, [:edit, menu] %></span>
+  <div class="pull-right">
+    <%= link_to_delete menu %>
   </div>
-<% end -%>
+</div>

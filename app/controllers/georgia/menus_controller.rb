@@ -27,6 +27,7 @@ module Georgia
 
     def edit
       @menu = Georgia::Menu.find(params[:id])
+      @links = @menu.links.roots
     end
 
     def destroy

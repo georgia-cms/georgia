@@ -1,0 +1,15 @@
+<li id='<%= dom_id(link) %>' class='link'>
+  <div class="link-form">
+    <strong><%= link.title %></strong>
+    <small class='muted'><%= link.text %></small>
+    <% if link.children.any? %>
+      <%= link_to '#', class: 'toggle js-expand' do %>
+        <%= icon_tag('angle-down') %>
+        <%= icon_tag('angle-up hide') %>
+      <% end -%>
+    <% end -%>
+  </div>
+  <ol class="<%= 'hide' if link.children.any? %>">
+    <%= render link.children %>
+  </ol>
+</li>

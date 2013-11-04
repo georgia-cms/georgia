@@ -4,15 +4,15 @@
 
   <fieldset>
     <div class="fieldset-help">
-      <legend>Menus</legend>
-      <p class="hint">
-        Link lists help your visitors navigate around your website.
-      </p>
-      <p>
+      <legend>
+        Menus
+        <%= tooltip_tag(icon_tag('info-circle'), "Link lists help your visitors navigate around your website.") %>
+      </legend>
+      <p class='hint'>
         <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn' %>
       </p>
     </div>
-    <div class="fieldset-fields">
+    <div class="fieldset-fields control-group">
       <% if @menus and @menus.any? %>
         <%= render @menus %>
       <% else %>
@@ -22,5 +22,3 @@
   </fieldset>
 
 </section>
-
-<%= link_to "#{icon_tag 'plus-sign'} Add Menu".html_safe, new_menu_url, class: 'btn btn-primary' %>
