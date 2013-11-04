@@ -2,7 +2,7 @@
   <header class='header-main'>
     <%= link_to_back %>
     <ul class='nav'>
-      <%= revision_action_list(self, @revision) %>
+      <%= page_actions_tag(@page, @revision) %>
     </ul>
     <div class="header-actions">
       <%= button_to_save %>

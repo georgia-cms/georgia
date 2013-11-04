@@ -34,7 +34,7 @@ Georgia::Engine.routes.draw do
       get :copy
       get :store
       get :settings
-      post :flush_cache
+      post 'flush-cache', to: :flush_cache, as: :flush_cache
     end
 
     resources :revisions do

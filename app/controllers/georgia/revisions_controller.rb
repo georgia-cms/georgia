@@ -18,7 +18,6 @@ module Georgia
     end
 
     def edit
-      # build_associations
       @ui_sections = Georgia::UiSection.all
     end
 
@@ -49,16 +48,6 @@ module Georgia
 
     private
 
-    def build_associations
-      @revision.slides.build unless @revision.slides.any?
-      I18n.available_locales.map(&:to_s).each do |locale|
-        @revision.contents << Georgia::Content.new(locale: locale) unless @revision.contents.select{|c| c.locale == locale}.any?
-        @revision.slides.each do |slide|
-          slide.contents << Georgia::Content.new(locale: locale) unless slide.contents.select{|c| c.locale == locale}.any?
-        end
-      end
-    end
-
     def render_default_template(path)
       render "revisions/#{path}"
     rescue ActionView::MissingTemplate
@@ -66,12 +55,8 @@ module Georgia
     end
 
     def prepare_revision
-      @revision = decorate(model.find(params[:id]))
-      @page = @revision.revisionable
-    end
-
-    def decorate revision
-      Georgia::RevisionDecorator.decorate(revision)
+      @revision = Revision.find(params[:id])
+      @page = Page.find(params[:page_id])
     end
 
   end
