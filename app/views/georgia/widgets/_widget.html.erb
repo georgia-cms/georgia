@@ -1,33 +1,35 @@
-<div class="widget js-widget">
-  <div class="widget-show">
-    <div class="widget-header"><h4 class='widget-title--ellipsed'><%= widget.title %></h4></div>
-    <div class="widget-content"><%= widget.text %></div>
-    <div class="widget-footer">
-      <% if widget.featured? %>
-        <div class="widget-featured">
-          <span class="tag" title='Featured on <%= pluralize(widget.featured_count, 'page') %>'><%= widget.featured_count %></span>
-        </div>
-      <% end -%>
-      <%= link_to icon_tag('pencil'), '#', class: 'widget-action js-edit' %>
-      <%= link_to_delete widget, text: icon_tag('trash-o'), class: 'widget-action' %>
-    </div>
-  </div>
-  <div class="widget-form hide">
-    <%= simple_form_for widget, remote: true, html: {class: 'js-spin-and-roll'} do |f| %>
-      <%= f.simple_fields_for :contents, widget.content do |c| %>
-        <div class="widget-header">
-          <div class="widget-title">
-            <%= c.input :title, label: false %>
+<div class="col-md-3 js-widget">
+  <div class="widget">
+    <div class="widget-show">
+      <div class="widget-header"><h4 class='widget-title--ellipsed'><%= widget.title %></h4></div>
+      <div class="widget-content"><%= widget.text %></div>
+      <div class="widget-footer">
+        <% if widget.featured? %>
+          <div class="widget-featured">
+            <span class="tag" title='Featured on <%= pluralize(widget.featured_count, 'page') %>'><%= widget.featured_count %></span>
           </div>
-        </div>
-        <div class="widget-content">
-          <%= c.input :text, as: :text, label: false, input_html: {rows: 9} %>
-        </div>
-        <div class="widget-footer">
-          <%= link_to "#{icon_tag('times')} Cancel".html_safe, '#', class: 'btn js-close' %>
-          <%= button_to_save %>
-        </div>
+        <% end -%>
+        <%= link_to icon_tag('pencil'), '#', class: 'widget-action js-edit' %>
+        <%= link_to_delete widget, text: icon_tag('trash-o'), class: 'widget-action' %>
+      </div>
+    </div>
+    <div class="widget-form hide">
+      <%= simple_form_for widget, remote: true, html: {class: 'js-spin-and-roll'} do |f| %>
+        <%= f.simple_fields_for :contents, widget.content do |c| %>
+          <div class="widget-header">
+            <div class="widget-title">
+              <%= c.input :title, label: false %>
+            </div>
+          </div>
+          <div class="widget-content">
+            <%= c.input :text, as: :text, label: false, input_html: {rows: 9} %>
+          </div>
+          <div class="widget-footer">
+            <%= link_to "#{icon_tag('times')} Cancel".html_safe, '#', class: 'btn js-close' %>
+            <%= button_to_save %>
+          </div>
+        <% end -%>
       <% end -%>
-    <% end -%>
+    </div>
   </div>
 </div>
