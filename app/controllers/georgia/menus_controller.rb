@@ -30,6 +30,13 @@ module Georgia
       @links = @menu.links.roots
     end
 
+    def update
+      @menu = Georgia::Menu.find(params[:id])
+      if @menu.update_attributes(params[:menu])
+        head :ok
+      end
+    end
+
     def destroy
       @menu = Georgia::Menu.find(params[:id])
       @menu.destroy

@@ -3,9 +3,11 @@ class @MenuForm
   constructor: (element) ->
     @element = $(element)
     @links = @element.find('li')
+    @addLinkBtn = $('.js-add-link')
     @setBindings()
 
   setBindings: () =>
+    @addLinkBtn.on('click', @addLink)
     @loadPortlets()
     @element.nestedSortable(
       forcePlaceholderSize: true
@@ -25,6 +27,15 @@ class @MenuForm
 
   loadPortlets: =>
     $.each(@links, -> new LinkPortlet($(this)))
+
+  addLink: (event) =>
+    event.preventDefault()
+    $.ajax(
+      url: "/admin/links/new"
+    ).done( (data) =>
+      console.log $(data)
+      @element.append(data)
+    )
 
 $.fn.menuForm = () ->
   @each ->

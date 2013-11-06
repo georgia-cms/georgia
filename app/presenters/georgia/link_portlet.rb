@@ -16,13 +16,9 @@ module Georgia
 
     private
 
-    def last_descendant?
-      !@portlet.children.any?
-    end
-
     def children_portlets
       output = ActiveSupport::SafeBuffer.new
-      @portlet.children.each do |link|
+      sublinks.each do |link|
         output << link_portlet_tag(link)
       end
       content_tag(:ol, output, class: 'hide')
@@ -60,13 +56,21 @@ module Georgia
     end
 
     def remove_tag
-      link_to(icon_tag('times'), '#', class: 'btn-delete js-remove-slide')
+      link_to(icon_tag('times'), '#', class: 'btn-delete js-remove-link')
     end
 
     def actions_tag options={}
       content_tag(:div, class: 'actions') do
         expand_tag + remove_tag
       end
+    end
+
+    def last_descendant?
+      !sublinks.any?
+    end
+
+    def sublinks
+      @portlet.persisted? ? @portlet.children : []
     end
 
   end

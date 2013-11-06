@@ -47,5 +47,5 @@ $.fn.spinningForm = () ->
     new SpinningForm($(this))
 
 jQuery ->
-  $("form.js-spin-and-roll").each () ->
+  $("form[data-remote='true']").each () ->
     $(this).spinningForm()

@@ -23,8 +23,6 @@ class @SlidePortlet
     portlet.find('input.js-destroy').val('1')
     portlet.hide()
 
-
-
 $.fn.slidePortlet = () ->
   @each ->
     new SlidePortlet($(this))
