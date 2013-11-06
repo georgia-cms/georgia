@@ -2,29 +2,50 @@
   list-style: none outside none;
   margin: 0;
   padding: 0;
+  float: right;
+  width: 100%;
+
   ol {
     list-style: none outside none;
     padding: 0;
-    margin: 0 0 0 20px;
+    margin: 5px 0 5px 20px;
+    clear: both;
   }
+
   li {
+    @include clearfix;
     margin: 10px 0;
+    > div {
+      height: 45px;
+      line-height: 45px;
+      background-color: #4b8df8;
+      color: $white;
+    }
   }
 
   .placeholder {
     background-color: #cbcbcb;
   }
 
-  .link {
-    background-color: $white;
-  }
-  .toggle {
+  .actions {
     float: right;
+    margin-right: 0;
+    line-height: 33px;
   }
 }
 
 .link-form {
-  padding: 4px 6px;
-  border: 1px solid #cbcbcb;
-  cursor: pointer;
+  padding: 5px;
+  display: inline-block;
+
+  input {
+    float: left;
+  }
+  .input-label {
+    width: 200px;
+    margin-right: 10px;
+  }
+  .input-permalink {
+    width: 350px;
+  }
 }

@@ -1,11 +1,6 @@
 .portlet {
-  cursor: pointer;
-  margin-bottom: 10px;
-  line-height: 35px;
-  background-color: #4b8df8;
-  color: $white;
-
   .handle {
+    cursor: pointer;
     float: left;
     margin: 0 15px;
   }

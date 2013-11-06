@@ -1,7 +1,10 @@
-<li id='<%= dom_id(link) %>' class='link'>
-  <div class="link-form">
-    <strong><%= link.title %></strong>
-    <small class='muted'><%= link.text %></small>
+<li id='<%= dom_id(link) %>'>
+  <div class="link">
+    <span class="handle"><%= icon_tag 'ellipsis-vertical' %></span>
+    <div class="link-form">
+      <%= f.input :title %>
+      <%= f.input :text %>
+    </div>
     <% if link.children.any? %>
       <%= link_to '#', class: 'toggle js-expand' do %>
         <%= icon_tag('angle-down') %>

@@ -1,4 +1,4 @@
-body.edit {
+body.edit, #menus.index {
   .body-main {
     width: 80%;
     position: relative;
@@ -13,6 +13,9 @@ fieldset {
   }
   .fieldset-fields {
     padding-left: 200px;
+  }
+  > .control-group {
+    @extend .fieldset-fields;
   }
   legend { margin: 0 0 10px 0; }
   fieldset > .control-group {

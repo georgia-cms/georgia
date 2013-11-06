@@ -13,7 +13,7 @@
 
 //= require_tree .//vendor
 //= require_tree .//prototypes
-//= require georgia/bootstrap
+//= require georgia/bootstrap-vendor
 //= require georgia/featured-image
 //= require georgia/keybindings
 //= require georgia/media

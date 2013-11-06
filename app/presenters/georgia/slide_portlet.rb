@@ -9,9 +9,12 @@ module Georgia
     end
 
     def to_s
-      portlet_tag(@portlet) do |p|
-        destroy_input_tag + (id_input_tag if persisted?) + actions_tag + slide_tag
-      end
+      output = ActiveSupport::SafeBuffer.new
+      output << destroy_input_tag
+      output << id_input_tag if persisted?
+      output << actions_tag
+      output << slide_tag
+      portlet_tag(output)
     end
 
     private

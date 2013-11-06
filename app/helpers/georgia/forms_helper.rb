@@ -32,10 +32,8 @@ module Georgia
       Georgia::SlidePortlet.new(self, slide, args)
     end
 
-    def portlet_tag portlet, options={}, &block
-      content_tag :li, options.reverse_merge(class: 'portlet', id: dom_id(portlet), data: {portlet: portlet.id}) do
-        content_tag(:span, icon_tag('resize-vertical'), class: 'handle') + capture(&block)
-      end
+    def link_portlet_tag link, args={}
+      Georgia::LinkPortlet.new(self, link, args)
     end
 
     def parent_page_collection
