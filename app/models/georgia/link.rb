@@ -3,7 +3,7 @@ module Georgia
 
     include Concerns::Contentable
 
-    has_ancestry orphan_strategy: :destroy
+    has_ancestry orphan_strategy: :adopt
     attr_accessible :parent_id
 
     attr_accessible :menu_id
