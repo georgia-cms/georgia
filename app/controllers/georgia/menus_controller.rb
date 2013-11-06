@@ -33,7 +33,15 @@ module Georgia
     def update
       @menu = Georgia::Menu.find(params[:id])
       if @menu.update_attributes(params[:menu])
-        head :ok
+        respond_to do |format|
+          format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully updated." }
+          format.js { head :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { render :edit }
+          format.js { head :internal_server_error }
+        end
       end
     end
 

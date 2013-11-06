@@ -1,7 +1,7 @@
 module Georgia
   class SlidePortlet < Portlet
 
-    delegate :choose_image_tag, :picture_tag, :text_field_tag, :text_area_tag, :dom_id, to: :view_context
+    delegate :choose_image_tag, :picture_tag, :text_field_tag, :text_area_tag, to: :view_context
 
     def initialize view_context, slide, args={}
       @content = args.fetch(:content, slide.content)

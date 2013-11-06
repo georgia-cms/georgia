@@ -30,7 +30,6 @@ module Georgia
       else
         respond_to do |format|
           format.html {
-            build_associations
             render :edit
           }
           format.js { head :internal_server_error }

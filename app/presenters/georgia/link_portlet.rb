@@ -3,6 +3,11 @@ module Georgia
 
     delegate :text_field_tag, :link_portlet_tag, to: :view_context
 
+    def initialize view_context, link, args={}
+      @content = args.fetch(:content, link.content)
+      super
+    end
+
     def to_s
       form = ActiveSupport::SafeBuffer.new
       form << handle_tag
@@ -37,16 +42,27 @@ module Georgia
     end
 
     def hidden_fields
-      hidden_field_tag("menu[links_attributes][#{id}][_destroy]", 0, class: 'js-destroy') +
-      (hidden_field_tag("menu[links_attributes][#{id}][id]", id) if persisted?)
+      destroy_input_tag + (id_input_tag if persisted?) + locale_input_tag
     end
 
     def label_field_tag
-      text_field_tag(:title, @portlet.title, class: 'form-control input-label input-sm')
+      text_field_tag("menu[links_attributes][#{id}][contents_attributes][#{content_id}][title]", @content.title, class: 'form-control input-label input-sm', placeholder: 'Label')
     end
 
     def permalink_field_tag
-      text_field_tag(:text, @portlet.text, class: 'form-control input-permalink input-sm')
+      text_field_tag("menu[links_attributes][#{id}][contents_attributes][#{content_id}][text]", @content.text, class: 'form-control input-permalink input-sm', placeholder: 'Permalink, e.g. /my-url')
+    end
+
+    def destroy_input_tag
+      hidden_field_tag("menu[links_attributes][#{id}][_destroy]", 0, class: 'js-destroy')
+    end
+
+    def id_input_tag
+      hidden_field_tag("menu[links_attributes][#{id}][id]", id)
+    end
+
+    def locale_input_tag
+      hidden_field_tag("menu[links_attributes][#{id}][contents_attributes][#{content_id}][locale]", @content.locale)
     end
 
     def expand_tag options={}
@@ -71,6 +87,10 @@ module Georgia
 
     def sublinks
       @portlet.persisted? ? @portlet.children : []
+    end
+
+    def content_id
+      @content.persisted? ? @content.id : 0
     end
 
   end
