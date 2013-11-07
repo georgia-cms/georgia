@@ -12,18 +12,6 @@
 
     <% if signed_in? %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <%= form_for :search, url: georgia.search_pages_url, method: :get, html: {class: 'navbar-form navbar-left', role: 'search'} do |f| %>
-            <%= facets_inputs([:tg]) %>
-            <%= hidden_field_tag :s, params[:s] if params[:s] %>
-            <%= hidden_field_tag :t, params[:t] if params[:t] %>
-            <div class="form-group">
-              <%= text_field_tag :query, params[:query], class: 'input-search form-control', placeholder: 'Search' %>
-            </div>
-            <button class="btn">
-              <%= icon_tag('search') %>
-            </button>
-          <% end -%>
-
         <ul class="nav navbar-nav navbar-right">
           <li class='header-mail'>
             <%= link_to icon_tag('envelope fa-2x'), '#' %>

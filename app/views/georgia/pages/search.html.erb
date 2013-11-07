@@ -10,7 +10,12 @@
         <th class='checkbox-cell'>
           <%= checkboxable_all_tag :pages %>
         </th>
-        <th>Title</th>
+        <th>
+          <%= link_to "#{icon_tag('copy')} Copy".html_safe, '#', class: 'btn btn-warning btn-xs disabled', role: 'button' %>
+          <%= link_to "#{icon_tag('thumbs-up')} Publish".html_safe, '#', class: 'btn btn-warning btn-xs disabled', role: 'button' %>
+          <%= link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, '#', class: 'btn btn-warning btn-xs disabled', role: 'button' %>
+          <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', class: 'btn btn-danger btn-xs disabled js-delete', role: 'button' %>
+        </th>
         <th colspan='3'>
           <%= pagination_tag(self, @search) %>
         </th>

@@ -1,11 +1,16 @@
 <header class='header-main'>
-  <div class="header-gutter">
-    <h1>Search</h1>
-  </div>
   <div class="header-title">
-    <%= link_to "#{icon_tag('copy')} Copy".html_safe, '#', class: 'btn btn-warning disabled', role: 'button' %>
-    <%= link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, '#', class: 'btn btn-warning disabled', role: 'button' %>
-    <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', class: 'btn btn-danger disabled js-delete', role: 'button' %>
+    <%= form_for :search, url: georgia.search_pages_url, method: :get, html: {role: 'search'} do |f| %>
+      <%= facets_inputs([:tg]) %>
+      <%= hidden_field_tag :s, params[:s] if params[:s] %>
+      <%= hidden_field_tag :t, params[:t] if params[:t] %>
+      <div class="input-group">
+        <div class="input-group-btn">
+          <button class="btn btn-default"><%= icon_tag('search') %></button>
+        </div>
+        <%= text_field_tag :query, params[:query], class: 'form-control input-search', placeholder: 'Search' %>
+      </div>
+    <% end -%>
   </div>
   <div class="header-actions">
     <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn btn-primary' %>

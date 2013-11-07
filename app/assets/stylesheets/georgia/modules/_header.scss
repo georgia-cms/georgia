@@ -35,13 +35,13 @@
 }
 
 .header-title {
-  i {display: none;}
-  input {display: none;}
+  i.fa-pencil {display: none;}
+  input#revision_title {display: none;}
 }
 
 .header-pagination { text-align: right; }
 .header-mail a { color: $font-header; }
-.header-actions { float: right; }
+.header-actions a { float: right; }
 
 .navbar-brand {
   min-width: $width-sidebar;
