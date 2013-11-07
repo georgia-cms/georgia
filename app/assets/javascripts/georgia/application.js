@@ -17,5 +17,4 @@
 //= require georgia/featured-image
 //= require georgia/keybindings
 //= require georgia/media
-//= require georgia/pages
 //= require georgia/modal
