@@ -3,7 +3,8 @@
     <%= checkboxable_tag page %>
   </td>
   <td>
-    <b><%= link_to page.title, [:edit, page] %></b>
+    <%= icon_tag 'pencil hide pull-right muted' %>
+    <%= link_to page.title, [:edit, page], class: 'page-title js-toggle-siblings' %>
   </td>
   <td>
     <%= page_tag_list(page) %>

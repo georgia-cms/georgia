@@ -9,8 +9,8 @@ class @Checkboxable
     @checkboxes.bind('click', @update)
 
   update: (event) =>
-    element = $(event.currentTarget)
-    @updateCheckbox(element)
+    checkbox = $(event.currentTarget)
+    @updateCheckbox(checkbox)
     @updateSelectAll()
 
   updateCheckboxes: () =>
@@ -81,6 +81,7 @@ class @Checkboxable
     )
     result
 
+  getCheckbox: (event)  -> $(event.currentTarget).closest('tr').find("[data-checkbox='child']").first()
   getState: (el)        -> $(el).data('state')
   setState: (el, state) -> $(el).data('state', state)
 

@@ -18,3 +18,4 @@
 //= require georgia/keybindings
 //= require georgia/media
 //= require georgia/modal
+//= require georgia/toggle
