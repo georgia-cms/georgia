@@ -9,6 +9,18 @@ body {
   font-size: 14px;
 }
 
+#main {
+  @include row;
+  margin: 150px 20px 0 0;
+  padding-left: ($width-sidebar+20);
+  padding-bottom: ($height-footer+20);
+  padding-right: $padding-main;
+  position: relative;
+  width: 100%;
+}
+
+.body-main { @include span-columns(10); }
+
 a {
   text-decoration: none;
   color: $font-link;

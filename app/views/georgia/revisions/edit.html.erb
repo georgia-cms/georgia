@@ -1,45 +1,32 @@
-<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'} do |f| %>
+<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'}, defaults: { input_html: { class: "form-control" } } do |f| %>
   <header class='header-main'>
-    <div class="row">
-      <div class="col-md-2">
-        <%= link_to_back search_pages_path %>
-      </div>
-      <div class="col-md-8">
-        <div class="header-title">
-          <h1>
-            <%= link_to @revision.title, '#' %>
-            <%= icon_tag 'pencil' %>
-          </h1>
-          <%= f.input_field :title, class: 'input-lg' %>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="header-actions">
-          <%= page_actions_tag(@page, @revision) %>
-        <%= button_to_save %>
-        </div>
-      </div>
+    <div class="header-gutter">
+      <%= link_to_back search_pages_path %>
+    </div>
+    <div class="header-title">
+      <h1>
+        <%= link_to @revision.title, '#' %>
+        <%= icon_tag 'pencil' %>
+      </h1>
+      <%= f.input_field :title, class: 'input-lg' %>
+    </div>
+    <div class="header-actions">
+      <%= page_actions_tag(@page, @revision) %>
+    <%= button_to_save %>
     </div>
   </header>
   <section class="body-main">
     <%= f.simple_fields_for :contents, @revision.content do |c| %>
       <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
     <% end -%>
-
-    <fieldset>
-      <div class="fieldset-help">
-        <legend>Template</legend>
-      </div>
-      <%= f.input :template, collection: Georgia.templates, label: false %>
-    </fieldset>
-
+    <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
     <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
     <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
+    <footer>
+      <hr />
+      <%= link_to_delete [@page, @revision] %>
+    </footer>
   </section>
-  <footer>
-    <hr />
-    <%= link_to_delete [@page, @revision] %>
-  </footer>
 <% end %>
 
 <%= content_for :footer do %>

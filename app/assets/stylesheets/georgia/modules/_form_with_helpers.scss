@@ -1,33 +1,14 @@
-body.edit, #menus.index {
-  .body-main {
-    width: 80%;
-    position: relative;
-  }
-}
-
 fieldset {
-  .fieldset-help {
-    width: 200px;
-    float: left;
-    padding-right: 20px;
-  }
+  @include row;
+  .fieldset-help { @include span-columns(2 of 10); }
   .fieldset-fields {
-    padding-left: 200px;
-  }
-  > .control-group {
-    @extend .fieldset-fields;
+    @include span-columns(8 of 10);
+    .control-group {margin-bottom: 20px;}
   }
   legend { margin: 0 0 10px 0; }
-  fieldset > .control-group {
-    margin-left: 200px;
-    margin-bottom: 20px;
-  }
   .hint {
     color: #999;
     font-variant: italic;
-  }
-  input.string, textarea, .select2-container {
-    width: 100%;
   }
   input.string, textarea, select {
     border: 1px solid $border-input;

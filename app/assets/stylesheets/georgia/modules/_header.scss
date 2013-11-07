@@ -10,6 +10,7 @@
 }
 
 .header-main {
+  @include row();
   position: fixed;
   top: $height-header;
   left: 0;
@@ -23,6 +24,9 @@
   border-bottom: 1px solid $border-header-main;
   background-color: $bg-header-main;
   background-color: rgba(236,245,251,0.9);
+  .header-gutter   { @include span-columns(2); }
+  .header-title    { @include span-columns(8); }
+  .header-actions  { @include span-columns(2); }
 }
 
 .header-pagination { text-align: right; }

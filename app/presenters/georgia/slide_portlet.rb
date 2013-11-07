@@ -46,11 +46,11 @@ module Georgia
     end
 
     def title_input_tag
-      text_field_tag("revision[slides_attributes][#{id}][contents_attributes][#{content_id}][title]", @content.title, class: 'string', placeholder: 'Title')
+      text_field_tag("revision[slides_attributes][#{id}][contents_attributes][#{content_id}][title]", @content.title, class: 'form-control', placeholder: 'Title')
     end
 
     def text_input_tag
-      text_area_tag("revision[slides_attributes][#{id}][contents_attributes][#{content_id}][text]", @content.text, rows: 6, placeholder: 'Content')
+      text_area_tag("revision[slides_attributes][#{id}][contents_attributes][#{content_id}][text]", @content.text, rows: 6, placeholder: 'Content', class: 'form-control')
     end
 
     def locale_input_tag

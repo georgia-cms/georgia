@@ -5,5 +5,7 @@
       <%= link_to "#{icon_tag('cogs')} Manage Widgets".html_safe, widgets_path, class: 'btn' %>
     </p>
   </div>
-  <%= render partial: 'georgia/revisions/fields/ui_section', collection: @ui_sections, as: :ui_section, locals: {f: f} %>
+  <div class="fieldset-fields">
+    <%= render partial: 'georgia/revisions/fields/ui_section', collection: @ui_sections, as: :ui_section, locals: {f: f} %>
+  </div>
 </fieldset>

@@ -2,7 +2,9 @@
   <div class="fieldset-help">
     <legend>Content</legend>
   </div>
-  <%= f.input :text, label: false, as: :ckeditor, input_html: {toolbar: 'Full'} %>
+  <div class="fieldset-fields">
+    <%= f.input :text, label: false, as: :ckeditor, input_html: {toolbar: 'Full'} %>
+  </div>
 </fieldset>
 <fieldset>
   <div class="fieldset-help">
@@ -11,14 +13,16 @@
       The excerpt and keywords will be included as &lt;meta&gt; description and keywords tags, useful for search engines.
     </p>
   </div>
-  <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: "Describe in a short paragraph what this page is about." %>
-  <%= f.input :keyword_list, label: 'Keywords', hint: "Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero.", input_html: {class: 'js-token-input', 'data-token' => 'keywords'} %>
+  <div class="fieldset-fields">
+    <%= f.input :excerpt, as: :text, label: 'Excerpt/Description', input_html: {rows: 3}, hint: "Describe in a short paragraph what this page is about." %>
+    <%= f.input :keyword_list, label: 'Keywords', hint: "Comma-separated list of keywords, e.g. spiderman, superman, comics, superhero.", input_html: {class: 'js-token-input', 'data-token' => 'keywords'} %>
+  </div>
 </fieldset>
 <fieldset>
   <div class="fieldset-help">
     <legend>Featured Image</legend>
   </div>
-  <div class="control-group">
+  <div class="fieldset-fields">
     <%= choose_image_tag(f.object, target: 'revision_content_image', input: f.hidden_field(:image_id)) %>
   </div>
 </fieldset>
