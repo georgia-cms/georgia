@@ -12,9 +12,9 @@ class @PagesTable
 
   update: () =>
     if @getChecked().length
-      @showActions()
+      @enableActions()
     else
-      @hideActions()
+      @disableActions()
 
   delete: (event) =>
     @stopEvent(event)
@@ -23,11 +23,11 @@ class @PagesTable
       type: 'DELETE'
     )
 
-  showActions: () =>
-    @deleteBtn.removeClass('hide')
+  enableActions: () =>
+    @deleteBtn.removeClass('disabled')
 
-  hideActions: () =>
-    @deleteBtn.addClass('hide')
+  disableActions: () =>
+    @deleteBtn.addClass('disabled')
 
   stopEvent: (event) ->
     event.stopPropagation()
