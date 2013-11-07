@@ -1,3 +1,0 @@
-<strong><%= @widget.get('title') %></strong>
-<a href='#' class='bb-edit edit_icon'><i class='icon-edit icon-white'></i></a>
-<a href='#' class='bb-remove remove_icon'><i class='icon-trash icon-white'></i></a>
