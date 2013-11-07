@@ -46,11 +46,5 @@ module Georgia
       content_tag(:span, icon_tag('info-circle'), options.reverse_merge(title: tooltip, class: 'js-tooltip', data: {placement: 'right'}))
     end
 
-    def page_tag_list page
-      page.tag_list.map do |tag|
-        content_tag(:span, "#{tag} #{link_to(icon_tag('times'), '#')}".html_safe, class: 'tag')
-      end.join(' ').html_safe
-    end
-
   end
 end
