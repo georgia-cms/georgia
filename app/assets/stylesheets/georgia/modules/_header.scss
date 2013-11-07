@@ -27,6 +27,16 @@
   .header-gutter   { @include span-columns(2); }
   .header-title    { @include span-columns(8); }
   .header-actions  { @include span-columns(2); }
+
+  h1 {
+    display: inline;
+    margin-top: 0;
+  }
+}
+
+.header-title {
+  i {display: none;}
+  input {display: none;}
 }
 
 .header-pagination { text-align: right; }

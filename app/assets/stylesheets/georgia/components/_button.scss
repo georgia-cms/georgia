@@ -1,44 +1,17 @@
-.btn {
-  text-decoration: none;
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 0;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.428571429;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid transparent;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-
-  // Default
-  color: $btn-color;
-  background-color: $btn-bg;
-  border-color: $btn-border;
-
-  &:hover {
-    text-decoration: none;
-    background-color: $btn-bg-hover;
-  }
+.btn-back {
+  color: $white;
+  background-color: $grey;
+  border: 1px solid $grey;
+  &:hover {background-color: darken($grey, 5%);}
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 .btn-file-upload {
-  @extend .btn-save;
+  @extend .btn;
+  @extend .btn-success;
   position: relative;
   overflow: hidden;
-  margin-right: 100px;
-}
-
-.btn-back {
-  @extend .btn;
-  padding: 6px 20px;
-  float: left;
   margin-right: 100px;
 }
 
@@ -61,35 +34,6 @@
 .btn-pagination {
   @extend .btn;
   padding: 5px 10px;
-}
-
-.btn-save {
-  @extend .btn;
-  background-color: $btn-save-bg;
-  border-color: $btn-save-border;
-  &:hover { background-color: $btn-save-bg-hover; }
-}
-
-.btn-delete {
-  @extend .btn;
-  background-color: $btn-delete-bg;
-  border-color: $btn-delete-border;
-  &:hover { background-color: $btn-delete-bg-hover; }
-}
-
-.btn-primary {
-  @extend .btn;
-  background-color: $btn-primary-bg;
-  border-color: $btn-primary-border;
-  &:hover { background-color: $btn-primary-bg-hover; }
-}
-
-.btn-action {
-  @extend .btn;
-  margin-right: 8px;
-  background-color: $btn-action-bg;
-  border-color: $btn-action-border;
-  &:hover { background-color: $btn-action-bg-hover; }
 }
 
 .btn--jumbo {

@@ -1,11 +1,17 @@
 <header class='header-main'>
-  <%#= link_to "#{icon_tag('copy')} Copy".html_safe, '#', class: 'btn-action' %>
-  <%#= link_to "#{icon_tag('thumbs-o-down')} Unpublish".html_safe, '#', class: 'btn-action' %>
-  <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', class: 'btn-delete js-delete hide' %>
-  <div class="header-actions">
-    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn-primary' %>
+  <div class="header-gutter">
+    <h1>Search</h1>
   </div>
-  <%= content_for :footer do %>
-    <%= render 'georgia/shared/forms/page' %>
-  <% end -%>
+  <div class="header-title">
+    <%= link_to "#{icon_tag('copy')} Copy".html_safe, '#', class: 'btn btn-warning disabled', role: 'button' %>
+    <%= link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, '#', class: 'btn btn-warning disabled', role: 'button' %>
+    <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', class: 'btn btn-danger disabled js-delete', role: 'button' %>
+  </div>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn btn-primary' %>
+  </div>
 </header>
+
+<%= content_for :footer do %>
+  <%= render 'georgia/shared/forms/page' %>
+<% end -%>

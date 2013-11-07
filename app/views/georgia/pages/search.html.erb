@@ -20,8 +20,8 @@
       </tbody>
     </table>
   <% else -%>
-    <h1>Yikes! There are <%= pluralize(0, instance_name.humanize.downcase) %>.</h1>
-    <%= link_to "Get Started", '#page_form', class: 'js-modal btn-primary btn--jumbo' %>
+    <h2>Yikes! There are <%= pluralize(0, instance_name.humanize.downcase) %>.</h2>
+    <%= link_to "Get Started", '#page_form', class: 'js-modal btn btn-primary btn--jumbo' %>
   <% end -%>
 
 </section>

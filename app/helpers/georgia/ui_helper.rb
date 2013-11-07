@@ -34,7 +34,7 @@ module Georgia
     end
 
     def link_to_back url=:back
-      link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn-back'
+      link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn btn-back'
     end
 
     def link_to_delete url, options={}

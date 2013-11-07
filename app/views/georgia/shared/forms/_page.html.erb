@@ -11,9 +11,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="submit" class="btn-save">
-        <%= icon_tag 'check' %> Create
-      </button>
+      <%= button_to_save "#{icon_tag('check')} Create".html_safe %>
     </div>
 
   <% end %>
