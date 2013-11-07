@@ -1,9 +1,9 @@
 module Georgia
-  class MediaLibrary
+  class MediaLibraryPresenter
 
     attr_accessor :view_context
 
-    delegate :content_tag, :link_to, :picture_tag, :hidden_field_tag, to: :view_context
+    delegate :content_tag, :link_to, :picture_tag, :hidden_field_tag, :icon_tag, to: :view_context
 
     def initialize view_context, imageable, args={}
       @view_context = view_context
@@ -19,7 +19,7 @@ module Georgia
     end
 
     def choose_image_button_tag
-      link_to('Choose Image', '#media_library', class: 'btn-primary js-modal js-media-library', data: {media: "##{@target}"})
+      link_to("#{icon_tag('picture')} Choose Image".html_safe, '#media_library', class: 'btn btn-primary js-modal js-media-library', data: {media: "##{@target}"})
     end
 
     def media_featured_tag

@@ -22,7 +22,7 @@ module Georgia
     end
 
     def choose_image_tag imageable, args={}
-      Georgia::MediaLibrary.new(self, imageable, args).to_s
+      Georgia::MediaLibraryPresenter.new(self, imageable, args).to_s
     end
 
     def widget_portlet_tag ui_association, args={}
