@@ -29,10 +29,6 @@ module Georgia
       end
     end
 
-    def link_to_close text=icon_tag('times'), options={}
-      link_to text, "#", options.reverse_merge(class: 'btn-close js-close')
-    end
-
     def link_to_back url=:back
       link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn btn-back'
     end

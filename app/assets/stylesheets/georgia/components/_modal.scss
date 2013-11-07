@@ -1,65 +1,14 @@
-@mixin modal-size($width, $height) {
+@mixin modal-size($width) {
   width: $width;
-  height: $height;
   margin-left: -($width/2);
-  margin-top: -($height/2);
 }
 
-%modal {
-  @extend .hide;
-  @extend .box;
-  position: fixed;
-  @include transition(opacity 0.3s linear, top 0.3s ease-out, bottom 0.3s ease-out, margin-top 0.3s ease-out);
-  box-shadow: 0 1px 3px $font;
-
-  top: 50%;
-  left: 50%;
-  bottom: auto;
-  right: auto;
-  padding: 0;
-  margin-left: -250px;
-  background-clip: padding-box;
-
-  /* Hidden */
-  @include opacity(0);
-  pointer-events: none;
-
-  z-index: $z-modal;
-  outline: none;
-
-  &.is-open {
-    @include opacity(1);
-    pointer-events: auto;
-    @extend .show;
-  }
-  .btn-close { z-index: $z-btn--close; }
-}
-
-.modal {
-  @extend %modal;
-  @include modal-size(600px, 390px);
-}
-
-.modal--small {
-  @extend %modal;
-  @include modal-size(420px, 250px);
-  .modal-title { font-size: 1.2em; }
-}
 
 .modal--media {
-  @extend %modal;
-  @include modal-size(730px, 640px);
+  .modal-dialog {width: 750px;}
   .modal-content-actions {
     @include row;
     margin-bottom: 20px;
     .search {float: right;}
   }
-}
-
-.modal-header  { @extend .box-header; }
-.modal-content { @extend .box-content; }
-.modal-footer  { @extend .box-footer; }
-.modal-title   {
-  @extend .box-title;
-  font-size: 1.8em;
 }

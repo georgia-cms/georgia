@@ -1,25 +1,28 @@
-<div id='media_library' class="modal--media">
-  <%= link_to_close %>
-  <div class="modal-header">
-    <h4 class='modal-title'>Choose Image</h4>
-  </div>
-
-  <div class="modal-content">
-    <div class="modal-content-actions">
-      <div class="search">
-        <input id="search" name="search" type="text" class='input-search' data-media='search' placeholder='Search...' />
+<div id='media_library' class="modal modal--media fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= link_to_close %>
+        <h4 class='modal-title'>Choose Image</h4>
       </div>
-      <span class="btn btn-success btn-file-upload">
-        <span class='btn-file-upload-text'>
-          <%= icon_tag 'plus' %> Add image
-        </span>
-        <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
-      </span>
-    </div>
 
-    <div class="pictures">
-      <%= spinner_tag %>
+      <div class="modal-body">
+        <div class="modal-content-actions">
+          <div class="search">
+            <input id="search" name="search" type="text" class='input-search' data-media='search' placeholder='Search...' />
+          </div>
+          <span class="btn btn-success btn-file-upload">
+            <span class='btn-file-upload-text'>
+              <%= icon_tag 'plus' %> Add image
+            </span>
+            <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
+          </span>
+        </div>
+
+        <div class="pictures">
+          <%= spinner_tag %>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>

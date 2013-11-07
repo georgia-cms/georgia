@@ -13,10 +13,10 @@
     <% end -%>
   </div>
   <div class="header-actions">
-    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#page_form', class: 'js-modal btn btn-primary' %>
+    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#page_form'} %>
   </div>
 </header>
 
 <%= content_for :footer do %>
-  <%= render 'georgia/shared/forms/page' %>
+  <%= render 'georgia/shared/modals/page' %>
 <% end -%>

@@ -19,7 +19,7 @@ module Georgia
     end
 
     def choose_image_button_tag
-      link_to("#{icon_tag('picture')} Choose Image".html_safe, '#media_library', class: 'btn btn-primary js-modal js-media-library', data: {media: "##{@target}"})
+      link_to("#{icon_tag('picture-o')} Choose Image".html_safe, '#', class: 'btn btn-primary js-media-library', data: {media: "##{@target}", toggle: 'modal', target: '#media_library'})
     end
 
     def media_featured_tag

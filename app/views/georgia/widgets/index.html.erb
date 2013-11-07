@@ -13,7 +13,7 @@
     <% end -%>
   <% else -%>
     <h1>Yikes! There are 0 widgets.</h1>
-    <%= link_to "Get Started", '#page_form', class: 'js-modal btn-primary btn--jumbo' %>
+    <%= link_to "Get Started", '#', class: 'btn btn-primary btn--jumbo', data: {toggle: 'modal', target: '#widget_form'} %>
   <% end -%>
 
 </section>

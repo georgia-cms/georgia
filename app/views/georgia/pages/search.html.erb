@@ -26,7 +26,7 @@
     </table>
   <% else -%>
     <h2>Yikes! There are <%= pluralize(0, instance_name.humanize.downcase) %>.</h2>
-    <%= link_to "Get Started", '#page_form', class: 'js-modal btn btn-primary btn--jumbo' %>
+    <%= link_to "Get Started", '#', class: 'btn btn-primary btn--jumbo', data: {toggle: 'modal', target: '#page_form'} %>
   <% end -%>
 
 </section>
