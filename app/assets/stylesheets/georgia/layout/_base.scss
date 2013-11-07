@@ -63,6 +63,11 @@ textarea {
   line-height: 1.4em;
 }
 
+select {
+  max-width: 250px;
+  display: inline-block !important;
+}
+
 // Tables
 // td:first-child {width: 20%;}
 td.labels {width: 72px; padding: 4px; text-align: center;}

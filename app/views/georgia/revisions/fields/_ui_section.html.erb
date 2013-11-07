@@ -6,7 +6,9 @@
         <%= widget_portlet_tag(ui_association) %>
       <% end -%>
     </ul>
-    <%= select_tag :widget, widgets_collection, prompt: 'Select a widget' %>
-    <%= link_to "Add", '#', class: 'btn js-add-widget' %>
+    <div class="form-group">
+      <%= select_tag :widget, widgets_collection, prompt: 'Select a widget', class: 'form-control select-widget' %>
+      <%= link_to "#{icon_tag('plus')} Add".html_safe, '#', class: 'btn btn-default js-add-widget' %>
+    </div>
   </div>
 </div>

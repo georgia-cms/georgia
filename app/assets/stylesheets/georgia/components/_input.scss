@@ -7,13 +7,6 @@
   }
 }
 
-input.string, input.email, input.password, input.numeric, input.input-search, select, textarea {
-  @extend %input;
-  background-color: $bg-input;
-  border: 1px solid #cbcbcb;
-  color: $font-input;
-}
-
 input.input-search {
   padding: 5px;
   width: 400px;
@@ -51,27 +44,5 @@ div.input.file {
   }
   span.error {
     color: red;
-  }
-}
-
-.input-prepend {
-  white-space: nowrap;
-  input {
-    width: initial;
-    height: 36px;
-  }
-  .add-on {
-    height: 36px;
-    vertical-align: top;
-    margin-right: -5px;
-    display: inline-block;
-    width: auto;
-    padding: 10px 5px;
-    font-weight: normal;
-    line-height: 1em;
-    text-align: center;
-    text-shadow: 0 1px 0 #ffffff;
-    background-color: #eeeeee;
-    border: 1px solid #ccc;
   }
 }

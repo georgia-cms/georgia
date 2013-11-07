@@ -1,4 +1,4 @@
-<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical form-with-helpers js-spin-and-roll', data: {'page-id' => @page.id}, defaults: { input_html: { class: "text" }}} do |f| %>
+<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), remote: true, html: {class: 'form-vertical form-with-helpers js-spin-and-roll', data: {'page-id' => @page.id}, defaults: { input_html: { class: "form-control" }}} do |f| %>
   <header class='header-main'>
     <div class="header-gutter">
       <%= link_to_back search_pages_path %>
@@ -26,10 +26,12 @@
         </legend>
       </div>
       <div class="fieldset-fields">
-        <%= f.input :slug, label: false, wrapper: :prepend do %>
-          <span class="add-on"><%= Georgia.url %></span>
-          <%= f.input_field :slug, value: @page.url, data: {slug: @page.slug} %>
-        <% end -%>
+        <div class="input-group">
+          <div class="input-group-btn">
+            <a class='btn btn-default disabled'><%= Georgia.url %></a>
+          </div>
+          <%= f.input_field :slug, value: @page.url, data: {slug: @page.slug}, class: 'form-control' %>
+        </div>
       </div>
     </fieldset>
 
@@ -61,7 +63,7 @@
           <%= label_tag :subpages %>
           <% if @page.persisted? and @page.has_children? %>
             <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
-              <% Georgia::PagesDecorator.decorate(@page.children.ordered).each do |page| %>
+              <% @page.children.ordered.each do |page| %>
                 <%= content_tag_for(:li, page, class: 'subpage') do %>
                   <%= icon_tag 'align-justify subpage-handle' %>
                   <%= link_to icon_tag('long-arrow-right'), edit_page_path(page), class: 'subpage-edit-link' %>
