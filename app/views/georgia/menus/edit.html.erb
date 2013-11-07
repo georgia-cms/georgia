@@ -1,4 +1,5 @@
 <%= simple_form_for @menu, remote: true do |f| %>
+  <%= hidden_field_tag "menu[ancestry]", nil, class: 'js-menu-ancestry' %>
   <header class='header-main'>
     <%= link_to_back menus_path %>
     <h1 class='header-title'><%= icon_tag 'link' %> <%= @menu.name %></h1>
@@ -23,7 +24,8 @@
             <% end -%>
           </ol>
         <% else %>
-          <p>There are currently no navigation links. <%= link_to 'Create a new one', '#' %></p>
+          <ol class="links js-nested-sortable"></ol>
+          <p class='blank-state'>There are currently no navigation links. <%= link_to 'Create a new one', '#', class: 'js-add-link' %></p>
         <% end %>
       </div>
     </fieldset>

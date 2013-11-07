@@ -10,10 +10,10 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label
-    b.use :error, :wrap_with => { :tag => :span, :class => :error }
-    b.use :input, input_html: {class: 'form-control'}
-    b.use :hint,  :wrap_with => { :tag => :div, :class => :hint }
-    b.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    b.use :error
+    b.use :input
+    b.use :hint
+    b.use :error
   end
 
   config.default_wrapper = :default

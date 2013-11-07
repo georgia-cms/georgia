@@ -93,5 +93,9 @@ module Georgia
       @content.persisted? ? @content.id : 0
     end
 
+    def dom_id portlet
+      portlet.persisted? ? view_context.dom_id(portlet) : "link_#{id}"
+    end
+
   end
 end

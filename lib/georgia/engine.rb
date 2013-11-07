@@ -6,7 +6,6 @@ module Georgia
     extend Georgia::Paths
 
     require 'rubygems'
-    require 'henry'
     require 'zip'
     require 'simple_form'
     require 'devise'

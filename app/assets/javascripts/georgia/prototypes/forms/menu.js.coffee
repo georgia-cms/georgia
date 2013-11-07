@@ -4,6 +4,7 @@ class @MenuForm
     @element = $(element)
     @links = @element.find('li')
     @addLinkBtn = $('.js-add-link')
+    @treeInput = $('.js-menu-ancestry')
     @setBindings()
 
   setBindings: () =>
@@ -23,18 +24,22 @@ class @MenuForm
       isTree: true
       expandOnHover: 700
       startCollapsed: true
-    ).disableSelection()
+      update: () =>
+        @treeInput.val(@element.nestedSortable('serialize'))
+    )
 
   loadPortlets: =>
     $.each(@links, -> new LinkPortlet($(this)))
 
   addLink: (event) =>
     event.preventDefault()
+    $('.blank-state').remove()
     $.ajax(
       url: "/admin/links/new"
     ).done( (data) =>
-      console.log $(data)
       @element.append(data)
+      portlet = $("#{$(data).attr('id')}")
+      new LinkPortlet(portlet)
     )
 
 $.fn.menuForm = () ->

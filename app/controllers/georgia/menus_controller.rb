@@ -1,18 +1,18 @@
 module Georgia
   class MenusController < ApplicationController
 
-    load_and_authorize_resource class: Georgia::Menu
+    load_and_authorize_resource class: Menu
 
     def index
-      @menus = Georgia::Menu.scoped.page(params[:page])
+      @menus = Menu.scoped.page(params[:page])
     end
 
     def new
-      @menu = Georgia::Menu.new
+      @menu = Menu.new
     end
 
     def create
-      @menu = Georgia::Menu.new(params[:menu])
+      @menu = Menu.new(params[:menu])
 
       if @menu.save
         redirect_to [:edit, @menu], notice: "#{@menu.name} was successfully created."
@@ -26,12 +26,15 @@ module Georgia
     end
 
     def edit
-      @menu = Georgia::Menu.find(params[:id])
+      @menu = Menu.find(params[:id])
       @links = @menu.links.roots
     end
 
     def update
-      @menu = Georgia::Menu.find(params[:id])
+      @menu = Menu.find(params[:id])
+      if ancestry_tree = params[:menu].delete(:ancestry)
+        prepare_ancestry_attributes(ancestry_tree)
+      end
       if @menu.update_attributes(params[:menu])
         respond_to do |format|
           format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully updated." }
@@ -46,10 +49,23 @@ module Georgia
     end
 
     def destroy
-      @menu = Georgia::Menu.find(params[:id])
+      @menu = Menu.find(params[:id])
       @menu.destroy
 
       redirect_to menus_url
     end
+
+    private
+
+    def prepare_ancestry_attributes(ancestry_tree)
+      merge_attributes(MenuAncestryParser.new(ancestry_tree).to_hash)
+    end
+
+    def merge_attributes(ancestry)
+      ancestry.each do |id,attrs|
+        params[:menu][:links_attributes][id].merge!(attrs)
+      end
+    end
+
   end
 end

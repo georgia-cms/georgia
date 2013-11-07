@@ -2,9 +2,8 @@ class @LinkPortlet
 
   constructor: (element) ->
     @element = $(element)
-    @expandBtn = @element.find('.js-expand')
-    @removeBtn = @element.find('.js-remove-link')
-
+    @expandBtn = @element.find('> div > div.actions > .js-expand')
+    @removeBtn = @element.find('> div > div.actions > .js-remove-link')
     @setBindings()
 
   setBindings: () =>
