@@ -1,5 +1,26 @@
-<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll'} do |f| %>
-  <%= render 'header' %>
+<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'} do |f| %>
+  <header class='header-main'>
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to_back search_pages_path %>
+      </div>
+      <div class="col-md-8">
+        <div class="header-title">
+          <h1>
+            <%= link_to @revision.title, '#' %>
+            <%= icon_tag 'pencil' %>
+          </h1>
+          <%= f.input_field :title, class: 'input-lg' %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="header-actions">
+          <%= page_actions_tag(@page, @revision) %>
+        <%= button_to_save %>
+        </div>
+      </div>
+    </div>
+  </header>
   <section class="body-main">
     <%= f.simple_fields_for :contents, @revision.content do |c| %>
       <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>

@@ -1,9 +1,8 @@
 <fieldset>
   <div class="fieldset-help">
-    <legend>Page Content</legend>
+    <legend>Content</legend>
   </div>
-  <%= f.input :title %>
-  <%= f.input :text, label: 'Content', as: :ckeditor, input_html: {toolbar: 'Full'} %>
+  <%= f.input :text, label: false, as: :ckeditor, input_html: {toolbar: 'Full'} %>
 </fieldset>
 <fieldset>
   <div class="fieldset-help">

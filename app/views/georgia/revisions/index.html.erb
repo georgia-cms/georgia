@@ -1,5 +1,18 @@
-<%= render 'header' %>
-
+<header class='header-main'>
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to_back search_pages_path %>
+    </div>
+    <div class="col-md-8">
+      <h1 class='header-title'><%= @page.title %></h1>
+    </div>
+    <div class="col-md-2">
+      <div class="header-actions">
+        <%= page_actions_tag(@page, @revision) %>
+      </div>
+    </div>
+  </div>
+</header>
 <section class="body-main">
   <div class="revisions">
     <%= render @revisions %>
