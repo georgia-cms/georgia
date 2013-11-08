@@ -1,4 +1,4 @@
-<header class='header-main'>
+<header class='header-main hidden-print'>
   <div class="header-gutter">
     <%= link_to_back search_messages_path %>
   </div>
@@ -10,7 +10,7 @@
 <section class="body-main">
   <h2><%= @message.subject %></h2>
   <div class="message-info">
-    <div class="btn-group pull-right">
+    <div class="btn-group pull-right hidden-print">
       <%= link_to "#{icon_tag('reply')} Reply".html_safe, "mailto:#{@message.email}", class: 'btn btn-warning btn-sm', target: '_blank' %>
       <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
