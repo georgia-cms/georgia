@@ -3,6 +3,8 @@ module Georgia
 
     include Georgia::Concerns::Helpers
 
+    load_and_authorize_resource class: Georgia::Page
+
     before_filter :prepare_new_page, only: [:search]
     before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :flush_cache, :draft, :publish, :unpublish]
 
