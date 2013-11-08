@@ -34,11 +34,6 @@
   }
 }
 
-.header-title {
-  i.fa-pencil {display: none;}
-  input#revision_title {display: none;}
-}
-
 .header-pagination { text-align: right; }
 .header-mail a { color: $font-header; }
 .header-actions .btn { float: right; }

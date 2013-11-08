@@ -8,7 +8,9 @@
         <%= link_to @revision.title, '#' %>
         <%= icon_tag 'pencil' %>
       </h1>
-      <%= f.input_field :title, class: 'input-lg form-control' %>
+      <%= f.simple_fields_for :contents, @revision.content do |c| %>
+        <%= c.input_field :title, class: 'input-lg form-control' %>
+      <% end -%>
     </div>
     <div class="header-actions">
       <%= page_actions_tag(@page, @revision) %>
