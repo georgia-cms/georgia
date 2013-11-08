@@ -35,12 +35,6 @@
       <b>Phone</b>: <%= @message.phone_or_none %>
     </p>
     <p>
-      <b>User IP</b>: <%= @message.user_ip %>
-    </p>
-    <p>
-      <b>User Agent</b>: <%= @message.user_agent %>
-    </p>
-    <p>
       <b>Attachment</b>:
       <% if @message.attachment.try(:file) and @message.attachment.file.exists? %>
       <%= link_to @message.attachment.file.filename, @message.attachment.url %>
