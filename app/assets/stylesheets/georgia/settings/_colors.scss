@@ -13,7 +13,7 @@ $beige: #f3e6ce;
 $blue: #0362fd;
 
 $bg-devised: $black;
-$bg-header: #434343;
+$bg-header: $white;
 $bg-input: $white;
 $bg-input-login: $white;
 $bg-footer: $white;
@@ -27,5 +27,6 @@ $font-input: $black;
 $font-input-login: $black;
 $font-header: #cbcbcb;
 
+$border-header: #cbcbcb;
 $border-header-main: darken($light_grey, 5%);
 $border-input: darken($light_grey, 5%);
