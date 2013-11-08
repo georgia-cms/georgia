@@ -1,0 +1,23 @@
+%clickable {
+  a { display: block; }
+}
+.message-name, .message-message, .message-attachment, .message-phone, .message-timestamp {
+  @extend %clickable;
+}
+.message-timestamp {
+  @extend .timestamp--long;
+}
+
+.message-info {
+  line-height: 30px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+}
+.message-additional-info {
+  padding: 10px 0;
+  margin: 20px 0;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+}

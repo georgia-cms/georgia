@@ -3,9 +3,9 @@ class @MessagesTable
   constructor: (element) ->
     @element      = $(element)
     @checkboxes   = @element.find("input:checkbox")
-    @deleteBtn    = $('.js-delete')
-    @spamBtn      = $('.js-spam')
-    @hamBtn       = $('.js-ham')
+    @deleteBtn    = @element.find('.js-delete')
+    @spamBtn      = @element.find('.js-spam')
+    @hamBtn       = @element.find('.js-ham')
     @setBindings()
 
   setBindings: () =>
@@ -15,10 +15,7 @@ class @MessagesTable
     @hamBtn.on('click', @ham)
 
   update: () =>
-    if @getChecked().length
-      @showActions()
-    else
-      @hideActions()
+    if @getChecked().length then @showActions() else @hideActions()
 
   delete: (event) =>
     @stopEvent(event)
@@ -33,15 +30,15 @@ class @MessagesTable
   ham: (event) ->
     @stopEvent(event)
 
-  showActions: () =>
-    @spamBtn.removeClass('hide')
-    @hamBtn.removeClass('hide')
-    @deleteBtn.removeClass('hide')
+  enableActions: () =>
+    @spamBtn.removeClass('disabled')
+    @hamBtn.removeClass('disabled')
+    @deleteBtn.removeClass('disabled')
 
-  hideActions: () =>
-    @spamBtn.addClass('hide')
-    @hamBtn.addClass('hide')
-    @deleteBtn.addClass('hide')
+  disableActions: () =>
+    @spamBtn.addClass('disabled')
+    @hamBtn.addClass('disabled')
+    @deleteBtn.addClass('disabled')
 
   stopEvent: (event) ->
     event.stopPropagation()

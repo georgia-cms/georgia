@@ -6,11 +6,15 @@ module Georgia
     end
 
     def subject_truncated
-      h.truncate(subject, length: 60, separator: ' ').html_safe if subject.present?
+      h.truncate(h.strip_tags(subject), length: 60, separator: ' ').html_safe if subject.present?
     end
 
     def message_truncated
-      h.truncate(message, length: 200, separator: ' ').html_safe if message.present?
+      h.truncate(h.strip_tags(message), length: 200, separator: ' ').html_safe if message.present?
+    end
+
+    def name_or_anonymous
+      name || 'Anonymous'
     end
 
   end

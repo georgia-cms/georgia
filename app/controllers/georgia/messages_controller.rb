@@ -3,7 +3,7 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Message
 
-    before_filter :prepare_search, only: [:search, :edit, :spam, :ham]
+    before_filter :prepare_search, only: [:search, :show, :spam, :ham]
 
 
     def index
@@ -31,7 +31,7 @@ module Georgia
       end
     end
 
-    def edit
+    def show
       @message = Message.find(params[:id]).decorate
     end
 

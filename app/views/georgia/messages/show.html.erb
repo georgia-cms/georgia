@@ -1,0 +1,52 @@
+<header class='header-main'>
+  <div class="header-gutter">
+    <%= link_to_back search_messages_path %>
+  </div>
+  <div class="header-title"></div>
+  <div class="header-actions">
+  </div>
+</header>
+
+<section class="body-main">
+  <h2><%= @message.subject %></h2>
+  <div class="message-info">
+    <div class="btn-group pull-right">
+      <%= link_to "#{icon_tag('reply')} Reply".html_safe, "mailto:#{@message.email}", class: 'btn btn-warning btn-sm', target: '_blank' %>
+      <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <%= message_actions_list(@message) %>
+      </ul>
+    </div>
+    <strong>
+      <%= @message.name_or_anonymous %>
+    </strong>
+    <span>&lt;<%= @message.email %>&gt;</span>
+    <span>on <%= @message.created_at.strftime('%F %H:%M') %></span>
+    <span>sent from <%= link_to @message.referrer, @message.referrer %></span>
+  </div>
+  <div class="message-content">
+    <%= @message.message.html_safe %>
+  </div>
+  <div class="message-additional-info">
+    <p>
+      <b>Phone</b>: <%= @message.phone_or_none %>
+    </p>
+    <p>
+      <b>User IP</b>: <%= @message.user_ip %>
+    </p>
+    <p>
+      <b>User Agent</b>: <%= @message.user_agent %>
+    </p>
+    <p>
+      <b>Attachment</b>:
+      <% if @message.attachment.try(:file) and @message.attachment.file.exists? %>
+      <%= link_to @message.attachment.file.filename, @message.attachment.url %>
+      <% else -%>
+      <span class='muted'>There were no attachment.</span>
+      <% end -%>
+    </p>
+  </div>
+</section>

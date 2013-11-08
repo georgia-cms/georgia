@@ -7,6 +7,11 @@
     padding: 10px 4px;
     border-bottom: 1px solid #ddd;
   }
+  .tiny {
+    @extend .nowrap;
+    width: 25px;
+    max-width: 25px;
+  }
   .checkbox-cell {
     width: 35px;
     text-align: center;
@@ -25,10 +30,8 @@
     width: 70px;
     max-width: 70px;
   }
-  .tiny {
-    @extend .nowrap;
-    width: 25px;
-    max-width: 25px;
+  .message-attachment {
+    @extend .tiny;
   }
   .thumbnail-cell {
     width: 65px;

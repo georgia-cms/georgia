@@ -1,14 +1,25 @@
-<%= render 'header' %>
+<header class='header-main'>
+  <div class="header-title"></div>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag('reply')} Reply".html_safe, "mailto:#{@message.email}", class: 'btn btn-warning' if @message %>
+  </div>
+</header>
 
 <section class="body-main">
 
-  <table class="table-results messages js-checkboxable">
+  <table class="table table-hover table-results messages js-checkboxable">
     <thead>
       <th class='checkbox-cell'>
         <%= checkboxable_all_tag :messages %>
       </th>
-      <th>Name</th>
-      <th>Message</th>
+      <th colspan='2'>
+        <%= link_to "#{icon_tag('thumbs-up')} ham".html_safe, '#', class: 'btn btn-warning btn-xs js-ham disabled' %>
+        <%= link_to "#{icon_tag('thumbs-down')} spam".html_safe, '#', class: 'btn btn-warning btn-xs js-spam disabled' %>
+        <%= link_to "#{icon_tag('trash-o')} trash".html_safe, '#', class: 'btn btn-danger btn-xs js-delete disabled' %>
+        <%#= link_to '#', class: 'btn btn-warning' do %>
+          <%#= icon_tag('tags') %> <%#= icon_tag('caret-down') %>
+        <%# end -%>
+      </th>
       <th colspan='3'>
         <%= pagination_tag(self, @search) %>
       </th>

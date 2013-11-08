@@ -2,18 +2,26 @@
   <td class='checkbox-cell'>
     <%= checkboxable_tag message %>
   </td>
-  <td><%= message.name %></td>
-  <td>
-    <span class="subject-message">
-      <span class="subject"><%= message.subject_truncated %></span>
-      <small class='muted'><%= message.message_truncated %></small>
-    </span>
+  <td class='message-name'>
+    <%= link_to message.name, message %>
   </td>
-  <td><span class="phone"><%= message.phone_or_none %></span></td>
-  <td class='tiny'>
+  <td class='message-message'>
+    <%= link_to message do %>
+      <span class="subject-message">
+        <span class="subject"><%= message.subject_truncated %></span>
+        <small class='muted'><%= message.message_truncated %></small>
+      </span>
+    <% end -%>
+  </td>
+  <td class='message-phone'>
+    <%= link_to message do %>
+      <span class="phone"><%= message.phone_or_none %></span>
+    <% end -%>
+  </td>
+  <td class='message-attachment'>
     <%= icon_tag('paper-clip') %>
   </td>
-  <td class='timestamp--long'>
+  <td class='message-timestamp'>
     <%= message.created_at.strftime('%F %H:%M') %>
   </td>
 </tr>
