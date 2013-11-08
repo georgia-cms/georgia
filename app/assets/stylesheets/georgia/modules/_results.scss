@@ -20,26 +20,13 @@
     width: 65px;
     height: 65px;
   }
-  .phone {
-    @extend .ellipsis;
-    width: 120px;
-    max-width: 120px;
-  }
   .small {
     @extend .nowrap;
     width: 70px;
     max-width: 70px;
   }
-  .message-attachment {
-    @extend .tiny;
-  }
   .thumbnail-cell {
     width: 65px;
-  }
-  .subject-message {
-    @extend .nowrap;
-    @extend .ellipsis;
-    max-width: 900px;
   }
   .timestamp {
     @extend .nowrap;

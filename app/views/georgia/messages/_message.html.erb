@@ -1,16 +1,15 @@
-<tr id='<%= dom_id(message) %>' class='message' data-status="<%= message.spam? ? 'spam' : 'ham' %>">
+<tr id='<%= dom_id(message) %>' class='message' data-status="<%= message.status %>">
   <td class='checkbox-cell'>
     <%= checkboxable_tag message %>
   </td>
   <td class='message-name'>
-    <%= link_to message.name, message %>
+    <%= link_to message do %>
+      <span><%= message.name %></span>
+    <% end -%>
   </td>
   <td class='message-message'>
     <%= link_to message do %>
-      <span class="subject-message">
-        <span class="subject"><%= message.subject_truncated %></span>
-        <small class='muted'><%= message.message_truncated %></small>
-      </span>
+      <span><%= message.subject_truncated %> <small class='muted'><%= message.message_truncated %></small></span>
     <% end -%>
   </td>
   <td class='message-phone'>
