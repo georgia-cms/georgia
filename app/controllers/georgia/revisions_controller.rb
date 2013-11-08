@@ -5,6 +5,7 @@ module Georgia
 
     before_filter :prepare_page
     before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :review, :approve, :decline, :restore, :preview]
+    before_filter :prepare_content, only: [:edit]
 
     def index
       @revisions = @page.revisions.order('created_at DESC').reject{|r| r == @page.current_revision}
@@ -78,6 +79,15 @@ module Georgia
 
     def prepare_revision
       @revision = Revision.find(params[:id])
+    end
+
+    def prepare_content
+      if locale = params[:locale]
+        @content = @revision.contents.select{|c| c.locale.to_s == locale}.first
+        @content ||= Georgia::Content.new(locale: locale, title: @revision.title) if locale
+      else
+        @content = @revision.content
+      end
     end
 
     def store_revision
