@@ -1,9 +1,8 @@
 class @Tags
 
-  constructor: (element, context='tags', options={}) ->
+  constructor: (element, options={}) ->
     @el = $(element)
     @tags = []
-    @context = context
 
     @options =
       placeholder: 'Enter tags'
@@ -20,8 +19,8 @@ class @Tags
     if query?
       $.ajax(
         type: 'GET'
-        url: '/api/tags/search'
-        data: {q: query, c: @context}
+        url: '/admin/api/tags/search'
+        data: {q: query}
         async: false
         success: (data) =>
           @tags = $.map(data.results, (e) => e.text)
@@ -31,7 +30,7 @@ class @Tags
 
 $.fn.taggable = ->
   @each ->
-    new Tags(this, $(this).data('token'))
+    new Tags(this)
 
 jQuery ->
   $('input.js-token-input').taggable()

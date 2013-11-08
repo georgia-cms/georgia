@@ -17,6 +17,9 @@ Georgia::Engine.routes.draw do
         get :pictures
       end
     end
+    resources :tags, only: [] do
+      get :search, on: :collection
+    end
   end
 
   concern :pageable do
