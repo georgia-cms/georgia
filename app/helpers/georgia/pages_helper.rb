@@ -6,13 +6,13 @@ module Georgia
       Georgia::PageActionsPresenter.new(self, page, revision, options)
     end
 
-    def page_tag_list page
+    def facet_tag_list taggable_instance
       output = ActiveSupport::SafeBuffer.new
-      page.tag_list.each{|tag| output << Georgia::FacetTagPresenter.new(self, tag) }
+      taggable_instance.tag_list.each{|tag| output << Georgia::FacetTagPresenter.new(self, tag) }
       output
     end
 
-    def page_active_tag_list
+    def active_facet_tag_list
       return unless params[:tg] and !params[:tg].empty?
       output = ActiveSupport::SafeBuffer.new
       params[:tg].each{|tag| output << Georgia::ActiveFacetTagPresenter.new(self, tag) }

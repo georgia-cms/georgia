@@ -16,11 +16,8 @@ module Georgia
         fulltext params[:query] do
           fields(:filename, :tags)
         end
-        facet :tags, :extension#, extra: [:any, :none]
-        facet(:size, zeros: params[:s].blank?){Ckeditor::Asset::SIZE_RANGE.each{|k,v| row(k){with(:size, v)}}}
         with(:extension, params[:e]) unless params[:e].blank?
         with(:tags).any_of(params[:tg]) unless params[:tg].blank?
-        Ckeditor::Asset::SIZE_RANGE.each{|k,v| with(:size, v) if params[:s] == k }
         order_by (params[:o] || :updated_at), (params[:dir] || :desc)
         paginate(page: params[:page], per_page: (params[:per] || 8))
       end

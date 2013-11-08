@@ -8,11 +8,8 @@
 }
 
 .btn-file-upload {
-  @extend .btn;
-  @extend .btn-success;
   position: relative;
   overflow: hidden;
-  margin-right: 100px;
 }
 
 .btn-close {

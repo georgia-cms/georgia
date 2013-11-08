@@ -9,9 +9,7 @@
     <% end %>
   </td>
   <td>
-    <% asset.tag_list.each do |tag| %>
-    <span class='tag'><%= tag %> <%= icon_tag 'remove' %></span>
-    <% end -%>
+    <%= facet_tag_list(picture) %>
     <%= link_to asset.filename, edit_media_path(asset) %>
   </td>
   <td class='small'>

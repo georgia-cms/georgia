@@ -14,9 +14,9 @@ class @MediaTable
   update: () =>
     @updateDownloadableIds()
     if @getChecked().length
-      @showActions()
+      @enableActions()
     else
-      @hideActions()
+      @disableActions()
 
   delete: (event) =>
     @stopEvent(event)
@@ -30,13 +30,13 @@ class @MediaTable
   updateDownloadableIds: () =>
     $('.downloadable-ids').val(@getIds())
 
-  showActions: () =>
-    @downloadBtn.removeClass('hide')
-    @deleteBtn.removeClass('hide')
+  enableActions: () =>
+    @downloadBtn.removeClass('disabled')
+    @deleteBtn.removeClass('disabled')
 
-  hideActions: () =>
-    @downloadBtn.addClass('hide')
-    @deleteBtn.addClass('hide')
+  disableActions: () =>
+    @downloadBtn.addClass('disabled')
+    @deleteBtn.addClass('disabled')
 
   stopEvent: (event) ->
     event.stopPropagation()

@@ -2,12 +2,22 @@
 
 <section class="body-main">
 
+  <%= active_facet_tag_list %>
+
   <table class="table-results assets js-checkboxable">
     <thead>
       <th class='checkbox-cell'>
         <%= checkboxable_all_tag :assets %>
       </th>
-      <th colspan='7'>
+      <th colspan='3'>
+        <%= form_for :download, url: download_media_index_path, method: :post, html: {style: 'display:inline;'} do |f| %>
+          <%= hidden_field_tag "ids", nil, class: 'downloadable-ids' %>
+          <%= content_tag :button, "#{icon_tag('download')} Download".html_safe, type: "submit", class: "btn btn-warning js-download disabled" %>
+        <% end -%>
+        <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure you want to delete this picture?"}, remote: true, class: 'btn btn-danger js-delete disabled' if can? :destroy, Ckeditor::Asset %>
+
+      </th>
+      <th colspan='3'>
         <%= pagination_tag(self, @search) %>
       </th>
     </thead>
