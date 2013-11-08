@@ -18,9 +18,7 @@
     </div>
   </header>
   <section class="body-main">
-    <%= f.simple_fields_for :contents, @revision.content do |c| %>
-      <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
-    <% end -%>
+    <%= render partial: 'georgia/revisions/fields/content', locals: {f: f} %>
     <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
     <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
     <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
