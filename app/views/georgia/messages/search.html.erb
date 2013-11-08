@@ -1,5 +1,15 @@
 <header class='header-main'>
-  <div class="header-title"></div>
+  <div class="header-title">
+    <%= form_for :search, url: search_messages_path, method: :get, html: {role: 'search'} do |f| %>
+      <%= hidden_field_tag :s, params[:s] if params[:s] %>
+      <div class="input-group">
+        <div class="input-group-btn">
+          <button class="btn btn-default"><%= icon_tag('search') %></button>
+        </div>
+        <%= text_field_tag :query, params[:query], class: 'form-control input-search', placeholder: 'Search' %>
+      </div>
+    <% end -%>
+  </div>
   <div class="header-actions">
     <%= link_to "#{icon_tag('reply')} Reply".html_safe, "mailto:#{@message.email}", class: 'btn btn-warning' if @message %>
   </div>
