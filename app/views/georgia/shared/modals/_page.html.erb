@@ -1,6 +1,6 @@
 <div id='page_form' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <%= simple_form_for(@page, as: :page, remote: true, html: {class: 'form-horizontal'}) do |f| %>
+    <%= simple_form_for(@page, as: :page, remote: true) do |f| %>
       <div class="modal-content">
         <div class="modal-header">
           <%= link_to_close %>
@@ -8,7 +8,7 @@
         </div>
 
         <div class="modal-body">
-          <%= f.input :title, label: false, placeholder: 'Title', input_html: {name: 'title'} %>
+          <%= f.input :title, label: false, placeholder: 'Title', input_html: {name: 'title', class: 'form-control'}, focus: true %>
         </div>
 
         <div class="modal-footer">
