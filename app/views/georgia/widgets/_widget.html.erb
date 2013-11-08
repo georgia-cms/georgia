@@ -6,7 +6,7 @@
       <div class="widget-footer">
         <% if widget.featured? %>
           <div class="widget-featured">
-            <span class="tag" title='Featured on <%= pluralize(widget.featured_count, 'page') %>'><%= widget.featured_count %></span>
+            <span class="badge badge-default" title='Featured on <%= pluralize(widget.featured_count, 'page') %>'><%= widget.featured_count %></span>
           </div>
         <% end -%>
         <%= link_to icon_tag('pencil'), '#', class: 'widget-action js-edit' %>
@@ -18,14 +18,14 @@
         <%= f.simple_fields_for :contents, widget.content do |c| %>
           <div class="widget-header">
             <div class="widget-title">
-              <%= c.input :title, label: false %>
+              <%= c.input_field :title, class: 'form-control' %>
             </div>
           </div>
           <div class="widget-content">
-            <%= c.input :text, as: :text, label: false, input_html: {rows: 9} %>
+            <%= c.input_field :text, as: :text, rows: 7, class: 'form-control' %>
           </div>
           <div class="widget-footer">
-            <%= link_to "#{icon_tag('times')} Cancel".html_safe, '#', class: 'btn js-close' %>
+            <%= link_to "#{icon_tag('times')} Cancel".html_safe, '#', class: 'btn btn-default js-close' %>
             <%= button_to_save %>
           </div>
         <% end -%>
