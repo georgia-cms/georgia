@@ -2,7 +2,7 @@
   <%= link_to revision.created_at.strftime('%F %H:%M'), [@page, revision] %>
   <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
   <div class="pull-right">
-    <%= link_to "#{icon_tag 'undo'} Restore".html_safe, [:restore, @page, revision] , class: 'btn' %>
+    <%= link_to "#{icon_tag 'undo'} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning' %>
     <%= link_to_delete [@page, revision] %>
   </div>
 </div>
