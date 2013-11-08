@@ -71,7 +71,7 @@ module Georgia
           fields(:name, :email, :message, :subject, :phone)
         end
         facet :spam
-        with(:spam, params[:s]) unless params[:s].blank?
+        with(:spam, (params[:s] || 'clean'))
         order_by (params[:o] || :created_at), (params[:dir] || :desc)
         paginate(page: params[:page], per_page: (params[:per] || 25))
       end

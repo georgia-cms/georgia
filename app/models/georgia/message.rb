@@ -27,7 +27,7 @@ module Georgia
       text :subject
       text :phone
       string :spam do
-        spam ? 'spam' : 'clean'
+        status
       end
       # For sorting:
       string :name
@@ -36,6 +36,10 @@ module Georgia
       string :subject
       string :message
       time :created_at
+    end
+
+    def status
+      @status ||= spam ? 'spam' : 'clean'
     end
 
   end
