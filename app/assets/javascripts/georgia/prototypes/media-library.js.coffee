@@ -3,11 +3,11 @@ class @MediaLibrary
   constructor: (element, target) ->
     @element            = $(element)
     @target             = null
-    @picturesContainer  = @element.find(".pictures")
+    @picturesContainer  = @element.find("[data-media='results']")
     @search             = @element.find("[data-media='search']")
     @search.bind('change', @update)
-    @element.on('click', ".pictures a[rel='next']", @changePage)
-    @element.on('click', ".pictures a[rel='previous']", @changePage)
+    @element.on('click', "[data-media='results'] a[rel='next']", @changePage)
+    @element.on('click', "[data-media='results'] a[rel='previous']", @changePage)
     @element.on('click', "[data-media='picture']", @select)
     @update()
 

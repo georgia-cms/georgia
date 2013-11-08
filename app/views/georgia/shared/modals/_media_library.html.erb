@@ -7,19 +7,26 @@
       </div>
 
       <div class="modal-body">
-        <div class="modal-content-actions">
-          <div class="search">
-            <input id="search" name="search" type="text" class='input-search' data-media='search' placeholder='Search...' />
-          </div>
-          <span class="btn btn-success btn-file-upload">
-            <span class='btn-file-upload-text'>
-              <%= icon_tag 'plus' %> Add image
+        <div class="row">
+          <div class="col-md-6">
+            <span class="btn btn-success btn-file-upload">
+              <span class='btn-file-upload-text'>
+                <%= icon_tag 'plus' %> Add image
+              </span>
+              <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
             </span>
-            <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
-          </span>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button class="btn btn-default"><%= icon_tag('search') %></button>
+              </div>
+              <%= text_field_tag :media_search, params[:query], class: 'form-control input-search', placeholder: 'Search', data: {media: 'search'} %>
+            </div>
+          </div>
         </div>
 
-        <div class="pictures">
+        <div class='results' data-media='results'>
           <%= spinner_tag %>
         </div>
       </div>
