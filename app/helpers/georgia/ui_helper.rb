@@ -35,7 +35,7 @@ module Georgia
 
     def link_to_delete url, options={}
       text = options.delete(:text) { "#{icon_tag('trash-o')} Delete".html_safe }
-      link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn-delete')
+      link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger')
     end
 
     def tooltip_tag text, tooltip, options={}
