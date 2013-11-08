@@ -1,21 +1,21 @@
 class @MessagesTable
 
   constructor: (element) ->
-    @element      = $(element)
-    @checkboxes   = @element.find("input:checkbox")
-    @deleteBtn    = @element.find('.js-delete')
-    @spamBtn      = @element.find('.js-spam')
-    @hamBtn       = @element.find('.js-ham')
+    @element          = $(element)
+    @checkboxes       = @element.find("input:checkbox")
+    @deleteBtn        = @element.find('.js-delete')
+    @spamBtn          = @element.find('.js-spam')
+    @hamBtn           = @element.find('.js-ham')
     @setBindings()
 
   setBindings: () =>
-    @checkboxes.on('click', @update)
+    @checkboxes.on('change', @update)
     @deleteBtn.on('click', @delete)
     @spamBtn.on('click', @spam)
     @hamBtn.on('click', @ham)
 
   update: () =>
-    if @getChecked().length then @showActions() else @hideActions()
+    if @getChecked().length then @enableActions() else @disableActions()
 
   delete: (event) =>
     @stopEvent(event)
@@ -26,9 +26,11 @@ class @MessagesTable
 
   spam: (event) ->
     @stopEvent(event)
+    # TODO: send event to controller
 
   ham: (event) ->
     @stopEvent(event)
+    # TODO: send event to controller
 
   enableActions: () =>
     @spamBtn.removeClass('disabled')

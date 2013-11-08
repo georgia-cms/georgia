@@ -1,4 +1,4 @@
-<tr id='<%= dom_id(message) %>' class='message'>
+<tr id='<%= dom_id(message) %>' class='message' data-status="<%= message.spam? ? 'spam' : 'ham' %>">
   <td class='checkbox-cell'>
     <%= checkboxable_tag message %>
   </td>

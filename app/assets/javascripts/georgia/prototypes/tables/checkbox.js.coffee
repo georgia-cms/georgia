@@ -1,31 +1,56 @@
 class @Checkboxable
 
   constructor: (element) ->
-    @element      = $(element)
-    @select_all   = @element.find("[data-checkbox='all']")
-    @checkboxes   = @element.find("[data-checkbox='child']")
+    @element            = $(element)
+    @selectAllCheckbox  = @element.find("[data-checkbox='all']")
+    @checkboxes         = @element.find("[data-checkbox='child']")
+    @selectAllLink      = @element.find('.js-select-all')
+    @selectNoneLink     = @element.find('.js-select-none')
+    @selectSpamLink     = @element.find('.js-select-spam')
+    @setBindings()
 
-    @select_all.bind('click', @updateCheckboxes)
+  setBindings: () =>
+    @selectAllCheckbox.bind('click', @updateCheckboxes)
     @checkboxes.bind('click', @update)
+    @selectAllLink.on('click', @selectAll)
+    @selectNoneLink.on('click', @selectNone)
+    @selectSpamLink.on('click', @selectSpam)
+
+  selectAll: () =>
+    @check(@selectAllCheckbox)
+    @check(@checkboxes)
+    @checkboxes.trigger('change')
+
+  selectNone: () =>
+    @uncheck(@selectAllCheckbox)
+    @uncheck(@checkboxes)
+    @checkboxes.trigger('change')
+
+  selectSpam: () =>
+    @uncheck(@checkboxes)
+    @check(@element.find("tr[data-status='spam'] input:checkbox"))
+    @updateSelectAll()
+    @checkboxes.trigger('change')
 
   update: (event) =>
     checkbox = $(event.currentTarget)
     @updateCheckbox(checkbox)
     @updateSelectAll()
 
-  updateCheckboxes: () =>
-    switch @getState(@select_all)
+  updateCheckboxes: (event) =>
+    event.stopPropagation()
+    switch @getState(@selectAllCheckbox)
       # uncheck, going checked
       when 'unchecked'
-        @check(@select_all)
+        @check(@selectAllCheckbox)
         @check(@checkboxes) if @checkboxes.length
       # indeterminate, going unchecked
       when 'indeterminate'
-        @uncheck(@select_all)
+        @uncheck(@selectAllCheckbox)
         @uncheck(@checkboxes) if @checkboxes.length
       # checked, going unchecked
       else
-        @uncheck(@select_all)
+        @uncheck(@selectAllCheckbox)
         @uncheck(@checkboxes) if @checkboxes.length
 
   updateCheckbox: (el) =>
@@ -45,14 +70,14 @@ class @Checkboxable
     states = @distinct(states)
     # if not all siblings share the same state, go indeterminate
     if states.length > 1
-      @indeterminate(@select_all)
+      @indeterminate(@selectAllCheckbox)
     else
       # all siblings are sharing the same state
       switch states[0]
         # if all unchecked, set parent as unchecked
-        when 'unchecked' then @uncheck(@select_all)
+        when 'unchecked' then @uncheck(@selectAllCheckbox)
         # if all checked, set parent as checked
-        when 'checked' then @check(@select_all)
+        when 'checked' then @check(@selectAllCheckbox)
 
   check: (el) =>
     $(el).each (index, e) =>
@@ -85,6 +110,9 @@ class @Checkboxable
   getState: (el)        -> $(el).data('state')
   setState: (el, state) -> $(el).data('state', state)
 
+  stopEvent: (event) ->
+    event.stopPropagation()
+    event.preventDefault()
 
 $.fn.actsAsCheckboxable = () ->
   @each ->
