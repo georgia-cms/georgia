@@ -23,6 +23,6 @@
     <legend>Featured Image</legend>
   </div>
   <div class="fieldset-fields">
-    <%= choose_image_tag(f.object, target: 'revision_content_image', input: f.hidden_field(:image_id)) %>
+    <%= choose_image_tag(@content, target: 'revision_content_image', input: f.hidden_field(:image_id)) %>
   </div>
 </fieldset>
