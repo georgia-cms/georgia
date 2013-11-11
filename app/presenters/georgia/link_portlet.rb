@@ -72,7 +72,7 @@ module Georgia
     end
 
     def remove_tag
-      link_to(icon_tag('times'), '#', class: 'btn-delete js-remove-link')
+      link_to(icon_tag('times'), '#', class: 'btn btn-danger js-remove-link')
     end
 
     def actions_tag options={}
