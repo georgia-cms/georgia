@@ -1,9 +1,9 @@
 <tr>
-  <td><%= user.name %></td>
+  <td><%= link_to user.name, [:edit, user], class: 'user-name' %></td>
   <td><%= user.email %></td>
   <td><%= user.roles_names %></td>
   <td class='actions nowrap'>
-    <%= link_to "#{icon_tag 'cog'} edit".html_safe, [:edit, user], class: 'btn btn-default' if can?(:edit, user) %>
+    <%= link_to "#{icon_tag 'cog'} edit".html_safe, [:edit, user], class: 'btn btn-default' %>
     <%= link_to_delete user %>
   </td>
 </tr>
