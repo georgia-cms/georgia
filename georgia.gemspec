@@ -46,24 +46,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'routing_concerns'
   s.add_dependency 'rakismet'
   s.add_dependency 'sidekiq'
-
-  s.add_development_dependency 'thin'
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'debugger'
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'capybara'
-  # s.add_development_dependency 'capybara-webkit'
-  s.add_development_dependency 'selenium-webdriver', "~> 2.34.0"
-  s.add_development_dependency 'launchy'
-  s.add_development_dependency 'database_cleaner', '~> 1.0.0' # https://github.com/bmabey/database_cleaner/issues/224
-  s.add_development_dependency 'rb-inotify'
-  s.add_development_dependency 'factory_girl_rails'
-  s.add_development_dependency 'shoulda-matchers'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'brakeman'
-  s.add_development_dependency 'rails_best_practices'
-  s.add_development_dependency 'bullet'
-  s.add_development_dependency 'foreman'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'pry-rails'
 end

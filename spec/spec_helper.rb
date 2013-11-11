@@ -5,12 +5,14 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
-# require 'capybara-webkit'
+require 'capybara-webkit'
 require 'factory_girl_rails'
 require 'shoulda-matchers'
 require 'draper/test/rspec_integration'
 require 'database_cleaner'
 require 'simplecov'
+
+Capybara.javascript_driver = :webkit
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
