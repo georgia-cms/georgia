@@ -1,4 +1,9 @@
-<%= render 'header' %>
+<header class='header-main'>
+  <h1 class='header-title'><%= icon_tag 'link' %> Navigation</h1>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn' %>
+  </div>
+</header>
 
 <section class="body-main">
 
