@@ -1,6 +1,6 @@
 <tr id='<%= dom_id(asset) %>' class='asset'>
   <td class='checkbox-cell'>
-    <%= checkboxable_tag "asset_#{asset.id}" %>
+    <%= checkboxable_tag asset %>
   </td>
   </td>
   <td class='thumbnail-cell'>
@@ -9,7 +9,7 @@
     <% end %>
   </td>
   <td>
-    <%= facet_tag_list(picture) %>
+    <%= facet_tag_list(asset) %>
     <%= link_to asset.filename, edit_media_path(asset) %>
   </td>
   <td class='small'>
