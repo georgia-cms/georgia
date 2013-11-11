@@ -1,19 +1,19 @@
-<%= simple_form_for(@user, :html => {class: 'well form-horizontal'}) do |f| %>
+<%= simple_form_for(@user, html: { class: 'form-horizontal'}, defaults: { input_html: { class: "form-control" }}) do |f| %>
 
-  <fieldset>
-    <legend>Register a new user</legend>
-    
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation, label: 'Confirm' %>
-    
-    <%= f.association :roles, as: :check_boxes %>
-    
-    <div class="form-actions">
-      <%= f.submit nil, class: 'btn btn-primary' %>      
+  <header class='header-main'>
+    <div class="header-gutter">
+      <%= link_to_back users_path %>
     </div>
-  </fieldset>
+    <div class="header-title">
+      <h1>New User</h1>
+    </div>
+    <div class="header-actions">
+      <%= button_to_save %>
+    </div>
+  </header>
 
-<% end %>
+  <section class="body-main">
+    <%= render partial: 'georgia/users/form', locals: {f: f} %>
+  </section>
+
+<% end -%>
