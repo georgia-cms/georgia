@@ -77,6 +77,6 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
-  root to: 'dashboard#index'
+  root :to => "dashboard#show"
 
 end

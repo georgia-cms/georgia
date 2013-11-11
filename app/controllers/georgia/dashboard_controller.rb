@@ -1,7 +1,7 @@
 module Georgia
-  class DashboardController < ApplicationController
+  class DashboardController < Georgia::ApplicationController
 
-    def index
+    def show
     end
 
   end
