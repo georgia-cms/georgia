@@ -18,7 +18,7 @@
     <%= picture.width %>x<%= picture.height %>
   </td>
   <td class='tiny'>
-    <span class="tag"><%= picture.contents_count %></span>
+    <span class="badge" title="Featured in <%= pluralize(picture.contents_count, 'page') %>"><%= picture.contents_count %></span>
   </td>
   <td class='timestamp'>
     <em><%= picture.updated_at.strftime('%F') %></em>
