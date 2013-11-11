@@ -52,7 +52,7 @@ module Georgia
     # Creates a copy of a page and redirects to its revisions#edit
     def copy
       @copy = @page.copy
-      redirect_to [:edit, @copy], notice: "Do not forget to change your url"
+      redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "Do not forget to change your url"
     end
 
     # Destroy multiple pages from table checkboxes
@@ -74,12 +74,6 @@ module Georgia
       end
     end
 
-    # Creates a draft revision
-    def draft
-      @draft = @page.draft
-      redirect_to [:edit, @page, @draft], notice: "You successfully started a new draft of #{@draft.title}. Submit for review when completed."
-    end
-
     # Publishes the page
     def publish
       @page.publish
@@ -93,6 +87,7 @@ module Georgia
     end
 
     # Sorts subpages/children from pages#settings
+    # FIXME: This should be taken care of in pages#update
     def sort
       if params[:page]
         params[:page].each_with_index do |id, index|
@@ -103,7 +98,7 @@ module Georgia
     end
 
     def index
-      redirect_to action: :search
+      redirect_to search_pages_path
     end
 
     def search

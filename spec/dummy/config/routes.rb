@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   mount Georgia::Engine => '/admin'
-  mount Henry::Engine => '/api'
   mount Ckeditor::Engine => '/ckeditor'
 
   resources :pages, only: [] do
