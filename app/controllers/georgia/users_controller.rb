@@ -46,8 +46,6 @@ module Georgia
       redirect_to users_url, notice: "User was successfully deleted."
     end
 
-
-
   end
 
 end

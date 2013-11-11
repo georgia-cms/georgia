@@ -13,6 +13,9 @@
     <% if signed_in? %>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to icon_tag('users'), users_path %>
+          </li>
           <li class='dropdown'>
             <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
               <%= image_tag avatar_url(current_user), alt: '' %>
