@@ -1,15 +1,6 @@
 Georgia::Engine.routes.draw do
 
-  devise_for :users,
-  class_name: "Georgia::User",
-  path: '/',
-  module: :devise,
-    path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'},
-    controllers: {sessions: "georgia/users/sessions", registrations: "georgia/users/registrations"}
-
-  devise_scope :user do
-    get '/logout', to: 'users/sessions#destroy'
-  end
+  devise_for :users, class_name: "Georgia::User", path: '/', module: 'georgia/users', path_names: {sign_in: '/login', sign_out: '/logout'}
 
   namespace :api do
     resources :media, only: [] do
@@ -77,6 +68,11 @@ Georgia::Engine.routes.draw do
 
   match '/search/messages', to: 'search#messages'
 
+  unauthenticated do
+    as :user do
+      root :to => 'users/sessions#new'
+    end
+  end
   root :to => "dashboard#show"
 
 end

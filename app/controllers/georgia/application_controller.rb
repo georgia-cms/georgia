@@ -1,24 +1,10 @@
 module Georgia
   class ApplicationController < ActionController::Base
 
+    before_filter :authenticate_user!
     layout :layout_by_resource
 
-    helper 'georgia/ui'
-    helper 'georgia/routes'
-    helper 'georgia/devise'
-    helper 'georgia/menus'
-    helper 'georgia/pagination'
-
     protect_from_forgery
-
-    before_filter :authenticate_user!, except: :login
-
-    def login
-      render 'users/sessions/new', layout: 'devise'
-    end
-
-    def home
-    end
 
     def current_ability
       @current_ability ||= Ability.new(current_user)
