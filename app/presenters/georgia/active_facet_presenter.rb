@@ -1,15 +1,16 @@
 module Georgia
-  class ActiveFacetTagPresenter
+  class ActiveFacetPresenter
 
-    def initialize view_context, tag, options={}
+    def initialize view_context, text, param, options={}
       @view_context = view_context
-      @tag = tag
+      @text = text
+      @param = param
       @options = options
     end
 
     def to_s
       link_to url_for(unmerged_params), class: 'label label-primary' do
-        "#{@tag} #{icon_tag('times')}".html_safe
+        "#{@text} #{icon_tag('times')}".html_safe
       end
     end
 
@@ -20,7 +21,7 @@ module Georgia
     private
 
     def unmerged_params
-      params.merge(tg: ((params[:tg] || []) - [@tag]))
+      params.merge(@param => ((params[@param] || []) - [@text]))
     end
   end
 end
