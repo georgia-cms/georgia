@@ -1,7 +1,8 @@
 <header class='header-main'>
   <h1 class='header-title'><%= icon_tag 'link' %> Navigation</h1>
   <div class="header-actions">
-    <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary' %>
+    <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target:
+      '#menu_form'} %>
   </div>
 </header>
 
@@ -14,16 +15,22 @@
         <%= tooltip_tag(icon_tag('info-circle'), "Link lists help your visitors navigate around your website.") %>
       </legend>
       <p class='hint'>
-        <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary' %>
+        <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target:
+      '#menu_form'} %>
       </p>
     </div>
     <div class="fieldset-fields control-group">
       <% if @menus and @menus.any? %>
         <%= render @menus %>
       <% else %>
-        <p>There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url %></p>
+        <p>There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url, data: {toggle: 'modal', target:
+      '#menu_form'} %></p>
       <% end %>
     </div>
   </fieldset>
 
 </section>
+
+<%= content_tag :footer do %>
+  <%= render 'georgia/shared/modals/menu' %>
+<% end -%>

@@ -1,0 +1,5 @@
+<% if @menu.valid? %>
+  window.location.href = '<%= url_for([:edit, @menu]) %>';
+<% else -%>
+  $('#menu_form .modal-body').prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>You need a valid and unique menu name.</div>");
+<% end %>

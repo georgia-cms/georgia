@@ -13,12 +13,18 @@ module Georgia
 
     def create
       @menu = Menu.new(params[:menu])
-
       if @menu.save
-        redirect_to [:edit, @menu], notice: "#{@menu.name} was successfully created."
+        respond_to do |format|
+          format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully created." }
+          format.js { render layout: false }
+        end
       else
-        render :new
+        respond_to do |format|
+          format.html { render :edit }
+          format.js { render layout: false }
+        end
       end
+      # renders create.js.erb
     end
 
     def show
