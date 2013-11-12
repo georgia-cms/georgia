@@ -4,7 +4,7 @@ module Georgia
     load_and_authorize_resource class: Georgia::Revision
 
     before_filter :prepare_page
-    before_filter :prepare_revision, only: [:show, :edit, :update, :destroy, :review, :approve, :decline, :restore, :preview]
+    before_filter :prepare_revision, except: [:index]
     before_filter :prepare_content, only: [:edit]
 
     def index
@@ -21,27 +21,24 @@ module Georgia
 
     # Stores a copy of the current revision before updating
     def update
-      store_revision if @revision.is_current_revision?
+      @page.store if @page.current_revision == @revision
 
       if @revision.update_attributes(params[:revision])
         respond_to do |format|
-          format.html { redirect_to [:edit, @page, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
-          format.js { render layout: false }
+          format.html { redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated." }
+          format.js { head :ok }
         end
       else
         respond_to do |format|
-          format.html {
-            render :edit
-          }
+          format.html { render :edit, alert: "Oups. Something went wrong."  }
           format.js { head :internal_server_error }
         end
       end
     end
 
     def destroy
-      @message = "#{@revision.title} was successfully deleted."
       @revision.destroy
-      redirect_to @page, notice: @message
+      redirect_to @page, notice: "#{@revision.title} was successfully deleted."
     end
 
     # Sends revision to main_app router
@@ -52,7 +49,7 @@ module Georgia
 
     def review
       @revision.review
-      notify("#{current_user.name} is asking you to review #{@revision.title}.")
+      notify("#{current_user.name} is asking you to review #{@revision.title}.", [:edit, @page, @revision])
       redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
     end
 
@@ -90,11 +87,8 @@ module Georgia
       end
     end
 
-    def store_revision
-      if @page.draft
-        revision = @page.revisions.last
-        revision.store
-      end
+    def notify(message, url)
+      Notifier.notify_admins(message, url).deliver
     end
 
   end

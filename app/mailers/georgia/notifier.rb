@@ -6,11 +6,10 @@ module Georgia
     def notify_admins(message, url)
       @message = message
       @url = url
-      domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
       emails_to = Georgia::User.admins.map(&:email)
       unless emails_to.empty?
         mail(
-          from: "do-not-reply@#{domain_name}",
+          from: "georgia@motioneleven.com",
           to: emails_to,
           subject: @message
           )
@@ -20,11 +19,10 @@ module Georgia
     def notify_editors(message, url)
       @message = message
       @url = url
-      domain_name = Rails.application.config.action_mailer.smtp_settings[:domain]
       emails_to = Georgia::User.editors.map(&:email)
       unless emails_to.empty?
         mail(
-          from: "do-not-reply@#{domain_name}",
+          from: "georgia@motioneleven.com",
           to: emails_to,
           subject: @message
           )

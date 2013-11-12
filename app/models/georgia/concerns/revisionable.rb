@@ -15,9 +15,11 @@ module Georgia
         delegate :draft?, :review?, :revision?, to: :current_revision, allow_nil: true
 
         def draft
-          revision = Georgia::Clone.new(self).draft
-          revision.revisionable = self
-          revision.save
+          Georgia::Clone.new(self).draft
+        end
+
+        def store
+          Georgia::Clone.new(self).store
         end
 
         def approve_revision revision

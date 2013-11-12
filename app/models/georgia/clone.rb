@@ -20,8 +20,15 @@ module Georgia
       duplicate
     end
 
+    # Returns a copy of the current revision in 'draft' state
     def draft
-      clone_current_revision
+      clone_current_revision(state: 'draft')
+    end
+
+    # Returns a copy of the current revision in 'revision' state
+    def store
+      @instance.revisions << clone_current_revision(state: 'revision')
+      @instance.save!
     end
 
     private
@@ -31,14 +38,13 @@ module Georgia
       duplicate.tag_list = instance.tag_list
     end
 
-    def clone_current_revision
-      @duplicate_revision = Georgia::Revision.create(
-        template: instance.current_revision.template,
-        state: 'draft'
-      )
-      @duplicate_revision.contents = clone_contents
-      @duplicate_revision.ui_associations = clone_ui_associations
-      @duplicate_revision.slides = clone_slides
+    def clone_current_revision options={}
+      state = options.fetch(:state, 'draft')
+      @duplicate_revision = Georgia::Revision.new(template: instance.current_revision.template, state: state) do |r|
+        r.contents = clone_contents
+        r.ui_associations = clone_ui_associations
+        r.slides = clone_slides
+      end
       @duplicate_revision
     end
 
@@ -47,12 +53,12 @@ module Georgia
     end
 
     def clone_ui_associations
-      instance.current_revision.ui_associations.map{|ui_assoc| ui_assoc.dup}
+      instance.current_revision.ui_associations.map{|ui_assoc| clone_ui_association(ui_assoc)}
     end
 
     def clone_slides
       instance.current_revision.slides.map do |slide|
-        new_slide = slide.dup
+        new_slide = Georgia::Slide.new
         slide.contents.each do |content|
           new_slide.contents << clone_content(content)
         end
@@ -68,6 +74,13 @@ module Georgia
         excerpt: content.excerpt,
         image_id: content.image_id,
         keyword_list: content.keyword_list
+      )
+    end
+
+    def clone_ui_association(ui_assoc)
+      Georgia::UiAssociation.new(
+        widget_id: ui_assoc.widget_id,
+        ui_section: ui_assoc.ui_section
       )
     end
 
