@@ -18,7 +18,6 @@ module AuthenticationHelpers
     fill_in 'Email', with: admin.email
     fill_in 'Password', with: admin.password
     click_button 'Log In'
-    page.should have_content admin.email
   end
 
 end

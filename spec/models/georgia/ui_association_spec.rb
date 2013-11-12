@@ -5,7 +5,7 @@ describe Georgia::UiAssociation do
 
   specify {FactoryGirl.build(:georgia_ui_association).should be_valid}
 
-  it { should belong_to(:page) }
+  it { should belong_to(:revision) }
   it { should belong_to(:widget) }
   it { should belong_to(:ui_section) }
 
@@ -31,6 +31,14 @@ describe Georgia::UiAssociation do
       @ui_association.valid?.should be_false
       @ui_association.should have(1).errors_on(:base)
       expect(@ui_association.errors_on(:base).first).to eq('An association to a Widget is required.')
+    end
+  end
+
+  describe '.for_revision' do
+    it 'returns widgets for a given revision' do
+      revision = create(:georgia_revision)
+      @ui_assoc = create(:georgia_ui_association, revision: revision)
+      expect(Georgia::UiAssociation.for_revision(revision)).to include @ui_assoc
     end
   end
 

@@ -13,8 +13,8 @@ describe Georgia::MenuAncestryParser do
     it 'returns a consumable hash with position and parent_id' do
       @parser.should respond_to :to_hash
       @parser.to_hash.should be_a_kind_of Hash
-      @parser.to_hash.first.should == {"149" => {position: 1, parent_id: nil}}
-      @parser.to_hash.should include({"142" => {position: 50, parent_id: 4}})
+      @parser.to_hash.should include ({"149" => {position: 1, parent_id: nil}})
+      @parser.to_hash.should include ({"142" => {position: 50, parent_id: 4}})
     end
 
   end

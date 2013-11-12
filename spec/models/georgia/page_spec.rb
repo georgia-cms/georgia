@@ -6,11 +6,9 @@ describe Georgia::Page do
 
   it_behaves_like 'a taggable model'
   it_behaves_like 'a orderable model'
-  it_behaves_like 'a previewable model'
   it_behaves_like 'a slugable model'
   it_behaves_like 'a revisionable model'
   it_behaves_like 'a indexable model'
-  it_behaves_like 'a copyable model'
   it_behaves_like 'a treeable model'
   it_behaves_like 'a cacheable model'
 

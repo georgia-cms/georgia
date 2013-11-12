@@ -1,4 +1,3 @@
 FactoryGirl.define do
-  factory :georgia_widget, class: Georgia::Widget do
-  end
+  factory :georgia_widget, class: Georgia::Widget
 end

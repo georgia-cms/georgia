@@ -4,6 +4,21 @@ describe Georgia::Clone do
 
   let(:instance) { create(:georgia_page) }
 
+  describe 'instance methods' do
+
+    it "responds to :copy" do
+      Georgia::Clone.new(create(:georgia_page)).should respond_to(:copy)
+    end
+
+    it "responds to :draft" do
+      Georgia::Clone.new(create(:georgia_page)).should respond_to(:draft)
+    end
+
+    it "responds to :store" do
+      Georgia::Clone.new(create(:georgia_page)).should respond_to(:store)
+    end
+  end
+
   describe 'copying' do
 
     it 'returns a persisted record' do
@@ -25,7 +40,8 @@ describe Georgia::Clone do
     end
 
     it 'duplicates contents' do
-      instance.current_revision.contents << create(:georgia_content, text: 'Yabadabadoo')
+      instance.current_revision.contents = [create(:georgia_content, text: 'Yabadabadoo')]
+      instance.current_revision.should have(1).contents
       @copy = instance.copy
       @copy.current_revision.should have(1).contents
       expect(@copy.current_revision.contents.first.text).to eql "Yabadabadoo"
@@ -58,14 +74,13 @@ describe Georgia::Clone do
     describe 'contents' do
 
       it 'duplicates keywords' do
-        instance.current_revision.contents << create(:georgia_content, keyword_list: 'foo, bar, foobar')
-        expect(instance.current_revision.contents.first.keywords).to have(3).keywords
+        instance.current_revision.contents = [create(:georgia_content, keyword_list: 'foo, bar')]
+        expect(instance.current_revision.contents.first.keywords).to have(2).keywords
         @copy = instance.copy
         content = @copy.current_revision.contents.first
         expect(content.keyword_list).to include('foo')
         expect(content.keyword_list).to include('bar')
-        expect(content.keyword_list).to include('foobar')
-        expect(content.keywords).to have(3).keywords
+        expect(content.keywords).to have(2).keywords
       end
 
     end

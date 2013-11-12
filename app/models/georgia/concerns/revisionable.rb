@@ -22,6 +22,10 @@ module Georgia
           Georgia::Clone.new(self).store
         end
 
+        def copy
+          Georgia::Clone.new(self).copy
+        end
+
         def approve_revision revision
           current_revision.store if current_revision
           self.update_attribute(:revision_id, revision.id)

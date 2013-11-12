@@ -2,6 +2,13 @@
 
   <h1 class='login-logo page-header'>Georgia</h1>
 
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg.html_safe %>
+    </div>
+  <% end %>
+
   <%= simple_form_for(resource, as: resource_name, url: georgia.user_session_path, html: {class: 'form-horizontal'}) do |f| %>
     <div class="form-group">
       <%= f.input_field :email, placeholder: 'Email', class: 'form-control' %>

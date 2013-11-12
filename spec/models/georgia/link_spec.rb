@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe Georgia::Link do
-  specify {FactoryGirl.build(:georgia_link).should be_valid}
+  specify {build(:georgia_link).should be_valid}
 
   it { should belong_to :menu }
 
   describe 'slug' do
 
     it 'matches the end of the url' do
-      @link = FactoryGirl.build(:georgia_link)
-      @link.contents << FactoryGirl.build(:georgia_content, text: '/en/foo-3-4/bar-1-2')
+      @link = build(:georgia_link)
+      @link.contents << build(:georgia_content, text: '/en/foo-3-4/bar-1-2')
       expect(@link.slug).to eq('bar-1-2')
     end
 
@@ -18,17 +18,7 @@ describe Georgia::Link do
   describe 'validation' do
 
     before :each do
-      @link = FactoryGirl.build(:georgia_link)
-    end
-
-    it 'validates presence of contents title' do
-      @link.contents << FactoryGirl.build(:georgia_content, title: nil)
-      @link.valid?.should be_false
-    end
-
-    it 'validates presence of contents text' do
-      @link.contents << FactoryGirl.build(:georgia_content, text: nil)
-      @link.valid?.should be_false
+      @link = build(:georgia_link)
     end
 
     describe 'url' do
@@ -36,8 +26,8 @@ describe Georgia::Link do
       context 'when it starts with http or https' do
 
         it 'validates format of contents text to be a url' do
-          @link.contents << FactoryGirl.build(:georgia_content, text: 'http')
-          @link.contents << FactoryGirl.build(:georgia_content, text: 'https')
+          @link.contents << build(:georgia_content, text: 'http')
+          @link.contents << build(:georgia_content, text: 'https')
           @link.valid?.should be_true
           @link.should have(:no).errors_on(:base)
         end
@@ -47,8 +37,8 @@ describe Georgia::Link do
       context 'when it starts with a forward /' do
 
         it 'validates format of contents text to be a url' do
-          @link.contents << FactoryGirl.build(:georgia_content, text: '/foo')
-          @link.contents << FactoryGirl.build(:georgia_content, text: '/bar')
+          @link.contents << build(:georgia_content, text: '/foo')
+          @link.contents << build(:georgia_content, text: '/bar')
           @link.valid?.should be_true
           @link.should have(:no).errors_on(:base)
         end
@@ -57,13 +47,10 @@ describe Georgia::Link do
 
       context 'otherwise' do
 
-        it 'yields an error' do
-          @link.contents = [FactoryGirl.build(:georgia_content, text: 'boo')]
-          @link.valid?.should be_false
-          @link.should have(1).error_on(:base)
-          @link.contents = [FactoryGirl.build(:georgia_content, text: 'foo/bar')]
-          @link.valid?.should be_false
-          @link.should have(1).error_on(:base)
+        it 'is automatically corrected by prepending a foward slash' do
+          @link.contents = [build(:georgia_content, text: 'foo/bar')]
+          @link.valid?.should be_true
+          expect(@link.content.text).to match('/foo/bar')
         end
 
       end

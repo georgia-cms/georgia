@@ -20,7 +20,7 @@ describe Georgia::User do
 
   it {should respond_to :has_role?}
 
-  describe '#has_role?' do
+  describe '.has_role?' do
 
     let(:user) { build(:georgia_user, roles: [build(:georgia_role, name: 'Admin')]) }
     subject { user.has_role? role_name }
@@ -33,6 +33,26 @@ describe Georgia::User do
     context 'when user does not have given role' do
       let(:role_name) { 'Editor' }
       it { should be_false }
+    end
+
+  end
+
+  describe '.name' do
+
+    it "should match the first and last name" do
+      user = build(:georgia_user, first_name: 'Bob', last_name: 'Bison')
+      user.name.should match 'Bob Bison'
+    end
+
+  end
+
+  describe '.roles_names' do
+
+    it "returns a comma-separated list of roles" do
+      user = build(:georgia_user)
+      user.roles << create(:georgia_role, name: 'Admin')
+      user.roles << create(:georgia_role, name: 'Editor')
+      user.roles_names.should match 'Admin, Editor'
     end
 
   end

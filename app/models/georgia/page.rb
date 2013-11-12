@@ -7,7 +7,6 @@ module Georgia
     include Georgia::Concerns::Revisionable
     include Georgia::Concerns::Publishable
     include Georgia::Concerns::Indexable
-    include Georgia::Concerns::Copyable
     include Georgia::Concerns::Treeable
     include Georgia::Concerns::Cacheable
 

@@ -10,19 +10,16 @@ feature 'User signs in' do
 
   scenario 'with valid email and password' do
     log_in_with 'test@me.com', '1234-get-the-kittens-out-the-door'
-
     expect(page).to have_content('Signed in successfully')
   end
 
   scenario 'with invalid email' do
     log_in_with 'wrong@email.com', '1234-get-the-kittens-out-the-door'
-
     expect(page).to have_content('Invalid email or password')
   end
 
   scenario 'with blank password' do
     log_in_with 'test@me.com', ''
-
     expect(page).to have_content('Invalid email or password')
   end
 

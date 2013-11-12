@@ -6,7 +6,7 @@ describe Georgia::Widget do
 
   it { should have_many(:ui_associations) }
   it { should have_many(:ui_sections) }
-  it { should have_many(:pages) }
+  it { should have_many(:revisions) }
 
   it_behaves_like 'a contentable model'
 
@@ -40,14 +40,6 @@ describe Georgia::Widget do
       it {should include @submenu_widget}
       it {should_not include @footer_widget}
       it {should_not include @sidebar_widget}
-    end
-
-    describe '.for_page' do
-      it 'returns widgets for a given page' do
-        page = create(:georgia_revision)
-        create(:georgia_ui_association, widget: @footer_widget, page: page)
-        expect(Georgia::Widget.for_page(page)).to include @footer_widget
-      end
     end
   end
 

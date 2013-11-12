@@ -6,7 +6,6 @@ describe Georgia::Revision do
 
   it_behaves_like 'a contentable model'
   it_behaves_like 'a templatable model'
-  it_behaves_like 'a previewable model'
 
   it { should have_many :slides }
   it { should have_many :widgets }
@@ -52,12 +51,12 @@ describe Georgia::Revision do
 
     end
 
-    describe '#revert' do
+    describe '#restore' do
 
       it "marks as 'published'" do
         revision = create(:georgia_revision)
         revision.revisionable = create(:georgia_page)
-        revision.revert
+        revision.restore
         expect(revision.state?(:published)).to be_true
       end
 

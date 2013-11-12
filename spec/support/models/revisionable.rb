@@ -7,6 +7,9 @@ shared_examples "a revisionable model" do
   it { should have_many :revisions }
   it { should belong_to :current_revision }
 
-  it { should respond_to :publish }
+  it { should respond_to :copy }
+  it { should respond_to :draft }
+  it { should respond_to :store }
+  it { should respond_to :approve_revision }
 
 end

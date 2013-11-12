@@ -80,7 +80,7 @@ module Georgia
     def clone_ui_association(ui_assoc)
       Georgia::UiAssociation.new(
         widget_id: ui_assoc.widget_id,
-        ui_section: ui_assoc.ui_section
+        ui_section_id: ui_assoc.ui_section_id
       )
     end
 

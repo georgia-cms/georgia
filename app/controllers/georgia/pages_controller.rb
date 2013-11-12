@@ -36,7 +36,7 @@ module Georgia
       else
         respond_to do |format|
           format.html { redirect_to :back, alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
+          format.js { render layout: false }
         end
       end
     end
