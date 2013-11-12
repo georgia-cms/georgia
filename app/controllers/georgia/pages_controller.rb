@@ -29,6 +29,15 @@ module Georgia
           rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
         end
         @page.update_attribute(:current_revision, @page.revisions.first)
+        respond_to do |format|
+          format.html { redirect_to edit_page_revision_path(@page, @page.current_revision), notice: "#{@page.title} was successfully created." }
+          format.js { render layout: false }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
       end
     end
 
@@ -38,7 +47,7 @@ module Georgia
 
       if @page.update_attributes(params[:page])
         respond_to do |format|
-          format.html { render :settings, notice: "#{decorate(@revision).title} was successfully updated." }
+          format.html { render :settings, notice: "#{@page.title} was successfully updated." }
           format.js { render layout: false }
         end
       else

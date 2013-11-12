@@ -86,8 +86,34 @@ describe Georgia::PagesController do
   end
 
   describe "POST create" do
-    it "should have a status code of 200"
-    it "should render the page"
+
+    it "should redirect to revisions#edit" do
+      post :create, use_route: :admin, title: "New page"
+      response.should be_redirect
+    end
+
+    it "should assign a current_revision with contents" do
+      post :create, use_route: :admin, title: "New page"
+      assigns(:page).should have(1).revision
+      assigns(:page).current_revision.should be_a_kind_of Georgia::Revision
+      assigns(:page).current_revision.should have(1).contents
+    end
+
+    it "should assign a revision with title" do
+      post :create, use_route: :admin, title: "New page"
+      assigns(:page).current_revision.contents.first.title.should match "New page"
+    end
+
+    it "should assign a revision with a locale" do
+      post :create, use_route: :admin, title: "New page"
+      assigns(:page).current_revision.contents.first.locale.should_not be_nil
+    end
+
+    it "should assign a revision with default template" do
+      post :create, use_route: :admin, title: "New page"
+      assigns(:page).current_revision.template.should match 'default'
+    end
+
   end
 
   describe "PUT update" do
