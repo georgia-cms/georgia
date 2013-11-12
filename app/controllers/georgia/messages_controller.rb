@@ -55,14 +55,6 @@ module Georgia
       end
     end
 
-    def create
-      @message = Message.new(params[:message])
-      if @message.save
-        Georgia::Notifier.notify_support(@message).deliver
-      end
-      render layout: false
-    end
-
     private
 
     def prepare_search
