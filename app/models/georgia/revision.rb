@@ -3,7 +3,6 @@ module Georgia
 
     include Georgia::Concerns::Contentable
     include Georgia::Concerns::Templatable
-    include Georgia::Concerns::Previewable
     include Georgia::Concerns::Statable
 
     has_one :page, foreign_key: :revision_id
