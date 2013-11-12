@@ -60,7 +60,7 @@ Georgia::Engine.routes.draw do
       get :ham
     end
   end
-  resources :menus
+  resources :menus, path: 'navigation'
   resources :links, only: [:new]
   resources :widgets
   resources :ui_associations, path: 'ui-associations', only: [:new]
