@@ -117,23 +117,12 @@ describe Georgia::PagesController do
   end
 
   describe "PUT update" do
-    it "should have a status code of 200"
-    it "should render the page"
-  end
 
-  describe "DELETE destroy" do
-    it "should have a status code of 200"
-    it "should render the page"
-  end
+    it "should have a status code of 200" do
+      put :update, use_route: :admin, id: @page.id
+      response.should be_ok
+    end
 
-  describe "GET publish" do
-    it "should have a status code of 200"
-    it "should render the page"
-  end
-
-  describe "GET unpublish" do
-    it "should have a status code of 200"
-    it "should render the page"
   end
 
 end
