@@ -14,11 +14,9 @@ module Georgia
           @content ||= contents.select{|c| c.locale == I18n.locale.to_s}.first || Georgia::Content.new
         end
 
-				delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, to: :content
+				delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, :locale, to: :content
       end
 
-      module ClassMethods
-      end
     end
   end
 end
