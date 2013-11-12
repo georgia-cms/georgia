@@ -11,10 +11,6 @@ module Georgia
           Georgia::Clone.new(self).copy
         end
 
-        def copyable?
-          true
-        end
-
       end
 
     end
