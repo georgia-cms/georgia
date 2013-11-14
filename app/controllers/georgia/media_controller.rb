@@ -30,6 +30,7 @@ module Georgia
         klass = asset.content_type.match(/^image/) ? Ckeditor::Picture : Ckeditor::Asset
         @assets << klass.create(data: asset)
       end
+      render layout: false
     end
 
     def update
