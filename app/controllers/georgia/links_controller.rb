@@ -4,10 +4,10 @@ module Georgia
     load_and_authorize_resource class: Georgia::Link
 
     # Renders new portlet for menus#edit
-    def new
-      @link = Link.new()
+    def create
+      @link = Link.create
       @link.contents.build(locale: current_locale)
-      render layout: false
+      render :show, layout: false
     end
 
   end

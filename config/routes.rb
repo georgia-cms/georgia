@@ -61,7 +61,7 @@ Georgia::Engine.routes.draw do
     end
   end
   resources :menus, path: 'navigation'
-  resources :links, only: [:new]
+  resources :links, only: [:create, :show]
   resources :widgets
   resources :ui_associations, path: 'ui-associations', only: [:new]
   resources :slides, only: [:new]
