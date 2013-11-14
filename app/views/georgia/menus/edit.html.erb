@@ -21,16 +21,15 @@
         </p>
       </div>
       <div class="fieldset-fields control-group">
-        <% if @links and @links.any? %>
-          <ol class="links js-nested-sortable">
+        <ol class="links js-nested-sortable" data-menu-id='<%= @menu.id %>'>
+          <% if @links and @links.any? %>
             <% @links.each do |link| %>
               <%= link_portlet_tag(link) %>
             <% end -%>
-          </ol>
-        <% else %>
-          <ol class="links js-nested-sortable"></ol>
-          <p class='blank-state'>There are currently no navigation links. <%= link_to 'Create a new one', '#', class: 'js-add-link' %></p>
-        <% end %>
+          <% else %>
+            <p class='blank-state'>There are currently no navigation links. <%= link_to 'Create a new one', '#', class: 'js-add-link' %></p>
+          <% end %>
+        </ol>
       </div>
     </fieldset>
 
