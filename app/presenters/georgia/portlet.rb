@@ -19,7 +19,7 @@ module Georgia
     end
 
     def handle_tag
-      content_tag(:span, icon_tag('ellipsis-vertical'), class: 'handle')
+      content_tag(:span, icon_tag('ellipsis-v'), class: 'handle')
     end
 
     private
