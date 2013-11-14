@@ -8,8 +8,38 @@ class @MenuForm
     @setBindings()
 
   setBindings: () =>
-    @addLinkBtn.on('click', @addLink)
+    @bindAddLink()
+    @bindRemoveLink()
     @loadPortlets()
+    @loadNestedSortable()
+
+  loadPortlets: =>
+    $.each(@links, -> new LinkPortlet($(this)))
+
+  addLink: (event) =>
+    event.preventDefault()
+    $('.blank-state').remove()
+    console.log @element.data('menu-id')
+    $.ajax(type: 'POST', url: "/admin/links", data: {menu_id: @element.data('menu-id')} )
+      .done( (data) =>
+        @element.append(data)
+        portlet = $(data)
+        new LinkPortlet(portlet)
+      )
+
+  removeLink: (event) =>
+    event.preventDefault()
+    portlet = $(event.currentTarget).closest('.portlet')
+    portlet.find('input.js-destroy').val('1')
+    portlet.hide()
+
+  bindRemoveLink: () =>
+    $('body').on('click', '.js-remove-link', @removeLink)
+
+  bindAddLink: () =>
+    @addLinkBtn.on('click', @addLink)
+
+  loadNestedSortable: () =>
     @element.nestedSortable(
       forcePlaceholderSize: true
       items: 'li'
@@ -26,20 +56,6 @@ class @MenuForm
       startCollapsed: true
       update: () =>
         @treeInput.val(@element.nestedSortable('serialize'))
-    )
-
-  loadPortlets: =>
-    $.each(@links, -> new LinkPortlet($(this)))
-
-  addLink: (event) =>
-    event.preventDefault()
-    $('.blank-state').remove()
-    $.ajax(
-      url: "/admin/links/new"
-    ).done( (data) =>
-      @element.append(data)
-      portlet = $("#{$(data).attr('id')}")
-      new LinkPortlet(portlet)
     )
 
 $.fn.menuForm = () ->

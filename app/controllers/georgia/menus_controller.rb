@@ -24,7 +24,6 @@ module Georgia
           format.js { render layout: false }
         end
       end
-      # renders create.js.erb
     end
 
     def show
@@ -38,9 +37,8 @@ module Georgia
 
     def update
       @menu = Menu.find(params[:id])
-      if ancestry_tree = params[:menu].delete(:ancestry)
-        prepare_ancestry_attributes(ancestry_tree)
-      end
+      update_links_attributes(params[:menu].delete(:ancestry))
+      update_links_menu_id
       if @menu.update_attributes(params[:menu])
         respond_to do |format|
           format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully updated." }
@@ -48,7 +46,7 @@ module Georgia
         end
       else
         respond_to do |format|
-          format.html { render :edit }
+          format.html { render :edit, alert: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end
@@ -63,14 +61,19 @@ module Georgia
 
     private
 
-    def prepare_ancestry_attributes(ancestry_tree)
-      merge_attributes(MenuAncestryParser.new(ancestry_tree).to_hash)
+    def update_links_attributes ancestry_tree
+      return unless ancestry_tree
+      ancestry_attributes(ancestry_tree).each do |k,v|
+        params[:menu][:links_attributes][k].merge!(v)
+      end
     end
 
-    def merge_attributes(ancestry)
-      ancestry.each do |id,attrs|
-        params[:menu][:links_attributes][id].merge!(attrs)
-      end
+    def update_links_menu_id
+      Link.where(id: params[:menu][:links_attributes].keys).update_all(menu_id: params[:id])
+    end
+
+    def ancestry_attributes(ancestry_tree)
+      MenuAncestryParser.new(ancestry_tree).to_hash
     end
 
   end

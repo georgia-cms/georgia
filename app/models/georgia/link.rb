@@ -3,14 +3,11 @@ module Georgia
 
     include Concerns::Contentable
 
-    has_ancestry orphan_strategy: :adopt
-    attr_accessible :parent_id
-
-    attr_accessible :menu_id
+    belongs_to :menu, class_name: Georgia::Menu, touch: true
 
     acts_as_list scope: :menu
-
-    belongs_to :menu, class_name: Georgia::Menu, touch: true
+    has_ancestry orphan_strategy: :adopt
+    attr_accessible :parent_id, :menu_id
 
     scope :ordered, order('position ASC')
 
