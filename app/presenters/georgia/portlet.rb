@@ -11,7 +11,7 @@ module Georgia
     end
 
     def id
-      @id ||= @portlet.persisted? ? @portlet.id : Time.now.to_i
+      @id ||= @portlet.persisted? ? @portlet.id : rand(10 ** 8)
     end
 
     def portlet_tag content, options={}
