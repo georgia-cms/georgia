@@ -26,17 +26,9 @@ module Georgia
 
     def create
       @assets = []
-      if params[:assets] and params[:assets].any?
-        params[:assets].each do |asset|
-          if asset.content_type.match(/^image/)
-            @asset = Ckeditor::Picture.new(data: asset)
-          else
-            @asset = Ckeditor::Asset.new(data: asset)
-          end
-          if @asset.save
-            @assets << @asset.decorate
-          end
-        end
+      params[:assets].each do |asset|
+        klass = asset.content_type.match(/^image/) ? Ckeditor::Picture : Ckeditor::Asset
+        @assets << klass.create(data: asset)
       end
     end
 
