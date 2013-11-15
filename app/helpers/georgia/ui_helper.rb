@@ -3,7 +3,8 @@ module Georgia
 
     def avatar_url(user, options={})
       gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-      "http://gravatar.com/avatar/#{gravatar_id}.png?s=32&d=mm"
+      size = options.fetch(:size, '32')
+      "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
     end
 
     def icon_tag icon_name, options={}

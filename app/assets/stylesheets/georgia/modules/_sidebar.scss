@@ -5,36 +5,43 @@
   bottom: 0;
   width: $width-sidebar;
   background-color: $bg-sidebar;
+  background-color: $bg-sidebar-rgba;
   overflow: hidden;
   box-sizing: border-box;
   border-right: 1px solid #e2e2e2;
 }
 
 #sidebar {
-  li {
-    a {
-      display: block;
-      text-decoration: none;
-      border-bottom: 1px solid #e2e2e2;
-      font-weight: 400;
-      padding: 12px 15px;
-      margin: 0;
-      &:hover {
-        background-color: #eee;
+  .nav-list {
+    background-color: $bg-sidebar-navlist;
+    .sidebar-link-name {
+      display: inline-block;
+    }
+    li {
+      a {
+        display: block;
         text-decoration: none;
-        .icon { color: #a2a2a2; }
+        border-bottom: 1px solid #e2e2e2;
+        font-weight: 400;
+        padding: 12px 15px;
+        margin: 0;
+        &:hover {
+          background-color: #eee;
+          text-decoration: none;
+          .icon { color: #a2a2a2; }
+        }
       }
     }
-  }
-  li.active {
-    > a {
-      background-color: $teal;
-      border-bottom-color: transparent;
-      color: #FFF;
-      border: none;
+    li.active {
+      > a {
+        background-color: $bg-sidebar-active;
+        border-bottom-color: transparent;
+        color: #FFF;
+        border: none;
+      }
+      .icon { color: #FFF; }
+      .arrow { display: none; }
     }
-    .icon { color: #FFF; }
-    .arrow { display: none; }
   }
   .submenu {
     list-style: none outside none;
@@ -47,11 +54,15 @@
     }
   }
   .icon {
+    font-size: 1.2em;
     display: inline-block;
     text-align: center;
     width: 1.25em;
     margin-right: 5px;
     color: #bbb;
   }
-  .arrow { float: right; }
+  .arrow {
+    float: right;
+    line-height: 30px;
+  }
 }

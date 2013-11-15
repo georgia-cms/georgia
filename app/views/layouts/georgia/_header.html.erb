@@ -24,11 +24,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <%= link_to icon_tag('users'), users_path %>
+            <%= link_to icon_tag('users'), users_path, class: 'header-link--icon' %>
           </li>
           <li class='dropdown'>
-            <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
-              <%= image_tag avatar_url(current_user), alt: '' %>
+            <%= link_to '#', class: 'dropdown-toggle header-link', data: {toggle: 'dropdown'} do %>
+              <%= image_tag avatar_url(current_user, size: 25), alt: '' %>
               <span><%= current_user.name %></span>
               <%= content_tag(:b, nil, class: 'caret') %>
             <% end -%>

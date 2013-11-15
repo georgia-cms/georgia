@@ -10,7 +10,7 @@ body {
   font-family: "Signika",$helvetica;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, legend {
   font-family: "SignikaLight",$helvetica;
 }
 
@@ -60,7 +60,6 @@ label {
 }
 
 legend {
-  font-weight: bold;
   font-size: 1.4em;
 }
 

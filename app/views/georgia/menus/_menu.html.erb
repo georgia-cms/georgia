@@ -1,5 +1,5 @@
 <div class="menu">
-  <span class="menu-name"><%= link_to menu.name, [:edit, menu] %></span>
+  <h4 class="menu-name"><%= link_to menu.name, [:edit, menu] %></h4>
   <div class="pull-right">
     <%= link_to "#{icon_tag('pencil')} Edit".html_safe, [:edit, menu], class: 'btn btn-default' %>
     <%= link_to_delete menu %>

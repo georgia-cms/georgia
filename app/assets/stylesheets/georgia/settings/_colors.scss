@@ -12,21 +12,30 @@ $black: #2b2b2b;
 $beige: #f3e6ce;
 $blue: #0362fd;
 
+$bg-header: #28b779;
+$bg-header-active: #16CA7C;
+$bg-header-main: #ecf5fb;
+$bg-header-main-rgba: rgba(236,245,251,0.9);
+$bg-sidebar: $bg-header-main;
+$bg-sidebar-rgba: $bg-header-main-rgba;
+$bg-sidebar-navlist: $white;
+$bg-sidebar-active: #2862a1;
 $bg-devised: $black;
-$bg-header: $white;
 $bg-input: $white;
 $bg-input-login: $white;
 $bg-footer: $white;
-$bg-header-main: #ecf5fb;
 $bg-sidebar: #fafafa;
+
+$btn-primary: #2862a1;
+$btn-inverse: #575757;
 
 $font: $black;
 $font-muted: $grey;
 $font-link: $black;
 $font-input: $black;
 $font-input-login: $black;
-$font-header: #cbcbcb;
+$font-header: #125437;
 
-$border-header: #cbcbcb;
+$border-header: #28888f;
 $border-header-main: darken($light_grey, 5%);
 $border-input: darken($light_grey, 5%);

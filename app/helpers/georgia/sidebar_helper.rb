@@ -29,7 +29,7 @@ module Georgia
     end
 
     def sidebar_title_tag text
-      content_tag(:span, text, class: 'title')
+      content_tag(:h5, text, class: 'sidebar-link-name')
     end
 
   end

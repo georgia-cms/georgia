@@ -1,8 +1,25 @@
-.btn-back {
+.btn-primary {
+  background-color: $btn-primary;
+  border: 1px solid $btn-primary;
   color: $white;
-  background-color: $grey;
-  border: 1px solid $grey;
-  &:hover {background-color: darken($grey, 5%);}
+  &:hover {
+    color: $white;
+    background-color: darken($btn-primary, 5%);
+  }
+}
+
+.btn-inverse {
+  background-color: $btn-inverse;
+  border: 1px solid $btn-inverse;
+  color: $white;
+  &:hover {
+    color: $white;
+    background-color: darken($btn-inverse, 5%);
+  }
+}
+
+.btn-back, .btn-success {
+  @extend .btn-primary;
   padding-left: 1.5em;
   padding-right: 1.5em;
 }
