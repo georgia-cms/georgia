@@ -4,7 +4,7 @@ module Georgia
     load_and_authorize_resource class: Georgia::User
 
     def index
-      @users = User.order(:created_at).page(params[:page]).decorate
+      @users = User.order(:created_at).page(params[:page])
     end
 
     def show
