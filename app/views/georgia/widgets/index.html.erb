@@ -5,6 +5,10 @@
   <div class="header-title">
     <h1>Widgets</h1>
   </div>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target:
+      '#widget_form'} %>
+  </div>
 </header>
 
 <section class="body-main">
@@ -21,3 +25,7 @@
   <% end -%>
 
 </section>
+
+<%= content_tag :footer do %>
+  <%= render 'georgia/shared/modals/widget' %>
+<% end -%>

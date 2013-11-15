@@ -5,6 +5,8 @@ module Georgia
 
     def index
       @widgets = Widget.order(:created_at).page(params[:page]).in_groups_of(4, false)
+      @widget = Widget.new
+      @widget.contents.build(locale: current_locale)
     end
 
     def edit
@@ -15,10 +17,17 @@ module Georgia
       @widget = Widget.new(params[:widget])
 
       if @widget.save
-        redirect_to widgets_url, notice: "Widget was successfully created."
+        respond_to do |format|
+          format.html { redirect_to widgets_url, notice: "Widget was successfully updated." }
+          format.js { render layout: false }
+        end
       else
-        render 'new'
+        respond_to do |format|
+          format.html { redirect_to widgets_url, alert: "Oups. Something went wrong." }
+          format.js { render layout: false }
+        end
       end
+
     end
 
     def update
@@ -45,7 +54,7 @@ module Georgia
         end
       else
         respond_to do |format|
-          format.html { render :index, alert: "Oups. Something went wrong." }
+          format.html { redirect_to widgets_url, alert: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end

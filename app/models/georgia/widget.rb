@@ -17,7 +17,6 @@ module Georgia
     def content_presence
       contents.each do |content|
         errors.add(:base, I18n.t("locales.#{content.locale}") + ' Title is required.') unless content.title.present?
-        errors.add(:base, I18n.t("locales.#{content.locale}") + ' Content is required.') unless content.text.present?
       end
     end
 
