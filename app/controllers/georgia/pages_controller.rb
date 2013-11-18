@@ -65,7 +65,7 @@ module Georgia
     # Destroy multiple pages from table checkboxes
     def destroy
       @pages = model.where(id: params[:id])
-      if @pages = model.destroy(ids)
+      if @pages.destroy_all
         respond_to do |format|
           format.html { redirect_to :back, notice: "Pages were successfully deleted." }
           format.js { head :ok }
