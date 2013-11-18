@@ -33,14 +33,14 @@ class @MessagesTable
     # TODO: send event to controller
 
   enableActions: () =>
-    @spamBtn.removeClass('disabled')
-    @hamBtn.removeClass('disabled')
-    @deleteBtn.removeClass('disabled')
+    @spamBtn.removeClass('disabled').addClass('btn-warning')
+    @hamBtn.removeClass('disabled').addClass('btn-warning')
+    @deleteBtn.removeClass('disabled').addClass('btn-danger')
 
   disableActions: () =>
-    @spamBtn.addClass('disabled')
-    @hamBtn.addClass('disabled')
-    @deleteBtn.addClass('disabled')
+    @spamBtn.addClass('disabled').removeClass('btn-warning')
+    @hamBtn.addClass('disabled').removeClass('btn-warning')
+    @deleteBtn.addClass('disabled').removeClass('btn-danger')
 
   stopEvent: (event) ->
     event.stopPropagation()
