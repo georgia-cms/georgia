@@ -12,7 +12,7 @@
 //= require_tree .//ckeditor
 
 //= require_tree .//vendor
-//= require_tree .//prototypes
+//= require_tree .//components
 //= require georgia/bootstrap-vendor
 //= require georgia/featured-image
 //= require georgia/keybindings
