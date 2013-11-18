@@ -9,7 +9,7 @@ class @MediaTable
 
   setBindings: () =>
     @checkboxes.on('click', @update)
-    @deleteBtn.on('click', @delete)
+    @deleteBtn.on('click', @destroy)
 
   update: () =>
     @updateDownloadableIds()
@@ -18,25 +18,29 @@ class @MediaTable
     else
       @disableActions()
 
-  delete: (event) =>
+  # TODO: Should mark item while request is sent. Should sent one request per selected asset for faster feedback
+  destroy: (event) =>
     @stopEvent(event)
     $.ajax(
-      url: '/admin/media/delete'
       type: 'DELETE'
+      url: '/admin/media'
       data:
-        ids: @getIds()
+        id: @getIds()
+      dataType: 'JSON'
+    ).always(() =>
+      $.each @getIds(), (index, id) -> $("#asset_#{id}").remove()
     )
 
   updateDownloadableIds: () =>
     $('.downloadable-ids').val(@getIds())
 
   enableActions: () =>
-    @downloadBtn.removeClass('disabled')
-    @deleteBtn.removeClass('disabled')
+    @downloadBtn.removeClass('disabled').addClass('btn-info')
+    @deleteBtn.removeClass('disabled').addClass('btn-danger')
 
   disableActions: () =>
-    @downloadBtn.addClass('disabled')
-    @deleteBtn.addClass('disabled')
+    @downloadBtn.addClass('disabled').removeClass('btn-info')
+    @deleteBtn.addClass('disabled').removeClass('btn-danger')
 
   stopEvent: (event) ->
     event.stopPropagation()

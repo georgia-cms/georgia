@@ -1,9 +1,7 @@
 module Georgia
   class MediaController < ApplicationController
 
-    load_and_authorize_resource class: Ckeditor::Asset
-
-    respond_to :js, only: :destroy
+    # load_and_authorize_resource class: Ckeditor::Asset
 
     def index
       redirect_to action: :search
@@ -41,10 +39,17 @@ module Georgia
 
     # Destroy multiple assets
     def destroy
-      if Ckeditor::Asset.destroy(params[:ids])
-        head :ok
+      @pages = Ckeditor::Asset.where(id: params[:id])
+      if @pages.destroy_all
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Assets were successfully deleted." }
+          format.js { head :ok }
+        end
       else
-        head :internal_server_error
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
       end
     end
 

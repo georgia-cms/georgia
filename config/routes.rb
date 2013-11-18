@@ -47,6 +47,7 @@ Georgia::Engine.routes.draw do
     collection do
       get :search
       post :download
+      delete '/', to: :destroy
     end
   end
   resources :users
