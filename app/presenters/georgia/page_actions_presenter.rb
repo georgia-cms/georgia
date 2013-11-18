@@ -13,8 +13,8 @@ module Georgia
     end
 
     def to_s
-      content_tag :div, class: 'btn-group' do
-        link_to("Actions #{caret_tag}".html_safe, '#', role: :button, class: 'btn btn-warning', id: 'page_actions', data: {toggle: 'dropdown', target: '#'}) +
+      content_tag :div, class: 'dropdown' do
+        link_to("Actions #{caret_tag}".html_safe, '#', role: :button, class: 'btn btn-warning', data: {toggle: 'dropdown'}) +
         content_tag(:ul, action_list, class: 'dropdown-menu', role: :menu)
       end
     end

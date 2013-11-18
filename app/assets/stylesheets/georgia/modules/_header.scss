@@ -44,7 +44,8 @@
 }
 
 .header-pagination { text-align: right; }
-.header-actions .btn { float: right; }
+.header-actions .dropdown { float: left; }
+.header-actions .btn-success { float: right; }
 
 .navbar-brand {
   min-width: $width-sidebar;
