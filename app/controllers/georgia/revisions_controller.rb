@@ -81,7 +81,7 @@ module Georgia
     def prepare_content
       if locale = params[:locale]
         @content = @revision.contents.select{|c| c.locale.to_s == locale}.first
-        @content ||= Georgia::Content.new(locale: locale, title: @revision.title) if locale
+        @content ||= Georgia::Content.new(locale: locale) if locale
       else
         @content = @revision.content
       end

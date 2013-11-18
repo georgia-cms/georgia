@@ -7,10 +7,10 @@
       </div>
       <div class="header-title">
         <h1>
-          <%= link_to @revision.title, '#' %>
+          <%= link_to (@content.title || content_tag(:span, 'No title', class: 'muted')), '#' %>
           <%= icon_tag 'pencil' %>
         </h1>
-        <%= c.input_field :title, class: 'input-lg form-control' %>
+        <%= c.input_field :title, class: 'input-lg form-control', placeholder: 'Title' %>
       </div>
       <div class="header-actions">
         <%= page_actions_tag(@page, @revision) %>
