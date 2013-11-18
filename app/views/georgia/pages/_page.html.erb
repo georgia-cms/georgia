@@ -1,4 +1,4 @@
-<tr id='<%= dom_id(page) %>' class="page">
+<tr id='<%= dom_id(page) %>' class="page <%= page.publish_state %>">
   <td class='checkbox-cell'>
     <%= checkboxable_tag page %>
   </td>
@@ -8,7 +8,7 @@
   </td>
   <td>
     <%= facet_tag_list(page) %>
-    <small class='muted'><%= page.url %></small>
+    <small><%= page.url %></small>
   </td>
   <td class='nowrap'>
     <%= page.template %>

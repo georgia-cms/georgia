@@ -41,7 +41,7 @@ module Georgia
               string :url
               string :template
               string :state do
-                public? ? 'public' : 'private'
+                publish_state
               end
               string :keywords, stored: true, multiple: true do
                 revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq

@@ -16,17 +16,17 @@ Georgia::Engine.routes.draw do
   concern :pageable do
 
     collection do
-      post :sort
       get :search
+      post :sort
+      post :publish
+      post :unpublish
+      post 'flush-cache', to: :flush_cache, as: :flush_cache
+      delete '/', to: :destroy
     end
 
     member do
-      get :draft
-      get :publish
-      get :unpublish
       get :copy
       get :settings
-      post 'flush-cache', to: :flush_cache, as: :flush_cache
     end
 
     resources :revisions do

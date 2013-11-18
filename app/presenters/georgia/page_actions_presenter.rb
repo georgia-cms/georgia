@@ -3,7 +3,7 @@ module Georgia
 
     attr_accessor :view, :page, :revision, :options
 
-    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, :caret_tag, to: :view
+    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, :caret_tag, :georgia, to: :view
 
     def initialize view, page, revision, options={}
       @view = view
@@ -57,15 +57,15 @@ module Georgia
     end
 
     def link_to_flush_cache
-      link_to "#{icon_tag('fire-extinguisher')} Flush Cache".html_safe, [:flush_cache, page], options.merge(method: :post)
+      link_to "#{icon_tag('fire-extinguisher')} Flush Cache".html_safe, georgia.flush_cache_pages_path(id: [page.id]), options.merge(method: :post)
     end
 
     def link_to_publish
-      link_to "#{icon_tag('thumbs-up')} Publish".html_safe, [:publish, page], options
+      link_to "#{icon_tag('thumbs-up')} Publish".html_safe, georgia.publish_pages_path(id: [page.id]), options
     end
 
     def link_to_unpublish
-      link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, [:unpublish, page], options.merge(data: {confirm: 'Are you sure?'})
+      link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, georgia.unpublish_pages_path(id: [page.id]), options.merge(data: {confirm: 'Are you sure?'})
     end
 
     def link_to_review

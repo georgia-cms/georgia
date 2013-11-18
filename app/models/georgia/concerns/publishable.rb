@@ -22,6 +22,10 @@ module Georgia
         end
         alias_method :published?, :public?
 
+        def publish_state
+          public? ? 'public' : 'private'
+        end
+
       end
 
       module ClassMethods

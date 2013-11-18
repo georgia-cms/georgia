@@ -3,10 +3,10 @@ module Georgia
 
     include Georgia::Concerns::Helpers
 
-    load_and_authorize_resource class: Georgia::Page
+    # load_and_authorize_resource class: Georgia::Page
 
     before_filter :prepare_new_page, only: [:search]
-    before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :flush_cache, :draft, :publish, :unpublish]
+    before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :draft]
 
     def show
       redirect_to [:edit, @page]
@@ -43,8 +43,6 @@ module Georgia
 
     # Update page settings
     def update
-      @page.update_attributes(params[:page])
-
       if @page.update_attributes(params[:page])
         respond_to do |format|
           format.html { render :settings, notice: "#{@page.title} was successfully updated." }
@@ -66,33 +64,69 @@ module Georgia
 
     # Destroy multiple pages from table checkboxes
     def destroy
-      ids = params[:id].split(',')
+      @pages = model.where(id: params[:id])
       if @pages = model.destroy(ids)
-        render layout: false
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Pages were successfully deleted." }
+          format.js { head :ok }
+        end
       else
-        head :internal_server_error
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
       end
     end
 
-    # Flush this page's cache
+    # Flush cache from multiple pages
     def flush_cache
-      if expire_action(@page.cache_key)
-        redirect_to :back, notice: "Cache was successfully cleared for #{@page.url}"
+      @pages = model.where(id: params[:id])
+      @cache_keys = @pages.map(&:cache_key)
+      unless @cache_keys.map{|k| expire_action(k)}.include?(false)
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Cache was successfully cleared." }
+          format.js { head :ok }
+        end
       else
-        redirect_to :back, alert: "Oups. Either there wasn't any cache to start with or something went wrong."
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Either there wasn't any cache to start with or something went wrong." }
+          format.js { head :internal_server_error }
+        end
       end
     end
 
-    # Publishes the page
+    # Publishes multiple pages from table checkboxes
     def publish
-      @page.publish
-      redirect_to :back, notice: "#{current_user.name} has successfully published #{@page.title} #{instance_name}."
+      @pages = model.where(id: params[:id])
+
+      unless @pages.map(&:publish).include?(false)
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Successfully published." }
+          format.js { head :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
+      end
     end
 
     # Unpublishes the page
     def unpublish
-      @page.unpublish
-      redirect_to :back, notice: "#{current_user.name} has successfully unpublished #{@page.title} #{instance_name}."
+      @pages = model.where(id: params[:id])
+
+      unless @pages.map(&:unpublish).include?(false)
+        respond_to do |format|
+          format.html { redirect_to :back, notice: "Successfully unpublished." }
+          format.js { head :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
+      end
     end
 
     # Sorts subpages/children from pages#settings
