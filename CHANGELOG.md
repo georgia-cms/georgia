@@ -1,3 +1,7 @@
+== 0.6.14
+
+- Add locale to caching
+
 == 0.6.13
 
 - Add caching by default on pages#show

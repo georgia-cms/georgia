@@ -35,7 +35,7 @@ module Georgia
         end
 
         def page_cache_key
-          Georgia::Page.where(url: "/#{params[:request_path]}").try(:first).try(:cache_key)
+          [Georgia::Page.where(url: "/#{params[:request_path]}").try(:first).try(:cache_key), I18n.locale].compact.join('/')
         end
 
       end
