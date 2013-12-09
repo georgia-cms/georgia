@@ -6,7 +6,7 @@ module Georgia
     end
 
     def sidebar_navigation_sublink text, url, options={}
-      SidebarLinkPresenter.new(self, text, url, options).sidebar_navigation_sublink
+      SidebarLinkPresenter.new(self, text, url, options.merge(sublink: true))
     end
 
   end

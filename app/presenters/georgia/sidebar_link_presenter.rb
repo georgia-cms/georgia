@@ -1,8 +1,9 @@
 module Georgia
   class SidebarLinkPresenter < Presenter
 
-    attr_reader :text, :url, :icon, :options, :active
+    attr_reader :text, :url, :icon, :options, :active, :sublink
     alias :active? :active
+    alias :sublink? :sublink
 
     def initialize view_context, text, url, options={}
       @view_context = view_context
@@ -11,16 +12,19 @@ module Georgia
       @options = options
       @icon = options.fetch(:icon, 'bookmark-o')
       @active = options.fetch(:active, get_active_state_from_controller)
+      @sublink = options.fetch(:sublink, false)
       super
     end
 
     def to_s
-      content_tag :li, class: "#{'active' if active?}" do
-        link_to(sidebar_link_bundle, url)
-      end
+      !sublink? ? render_link : render_sublink
     end
 
-    def sidebar_navigation_sublink
+    def render_link
+      content_tag :li, link_to(sidebar_link_bundle, url), class: "#{'active' if active?}"
+    end
+
+    def render_sublink
       content_tag :li, link_to(sidebar_title_tag, url), class: "#{'active' if active?}"
     end
 
