@@ -6,7 +6,7 @@
   width: $width-sidebar;
   background-color: $bg-sidebar;
   background-color: $bg-sidebar-rgba;
-  overflow: hidden;
+  overflow-y: auto;
   box-sizing: border-box;
   border-right: 1px solid #e2e2e2;
 }
