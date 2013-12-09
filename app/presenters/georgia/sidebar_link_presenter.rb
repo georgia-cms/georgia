@@ -44,7 +44,7 @@ module Georgia
 
     def get_active_state_from_controller
       controller = options.fetch(:controller)
-      controller_name == controller
+      controller.is_a?(Array) ? controller.include?(controller_name) : (controller_name == controller)
     end
 
   end
