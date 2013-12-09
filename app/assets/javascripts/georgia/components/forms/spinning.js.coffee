@@ -17,7 +17,7 @@ class @SpinningForm
     )
     @element.on('ajax:error', (event, xhr, status) =>
       @submitBtn
-        .addClass('btn-delete')
+        .addClass('btn-danger')
         .html("<i class='fa fa-exclamation-triangle'>&nbsp;</i> Oups!")
     )
     @element.on('ajax:complete', (event, xhr, status) =>
@@ -39,7 +39,7 @@ class @SpinningForm
   clearBtnClasses: () =>
     @submitBtn
       .removeClass('btn-info')
-      .removeClass('btn-delete')
+      .removeClass('btn-danger')
 
 
 $.fn.spinningForm = () ->

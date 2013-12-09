@@ -18,7 +18,7 @@ module Georgia
 
     def button_to_save text=nil
       text ||= "#{icon_tag 'check'} Save".html_safe
-      content_tag :button, text, type: "submit", class: "btn btn-success"
+      content_tag :button, text, type: "submit", class: "btn btn-save pull-right"
     end
 
     def choose_image_tag imageable, args={}
