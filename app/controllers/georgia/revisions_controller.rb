@@ -21,17 +21,24 @@ module Georgia
 
     # Stores a copy of the current revision before updating
     def update
-      @page.store if @page.current_revision == @revision
-
-      if @revision.update_attributes(params[:revision])
-        respond_to do |format|
-          format.html { redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated." }
-          format.js { head :ok }
+      if @page.current_revision == @revision and @page.store
+        if @revision.update_attributes(params[:revision])
+          respond_to do |format|
+            format.html { redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated." }
+            format.js { head :ok }
+          end
+        else
+          @message = @revision.errors.full_messages.join('. ')
+          respond_to do |format|
+            format.html { render :edit, alert: @message }
+            format.js { render layout: false }
+          end
         end
       else
+        @message = @page.errors.full_messages.join('. ')
         respond_to do |format|
-          format.html { render :edit, alert: "Oups. Something went wrong."  }
-          format.js { head :internal_server_error }
+          format.html { render :edit, alert: @message }
+          format.js { render layout: false }
         end
       end
     end

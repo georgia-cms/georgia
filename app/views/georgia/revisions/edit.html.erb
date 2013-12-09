@@ -1,4 +1,4 @@
-<%= simple_form_for @revision, as: :revision, url: [@page, @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'}, defaults: { input_html: { class: "form-control" } } do |f| %>
+<%= simple_form_for @revision, as: :revision, url: [@page.becomes(Georgia::Page), @revision], remote: true, html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'}, defaults: { input_html: { class: "form-control" } } do |f| %>
   <%= f.simple_fields_for :contents, @content do |c| %>
     <%= c.hidden_field :locale %>
     <header class='header-main'>

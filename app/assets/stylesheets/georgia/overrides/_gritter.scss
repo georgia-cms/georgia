@@ -1,0 +1,18 @@
+/* for the light (white) version of the gritter notice */
+.gritter-item-wrapper .gritter-item,
+.gritter-item-wrapper .gritter-bottom,
+.gritter-item-wrapper .gritter-top {
+  background-image: none;
+  background-color: #FFF;
+  background-color: rgba(255,255,255,0.8);
+  color: #222;
+  &:hover { background-color: #FFF; }
+}
+.gritter-item-wrapper .gritter-title {
+  text-shadow: none;
+}
+
+.gritter-close {
+  left: auto;
+  right: 3px;
+}

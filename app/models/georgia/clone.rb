@@ -28,7 +28,7 @@ module Georgia
     # Returns a copy of the current revision in 'revision' state
     def store
       @instance.revisions << clone_current_revision(state: 'revision')
-      @instance.save!
+      @instance.save
     end
 
     private
@@ -59,6 +59,7 @@ module Georgia
     def clone_slides
       instance.current_revision.slides.map do |slide|
         new_slide = Georgia::Slide.new
+        new_slide.page_id = slide.page_id
         slide.contents.each do |content|
           new_slide.contents << clone_content(content)
         end

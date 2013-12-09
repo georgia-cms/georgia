@@ -6,17 +6,8 @@ module Georgia
 
     acts_as_list scope: :page
     attr_accessible :page_id
-
-    belongs_to :page, class_name: Georgia::Revision
-
-    validate :page_association
-
-    protected
-
-    # Validations
-    def page_association
-      errors.add(:base, "An association to a page is required.") unless page_id.present?
-    end
+    belongs_to :revision, foreign_key: :page_id
+    validates :page_id, presence: true
 
   end
 end
