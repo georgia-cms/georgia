@@ -47,6 +47,10 @@
     margin: 0;
     padding: 0;
     .title { padding-left: 35px; }
+    li a {
+      padding: 6px 15px 5px 25px;
+      h5 {margin: 0;}
+    }
     li.active > a {
       background-color: #eee;
       color: $font-link;
