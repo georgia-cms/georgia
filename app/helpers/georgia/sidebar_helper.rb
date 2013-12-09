@@ -6,8 +6,7 @@ module Georgia
     end
 
     def sidebar_navigation_sublink text, url, options={}
-      controller = options.fetch(:controller)
-      content_tag :li, link_to(sidebar_title_tag(text), url), class: "#{'active' if controller_name == controller}"
+      SidebarLinkPresenter.new(self, text, url, options).sidebar_navigation_sublink
     end
 
   end
