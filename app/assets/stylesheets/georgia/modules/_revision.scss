@@ -7,3 +7,7 @@
 .js-revision-form .header-title {
   i, input {display: none;}
 }
+.header-title a {
+  max-width: 830px;
+  @extend .ellipsis;
+}
