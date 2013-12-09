@@ -9,13 +9,13 @@
   border-bottom: 1px solid $border-header;
   .header-link {
     color: $font-header;
+    padding-top: 17px;
+    padding-bottom: 16px;
     &:hover, &:focus { background-color: $bg-header-active; }
   }
   .header-link--icon {
     @extend .header-link;
     font-size: 1.6em;
-    padding-top: 17px;
-    padding-bottom: 16px;
   }
 }
 
