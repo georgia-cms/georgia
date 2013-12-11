@@ -58,8 +58,7 @@ module Georgia
 
     def clone_slides
       instance.current_revision.slides.map do |slide|
-        new_slide = Georgia::Slide.new
-        new_slide.page_id = slide.page_id
+        new_slide = Georgia::Slide.new(page_id: slide.page_id)
         slide.contents.each do |content|
           new_slide.contents << clone_content(content)
         end
@@ -80,6 +79,7 @@ module Georgia
 
     def clone_ui_association(ui_assoc)
       Georgia::UiAssociation.new(
+        page_id: ui_assoc.page_id,
         widget_id: ui_assoc.widget_id,
         ui_section_id: ui_assoc.ui_section_id
       )
