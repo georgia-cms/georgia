@@ -5,7 +5,7 @@ module Georgia
 
     before_filter :prepare_page
     before_filter :prepare_revision, except: [:index]
-    before_filter :prepare_content, only: [:edit]
+    before_filter :prepare_content, only: [:edit, :update]
 
     def index
       @revisions = @page.revisions.order('created_at DESC').reject{|r| r == @page.current_revision}
@@ -23,23 +23,12 @@ module Georgia
     def update
       if @page.current_revision == @revision and @page.store
         if @revision.update_attributes(params[:revision])
-          respond_to do |format|
-            format.html { redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated." }
-            format.js { head :ok }
-          end
+          render [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
         else
-          @message = @revision.errors.full_messages.join('. ')
-          respond_to do |format|
-            format.html { render :edit, alert: @message }
-            format.js { render layout: false }
-          end
+          redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
         end
       else
-        @message = @page.errors.full_messages.join('. ')
-        respond_to do |format|
-          format.html { render :edit, alert: @message }
-          format.js { render layout: false }
-        end
+        redirect_to [:edit, @page, @revision], alert: @page.errors.full_messages.join('. ')
       end
     end
 

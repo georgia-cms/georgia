@@ -16,14 +16,6 @@
           <li>
             <%= link_to 'Visit your website', main_app.root_url, class: 'header-link' %>
           </li>
-          <% flash.each do |name, msg| %>
-            <li>
-              <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-                <a class="close" data-dismiss="alert">×</a>
-                <%= msg.html_safe %>
-              </div>
-            </li>
-          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
