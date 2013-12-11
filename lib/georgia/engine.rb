@@ -35,7 +35,6 @@ module Georgia
     require 'select2-rails'
     require 'shadowbox-rails'
     require 'mousetrap-rails'
-    require 'gritter'
 
     initializer 'georgia.action_controller' do |app|
       ActiveSupport.on_load :action_controller do

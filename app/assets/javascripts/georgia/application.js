@@ -7,7 +7,6 @@
 //= require select2
 //= require shadowbox
 //= require mousetrap
-//= require gritter
 
 //= require ckeditor/init
 //= require_tree .//ckeditor
