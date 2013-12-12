@@ -1,3 +1,7 @@
+== 0.6.15
+
+- Add sidekiq:clear_queue rake task
+
 == 0.6.14
 
 - Add locale to caching
