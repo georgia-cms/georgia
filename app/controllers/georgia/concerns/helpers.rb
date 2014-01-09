@@ -17,7 +17,7 @@ module Georgia
       def model
         begin
           self.class.to_s.gsub(/Controller/,'').singularize.constantize
-          # If no constant if found, check if the non-namespaced one exists. i.e. Partner => Admin::PartnersController
+          # If no constant is found, check if the non-namespaced one exists. i.e. Partner => Admin::PartnersController
         rescue NameError
           self.class.to_s.gsub(/Controller/,'').gsub(/\w+::/,'').singularize.constantize
         end
