@@ -59,11 +59,11 @@ module Georgia
     end
 
     def link_to_publish
-      link_to "#{icon_tag('thumbs-up')} Publish".html_safe, georgia.publish_pages_path(id: [page.id]), options
+      link_to "#{icon_tag('thumbs-up')} Publish".html_safe, georgia.publish_pages_path(id: [page.id]), options.merge(method: :post)
     end
 
     def link_to_unpublish
-      link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, georgia.unpublish_pages_path(id: [page.id]), options.merge(data: {confirm: 'Are you sure?'})
+      link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, georgia.unpublish_pages_path(id: [page.id]), options.merge(data: {confirm: 'Are you sure?'}, method: :post)
     end
 
     def link_to_review
