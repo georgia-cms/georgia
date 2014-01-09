@@ -1,15 +1,13 @@
 module Georgia
-  class PageActionsPresenter
+  class PageActionsPresenter < Presenter
 
-    attr_accessor :view, :page, :revision, :options
-
-    delegate :icon_tag, :content_tag, :link_to, :controller_name, :url_for, :main_app, :can?, :caret_tag, :georgia, to: :view
+    attr_accessor :page, :revision, :options
 
     def initialize view, page, revision, options={}
-      @view = view
       @page = (page.decorated? ? page.object : page)
       @revision = (revision.decorated? ? revision.object : revision)
       @options = options
+      super
     end
 
     def to_s
