@@ -45,12 +45,12 @@ module Georgia
     def update
       if @page.update_attributes(params[:page])
         respond_to do |format|
-          format.html { render :settings, notice: "#{@page.title} was successfully updated." }
-          format.js { render layout: false }
+          format.html { redirect_to [:settings, @page], notice: "#{@page.title} was successfully updated." }
+          format.js { head :ok }
         end
       else
         respond_to do |format|
-          format.html { render :settings, notice: "Oups. Something went wrong." }
+          format.html { redirect_to [:settings, @page], notice: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end
