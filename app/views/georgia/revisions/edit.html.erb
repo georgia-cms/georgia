@@ -13,6 +13,7 @@
         <%= c.input_field :title, class: 'input-lg form-control', placeholder: 'Title' %>
       </div>
       <div class="header-actions">
+        <%= button_to_settings %>
         <%= page_actions_tag(@page, @revision) %>
         <%= button_to_save %>
       </div>

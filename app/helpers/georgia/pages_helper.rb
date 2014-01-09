@@ -6,5 +6,9 @@ module Georgia
       Georgia::PageActionsPresenter.new(self, page, revision, options)
     end
 
+    def button_to_settings
+      link_to icon_tag('cogs'), [:settings, @page], class: 'btn btn-default'
+    end
+
   end
 end

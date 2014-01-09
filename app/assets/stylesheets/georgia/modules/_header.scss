@@ -34,8 +34,8 @@
   background-color: $bg-header-main;
   background-color: $bg-header-main-rgba;
   .header-gutter   { @include span-columns(2); }
-  .header-title    { @include span-columns(8); }
-  .header-actions  { @include span-columns(2); }
+  .header-title    { @include span-columns(7); }
+  .header-actions  { @include span-columns(3); }
 
   h1 {
     display: inline;
@@ -44,8 +44,14 @@
 }
 
 .header-pagination { text-align: right; }
-.header-actions .dropdown { float: left; }
-.header-actions .btn-success { float: right; }
+.header-actions {
+  text-align: right;
+  .dropdown {
+    display: inline-block;
+    text-align: left;
+  }
+  .btn-success { float: right; }
+}
 
 .navbar-brand {
   min-width: $width-sidebar;

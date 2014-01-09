@@ -18,9 +18,9 @@ module Georgia
     end
 
     def action_list
-      html = ""
+      html = ActiveSupport::SafeBuffer.new
       html << content_tag(:li, link_to_edit) if can?(:edit, page)
-      html << content_tag(:li, link_to_settings) if can?(:settings, page)
+      # html << content_tag(:li, link_to_settings) if can?(:settings, page)
       html << content_tag(:li, link_to_preview) if can?(:preview, page)
       html << content_tag(:li, link_to_copy) if can?(:copy, page)
       if page.current_revision and page.current_revision.published?
@@ -29,7 +29,7 @@ module Georgia
       end
       html << content_tag(:li, link_to_flush_cache) if can?(:flush_cache, page)
       html << content_tag(:li, link_to_revisions) if can?(:index, Revision)
-      html.html_safe
+      html
     end
 
     private
