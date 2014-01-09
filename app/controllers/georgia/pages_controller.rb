@@ -62,17 +62,19 @@ module Georgia
       redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "Do not forget to change your url"
     end
 
-    # Destroy multiple pages from table checkboxes
+    # Destroys page and its revisions from page
+    # Also used to destroy multiple pages from table checkboxes
     def destroy
+      back_url = url_for(controller: controller_name, action: :index)
       @pages = model.where(id: params[:id])
       if @pages.destroy_all
         respond_to do |format|
-          format.html { redirect_to :back, notice: "Pages were successfully deleted." }
+          format.html { redirect_to back_url, notice: "#{model.to_s.humanize} successfully deleted." }
           format.js { head :ok }
         end
       else
         respond_to do |format|
-          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.html { redirect_to back_url, alert: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end
