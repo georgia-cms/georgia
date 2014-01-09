@@ -14,7 +14,7 @@ module Georgia
 
     # Edit current revision
     def edit
-      redirect_to edit_page_revision_path(@page, @page.current_revision)
+      redirect_to [:edit, @page, @page.current_revision]
     end
 
     # Edit current page
