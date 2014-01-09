@@ -37,7 +37,7 @@ class @MediaLibrary
     ).done( (data) => @picturesContainer.html(data) )
 
   setTarget: (target) => @target = $(target)
-  closeMediaLibrary: -> $('.js-close').trigger('click')
+  closeMediaLibrary: -> $('.js-close, .close').trigger('click')
   loadSpinner: => @picturesContainer.html(@spinnerTag())
   stopEvent: (event) ->
     event.stopPropagation()
