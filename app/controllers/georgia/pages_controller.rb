@@ -65,7 +65,7 @@ module Georgia
     # Destroys page and its revisions from page
     # Also used to destroy multiple pages from table checkboxes
     def destroy
-      back_url = url_for(controller: controller_name, action: :index)
+      back_url = url_for(controller: controller_name, action: :search)
       @pages = model.where(id: params[:id])
       if @pages.destroy_all
         respond_to do |format|
