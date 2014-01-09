@@ -9,12 +9,13 @@
 //= require mousetrap
 
 //= require ckeditor/init
-//= require_tree .//ckeditor
+//= require_tree ./ckeditor
 
-//= require_tree .//vendor
-//= require_tree .//components
-//= require georgia/bootstrap-vendor
-//= require georgia/featured-image
-//= require georgia/keybindings
-//= require georgia/media
-//= require georgia/toggle
+//= require ./vendor/moment
+//= require_tree ./vendor
+//= require_tree ./components
+//= require ./bootstrap-vendor
+//= require ./featured-image
+//= require ./keybindings
+//= require ./media
+//= require ./toggle
