@@ -1,15 +1,16 @@
 <header class='header-main'>
   <div class="row">
-    <div class="col-md-2">
+    <div class="header-gutter">
       <%= link_to_back search_pages_path %>
     </div>
-    <div class="col-md-7">
-      <h1 class='header-title'><%= @page.title %></h1>
+    <div class="header-title">
+      <h1 class='title-truncated'>
+        <%= @page.title || content_tag(:span, 'No title', class: 'muted') %>
+      </h1>
     </div>
-    <div class="col-md-3">
-      <div class="header-actions">
-        <%= page_actions_tag(@page, @revision) %>
-      </div>
+    <div class="header-actions">
+      <%= button_to_settings %>
+      <%= page_actions_tag(@page, @revision) %>
     </div>
   </div>
 </header>

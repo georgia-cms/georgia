@@ -5,9 +5,14 @@
   padding: 10px 0;
 }
 .js-revision-form .header-title {
-  i, input {display: none;}
+  i, input { display: none; }
+  i {
+    font-size: 0.75em;
+    float: right;
+  }
 }
-.header-title a {
-  max-width: 830px;
+.header-title .title-truncated {
+  max-width: 750px;
   @extend .ellipsis;
 }
+.header-title a.title-truncated { float: left; }
