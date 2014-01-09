@@ -17,6 +17,15 @@
     <% end -%>
   </div>
   <div class="fieldset-fields">
+    <% if @page.current_revision != @revision %>
+      <div class="warning-message">
+        <p>
+          <span class="label label-warning"><%= icon_tag('warning') %></span>
+          You are looking at a past revision. Updating this content will not change anything on your website.
+          Click <%= link_to 'here', [:edit, @page], class: 'text-primary' %> to edit the current revision.
+        </p>
+      </div>
+    <% end -%>
     <%= f.input :text, label: false, as: :ckeditor, input_html: {toolbar: 'Full'} %>
   </div>
 </fieldset>
