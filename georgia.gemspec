@@ -39,11 +39,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'rubyzip', '> 1'
   s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
-  s.add_dependency 'sunspot_rails'
-  s.add_dependency 'sunspot_solr' # should be a development requirement and installed properly on production
+  s.add_dependency 'sunspot_rails', '2.0.0'
   s.add_dependency 'state_machine'
   s.add_dependency 'sendgrid'
   s.add_dependency 'routing_concerns'
   s.add_dependency 'rakismet'
   s.add_dependency 'sidekiq'
+  s.add_dependency 'sunspot_solr', '2.0.0'
 end

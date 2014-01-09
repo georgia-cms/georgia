@@ -19,7 +19,6 @@ module Georgia
     require 'ancestry'
     require 'cloudfiles'
     require 'sunspot_rails'
-    require 'sunspot_solr'
     require 'state_machine'
     require 'sendgrid'
     require 'routing_concerns'
