@@ -15,6 +15,10 @@
 </header>
 <section class="body-main">
   <div class="revisions">
-    <%= render @revisions %>
+    <% if @revisions and @revisions.any? %>
+      <%= render @revisions %>
+    <% else -%>
+      <h3>There are no past revisions for this page yet. <%= link_to 'Go Back', @page %></h3>
+    <% end -%>
   </div>
 </section>
