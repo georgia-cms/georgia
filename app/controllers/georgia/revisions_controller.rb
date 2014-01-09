@@ -35,7 +35,7 @@ module Georgia
 
     def destroy
       @revision.destroy
-      redirect_to @page, notice: "#{@revision.title} was successfully deleted."
+      redirect_to page_revisions_path(@page), notice: "#{@revision.title or 'Revision'} was successfully deleted."
     end
 
     # Sends revision to main_app router
