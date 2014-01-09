@@ -69,7 +69,7 @@ module Georgia
       @pages = model.where(id: params[:id])
       if @pages.destroy_all
         respond_to do |format|
-          format.html { redirect_to back_url, notice: "#{model.to_s.humanize} successfully deleted." }
+          format.html { redirect_to back_url, notice: "#{instance_name.humanize} successfully deleted." }
           format.js { head :ok }
         end
       else
