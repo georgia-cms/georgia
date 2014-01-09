@@ -3,8 +3,8 @@ module Georgia
 
     load_and_authorize_resource class: Georgia::Revision
 
-    before_filter :prepare_page
     before_filter :prepare_revision, except: [:index]
+    before_filter :prepare_page
     before_filter :prepare_content, only: [:edit, :update]
 
     def index
@@ -63,12 +63,12 @@ module Georgia
 
     private
 
-    def prepare_page
-      @page = Page.find(params[:page_id])
-    end
-
     def prepare_revision
       @revision = Revision.find(params[:id])
+    end
+
+    def prepare_page
+      @page = @revision.page
     end
 
     def prepare_content
