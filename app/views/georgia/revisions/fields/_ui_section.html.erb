@@ -2,7 +2,7 @@
   <label><%= ui_section.name %></label>
   <div class="widgets js-nested-widgets" data-ui-section="<%= ui_section.id %>" data-revision="<%= @revision.id %>">
     <ul class="nav-list js-sortable">
-      <% ui_section.ui_associations.for_revision(@revision).each do |ui_association| %>
+      <% ui_section.ui_associations.for_revision(@revision).order(:position).each do |ui_association| %>
         <%= widget_portlet_tag(ui_association) %>
       <% end -%>
     </ul>

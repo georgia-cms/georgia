@@ -10,6 +10,8 @@ class @WidgetPortlet
   setBindings: () =>
     @element.on('click', '.js-add-widget', @addWidget)
     @element.on('click', '.js-remove-widget', @removeWidget)
+    @widgetList.sortable(axis: 'y')
+    @widgetList.on( "sortupdate", @updatePosition);
 
   getWidgetId: () =>
     @selectTag.val()
@@ -32,7 +34,8 @@ class @WidgetPortlet
     portlet.find('input.js-destroy').val('1')
     portlet.hide()
 
-
+  updatePosition: (event, ui) =>
+    @widgetList.find('.js-position').each((index, el) -> $(el).val(index+1))
 
 $.fn.widgetPortlet = () ->
   @each ->

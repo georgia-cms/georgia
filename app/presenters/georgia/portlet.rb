@@ -1,13 +1,11 @@
 module Georgia
-  class Portlet
+  class Portlet < Presenter
 
-    attr_accessor :view_context
-
-    delegate :render, :content_tag, :icon_tag, :link_to, :hidden_field_tag, :dom_id, to: :view_context
+    attr_reader :portlet
 
     def initialize view_context, portlet, args={}
-      @view_context = view_context
       @portlet = portlet
+      super
     end
 
     def id
@@ -15,7 +13,7 @@ module Georgia
     end
 
     def portlet_tag content, options={}
-      content_tag :li, content, options.reverse_merge(class: 'portlet', id: dom_id(@portlet), data: {portlet: @portlet.id})
+      content_tag :li, content, options.reverse_merge(class: 'portlet', id: dom_id(portlet), data: {portlet: id})
     end
 
     def handle_tag

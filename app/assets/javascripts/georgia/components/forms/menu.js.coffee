@@ -19,7 +19,6 @@ class @MenuForm
   addLink: (event) =>
     event.preventDefault()
     $('.blank-state').remove()
-    console.log @element.data('menu-id')
     $.ajax(type: 'POST', url: "/admin/links", data: {menu_id: @element.data('menu-id')} )
       .done( (data) =>
         @element.append(data)

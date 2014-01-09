@@ -62,7 +62,7 @@ module Georgia
     end
 
     def actions_tag
-      content_tag(:div, link_to(icon_tag('times'), '#', class: 'btn-delete js-remove-slide'), class: 'actions')
+      content_tag(:div, link_to(icon_tag('trash-o'), '#', class: 'btn btn-danger js-remove-slide'), class: 'actions')
     end
 
     def content_id

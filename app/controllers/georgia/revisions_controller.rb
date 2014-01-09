@@ -23,8 +23,7 @@ module Georgia
     def update
       @page.store if @page.current_revision == @revision
       if @revision.update_attributes(params[:revision])
-        flash[:notice] = "#{@revision.title} was successfully updated."
-        render :edit
+        redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
       else
         redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
       end
