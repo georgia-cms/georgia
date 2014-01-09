@@ -11,7 +11,7 @@ class @WidgetPortlet
     @element.on('click', '.js-add-widget', @addWidget)
     @element.on('click', '.js-remove-widget', @removeWidget)
     @widgetList.sortable(axis: 'y')
-    @widgetList.on( "sortupdate", @updatePosition);
+    @widgetList.on( "sortupdate", @updatePosition)
 
   getWidgetId: () =>
     @selectTag.val()

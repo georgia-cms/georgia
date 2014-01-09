@@ -10,6 +10,8 @@ class @SlidePortlet
   setBindings: () =>
     @addSlideBtn.on('click', @addSlide)
     @element.on('click', '.js-remove-slide', @removeSlide)
+    @slideList.sortable(axis: 'y')
+    @slideList.on( "sortupdate", @updatePosition)
 
   addSlide: (event) =>
     event.preventDefault()
@@ -22,6 +24,9 @@ class @SlidePortlet
     portlet = $(event.currentTarget).closest('.portlet')
     portlet.find('input.js-destroy').val('1')
     portlet.hide()
+
+  updatePosition: (event, ui) =>
+    @slideList.find('.js-position').each((index, el) -> $(el).val(index+1))
 
 $.fn.slidePortlet = () ->
   @each ->

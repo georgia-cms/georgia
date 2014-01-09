@@ -15,7 +15,7 @@ module Georgia
 
     def to_s
       output = ActiveSupport::SafeBuffer.new
-      output << sort_tag
+      output << handle_tag
       output << destroy_input_tag
       output << position_input_tag
       output << id_input_tag if persisted?
@@ -31,10 +31,6 @@ module Georgia
 
     def text
       truncate(@widget.text, length: 70)
-    end
-
-    def sort_tag
-      content_tag(:span, icon_tag('bars'), class: 'handle pull-left')
     end
 
     def destroy_input_tag

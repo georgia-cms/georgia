@@ -1,7 +1,7 @@
 module Georgia
   class SlidePortlet < Portlet
 
-    delegate :choose_image_tag, :picture_tag, :text_field_tag, :text_area_tag, to: :view_context
+    delegate :title, :position, to: :portlet
 
     def initialize view_context, slide, args={}
       @content = args.fetch(:content, slide.content)
@@ -10,7 +10,9 @@ module Georgia
 
     def to_s
       output = ActiveSupport::SafeBuffer.new
+      output << handle_tag
       output << destroy_input_tag
+      output << position_input_tag
       output << id_input_tag if persisted?
       output << actions_tag
       output << slide_tag
@@ -18,10 +20,6 @@ module Georgia
     end
 
     private
-
-    def title
-      @title ||= @portlet.title
-    end
 
     def slide_tag
       content_tag(:span, class: 'slide') do
@@ -43,6 +41,10 @@ module Georgia
 
     def id_input_tag
       hidden_field_tag("revision[slides_attributes][#{id}][id]", id)
+    end
+
+    def position_input_tag
+      hidden_field_tag("revision[slides_attributes][#{id}][position]", position, class: 'js-position')
     end
 
     def title_input_tag
