@@ -41,7 +41,7 @@ module Georgia
 
     def review
       @revision.review
-      notify("#{current_user.name} is asking you to review #{@revision.title}.", [:edit, @page, @revision])
+      notify("#{current_user.name} is asking you to review #{@revision.title}.", edit_page_revision_path(@page, @revision, only_path: false))
       redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
     end
 
