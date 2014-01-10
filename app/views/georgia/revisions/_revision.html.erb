@@ -1,5 +1,6 @@
 <div class="revision">
   <span class='badge badge-default'>id:<%= revision.id %></span>
+  <span class='label label-<%= revision.review? ? 'warning' : 'default' %>'><%= revision.state %></span>
   <%= link_to revision.created_at.strftime('%F %H:%M'), [@page, revision] %>
   <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
   <div class="pull-right">
