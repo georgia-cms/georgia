@@ -1,10 +1,40 @@
-<div class="jumbotron">
-  <div class="container">
-  <h1>Georgia CMS <small><%= Georgia::VERSION %></small></h1>
-  <p>Compatibility & Extensibility</p>
-  <p>
-    Georgia is <%= link_to "Motion Eleven", "http://www.motioneleven.com/" %>'s CMS engine for Ruby on Rails applications. Key features include user authentication, widgets, slideshows, publishing system, revisioning and more.
-  </p>
-  <p><%= link_to 'Get started', search_pages_path, class: 'btn btn-primary btn-lg' %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="jumbotron">
+        <h2>Georgia CMS <small><%= Georgia::VERSION %></small></h2>
+        <p>Compatibility & Extensibility</p>
+        <p>
+          Georgia is <%= link_to "Motion Eleven", "http://www.motioneleven.com/" %>'s CMS engine for Ruby on Rails applications. Key features include user authentication, widgets, slideshows, publishing system, revisioning and more.
+        </p>
+        <p><%= link_to 'Get started', search_pages_path, class: 'btn btn-primary btn-lg' %></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <% if @awaiting_revisions %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Awaiting Review</h3>
+        </div>
+        <div class="panel-body">
+          <% if @awaiting_revisions.any? %>
+            <% @awaiting_revisions.each do |revision| %>
+              <div class="list-group">
+                <%= link_to([:edit, revision.revisionable, revision], class: 'list-group-item') do %>
+                  <h4 class="list-group-item-heading">
+                    <%= revision.title %>
+                    <span class="badge pull-right">id:<%= revision.id %></span>
+                  </h4>
+                  <p class="list-group-item-text"><%= truncate(strip_tags(revision.text), length: 120, separator: ' ') %></p>
+                <% end -%>
+              </div>
+            <% end -%>
+          <% else -%>
+            <h5>Good Job! Nothing to review.</h5>
+          <% end -%>
+        </div>
+      </div>
+      <% end -%>
+    </div>
   </div>
 </div>
