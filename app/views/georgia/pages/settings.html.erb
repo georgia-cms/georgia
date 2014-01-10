@@ -12,7 +12,7 @@
     </div>
   </header>
   <div class='body-main'>
-    <h2><%= icon_tag 'cog' %> Page Settings</h2>
+    <h2><%= icon_tag 'cog' %> <%= instance_name.titleize %> Settings</h2>
 
     <% if extra_fields? %>
       <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
@@ -58,7 +58,7 @@
         </p>
       </div>
       <div class="fieldset-fields">
-        <%= f.input :parent_id, collection: parent_page_collection, label: 'Parent', hint: "Select <em>None</em> if the #{instance_name} doesn't belong to any section.".html_safe, include_blank: "None", input_html: {class: 'js-select2'} %>
+        <%= f.input :parent_id, collection: parent_page_collection, label: 'Parent', hint: "Select <em>None</em> if the #{instance_name.humanize.downcase} doesn't belong to any section.".html_safe, include_blank: "None", input_html: {class: 'js-select2'} %>
         <div class="control-group">
           <%= label_tag :subpages %>
           <% if @page.persisted? and @page.has_children? %>
@@ -66,7 +66,7 @@
               <%= render partial: 'georgia/pages/subpage', collection: @page.children.ordered %>
             </ul>
           <% else -%>
-            <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>
+            <p class='help-block'>There are no subpages for this <%= instance_name.humanize.downcase %>.</p>
           <% end -%>
         </div>
       </div>
