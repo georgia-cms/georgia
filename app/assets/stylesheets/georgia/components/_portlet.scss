@@ -6,6 +6,7 @@
     float: left;
     margin: 0 15px;
   }
+  .title { margin: 0; }
   .actions {
     float: right;
   }
@@ -27,7 +28,6 @@
   padding: 0 10px 10px 0;
   border-bottom: 1px solid #c2c2c2;
   margin-bottom: 10px;
-  .title { margin: 0; }
 }
 
 .slides .portlet {
@@ -40,4 +40,18 @@
     border-top: 0;
     margin-top: 0;
   }
+}
+
+.subpages .portlet {
+  width: 100%;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+  &:first-child {
+    padding-top: 10px;
+    border-top: 1px solid #c2c2c2;
+    margin-top: 10px;
+  }
+  .title {display: inline-block;}
 }

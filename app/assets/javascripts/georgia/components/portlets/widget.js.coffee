@@ -1,3 +1,4 @@
+# FIXME: Use PositionSort
 class @WidgetPortlet
 
   constructor: (element) ->

@@ -62,7 +62,7 @@
         <div class="control-group">
           <%= label_tag :subpages %>
           <% if @page.persisted? and @page.has_children? %>
-            <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
+            <ul class="nav nav-stacked subpages js-position-sort">
               <%= render partial: 'georgia/pages/subpage', collection: @page.children.ordered %>
             </ul>
           <% else -%>

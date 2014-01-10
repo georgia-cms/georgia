@@ -11,6 +11,16 @@ module Georgia
         attr_accessible :parent_id
 
       end
+
+      module ClassMethods
+
+        def update_tree(tree)
+          tree.each do |id, attributes|
+            update(id, attributes)
+          end
+        end
+
+      end
     end
   end
 end

@@ -43,6 +43,7 @@ module Georgia
 
     # Update page settings
     def update
+      Georgia::Page.update_tree(params[:page_tree]) if params[:page_tree]
       if @page.update_attributes(params[:page])
         respond_to do |format|
           format.html { redirect_to [:settings, @page], notice: "#{@page.title} was successfully updated." }

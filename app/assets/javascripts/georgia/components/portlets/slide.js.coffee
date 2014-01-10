@@ -1,3 +1,4 @@
+# FIXME: Use PositionSort
 class @SlidePortlet
 
   constructor: (element) ->
