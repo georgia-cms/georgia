@@ -15,7 +15,7 @@ module Georgia
     end
 
     def warning_message page, revision, options={}
-      Georgia::WarningMessage.new(self, page, revision)
+      Georgia::WarningMessage.new(self, page, revision, options)
     end
 
   end
