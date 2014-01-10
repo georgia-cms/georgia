@@ -63,16 +63,7 @@
           <%= label_tag :subpages %>
           <% if @page.persisted? and @page.has_children? %>
             <ul id="subpages" class="nav nav-stacked ui-sortable" data-sort-url="<%= sort_pages_path %>">
-              <% @page.children.ordered.each do |page| %>
-                <%= content_tag_for(:li, page, class: 'subpage') do %>
-                  <%= icon_tag 'align-justify subpage-handle' %>
-                  <%= link_to icon_tag('long-arrow-right'), edit_page_path(page), class: 'subpage-edit-link' %>
-                  <div class="subpage-info">
-                    <h5 class='subpage-info__title'><%= page.title %></h5>
-                    <small class='subpage-info__url'><%= page.url %></small>
-                  </div>
-                <% end -%>
-              <% end -%>
+              <%= render partial: 'georgia/pages/subpage', collection: @page.children.ordered %>
             </ul>
           <% else -%>
             <p class='help-block'>There are no subpages for this <%= instance_name %>.</p>

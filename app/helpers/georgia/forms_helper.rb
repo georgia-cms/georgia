@@ -37,6 +37,10 @@ module Georgia
       Georgia::LinkPortlet.new(self, link, args)
     end
 
+    def subpage_portlet_tag subpage, args={}
+      Georgia::SubpagePortlet.new(self, subpage, args)
+    end
+
     def parent_page_collection
       @parent_page_collection ||= Georgia::Page.not_self(@page).joins(current_revision: :contents).uniq.sort_by(&:title).map{|p| [p.title, p.id]}
     end
