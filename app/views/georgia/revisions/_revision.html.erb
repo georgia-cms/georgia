@@ -4,7 +4,7 @@
   <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
   <div class="pull-right">
     <%= link_to "#{icon_tag('pencil')} Edit".html_safe, [@page, revision], class: 'btn btn-info' %>
-    <%= link_to "#{icon_tag('undo')} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning' %>
-    <%= link_to_delete [@page, revision] %>
+    <%= link_to "#{icon_tag('undo')} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning' if can? :restore, @revision %>
+    <%= link_to_delete [@page, revision] if can? :destroy, @revision %>
   </div>
 </div>
