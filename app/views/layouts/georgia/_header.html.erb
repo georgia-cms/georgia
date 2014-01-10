@@ -18,9 +18,11 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <%= link_to icon_tag('users'), users_path, class: 'header-link--icon' %>
-          </li>
+          <% if can? :index, Georgia::User %>
+            <li>
+              <%= link_to icon_tag('users'), users_path, class: 'header-link--icon' %>
+            </li>
+          <% end -%>
           <li class='dropdown'>
             <%= link_to '#', class: 'dropdown-toggle header-link', data: {toggle: 'dropdown'} do %>
               <%= image_tag avatar_url(current_user, size: 25), alt: '' %>
