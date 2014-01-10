@@ -17,19 +17,7 @@
     <% end -%>
   </div>
   <div class="fieldset-fields">
-    <% if @page.current_revision != @revision %>
-      <div class="warning-message">
-        <p>
-          <span class="label label-warning"><%= icon_tag('warning') %></span>
-          <% if @revision.review? %>
-            This revision is awaiting review from an Editor.
-          <% else -%>
-            You are looking at a past revision. Updating this content will not change anything on your website.
-          <% end -%>
-          Click <%= link_to 'here', [:edit, @page], class: 'text-primary' %> to edit the current revision.
-        </p>
-      </div>
-    <% end -%>
+    <%= warning_message(@page, @revision) %>
     <%= f.input :text, label: false, as: :ckeditor, input_html: {toolbar: 'Full'} %>
   </div>
 </fieldset>

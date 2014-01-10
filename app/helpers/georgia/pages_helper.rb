@@ -14,5 +14,9 @@ module Georgia
       @page_full_url ||= (Georgia.url + @page.url).gsub(@page.slug, '')
     end
 
+    def warning_message page, revision, options={}
+      Georgia::WarningMessage.new(self, page, revision)
+    end
+
   end
 end
