@@ -23,6 +23,9 @@ h1, h2, h3, h4, h5, h6, legend {
   position: relative;
   width: 100%;
 }
+#dashboard #main {
+  margin-top: 60px;
+}
 
 .body-main { @include span-columns(10); }
 

@@ -18,6 +18,7 @@ module Georgia
 
     scope :spam, where(spam: true)
     scope :ham, where(spam: false)
+    scope :latest, order("created_at DESC")
 
     # Search
     searchable do

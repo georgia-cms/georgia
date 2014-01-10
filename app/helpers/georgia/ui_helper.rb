@@ -1,8 +1,8 @@
 module Georgia
   module UiHelper
 
-    def avatar_url(user, options={})
-      gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    def avatar_url(email, options={})
+      gravatar_id = Digest::MD5.hexdigest(email.try(:downcase))
       size = options.fetch(:size, '32')
       "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
     end
@@ -41,6 +41,10 @@ module Georgia
 
     def tooltip_tag icon, tooltip, options={}
       content_tag(:span, icon, options.reverse_merge(title: tooltip, class: 'js-tooltip', data: {placement: 'right'}))
+    end
+
+    def welcomed?
+      session[:welcomed] || !(session[:welcomed] = true)
     end
 
   end
