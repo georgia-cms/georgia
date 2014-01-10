@@ -9,9 +9,12 @@
   border-bottom: 1px solid $border-header;
   .header-link {
     color: $font-header;
-    padding-top: 17px;
-    padding-bottom: 16px;
-    &:hover, &:focus { background-color: $bg-header-active; }
+    line-height: 25px;
+    &.dropdown-toggle {line-height: 24px;}
+  }
+  .open > .header-link {background-color: $bg-header-active;}
+  .open > .header-link, .header-link {
+    &:hover, &:focus, &:visited { background-color: $bg-header-active; }
   }
   .header-link--icon {
     @extend .header-link;
