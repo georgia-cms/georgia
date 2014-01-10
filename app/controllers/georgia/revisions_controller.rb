@@ -14,7 +14,7 @@ module Georgia
     end
 
     def show
-      redirect_to [:edit, @revision]
+      redirect_to [:edit, @page, @revision]
     end
 
     def edit
@@ -27,7 +27,7 @@ module Georgia
       if @revision.valid?
         @revision.save
         respond_to do |format|
-          format.html { redirect_to [:edit, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
+          format.html { redirect_to [:edit, @page, @revision], notice: "#{decorate(@revision).title} was successfully updated." }
           format.js { render layout: false }
         end
       else

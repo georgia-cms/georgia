@@ -1,3 +1,7 @@
+== 0.6.16
+
+- Fixes missing edit_revision_url error in revisions_controller
+
 == 0.6.15
 
 - Add sidekiq:clear_queue rake task
