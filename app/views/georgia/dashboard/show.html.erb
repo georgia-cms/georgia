@@ -12,7 +12,7 @@
     </div>
   <% end -%>
   <div class="row">
-    <%= render 'georgia/dashboard/panels/messages' if can? :index, Georgia::Message %>
-    <%= render 'georgia/dashboard/panels/reviews' if can? :approve, Georgia::Revision %>
+    <%= render 'georgia/dashboard/panels/messages' if @messages %>
+    <%= render 'georgia/dashboard/panels/reviews' if @awaiting_revisions %>
   </div>
 </div>

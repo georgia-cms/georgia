@@ -2,7 +2,7 @@ module Georgia
   class DashboardController < Georgia::ApplicationController
 
     def show
-      if can?(:approve, Georgia::Revision)
+      if can?(:approve, Georgia::Revision) or can?(:review, Georgia::Revision)
         @awaiting_revisions = Georgia::Revision.reviews.select{|r| r.revisionable.present?}
       end
       if can?(:index, Georgia::Message)
