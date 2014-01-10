@@ -17,7 +17,7 @@ module Georgia
 
           # Drafts
           event :review do
-            transition :draft => :review
+            transition all => :review
           end
 
           # Reviews
