@@ -36,6 +36,8 @@ module Georgia
       review_message = "This revision is awaiting review from an Editor."
       if can? :approve, revision
         review_message << " #{link_to 'Approve Changes', [:approve, page, revision], class: 'btn btn-primary btn-xs'}"
+      elsif can? :review, revision
+        review_message << " #{link_to 'Request Review', [:review, page, revision], class: 'btn btn-primary btn-xs'}"
       end
       review_message.html_safe
     end
