@@ -3,7 +3,7 @@
   <td><%= user.email %></td>
   <td><%= user.roles_names %></td>
   <td class='actions nowrap'>
-    <%= link_to "#{icon_tag 'cog'} edit".html_safe, [:edit, user], class: 'btn btn-default' %>
+    <%= link_to "#{icon_tag 'pencil'} Edit".html_safe, [:edit, user], class: 'btn btn-default' %>
     <%= link_to_delete user %>
   </td>
 </tr>
