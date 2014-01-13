@@ -12,6 +12,7 @@
   display: inline-block;
   .media-image {max-width: 100%;}
 }
+.media-image--inline {max-width: 100%;}
 
 .media-image {
   width: 100%;
@@ -38,4 +39,17 @@
       margin-bottom: 15px;
     }
   }
+}
+
+.form-asset-replace {
+  display: inline;
+}
+
+.media-editable {
+  position: relative;
+  display: inline-block;
+}
+.media-actions {
+  position: absolute;
+  right: 0; top: 0;
 }

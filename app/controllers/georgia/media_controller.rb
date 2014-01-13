@@ -43,8 +43,17 @@ module Georgia
 
     def update
       @asset = Ckeditor::Asset.find(params[:id])
-      @asset.update_attributes(params[:asset])
-      render nothing: true
+      if @asset.update_attributes(params[:asset])
+        respond_to do |format|
+          format.html { redirect_to edit_media_path(@asset), notice: "Asset was successfully updated." }
+          format.js { head :ok }
+        end
+      else
+        respond_to do |format|
+          format.html { redirect_to edit_media_path(@asset), alert: "Oups. Something went wrong." }
+          format.js { head :internal_server_error }
+        end
+      end
     end
 
     # Destroy multiple assets
