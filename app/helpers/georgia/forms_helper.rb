@@ -49,16 +49,6 @@ module Georgia
       @widgets_collection ||= options_from_collection_for_select(Georgia::Widget.all, :id, :title)
     end
 
-    def facets_inputs facets=[]
-      facets.map do |f|
-        if params[f] and !params[f].empty?
-          params[f].map do |v|
-            hidden_field_tag(f, v, name: "#{f}[]")
-          end
-        end
-      end.flatten.join().html_safe
-    end
-
     def extra_fields?
       lookup_context.exists?('extra-fields', ["#{klass_folder}/fields"], true)
     end

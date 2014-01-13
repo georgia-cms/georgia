@@ -1,11 +1,11 @@
 module Georgia
-  class FacetPresenter
+  class FacetPresenter < Presenter
 
-    attr_reader :active
+    attr_reader :active, :text, :param, :options
     alias :active? :active
 
     def initialize view_context, text, param, options={}
-      @view_context = view_context
+      super
       @text = text
       @param = param
       @active = options.fetch(:active, get_active_state_from_params)
@@ -13,22 +13,13 @@ module Georgia
     end
 
     def to_s
-      return '' if active?
-      link_to(@text, url_for(merged_params), class: 'label label-default')
-    end
-
-    def method_missing(*args, &block)
-      @view_context.send(*args, &block)
+      active? ? content_tag(:em, text) : link_to(text, url_for(params.merge(param => text)), class: 'label label-default')
     end
 
     private
 
     def get_active_state_from_params
-      params[@param] and params[@param].include?(@text)
-    end
-
-    def merged_params
-      params.merge(@param => ((params[@param] || []) + [@text]))
+      params[param] and params[param] == text
     end
 
   end

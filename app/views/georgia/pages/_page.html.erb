@@ -7,11 +7,11 @@
     <%= link_to page.title, [:edit, page, page.current_revision], class: 'page-title js-toggle-icon' %>
   </td>
   <td>
-    <%= facet_tag_list(page) %>
+    <%= facet_list_tag(page.tag_list, :tg) %>
     <small><%= page.url %></small>
   </td>
   <td class='nowrap'>
-    <%= page.template %>
+    <%= facet_tag(page.template, :t) %>
   </td>
   <td class='timestamp'>
     <em><%= page.updated_at.strftime('%F') %></em>

@@ -9,7 +9,7 @@
     <% end %>
   </td>
   <td>
-    <%= facet_tag_list(asset) %>
+    <%= facet_list_tag(asset.tag_list, :tg) %>
     <%= link_to asset.filename, edit_media_path(asset) %>
   </td>
   <td class='small'>
