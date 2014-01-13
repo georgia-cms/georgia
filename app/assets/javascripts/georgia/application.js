@@ -17,5 +17,4 @@
 //= require ./bootstrap-vendor
 //= require ./featured-image
 //= require ./keybindings
-//= require ./media
 //= require ./toggle
