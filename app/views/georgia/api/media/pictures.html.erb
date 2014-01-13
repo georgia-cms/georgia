@@ -1,5 +1,5 @@
 <% if @pictures and @pictures.any? %>
-  <%= pagination_tag self, @search %>
+  <%= pagination_tag @search %>
   <hr />
   <% @pictures.in_groups_of(4, false) do |pictures| %>
     <div class="row">
