@@ -9,7 +9,7 @@ module Georgia
     validates :title, length: {maximum: 255}
 
     belongs_to :contentable, polymorphic: true
-    belongs_to :image, class_name: Ckeditor::Picture, counter_cache: true
+    belongs_to :image, class_name: Ckeditor::Picture
 
   end
 end

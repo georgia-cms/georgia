@@ -8,4 +8,8 @@ class Ckeditor::Picture < Ckeditor::Asset
     @featured ||= !contents_count.zero?
   end
 
+  def pages
+    @pages ||= contents.map(&:contentable).map(&:page).compact.uniq
+  end
+
 end
