@@ -1,5 +1,16 @@
+#media {
+  .btn-back {
+    float: left;
+    margin-right: 40px;
+  }
+}
+
 .media-link {
   display: block;
+}
+.media-link--inline {
+  display: inline-block;
+  .media-image {max-width: 100%;}
 }
 
 .media-image {

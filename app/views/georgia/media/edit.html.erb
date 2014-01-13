@@ -1,0 +1,37 @@
+<%= render 'header' %>
+
+<section class="body-main">
+
+  <%= active_facet_list(:tg) %>
+
+  <h2>
+    <%= @asset.data_file_name %>
+    <%= link_to icon_tag('link'), @asset.url, title: @asset.url, target: '_blank' %>
+  </h2>
+
+  <div class="row">
+    <div class="col-md-9">
+      <%= link_to @asset.url, class: 'media-link--inline bg-transparent' do %>
+        <%= image_tag @asset.url(:content), title: @asset.data_file_name, class: 'media-image' %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Information</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            <b>File Size</b>: <%= number_to_human_size(@asset.data_file_size) %><br />
+            <b>Width</b>: <%= @asset.width %>px<br />
+            <b>Height</b>: <%= @asset.height %>px<br />
+            <b>Last updated: </b> <em><%= @asset.updated_at.strftime('%F') %></em><br />
+            Featured in <%= pluralize(@asset.contents_count, 'page') %>
+          </p>
+          <%= link_to_delete media_path(@asset) if can? :destroy, @asset %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

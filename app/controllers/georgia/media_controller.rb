@@ -1,7 +1,9 @@
 module Georgia
   class MediaController < ApplicationController
 
-    # load_and_authorize_resource class: Ckeditor::Asset
+    load_and_authorize_resource class: Ckeditor::Asset
+    # destroy's :id param is an Array and makes load_resource fails
+    skip_load_resource only: :destroy
 
     def index
       redirect_to action: :search
@@ -31,6 +33,14 @@ module Georgia
       render layout: false
     end
 
+    def show
+      redirect_to edit_media_path(id: params[:id])
+    end
+
+    def edit
+      @asset = Ckeditor::Asset.find(params[:id])
+    end
+
     def update
       @asset = Ckeditor::Asset.find(params[:id])
       @asset.update_attributes(params[:asset])
@@ -39,15 +49,15 @@ module Georgia
 
     # Destroy multiple assets
     def destroy
-      @pages = Ckeditor::Asset.where(id: params[:id])
-      if @pages.destroy_all
+      @assets = Ckeditor::Asset.where(id: params[:id])
+      if can?(:destroy, Ckeditor::Asset) and @assets.destroy_all
         respond_to do |format|
-          format.html { redirect_to :back, notice: "Assets were successfully deleted." }
+          format.html { redirect_to search_media_index_path, notice: "Assets were successfully deleted." }
           format.js { head :ok }
         end
       else
         respond_to do |format|
-          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
+          format.html { redirect_to search_media_index_path, alert: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end

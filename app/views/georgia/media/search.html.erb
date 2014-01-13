@@ -14,8 +14,7 @@
           <%= hidden_field_tag "ids", nil, class: 'downloadable-ids' %>
           <%= content_tag :button, "#{icon_tag('download')} Download".html_safe, type: "submit", class: "btn btn-default btn-xs js-download disabled" %>
         <% end -%>
-        <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure you want to delete this picture?"}, remote: true, class: 'btn btn-xs btn-default js-delete disabled' if can? :destroy, Ckeditor::Asset %>
-
+        <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: 'btn btn-xs btn-default js-delete disabled' if can? :destroy, Ckeditor::Asset %>
       </th>
       <th colspan='3'>
         <%= pagination_tag(@search) %>
@@ -35,7 +34,3 @@
   </table>
 
 </section>
-
-<%= content_for :footer do %>
-  <%= render 'georgia/shared/modals/progress' %>
-<% end -%>
