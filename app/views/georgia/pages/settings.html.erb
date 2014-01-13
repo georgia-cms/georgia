@@ -8,7 +8,7 @@
     </div>
     <div class="header-actions">
       <%= page_actions_tag(@page) %>
-      <%= button_to_save %>
+      <%= button_to_save if can? :update, @page %>
     </div>
   </header>
   <div class='body-main'>
@@ -73,7 +73,7 @@
     </fieldset>
     <footer>
       <hr />
-      <%= link_to_delete @page %>
+      <%= link_to_delete @page if can? :destroy, @page %>
     </footer>
   </div>
 <% end %>
