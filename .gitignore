@@ -11,3 +11,4 @@ spec/dummy/public/system/
 coverage/
 tmp/
 spec/dummy/solr
+spec/dummy/config/initializers/carrierwave.rb
