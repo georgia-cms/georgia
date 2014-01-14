@@ -1,3 +1,16 @@
+== 0.7.0
+
+- Fixes flow when creating multiple drafts simply to view editable content
+- UI improvements
+- Widgets editable in their own view
+- No more AJAX record updates, you need to submit form for any change to take effect
+- Adds facets on search results with filter bar
+- Removes dependency on Henry
+- Removes dependency on Backbone
+- Can replace asset files
+- Adds searchable/pageable media library for selecting featured images and slide images
+- Adds dashboard to display latest messages and awaiting revisions
+
 == 0.6.16
 
 - Fixes missing edit_revision_url error in revisions_controller
