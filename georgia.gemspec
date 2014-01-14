@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.motioneleven.com/"
   s.summary     = "Motion Eleven's CMS Engine"
   s.description = "This is simply the best CMS in town. User authentication, widgets, slideshows, easy UI with drag and drop, publishing system, versioning, etc."
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
