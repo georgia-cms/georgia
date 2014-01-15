@@ -34,12 +34,12 @@ module Georgia
 
     def previous_page
       text = icon_tag('chevron-left')
-      link_to_previous_page(@search.hits, text, class: btn_class) || link_to_disabled(text)
+      link_to_previous_page(@search.hits, text, class: btn_class, params: params) || link_to_disabled(text)
     end
 
     def next_page
       text = icon_tag('chevron-right')
-      link_to_next_page(@search.hits, text, class: btn_class, role: 'button') || link_to_disabled(text)
+      link_to_next_page(@search.hits, text, class: btn_class, role: 'button', params: params) || link_to_disabled(text)
     end
 
     def btn_class
