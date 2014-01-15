@@ -1,12 +1,8 @@
 module Georgia
-  class PaginationPresenter
-
-    attr_accessor :view_context
-
-    delegate :content_tag, :icon_tag, :link_to_previous_page, :link_to_next_page, :link_to, to: :view_context
+  class PaginationPresenter < Presenter
 
     def initialize view_context, search
-      @view_context = view_context
+      super
       @search = search
     end
 
