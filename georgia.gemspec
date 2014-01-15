@@ -47,5 +47,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'routing_concerns'
   s.add_dependency 'rakismet'
   s.add_dependency 'sidekiq'
-  s.add_dependency 'sunspot_solr', '2.0.0'
 end
