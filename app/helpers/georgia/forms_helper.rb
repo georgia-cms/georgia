@@ -4,7 +4,7 @@ module Georgia
     def sortable(column, title=nil)
       title ||= column.humanize
       direction = (column.to_s == params[:o] && params[:dir] == "asc" ? "desc" : "asc")
-      icon = direction == "asc" ? icon_tag('icon-chevron-up') : icon_tag('icon-chevron-down')
+      icon = direction == "asc" ? icon_tag('caret-up') : icon_tag('caret-down')
       "#{title} #{link_to(icon, params.merge({o: column, dir: direction}))}".html_safe
     end
 
