@@ -21,7 +21,7 @@ PATH
       mini_magick
       mousetrap-rails
       neat
-      rails (~> 3.2.16)
+      rails (~> 3.2.1)
       rakismet
       routing_concerns
       rubyzip (> 1)
@@ -33,7 +33,6 @@ PATH
       simple_form
       state_machine
       sunspot_rails (= 2.0.0)
-      sunspot_solr (= 2.0.0)
       unf
 
 GEM
@@ -335,7 +334,6 @@ GEM
     sunspot_rails (2.0.0)
       nokogiri
       sunspot (= 2.0.0)
-    sunspot_solr (2.0.0)
     temple (0.6.7)
     terminal-table (1.4.5)
     thin (1.6.1)
