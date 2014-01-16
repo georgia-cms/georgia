@@ -5,7 +5,7 @@ module Georgia
       title ||= column.humanize
       direction = (column.to_s == params[:o] && params[:dir] == "asc" ? "desc" : "asc")
       icon = direction == "asc" ? icon_tag('caret-up') : icon_tag('caret-down')
-      "#{title} #{link_to(icon, params.merge({o: column, dir: direction}))}".html_safe
+      "#{title}&nbsp;#{link_to(icon, params.merge({o: column, dir: direction}))}".html_safe
     end
 
     def render_template template
