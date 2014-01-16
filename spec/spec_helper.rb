@@ -11,6 +11,7 @@ require 'shoulda-matchers'
 require 'draper/test/rspec_integration'
 require 'database_cleaner'
 require 'simplecov'
+require 'sunspot/rails/spec_helper'
 
 Capybara.javascript_driver = :webkit
 
@@ -31,10 +32,12 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
+    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
   end
 
   config.after(:suite) do
     DatabaseCleaner.clean
+    ::Sunspot.session = ::Sunspot.session.original_session
   end
 end
 
