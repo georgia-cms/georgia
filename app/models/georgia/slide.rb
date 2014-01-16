@@ -9,5 +9,10 @@ module Georgia
     belongs_to :revision, foreign_key: :page_id
     validates :page_id, presence: true
 
+    # Returns a page if revision is a `current_revision` for a Georgia::Page
+    def page
+      @page ||= revision.try(:page)
+    end
+
   end
 end
