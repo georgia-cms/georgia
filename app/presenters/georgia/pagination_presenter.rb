@@ -1,12 +1,14 @@
 module Georgia
   class PaginationPresenter < Presenter
 
-    def initialize view_context, search
+    def initialize view_context, search, options
       super
       @search = search
+      @options = options
     end
 
     def to_s
+      return unless @search and !@search.total.zero?
       content_tag(:div, class: 'header-pagination') do
         search_count_tag + navigation_tags
       end

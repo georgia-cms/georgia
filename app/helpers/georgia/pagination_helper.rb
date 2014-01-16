@@ -1,9 +1,8 @@
 module Georgia
   module PaginationHelper
 
-    def pagination_tag search
-      return unless search and !search.total.zero?
-      Georgia::PaginationPresenter.new(self, search)
+    def pagination_tag search, options={}
+      Georgia::PaginationPresenter.new(self, search, options)
     end
 
   end
