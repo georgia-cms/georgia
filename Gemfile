@@ -6,6 +6,7 @@ group :development do
   gem 'sqlite3'
   gem 'debugger'
   gem 'foreman'
+  gem 'sunspot_solr', '~> 2.0.0'
 end
 
 group :test do

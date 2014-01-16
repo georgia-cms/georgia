@@ -334,6 +334,7 @@ GEM
     sunspot_rails (2.0.0)
       nokogiri
       sunspot (= 2.0.0)
+    sunspot_solr (2.0.0)
     temple (0.6.7)
     terminal-table (1.4.5)
     thin (1.6.1)
@@ -378,4 +379,5 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   sqlite3
+  sunspot_solr (~> 2.0.0)
   thin
