@@ -33,6 +33,17 @@ module Georgia
         rake "db:migrate"
       end
 
+      def create_admin_user
+        say("You're almost done. You need an admin user to get started.", :yellow)
+        first_name = ask("First name:")
+        last_name = ask("Last name:")
+        email = ask("Email:")
+        password = ask("Password:")
+        Georgia::User.create(first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password) do |user|
+          user.roles << Georgia::Role.all
+        end
+      end
+
       def copy_templates
         template "config/initializers/georgia.rb"
         template "app/controllers/pages_controller.rb"
@@ -45,10 +56,6 @@ module Georgia
           gem "sunspot_solr", '2.0.0'
         end
         run "bundle"
-      end
-
-      def bootstrap
-        rake 'georgia:install'
       end
 
       def show_readme

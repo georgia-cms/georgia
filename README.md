@@ -14,12 +14,9 @@ Then run the generator to mount routes, run migrations & setup initial instances
 
   rails g georgia:install
 
+Start your server (`rails server`) and go to (http://localhost:3000/admin)[http://localhost:3000/admin] to get started.
+
 == Testing
-
-=== Run Foreman to start Solr
-
-  cd spec/dummy
-  bundle exec foreman start
 
 === Run rspec
 
