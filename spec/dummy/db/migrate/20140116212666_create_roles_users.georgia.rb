@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 14)
 class CreateRolesUsers < ActiveRecord::Migration
 
   def change

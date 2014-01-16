@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 12)
 class CreateGeorgiaUsers < ActiveRecord::Migration
 
   def change

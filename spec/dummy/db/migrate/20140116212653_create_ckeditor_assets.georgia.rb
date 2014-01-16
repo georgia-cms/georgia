@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 1)
 class CreateCkeditorAssets < ActiveRecord::Migration
 
   def change

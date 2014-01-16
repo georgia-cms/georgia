@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 13)
 class CreateGeorgiaWidgets < ActiveRecord::Migration
 
   def change

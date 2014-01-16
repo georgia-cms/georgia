@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 4)
 class CreateGeorgiaMenus < ActiveRecord::Migration
 
   def change

@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 2)
 class CreateGeorgiaContents < ActiveRecord::Migration
 
   def change

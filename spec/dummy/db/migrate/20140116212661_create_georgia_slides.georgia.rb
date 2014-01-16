@@ -1,3 +1,4 @@
+# This migration comes from georgia (originally 9)
 class CreateGeorgiaSlides < ActiveRecord::Migration
 
   def change

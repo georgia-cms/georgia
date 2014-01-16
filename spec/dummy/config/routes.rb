@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
   mount Georgia::Engine => '/admin'
-  mount Ckeditor::Engine => '/ckeditor'
 
-  resources :pages, only: [] do
-    get :preview, on: :member
-  end
+  mount Ckeditor::Engine => '/ckeditor'
 
   resources :messages, only: [:create]
 
