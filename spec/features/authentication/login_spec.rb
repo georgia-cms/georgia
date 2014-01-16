@@ -8,7 +8,7 @@ feature 'User signs in' do
     end
   end
 
-  scenario 'with valid email and password' do
+  scenario 'with valid email and password', js: true do
     log_in_with 'test@me.com', '1234-get-the-kittens-out-the-door'
     expect(page).to have_content('Signed in successfully')
   end
