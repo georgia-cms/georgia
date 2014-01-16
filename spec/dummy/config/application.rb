@@ -1,14 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'rails/all'
 
-Bundler.require
+Bundler.require(*Rails.groups)
 require "georgia"
 
 module Dummy
@@ -36,6 +30,7 @@ module Dummy
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :en
     config.i18n.available_locales = [:en, :fr]
+    I18n.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
