@@ -3,7 +3,7 @@
   <h1 class='login-logo page-header'>Georgia</h1>
 
   <% flash.each do |name, msg| %>
-    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <div class="alert alert-<%= name == :notice ? "success" : "danger" %>">
       <a class="close" data-dismiss="alert">×</a>
       <%= msg.html_safe %>
     </div>
