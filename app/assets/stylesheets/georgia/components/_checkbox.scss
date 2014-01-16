@@ -15,7 +15,6 @@ input[type="checkbox"]:indeterminate::after {
   content: image-url('georgia/indeterminate.png');
 }
 
-input[type="radio"],
 input[type="checkbox"] {
   border: initial;
   padding: 0;
