@@ -6,7 +6,6 @@ group :development do
   gem 'sqlite3'
   gem 'debugger'
   gem 'foreman'
-  gem 'unf'
 end
 
 group :test do
