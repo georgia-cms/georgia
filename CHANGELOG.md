@@ -1,3 +1,9 @@
+== 0.7.1
+
+- Minor bug fixes
+- UI fixes
+- Fixes georgia:install generator
+
 == 0.7.0
 
 - Fixes flow when creating multiple drafts simply to view editable content
