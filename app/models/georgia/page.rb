@@ -1,12 +1,12 @@
 module Georgia
   class Page < ActiveRecord::Base
 
+    include Georgia::Indexer
     include Georgia::Concerns::Taggable
     include Georgia::Concerns::Orderable
     include Georgia::Concerns::Slugable
     include Georgia::Concerns::Revisionable
     include Georgia::Concerns::Publishable
-    include Georgia::Concerns::Indexable
     include Georgia::Concerns::Treeable
     include Georgia::Concerns::Cacheable
 
