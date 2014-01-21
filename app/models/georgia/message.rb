@@ -1,6 +1,8 @@
 module Georgia
 	class Message < ActiveRecord::Base
 
+    include Georgia::Indexer
+
     attr_accessible :name, :email, :subject, :message, :attachment, :phone
     delegate :url, :current_path, :size, :content_type, :filename, to: :attachment
 
@@ -19,25 +21,6 @@ module Georgia
     scope :spam, where(spam: true)
     scope :ham, where(spam: false)
     scope :latest, order("created_at DESC")
-
-    # Search
-    searchable do
-      text :name
-      text :email
-      text :message
-      text :subject
-      text :phone
-      string :spam do
-        status
-      end
-      # For sorting:
-      string :name
-      string :email
-      string :phone
-      string :subject
-      string :message
-      time :created_at
-    end
 
     def status
       @status ||= spam ? 'spam' : 'clean'
