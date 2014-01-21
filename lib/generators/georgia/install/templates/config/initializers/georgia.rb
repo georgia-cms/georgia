@@ -11,5 +11,5 @@ Georgia.setup do |config|
 
   # Georgia Headers
   # Add to this list or simply change order
-  # config.header = %w(dashboard pages messages media navigation widgets)
+  # config.navigation = %w(dashboard pages messages media navigation widgets)
 end
