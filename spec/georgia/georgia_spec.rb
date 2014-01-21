@@ -28,7 +28,7 @@ describe Georgia do
 
   describe '.indexer' do
     it 'defaults to Solr' do
-      expect(Georgia.indexer).to be_an_instance_of Georgia::Indexer::Adapter::SolrAdapter
+      expect(Georgia.indexer).to eq Georgia::Indexer::Adapter::SolrAdapter
     end
   end
 
@@ -37,11 +37,11 @@ describe Georgia do
       Georgia.setup{|config| config.url = 'Foo'}
       expect(Georgia.url).to eq "Foo"
     end
-    it 'loads and assigns deprecated :header to navigation' do
+    it 'deprecates config.header' do
+      ActiveSupport::Deprecation.should_receive(:warn)
       Georgia.setup do |config|
         config.header = %w(foo)
       end
-      expect(Georgia.navigation).to eq %w(foo)
     end
   end
 
