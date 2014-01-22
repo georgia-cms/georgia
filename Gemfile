@@ -7,6 +7,7 @@ group :development do
   gem 'debugger'
   gem 'foreman'
   gem 'sunspot_solr', '~> 2.0.0'
+  gem 'tire'
 end
 
 group :test do
