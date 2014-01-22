@@ -1,9 +1,9 @@
-require 'georgia/indexer/solr/georgia/page'
-require 'georgia/indexer/solr/georgia/message'
+require 'georgia/indexer/tire/georgia/page'
+require 'georgia/indexer/tire/georgia/message'
 
 module Georgia
   module Indexer
-    module Solr
+    module Tire
 
       def self.extend_model model
         if model == ::Georgia::Page

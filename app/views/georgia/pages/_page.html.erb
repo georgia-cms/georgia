@@ -4,7 +4,7 @@
   </td>
   <td>
     <%= icon_tag 'pencil hide pull-right muted' %>
-    <%= link_to page.title, [:edit, page, page.current_revision], class: 'page-title js-toggle-icon' %>
+    <%= link_to page.title, edit_page_revision_path(page_id: page.id, id: page.revision_id), class: 'page-title js-toggle-icon' %>
   </td>
   <td>
     <%= facet_list_tag(page.tag_list, :tg) %>
@@ -14,6 +14,6 @@
     <%= facet_tag(page.template, :t) %>
   </td>
   <td class='timestamp'>
-    <em><%= page.updated_at.strftime('%F') %></em>
+    <em><%= page.updated_at %></em>
   </td>
 </tr>

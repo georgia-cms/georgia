@@ -149,21 +149,8 @@ module Georgia
 
     def search
       session[:search_params] = params
-      @search = model.search do
-        fulltext params[:query] do
-          fields(:title, :excerpt, :text, :keywords, :tags, :url, :template)
-        end
-        facet :state, :template, :tag_list
-        # ensure pages indexed in the wrong bucket don't get displayed
-        with(:class_name, model.to_s)
-        with(:state, params[:s]) unless params[:s].blank?
-        with(:template, params[:t]) unless params[:t].blank?
-        with(:tag_list).all_of(params[:tg]) unless params[:tg].blank?
-        order_by (params[:o] || :updated_at), (params[:dir] || :desc)
-        paginate(page: params[:page], per_page: (params[:per] || 25))
-        instance_eval &model.extra_search_params if model.respond_to? :extra_search_params
-      end
-      @pages = Georgia::PageDecorator.decorate_collection(@search.results)
+      @results = Georgia::Indexer.adapter.search(model, params)
+      @pages = Georgia::PageDecorator.decorate_collection(@results)
     end
 
     private
