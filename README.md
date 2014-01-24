@@ -16,6 +16,12 @@ Then run the generator to mount routes, run migrations & setup initial instances
 
 Start your server (`rails server`) and go to [http://localhost:3000/admin](http://localhost:3000/admin) to get started.
 
+#### Heroku
+
+You will need certain addons to make it work. I suggest going with this list matching Georgia's default tools:
+
+    heroku addons:add bonsai
+
 ### Testing
 
 #### Run rspec
