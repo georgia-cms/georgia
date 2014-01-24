@@ -12,4 +12,8 @@ Georgia.setup do |config|
   # Georgia Headers
   # Add to this list or simply change order
   # config.navigation = %w(dashboard pages messages media navigation widgets)
+
+  # Indexer
+  # Choices are :solr or :tire
+  # config.indexer = :tire
 end

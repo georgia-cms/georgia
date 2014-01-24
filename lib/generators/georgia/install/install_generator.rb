@@ -41,15 +41,6 @@ module Georgia
       def copy_templates
         template "config/initializers/georgia.rb"
         template "app/controllers/pages_controller.rb"
-        template 'Procfile'
-      end
-
-      def add_dev_gems
-        gem_group :development do
-          gem "foreman"
-          gem "sunspot_solr", '2.0.0'
-        end
-        run "bundle"
       end
 
       def show_readme

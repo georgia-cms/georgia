@@ -7,8 +7,6 @@ Some setup you must do manually if you haven't yet:
 
   2. Ensure your routes we've just added are in order.
 
-  3. Run foreman to start solr whenever you start your rails server.
-
-       bundle exec foreman start
+  3. Ensure you chose one of the 2 indexers currently available (solr or elasticsearch).
 
 ===============================================================================
