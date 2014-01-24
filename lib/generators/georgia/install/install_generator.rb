@@ -35,13 +35,7 @@ module Georgia
 
       def create_admin_user
         say("You're almost done. You need an admin user to get started.", :yellow)
-        first_name = ask("First name:")
-        last_name = ask("Last name:")
-        email = ask("Email:")
-        password = ask("Password:")
-        Georgia::User.create(first_name: first_name, last_name: last_name, email: email, password: password, password_confirmation: password) do |user|
-          user.roles << Georgia::Role.all
-        end
+        rake "georgia:seed"
       end
 
       def copy_templates
