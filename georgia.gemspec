@@ -41,7 +41,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rubyzip', '> 1'
   s.add_dependency 'cloudfiles' # unless for transfering files
   s.add_dependency 'mousetrap-rails'
-  s.add_dependency 'sunspot_rails', '2.0.0'
   s.add_dependency 'state_machine'
   s.add_dependency 'sendgrid'
   s.add_dependency 'routing_concerns'

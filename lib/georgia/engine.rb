@@ -18,7 +18,6 @@ module Georgia
     require 'draper'
     require 'ancestry'
     require 'cloudfiles'
-    require 'sunspot_rails'
     require 'state_machine'
     require 'sendgrid'
     require 'routing_concerns'
