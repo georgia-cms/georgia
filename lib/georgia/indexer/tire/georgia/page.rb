@@ -41,7 +41,6 @@ module Georgia
                         must { string params[:query], default_operator: "AND" }
                       end
                     end
-                  else
                     sort { by (params[:o] || :updated_at), (params[:dir] || :desc) }
                   end
                 end.results

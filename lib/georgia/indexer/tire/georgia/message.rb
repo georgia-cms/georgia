@@ -5,23 +5,32 @@ module Georgia
         module Message
           def self.extended(base)
             base.class_eval do
-
               include ::Tire::Model::Search
               include ::Tire::Model::Callbacks
 
-              mapping do
-                indexes :id,           :index    => :not_analyzed
-                indexes :name
-                indexes :email
-                indexes :message
-                indexes :subject
-                indexes :phone
-                indexes :spam
-                indexes :created_at, :type => 'date'
+              def to_indexed_json
+                {
+                  name: name,
+                  email: email,
+                  message: message,
+                  subject: subject,
+                  phone: phone,
+                  spam: spam,
+                  updated_at: updated_at.strftime('%F')
+                }.to_json
               end
 
-              def self.search_index model, params
-                model.search(params[:query], page: (params[:page] || 1))
+              def self.search model, params
+                model.tire.search(page: (params[:page] || 1), per_page: (params[:per] || 25)) do
+                  if params[:query].present?
+                    query do
+                      boolean do
+                        must { string params[:query], default_operator: "AND" }
+                      end
+                    end
+                    sort { by (params[:o] || :updated_at), (params[:dir] || :desc) }
+                  end
+                end.results
               end
             end
           end

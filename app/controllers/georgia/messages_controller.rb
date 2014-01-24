@@ -58,16 +58,8 @@ module Georgia
     private
 
     def prepare_search
-      @search = Georgia::Message.search do
-        fulltext params[:query] do
-          fields(:name, :email, :message, :subject, :phone)
-        end
-        facet :spam
-        with(:spam, (params[:s] || 'clean'))
-        order_by (params[:o] || :created_at), (params[:dir] || :desc)
-        paginate(page: params[:page], per_page: (params[:per] || 25))
-      end
-      @messages = Georgia::MessageDecorator.decorate_collection(@search.results)
+      @results = Georgia::Indexer.adapter.search(Georgia::Message, params)
+      @messages = Georgia::MessageDecorator.decorate_collection(@results)
     end
 
   end
