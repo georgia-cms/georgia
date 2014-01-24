@@ -1,3 +1,8 @@
+== 0.7.2
+
+- Can deploy on Heroku!
+- Added support for [Tire](https://github.com/karmi/retire)
+
 == 0.7.1
 
 - Minor bug fixes
