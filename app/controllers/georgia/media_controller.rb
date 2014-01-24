@@ -11,17 +11,8 @@ module Georgia
 
     def search
       @asset = Ckeditor::Asset.new
-      session[:search_params] = params
-      @search = Ckeditor::Asset.search do
-        fulltext params[:query] do
-          fields(:filename, :tags)
-        end
-        with(:extension, params[:e]) unless params[:e].blank?
-        with(:tags).any_of(params[:tg]) unless params[:tg].blank?
-        order_by (params[:o] || :updated_at), (params[:dir] || :desc)
-        paginate(page: params[:page], per_page: (params[:per] || 8))
-      end
-      @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
+      @results = Georgia::Indexer.adapter.search(Ckeditor::Asset, params)
+      @assets = Ckeditor::AssetDecorator.decorate_collection(@results)
     end
 
     def create

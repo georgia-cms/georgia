@@ -21,6 +21,18 @@ module Georgia
                   size / 1024 # gives size in KB
                 end
               end
+
+              def self.search_index model, params
+                @search = model.search do
+                  fulltext params[:query] do
+                    fields(:filename, :tags)
+                  end
+                  with(:extension, params[:e]) unless params[:e].blank?
+                  with(:tags).any_of(params[:tg]) unless params[:tg].blank?
+                  order_by (params[:o] || :updated_at), (params[:dir] || :desc)
+                  paginate(page: params[:page], per_page: (params[:per] || 8))
+                end
+              end
             end
           end
         end
@@ -28,3 +40,4 @@ module Georgia
     end
   end
 end
+

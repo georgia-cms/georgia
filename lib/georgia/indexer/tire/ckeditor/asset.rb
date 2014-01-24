@@ -17,8 +17,17 @@ module Georgia
                 indexes :updated_at, :type => 'date'
               end
 
-              def self.search_index model, params
-                model.search(params[:query], page: (params[:page] || 1))
+              def self.search model, params
+                model.tire.search(page: (params[:page] || 1), per_page: (params[:per] || 8)) do
+                  if params[:query].present?
+                    query do
+                      boolean do
+                        must { string params[:query], default_operator: "AND" }
+                      end
+                    end
+                    sort { by (params[:o] || :updated_at), (params[:dir] || :desc) }
+                  end
+                end.results
               end
             end
           end
