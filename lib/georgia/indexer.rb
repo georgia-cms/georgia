@@ -2,15 +2,24 @@ require 'georgia/indexer/adapter'
 
 module Georgia
   module Indexer
-    autoload :Solr, 'georgia/indexer/solr'
-    autoload :Tire, 'georgia/indexer/tire'
+    autoload :SolrAdapter, 'georgia/indexer/solr_adapter'
+    autoload :TireAdapter, 'georgia/indexer/tire_adapter'
+
+    mattr_accessor :adapter
 
     def self.included(base)
-      adapter.extend_model(base)
+      @@adapter ||= adapter_lookup
     end
 
-    def self.adapter
-      @adapter ||= Georgia::Indexer::Adapter.new(Georgia.indexer)
+    private
+
+    def self.adapter_lookup
+      (case Georgia.indexer
+        when :solr then Georgia::Indexer::SolrAdapter.new
+        when :tire then Georgia::Indexer::TireAdapter.new
+        else
+          Georgia::Indexer::TireAdapter.new
+        end)
     end
 
   end
