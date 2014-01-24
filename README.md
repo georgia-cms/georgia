@@ -21,6 +21,7 @@ Start your server (`rails server`) and go to [http://localhost:3000/admin](http:
 You will need certain addons to make it work. I suggest going with this list matching Georgia's default tools:
 
     heroku addons:add bonsai
+    heroku addons:add sendgrid
 
 ### Testing
 
