@@ -5,10 +5,10 @@ FactoryGirl.define do
     password_confirmation 'ABCDE12345'
 
     factory :admin do
-      roles [FactoryGirl.create(:georgia_role, name: 'Admin')]
+      roles [FactoryGirl.build(:georgia_role, name: 'Admin')]
     end
     factory :editor do
-      roles [FactoryGirl.create(:georgia_role, name: 'Editor')]
+      roles [FactoryGirl.build(:georgia_role, name: 'Editor')]
     end
 
   end

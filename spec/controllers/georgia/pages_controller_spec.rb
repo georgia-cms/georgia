@@ -4,12 +4,13 @@ describe Georgia::PagesController do
   include Devise::TestHelpers
 
   before :all do
-    @page = create :georgia_page
+    @page = create(:georgia_page)
+    @current_user = create(:admin)
   end
 
   before :each do
     controller.class.skip_before_filter :authenticate_user!
-    controller.stub current_user: create(:admin)
+    controller.stub current_user: @current_user
   end
 
   it "should retrieve the model name of the controller" do
