@@ -1,3 +1,4 @@
+# TODO: Move to Georgia::Indexer
 module Georgia
   module Api
     class TagsController < Georgia::ApplicationController
