@@ -1,5 +1,4 @@
 language: ruby
-script: "cd spec/dummy && bundle exec rspec spec"
 before_install:
   - gem install bundler -v '>= 1.5.1'
 install: bundle install
@@ -7,3 +6,9 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
+before_script:
+  - rake app:db:create
+  - rake app:railties:install:migrations
+  - rake app:db:test:load
+script:
+  - "cd spec/dummy && bundle exec rspec spec"
