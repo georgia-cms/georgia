@@ -1,3 +1,4 @@
+require 'tire'
 require 'georgia/indexer/tire/georgia/page'
 require 'georgia/indexer/tire/georgia/message'
 require 'georgia/indexer/tire/ckeditor/asset'
