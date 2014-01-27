@@ -12,3 +12,4 @@ coverage/
 tmp/
 spec/dummy/solr
 spec/dummy/config/initializers/carrierwave.rb
+spec/dummy/db/migrate
