@@ -11,11 +11,3 @@ ActsAsTaggableOn.remove_unused_tags = true
 
 # If you would like tags to be case-sensitive and not use LIKE queries for creation:
 # ActsAsTaggableOn.strict_case_match = true
-
-if defined?(Sunspot)
-  ActsAsTaggableOn::Tag.class_eval do
-    searchable do
-      text :name
-    end
-  end
-end
