@@ -12,3 +12,5 @@ before_script:
   - rake app:db:test:load
 script:
   - "cd spec/dummy && bundle exec rspec spec"
+services:
+  - elasticsearch
