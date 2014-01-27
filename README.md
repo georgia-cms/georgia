@@ -1,5 +1,7 @@
 ## Georgia
 
+[![Gem Version](https://badge.fury.io/rb/georgia.png)](http://badge.fury.io/rb/georgia)
+
 Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. Have a peak at the [demo](http://sorrynodemoyet.com/i-promise-it-s-on-its-way).
 
 ### Features
