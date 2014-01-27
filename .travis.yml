@@ -8,7 +8,6 @@ rvm:
   - 2.1.0
 before_script:
   - rake app:db:create
-  - rake app:railties:install:migrations
   - rake app:db:test:load
 script:
   - "cd spec/dummy && bundle exec rspec spec"
