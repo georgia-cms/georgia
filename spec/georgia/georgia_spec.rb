@@ -26,9 +26,9 @@ describe Georgia do
     end
   end
 
-  describe '.indexer' do
-    it 'defaults to Solr' do
-      expect(Georgia.indexer).to eq Georgia::Indexer::Adapter::SolrAdapter
+  describe '.adapter' do
+    it 'defaults to Tire' do
+      expect(Georgia::Indexer.adapter).to be_a_kind_of Georgia::Indexer::TireAdapter
     end
   end
 
