@@ -18,5 +18,5 @@
 </header>
 
 <%= content_for :footer do %>
-  <%= render 'georgia/shared/modals/page' %>
+  <%= render 'georgia/shared/modals/page' if can?(:create, model) %>
 <% end -%>

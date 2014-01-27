@@ -12,8 +12,9 @@ describe Georgia::RevisionsController do
   end
 
   before :each do
+    @current_user = create(:georgia_admin_user)
     controller.class.skip_before_filter :authenticate_user!
-    controller.stub current_user: create(:admin)
+    controller.stub current_user: @current_user
   end
 
   describe "GET index" do
