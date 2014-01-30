@@ -11,8 +11,9 @@ Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. H
 * Media library on the cloud
 * Spam filter on emails
 * Multilingual from the get-go
-* Review & Preview before publishing
-* Rollback to previous revisions
+* Review you pairs and draft new pages
+* Preview before publishing
+* Rollback to previous revisions when it hits the fan
 * Great UI, nice search, gravatars
 * Editable menus
 * Extendable
