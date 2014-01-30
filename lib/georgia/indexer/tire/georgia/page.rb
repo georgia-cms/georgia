@@ -9,11 +9,7 @@ module Georgia
               include ::Tire::Model::Callbacks
 
               def to_indexed_json
-                title   = revisions.map{|r| r.contents.map(&:title)}.flatten.uniq.join(', ')
-                text    = revisions.map{|r| r.contents.map(&:text)}.flatten.uniq.join(', ')
-                excerpt = revisions.map{|r| r.contents.map(&:excerpt)}.flatten.uniq.join(', ')
-                keywords = revisions.map{|r| r.contents.map(&:keyword_list)}.flatten.uniq.join(', ')
-                template = revisions.map(&:template).uniq.join(', ')
+                keywords = current_revision.contents.map(&:keyword_list).flatten.uniq.join(', ')
                 tags = tag_list.join(', ')
                 class_name = self.class.name
 
