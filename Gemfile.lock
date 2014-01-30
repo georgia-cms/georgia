@@ -8,7 +8,7 @@ PATH
       bourbon
       cancan
       carrierwave
-      ckeditor
+      ckeditor (= 4.0.8)
       cloudfiles
       coffee-rails
       devise
