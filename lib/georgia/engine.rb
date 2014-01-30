@@ -17,7 +17,6 @@ module Georgia
     require 'carrierwave'
     require 'draper'
     require 'ancestry'
-    require 'cloudfiles'
     require 'state_machine'
     require 'sendgrid'
     require 'routing_concerns'
