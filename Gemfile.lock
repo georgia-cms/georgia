@@ -125,6 +125,12 @@ GEM
     colored (1.2)
     columnize (0.3.6)
     connection_pool (1.2.0)
+    coveralls (0.7.0)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     daemons (1.1.9)
     database_cleaner (1.2.0)
     debugger (1.6.5)
@@ -339,6 +345,8 @@ GEM
       sunspot (= 2.0.0)
     sunspot_solr (2.0.0)
     temple (0.6.7)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     terminal-table (1.4.5)
     thin (1.6.1)
       daemons (>= 1.0.9)
@@ -349,6 +357,7 @@ GEM
       atomic
     tilt (1.4.1)
     timers (1.1.0)
+    tins (0.13.1)
     tire (0.6.2)
       activemodel (>= 3.0)
       activesupport
@@ -376,6 +385,7 @@ DEPENDENCIES
   brakeman
   capybara
   capybara-webkit
+  coveralls
   database_cleaner
   debugger
   factory_girl_rails

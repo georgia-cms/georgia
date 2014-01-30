@@ -28,4 +28,5 @@ group :test do
   gem 'rails_best_practices'
   gem 'pry'
   gem 'pry-rails'
+  gem 'coveralls', require: false
 end
