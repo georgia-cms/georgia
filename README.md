@@ -40,7 +40,7 @@ Georgia uses available_locales to know which translations should be configured o
 
 Then run the generator to mount routes, run migrations & setup initial instances.
 
-  rails g georgia:install
+    rails generate georgia:install
 
 Start your server (`rails server`) and go to [http://localhost:3000/admin](http://localhost:3000/admin) to get started.
 
