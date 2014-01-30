@@ -1,3 +1,7 @@
+== 0.7.4
+
+- Fixes ckeditor
+
 == 0.7.3
 
 - Added docs
