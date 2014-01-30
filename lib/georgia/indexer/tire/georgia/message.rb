@@ -15,8 +15,8 @@ module Georgia
                   message: message,
                   subject: subject,
                   phone: phone,
-                  spam: spam,
-                  updated_at: updated_at.strftime('%F')
+                  status: status,
+                  created_at: created_at.strftime('%F')
                 }.to_json
               end
 
@@ -28,7 +28,7 @@ module Georgia
                         must { string params[:query], default_operator: "AND" }
                       end
                     end
-                    sort { by (params[:o] || :updated_at), (params[:dir] || :desc) }
+                    sort { by (params[:o] || :created_at), (params[:dir] || :desc) }
                   end
                 end.results
               end
