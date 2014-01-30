@@ -1,6 +1,9 @@
 == 0.7.4
 
 - Fixes ckeditor
+- Removes cloudfiles
+- Fixes Tire Georgia::Message indexing
+- Removes helpers loading in main_app
 
 == 0.7.3
 
