@@ -1,3 +1,9 @@
+== 0.7.3
+
+- Added docs
+- Added Travis CI support
+- Passing test suite
+
 == 0.7.2
 
 - Can deploy on Heroku!
