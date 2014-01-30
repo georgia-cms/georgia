@@ -49,6 +49,11 @@ You will need certain addons to make it work. I suggest going with this list mat
 
     heroku addons:add bonsai
     heroku addons:add sendgrid
+    heroku addons:add redistogo
+
+Add sidekiq to your Procfile:
+
+    worker: bundle exec sidekiq
 
 Add `config/initializers/bonsai.rb` with:
 
