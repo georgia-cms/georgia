@@ -21,7 +21,7 @@ PATH
       mini_magick
       mousetrap-rails
       neat
-      rails (~> 3.2.1)
+      rails (>= 3.2.6)
       rakismet
       routing_concerns
       rubyzip (> 1)
