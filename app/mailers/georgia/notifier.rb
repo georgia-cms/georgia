@@ -1,8 +1,6 @@
 module Georgia
   class Notifier < ActionMailer::Base
 
-    include SendGrid
-
     def notify_admins(message, url)
       @message = message
       @url = url

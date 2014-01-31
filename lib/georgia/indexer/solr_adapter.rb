@@ -1,23 +1,16 @@
 require 'sunspot_rails'
-require 'georgia/indexer/solr/georgia/page'
-require 'georgia/indexer/solr/georgia/message'
-require 'georgia/indexer/solr/ckeditor/asset'
-require 'georgia/indexer/solr/acts_as_taggable_on/tag'
+Dir[File.join(File.dirname(__FILE__), 'extensions', 'solr', '*.rb')].each {|file| require file }
 
-module Georgia::Indexer
-  class SolrAdapter < Adapter
+module Georgia
+  module Indexer
+    class SolrAdapter
 
-    def initialize
-      extend_models
-    end
+      # Delegate search_index to the model
+      # Search method is taken by Sunspot
+      def search model, params
+        model.search_index model, params
+      end
 
-    private
-
-    def extend_models
-      ::Georgia::Page.send(:extend, Georgia::Indexer::Solr::Georgia::Page)
-      ::Georgia::Message.send(:extend, Georgia::Indexer::Solr::Georgia::Message)
-      ::Ckeditor::Asset.send(:extend, Georgia::Indexer::Solr::Ckeditor::Asset)
-      ::ActsAsTaggableOn::Tag.send(:extend, Georgia::Indexer::Solr::ActsAsTaggableOn::Tag)
     end
   end
 end

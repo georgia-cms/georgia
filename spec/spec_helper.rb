@@ -13,7 +13,6 @@ require 'factory_girl_rails'
 require 'shoulda-matchers'
 require 'draper/test/rspec_integration'
 require 'database_cleaner'
-require 'simplecov'
 require 'sunspot/rails/spec_helper'
 
 Capybara.javascript_driver = :webkit
@@ -42,17 +41,4 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
     ::Sunspot.session = ::Sunspot.session.original_session
   end
-end
-
-SimpleCov.start 'rails' do
-  add_filter 'spec'
-  add_filter 'config'
-
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Models', 'app/models'
-  add_group 'Decorators', 'app/decorators'
-  add_group 'Mailers', 'app/mailers'
-  add_group 'Helpers', 'app/helpers'
-  add_group 'Libraries', 'lib'
-  add_group 'Plugins', 'vendor/plugins'
 end

@@ -22,7 +22,7 @@ describe Georgia do
 
   describe '.navigation' do
     it 'defaults to all' do
-      expect(Georgia.navigation).to eq %w(dashboard pages messages media navigation widgets)
+      expect(Georgia.navigation).to eq %w(dashboard pages media navigation widgets)
     end
   end
 

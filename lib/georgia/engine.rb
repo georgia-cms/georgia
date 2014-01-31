@@ -18,10 +18,7 @@ module Georgia
     require 'draper'
     require 'ancestry'
     require 'state_machine'
-    require 'sendgrid'
     require 'routing_concerns'
-    require 'rakismet'
-    require 'sidekiq'
 
     require 'sass-rails'
     require 'bourbon'

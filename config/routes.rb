@@ -51,23 +51,11 @@ Georgia::Engine.routes.draw do
     end
   end
   resources :users
-  resources :messages do
-    collection do
-      get :search
-      get :destroy_all_spam
-    end
-    member do
-      get :spam
-      get :ham
-    end
-  end
   resources :menus, path: 'navigation'
   resources :links, only: [:create, :show]
   resources :widgets
   resources :ui_associations, path: 'ui-associations', only: [:new]
   resources :slides, only: [:new]
-
-  match '/search/messages', to: 'search#messages'
 
   unauthenticated do
     as :user do

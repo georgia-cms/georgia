@@ -1,21 +1,15 @@
 require 'tire'
-require 'georgia/indexer/tire/georgia/page'
-require 'georgia/indexer/tire/georgia/message'
-require 'georgia/indexer/tire/ckeditor/asset'
+Dir[File.join(File.dirname(__FILE__), 'extensions', 'tire', '*.rb')].each {|file| require file }
 
-module Georgia::Indexer
-  class TireAdapter < Adapter
+module Georgia
+  module Indexer
+    class TireAdapter
 
-    def initialize
-      extend_models
-    end
+      # Delegate search to the model
+      def search model, params
+        model.search model, params
+      end
 
-    private
-
-    def extend_models
-      ::Georgia::Page.send(:extend, Georgia::Indexer::Tire::Georgia::Page)
-      ::Georgia::Message.send(:extend, Georgia::Indexer::Tire::Georgia::Message)
-      ::Ckeditor::Asset.send(:extend, Georgia::Indexer::Tire::Ckeditor::Asset)
     end
   end
 end

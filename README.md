@@ -51,11 +51,6 @@ You will need certain addons to make it work. I suggest going with this list mat
 
     heroku addons:add bonsai
     heroku addons:add sendgrid
-    heroku addons:add redistogo
-
-Add sidekiq to your Procfile:
-
-    worker: bundle exec sidekiq
 
 Add `config/initializers/bonsai.rb` with:
 
@@ -64,22 +59,6 @@ Add `config/initializers/bonsai.rb` with:
 Finally, create your indices with these commands:
 
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
-    heroku run rake environment tire:import CLASS=Georgia::Message FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
 
 For more information, you can also follow these [instructions](https://gist.github.com/nz/2041121) to setup bonsai.io. More [here](https://devcenter.heroku.com/articles/bonsai) on heroku.com
-
-### Spam filtering
-
-To avoid pesky spammers, Georgia uses Akismet system to filter spam messages.
-
-1. Sign up on [http://akismet.com/signup/](http://akismet.com/signup/)
-2. Configure rakismet `key` and `url` in an initializer:
-
-```ruby
-# config/initializers/rakismet.rb
-Example::Application.config.rakismet.key = '123456789XYZ'
-Example::Application.config.rakismet.url = 'https://www.example.com/'
-```
-
-For more information or alternatives, please read on the [rakismet](https://github.com/joshfrench/rakismet) gem.

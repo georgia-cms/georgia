@@ -5,7 +5,6 @@ class Ckeditor::Asset < ActiveRecord::Base
 
   include Ckeditor::Orm::ActiveRecord::AssetBase
   include Georgia::Concerns::Taggable
-  include Georgia::Indexer
 
   delegate :url, :current_path, :content_type, to: :data
 

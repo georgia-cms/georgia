@@ -16,7 +16,7 @@ module Georgia
   @@url = "http://www.example.com"
 
   mattr_accessor :navigation
-  @@navigation = %w(dashboard pages messages media navigation widgets)
+  @@navigation = %w(dashboard pages media navigation widgets)
 
   mattr_accessor :indexer
   @@indexer = :solr
