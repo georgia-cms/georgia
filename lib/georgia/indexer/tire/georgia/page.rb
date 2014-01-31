@@ -9,7 +9,7 @@ module Georgia
               include ::Tire::Model::Callbacks
 
               def to_indexed_json
-                keywords = current_revision.contents.map(&:keyword_list).flatten.uniq.join(', ')
+                keywords = current_revision.present? ? current_revision.contents.map(&:keyword_list).flatten.uniq.join(', ') : ""
                 tags = tag_list.join(', ')
                 class_name = self.class.name
 
