@@ -1,4 +1,4 @@
-require 'sunspot_rails'
+require 'sunspot_rails' if defined?(Sunspot)
 Dir[File.join(File.dirname(__FILE__), 'extensions', 'solr_adapter', '*.rb')].each {|file| require file }
 
 module Georgia

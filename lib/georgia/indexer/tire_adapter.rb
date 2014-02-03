@@ -1,4 +1,4 @@
-require 'tire'
+require 'tire' if defined?(Tire)
 Dir[File.join(File.dirname(__FILE__), 'extensions', 'tire_adapter', '*.rb')].each {|file| require file }
 
 module Georgia

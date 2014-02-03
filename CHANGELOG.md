@@ -1,3 +1,7 @@
+== 0.7.5
+
+- Fixes require on missing dependencies
+
 == 0.7.4
 
 - Fixes ckeditor
