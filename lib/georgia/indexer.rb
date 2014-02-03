@@ -1,9 +1,9 @@
+require 'active_support/concern'
+
 module Georgia
   module Indexer
     autoload :SolrAdapter, 'georgia/indexer/solr_adapter'
     autoload :TireAdapter, 'georgia/indexer/tire_adapter'
-
-    mattr_accessor :adapter
 
     def self.adapter
       @@adapter ||= adapter_lookup
@@ -11,11 +11,11 @@ module Georgia
 
     # Delegates search to the adapter
     def self.search model, params
-      @@adapter.search model, params
+      adapter.search model, params
     end
 
     def self.searching model, extension
-      @@adapter.searching model, extension
+      adapter.searching model, extension
     end
 
     private
@@ -27,6 +27,17 @@ module Georgia
         else
           TireAdapter.new
         end)
+    end
+
+    module Adapter
+      extend ActiveSupport::Concern
+
+      included do
+        def self.is_searchable extensions={}
+          raise "No extension for the #{Georgia.indexer} indexer" unless extensions[Georgia.indexer].present?
+          self.send(:include, extensions[Georgia.indexer])
+        end
+      end
     end
 
   end

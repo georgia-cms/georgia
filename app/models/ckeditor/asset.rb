@@ -1,5 +1,11 @@
 class Ckeditor::Asset < ActiveRecord::Base
 
+  include Georgia::Indexer::Adapter
+  is_searchable({
+    solr: Georgia::Indexer::SolrAdapter::CkeditorAssetExtension,
+    tire: Georgia::Indexer::TireAdapter::CkeditorAssetExtension,
+  })
+
   # to allow media_path in to_jq_upload
   include Georgia::Engine.routes.url_helpers
 
@@ -38,7 +44,5 @@ class Ckeditor::Asset < ActiveRecord::Base
     '500 KB to 1 MB' => 500..1000,
     '> 1 MB' => 1000..999999
   }
-
-
 
 end

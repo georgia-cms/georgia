@@ -19,7 +19,7 @@ module Georgia
   @@navigation = %w(dashboard pages media navigation widgets)
 
   mattr_accessor :indexer
-  @@indexer = :solr
+  @@indexer = :tire
 
   def self.setup
     yield self

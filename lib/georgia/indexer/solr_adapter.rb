@@ -1,5 +1,5 @@
 require 'sunspot_rails'
-Dir[File.join(File.dirname(__FILE__), 'extensions', 'solr', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'extensions', 'solr_adapter', '*.rb')].each {|file| require file }
 
 module Georgia
   module Indexer
