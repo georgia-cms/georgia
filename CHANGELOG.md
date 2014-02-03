@@ -4,6 +4,8 @@
 - Removes cloudfiles
 - Fixes Tire Georgia::Message indexing
 - Removes helpers loading in main_app
+- Fixes Georgia::Indexer
+- Moves Georgia::Message handling to GeorgiaMailer (georgia_mailer gem)
 
 == 0.7.3
 
