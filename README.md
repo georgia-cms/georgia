@@ -59,9 +59,13 @@ Add `config/initializers/bonsai.rb` with:
 
     ENV['ELASTICSEARCH_URL'] = ENV['BONSAI_URL']
 
-Finally, create your indices with these commands:
+Create your indices with these commands:
 
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
+
+Finally, create your first admin user to access to web panel:
+
+    heroku run rake georgia:seed
 
 For more information, you can also follow these [instructions](https://gist.github.com/nz/2041121) to setup bonsai.io. More [here](https://devcenter.heroku.com/articles/bonsai) on heroku.com
