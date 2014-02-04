@@ -43,6 +43,14 @@ module Georgia
         template "app/controllers/pages_controller.rb"
       end
 
+      def create_indices
+        if defined? Tire
+          say("Creating elasticsearch indices", :yellow)
+          rake "environment tire:import CLASS=Georgia::Page FORCE=true"
+          rake "environment tire:import CLASS=Ckeditor::Asset FORCE=true"
+        end
+      end
+
       def show_readme
         readme "README"
       end
