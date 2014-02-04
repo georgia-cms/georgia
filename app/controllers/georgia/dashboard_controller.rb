@@ -6,8 +6,8 @@ module Georgia
         @awaiting_revisions = Georgia::Revision.reviews.select{|r| r.revisionable.present?}
       end
       if defined? GeorgiaMailer::Message
-        if can?(:index, Georgia::Message)
-          @messages = Georgia::Message.ham.latest.limit(5).decorate
+        if can?(:index, GeorgiaMailer::Message)
+          @messages = GeorgiaMailer::Message.ham.latest.limit(5).decorate
         end
       end
     end
