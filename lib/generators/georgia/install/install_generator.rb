@@ -39,8 +39,8 @@ module Georgia
       end
 
       def copy_templates
-        template "config/initializers/georgia.rb"
-        template "app/controllers/pages_controller.rb"
+        copy_file "config/initializers/georgia.rb"
+        copy_file "app/controllers/pages_controller.rb"
       end
 
       def create_indices

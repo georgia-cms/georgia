@@ -29,7 +29,6 @@ Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. H
 * Because it's prettier.
 * Because the guys on refinerycms did a great job and you should check them out.
 * Because it's easy to start a website and push to Heroku.
-* Rails 4 compatible.. almost.
 
 ### Getting started
 
@@ -42,6 +41,10 @@ Georgia uses available_locales to know which translations should be configured o
 Then run the generator to mount routes, run migrations & setup initial instances.
 
     rails generate georgia:install
+
+We built Georgia to help you quickly develop an application with a CMS (Content Management System). However, we don't want to be in your way when you need to customize it.
+
+    rails generate georgia:views
 
 Start your server (`rails server`) and go to [http://localhost:3000/admin](http://localhost:3000/admin) to get started.
 
