@@ -13,6 +13,8 @@
 
 <section class="body-main">
 
+  <%= link_to_available_locales %>
+
   <% if @widgets and @widgets.any? %>
     <% @widgets.each do |widget_row| %>
       <div class="row">

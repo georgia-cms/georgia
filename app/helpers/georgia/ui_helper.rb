@@ -34,6 +34,19 @@ module Georgia
       link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn btn-back'
     end
 
+    def link_to_available_locales
+      return unless I18n.available_locales.any?
+      links = I18n.available_locales.map do |locale|
+        content_tag(:li, link_to(t("georgia.#{locale}"), locale: locale ))
+      end
+      content_tag(:p, class: 'hint') do
+        content_tag(:div, class: 'dropdown') do
+          link_to("Change language <span class='caret'></span>".html_safe, '#', class: 'btn btn-warning', data: {toggle: 'dropdown'}, role: :button) +
+          content_tag(:ul, links.join('').html_safe, class: 'dropdown-menu', role: 'menu')
+        end
+      end
+    end
+
     def link_to_delete url, options={}
       text = options.delete(:text) { "#{icon_tag('trash-o')} Delete".html_safe }
       link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger')

@@ -1,8 +1,8 @@
 <div class="col-md-3 js-widget">
   <div class="widget">
     <div class="widget-show">
-      <div class="widget-header"><h4 class='widget-title--ellipsed'><%= widget.title %></h4></div>
-      <div class="widget-content"><%= widget.text %></div>
+      <div class="widget-header"><h4 class='widget-title--ellipsed'><%= widget.content(current_locale).title %></h4></div>
+      <div class="widget-content"><%= widget.content(current_locale).text %></div>
       <div class="widget-footer">
         <% if widget.featured? %>
           <div class="widget-featured">
@@ -15,7 +15,8 @@
     </div>
     <div class="widget-form hide">
       <%= simple_form_for widget, remote: true, html: {class: 'js-spin-and-roll'} do |f| %>
-        <%= f.simple_fields_for :contents, widget.content do |c| %>
+        <%= f.simple_fields_for :contents, widget.content(current_locale) do |c| %>
+          <%= c.input :locale, as: :hidden %>
           <div class="widget-header">
             <div class="widget-title">
               <%= c.input_field :title, class: 'form-control' %>
