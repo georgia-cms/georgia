@@ -14,6 +14,11 @@ module Georgia
       adapter.search model, params
     end
 
+    def self.register_extension indexer, klass
+      return unless indexer == Georgia.indexer
+      Adapter.load_extension(klass)
+    end
+
     private
 
     def self.adapter_lookup
@@ -29,6 +34,10 @@ module Georgia
 
       class << self
         def included(klass)
+          load_extension(klass)
+        end
+
+        def load_extension(klass)
           extension = Extension.new(klass)
           begin
             require extension.path
