@@ -34,6 +34,7 @@ module Georgia
       ActiveSupport.on_load :action_controller do
         helper Georgia::MetaTagsHelper
         helper Georgia::InternationalizationHelper
+        helper Georgia::MenusHelper
       end
     end
 
