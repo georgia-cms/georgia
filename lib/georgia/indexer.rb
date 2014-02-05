@@ -14,28 +14,47 @@ module Georgia
       adapter.search model, params
     end
 
-    def self.searching model, extension
-      adapter.searching model, extension
-    end
-
     private
 
     def self.adapter_lookup
-      (case Georgia.indexer
-        when :solr then SolrAdapter.new
-        when :tire then TireAdapter.new
+      @adapter_lookup ||= (case Georgia.indexer
+        when :solr then SolrAdapter
+        when :tire then TireAdapter
         else
-          TireAdapter.new
+          TireAdapter
         end)
     end
 
     module Adapter
-      extend ActiveSupport::Concern
 
-      included do
-        def self.is_searchable extensions={}
-          raise "No extension for the #{Georgia.indexer} indexer" unless extensions[Georgia.indexer].present?
-          self.send(:include, extensions[Georgia.indexer])
+      class << self
+        def included(klass)
+          extension = Extension.new(klass)
+          begin
+            require extension.path
+            klass.send(:include, extension.name)
+          rescue => ex
+            raise "No extension for the #{Georgia.indexer} indexer: #{ex.message}"
+          end
+        end
+
+        class Extension
+          def initialize klass
+            @klass = klass
+          end
+
+          def name
+            name = @klass.to_s.gsub('::', '') + 'Extension'
+            "#{Georgia::Indexer.adapter}::#{name}".constantize
+          end
+
+          def path
+            "georgia/indexer/extensions/#{Georgia.indexer}_adapter/#{filename}"
+          end
+
+          def filename
+            @klass.to_s.underscore
+          end
         end
       end
     end

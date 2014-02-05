@@ -1,5 +1,7 @@
-require 'tire' if defined?(Tire)
-Dir[File.join(File.dirname(__FILE__), 'extensions', 'tire_adapter', '*.rb')].each {|file| require file }
+if defined?(Tire)
+  require 'tire'
+  Dir[File.join(File.dirname(__FILE__), 'extensions', 'tire_adapter', '*.rb')].each {|file| require file }
+end
 
 module Georgia
   module Indexer

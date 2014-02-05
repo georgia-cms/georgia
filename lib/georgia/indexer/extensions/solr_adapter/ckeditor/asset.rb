@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module Georgia
   module Indexer
-    class SolrAdapter
+    module SolrAdapter
       module CkeditorAssetExtension
 
         extend ActiveSupport::Concern

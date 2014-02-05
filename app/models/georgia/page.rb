@@ -2,11 +2,6 @@ module Georgia
   class Page < ActiveRecord::Base
 
     include Georgia::Indexer::Adapter
-    is_searchable({
-      solr: Georgia::Indexer::SolrAdapter::GeorgiaPageExtension,
-      tire: Georgia::Indexer::TireAdapter::GeorgiaPageExtension
-    })
-
     include Georgia::Concerns::Taggable
     include Georgia::Concerns::Orderable
     include Georgia::Concerns::Slugable
