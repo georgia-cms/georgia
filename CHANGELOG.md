@@ -1,3 +1,8 @@
+== 0.7.6
+
+- Fixes Georgia::Indexer extensions loading pattern
+- Fixes issue where slides would not follow provided locale
+
 == 0.7.5
 
 - Fixes require on missing dependencies
