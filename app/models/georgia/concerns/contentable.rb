@@ -10,7 +10,7 @@ module Georgia
         accepts_nested_attributes_for :contents
         attr_accessible :contents_attributes
 
-        scope :with_locale, lambda {|locale| joins(:contents).where(georgia_contents: {locale: locale})}
+        scope :with_locale, lambda {|locale| joins(:contents).where(georgia_contents: {locale: locale}).uniq}
 
         def content(locale=nil)
           locale ||= I18n.locale.to_s
