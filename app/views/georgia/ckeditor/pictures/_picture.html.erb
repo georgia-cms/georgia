@@ -21,6 +21,6 @@
     <span class="badge" title="Featured in <%= pluralize(picture.pages.length, 'page') %>"><%= picture.pages.length %></span>
   </td>
   <td class='timestamp'>
-    <em><%= picture.updated_at.strftime('%F') %></em>
+    <em><%= picture.pretty_updated_at %></em>
   </td>
 </tr>
