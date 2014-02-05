@@ -10,8 +10,11 @@ module Georgia
         accepts_nested_attributes_for :contents
         attr_accessible :contents_attributes
 
-        def content
-          @content ||= contents.select{|c| c.locale == I18n.locale.to_s}.first || Georgia::Content.new
+        scope :with_locale, lambda {|locale| joins(:contents).where(georgia_contents: {locale: locale})}
+
+        def content(locale=nil)
+          locale ||= I18n.locale.to_s
+          @content ||= contents.select{|c| c.locale == locale}.first || Georgia::Content.new
         end
 
 				delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, :locale, to: :content

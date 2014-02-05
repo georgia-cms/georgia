@@ -16,6 +16,8 @@ module Georgia
     end
 
     def edit
+      locale = params.fetch(:locale, current_locale)
+      @slides = @revision.slides.ordered.with_locale(locale)
       @ui_sections = Georgia::UiSection.all
     end
 

@@ -9,8 +9,8 @@
     <div class="control-group">
       <div class="slides js-slides">
         <ul class="nav-list js-sortable">
-          <% @revision.slides.each do |slide| %>
-            <%= slide_portlet_tag(slide) %>
+          <% @slides.each do |slide| %>
+            <%= slide_portlet_tag(slide, content: slide.content(params[:locale])) %>
           <% end -%>
         </ul>
       </div>
