@@ -11,7 +11,7 @@ module Georgia
     end
 
     def current_locale
-      I18n.locale
+      @current_locale ||= params.fetch(:locale, I18n.locale.to_s)
     end
     helper_method :current_locale
 
