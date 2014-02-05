@@ -1,14 +1,5 @@
 namespace :solr do
 
-  namespace :messages do
-
-    desc 'Reindex messages on solr'
-    task reindex: :environment do
-      Georgia::Message.reindex
-    end
-
-  end
-
   namespace :reindex do
 
     desc 'Reindex assets on solr'
