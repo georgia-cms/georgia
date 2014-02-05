@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module Georgia
   module Indexer
-    class TireAdapter
+    module TireAdapter
       module GeorgiaPageExtension
 
         extend ActiveSupport::Concern
@@ -34,8 +34,8 @@ module Georgia
             indexed_hash.to_json
           end
 
-          def self.search model, params
-            model.tire.search(page: (params[:page] || 1), per_page: (params[:per] || 25)) do
+          def self.search_index params
+            search(page: (params[:page] || 1), per_page: (params[:per] || 25)) do
               if params[:query].present?
                 query do
                   boolean do

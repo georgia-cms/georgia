@@ -1,15 +1,16 @@
-if defined?(Tire)
-  require 'tire'
-  Dir[File.join(File.dirname(__FILE__), 'extensions', 'tire_adapter', '*.rb')].each {|file| require file }
-end
-
 module Georgia
   module Indexer
-    class TireAdapter
+    module TireAdapter
 
-      # Delegate search to the model
-      def search model, params
-        model.search model, params
+      require 'tire' if defined?(Tire)
+
+      class << self
+
+        # Delegate to .search_index on the model
+        def search model, params
+          model.search_index(params)
+        end
+
       end
 
     end

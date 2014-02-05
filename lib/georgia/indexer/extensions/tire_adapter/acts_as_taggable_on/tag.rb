@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module Georgia
   module Indexer
-    class TireAdapter
+    module TireAdapter
       module ActsAsTaggableOnTagExtension
 
         extend ActiveSupport::Concern

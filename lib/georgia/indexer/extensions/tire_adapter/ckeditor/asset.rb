@@ -2,7 +2,7 @@ require 'active_support/concern'
 
 module Georgia
   module Indexer
-    class TireAdapter
+    module TireAdapter
       module CkeditorAssetExtension
 
         extend ActiveSupport::Concern
@@ -12,16 +12,18 @@ module Georgia
           include ::Tire::Model::Search
           include ::Tire::Model::Callbacks
 
-          mapping do
-            indexes :id,           :index    => :not_analyzed
-            indexes :filename
-            indexes :tags
-            indexes :extension
-            indexes :updated_at, :type => 'date'
+          def to_indexed_json
+            indexed_hash = {
+              filename: filename,
+              tags: tags,
+              extension: extension,
+              updated_at: updated_at.strftime('%F')
+            }
+            indexed_hash.to_json
           end
 
-          def self.search model, params
-            model.tire.search(page: (params[:page] || 1), per_page: (params[:per] || 8)) do
+          def self.search_index params
+            search(page: (params[:page] || 1), per_page: (params[:per] || 8)) do
               if params[:query].present?
                 query do
                   boolean do
