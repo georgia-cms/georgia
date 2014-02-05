@@ -1,20 +1,7 @@
 <fieldset>
   <div class="fieldset-help">
     <legend>Content</legend>
-    <% if I18n.available_locales.any? %>
-      <p class="hint">
-        <div class='dropdown'>
-          <%= link_to '#', class: 'btn btn-warning', data: {toggle: 'dropdown'}, role: :button do %>
-            Change language <span class="caret"></span>
-          <% end -%>
-          <ul class="dropdown-menu" role="menu">
-            <% I18n.available_locales.each do |locale| %>
-              <li><%= link_to t("georgia.#{locale}"), edit_page_revision_path(@page, @revision, locale: locale) %></li>
-            <% end -%>
-          </ul>
-        </div>
-      </p>
-    <% end -%>
+    <%= link_to_available_locales %>
   </div>
   <div class="fieldset-fields">
     <%= warning_message(@page, @revision) %>
