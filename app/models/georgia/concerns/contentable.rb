@@ -14,7 +14,7 @@ module Georgia
 
         def content(locale=nil)
           locale ||= I18n.locale.to_s
-          @content ||= contents.select{|c| c.locale == locale}.first || Georgia::Content.new
+          @content ||= contents.select{|c| c.locale == locale}.first || Georgia::Content.new(locale: locale)
         end
 
 				delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, :locale, to: :content
