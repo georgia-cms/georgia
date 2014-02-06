@@ -26,12 +26,6 @@ describe Georgia do
     end
   end
 
-  describe '.adapter' do
-    it 'defaults to Tire' do
-      expect(Georgia::Indexer.adapter).to be_a_kind_of Georgia::Indexer::TireAdapter
-    end
-  end
-
   describe '#setup' do
     it 'loads and assigns' do
       Georgia.setup{|config| config.url = 'Foo'}
