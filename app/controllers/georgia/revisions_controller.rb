@@ -81,6 +81,7 @@ module Georgia
       else
         @content = @revision.content
       end
+      @content = Georgia::ContentDecorator.decorate(@content)
     end
 
     def notify(message, url)

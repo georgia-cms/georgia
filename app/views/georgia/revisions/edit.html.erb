@@ -7,7 +7,7 @@
       </div>
       <div class="header-title">
         <h1>
-          <%= link_to (@content.title || content_tag(:span, 'No title', class: 'muted')), '#', class: 'title-truncated' %>
+          <%= link_to @content.title_or_none, '#', class: 'title-truncated' %>
           <%= icon_tag 'pencil' %>
         </h1>
         <%= c.input_field :title, class: 'input-lg form-control', placeholder: 'Title' %>
