@@ -8,9 +8,9 @@ module Georgia
     has_many :revisions, through: :ui_associations
     has_many :pages, through: :revisions
 
-    scope :footer, joins(:ui_sections).where(georgia_ui_sections: {name: 'Footer'})
-    scope :submenu, joins(:ui_sections).where(georgia_ui_sections: {name: 'Submenu'})
-    scope :sidebar, joins(:ui_sections).where(georgia_ui_sections: {name: 'Sidebar'})
+    scope :footer, joins(:ui_sections).where(georgia_ui_sections: {name: 'Footer'}).uniq
+    scope :submenu, joins(:ui_sections).where(georgia_ui_sections: {name: 'Submenu'}).uniq
+    scope :sidebar, joins(:ui_sections).where(georgia_ui_sections: {name: 'Sidebar'}).uniq
 
     validate :content_presence
 
