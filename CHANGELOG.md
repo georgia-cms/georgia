@@ -1,3 +1,7 @@
+== 0.7.7
+
+- Fixes missing locale on new slides
+
 == 0.7.6
 
 - Fixes Georgia::Indexer extensions loading pattern

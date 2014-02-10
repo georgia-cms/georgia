@@ -18,6 +18,8 @@ class @SlidePortlet
     event.preventDefault()
     $.ajax(
       url: "/admin/slides/new"
+      data:
+        locale: $('[data-locale]').data('locale')
     ).done( (data) => @slideList.append(data) )
 
   removeSlide: (event) =>
