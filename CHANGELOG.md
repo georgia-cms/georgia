@@ -1,6 +1,7 @@
 == 0.7.7
 
 - Fixes missing locale on new slides
+- Fixes Api::TagsController
 
 == 0.7.6
 

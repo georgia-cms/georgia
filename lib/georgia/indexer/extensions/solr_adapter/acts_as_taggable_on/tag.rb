@@ -13,6 +13,15 @@ module Georgia
             text :name
           end
 
+          def self.search_index model, params
+            ActsAsTaggableOn::Tag.search do
+              fulltext params[:q] do
+                fields(:name)
+              end
+              paginate(page: 1, per_page: 10)
+            end.results
+          end
+
         end
 
       end
