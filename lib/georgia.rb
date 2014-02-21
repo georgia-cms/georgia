@@ -1,7 +1,6 @@
 require "georgia/version"
 require "georgia/paths"
 require "georgia/engine"
-require "georgia/assets"
 require "georgia/indexer"
 
 module Georgia
