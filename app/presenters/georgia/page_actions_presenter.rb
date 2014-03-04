@@ -23,10 +23,8 @@ module Georgia
       # html << content_tag(:li, link_to_settings) if can?(:settings, page)
       html << content_tag(:li, link_to_preview) if can?(:preview, page)
       html << content_tag(:li, link_to_copy) if can?(:copy, page)
-      if page.current_revision and page.current_revision.published?
-        html << content_tag(:li, link_to_publish) if can?(:publish, page) and !page.published?
-        html << content_tag(:li, link_to_unpublish) if can?(:unpublish, page) and page.published?
-      end
+      html << content_tag(:li, link_to_publish) if can?(:publish, page) and !page.published?
+      html << content_tag(:li, link_to_unpublish) if can?(:unpublish, page) and page.published?
       html << content_tag(:li, link_to_flush_cache) if can?(:flush_cache, page)
       html << content_tag(:li, link_to_revisions) if can?(:index, Revision)
       html
