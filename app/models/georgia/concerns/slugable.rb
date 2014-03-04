@@ -14,6 +14,8 @@ module Georgia
         before_validation :sanitize_slug
         after_save :update_url
 
+        scope :from_url, -> (path) { where(url: "/#{path}").includes(current_revision: :contents) }
+
         # Must stay public for #update_url on descendants
         def set_url
           self.update_column(:url, '/' + self.ancestry_url)
