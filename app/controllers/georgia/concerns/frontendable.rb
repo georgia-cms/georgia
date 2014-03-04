@@ -13,20 +13,28 @@ module Georgia
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
-          @page = Georgia::Page.where(url: "/#{params[:request_path]}").includes(current_revision: :contents).published.first || not_found
-          @page = Georgia::PageDecorator.decorate(@page)
+          if preview?
+            prepare_preview
+          else
+            @page = Georgia::Page.from_url(params[:request_path]).published.first || not_found
+            @page = Georgia::PageDecorator.decorate(@page)
+          end
+        end
+
+        protected
+
+        def preview?
+          params[:r].present?
         end
 
         # Loads the page according to given id
         # Temporarily set the given revision to preview as the 'current_revision'
-        def preview
-          @page = Georgia::Page.find(params[:id]).decorate
-          @page.current_revision = Georgia::Revision.find(params[:revision_id])
+        def prepare_preview
+          @page = Georgia::Page.from_url(params[:request_path]).first || not_found
+          @page = Georgia::PageDecorator.decorate(@page)
+          @page.current_revision = Georgia::Revision.find(params[:r])
           authorize! :preview, @page
-          render :show
         end
-
-        protected
 
         # Triggers a 404 page not found
         # Use when provided url doesn't match any the Georgia::Pages

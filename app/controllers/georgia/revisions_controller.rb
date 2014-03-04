@@ -38,7 +38,7 @@ module Georgia
     # Sends revision to main_app router
     # FIXME: bypass this once Georgia will be loaded on root
     def preview
-      redirect_to main_app.preview_page_path(id: @page.id, revision_id: @revision.id)
+      redirect_to preview_url
     end
 
     def review
@@ -86,6 +86,10 @@ module Georgia
 
     def notify(message, url)
       Notifier.notify_admins(message, url).deliver
+    end
+
+    def preview_url
+      "#{@page.decorate.url}?r=#{@revision.id}"
     end
 
   end
