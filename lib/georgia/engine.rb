@@ -36,6 +36,7 @@ module Georgia
         helper Georgia::InternationalizationHelper
         helper Georgia::MenusHelper
         helper Georgia::UiHelper
+        helper Georgia::PagesHelper
       end
     end
 
