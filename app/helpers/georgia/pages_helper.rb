@@ -18,5 +18,13 @@ module Georgia
       Georgia::WarningMessage.new(self, page, revision, options)
     end
 
+    def picture_tag picture, options={}
+      return unless picture and picture.url.present?
+      format = options.fetch(:format, :tiny)
+      link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do
+        image_tag(picture.url(format), title: picture.data_file_name, class: 'media-image')
+      end
+    end
+
   end
 end

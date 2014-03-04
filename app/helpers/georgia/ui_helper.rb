@@ -22,29 +22,8 @@ module Georgia
       content_tag :div, icon_tag('spinner fa-spin fa-4x'), options
     end
 
-    def picture_tag picture, options={}
-      return unless picture and picture.url.present?
-      format = options.fetch(:format, :tiny)
-      link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do
-        image_tag(picture.url(format), title: picture.data_file_name, class: 'media-image')
-      end
-    end
-
     def link_to_back url=:back
       link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn btn-back'
-    end
-
-    def link_to_available_locales
-      return unless I18n.available_locales.any?
-      links = I18n.available_locales.map do |locale|
-        content_tag(:li, link_to(t("georgia.#{locale}"), locale: locale ))
-      end
-      content_tag(:p, class: 'hint') do
-        content_tag(:div, class: 'dropdown') do
-          link_to("Change language <span class='caret'></span>".html_safe, '#', class: 'btn btn-warning', data: {toggle: 'dropdown'}, role: :button) +
-          content_tag(:ul, links.join('').html_safe, class: 'dropdown-menu', role: 'menu')
-        end
-      end
     end
 
     def link_to_delete url, options={}
