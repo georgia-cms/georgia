@@ -2,6 +2,7 @@
 
 - Fixes missing locale on new slides
 - Fixes Api::TagsController
+- Fixes previewing
 
 == 0.7.6
 
