@@ -1,11 +1,6 @@
-# encoding: UTF-8
-require 'rails/generators/migration'
-require 'rails/generators/active_record'
-
 module Georgia
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
-      include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
 
       desc "Installs Georgia CMS:\n
@@ -22,10 +17,6 @@ module Georgia
         route "resources :messages, only: [:create]"
         route "mount Ckeditor::Engine => '/ckeditor'"
         route "mount Georgia::Engine => '/admin'"
-      end
-
-      def self.next_migration_number(number)
-        ActiveRecord::Generators::Base.next_migration_number(number)
       end
 
       def run_migrations
