@@ -1,0 +1,13 @@
+---
+development:
+  cloud_name: dzwu61sq3
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dzwu61sq3
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dzwu61sq3
+  enhance_image_tag: true
+  static_image_support: false
