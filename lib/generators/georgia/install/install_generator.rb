@@ -37,7 +37,9 @@ module Georgia
       def create_indices
         if !defined?(Sunspot) and !defined?(Tire)
           gem 'tire'
-          run 'bundle'
+          inside Rails.root do
+            run "bundle install"
+          end
         end
         if defined?(Tire)
           say("Creating elasticsearch indices", :yellow)
