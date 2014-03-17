@@ -7,6 +7,7 @@ describe Georgia do
   it {should respond_to :url }
   it {should respond_to :navigation }
   it {should respond_to :indexer }
+  it {should respond_to :storage }
 
   describe '.templates' do
     it 'defaults to 4 main ones' do
@@ -23,6 +24,12 @@ describe Georgia do
   describe '.navigation' do
     it 'defaults to all' do
       expect(Georgia.navigation).to eq %w(dashboard pages media navigation widgets)
+    end
+  end
+
+  describe '.storage' do
+    it 'defaults to :fog' do
+      expect(Georgia.storage).to eq :fog
     end
   end
 

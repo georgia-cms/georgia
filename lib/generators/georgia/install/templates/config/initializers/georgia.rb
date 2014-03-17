@@ -16,4 +16,8 @@ Georgia.setup do |config|
   # Indexer
   # Choices are :solr or :tire
   # config.indexer = :tire
+
+  # Storage
+  # Choices are :cloudinary or :fog
+  # config.storage = :fog
 end

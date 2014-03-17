@@ -2,6 +2,7 @@ require "georgia/version"
 require "georgia/paths"
 require "georgia/engine"
 require "georgia/indexer"
+require "georgia/uploader/adapter"
 
 module Georgia
 
@@ -19,6 +20,9 @@ module Georgia
 
   mattr_accessor :indexer
   @@indexer = :tire
+
+  mattr_accessor :storage
+  @@storage = :fog
 
   def self.setup
     yield self
