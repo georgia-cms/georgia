@@ -8,7 +8,7 @@
     <div class="col-md-9">
 
       <h2>
-        <%= link_to @asset.data_file_name, @asset.url %>
+        <%= link_to @asset.filename, @asset.url %>
         <% unless @asset.is_a?(Ckeditor::Picture) %>
           <%= link_to icon_tag('link'), @asset.url, title: @asset.url, target: '_blank', class: 'btn btn-default' %>
         <% end -%>
@@ -25,7 +25,7 @@
               </span>
             <% end -%>
           </div>
-          <%= image_tag @asset.url(:content), title: @asset.data_file_name, class: 'media-image--inline' %>
+          <%= image_tag @asset.url(:content), title: @asset.filename, class: 'media-image--inline' %>
         </div>
       <% end -%>
     </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="panel-body">
           <p>
-            <b>File Name</b>: <%= @asset.data_file_name %><br />
+            <b>File Name</b>: <%= @asset.filename %><br />
             <b>Content Type</b>: <%= @asset.data_content_type %><br />
             <% if @asset.is_a?(Ckeditor::Picture) %>
               <b>File Size</b>: <%= number_to_human_size(@asset.data_file_size) %><br />

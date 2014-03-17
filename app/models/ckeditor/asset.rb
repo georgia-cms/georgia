@@ -29,7 +29,12 @@ class Ckeditor::Asset < ActiveRecord::Base
     }
   end
 
+  def short_name
+    @short_name ||= self.data.file.filename.dup.gsub(/(.*)\.#{extension}/, '\1') if data.file and data.file.filename
+  end
+
   def extension
+    self.data_content_type ||= self.data.file.content_type
     @extension ||= data_content_type.gsub(/.*\/(.*)/, '\1')
   end
 

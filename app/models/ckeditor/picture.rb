@@ -12,4 +12,13 @@ class Ckeditor::Picture < Ckeditor::Asset
     @pages ||= contents.map(&:contentable).map(&:page).compact.uniq
   end
 
+  def filename
+    @filename ||=
+      if defined?(Cloudinary)
+        data_file_name.dup.gsub(/v\d{10}\/(.*)/, '\1') || data_file_name
+      else
+        data_file_name
+      end
+  end
+
 end
