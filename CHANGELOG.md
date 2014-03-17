@@ -1,3 +1,7 @@
+== 0.7.8
+
+- Fixes georgia:seed rake task to create admin user
+
 == 0.7.7
 
 - Fixes missing locale on new slides
