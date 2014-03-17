@@ -10,7 +10,7 @@ class Ckeditor::Asset < ActiveRecord::Base
 
   delegate :url, :current_path, :content_type, to: :data
 
-  mount_uploader :data, CkeditorAttachmentFileUploader, mount_on: :data_file_name
+  mount_uploader :data, Ckeditor::AttachmentFileUploader, mount_on: :data_file_name
 
   validates :data, presence: true
   attr_accessible :data
