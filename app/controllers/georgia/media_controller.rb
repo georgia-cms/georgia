@@ -16,9 +16,7 @@ module Georgia
     end
 
     def create
-      @assets = params[:assets].map do |asset|
-        (asset.content_type.match(/^image/) ? Ckeditor::Picture : Ckeditor::Asset).create(data: asset)
-      end
+      @assets = params[:assets].map{|asset| CreateMediaAsset.new(asset).call}
       @assets = Ckeditor::AssetDecorator.decorate_collection(@assets)
       render layout: false
     end
