@@ -26,7 +26,7 @@ class @AssetUploader
     @progress.modal('hide')
     @btn.html("<i class='fa fa-check'></i> Uploaded")
     setTimeout(
-      -> @btn.html("<i class='fa fa-plus'></i> Select files...")
+      => @btn.html("<i class='fa fa-plus'></i> Select files...")
       1500
     )
 
