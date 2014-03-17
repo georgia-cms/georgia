@@ -1,3 +1,5 @@
+require 'bundler'
+
 module Georgia
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
@@ -34,18 +36,19 @@ module Georgia
         copy_file "app/controllers/pages_controller.rb"
       end
 
-      def create_indices
-        if !defined?(Sunspot) and !defined?(Tire)
+      def add_default_indexer
+        return if defined?(Sunspot)
+        if !defined?(Tire)
+          say("Adding Tire gem for Elasticsearch", :yellow)
           gem 'tire'
-          inside Rails.root do
+          Bundler.with_clean_env do
             run "bundle install"
           end
         end
-        if defined?(Tire)
-          say("Creating elasticsearch indices", :yellow)
-          rake "environment tire:import CLASS=Georgia::Page FORCE=true"
-          rake "environment tire:import CLASS=Ckeditor::Asset FORCE=true"
-        end
+        say("Creating elasticsearch indices", :yellow)
+        rake "environment tire:import CLASS=Georgia::Page FORCE=true"
+        rake "environment tire:import CLASS=Ckeditor::Asset FORCE=true"
+        rake "environment tire:import CLASS=Ckeditor::Picture FORCE=true"
       end
 
       def show_readme
