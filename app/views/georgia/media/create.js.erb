@@ -1,1 +1,6 @@
-$('table.assets tbody').prepend("<%= j render(@assets) %>");
+<% if @assets and @assets.any? %>
+  $('table.assets tbody').prepend("<%= j render(@assets) %>");
+<% end %>
+<% flash.each do |name, msg| %>
+  new Flash('<%= msg %>', '<%= name %>')
+<% end -%>
