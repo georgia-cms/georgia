@@ -35,7 +35,11 @@ module Georgia
       end
 
       def create_indices
-        if defined? Tire
+        if !defined?(Sunspot) and !defined?(Tire)
+          gem 'tire'
+          run 'bundle'
+        end
+        if defined?(Tire)
           say("Creating elasticsearch indices", :yellow)
           rake "environment tire:import CLASS=Georgia::Page FORCE=true"
           rake "environment tire:import CLASS=Ckeditor::Asset FORCE=true"
