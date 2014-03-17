@@ -63,6 +63,7 @@ Create your indices with these commands:
 
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
+    heroku run rake environment tire:import CLASS=Ckeditor::Picture FORCE=true
 
 Finally, create your first admin user to access to web panel:
 
