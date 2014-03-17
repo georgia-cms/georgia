@@ -3,6 +3,7 @@
 - Fixes missing locale on new slides
 - Fixes Api::TagsController
 - Fixes previewing
+- Fixes publishing for pages without a current_revision
 
 == 0.7.6
 
