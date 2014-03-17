@@ -12,6 +12,10 @@ module Georgia
           include ::Tire::Model::Search
           include ::Tire::Model::Callbacks
 
+          after_rollback do
+            self.index.remove(self)
+          end
+
           def to_indexed_json
             indexed_hash = {
               widt: width,
