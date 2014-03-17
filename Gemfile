@@ -4,6 +4,7 @@ gemspec
 group :development, :test do
   gem 'tire'
   gem 'sunspot_rails', '~> 2.0.0'
+  gem 'dotenv-rails'
 end
 
 group :development do
