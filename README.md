@@ -91,7 +91,24 @@ Georgia will run smoothly and cheaply (read free) on Heroku but you will need ce
 
 #### Sengrid
 
+Add sendgrid addon to handle emails
+
     heroku addons:add sendgrid
+
+Add sendgrid config to your production environment file
+
+``` ruby
+# Send emails via sendgrid
+config.action_mailer.smtp_settings = {
+  :address        => 'smtp.sendgrid.net',
+  :port           => '587',
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => 'heroku.com',
+  :enable_starttls_auto => true
+}
+```
 
 #### Bonsai
 
@@ -104,6 +121,8 @@ Add `config/initializers/bonsai.rb` with:
     ENV['ELASTICSEARCH_URL'] = ENV['BONSAI_URL']
 
 Create your elasticsearch indices with these commands:
+
+*** After your first deploy *** You need tire installed on Heroku to perform this.
 
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
