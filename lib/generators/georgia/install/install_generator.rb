@@ -33,6 +33,7 @@ module Georgia
 
       def copy_templates
         copy_file "config/initializers/georgia.rb"
+        copy_file "config/initializers/carrierwave.example.rb"
         copy_file "app/controllers/pages_controller.rb"
       end
 
