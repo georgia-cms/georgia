@@ -83,26 +83,29 @@ You can skip this step if you plan on using Heroku. Otherwise, take 10 seconds t
 
 #### Custom Storage
 
-The `georgia:install` generator added a `carrierwave.example.rb` file to your initializers. Use it to configure
+The `georgia:install` generator added a `carrierwave.example.rb` file to your initializers. Use it to configure your custom location.
 
 ### Heroku
 
-You will need certain addons to make it work. I suggest going with this list matching Georgia's default tools:
+Georgia will run smoothly and cheaply (read free) on Heroku but you will need certain addons to make it work.
 
-    heroku addons:add bonsai
     heroku addons:add sendgrid
-    # optional
+    heroku addons:add bonsai
     heroku addons:add cloudinary
+
+#### Configure Bonsai
 
 Add `config/initializers/bonsai.rb` with:
 
     ENV['ELASTICSEARCH_URL'] = ENV['BONSAI_URL']
 
-Create your indices with these commands:
+Create your elasticsearch indices with these commands:
 
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Picture FORCE=true
+
+#### Create your admin user
 
 Finally, create your first admin user to access to web panel:
 
