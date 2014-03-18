@@ -52,12 +52,33 @@ We built Georgia to help you quickly develop an application with a CMS (Content 
 
 Start your server (`rails server`) and go to [http://localhost:3000/admin](http://localhost:3000/admin) to get started.
 
+### Cloud Storage
+
+Georgia's media library stores your documents and images on the cloud. You'll need to configure the solution that best fits your needs. Two options for you: Cloudinary or Custom Storage with Fog (e.g. Amazon S3, Rackspace Cloud Files)
+
+#### Cloudinary
+
+This will only work if you plan to have only pictures/images in your Media Library. Cloudinary won't work for `.pdf` files and other documents.
+
+Add cloudinary gem to your Gemfile.
+
+    gem 'cloudinary'
+
+Take 10 seconds to open on account on Cloudinary if not already done. Download your `cloudinary.yml` file and add to your config.
+
+Set storage to `:cloudinary` in the `config/initializers/georgia.rb` file.
+
+#### Custom Storage
+
+The `georgia:install` generator added a `carrierwave.example.rb` file to your initializers. Use it to configure
+
 ### Heroku
 
 You will need certain addons to make it work. I suggest going with this list matching Georgia's default tools:
 
     heroku addons:add bonsai
     heroku addons:add sendgrid
+    # optional
     heroku addons:add cloudinary
 
 Add `config/initializers/bonsai.rb` with:
