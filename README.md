@@ -87,13 +87,17 @@ The `georgia:install` generator added a `carrierwave.example.rb` file to your in
 
 ### Heroku
 
-Georgia will run smoothly and cheaply (read free) on Heroku but you will need certain addons to make it work.
+Georgia will run smoothly and cheaply (read free) on Heroku but you will need certain addons to make it work, all free.
+
+#### Sengrid
 
     heroku addons:add sendgrid
-    heroku addons:add bonsai
-    heroku addons:add cloudinary
 
-#### Configure Bonsai
+#### Bonsai
+
+Add bonsai addon to handle elasticsearch
+
+    heroku addons:add bonsai
 
 Add `config/initializers/bonsai.rb` with:
 
@@ -104,6 +108,12 @@ Create your elasticsearch indices with these commands:
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Picture FORCE=true
+
+#### Cloudinary
+
+Add cloudinary addon to handle media library cloud storage
+
+    heroku addons:add cloudinary
 
 #### Create your admin user
 
