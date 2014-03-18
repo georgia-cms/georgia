@@ -62,13 +62,11 @@ Georgia's media library stores your documents and images on the cloud. You'll ne
 
 This will only work if you plan to have only pictures/images in your Media Library. Cloudinary won't work for `.pdf` files and other documents.
 
-Add cloudinary gem to your Gemfile.
+1. Add cloudinary gem to your Gemfile.
 
     gem 'cloudinary'
 
-Take 10 seconds to open on account on Cloudinary if not already done. Download your `cloudinary.yml` file and add to your config.
-
-Set storage to `:cloudinary` in the `config/initializers/georgia.rb` file.
+2. Set storage to `:cloudinary` in the `config/initializers/georgia.rb` file.
 
 ``` ruby
 Georgia.setup do |config|
@@ -78,6 +76,12 @@ Georgia.setup do |config|
   config.storage = :cloudinary
 end
 ```
+
+3. Open a Cloudinary Account
+
+You can skip this step if you plan on using Heroku.
+
+Take 10 seconds to open on account on Cloudinary if not already done. Download your `cloudinary.yml` file and add to your config.
 
 #### Custom Storage
 
