@@ -79,9 +79,7 @@ This will only work if you plan to have only pictures/images in your Media Libra
 
 3. Open a Cloudinary Account
 
-You can skip this step if you plan on using Heroku.
-
-Take 10 seconds to open on account on Cloudinary if not already done. Download your `cloudinary.yml` file and add to your config.
+You can skip this step if you plan on using Heroku. Otherwise, take 10 seconds to open an account on Cloudinary if not already done. Download your `cloudinary.yml` file and add to your config folder.
 
 #### Custom Storage
 
