@@ -32,6 +32,10 @@ Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. H
 
 ### Getting started
 
+Add Georgia to your Gemfile
+
+    gem 'georgia'
+
 Make sure you have properly identify your default locale and possible available ones.
 Georgia uses available_locales to know which translations should be configured or not.
 
