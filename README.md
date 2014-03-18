@@ -68,14 +68,14 @@ This will only work if you plan to have only pictures/images in your Media Libra
 
 2. Set storage to `:cloudinary` in the `config/initializers/georgia.rb` file.
 
-``` ruby
-Georgia.setup do |config|
-  ...
+    ``` ruby
+    Georgia.setup do |config|
+      ...
 
-  # Storage
-  config.storage = :cloudinary
-end
-```
+      # Storage
+      config.storage = :cloudinary
+    end
+    ```
 
 3. Open a Cloudinary Account
 
