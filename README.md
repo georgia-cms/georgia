@@ -39,8 +39,10 @@ Add Georgia to your Gemfile
 Make sure you have properly identify your default locale and possible available ones.
 Georgia uses available_locales to know which translations should be configured or not.
 
-    config.i18n.default_locale = :en
-    config.i18n.available_locales = [:en]
+``` ruby
+config.i18n.default_locale = :en
+config.i18n.available_locales = [:en]
+```
 
 Then run the generator to mount routes, run migrations & setup initial instances.
 
