@@ -68,6 +68,15 @@ Take 10 seconds to open on account on Cloudinary if not already done. Download y
 
 Set storage to `:cloudinary` in the `config/initializers/georgia.rb` file.
 
+``` ruby
+Georgia.setup do |config|
+  ...
+
+  # Storage
+  config.storage = :cloudinary
+end
+```
+
 #### Custom Storage
 
 The `georgia:install` generator added a `carrierwave.example.rb` file to your initializers. Use it to configure
