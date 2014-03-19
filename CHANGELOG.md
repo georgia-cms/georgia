@@ -1,6 +1,8 @@
 == 0.7.8
 
 - Fixes georgia:seed rake task to create admin user
+- Integrates Media Library with Cloudinary
+- Fully integrated with Heroku
 
 == 0.7.7
 
