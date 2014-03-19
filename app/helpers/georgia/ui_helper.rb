@@ -31,6 +31,11 @@ module Georgia
       link_to text, url, options.reverse_merge(data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger')
     end
 
+    # Link to close modal box
+    def link_to_close
+      content_tag :button, icon_tag('times'), class: 'close', data: {dismiss: 'modal'}, aria: {hidden: true}, type: 'button'
+    end
+
     def tooltip_tag icon, tooltip, options={}
       content_tag(:span, icon, options.reverse_merge(title: tooltip, class: 'js-tooltip', data: {placement: 'right'}))
     end
