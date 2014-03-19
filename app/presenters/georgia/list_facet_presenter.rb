@@ -25,7 +25,7 @@ module Georgia
     end
 
     def merged_params(text)
-      params.merge(param => ((params[param] || []) + [text]))
+      params.reject{|k,v| k == 'page'}.merge(param => ((params[param] || []) + [text]))
     end
 
   end
