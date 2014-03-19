@@ -2,7 +2,11 @@ module Ckeditor
   class AttachmentFileUploader < CarrierWave::Uploader::Base
     include Ckeditor::Backend::CarrierWave
 
-    storage :fog
+    # Fallback to file system. Files will be attached to emails when sent
+    case Georgia.storage
+    when :fog then storage(:fog)
+    when :cloudinary then storage(:file)
+    end
 
     def store_dir
       "assets/#{model.id}"
