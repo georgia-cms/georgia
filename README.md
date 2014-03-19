@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/georgia-cms/georgia.png)](https://codeclimate.com/github/georgia-cms/georgia)
 [![Coverage Status](https://coveralls.io/repos/georgia-cms/georgia/badge.png)](https://coveralls.io/r/georgia-cms/georgia)
 
-Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. Have a peak at the [demo](http://georgia-demo.herokuapp.com/admin) (demo@georgiacms.com // georgicms).
+Rails. Engine. CMS. Plug-and-play content management system for Ruby on Rails. Have a peak at the [demo](http://demo.georgiacms.org/admin) (demo@georgiacms.org // georgiacms).
 
 ### Features
 
