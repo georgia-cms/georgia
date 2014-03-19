@@ -35,7 +35,7 @@ module Georgia
               with(:tags).any_of(params[:tg]) unless params[:tg].blank?
               order_by (params[:o] || :updated_at), (params[:dir] || :desc)
               paginate(page: params[:page], per_page: (params[:per] || 8))
-            end.results
+            end
           end
 
         end

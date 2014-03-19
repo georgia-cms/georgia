@@ -6,7 +6,7 @@ module Georgia
       respond_to :json
 
       def search
-        @tags = Georgia::Indexer.search(ActsAsTaggableOn::Tag, params)
+        @tags = Georgia::Indexer.search(ActsAsTaggableOn::Tag, params).results
 
         # Format for select2
         @tags = @tags.map{|t| {id: t.id, text: t.name}}

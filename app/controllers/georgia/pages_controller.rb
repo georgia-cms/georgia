@@ -149,8 +149,8 @@ module Georgia
 
     def search
       session[:search_params] = params
-      @results = Georgia::Indexer.adapter.search(model, params)
-      @pages = Georgia::PageDecorator.decorate_collection(@results)
+      @search = Georgia::Indexer.adapter.search(model, params)
+      @pages = Georgia::PageDecorator.decorate_collection(@search.results)
     end
 
     private

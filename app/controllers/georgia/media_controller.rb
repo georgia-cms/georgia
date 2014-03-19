@@ -11,8 +11,8 @@ module Georgia
 
     def search
       @asset = Ckeditor::Asset.new
-      @results = Georgia::Indexer.search(Ckeditor::Asset, params)
-      @assets = Ckeditor::AssetDecorator.decorate_collection(@results)
+      @search = Georgia::Indexer.search(Ckeditor::Asset, params)
+      @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
     end
 
     def create

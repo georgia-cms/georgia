@@ -19,7 +19,7 @@ module Georgia
                 fields(:name)
               end
               paginate(page: 1, per_page: 10)
-            end.results
+            end
           end
 
         end

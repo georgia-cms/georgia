@@ -3,8 +3,8 @@ module Georgia
     class MediaController < Georgia::ApplicationController
 
       def pictures
-        @pictures = Georgia::Indexer.search(Ckeditor::Picture, params.merge(per: 12))
-        @pictures = Ckeditor::PictureDecorator.decorate_collection(@pictures)
+        @search = Georgia::Indexer.search(Ckeditor::Picture, params.merge(per: 12))
+        @pictures = Ckeditor::PictureDecorator.decorate_collection(@search.results)
         render layout: false
       end
 

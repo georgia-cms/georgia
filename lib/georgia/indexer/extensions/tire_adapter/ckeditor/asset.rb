@@ -46,7 +46,7 @@ module Georgia
                 end
                 sort { by (params[:o] || :updated_at), (params[:dir] || :desc) } if params[:query].blank?
               end
-            end.results
+            end
           end
 
         end
