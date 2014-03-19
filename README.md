@@ -127,6 +127,7 @@ Create your elasticsearch indices with these commands:
     heroku run rake environment tire:import CLASS=Georgia::Page FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Asset FORCE=true
     heroku run rake environment tire:import CLASS=Ckeditor::Picture FORCE=true
+    heroku run rake environment tire:import CLASS=ActsAsTaggableOn::Tag FORCE=true
 
 #### Cloudinary
 
