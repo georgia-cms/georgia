@@ -25,3 +25,13 @@
     <%= f.association :roles, as: :check_boxes %>
   </div>
 </fieldset>
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Notifications</legend>
+  </div>
+  <div class="fieldset-fields">
+    <label class='checkbox'>
+      <%= f.check_box :receives_notifications, class: 'boolean optional form-control' %> Will receive email notifications and reminders from Georgia CMS
+    </label>
+  </div>
+</fieldset>

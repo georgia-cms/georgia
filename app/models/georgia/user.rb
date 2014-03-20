@@ -2,7 +2,7 @@ module Georgia
   class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-    attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role_ids
+    attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role_ids, :receives_notifications
 
     has_and_belongs_to_many :roles, class_name: Georgia::Role
 
