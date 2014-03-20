@@ -1,3 +1,7 @@
+== 0.7.9
+
+- Add boolean for email notifications for users
+
 == 0.7.8
 
 - Fixes georgia:seed rake task to create admin user
