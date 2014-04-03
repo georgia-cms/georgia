@@ -27,6 +27,19 @@ h1, h2, h3, h4, h5, h6, legend {
   margin-top: 60px;
 }
 
+#sidebar {
+  position: fixed;
+  z-index: $z-sidebar;
+  top: $height-header;
+  bottom: 0;
+  width: $width-sidebar;
+  background-color: $bg-sidebar;
+  background-color: $bg-sidebar-rgba;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-right: 1px solid #e2e2e2;
+}
+
 a {
   text-decoration: none;
   color: $font-link;

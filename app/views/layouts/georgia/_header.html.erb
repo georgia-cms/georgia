@@ -1,7 +1,7 @@
 <header id='header' class='hidden-print'>
-  <nav class="navbar navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -11,10 +11,10 @@
     </div>
 
     <% if signed_in? %>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="navbar-collapse collapse navbar-inverse-collapse" id="navbar-main">
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to 'Visit your website', main_app.root_url, class: 'header-link' %>
+            <%= link_to 'Visit your website', main_app.root_url %>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -24,7 +24,7 @@
             </li>
           <% end -%>
           <li class='dropdown'>
-            <%= link_to '#', class: 'dropdown-toggle header-link', data: {toggle: 'dropdown'} do %>
+            <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
               <%= image_tag avatar_url(current_user.email, size: 25), alt: '' %>
               <span><%= current_user.name %></span>
               <%= content_tag(:b, nil, class: 'caret') %>
