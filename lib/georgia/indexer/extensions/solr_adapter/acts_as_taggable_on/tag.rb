@@ -11,15 +11,18 @@ module Georgia
 
           searchable do
             text :name
+            string :id, stored: true
+            string :name, stored: true
           end
 
-          def self.search_index model, params
-            ActsAsTaggableOn::Tag.search do
-              fulltext params[:q] do
+          def self.search_index query
+            @search = search do
+              fulltext query do
                 fields(:name)
               end
               paginate(page: 1, per_page: 10)
             end
+            @search.hits.map{|t| {id: t.stored(:id), text: t.stored(:name)}}
           end
 
         end

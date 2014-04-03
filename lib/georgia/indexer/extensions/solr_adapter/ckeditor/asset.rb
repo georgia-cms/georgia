@@ -27,7 +27,7 @@ module Georgia
           end
 
           def self.search_index model, params
-            @search = model.search do
+            model.search do
               fulltext params[:query] do
                 fields(:filename, :tags)
               end

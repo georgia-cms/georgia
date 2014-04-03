@@ -15,16 +15,17 @@ module Georgia
             {name: name}.to_json
           end
 
-          def self.search_index params
-            search(page: (params[:page] || 1), per_page: (params[:per] || 10)) do
-              if params[:q].present?
+          def self.search_index query_string
+            @search = search(page: 1, per_page: 10) do
+              if query_string.present?
                 query do
                   boolean do
-                    must { string params[:q], default_operator: "AND" }
+                    must { string query_string, default_operator: "AND" }
                   end
                 end
               end
             end
+            @search.results.map{|t| {id: t.id, text: t.name}}
           end
 
         end
