@@ -7,7 +7,7 @@ module Georgia
     end
 
     def button_to_settings
-      link_to icon_tag('cogs'), [:settings, @page], class: 'btn btn-default'
+      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-default'
     end
 
     def page_url_minus_slug
