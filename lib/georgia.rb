@@ -26,6 +26,8 @@ module Georgia
 
   def self.setup
     yield self
+    # TODO: Add callbacks after_setup. We can only include indexer methods once indexer is set.
+    ActsAsTaggableOn::Tag.send(:include, Georgia::Indexer::Adapter)
   end
 
   class << self
