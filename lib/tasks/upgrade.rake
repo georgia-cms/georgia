@@ -36,4 +36,16 @@ namespace :georgia do
 
   end
 
+  namespace :slides do
+    task sanitize: :environment do
+      Georgia::Slide.find_each do |slide|
+        if slide.contents.count > I18n.available_locales.length
+          slide.contents.each_with_index do |content, index|
+            content.destroy unless index < I18n.available_locales.length
+          end
+        end
+      end
+    end
+  end
+
 end
