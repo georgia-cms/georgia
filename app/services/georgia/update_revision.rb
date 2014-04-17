@@ -25,7 +25,6 @@ module Georgia
     private
 
     def admin_update_attributes
-      debugger
       page.store if current_revision?
       revision.update_attributes(attributes)
     end
