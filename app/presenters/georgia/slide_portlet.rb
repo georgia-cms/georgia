@@ -36,7 +36,7 @@ module Georgia
     end
 
     def slide_content_tag
-      content_tag(:div, title_input_tag + text_input_tag + locale_input_tag, class: 'slide-text')
+      content_tag(:div, content_id_tag + title_input_tag + text_input_tag + locale_input_tag, class: 'slide-text')
     end
 
     def id_input_tag
@@ -45,6 +45,10 @@ module Georgia
 
     def position_input_tag
       hidden_field_tag("revision[slides_attributes][#{id}][position]", position, class: 'js-position')
+    end
+
+    def content_id_tag
+      hidden_field_tag("revision[slides_attributes][#{id}][contents_attributes][#{content_id}][id]", @content.id)
     end
 
     def title_input_tag
