@@ -1,21 +1,18 @@
 module Georgia
-  class RevisionPolicy < Policy
+  class UpdateRevision
 
-    attr_reader :page, :attributes
+    attr_reader :controller, :page, :attributes
     attr_accessor :revision
 
+
     def initialize controller, page, revision, attributes
+      @controller = controller
       @page = page
       @revision = revision
       @attributes = attributes
-      super
     end
 
-    def self.update controller, page, revision, attributes
-      new(controller, page, revision, attributes).update_attributes
-    end
-
-    def update_attributes
+    def call
       if can? :manage, revision
         admin_update_attributes
       elsif can? :review, revision
@@ -28,6 +25,7 @@ module Georgia
     private
 
     def admin_update_attributes
+      debugger
       page.store if current_revision?
       revision.update_attributes(attributes)
     end
@@ -47,6 +45,12 @@ module Georgia
 
     def current_review?
       @is_current_review ||= (revision.review? and revision.revised_by?(current_user))
+    end
+
+    private
+
+    def method_missing(*args, &block)
+      controller.send(*args, &block)
     end
 
   end

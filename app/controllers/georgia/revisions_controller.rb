@@ -23,7 +23,7 @@ module Georgia
 
     # Stores a copy of the current revision before updating
     def update
-      if RevisionPolicy.update(self, @page, @revision, params[:revision])
+      if UpdateRevision.new(self, @page, @revision, params[:revision]).call
         redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
       else
         redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
