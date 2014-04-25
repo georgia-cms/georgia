@@ -2,13 +2,12 @@ class @MediaTable
 
   constructor: (element) ->
     @element      = $(element)
-    @checkboxes   = @element.find("input:checkbox")
     @downloadBtn  = $('.js-download')
     @deleteBtn    = $('.js-delete')
     @setBindings()
 
   setBindings: () =>
-    @checkboxes.on('click', @update)
+    @element.on('click', @element.find("input:checkbox"), @update)
     @deleteBtn.on('click', @destroy)
 
   update: () =>
