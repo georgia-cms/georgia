@@ -47,11 +47,23 @@
           </p>
           <p>
             <%= simple_form_for @asset, as: :asset, url: media_path(@asset) do |f| %>
-              <%= f.input :tag_list, input_html: {class: 'js-token-input'} %>
+              <p>
+                <%= f.input :tag_list, input_html: {class: 'js-token-input'} %>
+              </p>
               <%= button_to_save if can?(:update, @asset) %>
               <%= link_to_delete media_path(@asset) if can? :destroy, @asset %>
             <% end -%>
           </p>
+          <% if @asset.is_a?(Ckeditor::Picture) %>
+            <div class="media-editable js-media-editable">
+              <%= simple_form_for @asset, as: :asset, url: media_path(@asset), html: {class: 'form-asset-replace'} do |f| %>
+                <span class="btn btn-primary btn-file-upload btn--square">
+                  <span class='btn-file-upload-text'><%= icon_tag 'refresh' %> Replace</span>
+                  <%= f.input_field :data, as: :file, class: 'input-file-upload js-replace-asset' %>
+                </span>
+              <% end -%>
+            </div>
+          <% end -%>
         </div>
       </div>
       <% if @asset.is_a?(Ckeditor::Picture) %>
