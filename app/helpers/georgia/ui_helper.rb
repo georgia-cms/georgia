@@ -4,7 +4,7 @@ module Georgia
     def avatar_url(email, options={})
       gravatar_id = Digest::MD5.hexdigest(email.try(:downcase))
       size = options.fetch(:size, '32')
-      "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
+      "//gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
     end
 
     def icon_tag icon_name, options={}
