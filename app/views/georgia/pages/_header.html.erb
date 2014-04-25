@@ -1,6 +1,6 @@
 <header class='header-main'>
   <div class="header-title">
-    <%= form_for :search, url: georgia.search_pages_url, method: :get, html: {role: 'search'} do |f| %>
+    <%= form_for :search, url: georgia.search_pages_path, method: :get, html: {role: 'search'} do |f| %>
       <%= facets_inputs([:tg]) %>
       <%= hidden_field_tag :s, params[:s] if params[:s] %>
       <%= hidden_field_tag :t, params[:t] if params[:t] %>

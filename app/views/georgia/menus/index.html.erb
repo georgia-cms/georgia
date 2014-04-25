@@ -23,7 +23,7 @@
       <% if @menus and @menus.any? %>
         <%= render @menus %>
       <% else %>
-        <p>There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_url, data: {toggle: 'modal', target:
+        <p>There are currently no navigation menus. <%= link_to 'Create a new one', new_menu_path, data: {toggle: 'modal', target:
       '#menu_form'} %></p>
       <% end %>
     </div>
