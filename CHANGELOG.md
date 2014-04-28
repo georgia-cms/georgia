@@ -1,6 +1,11 @@
 == 0.7.9
 
 - Add boolean for email notifications for users
+- Prepare demo
+- Fix avatar url for SSL
+- Fix missing ActsAsTaggableOn migrations
+- Fix delete button on newly uploaded media library assets
+- Fix tags indexer search
 
 == 0.7.8
 
