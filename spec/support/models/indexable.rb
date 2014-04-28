@@ -9,21 +9,15 @@ shared_examples "a indexable model" do
       described_class.should respond_to :search
     end
 
-    # Decided to stub Solr instead for faster test suite
-    # it 'in full text mode by query' do
-    #   revision = create(:georgia_revision)
-    #   revision.contents << build(:georgia_content, title: 'Wise Wiesel')
-    #   instance.revisions << revision
-    #   instance.current_revision = revision
-    #   instance.save
-    #   described_class.reindex
-    #   search = described_class.search do
-    #     fulltext 'Wise' do
-    #       fields(:title)
-    #     end
-    #   end
-    #   expect(search.results).to include(instance)
-    # end
+    it 'in full text mode by query' do
+      revision = create(:georgia_revision)
+      revision.contents << build(:georgia_content, title: 'Wise Wiesel')
+      instance.revisions << revision
+      instance.current_revision = revision
+      instance.save
+      search = described_class.search_index(query: 'Wise')
+      expect(search.results.first.title).to match 'Wise Wiesel'
+    end
 
   end
 

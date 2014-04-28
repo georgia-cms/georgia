@@ -3,6 +3,8 @@ require 'spec_helper'
 describe 'pages#search' do
 
   before :each do
+    Georgia::Page.tire.index.delete
+    Georgia::Page.tire.create_elasticsearch_index
     login_as_admin
     visit georgia.search_pages_path
   end

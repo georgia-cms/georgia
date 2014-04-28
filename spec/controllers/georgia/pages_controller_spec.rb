@@ -4,6 +4,8 @@ describe Georgia::PagesController do
   include Devise::TestHelpers
 
   before :all do
+    Georgia::Page.tire.index.delete
+    Georgia::Page.tire.create_elasticsearch_index
     @page = create(:georgia_page)
   end
 

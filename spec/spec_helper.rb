@@ -35,11 +35,11 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
-    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+    # ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
   end
 
   config.after(:suite) do
     DatabaseCleaner.clean
-    ::Sunspot.session = ::Sunspot.session.original_session
+    # ::Sunspot.session = ::Sunspot.session.original_session
   end
 end

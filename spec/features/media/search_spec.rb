@@ -3,6 +3,10 @@ require 'spec_helper'
 describe 'media#search' do
 
   before :each do
+    Ckeditor::Asset.tire.index.delete
+    Ckeditor::Picture.tire.index.delete
+    Ckeditor::Asset.tire.create_elasticsearch_index
+    Ckeditor::Picture.tire.create_elasticsearch_index
     login_as_admin
     visit georgia.search_media_index_path
   end
