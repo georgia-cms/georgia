@@ -60,7 +60,7 @@ module Georgia
     # Creates a copy of a page and redirects to its revisions#edit
     def copy
       @copy = @page.copy
-      redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "Do not forget to change your url"
+      redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "#{instance_name.humanize} successfully copied. Do not forget to change your url"
     end
 
     # Destroys page and its revisions from page

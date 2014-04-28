@@ -13,7 +13,9 @@ module Georgia
     # The resulting instance has a '(Copy)' title and '-copy' slug
     def copy
       copy_page
-      duplicate.current_revision = clone_current_revision
+      revision = clone_current_revision
+      revision.revisionable = duplicate
+      duplicate.current_revision = revision
       alter_slug
       alter_title
       duplicate.save!

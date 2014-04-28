@@ -6,6 +6,7 @@
 - Fix missing ActsAsTaggableOn migrations
 - Fix delete button on newly uploaded media library assets
 - Fix tags indexer search
+- Fix pages#copy action
 
 == 0.7.8
 
