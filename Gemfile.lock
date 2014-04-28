@@ -8,7 +8,7 @@ PATH
       bourbon
       cancan
       carrierwave
-      ckeditor (= 4.0.8)
+      ckeditor (~> 4.0)
       coffee-rails
       devise
       draper
