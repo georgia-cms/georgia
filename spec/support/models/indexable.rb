@@ -10,11 +10,14 @@ shared_examples "a indexable model" do
     end
 
     it 'in full text mode by query' do
+      described_class.tire.index.delete
+      described_class.tire.create_elasticsearch_index
       revision = create(:georgia_revision)
       revision.contents << build(:georgia_content, title: 'Wise Wiesel')
       instance.revisions << revision
       instance.current_revision = revision
       instance.save
+      described_class.tire.index.refresh
       search = described_class.search_index(query: 'Wise')
       expect(search.results.first.title).to match 'Wise Wiesel'
     end
