@@ -5,7 +5,7 @@ class Flash
 
     $('<div/>',
       class: "flash-#{type}",
-      text: message
+      html: message
     ).appendTo(".flash-container")
 
     flash.click -> $(@).fadeOut()
