@@ -18,7 +18,6 @@ module Georgia
 
       def run_migrations
         rake "railties:install:migrations"
-        rake "db:migrate"
       end
 
       def copy_templates
