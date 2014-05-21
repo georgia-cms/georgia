@@ -1,5 +1,3 @@
-require 'bundler'
-
 module Georgia
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
@@ -8,15 +6,12 @@ module Georgia
       desc "Installs Georgia CMS:\n
         * Mounts routes\n
         * Copies initializer\n
-        * Loads Migration\n
-        * Runs Migration\n
-        * Creates initial instances"
+        * Loads Migration"
 
       def mount_engine
         # Must be in reverse order to keep priorities
         route "get '*request_path', to: 'pages#show', as: :page"
         route "root to: 'pages#show', request_path: 'home'"
-        route "resources :messages, only: [:create]"
         route "mount Ckeditor::Engine => '/ckeditor'"
         route "mount Georgia::Engine => '/admin'"
       end
@@ -26,30 +21,10 @@ module Georgia
         rake "db:migrate"
       end
 
-      def create_admin_user
-        say("You're almost done. You need an admin user to get started.", :yellow)
-        rake "georgia:seed"
-      end
-
       def copy_templates
         copy_file "config/initializers/georgia.rb"
         copy_file "config/initializers/carrierwave.example.rb"
         copy_file "app/controllers/pages_controller.rb"
-      end
-
-      def add_default_indexer
-        return if defined?(Sunspot)
-        if !defined?(Tire)
-          say("Adding Tire gem for Elasticsearch", :yellow)
-          gem 'tire'
-          Bundler.with_clean_env do
-            run "bundle install"
-          end
-        end
-        say("Creating elasticsearch indices", :yellow)
-        rake "environment tire:import CLASS=Georgia::Page FORCE=true"
-        rake "environment tire:import CLASS=Ckeditor::Asset FORCE=true"
-        rake "environment tire:import CLASS=Ckeditor::Picture FORCE=true"
       end
 
       def show_readme
