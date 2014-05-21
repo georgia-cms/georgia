@@ -40,6 +40,12 @@ module Georgia
       end
     end
 
+    initializer 'georgia.active_record' do |app|
+      ActiveSupport.on_load :active_record do
+        include Georgia::OrmHelpers
+      end
+    end
+
     config.generators do |g|
       g.test_framework :rspec
       g.integration_tool :rspec

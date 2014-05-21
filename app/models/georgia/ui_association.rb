@@ -8,7 +8,7 @@ module Georgia
     belongs_to :widget
     belongs_to :ui_section
 
-    attr_accessible :position, :widget_id, :ui_section_id, :page_id
+    attr_accessible :position, :widget_id, :ui_section_id, :page_id if needs_attr_accessible?
 
     scope :for_revision, lambda {|revision| where(page_id: revision.id)}
 

@@ -1,5 +1,6 @@
 require "georgia/version"
 require "georgia/paths"
+require "georgia/orm_helpers"
 require "georgia/engine"
 require "georgia/indexer"
 require "georgia/uploader/adapter"

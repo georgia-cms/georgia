@@ -7,7 +7,7 @@ module Georgia
 
       included do
 
-        attr_accessible :slug, :url
+        attr_accessible :slug, :url if needs_attr_accessible?
 
         validates :slug, format: {with: /^[a-zA-Z0-9_-]+$/,  message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}#, uniqueness: {scope: [:ancestry, :type], message: 'has already been taken'}
 

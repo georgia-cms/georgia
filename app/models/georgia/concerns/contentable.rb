@@ -8,7 +8,7 @@ module Georgia
       included do
         has_many :contents, as: :contentable, dependent: :destroy, class_name: Georgia::Content
         accepts_nested_attributes_for :contents
-        attr_accessible :contents_attributes
+        attr_accessible :contents_attributes if needs_attr_accessible?
 
         scope :with_locale, lambda {|locale| joins(:contents).where(georgia_contents: {locale: locale}).uniq}
 

@@ -10,7 +10,7 @@ module Georgia
 
     has_many :slides, dependent: :destroy, foreign_key: :page_id
     accepts_nested_attributes_for :slides, allow_destroy: true
-    attr_accessible :slides_attributes
+    attr_accessible :slides_attributes if needs_attr_accessible?
 
     has_many :ui_associations, dependent: :destroy, foreign_key: :page_id
     accepts_nested_attributes_for :ui_associations, allow_destroy: true

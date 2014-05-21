@@ -8,7 +8,7 @@ module Georgia
       included do
 
         acts_as_list
-        attr_accessible :position
+        attr_accessible :position if needs_attr_accessible?
 
         scope :ordered, order(:position)
 

@@ -7,7 +7,7 @@ module Georgia
 
     acts_as_list scope: :menu
     has_ancestry orphan_strategy: :adopt
-    attr_accessible :parent_id, :menu_id
+    attr_accessible :parent_id, :menu_id if needs_attr_accessible?
 
     scope :ordered, order('position ASC')
 

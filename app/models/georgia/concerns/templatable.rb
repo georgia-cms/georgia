@@ -7,7 +7,7 @@ module Georgia
 
       included do
 
-        attr_accessible :template
+        attr_accessible :template if needs_attr_accessible?
 
         validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
 

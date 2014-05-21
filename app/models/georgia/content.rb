@@ -2,9 +2,11 @@ module Georgia
   class Content < ActiveRecord::Base
 
     acts_as_taggable_on :keywords
-    attr_accessible :keyword_list
-
-    attr_accessible :title, :text, :excerpt, :keywords, :locale, :image_id
+    
+    if needs_attr_accessible?
+      attr_accessible :keyword_list
+      attr_accessible :title, :text, :excerpt, :keywords, :locale, :image_id
+    end
 
     validates :title, length: {maximum: 255}
 

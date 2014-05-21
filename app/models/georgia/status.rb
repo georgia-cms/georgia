@@ -7,7 +7,7 @@ module Georgia
 
     has_many :pages
 
-    attr_accessible :name, :label, :icon
+    attr_accessible :name, :label, :icon if needs_attr_accessible?
 
     validates :name, presence: true
 
