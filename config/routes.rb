@@ -20,7 +20,7 @@ Georgia::Engine.routes.draw do
       post :sort
       post :publish
       post :unpublish
-      post 'flush-cache', to: :flush_cache, as: :flush_cache
+      post 'flush-cache', to: :flush_cache
       delete '/', to: :destroy
     end
 
@@ -57,11 +57,11 @@ Georgia::Engine.routes.draw do
   resources :ui_associations, path: 'ui-associations', only: [:new]
   resources :slides, only: [:new]
 
-  unauthenticated do
-    as :user do
-      root :to => 'users/sessions#new'
-    end
-  end
-  root :to => "dashboard#show"
+  # unauthenticated do
+  #   as :user do
+  #     root to: 'users/sessions#new'
+  #   end
+  # end
+  root to: "dashboard#show"
 
 end
