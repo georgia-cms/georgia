@@ -1,5 +1,6 @@
 <% if @assets and @assets.any? %>
   $('table.assets tbody').prepend("<%= j render(@assets) %>");
+  $('tr.no-assets').remove();
 <% end %>
 <% flash.each do |name, msg| %>
   new Flash('<%= msg %>', '<%= name %>')
