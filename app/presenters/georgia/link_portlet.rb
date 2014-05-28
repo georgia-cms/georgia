@@ -66,13 +66,13 @@ module Georgia
     end
 
     def expand_tag options={}
-      options[:class] = 'toggle btn btn-warning js-expand'
+      options[:class] = 'toggle btn js-expand'
       options[:class] << ' hide' if last_descendant?
       link_to('#', options) {icon_tag('caret-down') + icon_tag('caret-up hide')}
     end
 
     def remove_tag
-      link_to(icon_tag('times'), '#', class: 'btn btn-danger js-remove-link')
+      link_to(icon_tag('times'), '#', class: 'btn js-remove-link')
     end
 
     def actions_tag options={}

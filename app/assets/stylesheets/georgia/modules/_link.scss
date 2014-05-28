@@ -18,7 +18,7 @@
     > div {
       height: 45px;
       line-height: 45px;
-      background-color: #4b8df8;
+      background-color: #18bc9c;
       color: $white;
     }
   }
@@ -31,6 +31,11 @@
     float: right;
     margin-right: 0;
     line-height: 33px;
+  }
+  .actions a, span.handle {
+    color: $white;
+    transition: all .25s;
+    &:hover {color: #1e2a36;}
   }
 }
 
