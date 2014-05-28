@@ -2,7 +2,7 @@ module Georgia
   class MenusController < ApplicationController
 
     def index
-      @menus = Menu.scoped.page(params[:page])
+      @menus = Menu.all
     end
 
     def new
