@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari'
   s.add_dependency 'fog', '> 1.12'
   s.add_dependency 'unf'
-  s.add_dependency 'acts_as_list'
   s.add_dependency 'ckeditor', '~> 4.0'
   s.add_dependency 'carrierwave'
   s.add_dependency 'mini_magick'
