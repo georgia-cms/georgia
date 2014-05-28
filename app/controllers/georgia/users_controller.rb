@@ -14,7 +14,11 @@ module Georgia
     end
 
     def edit
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => ex
+        redirect_to users_url, alert: "This user doesn't exist anymore."
+      end
     end
 
     def create
