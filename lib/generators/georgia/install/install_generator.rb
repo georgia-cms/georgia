@@ -10,8 +10,8 @@ module Georgia
 
       def mount_engine
         # Must be in reverse order to keep priorities
-        route "get '*request_path', to: 'pages#show', as: :page"
-        route "root to: 'pages#show', request_path: 'home'"
+        route "# root to: 'pages#show', request_path: 'home'"
+        route "# get '*request_path', to: 'pages#show', as: :page"
         route "mount Ckeditor::Engine => '/ckeditor'"
         route "mount Georgia::Engine => '/admin'"
       end
