@@ -22,12 +22,12 @@ module Georgia
     end
 
     def create
-      @user = User.new(params[:user])
+      @user = User.new(user_params)
 
       if @user.save
         redirect_to users_url, notice: "User was successfully created."
       else
-        render 'new'
+        render :new
       end
     end
 
@@ -35,10 +35,10 @@ module Georgia
       @user = User.find(params[:id])
       params[:user].delete(:password) if params[:user][:password].blank?
       params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-      if @user.update_attributes(params[:user])
+      if @user.update(user_params)
         redirect_to users_url, notice: "User was successfully updated."
       else
-        render 'edit'
+        render :edit
       end
     end
 
@@ -46,6 +46,12 @@ module Georgia
       @user = User.find(params[:id])
       @user.destroy
       redirect_to users_url, notice: "User was successfully deleted."
+    end
+
+    private
+
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role_id, :receives_notifications)
     end
 
   end
