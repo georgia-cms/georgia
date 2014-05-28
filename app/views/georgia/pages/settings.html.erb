@@ -8,7 +8,8 @@
     </div>
     <div class="header-actions">
       <%= page_actions_tag(@page) %>
-      <%= button_to_save # if can? :update, @page %>
+      <%# FIXME: Add permission %>
+      <%= button_to_save %>
     </div>
   </header>
   <div class='body-main'>
@@ -73,7 +74,8 @@
     </fieldset>
     <footer>
       <hr />
-      <%= link_to_delete @page # if can? :destroy, @page %>
+      <%# FIXME: Add permission %>
+      <%= link_to_delete @page %>
     </footer>
   </div>
 <% end %>
