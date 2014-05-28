@@ -1,0 +1,14 @@
+@mixin modal-size($width) {
+  width: $width;
+  margin-left: -($width/2);
+}
+
+
+.modal--media {
+  .modal-dialog {width: 750px;}
+  .modal-content-actions {
+    @include row;
+    margin-bottom: 20px;
+    .search {float: right;}
+  }
+}

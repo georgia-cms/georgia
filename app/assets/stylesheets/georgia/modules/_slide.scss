@@ -1,0 +1,11 @@
+.slide {
+  width: 85%;
+  display: inline-block;
+  margin: 5px 0;
+}
+.slide-image {
+  @include span-columns(3);
+}
+.slide-text {
+  @include span-columns(9);
+}

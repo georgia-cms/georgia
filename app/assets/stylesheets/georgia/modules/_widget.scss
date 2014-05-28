@@ -1,0 +1,45 @@
+.widgets {
+  padding-left: 110px;
+}
+
+.widget {
+  @extend .box;
+  margin-bottom: 20px;
+}
+
+fieldset .widget {
+  @include span-columns(6);
+}
+
+.widget-header {
+  @extend .box-header;
+  margin-bottom: 0;
+}
+.widget-title {
+  @extend .box-title;
+}
+.widget-content {
+  @extend .box-content;
+  height: 200px;
+}
+.widget-footer {
+  @extend .box-footer;
+  .widget-action {
+    margin-left: 10px;
+  }
+  .widget-featured {
+    float: left;
+    text-align: left;
+  }
+}
+.widget-title--ellipsed {
+  @extend .widget-title;
+  @extend .ellipsis;
+  width: 250px;
+}
+
+.widget-form {
+  .widget-title {
+    input {width: 100%;}
+  }
+}

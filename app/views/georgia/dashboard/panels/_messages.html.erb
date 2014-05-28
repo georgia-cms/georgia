@@ -1,0 +1,30 @@
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Lastest Messages</h3>
+    </div>
+    <div class="panel-body">
+      <% if @messages and @messages.any? %>
+        <ul class="media-list">
+          <% @messages.each do |message| %>
+            <li class="media">
+              <%= link_to image_tag(avatar_url(message.email), class: 'media-object'), message, class: 'pull-left' %>
+              <div class="media-body">
+                <h4 class="media-heading">
+                  <%= message.name_or_anonymous %>
+                  <%= link_to 'Read', message, class: 'pull-right btn btn-default btn-xs' %>
+                </h4>
+               <%= message.subject %>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      <% else -%>
+        <h5>Ain't no message yet!</h5>
+      <% end -%>
+    </div>
+    <div class="panel-footer">
+      <%= link_to 'View All', messages_path %>
+    </div>
+  </div>
+</div>

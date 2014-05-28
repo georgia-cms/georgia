@@ -1,0 +1,57 @@
+#header {
+  width: 100%;
+  height: $height-header;
+  padding: 0 10px;
+  position: fixed;
+  top: 0;
+  z-index: $z-header;
+  background-color: $bg-header;
+  border-bottom: 1px solid $border-header;
+
+  .header-link--icon {
+    font-size: 1.6em;
+  }
+}
+
+.header-main {
+  @include row();
+  position: fixed;
+  top: $height-header;
+  left: 0;
+  padding-left: ($width-sidebar+20);
+  padding-right: $padding-main;
+  padding-top: 20px;
+  height: 75px;
+  width: 100%;
+  z-index: $z-header-main;
+  border-bottom: 1px solid $border-header-main;
+  background-color: $bg-header-main;
+  background-color: $bg-header-main-rgba;
+  .header-gutter   { @include span-columns(2); }
+  .header-title    { @include span-columns(7); }
+  .header-actions  { @include span-columns(3); }
+
+  h1 {
+    display: inline;
+    margin-top: 0;
+  }
+}
+
+.header-pagination { text-align: right; }
+.header-actions {
+  text-align: right;
+  .dropdown {
+    display: inline-block;
+    text-align: left;
+  }
+  .btn-success { float: right; }
+}
+
+.header-title h1 {line-height: 1.1em;}
+
+.navbar-brand {
+  min-width: $width-sidebar;
+  font-family: "SignikaBold", $helvetica;
+  font-size: 2.5em;
+  color: $font-header;
+}

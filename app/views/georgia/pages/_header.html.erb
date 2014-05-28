@@ -1,0 +1,24 @@
+<header class='header-main'>
+  <div class="header-title">
+    <%= form_for :search, url: georgia.search_pages_path, method: :get, html: {role: 'search'} do |f| %>
+      <%= facets_inputs([:tg]) %>
+      <%= hidden_field_tag :s, params[:s] if params[:s] %>
+      <%= hidden_field_tag :t, params[:t] if params[:t] %>
+      <div class="input-group">
+        <div class="input-group-btn">
+          <button class="btn btn-default"><%= icon_tag('search') %></button>
+        </div>
+        <%= text_field_tag :query, params[:query], class: 'form-control input-search', placeholder: 'Search' %>
+      </div>
+    <% end -%>
+  </div>
+  <div class="header-actions">
+    <%# FIXME: Add permission %>
+    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#page_form'} %>
+  </div>
+</header>
+
+<%= content_for :footer do %>
+  <%# FIXME: Add permission %>
+  <%= render 'georgia/shared/modals/page' %>
+<% end -%>

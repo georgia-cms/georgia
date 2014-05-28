@@ -1,0 +1,19 @@
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Slides</legend>
+    <p>
+      <%= link_to "#{icon_tag 'plus'} Add slide".html_safe, '#', class: 'btn btn-primary js-add-slide' %>
+    </p>
+  </div>
+  <div class="fieldset-fields">
+    <div class="control-group">
+      <div class="slides js-slides">
+        <ul class="nav-list js-sortable">
+          <% @slides.each do |slide| %>
+            <%= slide_portlet_tag(slide, content: slide.content(params[:locale])) %>
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</fieldset>

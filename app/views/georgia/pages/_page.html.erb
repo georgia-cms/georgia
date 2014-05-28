@@ -1,0 +1,19 @@
+<tr id='<%= dom_id(page) %>' class="page <%= page.publish_state %>">
+  <td class='checkbox-cell'>
+    <%= checkboxable_tag page %>
+  </td>
+  <td>
+    <%= icon_tag 'pencil hide pull-right muted' %>
+    <%= link_to page.title, edit_page_revision_path(page_id: page.id, id: page.revision_id), class: 'page-title js-toggle-icon' %>
+  </td>
+  <td>
+    <%= facet_list_tag(page.tag_list, :tg) %>
+    <small><%= page.url %></small>
+  </td>
+  <td class='nowrap'>
+    <%= facet_tag(page.template, :t) %>
+  </td>
+  <td class='timestamp'>
+    <em><%= page.pretty_updated_at %></em>
+  </td>
+</tr>

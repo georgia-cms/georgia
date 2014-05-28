@@ -1,0 +1,37 @@
+<%= simple_form_for @revision, as: :revision, url: [@page.becomes(Georgia::Page), @revision], html: {class: 'form-with-helpers js-spin-and-roll js-revision-form'}, defaults: { input_html: { class: "form-control" } } do |f| %>
+  <%= f.simple_fields_for :contents, @content do |c| %>
+    <%= c.hidden_field :locale, data: {locale: current_locale} %>
+    <header class='header-main'>
+      <div class="header-gutter">
+        <%= link_to_back search_pages_path %>
+      </div>
+      <div class="header-title">
+        <h1>
+          <%= link_to @content.title_or_none, '#', class: 'title-truncated' %>
+          <%= icon_tag 'pencil' %>
+        </h1>
+        <%= c.input_field :title, class: 'input-lg form-control', placeholder: 'Title' %>
+      </div>
+      <div class="header-actions">
+        <%= button_to_settings %>
+        <%= page_actions_tag(@page, @revision) %>
+        <%= button_to_save %>
+      </div>
+    </header>
+    <section class="body-main">
+      <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
+      <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
+      <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
+      <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
+      <footer>
+        <hr />
+        <%# FIXME: Add permission %>
+        <%= link_to_delete @page %>
+      </footer>
+    </section>
+  <% end -%>
+<% end %>
+
+<%= content_for :footer do %>
+  <%= render 'georgia/shared/modals/media_library' %>
+<% end -%>

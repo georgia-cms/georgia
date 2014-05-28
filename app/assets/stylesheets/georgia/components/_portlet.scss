@@ -1,0 +1,57 @@
+.portlet {
+  @include clearfix;
+
+  .handle {
+    cursor: pointer;
+    float: left;
+    margin: 0 15px;
+  }
+  .title { margin: 0; }
+  .actions {
+    float: right;
+  }
+}
+
+
+.links .portlet {
+  .actions a {
+    margin-right: 0;
+    margin-left: 0;
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    float: left;
+  }
+}
+
+.widgets .portlet {
+  padding: 0 10px 10px 0;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+}
+
+.slides .portlet {
+  padding-right: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #c2c2c2;
+  margin-top: 10px;
+  &:first-child {
+    padding-top: 0;
+    border-top: 0;
+    margin-top: 0;
+  }
+}
+
+.subpages .portlet {
+  width: 100%;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+  &:first-child {
+    padding-top: 10px;
+    border-top: 1px solid #c2c2c2;
+    margin-top: 10px;
+  }
+  .title {display: inline-block;}
+}

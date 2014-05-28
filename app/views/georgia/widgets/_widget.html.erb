@@ -1,0 +1,36 @@
+<div class="col-md-3 js-widget">
+  <div class="widget">
+    <div class="widget-show">
+      <div class="widget-header"><h4 class='widget-title--ellipsed'><%= widget.content(current_locale).title %></h4></div>
+      <div class="widget-content"><%= widget.content(current_locale).text %></div>
+      <div class="widget-footer">
+        <% if widget.featured? %>
+          <div class="widget-featured">
+            <span class="badge badge-default" title='Featured on <%= pluralize(widget.featured_count, 'page') %>'><%= widget.featured_count %></span>
+          </div>
+        <% end -%>
+        <%= link_to icon_tag('pencil'), '#', class: 'widget-action js-edit' %>
+        <%= link_to_delete widget, text: icon_tag('trash-o'), class: 'widget-action' %>
+      </div>
+    </div>
+    <div class="widget-form hide">
+      <%= simple_form_for widget, remote: true, html: {class: 'js-spin-and-roll'} do |f| %>
+        <%= f.simple_fields_for :contents, widget.content(current_locale) do |c| %>
+          <%= c.input :locale, as: :hidden %>
+          <div class="widget-header">
+            <div class="widget-title">
+              <%= c.input_field :title, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="widget-content">
+            <%= c.input_field :text, as: :text, rows: 7, class: 'form-control' %>
+          </div>
+          <div class="widget-footer">
+            <%= link_to "#{icon_tag('times')} Cancel".html_safe, '#', class: 'btn btn-default js-close' %>
+            <%= button_to_save %>
+          </div>
+        <% end -%>
+      <% end -%>
+    </div>
+  </div>
+</div>

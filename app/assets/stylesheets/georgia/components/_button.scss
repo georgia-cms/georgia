@@ -1,0 +1,40 @@
+.btn-back, .btn-save {
+  @extend .btn-primary;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+.btn-file-upload {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-close {
+  position: absolute; // needs parent to be relative
+  width: 25px;
+  height: 25px;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+  font-size: 1.4em;
+  text-align: center;
+  color: #cbcbcb;
+  &:hover {
+    color: #e2e2e2;
+    text-decoration: none;
+  }
+}
+
+.btn-pagination {
+  @extend .btn;
+  padding: 5px 10px;
+}
+
+.btn--jumbo {
+  padding: 10px 40px;
+  font-size: 1.4em;
+}
+
+.btn--square {
+  border-radius: 0 !important;
+}

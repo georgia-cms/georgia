@@ -1,0 +1,20 @@
+<div id='menu_form' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu_form_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= simple_form_for(Georgia::Menu.new, remote: true) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <%= link_to_close %>
+          <h4 id='menu_form_label' class='modal-title'>New Menu</h4>
+        </div>
+
+        <div class="modal-body">
+          <%= f.input :name, label: false, placeholder: 'Name', input_html: {class: 'form-control'}, focus: true %>
+        </div>
+
+        <div class="modal-footer">
+          <%= button_to_save "#{icon_tag('check')} Create".html_safe %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>

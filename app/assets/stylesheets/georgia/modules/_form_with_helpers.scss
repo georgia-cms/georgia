@@ -1,0 +1,17 @@
+fieldset {
+  @include row;
+  .fieldset-help { @include span-columns(2 of 10); }
+  .fieldset-fields {
+    @include span-columns(8 of 10);
+    .control-group {margin-bottom: 20px;}
+  }
+  legend { margin: 0 0 10px 0; }
+  .hint {
+    color: #999;
+    font-variant: italic;
+  }
+  input.string, textarea, select {
+    border: 1px solid $border-input;
+    border-radius: 0;
+  }
+}

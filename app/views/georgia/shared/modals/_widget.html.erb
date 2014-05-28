@@ -1,0 +1,24 @@
+<div id='widget_form' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="widget_form_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= simple_form_for(@widget, remote: true) do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <%= link_to_close %>
+          <h4 id='widget_form_label' class='modal-title'>New Widget</h4>
+        </div>
+
+        <div class="modal-body">
+          <%= f.simple_fields_for :contents do |c| %>
+            <%= c.hidden_field :locale %>
+            <%= c.input :title, label: false, placeholder: 'Name', input_html: {class: 'form-control'}, focus: true %>
+            <%= c.input :text, as: :text, label: false, placeholder: 'Content', input_html: {class: 'form-control'} %>
+          <% end -%>
+        </div>
+
+        <div class="modal-footer">
+          <%= button_to_save "#{icon_tag('check')} Create".html_safe %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>

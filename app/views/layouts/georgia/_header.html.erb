@@ -1,0 +1,40 @@
+<header id='header' class='hidden-print'>
+  <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'georgia', georgia.root_url, class: 'navbar-brand' %>
+    </div>
+
+    <% if signed_in? %>
+      <div class="navbar-collapse collapse navbar-inverse-collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to 'Visit your website', main_app.root_url %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <%# if can? :index, Georgia::User %>
+            <li>
+              <%= link_to icon_tag('users'), georgia.users_path, class: 'header-link--icon' %>
+            </li>
+          <%# end -%>
+          <li class='dropdown'>
+            <%= link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do %>
+              <%= image_tag avatar_url(current_user.email, size: 25), alt: '' %>
+              <span><%= current_user.name %></span>
+              <%= content_tag(:b, nil, class: 'caret') %>
+            <% end -%>
+            <ul class="dropdown-menu">
+              <li><%= link_to('Logout', georgia.destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    <% end -%>
+  </nav>
+</header>

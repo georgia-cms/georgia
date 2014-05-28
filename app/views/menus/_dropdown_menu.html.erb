@@ -1,0 +1,11 @@
+<div class='row-fluid'>
+  <div class='btn-toolbar'>
+    <% links.each do |link| %>
+      <% if link.dropdown? and link.page.present? %>
+      <%= render 'menus/dropdown_group', link: link %>
+      <% else -%>
+      <%= render 'menus/dropdown_link', link: link %>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>

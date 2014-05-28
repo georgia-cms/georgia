@@ -1,0 +1,18 @@
+<div class="container">
+  <h2 class='page-header'>Welcome back <%= current_user.first_name %></h2>
+  <% unless welcomed? %>
+    <div class="jumbotron alert alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h2>Georgia CMS <small><%= Georgia::VERSION %></small></h2>
+      <p>Compatibility & Extensibility</p>
+      <p>
+        Georgia is a CMS engine for Ruby on Rails applications. Key features include user authentication, widgets, slideshows, publishing system, revisioning and more.
+      </p>
+      <p><%= link_to 'Get started', search_pages_path, class: 'btn btn-primary btn-lg' %></p>
+    </div>
+  <% end -%>
+  <div class="row">
+    <%= render 'georgia/dashboard/panels/messages' if @messages %>
+    <%= render 'georgia/dashboard/panels/reviews' if @awaiting_revisions %>
+  </div>
+</div>

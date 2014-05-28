@@ -1,0 +1,33 @@
+<header class='header-main'>
+  <div class="header-gutter">
+    <%= link_to_back %>
+  </div>
+  <div class="header-title">
+    <h1>Widgets</h1>
+  </div>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target:
+      '#widget_form'} %>
+  </div>
+</header>
+
+<section class="body-main">
+
+  <%= link_to_available_locales %>
+
+  <% if @widgets and @widgets.any? %>
+    <% @widgets.each do |widget_row| %>
+      <div class="row">
+        <%= render widget_row %>
+      </div>
+    <% end -%>
+  <% else -%>
+    <h1>Yikes! There are 0 widgets.</h1>
+    <%= link_to "Get Started", '#', class: 'btn btn-primary btn--jumbo', data: {toggle: 'modal', target: '#widget_form'} %>
+  <% end -%>
+
+</section>
+
+<%= content_tag :footer do %>
+  <%= render 'georgia/shared/modals/widget' %>
+<% end -%>

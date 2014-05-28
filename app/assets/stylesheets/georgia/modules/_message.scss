@@ -1,0 +1,53 @@
+%clickable {
+  a { display: block; }
+}
+.message-name, .message-message, .message-attachment, .message-phone, .message-timestamp {
+  @extend %clickable;
+}
+.message-timestamp {
+  @extend .timestamp--long;
+}
+
+.message-info {
+  line-height: 30px;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+}
+.message-additional-info {
+  padding: 10px 0;
+  margin: 20px 0;
+  border-top: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
+}
+.message-status {
+  width: 1px;
+  border-right: 3px solid;
+  padding: 0 !important;
+  margin: 0;
+  &.spam { border-color: $red; }
+  &.clean { border-color: $green; }
+}
+
+.message-name span {
+  @extend .ellipsis;
+  width: 160px;
+  max-width: 160px;
+}
+
+.phone {
+  @extend .ellipsis;
+  width: 120px;
+  max-width: 120px;
+}
+
+.message-attachment {
+  @extend .tiny;
+}
+
+.message-message span {
+  @extend .nowrap;
+  @extend .ellipsis;
+  max-width: 800px;
+}

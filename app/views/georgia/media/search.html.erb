@@ -1,0 +1,36 @@
+<%= render 'header' %>
+
+<section class="body-main">
+
+  <%= active_facet_list(:tg) %>
+
+  <table class="table-results assets js-checkboxable">
+    <thead>
+      <th class='checkbox-cell'>
+        <%= checkboxable_all_tag :assets %>
+      </th>
+      <th colspan='3'>
+        <%= form_for :download, url: download_media_index_path, method: :post, html: {style: 'display:inline;'} do |f| %>
+          <%= hidden_field_tag "ids", nil, class: 'downloadable-ids' %>
+          <%= content_tag :button, "#{icon_tag('download')} Download".html_safe, type: "submit", class: "btn btn-default btn-xs js-download disabled" %>
+        <% end -%>
+        <%= link_to "#{icon_tag('trash-o')} Delete".html_safe, '#', method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: 'btn btn-xs btn-default js-delete disabled' # if can? :destroy, Ckeditor::Asset %>
+      </th>
+      <th colspan='3'>
+        <%= pagination_tag(@search) %>
+      </th>
+    </thead>
+    <tbody>
+      <% if @assets and @assets.any? %>
+        <%= render @assets %>
+      <% else %>
+        <tr>
+          <td colspan="6">
+            There are currently no assets.
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</section>

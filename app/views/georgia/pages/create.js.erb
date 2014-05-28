@@ -1,0 +1,6 @@
+<% if @page.valid? %>
+  window.location.href = '<%= url_for(@page) %>';
+<% else -%>
+  $('#page_form .modal-body').prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button>You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)</div>");
+  $('input#page_title').closest('.control-group').addClass('error');
+<% end %>

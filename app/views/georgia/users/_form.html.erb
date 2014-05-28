@@ -1,0 +1,37 @@
+<fieldset>
+  <div class="fieldset-help">
+    <legend><%= icon_tag('user') %> Profile</legend>
+  </div>
+  <div class="fieldset-fields">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="fieldset-help">
+    <legend><%= icon_tag('lock') %> Security</legend>
+  </div>
+  <div class="fieldset-fields">
+    <%= f.input :password, hint: "(leave blank if you don't want to change it)" %>
+    <%= f.input :password_confirmation, label: 'Confirm' %>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Roles</legend>
+  </div>
+  <div class="fieldset-fields">
+    <%= f.association :roles, as: :check_boxes %>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Notifications</legend>
+  </div>
+  <div class="fieldset-fields">
+    <label class='checkbox'>
+      <%= f.check_box :receives_notifications, class: 'boolean optional form-control' %> Will receive email notifications and reminders from Georgia CMS
+    </label>
+  </div>
+</fieldset>

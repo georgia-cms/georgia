@@ -1,0 +1,18 @@
+.revision {
+  @include clearfix;
+  margin: 10px 0;
+  border-bottom: 1px solid #cbcbcb;
+  padding: 10px 0;
+}
+.js-revision-form .header-title {
+  i, input { display: none; }
+  i {
+    font-size: 0.75em;
+    float: right;
+  }
+}
+.header-title .title-truncated {
+  max-width: 750px;
+  @extend .ellipsis;
+}
+.header-title a.title-truncated { float: left; }

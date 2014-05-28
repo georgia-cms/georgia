@@ -1,0 +1,35 @@
+<div id='media_library' class="modal modal--media fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <%= link_to_close %>
+        <h4 class='modal-title'>Choose Image</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <span class="btn btn-success btn-file-upload">
+              <span class='btn-file-upload-text'>
+                <%= icon_tag 'plus' %> Add image
+              </span>
+              <input class='input-file-upload js-file-upload' type="file" name="assets[]" data-url="<%= media_index_path %>" multiple>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button class="btn btn-default"><%= icon_tag('search') %></button>
+              </div>
+              <%= text_field_tag :media_search, params[:query], class: 'form-control input-search', placeholder: 'Search', data: {media: 'search'} %>
+            </div>
+          </div>
+        </div>
+
+        <div class='results' data-media='results'>
+          <%= spinner_tag %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<header class='header-main'>
+  <div class="row">
+    <div class="header-gutter">
+      <%= link_to_back search_pages_path %>
+    </div>
+    <div class="header-title">
+      <h1 class='title-truncated'>
+        <%= @page.title || content_tag(:span, 'No title', class: 'muted') %>
+      </h1>
+    </div>
+    <div class="header-actions">
+      <%= button_to_settings %>
+      <%= page_actions_tag(@page, @revision) %>
+    </div>
+  </div>
+</header>
+<section class="body-main">
+  <div class="revisions">
+    <% if @revisions and @revisions.any? %>
+      <%= render @revisions %>
+    <% else -%>
+      <h3>There are no past revisions for this page yet. <%= link_to 'Go Back', @page %></h3>
+    <% end -%>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+
+<%= simple_form_for(@user, url: user_path(@user), html: { class: 'form-horizontal'}, defaults: { input_html: { class: "form-control" }}) do |f| %>
+
+  <header class='header-main'>
+    <div class="header-gutter">
+      <%= link_to_back users_path %>
+    </div>
+    <div class="header-title">
+      <h1><%= @user.name %></h1>
+    </div>
+    <div class="header-actions">
+      <%= button_to_save %>
+    </div>
+  </header>
+
+  <section class="body-main">
+    <%= render partial: 'georgia/users/form', locals: {f: f} %>
+    <hr />
+    <%= link_to_delete @user %>
+  </section>
+
+<% end -%>

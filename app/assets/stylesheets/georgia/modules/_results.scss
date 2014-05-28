@@ -1,0 +1,43 @@
+.table-results {
+  th { text-align: left; }
+  td, th {
+    padding: 10px 4px;
+    border-bottom: 2px solid #ddd;
+  }
+  .tiny {
+    @extend .nowrap;
+    width: 25px;
+    max-width: 25px;
+  }
+  .checkbox-cell {
+    width: 35px;
+    text-align: center;
+  }
+  .media-link {
+    width: 65px;
+    height: 65px;
+  }
+  .small {
+    @extend .nowrap;
+    width: 70px;
+    max-width: 70px;
+  }
+  .thumbnail-cell {
+    width: 65px;
+  }
+  .timestamp {
+    @extend .nowrap;
+    width: 100px;
+    max-width: 100px;
+    text-align: right;
+    font-size: 0.9em;
+  }
+  .timestamp--long {
+    @extend .timestamp;
+    width: 125px;
+    max-width: 125px;
+  }
+  .label {
+    margin-right: 4px;
+  }
+}

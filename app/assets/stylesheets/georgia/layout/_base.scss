@@ -1,0 +1,105 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  color: $font;
+  font-size: 14px;
+  font-family: "Signika",$helvetica;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+  font-family: "SignikaLight",$helvetica;
+}
+
+#main {
+  @include row;
+  margin: 150px 20px 0 0;
+  padding-left: ($width-sidebar+20);
+  padding-bottom: ($height-footer+20);
+  padding-right: $padding-main;
+  position: relative;
+  width: 100%;
+}
+#dashboard #main {
+  margin-top: 60px;
+}
+
+#sidebar {
+  position: fixed;
+  z-index: $z-sidebar;
+  top: $height-header;
+  bottom: 0;
+  width: $width-sidebar;
+  background-color: $bg-sidebar;
+  background-color: $bg-sidebar-rgba;
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-right: 1px solid #e2e2e2;
+}
+
+a {
+  text-decoration: none;
+  color: $font-link;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  line-height: 1em;
+  margin-bottom: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: gray;
+}
+
+fieldset {
+  border: 0;
+  margin: 0 0 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+label {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+legend {
+  font-size: 1.4em;
+}
+
+textarea {
+  line-height: 1.4em;
+}
+
+select {
+  max-width: 250px;
+  display: inline-block !important;
+}
+
+// Tables
+// td:first-child {width: 20%;}
+td.labels {width: 72px; padding: 4px; text-align: center;}
+td.actions {
+  width: 80px;
+  padding: 4px;
+  div.btn-group {float: right;}
+}
+
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+th .asc {background-image: url('up_arrow.gif');}
+th .desc {background-image: url('down_arrow.gif');}

@@ -1,0 +1,7 @@
+<div class="flash-container"></div>
+<script type="text/javascript">
+  <% flash.each do |name, msg| %>
+    new Flash('<%= msg %>', '<%= name %>')
+  <% end -%>
+</script>
+<%= yield :messages %>

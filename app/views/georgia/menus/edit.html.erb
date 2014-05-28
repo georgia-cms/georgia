@@ -1,0 +1,37 @@
+<%= simple_form_for @menu, remote: true do |f| %>
+  <%= hidden_field_tag "menu[ancestry]", nil, class: 'js-menu-ancestry' %>
+  <header class='header-main'>
+    <div class="header-gutter">
+      <%= link_to_back menus_path %>
+    </div>
+    <div class="header-title">
+      <h1><%= icon_tag 'link' %> <%= @menu.name %></h1>
+    </div>
+    <div class="header-actions">
+      <%= button_to_save %>
+    </div>
+  </header>
+
+  <section class="body-main">
+    <fieldset>
+      <div class="fieldset-help">
+        <legend>Links</legend>
+        <p class='hint'>
+          <%= link_to "#{icon_tag 'plus'} Add new".html_safe, '#', class: 'btn btn-primary js-add-link' %>
+        </p>
+      </div>
+      <div class="fieldset-fields control-group">
+        <ol class="links js-nested-sortable" data-menu-id='<%= @menu.id %>'>
+          <% if @links and @links.any? %>
+            <% @links.each do |link| %>
+              <%= link_portlet_tag(link) %>
+            <% end -%>
+          <% else %>
+            <p class='blank-state'>There are currently no navigation links. <%= link_to 'Create a new one', '#', class: 'js-add-link' %></p>
+          <% end %>
+        </ol>
+      </div>
+    </fieldset>
+
+  </section>
+<% end -%>

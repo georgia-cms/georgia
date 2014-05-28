@@ -1,0 +1,25 @@
+<header class='header-main'>
+  <div class="header-gutter">
+    <%= link_to_back %>
+  </div>
+  <div class="header-title">
+    <h1>Users</h1>
+  </div>
+  <div class="header-actions">
+    <%= link_to "#{icon_tag 'plus'} Add User".html_safe, new_user_path, class: 'btn btn-primary' %>
+  </div>
+</header>
+
+<section class="body-main">
+  <table class="table table-results">
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Roles</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <%= render @users %>
+    </tbody>
+  </table>
+</section>

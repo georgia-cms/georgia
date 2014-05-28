@@ -1,0 +1,26 @@
+<tr id='asset_<%= picture.id %>' class='asset'>
+  <td class='checkbox-cell'>
+    <%= checkboxable_tag picture %>
+  </td>
+  <td class='thumbnail-cell'>
+    <%= link_to picture.url_content, class: 'media-link bg-transparent', rel: 'shadowbox[gallery]' do %>
+      <%= image_tag picture.url(:tiny), title: picture.filename, class: 'media-image' %>
+    <% end %>
+  </td>
+  <td>
+    <%= facet_list_tag(picture.tag_list, :tg) %>
+    <%= link_to picture.filename, edit_media_path(picture) %>
+  </td>
+  <td class='small'>
+    <%= number_to_human_size(picture.data_file_size) %>
+  </td>
+  <td class='small'>
+    <%= picture.width %>x<%= picture.height %>
+  </td>
+  <td class='tiny'>
+    <span class="badge" title="Featured in <%= pluralize(picture.pages.length, 'page') %>"><%= picture.pages.length %></span>
+  </td>
+  <td class='timestamp'>
+    <em><%= picture.pretty_updated_at %></em>
+  </td>
+</tr>

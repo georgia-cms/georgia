@@ -1,0 +1,12 @@
+<fieldset>
+  <div class="fieldset-help">
+    <legend>Widgets</legend>
+    <p class='hint'>
+      <%# FIXME: Add permission %>
+      <%= link_to "#{icon_tag('cogs')} Manage Widgets".html_safe, widgets_path, class: 'btn btn-primary' %>
+    </p>
+  </div>
+  <div class="fieldset-fields">
+    <%= render partial: 'georgia/revisions/fields/ui_section', collection: @ui_sections, as: :ui_section, locals: {f: f} %>
+  </div>
+</fieldset>

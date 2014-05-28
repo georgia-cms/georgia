@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <%= render 'layouts/georgia/head' %>
+  </head>
+  <body id="<%= controller_name %>" class="georgia <%= action_name %>">
+    <%= render 'layouts/georgia/header' %>
+    <%= render 'layouts/georgia/sidebar' %>
+    <main id="main">
+      <%= yield %>
+      <%= render 'layouts/georgia/footer' %>
+    </main>
+    <%= render 'layouts/georgia/messages' %>
+    <%= yield :footer %>
+  </body>
+</html>

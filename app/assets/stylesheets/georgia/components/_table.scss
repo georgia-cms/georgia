@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+  max-width: 100%;
+
+  tr.is-selected td {
+    background-color: $bg-header-main;
+  }
+}

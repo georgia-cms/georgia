@@ -1,0 +1,10 @@
+===============================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  1. Ensure you overwrite default options in your georgia initializer.
+     Find me at config/initializers/georgia.rb
+
+  2. Ensure the routes we've just added did not messed up anything.
+
+===============================================================================
