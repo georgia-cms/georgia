@@ -10,7 +10,7 @@ module Georgia
     end
 
     def create
-      @menu = Menu.new(params[:menu])
+      @menu = Menu.new(menu_params)
       if @menu.save
         respond_to do |format|
           format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully created." }
@@ -37,7 +37,7 @@ module Georgia
       @menu = Menu.find(params[:id])
       update_links_attributes(params[:menu].delete(:ancestry))
       update_links_menu_id
-      if @menu.update_attributes(params[:menu])
+      if @menu.update(menu_params)
         respond_to do |format|
           format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully updated." }
           format.js { head :ok }
@@ -72,6 +72,10 @@ module Georgia
 
     def ancestry_attributes(ancestry_tree)
       MenuAncestryParser.new(ancestry_tree).to_hash
+    end
+
+    def menu_params
+      params.require(:menu).permit(:name, :ancestry, links_attributes: [:id, :_destroy, :position, :parent_id, contents_attributes: [:id, :title, :text, :locale]])
     end
 
   end
