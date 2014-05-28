@@ -1,8 +1,8 @@
 fieldset {
   @include row;
-  .fieldset-help { @include span-columns(2 of 10); }
+  .fieldset-help { @include span-columns(2); }
   .fieldset-fields {
-    @include span-columns(8 of 10);
+    @include span-columns(8);
     .control-group {margin-bottom: 20px;}
   }
   legend { margin: 0 0 10px 0; }
