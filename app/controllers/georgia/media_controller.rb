@@ -7,8 +7,9 @@ module Georgia
 
     def search
       @asset = Ckeditor::Asset.new
-      @search = Georgia::Indexer.search(Ckeditor::Asset, params)
-      @assets = Ckeditor::AssetDecorator.decorate_collection(@search.results)
+      search_conditions = Georgia::MediaSearch.new(params).definition
+      @search = Ckeditor::Picture.search(search_conditions).page(params[:page])
+      @assets = Ckeditor::AssetDecorator.decorate_collection(@search.records)
     end
 
     def create
