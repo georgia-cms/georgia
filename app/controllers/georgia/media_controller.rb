@@ -15,7 +15,7 @@ module Georgia
       begin
         @assets = params[:assets].map{|asset| CreateMediaAsset.new(asset).call}
         @assets = Ckeditor::AssetDecorator.decorate_collection(@assets)
-      rescue ArgumentError => ex
+      rescue => ex
         flash.now[:alert] = ex.message
       end
       render layout: false
