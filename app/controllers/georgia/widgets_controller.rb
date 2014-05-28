@@ -12,7 +12,7 @@ module Georgia
     end
 
     def create
-      @widget = Widget.new(params[:widget])
+      @widget = Widget.new(widget_params)
 
       if @widget.save
         respond_to do |format|
@@ -30,7 +30,7 @@ module Georgia
 
     def update
       @widget = Widget.find(params[:id])
-      if @widget.update_attributes(params[:widget])
+      if @widget.update(widget_params)
         respond_to do |format|
           format.html { redirect_to widgets_url, notice: "Widget was successfully updated." }
           format.js { head :ok }
@@ -56,8 +56,12 @@ module Georgia
           format.js { head :internal_server_error }
         end
       end
+    end
 
+    private
 
+    def widget_params
+      params.require(:widget).permit(:id, :_destroy, contents_attributes: [:locale, :title, :text])
     end
 
   end
