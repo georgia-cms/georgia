@@ -50,8 +50,10 @@
               <p>
                 <%= f.input :tag_list, input_html: {class: 'js-token-input'} %>
               </p>
-              <%= button_to_save # if can?(:update, @asset) %>
-              <%= link_to_delete media_path(@asset) # if can? :destroy, @asset %>
+              <%# FIXME: Add permission %>
+              <%= button_to_save %>
+              <%# FIXME: Add permission %>
+              <%= link_to_delete media_path(@asset) %>
             <% end -%>
           </p>
           <% if @asset.is_a?(Ckeditor::Picture) %>
