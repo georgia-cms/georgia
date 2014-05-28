@@ -148,7 +148,7 @@ module Georgia
     end
 
     def page_params
-      params.require(:page).permit(:slug)
+      params.require(:page).permit(:slug, :tag_list, :parent_id)
     end
 
   end
