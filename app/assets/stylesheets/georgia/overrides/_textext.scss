@@ -1,0 +1,48 @@
+.text-core .text-wrap textarea,
+.text-core .text-wrap input {
+  border-color: #dde4e6;
+  padding-top: 10px !important;
+  padding-bottom: 10px;
+  height: 43px;
+  font-size: 15px;
+  line-height: 20px;
+  font-family: inherit;
+}
+
+.text-core .text-wrap .text-tags {
+  padding-left: 6px;
+}
+
+.text-core .text-wrap .text-tags .text-tag {
+  margin-top: 5px;
+  margin-right: 1px;
+}
+
+.text-core .text-wrap .text-tags .text-tag .text-button {
+  height: 27px;
+  padding: 4px 20px 3px 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: #bac4c5;
+  border-color: #bac4c5;
+  color: $white;
+}
+
+.text-core .text-wrap .text-tags .text-tag .text-button a.text-remove {
+  top: 7px;
+  right: 5px;
+}
+
+.text-core .text-wrap .text-dropdown {
+  border-color: #bac4c5;
+}
+
+.text-core .text-wrap .text-dropdown .text-list .text-suggestion {
+  padding: 5px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.text-core .text-wrap .text-dropdown .text-list .text-suggestion.text-selected {
+  background-color: #bac4c5;
+}

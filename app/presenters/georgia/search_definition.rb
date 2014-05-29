@@ -6,8 +6,9 @@ module Georgia
     def initialize params
       @params = params
       @query = params.fetch(:query, nil)
-      @sort_column = params.fetch(:sort, :updated_at)
-      @sort_direction = params.fetch(:direction, 'desc')
+      @query ||= params.fetch(:q, nil)
+      @sort_column = params.fetch(:sort, nil)
+      @sort_direction = params.fetch(:direction, nil)
       @definition = default_definition
       process
     end
@@ -24,7 +25,6 @@ module Georgia
       else
         add_match_all
       end
-      # add_sorting if sort_column.present?
     end
 
     private
@@ -35,7 +35,7 @@ module Georgia
 
     def add_match_all
       @definition[:query] = { match_all: {} }
-      # @definition[:sort] = { sort_column => sort_direction }
+      @definition[:sort] = { sort_column => sort_direction }
     end
 
     def add_sorting

@@ -5,8 +5,9 @@ module Georgia
       respond_to :json
 
       def search
-        @tags = ActsAsTaggableOn::Tag.search_index(params[:q])
-        respond_with(results: @tags)
+        search_conditions = Georgia::TagSearch.new(params).definition
+        @search = ActsAsTaggableOn::Tag.search(search_conditions).page(params[:page])
+        respond_with(@search.records.map(&:name))
       end
 
     end

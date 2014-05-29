@@ -44,14 +44,15 @@ module Georgia
     # Update page settings
     def update
       model.update_tree(params[:page_tree]) if params[:page_tree]
+      clean_textext_tag_list_format if params[:page][:tag_list].present?
       if @page.update(page_params)
         respond_to do |format|
-          format.html { render :settings, notice: "#{@page.title} was successfully updated." }
+          format.html { redirect_to [:settings, @page], notice: "#{@page.title} was successfully updated." }
           format.js { head :ok }
         end
       else
         respond_to do |format|
-          format.html { redirect_to [:settings, @page], notice: "Oups. Something went wrong." }
+          format.html { redirect_to [:settings, @page], alert: "Oups. Something went wrong." }
           format.js { head :internal_server_error }
         end
       end
@@ -148,7 +149,11 @@ module Georgia
     end
 
     def page_params
-      params.require(:page).permit(:slug, :tag_list, :parent_id)
+      params.require(:page).permit(:slug, :parent_id, tag_list: [])
+    end
+
+    def clean_textext_tag_list_format
+      params[:page][:tag_list] = JSON.parse(params[:page][:tag_list])
     end
 
   end
