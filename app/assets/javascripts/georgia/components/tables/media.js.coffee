@@ -1,13 +1,16 @@
 class @MediaTable
 
-  constructor: (element) ->
+  constructor: (element, checkboxable) ->
     @element      = $(element)
+    @checkboxable = checkboxable
     @downloadBtn  = $('.js-download')
     @deleteBtn    = $('.js-delete')
     @setBindings()
 
+  checkboxes: () -> @element.find("input:checkbox")
+
   setBindings: () =>
-    @element.on('click', @element.find("input:checkbox"), @update)
+    @element.on('click', @checkboxes(), @update)
     @deleteBtn.on('click', @destroy)
 
   update: () =>
@@ -28,6 +31,7 @@ class @MediaTable
       dataType: 'JSON'
     ).always(() =>
       $.each @getIds(), (index, id) -> $("#asset_#{id}").remove()
+      @checkboxable.uncheck(@checkboxable.selectAllCheckbox)
     )
 
   updateDownloadableIds: () =>
@@ -45,13 +49,14 @@ class @MediaTable
     event.stopPropagation()
     event.preventDefault()
 
-  getChecked: () => @element.find("input:checkbox:checked[data-checkbox='child']")
+  getChecked: () => @element.find("input:checkbox:checked")
   getId:      (c) => $(c).data('id')
   getIds:     () => $.map(@getChecked(), (c) => @getId(c))
 
 $.fn.actsAsMediaTable = () ->
   @each ->
-    new MediaTable($(this))
+    checkboxable = new Checkboxable($(this))
+    new MediaTable($(this), checkboxable)
 
 jQuery ->
   $("table.assets.js-checkboxable").each ->

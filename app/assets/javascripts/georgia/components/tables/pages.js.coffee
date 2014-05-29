@@ -1,15 +1,17 @@
 class @PagesTable
 
-  constructor: (element) ->
+  constructor: (element, checkboxable) ->
     @element      = $(element)
-    @checkboxes   = @element.find("input:checkbox")
+    @checkboxable = checkboxable
     @deleteBtn    = $('.js-delete')
     @publishBtn   = $('.js-publish')
     @unpublishBtn = $('.js-unpublish')
     @setBindings()
 
+  checkboxes: () -> @element.find("input:checkbox")
+
   setBindings: () =>
-    @checkboxes.on('click', @update)
+    @element.on('click', @checkboxes(), @update)
     @deleteBtn.on('click', @destroy)
     @publishBtn.on('click', @publish)
     @unpublishBtn.on('click', @unpublish)
@@ -29,6 +31,7 @@ class @PagesTable
       dataType: 'JSON'
     ).always(() =>
       $.each @getIds(), (index, id) -> $("#page_#{id}").remove()
+      @checkboxable.uncheck(@checkboxable.selectAllCheckbox)
     )
 
   publish: (event) =>
@@ -67,13 +70,14 @@ class @PagesTable
     event.stopPropagation()
     event.preventDefault()
 
-  getChecked: () => @element.find("input:checkbox:checked[data-checkbox='child']")
+  getChecked: () => @element.find("input:checkbox:checked")
   getId:      (c) => $(c).data('id')
   getIds:     () => $.map(@getChecked(), (c) => @getId(c))
 
 $.fn.actsAsPagesTable = () ->
   @each ->
-    new PagesTable($(this))
+    checkboxable = new Checkboxable($(this))
+    new PagesTable($(this), checkboxable)
 
 jQuery ->
   $("table.pages.js-checkboxable").each ->
