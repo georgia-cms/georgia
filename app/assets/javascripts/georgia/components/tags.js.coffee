@@ -3,10 +3,11 @@ class @Tags
   constructor: (element, options={}) ->
     @el = $(element)
     @el.textext(
-      plugins: 'autocomplete ajax tags'
-      tagsItems: @initTags()
+      plugins: 'autocomplete ajax tags arrow'
+      tags:
+        items: @initTags()
       ajax:
-        url: '/admin/api/tags/search'
+        url: '/admin/api/tags/'
         type: 'GET'
         cacheResults: true
     )

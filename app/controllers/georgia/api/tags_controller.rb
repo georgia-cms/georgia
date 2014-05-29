@@ -4,6 +4,11 @@ module Georgia
 
       respond_to :json
 
+      def index
+        @tags = ActsAsTaggableOn::Tag.pluck(:name)
+        respond_with(@tags)
+      end
+
       def search
         search_conditions = Georgia::TagSearch.new(params).definition
         @search = ActsAsTaggableOn::Tag.search(search_conditions).page(params[:page])

@@ -35,6 +35,7 @@
 
 .text-core .text-wrap .text-dropdown {
   border-color: #bac4c5;
+  max-height: 200px !important;
 }
 
 .text-core .text-wrap .text-dropdown .text-list .text-suggestion {
@@ -45,4 +46,9 @@
 
 .text-core .text-wrap .text-dropdown .text-list .text-suggestion.text-selected {
   background-color: #bac4c5;
+}
+
+.text-core .text-wrap .text-arrow {
+  top: 7px;
+  right: 5px;
 }
