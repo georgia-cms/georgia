@@ -28,10 +28,7 @@ module Georgia
     end
 
     def search_count
-      page = @search.current_page
-      count = @search.last_page? ? @search.total_count : page+(@search.max_per_page or @search.default_per_page)
-      total = @search.total_count
-      "#{page} - #{count} of #{total}"
+      SearchCount.new(@search).to_s
     end
 
     def previous_page
@@ -50,6 +47,47 @@ module Georgia
 
     def link_to_disabled text
       link_to(text, '#', class: "#{btn_class} disabled", role: 'button')
+    end
+
+    class SearchCount
+
+      def initialize(search)
+        @search = search
+      end
+
+      def to_s
+        "#{from} - #{to} of #{total}"
+      end
+
+      private
+
+      def from
+        if @search.first_page?
+          1
+        else
+          (page-1)*records_per_page+1
+        end
+      end
+
+      def to
+        if @search.first_page?
+          @search.size
+        else
+          from+@search.size-1
+        end
+      end
+
+      def total
+        @search.total_count
+      end
+
+      def page
+        @search.current_page
+      end
+
+      def records_per_page
+        @search.limit_value
+      end
     end
 
   end
