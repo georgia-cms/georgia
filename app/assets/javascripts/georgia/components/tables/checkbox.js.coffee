@@ -12,7 +12,7 @@ class @Checkboxable
     @element.on('click', @checkboxes(), @update)
 
   update: (event) =>
-    checkbox = $(event.currentTarget)
+    checkbox = $(event.target)
     @updateCheckbox(checkbox)
     @updateSelectAll()
 
