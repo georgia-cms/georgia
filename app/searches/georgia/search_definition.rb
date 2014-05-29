@@ -42,7 +42,7 @@ module Georgia
 
     def add_match_all
       @definition[:query] = { match_all: {} }
-      @definition[:sort] = { sort_column => sort_direction }
+      @definition[:sort] = { sort_column => { order: sort_direction, ignore_unmapped: true }}
     end
 
     def add_sorting
