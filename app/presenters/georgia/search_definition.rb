@@ -1,7 +1,10 @@
 module Georgia
   class SearchDefinition
 
-    attr_reader :params, :definition, :query, :sort_column, :sort_direction
+    attr_reader :params, :definition, :query
+
+    DEFAULT_SORT_COLUMN    = :updated_at
+    DEFAULT_SORT_DIRECTION = 'desc'
 
     def initialize params
       @params = params
@@ -82,6 +85,13 @@ module Georgia
 
     def query_fields
       ['title^5', 'text']
+    end
+
+    def sort_column
+      @sort_column || DEFAULT_SORT_COLUMN
+    end
+    def sort_direction
+      @sort_direction || DEFAULT_SORT_DIRECTION
     end
 
   end
