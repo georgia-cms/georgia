@@ -64,8 +64,11 @@ namespace :georgia do
 
   desc 'Setup ElasticSearch indices'
   task create_indices: :environment do
+    Georgia::Page.__elasticsearch__.create_index! force: true
     Georgia::Page.import
+    Ckeditor::Asset.__elasticsearch__.create_index! force: true
     Ckeditor::Asset.import
+    ActsAsTaggableOn::Tag.__elasticsearch__.create_index! force: true
     ActsAsTaggableOn::Tag.import
   end
 
