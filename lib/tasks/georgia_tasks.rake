@@ -66,7 +66,6 @@ namespace :georgia do
   task create_indices: :environment do
     Georgia::Page.import
     Ckeditor::Asset.import
-    Ckeditor::Picture.import
     ActsAsTaggableOn::Tag.import
   end
 
