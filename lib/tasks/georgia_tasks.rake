@@ -62,4 +62,12 @@ namespace :georgia do
     end
   end
 
+  desc 'Setup ElasticSearch indices'
+  task setup: :environment do
+    Georgia::Page.import
+    Ckeditor::Asset.import
+    Ckeditor::Picture.import
+    ActsAsTaggableOn::Tag.import
+  end
+
 end
