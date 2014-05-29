@@ -8,7 +8,6 @@
 //= require shadowbox
 //= require mousetrap
 
-//= require ckeditor/override
 //= require ckeditor/init
 //= require_tree ./ckeditor
 
