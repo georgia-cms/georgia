@@ -14,6 +14,7 @@ module Georgia
       @sort_direction = params.fetch(:direction, nil)
       @definition = default_definition
       process
+      post_process
     end
 
     def process
@@ -31,6 +32,9 @@ module Georgia
     end
 
     private
+
+    def post_process
+    end
 
     def add_fulltext_query
       add_to_query_definition({multi_match: { query: query, fields: query_fields }})
