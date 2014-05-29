@@ -4,6 +4,12 @@
     padding: 10px 4px;
     border-bottom: 2px solid #ddd;
   }
+  td.actions {
+    padding: 0 0 10px 0;
+    .btn {
+      padding: 5px 10px;
+    }
+  }
   .tiny {
     @extend .nowrap;
     width: 25px;
