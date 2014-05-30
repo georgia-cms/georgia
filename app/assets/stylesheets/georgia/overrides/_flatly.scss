@@ -1,1 +1,11 @@
 table a, .table a { text-decoration: none; }
+
+.nav > li > a.btn-info:hover,
+.nav > li > a.btn-info:focus {
+  background-color: #2077b2;
+}
+
+.nav > li > a.btn-warning:hover,
+.nav > li > a.btn-warning:focus {
+  background-color: #be780a;
+}
