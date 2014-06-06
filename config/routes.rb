@@ -20,7 +20,7 @@ Georgia::Engine.routes.draw do
       post :sort
       post :publish
       post :unpublish
-      post 'flush-cache', to: :flush_cache
+      post 'flush-cache', to: :flush_cache, as: :flush_cache
       delete '/', to: :destroy
     end
 
