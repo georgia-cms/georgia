@@ -57,11 +57,11 @@ Georgia::Engine.routes.draw do
   resources :ui_associations, path: 'ui-associations', only: [:new]
   resources :slides, only: [:new]
 
-  # unauthenticated do
-  #   as :user do
-  #     root to: 'users/sessions#new'
-  #   end
-  # end
+  unauthenticated do
+    as :user do
+      root to: 'users/sessions#new'
+    end
+  end
   root to: "dashboard#show"
 
 end
