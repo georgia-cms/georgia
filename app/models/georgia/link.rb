@@ -21,6 +21,7 @@ module Georgia
 
     # returns only the last part of the url
     def slug
+      return '' if text.nil?
       @slug ||= text.match(/([\w-]*)$/)[0]
     end
   end
