@@ -64,7 +64,7 @@ module Georgia
     def update_links_attributes ancestry_tree
       return unless ancestry_tree
       ancestry_attributes(ancestry_tree).each do |k,v|
-        params[:menu][:links_attributes][k].merge!(v)
+        params[:menu][:links_attributes][k].merge!(v) unless k.nil?
       end
     end
 
