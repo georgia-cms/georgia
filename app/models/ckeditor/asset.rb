@@ -13,7 +13,7 @@ class Ckeditor::Asset < ActiveRecord::Base
   mount_uploader :data, Ckeditor::AttachmentFileUploader, mount_on: :data_file_name
 
   validates :data, presence: true
-  attr_accessible :data
+  attr_accessible :data if needs_attr_accessible?
 
   paginates_per 15
 

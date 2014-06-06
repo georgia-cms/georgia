@@ -8,7 +8,7 @@ module Georgia
       included do
 
         has_ancestry orphan_strategy: :rootify
-        attr_accessible :parent_id
+        attr_accessible :parent_id if needs_attr_accessible?
 
       end
 

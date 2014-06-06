@@ -8,7 +8,7 @@ module Georgia
       included do
 
         acts_as_taggable_on :tags
-        attr_accessible :tag_list
+        attr_accessible :tag_list if needs_attr_accessible?
 
       end
 

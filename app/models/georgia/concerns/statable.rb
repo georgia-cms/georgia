@@ -7,7 +7,8 @@ module Georgia
 
       included do
 
-        attr_accessible :state
+        attr_accessible :state if needs_attr_accessible?
+        
         state_machine :state, initial: :draft do
 
           state :published
