@@ -30,10 +30,7 @@ module Georgia
       content_tag(:thead) do
         content_tag(:tr) do
           content_tag(:th, 'Actions') +
-          content_tag(:th, 'Guest', class: 'role') +
-          content_tag(:th, 'Contributor', class: 'role') +
-          content_tag(:th, 'Editor', class: 'role') +
-          content_tag(:th, 'Admin', class: 'role')
+          Georgia.roles.map{|role| content_tag(:th, role.to_s.titleize, class: 'role') }.join.html_safe
         end
       end
     end
@@ -46,10 +43,7 @@ module Georgia
       @actions.map do |action, permissions|
         content_tag(:tr) do
           content_tag(:td, action.to_s.titleize) +
-          permission_cell(permissions[:guest]) +
-          permission_cell(permissions[:contributor]) +
-          permission_cell(permissions[:editor]) +
-          permission_cell(permissions[:admin])
+          Georgia.roles.map{|role| permission_cell(permissions[role.to_sym]) }.join.html_safe
         end
       end.join.html_safe
     end
