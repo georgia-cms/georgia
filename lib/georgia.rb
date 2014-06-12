@@ -2,6 +2,7 @@ require "georgia/version"
 require "georgia/paths"
 require "georgia/engine"
 require "georgia/uploader/adapter"
+require "georgia/permissions"
 
 module Georgia
 
@@ -19,6 +20,9 @@ module Georgia
 
   mattr_accessor :storage
   @@storage = :file
+
+  mattr_accessor :permissions
+  @@permissions = Georgia::Permissions::DEFAULT_PERMISSIONS
 
   def self.setup
     yield self
