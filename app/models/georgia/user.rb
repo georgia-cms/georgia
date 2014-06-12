@@ -2,12 +2,8 @@ module Georgia
   class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-    belongs_to :role
-
-    scope :admins,  -> { includes(:role).where(georgia_roles: {name: 'Admin'}).first }
-    scope :editors, -> { includes(:role).where(georgia_roles: {name: 'Editor'}).first }
-
-    delegate :name, to: :role, prefix: true
+    has_many :role_assignments
+    has_many :roles, through: :role_assignments
 
     def name
       [first_name, last_name].join(' ')

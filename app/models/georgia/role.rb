@@ -1,8 +1,10 @@
 module Georgia
-	class Role < ActiveRecord::Base
+  class Role < ActiveRecord::Base
 
-		has_many :users
+    has_many :role_assignments
+    has_many :users, through: :role_assignments
 
-		validates :name, presence: true, uniqueness: true
-	end
+    validates :name, presence: true, uniqueness: true
+
+  end
 end
