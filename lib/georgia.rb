@@ -27,12 +27,19 @@ module Georgia
   mattr_accessor :roles
   @@roles = %w(admin editor contributor guest)
 
-  def self.setup
-    yield self
-  end
-
   class << self
     alias :header :navigation
+
+    def setup
+      yield self
+      verify_data_integrity
+    end
+
+    def verify_data_integrity
+      Georgia.roles.each do |role_name|
+        Georgia::Role.where(name: role_name).first_or_create
+      end
+    end
 
     def header= value
       ActiveSupport::Deprecation.warn("config.header is deprecated, use config.navigation instead.", caller)
