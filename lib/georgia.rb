@@ -24,6 +24,9 @@ module Georgia
   mattr_accessor :permissions
   @@permissions = Georgia::Permissions::DEFAULT_PERMISSIONS
 
+  mattr_accessor :roles
+  @@roles = %w(admin editor contributor guest)
+
   def self.setup
     yield self
   end
