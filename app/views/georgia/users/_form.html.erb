@@ -27,7 +27,7 @@
     </p>
   </div>
   <div class="fieldset-fields">
-    <%= f.association :role, label: false %>
+    <%= f.association :roles, as: :check_boxes, collection: georgia_roles_collection, label: false %>
   </div>
 </fieldset>
 <fieldset>
