@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mousetrap-rails'
   s.add_dependency 'elasticsearch-rails'
   s.add_dependency 'elasticsearch-model'
+  s.add_dependency 'pundit'
 
   s.add_development_dependency "sqlite3"
 end
