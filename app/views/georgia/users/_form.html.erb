@@ -19,7 +19,12 @@
 </fieldset>
 <fieldset>
   <div class="fieldset-help">
-    <legend>Roles</legend>
+    <legend>Role</legend>
+    <p class="hint">
+      <%= icon_tag('info-circle') %>
+      Users have different abilities depending on the access level (role) they are granted.
+      <%= link_to 'Learn more', permissions_users_path %>
+    </p>
   </div>
   <div class="fieldset-fields">
     <%= f.association :role, label: false %>

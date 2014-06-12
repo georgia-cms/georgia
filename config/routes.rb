@@ -50,7 +50,9 @@ Georgia::Engine.routes.draw do
       delete '/', to: :destroy
     end
   end
-  resources :users
+  resources :users do
+    get 'permissions', on: :collection
+  end
   resources :menus, path: 'navigation'
   resources :links, only: [:create, :show]
   resources :widgets
