@@ -51,7 +51,7 @@ module Georgia
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role_id, :receives_notifications)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role_ids, :receives_notifications)
     end
 
   end
