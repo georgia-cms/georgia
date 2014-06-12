@@ -9,5 +9,9 @@ module Georgia
       PermissionTablePresenter.new(self, section, actions).to_s
     end
 
+    def georgia_roles_collection
+      @georgia_role_collection ||= Georgia::Role.pluck(:name, :id).map{|name, id| [name.titleize, id]}
+    end
+
   end
 end
