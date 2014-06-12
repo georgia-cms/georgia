@@ -53,14 +53,14 @@ module Georgia
     end
 
     def permission_icon permission
-      icon = case permission
+      icon_tag(
+        case permission
         when true then 'check'
         when false then 'times'
         when :partial then 'minus'
-        else
-          'question'
+        else 'times'
         end
-      icon_tag(icon)
+      )
     end
 
     def permission_class permission
@@ -68,6 +68,7 @@ module Georgia
       when true then 'success'
       when false then 'danger'
       when :partial then 'warning'
+      else 'danger'
       end
     end
 
