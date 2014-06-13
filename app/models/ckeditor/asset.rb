@@ -39,6 +39,10 @@ class Ckeditor::Asset < ActiveRecord::Base
     @extension ||= data_content_type.gsub(/.*\/(.*)/, '\1')
   end
 
+  def self.policy_class
+    Georgia::MediaPolicy
+  end
+
   SIZE_RANGE = {
     '< 25 KB' => 0..25,
     '25 KB to 100 KB' => 25..100,

@@ -3,27 +3,29 @@ module Georgia
 
     include Georgia::Concerns::Helpers
 
-    # load_and_authorize_resource class: Georgia::Page
-
     before_filter :prepare_new_page, only: [:search]
     before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :draft]
 
     def show
+      authorize @page
       redirect_to [:edit, @page]
     end
 
     # Edit current revision
     def edit
+      authorize @page
       redirect_to [:edit, @page, @page.current_revision]
     end
 
     # Edit current page
     def settings
+      authorize @page
     end
 
     # Create page, load first current revision and js redirect to revisions#edit
     def create
       @page = model.new(slug: params[:title].try(:parameterize))
+      authorize @page
       if @page.save
         @page.revisions.create(template: Georgia.templates.first) do |rev|
           rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
@@ -43,6 +45,7 @@ module Georgia
 
     # Update page settings
     def update
+      authorize @page
       model.update_tree(params[:page_tree]) if params[:page_tree]
       clean_textext_tag_list_format if params[:page][:tag_list].present?
       if @page.update(page_params)
@@ -69,6 +72,7 @@ module Georgia
     def destroy
       back_url = url_for(controller: controller_name, action: :search)
       @pages = model.where(id: params[:id])
+      authorize @pages
       if @pages.destroy_all
         respond_to do |format|
           format.html { redirect_to back_url, notice: "#{instance_name.humanize} successfully deleted." }
@@ -85,6 +89,7 @@ module Georgia
     # Publishes multiple pages from table checkboxes
     def publish
       @pages = model.where(id: params[:id])
+      authorize @pages
 
       unless @pages.map(&:publish).include?(false)
         respond_to do |format|
@@ -102,6 +107,7 @@ module Georgia
     # Unpublishes the page
     def unpublish
       @pages = model.where(id: params[:id])
+      authorize @pages
 
       unless @pages.map(&:unpublish).include?(false)
         respond_to do |format|
@@ -128,10 +134,12 @@ module Georgia
     end
 
     def index
+      authorize Georgia::Page
       redirect_to [:search, model]
     end
 
     def search
+      authorize Georgia::Page
       session[:search_params] = params
       search_conditions = model.search_conditions(params)
       @search = model.search(search_conditions).page(params[:page])

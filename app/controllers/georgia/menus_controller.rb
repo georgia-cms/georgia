@@ -3,14 +3,17 @@ module Georgia
 
     def index
       @menus = Menu.all
+      authorize @menus
     end
 
     def new
       @menu = Menu.new
+      authorize @menu
     end
 
     def create
       @menu = Menu.new(menu_params)
+      authorize @menu
       if @menu.save
         respond_to do |format|
           format.html { redirect_to [:edit, @menu], notice: "#{@menu.title} was successfully created." }
@@ -25,16 +28,20 @@ module Georgia
     end
 
     def show
-      redirect_to edit_menu_path(params[:id])
+      @menu = Menu.find(params[:id])
+      authorize @menu
+      redirect_to [:edit, @menu]
     end
 
     def edit
       @menu = Menu.find(params[:id])
+      authorize @menu
       @links = @menu.links.roots
     end
 
     def update
       @menu = Menu.find(params[:id])
+      authorize @menu
       update_links_attributes(params[:menu].delete(:ancestry))
       update_links_menu_id
       if @menu.update(menu_params)
@@ -52,6 +59,7 @@ module Georgia
 
     def destroy
       @menu = Menu.find(params[:id])
+      authorize @menu
       @menu.destroy
 
       redirect_to menus_url

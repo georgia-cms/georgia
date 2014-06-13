@@ -1,6 +1,10 @@
 module Georgia
   class ApplicationController < ActionController::Base
 
+    include Pundit
+    after_action :verify_authorized
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
     before_filter :authenticate_user!
     layout :layout_by_resource
 
@@ -19,6 +23,11 @@ module Georgia
 
     def layout_by_resource
       devise_controller? ? "georgia/devise" : "georgia/application"
+    end
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || root_path)
     end
 
   end

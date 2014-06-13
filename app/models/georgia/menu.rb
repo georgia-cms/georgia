@@ -6,5 +6,8 @@ module Georgia
     has_many :links, dependent: :destroy
     accepts_nested_attributes_for :links, allow_destroy: true
 
+    def self.policy_class
+      Georgia::NavigationPolicy
+    end
   end
 end

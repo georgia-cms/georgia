@@ -7,13 +7,16 @@ module Georgia
 
     def index
       @revisions = @page.revisions.order('created_at DESC').reject{|r| r == @page.current_revision}
+      authorize @revisions
     end
 
     def show
+      authorize @revision
       redirect_to [:edit, @page, @revision]
     end
 
     def edit
+      authorize @revision
       locale = params.fetch(:locale, current_locale)
       @slides = @revision.slides.ordered.with_locale(locale)
       @ui_sections = Georgia::UiSection.all
@@ -21,6 +24,7 @@ module Georgia
 
     # Stores a copy of the current revision before updating
     def update
+      authorize @revision
       if UpdateRevision.new(self, @page, @revision, revision_params).call
         redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
       else
@@ -29,6 +33,7 @@ module Georgia
     end
 
     def destroy
+      authorize @revision
       @revision.destroy
       redirect_to page_revisions_path(@page), notice: "#{@revision.title or 'Revision'} was successfully deleted."
     end
@@ -36,26 +41,31 @@ module Georgia
     # Sends revision to main_app router
     # FIXME: bypass this once Georgia will be loaded on root
     def preview
+      authorize @page
       redirect_to preview_url
     end
 
     def review
+      authorize @revision
       @revision.review
       notify("#{current_user.name} is asking you to review #{@revision.title}.", edit_page_revision_path(@page, @revision, only_path: false))
       redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
     end
 
     def approve
+      authorize @revision
       @revision.approve
       redirect_to @page, notice: "#{current_user.name} has successfully approved and published #{@revision.title}."
     end
 
     def decline
+      authorize @revision
       @revision.decline
       redirect_to [:edit, @page, @revision], notice: "#{current_user.name} has successfully published #{@revision.title}."
     end
 
     def restore
+      authorize @revision
       @revision.restore
       redirect_to @page, notice: "#{current_user.name} has successfully published #{@revision.title}."
     end

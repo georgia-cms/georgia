@@ -22,5 +22,9 @@ module Georgia
     def slug
       @slug ||= text.match(/([\w-]*)$/)[0]
     end
+
+    def self.policy_class
+      Georgia::NavigationPolicy
+    end
   end
 end

@@ -13,6 +13,7 @@ module Georgia
     require 'carrierwave'
     require 'elasticsearch/rails'
     require 'elasticsearch/model'
+    require 'pundit'
     require 'draper'
     require 'ancestry'
     require 'acts-as-taggable-on'
@@ -25,5 +26,6 @@ module Georgia
     require 'select2-rails'
     require 'shadowbox-rails'
     require 'mousetrap-rails'
+
   end
 end

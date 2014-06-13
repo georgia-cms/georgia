@@ -1,3 +1,3 @@
-<%# if can? :index, Georgia::Menu %>
+<% if Georgia::NavigationPolicy.new(current_user, Georgia::Menu).index? %>
   <%= sidebar_navigation_link 'Navigation', georgia.menus_path, controller: 'menus', icon: 'align-justify' %>
-<%# end -%>
+<% end -%>

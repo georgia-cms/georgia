@@ -22,7 +22,7 @@ module Georgia
   @@storage = :file
 
   mattr_accessor :permissions
-  @@permissions = Georgia::Permissions::DEFAULT_PERMISSIONS
+  @@permissions = ActiveSupport::HashWithIndifferentAccess.new(Georgia::Permissions::DEFAULT_PERMISSIONS)
 
   mattr_accessor :roles
   @@roles = %w(admin editor contributor guest)
