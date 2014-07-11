@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'elasticsearch-model'
   s.add_dependency 'pundit'
   s.add_dependency 'public_activity', '~> 1.4'
+  s.add_dependency 'icon_tag'
 
   s.add_development_dependency "sqlite3"
 end

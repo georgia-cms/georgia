@@ -7,19 +7,8 @@ module Georgia
       "//gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
     end
 
-    def icon_tag icon_name, options={}
-      options[:class] ||= ''
-      options[:class] << "fa fa-#{icon_name}"
-      content_tag :i, nil, options
-    end
-
     def caret_tag
       content_tag :span, nil, class: 'caret'
-    end
-
-    def spinner_tag options={}
-      options[:class] = options.fetch(:class, 'spinner')
-      content_tag :div, icon_tag('spinner fa-spin fa-4x'), options
     end
 
     def link_to_back url=:back

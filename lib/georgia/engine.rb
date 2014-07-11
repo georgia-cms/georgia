@@ -26,6 +26,7 @@ module Georgia
     require 'select2-rails'
     require 'shadowbox-rails'
     require 'mousetrap-rails'
+    require 'icon_tag'
     require 'public_activity'
 
   end
