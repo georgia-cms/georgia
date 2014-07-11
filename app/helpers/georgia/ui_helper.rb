@@ -44,13 +44,17 @@ module Georgia
       session[:welcomed] || !(session[:welcomed] = true)
     end
 
+    def button_to_settings
+      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-default'
+    end
+
+    def button_to_edit
+      link_to "#{icon_tag('pencil')} Edit".html_safe, [:edit, @page], class: 'btn btn-info'
+    end
+
     def page_actions_tag page, revision=nil, options={}
       revision ||= page.current_revision
       Georgia::PageActionsPresenter.new(self, page, revision, options)
-    end
-
-    def button_to_settings
-      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-default'
     end
 
     def page_url_minus_slug

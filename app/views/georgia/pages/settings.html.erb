@@ -7,6 +7,7 @@
       <h1 class='title-truncated'><%= @page.title %></h1>
     </div>
     <div class="header-actions">
+      <%= button_to_edit %>
       <%= page_actions_tag(@page) %>
       <%# FIXME: Add permission %>
       <%= button_to_save %>

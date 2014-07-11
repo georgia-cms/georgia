@@ -19,7 +19,7 @@ module Georgia
 
     def action_list
       html = ActiveSupport::SafeBuffer.new
-      html << content_tag(:li, link_to_edit) # if can?(:edit, page)
+      # html << content_tag(:li, link_to_edit) # if can?(:edit, page)
       # html << content_tag(:li, link_to_settings) if can?(:settings, page)
       html << content_tag(:li, link_to_preview) # if can?(:preview, page)
       html << content_tag(:li, link_to_copy) # if can?(:copy, page)
