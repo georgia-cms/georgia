@@ -70,7 +70,7 @@ module Georgia
     end
 
     def link_to_available_locales
-      return unless I18n.available_locales.any?
+      return unless I18n.available_locales.length > 1
       links = I18n.available_locales.map do |locale|
         content_tag(:li, link_to(t("georgia.#{locale}"), locale: locale ))
       end
