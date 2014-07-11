@@ -1,7 +1,7 @@
 //= require jquery
-//= require jquery.ui.core
-//= require jquery.ui.sortable
-//= require jquery.ui.tooltip
+//= require jquery-ui/core
+//= require jquery-ui/sortable
+//= require jquery-ui/tooltip
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require select2
