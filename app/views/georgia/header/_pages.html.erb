@@ -1,3 +1,3 @@
 <% if Georgia::PagePolicy.new(current_user, Georgia::Page).search? %>
-  <%= sidebar_navigation_link 'Pages', georgia.search_pages_path, controller: 'pages', icon: 'file' %>
+  <%= sidebar_navigation_link 'Pages', georgia.search_pages_path, icon: 'file', active: (controller_name == 'pages' or (controller_name == 'revisions' and @revision.revisionable_type == 'Georgia::Page')) %>
 <% end -%>

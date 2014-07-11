@@ -11,7 +11,7 @@ module Georgia
       @url = url
       @options = options
       @icon = options.fetch(:icon, 'bookmark-o')
-      @active = options.fetch(:active, get_active_state_from_controller)
+      @active = options.fetch(:active) { get_active_state_from_controller }
       @sublink = options.fetch(:sublink, false)
       super
     end
