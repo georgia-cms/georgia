@@ -33,6 +33,12 @@ module Georgia
       media_user_permissions(:download_media_assets).include?(true)
     end
 
+    # API calls
+
+    def pictures?
+      index?
+    end
+
     private
 
     def media_permissions

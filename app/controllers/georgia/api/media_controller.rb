@@ -3,6 +3,7 @@ module Georgia
     class MediaController < Georgia::ApplicationController
 
       def pictures
+        authorize Ckeditor::Asset
         search_conditions = Georgia::MediaSearch.new(params).definition
         @search = Ckeditor::Picture.search(search_conditions).page(params[:page]).per(params.fetch(:per, 12))
         @pictures = Ckeditor::PictureDecorator.decorate_collection(@search.records)
