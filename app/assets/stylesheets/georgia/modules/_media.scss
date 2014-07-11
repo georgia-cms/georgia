@@ -39,6 +39,16 @@
       margin-bottom: 15px;
     }
   }
+  .spinner {
+    position: relative;
+    min-height: 400px;
+    width: 100%;
+    i {
+      position: absolute;
+      top: 40%;
+      left: 47%;
+    }
+  }
 }
 
 .form-asset-replace {

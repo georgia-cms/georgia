@@ -44,7 +44,7 @@ class @MediaLibrary
     event.preventDefault()
 
   query: => @search.val()
-  spinnerTag: -> "<div class='spinner'><i class='fa fa-spinner fa-4x'></i></div>"
+  spinnerTag: -> "<div class='spinner'><i class='fa fa-spin fa-spinner fa-4x'></i></div>"
 
 jQuery ->
   # If the media library modal is loaded,
