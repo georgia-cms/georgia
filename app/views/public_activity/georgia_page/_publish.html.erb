@@ -1,0 +1,15 @@
+<div id='activity_<%= activity.id %>' class="activity media">
+  <%= image_tag(avatar_url(activity.owner.email), alt: '', class: 'media-object pull-left') %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= activity.owner.name %> has published page <em><%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
+    </h4>
+    <p>
+      <small>
+        <time class='text-muted js-time-ago' datetime="<%= activity.created_at %>">
+          About <%= time_ago_in_words(activity.created_at) %> ago
+        </time>
+      </small>
+    </p>
+  </div>
+</div>

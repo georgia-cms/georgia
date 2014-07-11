@@ -1,6 +1,8 @@
 module Georgia
   class Revision < ActiveRecord::Base
 
+    include PublicActivity::Common
+
     include Georgia::Concerns::Contentable
 
     enum status: [ :draft, :review, :published, :revision ]

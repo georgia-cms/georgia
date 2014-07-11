@@ -12,7 +12,13 @@
     </div>
   <% end -%>
   <div class="row">
-    <%= render 'georgia/dashboard/panels/messages' if @messages %>
-    <%= render 'georgia/dashboard/panels/reviews' if @awaiting_revisions %>
+    <div class="col-md-7">
+      <%= render_activities @activities %>
+      <%= paginate @activities %>
+    </div>
+    <div class="col-md-5">
+      <%= render 'georgia/dashboard/panels/reviews' if @awaiting_revisions %>
+      <%= render 'georgia/dashboard/panels/messages' if @messages %>
+    </div>
   </div>
 </div>

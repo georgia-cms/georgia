@@ -1,24 +1,22 @@
-<div class="col-md-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Awaiting Review</h3>
-    </div>
-    <div class="panel-body">
-      <% if @awaiting_revisions and @awaiting_revisions.any? %>
-        <div class="list-group">
-          <% @awaiting_revisions.each do |revision| %>
-              <%= link_to([:edit, revision.revisionable, revision], class: 'list-group-item') do %>
-                <h4 class="list-group-item-heading">
-                  <%= revision.title %>
-                  <span class="badge pull-right">id:<%= revision.id %></span>
-                </h4>
-                <p class="list-group-item-text"><%= truncate(strip_tags(revision.text), length: 120, separator: ' ') %></p>
-              <% end -%>
-          <% end -%>
-        </div>
-      <% else -%>
-        <h5>Good Job! Nothing to review.</h5>
-      <% end -%>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Awaiting Review</h3>
+  </div>
+  <div class="panel-body">
+    <% if @awaiting_revisions and @awaiting_revisions.any? %>
+      <div class="list-group">
+        <% @awaiting_revisions.each do |revision| %>
+            <%= link_to([:edit, revision.revisionable, revision], class: 'list-group-item') do %>
+              <h4 class="list-group-item-heading">
+                <%= revision.title %>
+                <span class="badge pull-right">id:<%= revision.id %></span>
+              </h4>
+              <p class="list-group-item-text"><%= truncate(strip_tags(revision.text), length: 120, separator: ' ') %></p>
+            <% end -%>
+        <% end -%>
+      </div>
+    <% else -%>
+      <h5>Good Job! Nothing to review.</h5>
+    <% end -%>
   </div>
 </div>

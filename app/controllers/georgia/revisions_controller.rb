@@ -6,8 +6,9 @@ module Georgia
     before_filter :prepare_content, only: [:edit, :update]
 
     def index
-      @revisions = @page.revisions.order('created_at DESC').reject{|r| r == @page.current_revision}
+      @revisions = @page.revisions.order('created_at DESC')
       authorize @revisions
+      @revisions = @revisions.reject{|r| r == @page.current_revision} if @page.current_revision
     end
 
     def show
@@ -26,6 +27,7 @@ module Georgia
     def update
       authorize @revision
       if UpdateRevision.new(self, @page, @revision, revision_params).call
+        CreateActivity.new(@revision, :update, owner: current_user).call
         redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
       else
         redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
@@ -34,8 +36,11 @@ module Georgia
 
     def destroy
       authorize @revision
-      @revision.destroy
-      redirect_to page_revisions_path(@page), notice: "#{@revision.title or 'Revision'} was successfully deleted."
+      if @revision.destroy
+        redirect_to page_revisions_path(@page), notice: "#{@revision.title or 'Revision'} was successfully deleted."
+      else
+        redirect_to page_revisions_path(@page), alert: "Oups! Something went wrong."
+      end
     end
 
     # Sends revision to main_app router
@@ -47,27 +52,43 @@ module Georgia
 
     def review
       authorize @revision
-      @revision.review
-      notify("#{current_user.name} is asking you to review #{@revision.title}.", edit_page_revision_path(@page, @revision, only_path: false))
-      redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
+      if @revision.review
+        CreateActivity.new(@revision, :review, owner: current_user).call
+        notify("#{current_user.name} is asking you to review #{@revision.title}.", edit_page_revision_path(@page, @revision, only_path: false))
+        redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
+      else
+        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+      end
     end
 
     def approve
       authorize @revision
-      @revision.approve
-      redirect_to @page, notice: "#{current_user.name} has successfully approved and published #{@revision.title}."
+      if @revision.approve
+        CreateActivity.new(@revision, :approve, owner: current_user).call
+        redirect_to @page, notice: "#{current_user.name} has successfully approved and published #{@revision.title}."
+      else
+        redirect_to @page, alert: "Oups! Something went wrong."
+      end
     end
 
     def decline
       authorize @revision
-      @revision.decline
-      redirect_to [:edit, @page, @revision], notice: "#{current_user.name} has successfully published #{@revision.title}."
+      if @revision.decline
+        CreateActivity.new(@revision, :decline, owner: current_user).call
+        redirect_to [:edit, @page, @revision], notice: "#{current_user.name} has successfully declined a review for #{@revision.title}."
+      else
+        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+      end
     end
 
     def restore
       authorize @revision
-      @revision.restore
-      redirect_to @page, notice: "#{current_user.name} has successfully published #{@revision.title}."
+      if @revision.restore
+        CreateActivity.new(@revision, :restore, owner: current_user).call
+        redirect_to @page, notice: "#{current_user.name} has successfully restored a revision for #{@revision.title}."
+      else
+        redirect_to page_revisions_path(@page), alert: "Oups! Something went wrong."
+      end
     end
 
     private
@@ -101,7 +122,7 @@ module Georgia
     end
 
     def revision_params
-      params.require(:revision).permit(:template, contents_attributes: [:text, :title])
+      params.require(:revision).permit(:template, contents_attributes: [:text, :title, :locale, :excerpt, :keyword_list, :image_id, :id])
     end
 
   end

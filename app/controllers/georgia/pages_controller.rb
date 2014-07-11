@@ -31,6 +31,7 @@ module Georgia
           rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
         end
         @page.update_attribute(:current_revision, @page.revisions.first)
+        CreateActivity.new(@page, :create, owner: current_user).call
         respond_to do |format|
           format.html { redirect_to edit_page_revision_path(@page, @page.current_revision), notice: "#{@page.title} was successfully created." }
           format.js { render layout: false }
@@ -49,6 +50,7 @@ module Georgia
       model.update_tree(params[:page_tree]) if params[:page_tree]
       clean_textext_tag_list_format if params[:page][:tag_list].present?
       if @page.update(page_params)
+        CreateActivity.new(@page, :update, owner: current_user).call
         respond_to do |format|
           format.html { redirect_to [:settings, @page], notice: "#{@page.title} was successfully updated." }
           format.js { head :ok }
@@ -63,7 +65,9 @@ module Georgia
 
     # Creates a copy of a page and redirects to its revisions#edit
     def copy
+      authorize @page
       @copy = @page.copy
+      CreateActivity.new(@page, :copy, owner: current_user).call
       redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "#{instance_name.humanize} successfully copied. Do not forget to change your url"
     end
 
@@ -92,6 +96,9 @@ module Georgia
       authorize @pages
 
       unless @pages.map(&:publish).include?(false)
+        @pages.each do |page|
+          CreateActivity.new(page, :publish, owner: current_user).call
+        end
         respond_to do |format|
           format.html { redirect_to :back, notice: "Successfully published." }
           format.js { head :ok }
@@ -110,6 +117,9 @@ module Georgia
       authorize @pages
 
       unless @pages.map(&:unpublish).include?(false)
+        @pages.each do |page|
+          CreateActivity.new(page, :unpublish, owner: current_user).call
+        end
         respond_to do |format|
           format.html { redirect_to :back, notice: "Successfully unpublished." }
           format.js { head :ok }

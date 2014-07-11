@@ -1,6 +1,8 @@
 module Georgia
   class Page < ActiveRecord::Base
 
+    include PublicActivity::Common
+
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
 
