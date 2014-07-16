@@ -8,7 +8,7 @@
         <div class="input-group-btn">
           <button class="btn btn-default"><%= icon_tag('search') %></button>
         </div>
-        <%= text_field_tag :query, params[:query], class: 'form-control input-search', placeholder: 'Search' %>
+        <%= text_field_tag :query, params[:query], class: 'form-control input-search', placeholder: 'Search', autofocus: true %>
       </div>
     <% end -%>
   </div>
