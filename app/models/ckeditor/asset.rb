@@ -51,4 +51,22 @@ class Ckeditor::Asset < ActiveRecord::Base
     '> 1 MB' => 1000..999999
   }
 
+  settings analysis: {
+    analyzer: {
+      'index_ngram_analyzer'  => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase', 'my_ngram_filter']},
+      'search_analyzer'       => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase']}
+    },
+    filter: {
+      'my_ngram_filter' => {type: 'nGram', min_gram: 2, max_gram: 10, token_chars: [ "letter", "digit", "whitespace", "punctuation", "symbol" ]}
+    }
+  } do
+    mapping index_analyzer: 'index_ngram_analyzer', search_analyzer: 'search_analyzer'
+  end
+
+  def as_indexed_json options={}
+    self.as_json(
+      only: [:id, :data_file_name, :updated_at, :type],
+      methods: [:tag_list]
+    )
+  end
 end
