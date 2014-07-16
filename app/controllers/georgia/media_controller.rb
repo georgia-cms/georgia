@@ -10,7 +10,7 @@ module Georgia
       @asset = Ckeditor::Asset.new
       authorize Ckeditor::Asset
       search_conditions = Georgia::MediaSearch.new(params).definition
-      @search = Ckeditor::Picture.search(search_conditions).page(params[:page])
+      @search = Ckeditor::Asset.search(search_conditions).page(params[:page])
       @assets = Ckeditor::AssetDecorator.decorate_collection(@search.records)
     end
 
@@ -39,7 +39,7 @@ module Georgia
     def update
       @asset = Ckeditor::Asset.find(params[:id])
       authorize @asset
-      if @asset.update_attributes(params[:asset])
+      if @asset.update_attributes(asset_params)
         respond_to do |format|
           format.html { redirect_to edit_media_path(@asset), notice: "Asset was successfully updated." }
           format.js { head :ok }
@@ -79,6 +79,12 @@ module Georgia
       authorize @files
       zip_file = Georgia::CompressFiles.new(@files).file
       send_file zip_file.path, type: "application/zip", disposition: 'attachment', filename: zip_file.filename
+    end
+
+    private
+
+    def asset_params
+      params.require(:asset).permit(:tag_list)
     end
 
   end
