@@ -32,6 +32,25 @@ module Georgia
     delegate :template, :content, :slides, :widgets, to: :current_revision, allow_nil: true
     delegate :draft?, :review?, :revision?, :published?, to: :current_revision, allow_nil: true
 
+    settings analysis: {
+      analyzer: {
+        'index_ngram_analyzer'  => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase', 'my_ngram_filter']},
+        'search_analyzer'       => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase']}
+      },
+      filter: {
+        'my_ngram_filter' => {type: 'nGram', min_gram: 2, max_gram: 10, token_chars: [ "letter", "digit", "whitespace", "punctuation", "symbol" ]}
+      }
+    } do
+      mapping index_analyzer: 'index_ngram_analyzer', search_analyzer: 'search_analyzer'
+    end
+
+    def as_indexed_json options={}
+      self.as_json(
+        only: [:id, :updated_at, :slug, :type, :template],
+        methods: [:title, :text, :excerpt, :keyword_list, :tag_list]
+      )
+    end
+
     # FIXME: Should not be part of this model
     def draft
       Georgia::Clone.new(self).draft
