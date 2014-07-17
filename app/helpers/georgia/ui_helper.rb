@@ -34,10 +34,12 @@ module Georgia
     end
 
     def button_to_settings
+      return unless policy(@page).settings?
       link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-default'
     end
 
     def button_to_edit
+      return unless policy(@page).update?
       link_to "#{icon_tag('pencil')} Edit".html_safe, [:edit, @page], class: 'btn btn-info'
     end
 

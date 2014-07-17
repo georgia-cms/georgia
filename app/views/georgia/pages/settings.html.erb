@@ -7,10 +7,9 @@
       <h1 class='title-truncated'><%= @page.title %></h1>
     </div>
     <div class="header-actions">
-      <%= button_to_edit %>
+      <%= button_to_edit if policy(@page).edit? %>
       <%= page_actions_tag(@page) %>
-      <%# FIXME: Add permission %>
-      <%= button_to_save %>
+      <%= button_to_save if policy(@page).update? %>
     </div>
   </header>
   <div class='body-main'>
@@ -75,8 +74,7 @@
     </fieldset>
     <footer>
       <hr />
-      <%# FIXME: Add permission %>
-      <%= link_to_delete @page %>
+      <%= link_to_delete @page if policy(@page).destroy? %>
     </footer>
   </div>
 <% end %>

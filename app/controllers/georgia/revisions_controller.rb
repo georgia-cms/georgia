@@ -8,7 +8,6 @@ module Georgia
     def index
       @revisions = @page.revisions.order('created_at DESC')
       authorize @revisions
-      @revisions = @revisions.reject{|r| r == @page.current_revision} if @page.current_revision
     end
 
     def show

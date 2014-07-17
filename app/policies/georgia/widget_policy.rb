@@ -32,11 +32,11 @@ module Georgia
     private
 
     def manage?
-      widget_permissions.include?(true)
+      user_permissions(widget_permissions, :manage_widgets).include?(true)
     end
 
     def widget_permissions
-      Georgia.permissions[:content][:manage_widgets]
+      Georgia.permissions[:content]
     end
   end
 end

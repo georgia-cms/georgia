@@ -15,7 +15,7 @@
       <div class="header-actions">
         <%= button_to_settings %>
         <%= page_actions_tag(@page, @revision) %>
-        <%= button_to_save %>
+        <%= button_to_save if policy(@revision).update? %>
       </div>
     </header>
     <section class="body-main">
@@ -25,8 +25,7 @@
       <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
       <footer>
         <hr />
-        <%# FIXME: Add permission %>
-        <%= link_to_delete @page %>
+        <%= link_to_delete @page if policy(@page).destroy? %>
       </footer>
     </section>
   <% end -%>

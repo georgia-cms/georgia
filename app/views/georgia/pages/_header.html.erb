@@ -13,12 +13,10 @@
     <% end -%>
   </div>
   <div class="header-actions">
-    <%# FIXME: Add permission %>
-    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#page_form'} %>
+    <%= link_to "#{icon_tag('plus')} Add new".html_safe, '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#page_form'} if policy(Georgia::Page).create? %>
   </div>
 </header>
 
 <%= content_for :footer do %>
-  <%# FIXME: Add permission %>
-  <%= render 'georgia/shared/modals/page' %>
+  <%= render 'georgia/shared/modals/page' if policy(Georgia::Page).create? %>
 <% end -%>
