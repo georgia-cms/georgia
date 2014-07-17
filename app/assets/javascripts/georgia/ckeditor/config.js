@@ -1,7 +1,7 @@
 CKEDITOR.config.ignoreEmptyParagraph = false;
 CKEDITOR.config.allowedContent = true;
 CKEDITOR.config.height = 400;
-CKEDITOR.config.width = '95.5%';
+CKEDITOR.config.width = '100%';
 CKEDITOR.config.toolbarStartupExpanded = false;
 CKEDITOR.config.toolbarGroups = [
   { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },

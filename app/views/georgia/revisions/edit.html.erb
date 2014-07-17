@@ -19,10 +19,17 @@
       </div>
     </header>
     <section class="body-main">
-      <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
-      <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
-      <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
-      <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
+      <div class="row">
+        <div class="col-md-9">
+          <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
+          <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
+          <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
+          <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
+        </div>
+        <div class="col-md-3">
+          <%= render_activities(@activities) %>
+        </div>
+      </div>
       <footer>
         <hr />
         <%= link_to_delete @page if policy(@page).destroy? %>

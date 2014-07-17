@@ -2,7 +2,7 @@ fieldset {
   @include row;
   .fieldset-help { @include span-columns(2); }
   .fieldset-fields {
-    @include span-columns(8);
+    @include span-columns(10);
     .control-group {margin-bottom: 20px;}
   }
   legend { margin: 0 0 10px 0; }
