@@ -7,80 +7,71 @@
   <div class="row">
     <div class="col-md-9">
 
-      <h2>
-        <%= link_to @asset.filename, @asset.url %>
-        <% unless @asset.is_a?(Ckeditor::Picture) %>
-          <%= link_to icon_tag('link'), @asset.url, title: @asset.url, target: '_blank', class: 'btn btn-default' %>
-        <% end -%>
-      </h2>
+      <h2><%= @asset.filename %></h2>
 
       <% if @asset.is_a?(Ckeditor::Picture) %>
-        <div class="media-editable js-media-editable">
-          <div class="media-actions" style='display:none;'>
-            <%= link_to icon_tag('link'), @asset.url, class: 'btn btn-default btn--square', target: '_blank' %>
-            <%= simple_form_for @asset, as: :asset, url: media_path(@asset), html: {class: 'form-asset-replace'} do |f| %>
-              <span class="btn btn-primary btn-file-upload btn--square">
-                <span class='btn-file-upload-text'><%= icon_tag 'refresh' %> Replace</span>
-                <%= f.input_field :data, as: :file, class: 'input-file-upload js-replace-asset' %>
-              </span>
-            <% end -%>
-          </div>
+        <div class="media-editable">
           <%= image_tag @asset.url(:content), title: @asset.filename, class: 'media-image--inline' %>
         </div>
       <% end -%>
     </div>
     <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Information</h3>
-        </div>
-        <div class="panel-body">
-          <p>
-            <b>File Name</b>: <%= @asset.filename %><br />
-            <b>Content Type</b>: <%= @asset.data_content_type %><br />
-            <% if @asset.is_a?(Ckeditor::Picture) %>
-              <b>File Size</b>: <%= number_to_human_size(@asset.data_file_size) %><br />
-              <b>Width</b>: <%= @asset.width %>px<br />
-              <b>Height</b>: <%= @asset.height %>px<br />
-            <% end -%>
-            <b>Last updated: </b> <em><%= @asset.updated_at.strftime('%F') %></em>
-          </p>
-          <p>
-            <%= simple_form_for @asset, as: :asset, url: media_path(@asset) do |f| %>
-              <p>
-                <%= f.input :tag_list, input_html: {class: 'js-token-input'} %>
-              </p>
-              <%# FIXME: Add permission %>
-              <%= button_to_save %>
-              <%# FIXME: Add permission %>
-              <%= link_to_delete media_path(@asset) %>
-            <% end -%>
-          </p>
-          <% if @asset.is_a?(Ckeditor::Picture) %>
-            <div class="media-editable js-media-editable">
-              <%= simple_form_for @asset, as: :asset, url: media_path(@asset), html: {class: 'form-asset-replace'} do |f| %>
-                <span class="btn btn-primary btn-file-upload btn--square">
-                  <span class='btn-file-upload-text'><%= icon_tag 'refresh' %> Replace</span>
-                  <%= f.input_field :data, as: :file, class: 'input-file-upload js-replace-asset' %>
-                </span>
-              <% end -%>
-            </div>
-          <% end -%>
-        </div>
-      </div>
-      <% if @asset.is_a?(Ckeditor::Picture) %>
+      <%= simple_form_for @asset, as: :asset, url: media_path(@asset) do |f| %>
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Featured in <%= pluralize(@asset.pages.length, 'page') %></h3>
+            <h3 class="panel-title">Information</h3>
           </div>
           <div class="panel-body">
-            <ul>
-              <% @asset.pages.each do |page| %>
-                <li><%= link_to page.title, [:edit, page] %></li>
+            <p>
+              <b>File Name</b>: <%= @asset.filename %><br />
+              <b>Content Type</b>: <%= @asset.data_content_type %><br />
+              <% if @asset.is_a?(Ckeditor::Picture) %>
+                <b>File Size</b>: <%= number_to_human_size(@asset.data_file_size) %><br />
+                <b>Width</b>: <%= @asset.width %>px<br />
+                <b>Height</b>: <%= @asset.height %>px<br />
               <% end -%>
-            </ul>
+              <b>Last updated: </b> <em><%= @asset.updated_at.strftime('%F') %></em>
+            </p>
+            <p>
+              <%= link_to "#{icon_tag('link')} Link to original file".html_safe, @asset.url, title: @asset.url, target: '_blank', class: 'btn btn-default' %>
+            </p>
+            <% if @asset.is_a?(Ckeditor::Picture) and policy(@asset).update? %>
+              <div class="media-editable js-media-editable">
+                <%= simple_form_for @asset, as: :asset, url: media_path(@asset), html: {class: 'form-asset-replace'} do |f| %>
+                  <span class="btn btn-primary btn-file-upload">
+                    <span class='btn-file-upload-text'><%= icon_tag 'refresh' %> Replace File</span>
+                    <%= f.input_field :data, as: :file, class: 'input-file-upload js-replace-asset' %>
+                  </span>
+                <% end -%>
+              </div>
+            <% end -%>
           </div>
         </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Tags</h3>
+          </div>
+          <div class="panel-body">
+            <%= f.input :tag_list, label: false, input_html: {class: 'js-token-input'} %>
+          </div>
+        </div>
+        <% if @asset.is_a?(Ckeditor::Picture) %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Featured in <%= pluralize(@asset.pages.length, 'page') %></h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @asset.pages.each do |page| %>
+                  <li><%= link_to page.title, [:edit, page] %></li>
+                <% end -%>
+              </ul>
+            </div>
+          </div>
+        <% end -%>
+        <%= button_to_save if policy(@asset).update? %>
+        <%= link_to_delete media_path(@asset) if policy(@asset).destroy? %>
       <% end -%>
     </div>
   </div>
