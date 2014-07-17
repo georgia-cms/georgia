@@ -16,14 +16,18 @@ module Georgia
       post_process
     end
 
+    private
+
     def process
       add_fulltext_query_filter if query.present?
       add_sorting unless query.present?
     end
 
-    private
-
     def post_process
+    end
+
+    def add_filters_to_query filters
+      @definition[:query][:filtered][:filter][:bool][:must] = filters
     end
 
     def add_fulltext_query_filter
