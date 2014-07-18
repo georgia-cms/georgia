@@ -5,4 +5,11 @@ table {
   tr.is-selected td {
     background-color: $bg-header-main;
   }
+  td, th {
+    &.status {
+      width: 1px;
+      padding: 0 !important;
+      margin: 0;
+    }
+  }
 }
