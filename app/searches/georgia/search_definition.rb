@@ -26,7 +26,11 @@ module Georgia
     def post_process
     end
 
-    def add_filters_to_query filters
+    def filters
+      @filters ||= []
+    end
+
+    def add_filters_to_query
       @definition[:query][:filtered][:filter][:bool][:must] = filters
     end
 

@@ -6,3 +6,9 @@ ActsAsTaggableOn::Tag.class_eval do
     Georgia::ApiPolicy
   end
 end
+ActsAsTaggableOn::Tagging.class_eval do
+  after_save :touch_taggable
+  def touch_taggable
+    taggable.touch if taggable.present?
+  end
+end

@@ -19,7 +19,8 @@ module Georgia
     private
 
     def unmerged_params
-      params.merge(param => ((params[param] || []) - [text]))
+      facets = (params[param] || []) - [text]
+      facets.any? ? params.merge(param => facets) : params.except(param)
     end
   end
 end

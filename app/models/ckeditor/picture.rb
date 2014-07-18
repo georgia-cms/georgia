@@ -1,5 +1,8 @@
 class Ckeditor::Picture < Ckeditor::Asset
 
+  index_name 'ckeditor-assets'
+  document_type 'asset'
+
   mount_uploader :data, Ckeditor::PictureUploader, mount_on: :data_file_name
 
   has_many :contents, foreign_key: :image_id, class_name: Georgia::Content
