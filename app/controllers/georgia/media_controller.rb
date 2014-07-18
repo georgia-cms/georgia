@@ -40,15 +40,9 @@ module Georgia
       @asset = Ckeditor::Asset.find(params[:id])
       authorize @asset
       if @asset.update_attributes(asset_params)
-        respond_to do |format|
-          format.html { redirect_to edit_media_path(@asset), notice: "Asset was successfully updated." }
-          format.js { head :ok }
-        end
+        render_success("Asset was successfully updated.")
       else
-        respond_to do |format|
-          format.html { redirect_to edit_media_path(@asset), alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
-        end
+        render_error
       end
     end
 
@@ -56,17 +50,10 @@ module Georgia
     def destroy
       @assets = Ckeditor::Asset.where(id: params[:id])
       authorize @assets
-      # if can?(:destroy, Ckeditor::Asset) and @assets.destroy_all
       if @assets.destroy_all
-        respond_to do |format|
-          format.html { redirect_to search_media_index_path, notice: "Assets were successfully deleted." }
-          format.js { head :ok }
-        end
+        render_success("Assets were successfully deleted.")
       else
-        respond_to do |format|
-          format.html { redirect_to search_media_index_path, alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
-        end
+        render_error
       end
     end
 
@@ -85,6 +72,26 @@ module Georgia
 
     def asset_params
       params.require(:asset).permit(:tag_list)
+    end
+
+    def render_success success_message
+      @status_message = success_message
+      @status = :notice
+      respond_to do |format|
+        format.html { redirect_to :back, notice: @status_message }
+        format.js   { render layout: false }
+        format.json { render json: { ids: @assets.map(&:id), message: @status_message, status: @status } }
+      end
+    end
+
+    def render_error error_message="Oups. Something went wrong."
+      @status_message = error_message
+      @status = :alert
+      respond_to do |format|
+        format.html { redirect_to :back, alert: @status_message }
+        format.js   { render layout: false }
+        format.json { render json: { message: @status_message, status: @status } }
+      end
     end
 
   end

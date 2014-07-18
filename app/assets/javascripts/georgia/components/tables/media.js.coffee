@@ -1,17 +1,20 @@
-class @MediaTable
+class @MediaTable extends @Table
 
   constructor: (element, checkboxable) ->
-    @element      = $(element)
-    @checkboxable = checkboxable
+    super(element, checkboxable)
     @downloadBtn  = $('.js-download')
     @deleteBtn    = $('.js-delete')
-    @setBindings()
-
-  checkboxes: () -> @element.find("input:checkbox")
-
-  setBindings: () =>
-    @element.on('click', @checkboxes(), @update)
     @deleteBtn.on('click', @destroy)
+
+  # TODO: Should mark item while request is sent. Should sent one request per selected asset for faster feedback
+  destroy: (event) =>
+    @stopEvent(event)
+    $.ajax(
+      url: "/admin/media/#{@getIds()}"
+      type: 'DELETE'
+      dataType: 'JSON'
+      success: @removeAssets
+    ).always(@notify)
 
   update: () =>
     @updateDownloadableIds()
@@ -20,19 +23,8 @@ class @MediaTable
     else
       @disableActions()
 
-  # TODO: Should mark item while request is sent. Should sent one request per selected asset for faster feedback
-  destroy: (event) =>
-    @stopEvent(event)
-    $.ajax(
-      type: 'DELETE'
-      url: '/admin/media'
-      data:
-        id: @getIds()
-      dataType: 'JSON'
-    ).always(() =>
-      $.each @getIds(), (index, id) -> $("#asset_#{id}").remove()
-      @checkboxable.uncheck(@checkboxable.selectAllCheckbox)
-    )
+  removeAssets: () =>
+    $.each @getIds(), (index, id) -> $("#asset_#{id}").remove()
 
   updateDownloadableIds: () =>
     $('.downloadable-ids').val(@getIds())
@@ -44,14 +36,6 @@ class @MediaTable
   disableActions: () =>
     @downloadBtn.addClass('disabled').removeClass('btn-info')
     @deleteBtn.addClass('disabled').removeClass('btn-danger')
-
-  stopEvent: (event) ->
-    event.stopPropagation()
-    event.preventDefault()
-
-  getChecked: () => @element.find("input:checkbox:checked")
-  getId:      (c) => $(c).data('id')
-  getIds:     () => $.map(@getChecked(), (c) => @getId(c))
 
 $.fn.actsAsMediaTable = () ->
   @each ->
