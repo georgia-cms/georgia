@@ -77,58 +77,41 @@ module Georgia
       back_url = url_for(controller: controller_name, action: :search)
       @pages = model.where(id: params[:id])
       authorize @pages
+      pages_count = @pages.length
       if @pages.destroy_all
-        respond_to do |format|
-          format.html { redirect_to back_url, notice: "#{instance_name.humanize} successfully deleted." }
-          format.js { head :ok }
-        end
+        render_success("#{instance_name.humanize.pluralize(pages_count)} successfully deleted.")
       else
-        respond_to do |format|
-          format.html { redirect_to back_url, alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
-        end
+        render_error("Oups. Something went wrong.")
       end
     end
 
     # Publishes multiple pages from table checkboxes
     def publish
-      @pages = model.where(id: params[:id])
+      set_pages
       authorize @pages
 
       unless @pages.map(&:publish).include?(false)
         @pages.each do |page|
           CreateActivity.new(page, :publish, owner: current_user).call
         end
-        respond_to do |format|
-          format.html { redirect_to :back, notice: "Successfully published." }
-          format.js { head :ok }
-        end
+        render_success("Successfully published.")
       else
-        respond_to do |format|
-          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
-        end
+        render_error("Oups. Something went wrong.")
       end
     end
 
-    # Unpublishes the page
+    # Unpublishes multiple pages from table checkboxes
     def unpublish
-      @pages = model.where(id: params[:id])
+      set_pages
       authorize @pages
 
       unless @pages.map(&:unpublish).include?(false)
         @pages.each do |page|
           CreateActivity.new(page, :unpublish, owner: current_user).call
         end
-        respond_to do |format|
-          format.html { redirect_to :back, notice: "Successfully unpublished." }
-          format.js { head :ok }
-        end
+        render_success("Successfully unpublished.")
       else
-        respond_to do |format|
-          format.html { redirect_to :back, alert: "Oups. Something went wrong." }
-          format.js { head :internal_server_error }
-        end
+        render_error("Oups. Something went wrong.")
       end
     end
 
@@ -172,6 +155,30 @@ module Georgia
 
     def clean_textext_tag_list_format
       params[:page][:tag_list] = JSON.parse(params[:page][:tag_list])
+    end
+
+    def set_pages
+      @pages = model.where(id: params[:id])
+    end
+
+    def render_success success_message
+      @status_message = success_message
+      @status = :notice
+      respond_to do |format|
+        format.html { redirect_to :back, notice: @status_message }
+        format.js   { render layout: false }
+        format.json { render json: { ids: @pages.map(&:id), message: @status_message, status: @status } }
+      end
+    end
+
+    def render_error error_message
+      @status_message = error_message
+      @status = :alert
+      respond_to do |format|
+        format.html { redirect_to :back, alert: @status_message }
+        format.js   { render layout: false }
+        format.json { render json: { message: @status_message, status: @status } }
+      end
     end
 
   end

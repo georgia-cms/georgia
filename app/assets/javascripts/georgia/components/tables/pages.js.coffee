@@ -1,60 +1,55 @@
-class @PagesTable
+class @PagesTable extends @Table
 
   constructor: (element, checkboxable) ->
-    @element      = $(element)
-    @checkboxable = checkboxable
-    @deleteBtn    = $('.js-delete')
-    @publishBtn   = $('.js-publish')
-    @unpublishBtn = $('.js-unpublish')
+    super(element, checkboxable)
+    @deleteBtn    = @element.find('.js-delete')
+    @publishBtn   = @element.find('.js-publish')
+    @unpublishBtn = @element.find('.js-unpublish')
     @setBindings()
 
-  checkboxes: () -> @element.find("input:checkbox")
-
   setBindings: () =>
-    @element.on('click', @checkboxes(), @update)
     @deleteBtn.on('click', @destroy)
     @publishBtn.on('click', @publish)
     @unpublishBtn.on('click', @unpublish)
-
-  update: () =>
-    if @getChecked().length
-      @enableActions()
-    else
-      @disableActions()
 
   destroy: (event) =>
     @stopEvent(event)
     $.ajax(
       type: 'DELETE'
+      dataType: 'JSON'
       url: "/admin/pages"
       data: {id: @getIds()}
-      dataType: 'JSON'
-    ).always(() =>
-      $.each @getIds(), (index, id) -> $("#page_#{id}").remove()
-      @checkboxable.uncheck(@checkboxable.selectAllCheckbox)
-    )
+      success: @removePages
+    ).always(@notify)
 
   publish: (event) =>
     @stopEvent(event)
     $.ajax(
       type: "POST"
+      dataType: 'JSON'
       url: "/admin/pages/publish"
       data: {id: @getIds()}
-      dataType: 'JSON'
-    ).always(() =>
-      $.each @getIds(), (index, id) -> $("#page_#{id}").removeClass('private').addClass('public')
-    )
+      success: @markAsPublic
+    ).always(@notify)
 
   unpublish: (event) =>
     @stopEvent(event)
     $.ajax(
       type: "POST"
+      dataType: 'JSON'
       url: "/admin/pages/unpublish"
       data: {id: @getIds()}
-      dataType: 'JSON'
-    ).always(() =>
-      $.each @getIds(), (index, id) -> $("#page_#{id}").addClass('private').removeClass('public')
-    )
+      success: @markAsPrivate
+    ).always(@notify)
+
+  removePages: () =>
+    $.each @getIds(), (index, id) -> $("#page_#{id}").remove()
+
+  markAsPublic: () =>
+    $.each @getIds(), (index, id) -> $("#page_#{id}").removeClass('private').addClass('public')
+
+  markAsPrivate: () =>
+    $.each @getIds(), (index, id) -> $("#page_#{id}").removeClass('public').addClass('private')
 
   enableActions: () =>
     @deleteBtn.removeClass('disabled').addClass('btn-danger')
@@ -69,10 +64,6 @@ class @PagesTable
   stopEvent: (event) ->
     event.stopPropagation()
     event.preventDefault()
-
-  getChecked: () => @element.find("input:checkbox:checked")
-  getId:      (c) => $(c).data('id')
-  getIds:     () => $.map(@getChecked(), (c) => @getId(c))
 
 $.fn.actsAsPagesTable = () ->
   @each ->
