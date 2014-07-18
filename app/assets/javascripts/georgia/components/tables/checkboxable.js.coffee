@@ -56,6 +56,7 @@ class @Checkboxable
         when 'unchecked' then @uncheck(@selectAllCheckbox)
         # if all checked, set parent as checked
         when 'checked' then @check(@selectAllCheckbox)
+        else @uncheck(@selectAllCheckbox)
 
   check: (el) =>
     $(el).each (index, e) =>
