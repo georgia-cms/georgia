@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     factory :georgia_admin_user do
       after(:create) do |user|
-        user.role = Georgia::Role.where(name: 'Admin').first_or_create
+        user.roles << Georgia::Role.where(name: 'admin').first_or_create
       end
     end
   end

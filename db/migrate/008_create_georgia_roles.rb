@@ -5,8 +5,6 @@ class CreateGeorgiaRoles < ActiveRecord::Migration
       t.string :name
       t.timestamps
     end
-    Georgia::Role.create(name: 'Admin')
-    Georgia::Role.create(name: 'Editor')
   end
 
   def down

@@ -36,8 +36,12 @@ module Georgia
     end
 
     def verify_data_integrity
-      Georgia.roles.each do |role_name|
-        Georgia::Role.where(name: role_name).first_or_create
+      begin
+        Georgia.roles.each do |role_name|
+          Georgia::Role.where(name: role_name).first_or_create
+        end
+      rescue ActiveRecord::StatementInvalid => ex
+        # Database hasn't been migrated yet
       end
     end
 
