@@ -14,32 +14,7 @@ Georgia::Engine.routes.draw do
     end
   end
 
-  concern :pageable do
-
-    collection do
-      get :search
-      post :sort
-      post :publish
-      post :unpublish
-      delete '/', to: :destroy
-    end
-
-    member do
-      get :copy
-      get :settings
-    end
-
-    resources :revisions do
-      member do
-        get :preview
-        get :review
-        get :approve
-        get :store
-        get :decline
-        get :restore
-      end
-    end
-  end
+  Georgia::PageableRouteConcern.included(self)
 
   resources :pages, concerns: [:pageable]
 
