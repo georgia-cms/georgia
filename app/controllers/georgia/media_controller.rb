@@ -39,7 +39,7 @@ module Georgia
     def update
       @asset = Ckeditor::Asset.find(params[:id])
       authorize @asset
-      if @asset.update_attributes(asset_params)
+      if @asset.update_attributes(sanitized_asset_params)
         render_success("Asset was successfully updated.")
       else
         render_error
@@ -72,6 +72,10 @@ module Georgia
 
     def asset_params
       params.require(:asset).permit(:tag_list)
+    end
+
+    def sanitized_asset_params
+      ParseJsonTags.new(asset_params).call
     end
 
     def render_success success_message

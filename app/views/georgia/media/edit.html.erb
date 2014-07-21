@@ -53,7 +53,7 @@
             <h3 class="panel-title">Tags</h3>
           </div>
           <div class="panel-body">
-            <%= f.input :tag_list, label: false, input_html: {class: 'js-token-input'} %>
+            <%= f.input :tag_list, as: :text, label: false, input_html: {class: 'js-taggable', rows: 1} %>
           </div>
         </div>
         <% if @asset.is_a?(Ckeditor::Picture) %>
