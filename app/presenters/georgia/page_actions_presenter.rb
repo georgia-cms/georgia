@@ -19,13 +19,11 @@ module Georgia
 
     def action_list
       html = ActiveSupport::SafeBuffer.new
-      # html << content_tag(:li, link_to_edit) # if can?(:edit, page)
-      # html << content_tag(:li, link_to_settings) if can?(:settings, page)
-      html << content_tag(:li, link_to_preview) # if can?(:preview, page)
-      html << content_tag(:li, link_to_copy) # if can?(:copy, page)
-      html << content_tag(:li, link_to_publish) # if can?(:publish, page) and !page.published?
-      html << content_tag(:li, link_to_unpublish) # if can?(:unpublish, page) and page.published?
-      html << content_tag(:li, link_to_revisions) # if can?(:index, Revision)
+      html << content_tag(:li, link_to_preview) if policy(page).preview?
+      html << content_tag(:li, link_to_copy) if policy(page).copy?
+      html << content_tag(:li, link_to_publish) if policy(page).publish? and !page.published?
+      html << content_tag(:li, link_to_unpublish) if policy(page).unpublish? and page.published?
+      html << content_tag(:li, link_to_revisions) if policy(Georgia::Revision).index?
       html
     end
 
@@ -33,18 +31,6 @@ module Georgia
 
     def link_to_preview
       link_to "#{icon_tag('eye')} Preview".html_safe, [:preview, page, revision], options.reverse_merge(target: '_blank')
-    end
-
-    def link_to_settings
-      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, page], options
-    end
-
-    def link_to_edit
-      link_to "#{icon_tag('pencil')} Edit".html_safe, [:edit, page], options
-    end
-
-    def link_to_settings
-      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, page], options
     end
 
     def link_to_copy
@@ -57,26 +43,6 @@ module Georgia
 
     def link_to_unpublish
       link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, georgia.unpublish_pages_path(id: [page.id]), options.merge(data: {confirm: 'Are you sure?'}, method: :post)
-    end
-
-    def link_to_review
-      link_to "#{icon_tag('flag')} Ask for Review".html_safe, [:review, page], options
-    end
-
-    def link_to_approve
-      link_to "#{icon_tag('thumbs-up')} Approve".html_safe, [:approve, page], options
-    end
-
-    def link_to_decline
-      link_to "#{icon_tag('thumbs-down')} Decline".html_safe, [:decline, page], options
-    end
-
-    def link_to_delete
-      options = {}
-      options[:data] ||= {}
-      options[:data][:confirm] = 'Are you sure?'
-      options[:method] ||= :delete
-      link_to "#{icon_tag('icon-trash')} Delete".html_safe, page, options
     end
 
     def link_to_revisions
