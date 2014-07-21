@@ -18,7 +18,7 @@ module Georgia
     def edit
       authorize @revision
       locale = params.fetch(:locale, current_locale)
-      @activities = (@page.activities + @revision.activities).uniq
+      @activities = (@page.activities + @revision.activities).uniq.sort_by(&:created_at).reverse
       @slides = @revision.slides.ordered.with_locale(locale)
       @ui_sections = Georgia::UiSection.all
     end
