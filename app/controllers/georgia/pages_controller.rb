@@ -48,8 +48,7 @@ module Georgia
     def update
       authorize @page
       model.update_tree(params[:page_tree]) if params[:page_tree]
-      clean_textext_tag_list_format if params[:page][:tag_list].present?
-      if @page.update(page_params)
+      if @page.update(sanitized_params)
         CreateActivity.new(@page, :update, owner: current_user).call
         respond_to do |format|
           format.html { redirect_to [:settings, @page], notice: "#{@page.title} was successfully updated." }
@@ -150,20 +149,15 @@ module Georgia
     end
 
     def page_params
-      params.require(:page).permit(permitted_page_params)
+      params.require(:page).permit(permitted_keys)
     end
 
-    def permitted_page_params
-      [:slug, :parent_id, { tag_list: [] }] + permitted_extra_params
+    def sanitized_params
+      ParseJsonTags.new(page_params).call
     end
 
-    # Override in subclass when extra fields are present
-    def permitted_extra_params
-      []
-    end
-
-    def clean_textext_tag_list_format
-      params[:page][:tag_list] = JSON.parse(params[:page][:tag_list])
+    def permitted_keys
+      [:slug, :parent_id, :tag_list]
     end
 
     def set_pages
