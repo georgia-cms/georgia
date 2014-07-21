@@ -2,7 +2,7 @@
   <%= image_tag(avatar_url(activity.owner.email), alt: '', class: 'media-object pull-left') %>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= activity.owner.name %> has copied page <em><%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
+      <%= activity.owner.name %> has copied <em><%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
     </h4>
     <p>
       <small>
