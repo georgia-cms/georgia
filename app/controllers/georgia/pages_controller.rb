@@ -150,7 +150,16 @@ module Georgia
     end
 
     def page_params
-      params.require(:page).permit(:slug, :parent_id, tag_list: [])
+      params.require(:page).permit(permitted_page_params)
+    end
+
+    def permitted_page_params
+      [:slug, :parent_id, { tag_list: [] }] + permitted_extra_params
+    end
+
+    # Override in subclass when extra fields are present
+    def permitted_extra_params
+      []
     end
 
     def clean_textext_tag_list_format
