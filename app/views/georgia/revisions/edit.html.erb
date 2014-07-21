@@ -27,7 +27,9 @@
           <%= render partial: 'georgia/revisions/fields/widgets',  locals: {f: f} %>
         </div>
         <div class="col-md-3">
-          <%= render_activities(@activities) %>
+          <div class="activities">
+            <%= render_activities(@activities) %>
+          </div>
         </div>
       </div>
       <footer>
