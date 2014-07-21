@@ -50,11 +50,11 @@ module Georgia
     end
 
     def extra_fields?
-      lookup_context.exists?('extra-fields', ["#{klass_folder}/fields"], true)
+      lookup_context.exists?('extra_fields', ["#{klass_folder}/fields"], true)
     end
 
     def extra_fields_path
-      "#{klass_folder}/fields/extra-fields"
+      "#{klass_folder}/fields/extra_fields"
     end
 
     private
