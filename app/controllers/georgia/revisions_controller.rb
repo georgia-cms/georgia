@@ -26,22 +26,20 @@ module Georgia
     # Stores a copy of the current revision before updating
     def update
       authorize @revision
-      attributes = revision_params
-      attributes[:contents_attributes].each do |id, content_attributes|
-        attributes[:contents_attributes][id] = ParseJsonTags.new(content_attributes, key: :keyword_list).call
-      end
-      if UpdateRevision.new(self, @page, @revision, attributes).call
-        CreateActivity.new(@revision, :update, owner: current_user).call
-        redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
-      else
-        redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
+      update_with_service do |service|
+        if service.new(current_user, @page, @revision, sanitized_attributes).call
+          CreateActivity.new(@revision, :update, owner: current_user).call
+          redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
+        else
+          redirect_to [:edit, @page, @revision], alert: @revision.errors.full_messages.join('. ')
+        end
       end
     end
 
     def destroy
       authorize @revision
       if @revision.destroy
-        redirect_to page_revisions_path(@page), notice: "#{@revision.title or 'Revision'} was successfully deleted."
+        redirect_to page_revisions_path(@page), notice: "Revision was successfully deleted."
       else
         redirect_to page_revisions_path(@page), alert: "Oups! Something went wrong."
       end
@@ -127,6 +125,26 @@ module Georgia
 
     def revision_params
       params.require(:revision).permit(:template, contents_attributes: [:text, :title, :locale, :excerpt, :keyword_list, :image_id, :id])
+    end
+
+    def sanitized_attributes
+      attributes = revision_params
+      attributes[:contents_attributes].each do |id, content_attributes|
+        attributes[:contents_attributes][id] = ParseJsonTags.new(content_attributes, key: :keyword_list).call
+      end
+      attributes
+    end
+
+    def update_with_service
+      service =
+        if policy(@revision).approve?
+          UpdateRevision::Admin
+        elsif policy(@revision).review?
+          UpdateRevision::Contributor
+        else
+          UpdateRevision::Guest
+        end
+      yield service
     end
 
   end
