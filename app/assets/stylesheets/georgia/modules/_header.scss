@@ -27,9 +27,9 @@
   border-bottom: 1px solid $border-header-main;
   background-color: $bg-header-main;
   background-color: $bg-header-main-rgba;
-  .header-gutter   { @include span-columns(2); }
-  .header-title    { @include span-columns(7); }
-  .header-actions  { @include span-columns(3); }
+  .header-gutter   { @include span-columns(1 of 8); }
+  .header-title    { @include span-columns(5 of 8); }
+  .header-actions  { @include span-columns(2 of 8); }
 
   h1 {
     display: inline;
