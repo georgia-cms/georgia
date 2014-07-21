@@ -26,7 +26,11 @@ module Georgia
     # Stores a copy of the current revision before updating
     def update
       authorize @revision
-      if UpdateRevision.new(self, @page, @revision, revision_params).call
+      attributes = revision_params
+      attributes[:contents_attributes].each do |id, content_attributes|
+        attributes[:contents_attributes][id] = ParseJsonTags.new(content_attributes, key: :keyword_list).call
+      end
+      if UpdateRevision.new(self, @page, @revision, attributes).call
         CreateActivity.new(@revision, :update, owner: current_user).call
         redirect_to [:edit, @page, @revision], notice: "#{@revision.title} was successfully updated."
       else
