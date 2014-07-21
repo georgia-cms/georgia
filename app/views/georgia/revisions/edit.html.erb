@@ -21,10 +21,10 @@
     <section class="body-main">
       <div class="row">
         <div class="col-md-9">
-          <%= render partial: 'georgia/revisions/fields/content', locals: {f: c} %>
+          <%= render partial: 'georgia/revisions/fields/content',  locals: {f: c} %>
           <%= render partial: 'georgia/revisions/fields/template', locals: {f: f} %>
-          <%= render partial: 'georgia/revisions/fields/slides', locals: {f: f} %>
-          <%= render partial: 'georgia/revisions/fields/widgets', locals: {f: f} %>
+          <%= render partial: 'georgia/revisions/fields/slides',   locals: {f: f} %>
+          <%= render partial: 'georgia/revisions/fields/widgets',  locals: {f: f} %>
         </div>
         <div class="col-md-3">
           <%= render_activities(@activities) %>
