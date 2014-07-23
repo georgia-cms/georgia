@@ -4,10 +4,10 @@ module Georgia
     def notify_admins(message, url)
       @message = message
       @url = url
-      emails_to = Georgia::User.admins.map(&:email)
+      emails_to = Georgia::User.where(roles: ['admin', 'editor']).where(receives_notifications: true).pluck(:email)
       unless emails_to.empty?
         mail(
-          from: "georgia@motioneleven.com",
+          from: "notify@georgiacms.org",
           to: emails_to,
           subject: @message
           )
@@ -17,10 +17,10 @@ module Georgia
     def notify_editors(message, url)
       @message = message
       @url = url
-      emails_to = Georgia::User.editors.map(&:email)
+      emails_to = Georgia::User.where(roles: ['admin', 'editor']).where(receives_notifications: true).pluck(:email)
       unless emails_to.empty?
         mail(
-          from: "georgia@motioneleven.com",
+          from: "notify@georgiacms.org",
           to: emails_to,
           subject: @message
           )

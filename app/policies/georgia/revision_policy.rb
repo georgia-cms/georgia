@@ -4,12 +4,6 @@ module Georgia
     include Georgia::Concerns::ContentPolicy
     include Georgia::Concerns::PublishingPolicy
 
-    class Scope < Struct.new(:user, :scope)
-      def resolve
-        Georgia::Revision.all
-      end
-    end
-
     def index?
       publishing_user_permissions(:show_revisions).include?(true)
     end

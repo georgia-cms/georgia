@@ -1,0 +1,11 @@
+<% if @status_message.partial or @draft_revision %>
+  <fieldset>
+    <div class="fieldset-help">
+      <legend><%= icon_tag('exclamation-triangle', size: 'lg') %> Attention</legend>
+    </div>
+    <div class="fieldset-fields">
+      <%= render partial: "georgia/revisions/messages/continue_draft" if @draft_revision %>
+      <%= render partial: "georgia/revisions/messages/#{@status_message.partial}" if @status_message.partial %>
+    </div>
+  </fieldset>
+<% end -%>

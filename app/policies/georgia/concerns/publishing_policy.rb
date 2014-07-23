@@ -7,8 +7,12 @@ module Georgia
 
       included do
 
-        def review?
-          publishing_user_permissions(:review_changes).include?(true)
+        def request_review?
+          publishing_user_permissions(:request_review).include?(true)
+        end
+
+        def draft?
+          publishing_user_permissions(:draft_changes).include?(true)
         end
 
         def approve?

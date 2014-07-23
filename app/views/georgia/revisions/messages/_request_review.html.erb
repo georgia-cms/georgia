@@ -1,0 +1,7 @@
+<div class="well">
+  <p>Nice job editing this new draft! Ask a pair to review your changes if you have completed.</p>
+  <p>
+    <%= link_to("#{icon_tag('check')} Submit for review".html_safe, [:request_review, @page, @revision], class: 'btn btn-success') %>
+    <%= link_to('Cancel & Delete draft', [@page, @revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger text-danger btn-link') if policy(@revision).destroy? %>
+  </p>
+</div>

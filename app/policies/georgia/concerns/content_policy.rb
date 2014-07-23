@@ -28,8 +28,7 @@ module Georgia
         end
 
         def edit?
-          return false unless scope.where(id: record.id).exists?
-          content_user_permissions(:show_pages).include?(true)
+          update?
         end
 
         def update?

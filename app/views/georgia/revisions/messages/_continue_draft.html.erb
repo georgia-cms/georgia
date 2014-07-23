@@ -1,0 +1,8 @@
+<div class="well">
+  <p>You already have a draft of this page.</p>
+  <p>
+    <%= link_to('Continue editing', [:edit, @page, @draft_revision], class: 'btn btn-primary') %>
+    <%= link_to('Start Fresh', [:draft, @page, @revision], class: 'btn btn-info') %>
+    <%= link_to('Cancel & Delete draft', [@page, @draft_revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger text-danger btn-link') if policy(@draft_revision).destroy? %>
+  </p>
+</div>

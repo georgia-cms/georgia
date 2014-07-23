@@ -1,0 +1,15 @@
+<div class="well">
+  <p>
+    <%= icon_tag('clock-o') %> Your revision is awaiting review from an Editor. Feel free to further customize its content or grab a <%= icon_tag('coffee') %> and wait it out.
+  </p>
+  <% if policy(@revision).approve? %>
+    <p>
+      <%= link_to('Approve & Publish', [:approve, @page, @revision], class: 'btn btn-success') %>
+      <%= link_to('Decline & Move to trash', [:decline, @page, @revision], class: 'btn btn-danger text-danger btn-link') %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to('Cancel & Delete draft', [@page, @revision], data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger text-danger btn-link') if policy(@revision).destroy? %>
+    </p>
+  <% end -%>
+</div>

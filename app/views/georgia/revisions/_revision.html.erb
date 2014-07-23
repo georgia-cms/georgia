@@ -1,12 +1,12 @@
 <div class="revision">
   <%= icon_tag('star', title: 'Current Revision') if @page.current_revision == revision %>
   <span class='badge badge-default'>id:<%= revision.id %></span>
-  <span class='label label-<%= revision.review? ? 'warning' : 'default' %>'><%= revision.state %></span>
+  <span class='label label-<%= revision.status %>'><%= revision.status %></span>
   <%= link_to revision.created_at.strftime('%F %H:%M'), [@page, revision] %>
   <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
   <div class="pull-right">
     <%= link_to "#{icon_tag('pencil')} Edit".html_safe, [@page, revision], class: 'btn btn-info' %>
-    <%= link_to "#{icon_tag('undo')} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning' if policy(revision).restore? %>
-    <%= link_to_delete [@page, revision] if policy(revision).destroy? %>
+    <%= link_to "#{icon_tag('undo')} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning', disabled: (@page.current_revision == revision) if policy(revision).restore? %>
+    <%= link_to_delete [@page, revision], disabled: (@page.current_revision == revision) if policy(revision).destroy? %>
   </div>
 </div>

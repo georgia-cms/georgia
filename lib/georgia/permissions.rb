@@ -14,7 +14,8 @@ module Georgia
     PUBLISHING_PERMISSIONS = {
       show_revisions:      { guest: false, contributor: true,  editor: true, admin: true, },
       create_new_revision: { guest: false, contributor: true,  editor: true, admin: true, },
-      review_changes:      { guest: false, contributor: false, editor: true, admin: true, },
+      draft_changes:       { guest: false, contributor: true,  editor: true, admin: true, },
+      request_review:      { guest: false, contributor: true, editor: true, admin: true, },
       approve_changes:     { guest: false, contributor: false, editor: true, admin: true, },
       decline_changes:     { guest: false, contributor: false, editor: true, admin: true, },
       restore_changes:     { guest: false, contributor: false, editor: true, admin: true, },

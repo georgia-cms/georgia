@@ -2,8 +2,7 @@ module Georgia
   class UpdateRevision
 
     class Service
-      attr_reader :current_user, :page, :attributes
-      attr_accessor :revision
+      attr_reader :revision
 
       def initialize current_user, page, revision, attributes={}
         @current_user = current_user
@@ -15,35 +14,37 @@ module Georgia
       private
 
       def current_revision?
-        @is_current_revision ||= (page.current_revision == revision)
+        @is_current_revision ||= (@page.current_revision == @revision)
       end
 
       def current_review?
-        @is_current_review ||= (revision.review? and revision.revised_by?(current_user))
+        false
+        # @is_current_review ||= (@revision.review? and @revision.revised_by?(@current_user))
       end
     end
 
     class Admin < Service
       def call
-        page.store if current_revision?
-        revision.update(attributes)
+        @revision.update(@attributes)
       end
+    end
+
+    class Editor < Admin
     end
 
     class Contributor < Service
       def call
         if current_revision?
-          page.store
-          page.approve_revision(page.revisions.last)
+          raise Pundit::NotAuthorizedError, 'You must be at least an Editor to update a published revision.'
+        else
+          @revision.update(@attributes)
         end
-        revision.review
-        revision.update(attributes)
       end
     end
 
     class Guest < Service
       def call
-        false #Guest should not be allowed in the first place.
+        raise Pundit::NotAuthorizedError, 'You must be at least a Contributor to update a page.'
       end
     end
 

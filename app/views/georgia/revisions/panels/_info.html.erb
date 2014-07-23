@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title">Information</h3></div>
+  <div class="panel-body">
+    <table class='table'>
+      <tr>
+        <td>Revised by</td>
+        <td><%= image_tag avatar_url(@revision.user.try(:email)), alt: '' %> <%= @revision.user.try(:name) %></td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td><span class="label label-<%= @revision.status %>"><%= @revision.status %></span></td>
+      </tr>
+      <tr>
+        <td>Visibility</td>
+        <td><span class="label label-<%= @revision.visibility %>"><%= @revision.visibility %></span></td>
+      </tr>
+      <tr>
+        <td>Created</td>
+        <td><%= l @revision.created_at, format: :long %></td>
+      </tr>
+      <tr>
+        <td>Last updated</td>
+        <td>About <%= time_ago_in_words(@revision.updated_at) %> ago</td>
+      </tr>
+    </table>
+  </div>
+</div>

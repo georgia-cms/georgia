@@ -20,7 +20,8 @@ module Georgia
           resources :revisions do
             member do
               get :preview
-              get :review
+              get :draft
+              get :request_review
               get :approve
               get :store
               get :decline

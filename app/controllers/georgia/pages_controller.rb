@@ -37,7 +37,7 @@ module Georgia
       @page = model.new(slug: params[:title].try(:parameterize))
       authorize @page
       if @page.save
-        @page.revisions.create(template: Georgia.templates.first) do |rev|
+        @page.revisions.create(template: Georgia.templates.first, revised_by_id: current_user.id, status: :published) do |rev|
           rev.contents << Georgia::Content.new(locale: I18n.default_locale, title: params[:title])
         end
         @page.update_attribute(:current_revision, @page.revisions.first)
@@ -86,9 +86,9 @@ module Georgia
       back_url = url_for(controller: controller_name, action: :search)
       @pages = model.where(id: params[:id])
       authorize @pages
-      pages_count = @pages.length
+      message = @pages.length > 1 ? "#{instance_name.humanize.pluralize(@pages.length)} successfully deleted." : "#{@pages.first.title} successfully deleted."
       if @pages.destroy_all
-        render_success("#{instance_name.humanize.pluralize(pages_count)} successfully deleted.")
+        render_success(message)
       else
         render_error("Oups. Something went wrong.")
       end

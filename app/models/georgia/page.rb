@@ -88,6 +88,7 @@ module Georgia
     def publish_state
       public? ? 'public' : 'private'
     end
+    alias_method :visibility, :publish_state
 
     def cache_key
       [self.url, self.updated_at.to_i].join('/')

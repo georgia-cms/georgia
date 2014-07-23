@@ -1,0 +1,7 @@
+<div class="well">
+  <p><%= @revision.user.name rescue 'Someone' %> submitted this draft for review.</p>
+  <p>
+    <%= link_to('Approve & Publish', [:approve, @page, @revision], class: 'btn btn-success') %>
+    <%= link_to('Decline & Move to trash', [:decline, @page, @revision], class: 'btn btn-danger text-danger btn-link') %>
+  </p>
+</div>

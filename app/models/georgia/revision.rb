@@ -7,6 +7,8 @@ module Georgia
 
     enum status: [ :draft, :review, :published, :revision ]
 
+    belongs_to :user, foreign_key: :revised_by_id
+
     has_one :page, foreign_key: :revision_id
     belongs_to :revisionable, polymorphic: true, touch: true
 
@@ -20,30 +22,7 @@ module Georgia
 
     validates :template, inclusion: {in: Georgia.templates, message: "%{value} is not a valid template" }
 
-    def review
-      update(status: :review)
-    end
-    def approve
-      update(status: :published)
-      set_as_current
-    end
-    def decline
-      update(status: :draft)
-    end
-    def store
-      update(status: :revision)
-    end
-    def unpublish
-      update(status: :draft)
-    end
-    def restore
-      update(status: :published)
-      set_as_current
-    end
-    def set_as_current
-      revisionable.current_revision.store if revisionable.current_revision
-      revisionable.update(revision_id: self.id)
-    end
+    delegate :visibility, to: :revisionable, prefix: false
 
   end
 end
