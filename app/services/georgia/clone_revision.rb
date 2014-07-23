@@ -1,11 +1,11 @@
 module Georgia
   class CloneRevision
 
-    def initialize revision, status: 'revision', revised_by_id: nil
+    def initialize revision, status: nil, revised_by_id: nil
       raise 'Revision must be persisted to be copied' if revision.new_record?
       @revision = revision
-      @status = status
-      @revised_by_id = revised_by_id
+      @status = status || @revision.status
+      @revised_by_id = revised_by_id || @revision.revised_by_id
     end
 
     # Returns a copy of the revision in 'revision' status

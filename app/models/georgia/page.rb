@@ -52,21 +52,6 @@ module Georgia
     end
 
     # FIXME: Should not be part of this model
-    def draft
-      Georgia::Clone.new(self).draft
-    end
-
-    # FIXME: Should not be part of this model
-    def store
-      Georgia::Clone.new(self).store
-    end
-
-    # FIXME: Should not be part of this model
-    def copy
-      Georgia::Clone.new(self).copy
-    end
-
-    # FIXME: Should not be part of this model
     def approve_revision revision
       current_revision.store if current_revision
       self.update_attribute(:revision_id, revision.id)

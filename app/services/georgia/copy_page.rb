@@ -1,35 +1,32 @@
 module Georgia
-  class Clone
+  class CopyPage
 
     attr_accessor :instance, :duplicate
 
-    def initialize instance
+    def initialize instance, attributes={}
       raise 'Instance must be persisted to be copied' if instance.new_record?
       @instance = instance
       @duplicate = instance.class.new
+      @attributes = attributes
     end
 
     # Returns an exact persisted version of itself with all Georgia::Page associations
     # The resulting instance has a '(Copy)' title and '-copy' slug
-    def copy
+    def call
       copy_page
-      revision = Georgia::CloneRevision.new(instance.current_revision, status: 'draft')
+      revision = CloneRevision.create(instance.current_revision)
       revision.revisionable = duplicate
       duplicate.current_revision = revision
       alter_slug
       alter_title
       duplicate.save!
+      revision.save!
       duplicate
-    end
-
-    # Returns a copy of the current revision in 'draft' state
-    def draft
-      clone_current_revision(state: 'draft')
     end
 
     # Returns a copy of the current revision in 'revision' state
     def store
-      @instance.revisions << clone_current_revision(state: 'revision')
+      @instance.revisions << CloneRevision.create(instance.current_revision, status: 'revision')
       @instance.save
     end
 
@@ -42,7 +39,7 @@ module Georgia
 
     def clone_current_revision options={}
       state = options.fetch(:state, 'draft')
-      @duplicate_revision = Georgia::Revision.new(template: instance.current_revision.template, state: state) do |r|
+      @duplicate_revision = Revision.new(template: instance.current_revision.template, state: state) do |r|
         r.contents = clone_contents
         r.ui_associations = clone_ui_associations
         r.slides = clone_slides
@@ -60,7 +57,7 @@ module Georgia
 
     def clone_slides
       instance.current_revision.slides.map do |slide|
-        new_slide = Georgia::Slide.new(page_id: slide.page_id)
+        new_slide = Slide.new(page_id: slide.page_id)
         slide.contents.each do |content|
           new_slide.contents << clone_content(content)
         end
@@ -69,7 +66,7 @@ module Georgia
     end
 
     def clone_content(content)
-      Georgia::Content.new(
+      Content.new(
         locale: content.locale,
         text: content.text,
         title: content.title,
@@ -80,7 +77,7 @@ module Georgia
     end
 
     def clone_ui_association(ui_assoc)
-      Georgia::UiAssociation.new(
+      UiAssociation.new(
         page_id: ui_assoc.page_id,
         widget_id: ui_assoc.widget_id,
         ui_section_id: ui_assoc.ui_section_id

@@ -78,9 +78,12 @@ module Georgia
     # Creates a copy of a page and redirects to its revisions#edit
     def copy
       authorize @page
-      @copy = @page.copy
-      CreateActivity.new(@page, :copy, owner: current_user).call
-      redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "#{instance_name.humanize} successfully copied. Do not forget to change your url"
+      if @copy = CopyPage.new(@page.model).call
+        CreateActivity.new(@page, :copy, owner: current_user).call
+        redirect_to edit_page_revision_path(@copy, @copy.current_revision), notice: "#{instance_name.humanize} successfully copied. Do not forget to change your url"
+      else
+        render_error("Oups. Something went wrong.")
+      end
     end
 
     # Destroys page and its revisions from page
