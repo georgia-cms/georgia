@@ -1,0 +1,9 @@
+tr.state-unpublished {
+  td:first-child { border-left: 8px solid $danger-border; }
+  td { background-color: #f2dede; }
+}
+
+tr.state-published {
+  td:first-child { border-left: 8px solid $success-border; }
+  td { background-color: #dff0d8; }
+}
