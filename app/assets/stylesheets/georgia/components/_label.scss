@@ -1,3 +1,28 @@
+%success-label {
+  background-color: $success-bg;
+  border-color: $success-border;
+}
+%warning-label {
+  background-color: $warning-bg;
+  border-color: $warning-border;
+}
+%danger-label {
+  background-color: $danger-bg;
+  border-color: $danger-border;
+}
+%info-label {
+  background-color: $info-bg;
+  border-color: $info-border;
+}
+%default-label {
+  background-color: $default-bg;
+  border-color: $default-border;
+}
+%primary-label {
+  background-color: $primary-bg;
+  border-color: $primary-border;
+}
+
 .label {
   padding: .4em 0.8em .4em;
 }
@@ -5,3 +30,10 @@
   font-size: 1em;
   line-height: 1em;
 }
+
+.label-public,
+.label-published { @extend %success-label; }
+.label-private,
+.label-review { @extend %warning-label; }
+.label-draft { @extend %info-label; }
+.label-revision { @extend %default-label; }
