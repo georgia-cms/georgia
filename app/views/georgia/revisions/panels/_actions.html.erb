@@ -1,4 +1,5 @@
 <% if policy(@revision).draft? and !%w(draft review).include? @revision.status and !@draft_revision %>
   <%= link_to 'Start a new draft', [:draft, @page, @revision], class: 'btn btn-primary' %>
-  <hr />
 <% end -%>
+<%= link_to "#{icon_tag('eye')} Preview".html_safe, [:preview, @page, @revision], target: '_blank', class: 'btn btn-default pull-right' %>
+<hr />

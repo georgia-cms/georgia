@@ -7,6 +7,8 @@ module Georgia
 
       included do
 
+        include Pundit
+
         # Loads the page according to request url
         # Restore the latest published revision of the given page
         def show
@@ -30,7 +32,7 @@ module Georgia
           @page = Georgia::Page.from_url(params[:request_path]).first || not_found
           @page = Georgia::PageDecorator.decorate(@page)
           @page.current_revision = Georgia::Revision.find(params[:r])
-          authorize! :preview, @page
+          authorize @page, :preview?
         end
 
         # Triggers a 404 page not found
