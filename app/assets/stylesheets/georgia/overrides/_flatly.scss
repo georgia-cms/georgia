@@ -9,3 +9,7 @@ table a, .table a { text-decoration: none; }
 .nav > li > a.btn-warning:focus {
   background-color: #be780a;
 }
+
+a.text-danger:hover {
+  color: #e74c3c;
+}
