@@ -40,6 +40,10 @@ h1, h2, h3, h4, h5, h6, legend {
   border-right: 1px solid #e2e2e2;
 }
 
+.body-main {
+  padding-top: 20px;
+}
+
 a {
   text-decoration: none;
   &:hover {
@@ -64,6 +68,7 @@ fieldset {
   padding: 20px 0;
   border-bottom: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  &:first-child { padding-top: 0; }
 }
 
 label {
