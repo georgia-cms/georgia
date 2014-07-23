@@ -35,7 +35,7 @@ module Georgia
 
     def button_to_settings
       return unless policy(@page).settings?
-      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-default'
+      link_to "#{icon_tag('cogs')} Settings".html_safe, [:settings, @page], class: 'btn btn-info'
     end
 
     def button_to_edit

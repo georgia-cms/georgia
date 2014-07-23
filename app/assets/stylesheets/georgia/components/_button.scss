@@ -1,5 +1,8 @@
+.btn-back { @extend .btn-primary; }
+.btn-save { @extend .btn-success; }
+.header-actions .btn-save {margin-left: 40px;}
+
 .btn-back, .btn-save {
-  @extend .btn-primary;
   padding-left: 1.5em;
   padding-right: 1.5em;
 }

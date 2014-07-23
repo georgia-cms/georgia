@@ -30,6 +30,9 @@ module Georgia
     # Edit current page
     def settings
       authorize @page
+      @revision = @page.current_revision
+      @activities = @page.activities.order(created_at: :desc)
+      @awaiting_revisions = @page.revisions.where(status: Georgia::Revision.statuses[:review])
     end
 
     # Create page, load first current revision and js redirect to revisions#edit

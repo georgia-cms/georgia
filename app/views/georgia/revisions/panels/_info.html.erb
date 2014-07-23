@@ -30,6 +30,7 @@
             <% else %>
               <%= link_to "#{icon_tag('thumbs-up')} Publish".html_safe, publish_pages_path(id: [@page.id]), method: :post, class: 'btn btn-success' %>
             <% end -%>
+            <%= link_to("#{icon_tag('trash-o')} Move to Trash".html_safe, @page, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-link text-danger pull-right') if policy(@page).destroy? %>
           </td>
         </tr>
       <% end -%>

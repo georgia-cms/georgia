@@ -8,73 +8,83 @@
     </div>
     <div class="header-actions">
       <%= button_to_edit if policy(@page).edit? %>
-      <%= page_actions_tag(@page) %>
+      <%= link_to "#{icon_tag('copy')} Copy".html_safe, [:copy, @page], class: 'btn btn-default' if policy(@page).copy? %>
       <%= button_to_save if policy(@page).update? %>
     </div>
   </header>
-  <div class='body-main'>
-    <h2><%= icon_tag 'cog' %> <%= instance_name.titleize %> Settings</h2>
+  <section class="body-main">
+    <div class="row">
+      <div class="col-md-9">
+        <h2 class='body-title'><%= icon_tag 'cog' %> <%= instance_name.titleize %> Settings</h2>
 
-    <% if extra_fields? %>
-      <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
-    <% end -%>
+        <% if extra_fields? %>
+          <%= render partial: extra_fields_path, locals: {f: f, page: @page}  %>
+        <% end -%>
 
-    <fieldset>
-      <div class="fieldset-help">
-        <legend>
-          URL & Handle
-          <%= tooltip_tag(icon_tag('info-circle'), "The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language.") %>
-        </legend>
-      </div>
-      <div class="fieldset-fields">
-        <div class="input-group">
-          <div class="input-group-btn">
-            <a class='btn btn-default disabled'><%= page_url_minus_slug %></a>
+        <fieldset>
+          <div class="fieldset-help">
+            <legend>
+              URL & Handle
+              <%= tooltip_tag(icon_tag('info-circle'), "The URL is automatically generated from the #{instance_name}'s hierarchy and title in the default language.") %>
+            </legend>
           </div>
-          <%= f.input_field :slug, data: {slug: @page.slug}, class: 'form-control' %>
-        </div>
-      </div>
-    </fieldset>
+          <div class="fieldset-fields">
+            <div class="input-group">
+              <div class="input-group-btn">
+                <a class='btn btn-default disabled'><%= page_url_minus_slug %></a>
+              </div>
+              <%= f.input_field :slug, data: {slug: @page.slug}, class: 'form-control' %>
+            </div>
+          </div>
+        </fieldset>
 
-    <fieldset>
-      <div class="fieldset-help">
-        <legend>
-          Tags
-          <%= tooltip_tag(icon_tag('info-circle'), "Tags can later be used to show similar pages or pages sharing the same tags.") %>
-        </legend>
-        <p class="hint">
-          Use tags to help Georgia understand what this page is about.
-        </p>
-      </div>
-      <div class="fieldset-fields">
-        <%= f.input :tag_list, as: :text, label: false, input_html: {class: 'js-taggable', rows: 1} %>
-      </div>
-    </fieldset>
+        <fieldset>
+          <div class="fieldset-help">
+            <legend>
+              Tags
+              <%= tooltip_tag(icon_tag('info-circle'), "Tags can later be used to show similar pages or pages sharing the same tags.") %>
+            </legend>
+            <p class="hint">
+              Use tags to help Georgia understand what this page is about.
+            </p>
+          </div>
+          <div class="fieldset-fields">
+            <%= f.input :tag_list, as: :text, label: false, input_html: {class: 'js-taggable', rows: 1} %>
+          </div>
+        </fieldset>
 
-    <fieldset>
-      <div class="fieldset-help">
-        <legend>Hierarchy</legend>
-        <p class='hint'>
-          Move the <%= instance_name.pluralize %> around to change their display position.
-        </p>
+        <fieldset>
+          <div class="fieldset-help">
+            <legend>Hierarchy</legend>
+            <p class='hint'>
+              Move the <%= instance_name.pluralize %> around to change their display position.
+            </p>
+          </div>
+          <div class="fieldset-fields">
+            <%= f.input :parent_id, collection: parent_page_collection, label: 'Parent', hint: "Select <em>None</em> if the #{instance_name.humanize.downcase} doesn't belong to any section.".html_safe, include_blank: "None", input_html: {class: 'js-select2'} %>
+            <div class="control-group">
+              <%= label_tag :subpages %>
+              <% if @page.persisted? and @page.has_children? %>
+                <ul class="nav nav-stacked subpages js-position-sort">
+                  <%= render partial: 'georgia/pages/subpage', collection: @page.children.ordered %>
+                </ul>
+              <% else -%>
+                <p class='help-block'>There are no subpages for this <%= instance_name.humanize.downcase %>.</p>
+              <% end -%>
+            </div>
+          </div>
+        </fieldset>
+        <footer>
+          <hr />
+          <%= button_to_save if policy(@page).update? %>
+        </footer>
       </div>
-      <div class="fieldset-fields">
-        <%= f.input :parent_id, collection: parent_page_collection, label: 'Parent', hint: "Select <em>None</em> if the #{instance_name.humanize.downcase} doesn't belong to any section.".html_safe, include_blank: "None", input_html: {class: 'js-select2'} %>
-        <div class="control-group">
-          <%= label_tag :subpages %>
-          <% if @page.persisted? and @page.has_children? %>
-            <ul class="nav nav-stacked subpages js-position-sort">
-              <%= render partial: 'georgia/pages/subpage', collection: @page.children.ordered %>
-            </ul>
-          <% else -%>
-            <p class='help-block'>There are no subpages for this <%= instance_name.humanize.downcase %>.</p>
-          <% end -%>
-        </div>
+      <div class="col-md-3 body-sidebar">
+        <%= render 'georgia/revisions/panels/actions' %>
+        <%= render 'georgia/revisions/panels/info' %>
+        <%= render 'georgia/revisions/panels/drafts' %>
+        <%= render 'georgia/revisions/panels/activities' %>
       </div>
-    </fieldset>
-    <footer>
-      <hr />
-      <%= link_to_delete @page if policy(@page).destroy? %>
-    </footer>
-  </div>
+    </div>
+  </section>
 <% end %>

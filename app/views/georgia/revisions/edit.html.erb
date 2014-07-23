@@ -14,7 +14,6 @@
       </div>
       <div class="header-actions">
         <%= button_to_settings %>
-        <%= page_actions_tag(@page, @revision) %>
         <%= button_to_save if policy(@revision).update? %>
       </div>
     </header>
@@ -34,10 +33,6 @@
           <%= render 'georgia/revisions/panels/activities' %>
         </div>
       </div>
-      <footer>
-        <hr />
-        <%= link_to_delete @page if policy(@page).destroy? %>
-      </footer>
     </section>
   <% end -%>
 <% end %>
