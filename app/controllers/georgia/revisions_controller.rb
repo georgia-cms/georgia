@@ -39,7 +39,7 @@ module Georgia
     def destroy
       authorize @revision
       if @revision.destroy
-        redirect_to page_revisions_path(@page), notice: "Revision was successfully deleted."
+        redirect_to [:edit, @page], notice: "Revision was successfully deleted."
       else
         redirect_to page_revisions_path(@page), alert: "Oups! Something went wrong."
       end
@@ -97,12 +97,22 @@ module Georgia
 
     def prepare_page
       polymorphic_resource_key = params.keys.select{|k| k.match('_id')}.first
-      @page = Georgia::Page.find(params[polymorphic_resource_key])
+      @page = Page.where(id: params[polymorphic_resource_key]).first
     end
 
     def prepare_revision
-      @revision = Revision.find(params[:id])
-      @page = @revision.revisionable
+      @revision = Revision.where(id: params[:id]).first
+      if @revision
+        @page = @revision.try(:revisionable)
+      else
+        authorize Georgia::Revision
+        prepare_page
+        if @page
+          redirect_to [:edit, @page], alert: 'This revision has been deleted or does not exist.'
+        else
+          redirect_to georgia.root_path, alert: "This resource has been deleted or does not exist."
+        end
+      end
     end
 
     def prepare_content
