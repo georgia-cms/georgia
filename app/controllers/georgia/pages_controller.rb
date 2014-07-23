@@ -88,7 +88,7 @@ module Georgia
       authorize @pages
       message = @pages.length > 1 ? "#{instance_name.humanize.pluralize(@pages.length)} successfully deleted." : "#{@pages.first.title} successfully deleted."
       if @pages.destroy_all
-        render_success(message)
+        render_success(message, redirect_url: [:search, model])
       else
         render_error("Oups. Something went wrong.")
       end
@@ -173,11 +173,11 @@ module Georgia
       @pages = model.where(id: params[:id])
     end
 
-    def render_success success_message
+    def render_success success_message, redirect_url: :back
       @status_message = success_message
       @status = :notice
       respond_to do |format|
-        format.html { redirect_to [:search, model], notice: @status_message }
+        format.html { redirect_to redirect_url, notice: @status_message }
         format.js   { render layout: false }
         format.json { render json: { ids: @pages.map(&:id), message: @status_message, status: @status } }
       end
