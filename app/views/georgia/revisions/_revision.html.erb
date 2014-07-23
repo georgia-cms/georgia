@@ -1,12 +1,16 @@
-<div class="revision">
-  <%= icon_tag('star', title: 'Current Revision') if @page.current_revision == revision %>
-  <span class='badge badge-default'>id:<%= revision.id %></span>
-  <span class='label label-<%= revision.status %>'><%= revision.status %></span>
-  <%= link_to revision.created_at.strftime('%F %H:%M'), [@page, revision] %>
-  <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
+<div class="revision media">
+  <%= icon_tag('star pull-left', size: 'lg', title: 'Current Revision') if @page.current_revision == revision %>
+  <%= image_tag avatar_url(revision.user.try(:email)), alt: '', class: 'media-object pull-left' %>
   <div class="pull-right">
     <%= link_to "#{icon_tag('pencil')} Edit".html_safe, [@page, revision], class: 'btn btn-info' %>
     <%= link_to "#{icon_tag('undo')} Restore".html_safe, [:restore, @page, revision] , class: 'btn btn-warning', disabled: (@page.current_revision == revision) if policy(revision).restore? %>
     <%= link_to_delete [@page, revision], disabled: (@page.current_revision == revision) if policy(revision).destroy? %>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <small class='badge badge-default'>id:<%= revision.id %></small>
+      <small class='label label-<%= revision.status %>'><%= revision.status %></small>
+      <small class="muted">updated <%= time_ago_in_words(revision.updated_at) %> ago</small>
+    </h4>
   </div>
 </div>

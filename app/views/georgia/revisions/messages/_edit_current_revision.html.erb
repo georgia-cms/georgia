@@ -1,6 +1,12 @@
 <div class="well">
   <p>You are looking at a past revision. Updating this content will not change anything on your website.</p>
   <p>
-    <%= link_to('Edit current revision', [:edit, @page, @page.current_revision], class: 'btn btn-primary') %>
+    <%= link_to("#{icon_tag('pencil')} Edit current revision".html_safe, [:edit, @page, @page.current_revision], class: 'btn btn-primary') %>
   </p>
+  <% if policy(@revision).restore? %>
+    <p>Optionally, you can also restore this revision as the current version of this page.</p>
+    <p>
+      <%= link_to "#{icon_tag('undo')} Set as current revision".html_safe, [:restore, @page, @revision] , class: 'btn btn-info'  %>
+    </p>
+  <% end -%>
 </div>
