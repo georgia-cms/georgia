@@ -22,6 +22,17 @@
         <td>Last updated</td>
         <td>About <%= time_ago_in_words(@revision.updated_at) %> ago</td>
       </tr>
+      <% if policy(@page).publish? or policy(@page).unpublish? %>
+        <tr>
+          <td colspan="2">
+            <% if @page.public? %>
+              <%= link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, unpublish_pages_path(id: [@page.id]), data: {confirm: 'Are you sure?'}, method: :post, class: 'btn btn-danger' %>
+            <% else %>
+              <%= link_to "#{icon_tag('thumbs-up')} Publish".html_safe, publish_pages_path(id: [@page.id]), method: :post, class: 'btn btn-info' %>
+            <% end -%>
+          </td>
+        </tr>
+      <% end -%>
     </table>
   </div>
 </div>

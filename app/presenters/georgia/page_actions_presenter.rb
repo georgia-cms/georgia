@@ -21,8 +21,6 @@ module Georgia
       html = ActiveSupport::SafeBuffer.new
       html << content_tag(:li, link_to_preview) if policy(page).preview?
       html << content_tag(:li, link_to_copy) if policy(page).copy?
-      html << content_tag(:li, link_to_publish) if policy(page).publish? and !page.published?
-      html << content_tag(:li, link_to_unpublish) if policy(page).unpublish? and page.published?
       html << content_tag(:li, link_to_revisions) if policy(Georgia::Revision).index?
       html
     end
@@ -35,14 +33,6 @@ module Georgia
 
     def link_to_copy
       link_to "#{icon_tag('copy')} Copy".html_safe, [:copy, page], options
-    end
-
-    def link_to_publish
-      link_to "#{icon_tag('thumbs-up')} Publish".html_safe, georgia.publish_pages_path(id: [page.id]), options.merge(method: :post)
-    end
-
-    def link_to_unpublish
-      link_to "#{icon_tag('thumbs-down')} Unpublish".html_safe, georgia.unpublish_pages_path(id: [page.id]), options.merge(data: {confirm: 'Are you sure?'}, method: :post)
     end
 
     def link_to_revisions
