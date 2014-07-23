@@ -7,14 +7,24 @@ module Georgia
     before_filter :prepare_page, only: [:show, :edit, :settings, :update, :copy, :preview, :draft]
 
     def show
-      authorize @page
-      redirect_to [:edit, @page]
+      if @page
+        authorize @page
+        redirect_to [:edit, @page, @page.current_revision]
+      else
+        authorize Georgia::Page
+        redirect_to [:search, model], alert: "This #{instance_name} has been deleted."
+      end
     end
 
     # Edit current revision
     def edit
-      authorize @page
-      redirect_to [:edit, @page, @page.current_revision]
+      if @page
+        authorize @page
+        redirect_to [:edit, @page, @page.current_revision]
+      else
+        authorize Georgia::Page
+        redirect_to [:search, model], alert: "This #{instance_name} has been deleted."
+      end
     end
 
     # Edit current page
@@ -88,7 +98,6 @@ module Georgia
     def publish
       set_pages
       authorize @pages
-
       unless @pages.map(&:publish).include?(false)
         @pages.each do |page|
           CreateActivity.new(page, :publish, owner: current_user).call
@@ -145,7 +154,7 @@ module Georgia
     end
 
     def prepare_page
-      @page = model.find(params[:id]).decorate
+      @page = model.where(id: params[:id]).first.try(:decorate)
     end
 
     def page_params
@@ -168,7 +177,7 @@ module Georgia
       @status_message = success_message
       @status = :notice
       respond_to do |format|
-        format.html { redirect_to :back, notice: @status_message }
+        format.html { redirect_to [:search, model], notice: @status_message }
         format.js   { render layout: false }
         format.json { render json: { ids: @pages.map(&:id), message: @status_message, status: @status } }
       end
