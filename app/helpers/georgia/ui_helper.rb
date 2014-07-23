@@ -1,8 +1,8 @@
 module Georgia
   module UiHelper
 
-    def avatar_url(email, options={})
-      gravatar_id = Digest::MD5.hexdigest(email.try(:downcase))
+    def avatar_url(email='', options={})
+      gravatar_id = Digest::MD5.hexdigest(email.downcase) if email
       size = options.fetch(:size, '32')
       "//gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=mm"
     end
