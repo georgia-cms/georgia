@@ -1,0 +1,4 @@
+.js-replace-asset{
+  //  Overriding file input transform which translates view outside
+  @include transform(none);
+}
