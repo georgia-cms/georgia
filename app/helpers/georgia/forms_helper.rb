@@ -46,7 +46,7 @@ module Georgia
     end
 
     def widgets_collection
-      @widgets_collection ||= options_from_collection_for_select(Georgia::Widget.all, :id, :title)
+      @widgets_collection ||= options_from_collection_for_select(Georgia::Widget.includes(:contents).all, :id, :title)
     end
 
     def extra_fields?
