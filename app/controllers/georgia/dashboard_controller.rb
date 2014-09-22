@@ -3,7 +3,7 @@ module Georgia
 
     def show
       if can?(:approve, Georgia::Revision) or can?(:review, Georgia::Revision)
-        @awaiting_revisions = Georgia::Revision.reviews.select{|r| r.revisionable.present?}
+        @awaiting_revisions = Georgia::Revision.reviews.includes([:revisionable, :contents]).select { |r| r.revisionable.present? }
       end
       if defined? GeorgiaMailer::Message
         if can?(:index, GeorgiaMailer::Message)
