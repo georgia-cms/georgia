@@ -13,9 +13,7 @@ module Georgia
     end
 
     def call
-      if can? :manage, revision
-        admin_update_attributes
-      elsif can? :review, revision
+      if can? :review, revision
         contributor_update_attributes
       else
         false
