@@ -4,7 +4,7 @@ module Georgia
     load_and_authorize_resource class: Georgia::Widget
 
     def index
-      @widgets = Widget.order(:created_at).page(params[:page]).in_groups_of(4, false)
+      @widgets = Widget.order(:created_at).includes(:contents).page(params[:page]).in_groups_of(4, false)
       @widget = Widget.new
       @widget.contents.build(locale: current_locale)
     end

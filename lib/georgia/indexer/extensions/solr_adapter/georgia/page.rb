@@ -51,7 +51,7 @@ module Georgia
           end
 
           def self.search_index model, params
-            model.search do
+            model.search(:include => [current_revision: :contents]) do
               fulltext params[:query] do
                 fields(:title, :excerpt, :text, :keywords, :tags, :url, :template)
               end

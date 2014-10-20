@@ -1,0 +1,11 @@
+.js-replace-asset{
+  //  Overriding file input transform which translates view outside
+  position: static;
+  height: 10px;
+  padding: 0;
+  width: 30px;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+  @include transform(none);
+}

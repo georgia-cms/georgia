@@ -27,7 +27,7 @@ module Georgia
           end
 
           def self.search_index model, params
-            model.search do
+            model.search(:include => [{contents: :contentable}]) do
               fulltext params[:query] do
                 fields(:filename, :tags)
               end
