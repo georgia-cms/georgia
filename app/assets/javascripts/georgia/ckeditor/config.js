@@ -1,4 +1,5 @@
 CKEDITOR.config.basePath = '/assets/ckeditor/'
+CKEDITOR.config.defaultLanguage = 'en'
 CKEDITOR.config.ignoreEmptyParagraph = false;
 CKEDITOR.config.allowedContent = true;
 CKEDITOR.config.height = 400;
