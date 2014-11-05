@@ -8,7 +8,7 @@ module Georgia
     # acts_as_list scope: :menu
     has_ancestry orphan_strategy: :adopt
 
-    scope :ordered, order('position ASC')
+    scope :ordered, -> { order('position ASC') }
 
     before_validation :ensure_forward_slash, on: :create
 
