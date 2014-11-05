@@ -181,3 +181,8 @@ Add cloudinary addon to handle media library cloud storage
 Finally, create your first admin user to access to web panel:
 
     heroku run rake georgia:seed
+
+
+### Rails 3
+
+Look at branch `rails3` for support on Rails 3.2
