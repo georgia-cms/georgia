@@ -3,6 +3,17 @@ module Georgia
 
     private
 
+    def default_definition
+      {
+        query: { filtered: { filter: {bool: {must: []}}} }
+      }
+    end
+
+    def post_process
+      filters << only_pages_filter
+      add_filters_to_query
+    end
+
     def query_fields
       ['title^5', 'tag_list^3', 'keyword_list^2', 'text', 'excerpt', 'template', 'slug']
     end
@@ -13,6 +24,10 @@ module Georgia
 
     def sort_direction
       'desc'
+    end
+
+    def only_pages_filter
+      {missing: { field: 'type' }}
     end
 
     def add_suggestion

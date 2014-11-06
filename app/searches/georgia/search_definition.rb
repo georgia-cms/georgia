@@ -35,7 +35,7 @@ module Georgia
     end
 
     def add_fulltext_query_filter
-      @definition[:query] = {multi_match: {query: query, fields: query_fields}}
+      @definition[:query][:filtered][:query] = {simple_query_string: { query: query, fields: query_fields}}
     end
 
     def add_sorting
