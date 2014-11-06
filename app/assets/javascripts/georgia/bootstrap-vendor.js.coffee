@@ -1,5 +1,5 @@
 jQuery ->
-  Shadowbox.init()
+
   $('.js-focus').focus()
   $('.js-tooltip').tooltip()
   $('.js-select2').select2()

@@ -5,7 +5,6 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require select2
-//= require shadowbox
 //= require mousetrap
 
 //= require ckeditor/init
