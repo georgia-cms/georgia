@@ -48,7 +48,7 @@ namespace :georgia do
         email: email,
         password: password,
         password_confirmation: password)
-      user.roles << Georgia::Role.first
+      user.roles << Georgia::Role.where(name: 'admin').first!
       user
     end
 
