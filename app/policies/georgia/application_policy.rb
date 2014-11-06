@@ -19,7 +19,7 @@ module Georgia
     private
 
     def user_roles
-      @user_roles ||= @user.role_names
+      @user_roles ||= @user.role_names.map(&:downcase)
     end
 
     def user_permissions permissions, action
