@@ -7,5 +7,6 @@ module Georgia
     has_many :pages, through: :revisions
 
     validates :name, presence: true, uniqueness: true
+
   end
 end

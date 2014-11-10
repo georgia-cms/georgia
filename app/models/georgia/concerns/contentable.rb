@@ -16,7 +16,7 @@ module Georgia
           @content ||= contents.select{|c| c.locale == locale}.first || Georgia::Content.new(locale: locale)
         end
 
-				delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, :locale, to: :content
+        delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, :locale, to: :content
       end
 
     end

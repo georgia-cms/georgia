@@ -1,7 +1,7 @@
 module Georgia
   class Slide < ActiveRecord::Base
 
-    include Georgia::Concerns::Contentable
+    include Concerns::Contentable
 
     # acts_as_list scope: :page
     belongs_to :revision, foreign_key: :page_id

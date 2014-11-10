@@ -9,9 +9,9 @@ module Georgia
 
     validates :name, presence: true
 
-    scope :published, where(name: PUBLISHED)
-    scope :draft, where(name: DRAFT)
-    scope :pending_review, where(name: PENDING_REVIEW)
+    scope :published, -> { where(name: PUBLISHED) }
+    scope :draft, -> { where(name: DRAFT) }
+    scope :pending_review, -> { where(name: PENDING_REVIEW) }
 
     def published?
       self.name == PUBLISHED

@@ -2,21 +2,18 @@ module Georgia
   class Page < ActiveRecord::Base
 
     include PublicActivity::Common
-
-    include Elasticsearch::Model
-    include Elasticsearch::Model::Callbacks
-
-    include Georgia::Concerns::Orderable
-    include Georgia::Concerns::Treeable
+    include Concerns::Treeable
+    include Concerns::Searchable
 
     # acts_as_list scope: :parent #override Concerns::Orderable to include scope
     acts_as_taggable_on :tags
 
     paginates_per 20
 
-    scope :not_self, ->(page) {where('georgia_pages.id != ?', page.id)}
     scope :published, -> { where(public: true) }
-    scope :from_url, -> (path) { where(url: "/#{path}").includes(current_revision: :contents) }
+    scope :ordered,   -> { order(:position) }
+    scope :not_self,  -> (page) {where('georgia_pages.id != ?', page.id)}
+    scope :from_url,  -> (path) { where(url: "/#{path}").includes(current_revision: :contents) }
 
     validates :slug, format: {with: /\A[a-zA-Z0-9_-]+\z/,
       message: 'can only consist of letters, numbers, dash (-) and underscore (_)'}
@@ -31,25 +28,6 @@ module Georgia
     delegate :title, :text, :excerpt, :keywords, :keyword_list, :image, to: :current_revision, allow_nil: true
     delegate :template, :content, :slides, :widgets, to: :current_revision, allow_nil: true
     delegate :draft?, :review?, :revision?, :published?, to: :current_revision, allow_nil: true
-
-    settings analysis: {
-      analyzer: {
-        'index_ngram_analyzer'  => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase', 'my_ngram_filter']},
-        'search_analyzer'       => {type: 'custom', tokenizer: 'standard', filter: ['standard', 'lowercase']}
-      },
-      filter: {
-        'my_ngram_filter' => {type: 'nGram', min_gram: 2, max_gram: 10, token_chars: [ "letter", "digit", "whitespace", "punctuation", "symbol" ]}
-      }
-    } do
-      mapping index_analyzer: 'index_ngram_analyzer', search_analyzer: 'search_analyzer'
-    end
-
-    def as_indexed_json options={}
-      self.as_json(
-        only: [:id, :updated_at, :slug, :type, :template],
-        methods: [:title, :text, :excerpt, :keyword_list, :tag_list]
-      )
-    end
 
     # FIXME: Should not be part of this model
     def approve_revision revision
@@ -82,14 +60,6 @@ module Georgia
     # Must stay public for #update_url on descendants
     def set_url
       self.update_column(:url, '/' + self.ancestry_url)
-    end
-
-    class << self
-
-      def search_conditions params
-        Georgia::PageSearch.new(params).definition
-      end
-
     end
 
     protected
