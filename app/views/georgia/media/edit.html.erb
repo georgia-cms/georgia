@@ -9,9 +9,9 @@
 
       <h2><%= @asset.filename %></h2>
 
-      <% if @asset.is_a?(Ckeditor::Picture) %>
+      <% if @asset.image? %>
         <div class="media-editable">
-          <%= image_tag @asset.url(:content), title: @asset.filename, class: 'media-image--inline' %>
+          <%= image_tag @asset.url, title: @asset.filename, class: 'media-image--inline' %>
         </div>
       <% end -%>
     </div>
