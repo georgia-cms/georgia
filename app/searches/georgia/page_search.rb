@@ -3,14 +3,8 @@ module Georgia
 
     private
 
-    def default_definition
-      {
-        query: { filtered: { filter: {bool: {must: []}}} }
-      }
-    end
-
     def post_process
-      filters << only_pages_filter
+      filters << only_pages_filter if pages_controller?
       add_filters_to_query
     end
 
@@ -46,6 +40,10 @@ module Georgia
           }
         }
       }
+    end
+
+    def pages_controller?
+      params[:controller] == 'georgia/pages'
     end
 
   end
