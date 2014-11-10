@@ -4,9 +4,8 @@
   </td>
   </td>
   <td class='thumbnail-cell'>
-    <%= link_to asset.url do %>
-      <%= image_tag "georgia/content-types/#{asset.extension}.jpg", alt: asset.data_content_type if asset.data_content_type %>
-    <% end %>
+    <%= link_to asset_icon_tag(asset.extension), asset.url %>
+    <%= icon_tag('paperclip') if asset.is_a?(Ckeditor::AttachmentFile) %>
   </td>
   <td>
     <%= facet_list_tag(asset.tag_list, :tg) %>
@@ -16,7 +15,6 @@
     <%= number_to_human_size(asset.data_file_size) %>
   </td>
   <td class='small'></td> <%# dimensions %>
-  <td class='tiny'></td> <%# featured tag %>
   <td class='timestamp'>
     <em><%= asset.updated_at.strftime('%F') %></em>
   </td>

@@ -11,6 +11,38 @@ module Georgia
       content_tag :span, nil, class: 'caret'
     end
 
+    def asset_icon_tag extension
+      icon_name = case extension.downcase
+        when 'avi' then 'file-movie-o'
+        when 'css' then 'file-text-o'
+        when 'csv' then 'file-excel-o'
+        when 'doc' then 'file-word-o'
+        when 'docx' then 'file-word-o'
+        when 'eps' then 'file-powerpoint-o'
+        when 'gif' then 'file-image-o'
+        when 'gz' then 'file-archive-o'
+        when 'html' then 'file-code-o'
+        when 'jpeg' then 'file-image-o'
+        when 'jpg' then 'file-image'
+        when 'mp3' then 'file-audio-o'
+        when 'ods' then 'file-excel-o'
+        when 'odt' then 'file-word-o'
+        when 'pdf' then 'file-pdf-o'
+        when 'png' then 'file-image-o'
+        when 'ppt' then 'file-powerpoint-o'
+        when 'pptx' then 'file-powerpoint-o'
+        when 'rar' then 'file-archive-o'
+        when 'tar' then 'file-archive-o'
+        when 'txt' then 'file-text-o'
+        when 'wav' then 'file-audio-o'
+        when 'xls' then 'file-excel-o'
+        when 'zip' then 'file-archive-o'
+        else
+          'file'
+        end
+      icon_tag(icon_name)
+    end
+
     def link_to_back url=:back
       link_to icon_tag('level-up fa-rotate-270'), url, class: 'btn btn-back'
     end
