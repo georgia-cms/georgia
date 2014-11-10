@@ -2,6 +2,7 @@ module Georgia
   class WidgetsController < ApplicationController
 
     def index
+      authorize Widget
       @widgets = Widget.order(:created_at).page(params[:page]).in_groups_of(4, false)
       @widget = Widget.new
       @widget.contents.build(locale: current_locale)
