@@ -1,7 +1,10 @@
 class Ckeditor::Picture < Ckeditor::Asset
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   index_name 'ckeditor-assets'
   document_type 'asset'
+  include Ckeditor::AssetSearch
 
   mount_uploader :data, Ckeditor::PictureUploader, mount_on: :data_file_name
 
@@ -22,6 +25,10 @@ class Ckeditor::Picture < Ckeditor::Asset
       else
         data_file_name
       end
+  end
+
+  def image?
+    true
   end
 
 end

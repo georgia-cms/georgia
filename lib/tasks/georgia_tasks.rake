@@ -62,14 +62,26 @@ namespace :georgia do
     end
   end
 
-  desc 'Setup ElasticSearch indices'
-  task create_indices: :environment do
-    Georgia::Page.__elasticsearch__.create_index! force: true
-    Georgia::Page.import
-    Ckeditor::Asset.__elasticsearch__.create_index! force: true
-    Ckeditor::Asset.import
-    ActsAsTaggableOn::Tag.__elasticsearch__.create_index! force: true
-    ActsAsTaggableOn::Tag.import
+  namespace :elasticsearch do
+
+    desc 'Setup ElasticSearch indices'
+    task setup: :environment do
+
+      Georgia::Page.__elasticsearch__.client.indices.delete index: Georgia::Page.index_name rescue nil
+      Georgia::Page.__elasticsearch__.create_index! force: true
+      Georgia::Page.import
+
+      Ckeditor::Asset.__elasticsearch__.client.indices.delete index: Ckeditor::Asset.index_name rescue nil
+      Ckeditor::Asset.__elasticsearch__.create_index! force: true
+      Ckeditor::Asset.import
+      Ckeditor::Picture.import
+      Ckeditor::AttachmentFile.import
+
+      ActsAsTaggableOn::Tag.__elasticsearch__.client.indices.delete index: ActsAsTaggableOn::Tag.index_name rescue nil
+      ActsAsTaggableOn::Tag.__elasticsearch__.create_index! force: true
+      ActsAsTaggableOn::Tag.import
+    end
+
   end
 
   namespace :ckeditor do

@@ -1,5 +1,9 @@
 class Ckeditor::Asset < ActiveRecord::Base
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  index_name 'ckeditor-assets'
+  document_type 'asset'
   include Ckeditor::AssetSearch
 
   # to allow media_path in to_jq_upload
@@ -40,6 +44,10 @@ class Ckeditor::Asset < ActiveRecord::Base
 
   def self.policy_class
     Georgia::MediaPolicy
+  end
+
+  def image?
+    false
   end
 
   SIZE_RANGE = {

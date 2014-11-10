@@ -52,7 +52,9 @@ module Georgia
     end
 
     def default_definition
-      {}
+      {
+        query: { filtered: { filter: {bool: {must: []}}} }
+      }
     end
 
     def query_fields
