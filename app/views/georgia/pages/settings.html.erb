@@ -33,7 +33,7 @@
               <div class="input-group-btn">
                 <a class='btn btn-default disabled'><%= page_url_minus_slug %></a>
               </div>
-              <%= f.input_field :slug, data: {slug: @page.slug}, class: 'form-control' %>
+              <%= f.input_field :slug, pattern: '[a-zA-Z0-9]+', data: {slug: @page.slug}, class: 'form-control' %>
             </div>
           </div>
         </fieldset>
