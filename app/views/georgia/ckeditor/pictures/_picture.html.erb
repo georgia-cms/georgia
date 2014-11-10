@@ -3,9 +3,7 @@
     <%= checkboxable_tag picture %>
   </td>
   <td class='thumbnail-cell'>
-    <%= link_to picture.url_content, class: 'media-link bg-transparent', data: {toggle: 'lightbox'}} do %>
-      <%= image_tag picture.url(:tiny), title: picture.filename, class: 'media-image' %>
-    <% end %>
+    <%= image_tag picture.url(:tiny), title: picture.filename, class: 'media-image' %>
   </td>
   <td>
     <%= facet_list_tag(picture.tag_list, :tg) %>
@@ -16,9 +14,6 @@
   </td>
   <td class='small'>
     <%= picture.width %>x<%= picture.height %>
-  </td>
-  <td class='tiny'>
-    <span class="badge" title="Featured in <%= pluralize(picture.pages.length, 'page') %>"><%= picture.pages.length %></span>
   </td>
   <td class='timestamp'>
     <em><%= picture.pretty_updated_at %></em>
