@@ -8,10 +8,10 @@
         <% @awaiting_revisions.each do |revision| %>
           <li class="media">
             <%= image_tag(avatar_url(revision.user.try(:email)), alt: '', class: 'media-object pull-left') %>
+            <%= link_to 'Review', [:edit, revision.revisionable, revision], class: 'pull-right btn btn-default btn-xs' %>
             <div class="media-body">
               <h4 class="media-heading">
                 <%= revision.title %>
-                <%= link_to 'Review', [:edit, revision.revisionable, revision], class: 'pull-right btn btn-default btn-xs' %>
               </h4>
               <%= truncate(strip_tags(revision.text), length: 120, separator: ' ') %>
             </div>

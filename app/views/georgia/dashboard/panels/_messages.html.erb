@@ -8,10 +8,10 @@
         <% @messages.each do |message| %>
           <li class="media">
             <%= link_to image_tag(avatar_url(message.email), class: 'media-object'), message, class: 'pull-left' %>
+            <%= link_to 'Read', message, class: 'pull-right btn btn-default btn-xs' %>
             <div class="media-body">
               <h4 class="media-heading">
                 <%= message.name_or_anonymous %>
-                <%= link_to 'Read', message, class: 'pull-right btn btn-default btn-xs' %>
               </h4>
              <%= message.subject %>
             </div>
