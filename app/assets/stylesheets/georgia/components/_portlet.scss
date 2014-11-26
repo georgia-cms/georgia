@@ -6,7 +6,10 @@
     float: left;
     margin: 0 15px;
   }
-  .title { margin: 0; }
+  .title {
+    margin: 0;
+    small { margin-left: 10px; }
+  }
   .actions {
     float: right;
   }
