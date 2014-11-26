@@ -29,8 +29,8 @@ module Georgia
     def thead
       content_tag(:thead) do
         content_tag(:tr) do
-          content_tag(:th, 'Actions') +
-          Georgia.roles.map{|role| content_tag(:th, role.to_s.titleize, class: 'role') }.join.html_safe
+          content_tag(:th, 'Actions', class: 'permissions-actions') +
+          roles.map{|role| content_tag(:th, role.to_s.titleize, class: 'role') }.join.html_safe
         end
       end
     end
@@ -43,7 +43,7 @@ module Georgia
       @actions.map do |action, permissions|
         content_tag(:tr) do
           content_tag(:td, action.to_s.titleize) +
-          Georgia.roles.map{|role| permission_cell(permissions[role.to_sym]) }.join.html_safe
+          roles.map{|role| permission_cell(permissions[role.to_sym]) }.join.html_safe
         end
       end.join.html_safe
     end
@@ -70,6 +70,10 @@ module Georgia
       when :partial then 'warning'
       else 'danger'
       end
+    end
+
+    def roles
+      @roles ||= Georgia::Role.pluck(:name)
     end
 
   end
