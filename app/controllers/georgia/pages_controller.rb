@@ -18,7 +18,7 @@ module Georgia
 
     # Edit current revision
     def edit
-      if @page
+      if @page and @page.current_revision
         authorize @page
         redirect_to [:edit, @page, @page.current_revision]
       else
