@@ -34,3 +34,5 @@ Ckeditor.setup do |config|
   # By default: nil
   # config.asset_path = "http://www.example.com/assets/ckeditor/"
 end
+
+Rails.application.config.assets.precompile += %w( ckeditor/* )
