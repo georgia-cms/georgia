@@ -10,10 +10,12 @@ module Georgia
 
     def edit
       @widget = Widget.find(params[:id])
+      authorize @widget
     end
 
     def create
       @widget = Widget.new(widget_params)
+      authorize @widget
 
       if @widget.save
         respond_to do |format|
@@ -31,6 +33,8 @@ module Georgia
 
     def update
       @widget = Widget.find(params[:id])
+      authorize @widget
+
       if @widget.update(widget_params)
         respond_to do |format|
           format.html { redirect_to widgets_url, notice: "Widget was successfully updated." }
@@ -46,6 +50,8 @@ module Georgia
 
     def destroy
       @widget = Widget.find(params[:id])
+      authorize @widget
+
       if @widget.destroy
         respond_to do |format|
           format.html { redirect_to widgets_url, notice: "Widget was successfully deleted." }
