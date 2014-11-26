@@ -156,7 +156,12 @@ module Georgia
     end
 
     def revision_params
-      params.require(:revision).permit(:template, contents_attributes: [:text, :title, :locale, :excerpt, :keyword_list, :image_id, :id])
+      params.require(:revision).permit(
+        :template,
+        contents_attributes: [:text, :title, :locale, :excerpt, :keyword_list, :image_id, :id],
+        slides_attributes: [:position, :id, :_destroy, contents_attributes: [:text, :title, :image_id, :locale, :id]],
+        ui_associations_attributes: [:id, :_destroy, :position, :ui_section_id, :widget_id]
+      )
     end
 
     def sanitized_attributes
