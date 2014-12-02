@@ -22,7 +22,7 @@ module Georgia
       module ClassMethods
 
         def search_conditions params
-          Georgia::PageSearch.new(params).definition
+          Georgia::PageSearch.new(params.merge(type: self.to_s)).definition
         end
 
       end

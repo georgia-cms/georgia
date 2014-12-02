@@ -4,7 +4,8 @@ module Georgia
     private
 
     def post_process
-      filters << only_pages_filter if pages_controller?
+      @type = params[:type]
+      filters << pages_filter if @type == 'Georgia::Page'
       add_filters_to_query
     end
 
@@ -20,8 +21,8 @@ module Georgia
       'desc'
     end
 
-    def only_pages_filter
-      {missing: { field: 'type' }}
+    def pages_filter
+      {missing: {field: 'type'}}
     end
 
     def add_suggestion
@@ -40,10 +41,6 @@ module Georgia
           }
         }
       }
-    end
-
-    def pages_controller?
-      params[:controller] == 'georgia/pages'
     end
 
   end
