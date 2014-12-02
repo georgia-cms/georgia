@@ -4,6 +4,7 @@ module Georgia
     include PublicActivity::Common
     include Concerns::Treeable
     include Concerns::Searchable
+    index_name "georgia-pages-#{Rails.env}"
 
     # acts_as_list scope: :parent #override Concerns::Orderable to include scope
     acts_as_taggable_on :tags
