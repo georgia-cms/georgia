@@ -141,12 +141,12 @@ module Georgia
     end
 
     def index
-      authorize Georgia::Page
+      authorize model
       redirect_to [:search, model]
     end
 
     def search
-      authorize Georgia::Page
+      authorize model
       session[:search_params] = params
       search_conditions = model.search_conditions(params)
       @search = model.search(search_conditions).page(params[:page])
