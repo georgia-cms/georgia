@@ -2,6 +2,13 @@
   width: 330px;
   margin: 5% auto 0;
   text-align: center;
+
+  .control-group {
+    margin-bottom: 10px;
+  }
+  .input-submit {
+    margin-top: 20px;
+  }
 }
 
 .login-logo { text-align: center; }
