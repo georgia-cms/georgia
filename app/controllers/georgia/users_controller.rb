@@ -22,7 +22,7 @@ module Georgia
         @user = User.find(params[:id])
         authorize @user
       rescue ActiveRecord::RecordNotFound => ex
-        redirect_to users_url, alert: "This user doesn't exist anymore."
+        redirect_to users_path, alert: "This user doesn't exist anymore."
       end
     end
 
@@ -31,7 +31,7 @@ module Georgia
       authorize @user
 
       if @user.save
-        redirect_to users_url, notice: "User was successfully created."
+        redirect_to users_path, notice: "User was successfully created."
       else
         render :new
       end
@@ -43,7 +43,7 @@ module Georgia
       params[:user].delete(:password) if params[:user][:password].blank?
       params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
       if @user.update(user_params)
-        redirect_to users_url, notice: "User was successfully updated."
+        redirect_to users_path, notice: "User was successfully updated."
       else
         render :edit
       end
@@ -53,7 +53,7 @@ module Georgia
       @user = User.find(params[:id])
       authorize @user
       @user.destroy
-      redirect_to users_url, notice: "User was successfully deleted."
+      redirect_to users_path, notice: "User was successfully deleted."
     end
 
     def permissions
