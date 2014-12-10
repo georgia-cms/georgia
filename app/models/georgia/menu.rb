@@ -3,7 +3,7 @@ module Georgia
 
     validates :name, presence: true
 
-    has_many :links, dependent: :destroy
+    has_many :links, -> { order(position: :asc) }, dependent: :destroy
     accepts_nested_attributes_for :links, allow_destroy: true
 
     def self.policy_class
