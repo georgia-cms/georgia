@@ -23,6 +23,10 @@ module Georgia
       @slug ||= text.match(/([\w-]*)$/)[0]
     end
 
+    def url
+      @url ||= self.text
+    end
+
     def self.policy_class
       Georgia::NavigationPolicy
     end
