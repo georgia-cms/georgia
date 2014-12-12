@@ -3,6 +3,7 @@ gemspec
 
 group :development, :test do
   gem 'rails', '~> 4.0'
+  gem 'pry-byebug'
 end
 
 group :test do
