@@ -9,7 +9,7 @@ module Georgia
     def show
       if @page
         authorize @page
-        redirect_to [:edit, @page, @page.current_revision]
+        redirect_to edit_page_revision_path(@page, @page.current_revision)
       else
         authorize Georgia::Page
         redirect_to [:search, model], alert: "This #{instance_name} has been deleted."
@@ -20,7 +20,7 @@ module Georgia
     def edit
       if @page and @page.current_revision
         authorize @page
-        redirect_to [:edit, @page, @page.current_revision]
+        redirect_to edit_page_revision_path(@page, @page.current_revision)
       else
         authorize Georgia::Page
         redirect_to [:search, model], alert: "This #{instance_name} has been deleted."

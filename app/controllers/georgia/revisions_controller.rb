@@ -12,7 +12,7 @@ module Georgia
 
     def show
       authorize @revision
-      redirect_to [:edit, @page, @revision]
+      redirect_to edit_page_revision_path(@page, @revision)
     end
 
     def edit
@@ -33,9 +33,9 @@ module Georgia
         service_object = service.new(current_user, @page, @revision, sanitized_attributes)
         if service_object.call
           CreateActivity.new(@revision, :update, owner: current_user).call
-          redirect_to [:edit, @page, service_object.revision], notice: "#{service_object.revision.title} was successfully updated."
+          redirect_to edit_page_revision_path(@page, service_object.revision), notice: "#{service_object.revision.title} was successfully updated."
         else
-          redirect_to [:edit, @page, @revision], alert: service_object.revision.errors.full_messages.join('. ')
+          redirect_to edit_page_revision_path(@page, @revision), alert: service_object.revision.errors.full_messages.join('. ')
         end
       end
     end
@@ -62,9 +62,9 @@ module Georgia
       ensure_remove_previous_drafts_of_the_same_page
       if @draft = Georgia::CloneRevision.create(@revision, status: 'draft', revised_by_id: current_user.id)
         CreateActivity.new(@draft, :draft, owner: current_user).call
-        redirect_to [:edit, @page, @draft], notice: "You successfully created a new draft."
+        redirect_to edit_page_revision_path(@page, @draft), notice: "You successfully created a new draft."
       else
-        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+        redirect_to edit_page_revision_path(@page, @revision), alert: "Oups! Something went wrong."
       end
     end
 
@@ -73,9 +73,9 @@ module Georgia
       if @revision.update(status: :review)
         CreateActivity.new(@revision, :review, owner: current_user).call
         notify("#{current_user.name} is asking you to review #{@revision.title}.", edit_page_revision_path(@page, @revision, only_path: false))
-        redirect_to [:edit, @page, @revision], notice: "You successfully submited #{@revision.title} for review."
+        redirect_to edit_page_revision_path(@page, @revision), notice: "You successfully submited #{@revision.title} for review."
       else
-        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+        redirect_to edit_page_revision_path(@page, @revision), alert: "Oups! Something went wrong."
       end
     end
 
@@ -85,9 +85,9 @@ module Georgia
         @page.current_revision.update(status: :revision)
         @page.update(revision_id: @revision.id)
         CreateActivity.new(@revision, :approve, owner: current_user).call
-        redirect_to [:edit, @page, @revision], notice: "You have successfully approved and published #{@revision.title}."
+        redirect_to edit_page_revision_path(@page, @revision), notice: "You have successfully approved and published #{@revision.title}."
       else
-        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+        redirect_to edit_page_revision_path(@page, @revision), alert: "Oups! Something went wrong."
       end
     end
 
@@ -99,7 +99,7 @@ module Georgia
         @revision.destroy
         redirect_to [:edit, @page], notice: message
       else
-        redirect_to [:edit, @page, @revision], alert: "Oups! Something went wrong."
+        redirect_to edit_page_revision_path(@page, @revision), alert: "Oups! Something went wrong."
       end
     end
 
