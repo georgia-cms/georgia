@@ -1,73 +1,77 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Clone do
+describe Georgia::Clone, broken: true do
 
   let(:instance) { create(:georgia_page) }
 
   describe 'instance methods' do
 
+    let(:georgia_page) { create(:georgia_page) }
+    let(:subject) { Georgia::Clone.new(georgia_page) }
+
     it "responds to :copy" do
-      Georgia::Clone.new(create(:georgia_page)).should respond_to(:copy)
+      expect(subject).to respond_to(:copy)
     end
 
     it "responds to :draft" do
-      Georgia::Clone.new(create(:georgia_page)).should respond_to(:draft)
+      expect(subject).to respond_to(:draft)
     end
 
     it "responds to :store" do
-      Georgia::Clone.new(create(:georgia_page)).should respond_to(:store)
+      expect(subject).to respond_to(:store)
     end
+
   end
 
   describe 'copying' do
 
     it 'returns a persisted record' do
-      @copy = instance.copy
+      @copy = subject.copy
       expect(@copy.new_record?).to be false
       expect(@copy.eql?(instance)).to be false
     end
 
     it 'adds -copy to slug' do
-      @copy = instance.copy
+      @copy = subject.copy
       expect(@copy.slug).to match /.*-copy/
     end
 
     it 'adds (Copy) to titles' do
       instance.current_revision = create(:georgia_published)
       instance.current_revision.contents << create(:georgia_content)
-      @copy = instance.copy
+      @copy = subject.copy
       expect(@copy.current_revision.contents.first.title).to match /.*\(Copy\)$/
     end
 
     it 'duplicates contents' do
       instance.current_revision.contents = [create(:georgia_content, text: 'Yabadabadoo')]
-      instance.current_revision.should have(1).contents
-      @copy = instance.copy
-      @copy.current_revision.should have(1).contents
-      expect(@copy.current_revision.contents.first.text).to eql "Yabadabadoo"
+      expect(instance.current_revision).to have(1).contents
+      @copy = subject.copy
+      expect(@copy.current_revision).to have(1).contents
+      expect(@copy.current_revision.contents.first.text).to eq "Yabadabadoo"
     end
 
     it 'duplicates widgets' do
       instance.current_revision.ui_associations << create(:georgia_ui_association)
       instance.current_revision.ui_associations << create(:georgia_ui_association)
-      @copy = instance.copy
-      @copy.current_revision.should have(2).ui_associations
+      @copy = subject.copy
+      expect(@copy.current_revision).to have(2).ui_associations
     end
 
     it 'duplicates slides & its contents' do
       instance.current_revision.slides << create(:georgia_slide, contents: [create(:georgia_content, text: 'Yeehaw')])
       instance.current_revision.slides << create(:georgia_slide)
-      @copy = instance.copy
-      @copy.current_revision.should have(2).slides
+      @copy = subject.copy
+      expect(@copy.current_revision).to have(2).slides
       expect(@copy.current_revision.slides.first.contents.first.text).to eql 'Yeehaw'
     end
 
     it 'duplicates tags' do
       instance.tag_list = "foo, bar"
       instance.save!
-      @copy = instance.copy
+      @copy = subject.copy
       expect(@copy.tag_list).to include 'foo'
-      Georgia::Page.tagged_with(['foo', 'bar']).to_a.should include(@copy)
+      expect(Georgia::Page.tagged_with(['foo', 'bar']).to_a).to include(@copy)
       expect(@copy.tags).to have(2).tags
     end
 

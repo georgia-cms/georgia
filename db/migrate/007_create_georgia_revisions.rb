@@ -4,7 +4,7 @@ class CreateGeorgiaRevisions < ActiveRecord::Migration
     create_table :georgia_revisions do |t|
       t.string     :state, default: 'draft'
       t.string     :template
-      t.references :revisionable, polymorphic: true, index: true
+      t.references :revisionable, polymorphic: true
       t.timestamps
     end
   end

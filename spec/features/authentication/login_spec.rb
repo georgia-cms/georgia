@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'User signs in' do
 
@@ -25,7 +25,7 @@ feature 'User signs in' do
     visit '/admin/login'
     fill_in 'Email', with: email
     fill_in 'Password', with: password
-    click_button 'Log In'
+    click_button 'Log in'
   end
 
 end

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Slide do
+describe Georgia::Slide, type: :model do
 
   specify {FactoryGirl.build(:georgia_slide).should be_valid}
 

@@ -1,13 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Role do
+describe Georgia::Role, type: :model do
 
-  specify {FactoryGirl.build(:georgia_role).should be_valid}
+  specify {expect(build(:georgia_role)).to be_valid}
 
-  it { should have_many :users }
-
-  it { should respond_to :name }
-
-  it {should validate_presence_of(:name)}
+  it { expect(subject).to have_and_belong_to_many :users }
+  it { expect(subject).to respond_to :name }
+  it { expect(subject).to validate_presence_of(:name) }
 
 end

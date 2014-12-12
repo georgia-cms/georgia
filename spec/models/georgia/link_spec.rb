@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Link do
-  specify {build(:georgia_link).should be_valid}
+describe Georgia::Link, type: :model do
+  specify {expect(build(:georgia_link)).to be_valid}
 
-  it { should belong_to :menu }
+  it { expect(subject).to belong_to :menu }
 
   describe 'slug' do
 
@@ -17,19 +17,17 @@ describe Georgia::Link do
 
   describe 'validation' do
 
-    before :each do
-      @link = build(:georgia_link)
-    end
+    let(:link) {  build(:georgia_link) }
 
     describe 'url' do
 
       context 'when it starts with http or https' do
 
         it 'validates format of contents text to be a url' do
-          @link.contents << build(:georgia_content, text: 'http')
-          @link.contents << build(:georgia_content, text: 'https')
-          @link.valid?.should be_true
-          @link.should have(:no).errors_on(:base)
+          link.contents << build(:georgia_content, text: 'http')
+          link.contents << build(:georgia_content, text: 'https')
+          expect(link).to be_valid
+          expect(link).to have(:no).errors_on(:base)
         end
 
       end
@@ -37,10 +35,10 @@ describe Georgia::Link do
       context 'when it starts with a forward /' do
 
         it 'validates format of contents text to be a url' do
-          @link.contents << build(:georgia_content, text: '/foo')
-          @link.contents << build(:georgia_content, text: '/bar')
-          @link.valid?.should be_true
-          @link.should have(:no).errors_on(:base)
+          link.contents << build(:georgia_content, text: '/foo')
+          link.contents << build(:georgia_content, text: '/bar')
+          expect(link).to be_valid
+          expect(link).to have(:no).errors_on(:base)
         end
 
       end
@@ -48,9 +46,9 @@ describe Georgia::Link do
       context 'otherwise' do
 
         it 'is automatically corrected by prepending a foward slash' do
-          @link.contents = [build(:georgia_content, text: 'foo/bar')]
-          @link.valid?.should be_true
-          expect(@link.content.text).to match('/foo/bar')
+          link.contents = [build(:georgia_content, text: 'foo/bar')]
+          expect(link).to be_valid
+          expect(link.content.text).to match('/foo/bar')
         end
 
       end

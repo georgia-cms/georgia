@@ -1,19 +1,16 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Georgia::RevisionDecorator do
 
-  subject {Georgia::RevisionDecorator.decorate(FactoryGirl.build(:georgia_revision))}
-
-  it {should respond_to :excerpt_or_text}
+  let(:decorated_georgia_revision) { Georgia::RevisionDecorator.decorate(build(:georgia_revision)) }
 
   describe '#excerpt_or_text' do
 
     context 'with an excerpt' do
 
       it 'returns #excerpt' do
-        revision = Georgia::RevisionDecorator.decorate(build(:georgia_revision))
-        revision.contents << build(:georgia_content, text: nil)
-        revision.excerpt_or_text.should match revision.contents.first.excerpt
+        decorated_georgia_revision.contents << build(:georgia_content, text: nil)
+        expect(decorated_georgia_revision.excerpt_or_text).to match decorated_georgia_revision.contents.first.excerpt
       end
 
     end
@@ -21,9 +18,8 @@ describe Georgia::RevisionDecorator do
     context 'without an excerpt' do
 
       it 'truncates #text' do
-        revision = Georgia::RevisionDecorator.decorate(build(:georgia_revision))
-        revision.contents << build(:georgia_content, excerpt: nil)
-        revision.contents.first.text.should match /^#{revision.excerpt_or_text}.*/
+        decorated_georgia_revision.contents << build(:georgia_content, excerpt: nil)
+        expect(decorated_georgia_revision.contents.first.text).to match /^#{decorated_georgia_revision.excerpt_or_text}.*/
       end
 
     end
@@ -31,9 +27,8 @@ describe Georgia::RevisionDecorator do
     context 'without an excerpt or text' do
 
       it 'returns nil' do
-        revision = Georgia::RevisionDecorator.decorate(build(:georgia_revision))
-        revision.contents << build(:georgia_content, text: nil, excerpt: nil)
-        revision.excerpt_or_text.should be_nil
+        decorated_georgia_revision.contents << build(:georgia_content, text: nil, excerpt: nil)
+        expect(decorated_georgia_revision.excerpt_or_text).to be_nil
       end
 
     end

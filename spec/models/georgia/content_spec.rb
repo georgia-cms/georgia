@@ -1,20 +1,21 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Content do
-  specify {FactoryGirl.build(:georgia_content).should be_valid}
+describe Georgia::Content, type: :model do
 
-  it { should respond_to :title, :text, :excerpt, :keywords, :locale, :image_id }
+  specify {expect(build(:georgia_content)).to be_valid}
 
-  it { should belong_to :image }
-  it { should belong_to :contentable }
+  it { expect(subject).to respond_to :title, :text, :excerpt, :keywords, :locale, :image_id }
 
-  it { should ensure_length_of(:title).is_at_most(255) }
+  it { expect(subject).to belong_to :image }
+  it { expect(subject).to belong_to :contentable }
+
+  it { expect(subject).to ensure_length_of(:title).is_at_most(255) }
 
   describe '#keywords' do
 
     it 'returns a list of tags' do
-      content = FactoryGirl.create(:georgia_content, keyword_list: 'tag1, tag2, tag3')
-      content.keywords.first.should be_a ActsAsTaggableOn::Tag
+      content = create(:georgia_content, keyword_list: 'tag1, tag2, tag3')
+      expect(content.keywords.first).to be_a ActsAsTaggableOn::Tag
     end
 
   end

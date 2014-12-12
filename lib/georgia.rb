@@ -7,7 +7,7 @@ require "georgia/permissions"
 module Georgia
 
   mattr_accessor :templates
-  @@templates = %w(default one-column sidebar-left sidebar-right)
+  @@templates = %w(default)
 
   mattr_accessor :title
   @@title = "Georgia"

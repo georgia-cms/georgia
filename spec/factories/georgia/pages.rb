@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :georgia_page, class: Georgia::Page do
     sequence(:slug) {|n| "page#{n}"}
-    association :current_revision, factory: :revision_with_content
+    public true
+    association :current_revision, factory: :georgia_revision
   end
 end

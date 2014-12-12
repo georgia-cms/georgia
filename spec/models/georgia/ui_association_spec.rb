@@ -1,36 +1,40 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::UiAssociation do
+describe Georgia::UiAssociation, type: :model do
 
-  specify {FactoryGirl.build(:georgia_ui_association).should be_valid}
+  specify {expect(build(:georgia_ui_association)).to be_valid}
 
-  it { should belong_to(:revision) }
-  it { should belong_to(:widget) }
-  it { should belong_to(:ui_section) }
+  it { expect(subject).to belong_to(:revision) }
+  it { expect(subject).to belong_to(:widget) }
+  it { expect(subject).to belong_to(:ui_section) }
 
-  it { should respond_to :widget_id, :ui_section_id, :page_id }
+  it { expect(subject).to respond_to :widget_id, :ui_section_id, :page_id }
 
   it_behaves_like 'a orderable model'
 
-  describe 'validations' do
-    it 'validates presence of associated Page' do
-      @ui_association = FactoryGirl.build(:georgia_ui_association, page_id: nil)
-      @ui_association.valid?.should be_false
-      @ui_association.should have(1).errors_on(:base)
-      expect(@ui_association.errors_on(:base).first).to eq('An association to a page is required.')
+  describe 'validates' do
+
+    it 'presence of associated Page' do
+      @ui_association = build(:georgia_ui_association, page_id: nil)
+      expect(@ui_association).not_to be_valid
+      expect(@ui_association.errors[:base].length).to be 1
+      expect(@ui_association.errors[:base]).to include 'An association to a page is required.'
     end
-    it 'validates presence of associated UI Section' do
-      @ui_association = FactoryGirl.build(:georgia_ui_association, ui_section_id: nil)
-      @ui_association.valid?.should be_false
-      @ui_association.should have(1).errors_on(:base)
-      expect(@ui_association.errors_on(:base).first).to eq('An association to a UI Section is required.')
+
+    it 'presence of associated UI Section' do
+      @ui_association = build(:georgia_ui_association, ui_section_id: nil)
+      expect(@ui_association).not_to be_valid
+      expect(@ui_association.errors[:base].length).to be 1
+      expect(@ui_association.errors[:base]).to include 'An association to a UI Section is required.'
     end
-    it 'validates presence of associated Widget' do
-      @ui_association = FactoryGirl.build(:georgia_ui_association, widget_id: nil)
-      @ui_association.valid?.should be_false
-      @ui_association.should have(1).errors_on(:base)
-      expect(@ui_association.errors_on(:base).first).to eq('An association to a Widget is required.')
+
+    it 'presence of associated Widget' do
+      @ui_association = build(:georgia_ui_association, widget_id: nil)
+      expect(@ui_association).not_to be_valid
+      expect(@ui_association.errors[:base].length).to be 1
+      expect(@ui_association.errors[:base]).to include 'An association to a Widget is required.'
     end
+
   end
 
   describe '.for_revision' do

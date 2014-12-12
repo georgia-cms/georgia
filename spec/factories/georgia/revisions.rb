@@ -1,20 +1,23 @@
 FactoryGirl.define do
   factory :georgia_revision, class: Georgia::Revision do
-    template 'one-column'
+    template 'default'
+    status 'published'
+    after(:create) do |revision|
+      create(:georgia_content, :english, contentable: revision)
+      create(:georgia_content, :french, contentable: revision)
+    end
 
-    factory :georgia_review do
+    trait :review do
       status 'review'
     end
-    factory :georgia_draft do
+
+    trait :draft do
       status 'draft'
     end
-    factory :georgia_published do
+
+    trait :published do
       status 'published'
-      factory :revision_with_content do
-        after(:create) do |revision|
-          create(:georgia_content, contentable_id: revision.id, contentable_type: 'Georgia::Revision')
-        end
-      end
     end
+
   end
 end

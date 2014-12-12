@@ -166,7 +166,7 @@ module Georgia
 
     def sanitized_attributes
       attributes = revision_params
-      attributes[:contents_attributes].each do |id, content_attributes|
+      attributes.fetch(:contents_attributes, []).each do |id, content_attributes|
         attributes[:contents_attributes][id] = ParseJsonTags.new(content_attributes, key: :keyword_list).call
       end
       attributes

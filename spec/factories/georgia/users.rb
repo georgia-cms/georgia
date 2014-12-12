@@ -4,7 +4,7 @@ FactoryGirl.define do
     password 'ABCDE12345'
     password_confirmation 'ABCDE12345'
 
-    factory :georgia_admin_user do
+    trait :admin do
       after(:create) do |user|
         user.roles << Georgia::Role.where(name: 'admin').first_or_create
       end

@@ -1,29 +1,27 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::User do
+describe Georgia::User, type: :model do
 
-  specify {build(:georgia_user).should be_valid}
+  specify {expect(build(:georgia_user)).to be_valid}
 
-  it {should validate_presence_of(:email)}
-  it {should validate_presence_of(:password)}
+  it {expect(subject).to validate_presence_of(:email)}
+  it {expect(subject).to validate_presence_of(:password)}
+  it {expect(subject).to have_many(:roles)}
 
-  it {should belong_to(:role)}
+  describe '#name' do
 
-  describe '.name' do
-
-    it "should match the first and last name" do
+    it "matches the first and last name" do
       user = build(:georgia_user, first_name: 'Bob', last_name: 'Bison')
-      user.name.should match 'Bob Bison'
+      expect(user.name).to eq 'Bob Bison'
     end
 
   end
 
-  describe '.role_name' do
+  describe '#role_names' do
 
     it "delegates to role" do
-      user = build(:georgia_user)
-      user.role = create(:georgia_role, name: 'Admin')
-      user.role_name.should match 'Admin'
+      user = create(:georgia_user, :admin)
+      expect(user.role_names).to include 'admin'
     end
 
   end

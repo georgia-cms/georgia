@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Menu do
-  specify {FactoryGirl.build(:georgia_menu).should be_valid}
+describe Georgia::Menu, type: :model do
+  specify {build(:georgia_menu).should be_valid}
 
   it { should have_many :links }
 

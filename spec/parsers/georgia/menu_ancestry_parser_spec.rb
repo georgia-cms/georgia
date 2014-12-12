@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Georgia::MenuAncestryParser do
 
@@ -11,10 +11,10 @@ describe Georgia::MenuAncestryParser do
     end
 
     it 'returns a consumable hash with position and parent_id' do
-      @parser.should respond_to :to_hash
-      @parser.to_hash.should be_a_kind_of Hash
-      @parser.to_hash.should include ({"149" => {position: 1, parent_id: nil}})
-      @parser.to_hash.should include ({"142" => {position: 50, parent_id: 4}})
+      expect(@parser).to respond_to :to_hash
+      expect(@parser.to_hash).to be_a Hash
+      expect(@parser.to_hash).to include ({"149" => {position: 1, parent_id: nil}})
+      expect(@parser.to_hash).to include ({"142" => {position: 50, parent_id: 4}})
     end
 
   end

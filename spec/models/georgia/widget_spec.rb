@@ -1,12 +1,12 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Georgia::Widget do
+describe Georgia::Widget, type: :model do
 
-  specify { build(:georgia_widget).should be_valid }
+  specify { expect(build(:georgia_widget)).to be_valid }
 
-  it { should have_many(:ui_associations) }
-  it { should have_many(:ui_sections) }
-  it { should have_many(:revisions) }
+  it { expect(subject).to have_many(:ui_associations) }
+  it { expect(subject).to have_many(:ui_sections) }
+  it { expect(subject).to have_many(:revisions) }
 
   it_behaves_like 'a contentable model'
 
@@ -21,26 +21,40 @@ describe Georgia::Widget do
       create(:georgia_ui_association, widget: @submenu_widget, ui_section: create(:georgia_ui_section, name: 'Submenu'))
     end
 
+    after :all do
+      Georgia::Widget.destroy_all
+    end
+
     describe '.footer' do
-      subject { Georgia::Widget.footer }
-      it {should include @footer_widget}
-      it {should_not include @sidebar_widget}
-      it {should_not include @submenu_widget}
+      let(:widgets) { Georgia::Widget.footer }
+
+      it 'scopes footer widgets' do
+        expect(widgets).to include @footer_widget
+        expect(widgets).not_to include @sidebar_widget
+        expect(widgets).not_to include @submenu_widget
+      end
     end
 
     describe '.sidebar' do
-      subject { Georgia::Widget.sidebar }
-      it {should include @sidebar_widget}
-      it {should_not include @footer_widget}
-      it {should_not include @submenu_widget}
+      let(:widgets) { Georgia::Widget.sidebar }
+
+      it 'scopes sidebar widgets' do
+        expect(widgets).not_to include @footer_widget
+        expect(widgets).to include @sidebar_widget
+        expect(widgets).not_to include @submenu_widget
+      end
     end
 
     describe '.submenu' do
-      subject { Georgia::Widget.submenu }
-      it {should include @submenu_widget}
-      it {should_not include @footer_widget}
-      it {should_not include @sidebar_widget}
+      let(:widgets) { Georgia::Widget.submenu }
+
+      it 'scopes submenu widgets' do
+        expect(widgets).not_to include @footer_widget
+        expect(widgets).not_to include @sidebar_widget
+        expect(widgets).to include @submenu_widget
+      end
     end
+
   end
 
 end
