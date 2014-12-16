@@ -10,8 +10,12 @@ require 'capybara-webkit'
 require 'coffee_script'
 require 'factory_girl_rails'
 require 'shoulda-matchers'
-# require 'draper/test/rspec_integration'
 require 'database_cleaner'
+require 'site_prism'
+
+require 'rake'
+require 'elasticsearch/extensions/test/cluster/tasks'
+ENV["TEST_CLUSTER_NODES"] = "1"
 
 Capybara.javascript_driver = :webkit
 
@@ -28,6 +32,7 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include AuthenticationHelpers, type: :controller
+  config.include AuthenticationHelpers, type: :feature
   config.include FactoryGirl::Syntax::Methods
 
   config.before(:suite) do
@@ -38,4 +43,5 @@ RSpec.configure do |config|
   config.after(:suite) do
     DatabaseCleaner.clean
   end
+
 end

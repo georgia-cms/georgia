@@ -11,6 +11,7 @@ module Georgia
       content_tag :span, nil, class: 'caret'
     end
 
+    # FIXME: Turn into a Hash
     def asset_icon_tag extension
       icon_name = case extension.downcase
         when 'avi' then 'file-movie-o'
@@ -99,7 +100,7 @@ module Georgia
     def link_to_available_locales
       return unless I18n.available_locales.length > 1
       links = I18n.available_locales.map do |locale|
-        content_tag(:li, link_to(t("georgia.#{locale}"), locale: locale ))
+        content_tag(:li, link_to(t("georgia.#{locale}"), params.merge(locale: locale) ))
       end
       content_tag(:p, class: 'hint') do
         content_tag(:div, class: 'dropdown') do

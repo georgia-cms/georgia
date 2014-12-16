@@ -8,41 +8,60 @@ describe Georgia do
   it {should respond_to :navigation }
   it {should respond_to :storage }
 
-  describe '.templates' do
-    it 'defaults to 4 main ones' do
-      expect(Georgia.templates).to eq %w(default one-column sidebar-left sidebar-right)
-    end
-  end
+  context 'defaults' do
 
-  describe '.url' do
-    it 'defaults to example.com' do
+    it 'assigns template' do
+      expect(Georgia.templates).to eq %w(default)
+    end
+
+    it 'assigns url' do
       expect(Georgia.url).to eq "http://www.example.com"
     end
-  end
 
-  describe '.navigation' do
-    it 'defaults to all' do
+    it 'assigns navigation' do
       expect(Georgia.navigation).to eq %w(dashboard pages media navigation widgets)
     end
-  end
 
-  describe '.storage' do
-    it 'defaults to :file' do
+    it 'assigns storage' do
       expect(Georgia.storage).to eq :file
     end
+
   end
 
-  describe '#setup' do
-    it 'loads and assigns' do
-      Georgia.setup{|config| config.url = 'Foo'}
-      expect(Georgia.url).to eq "Foo"
+  describe '.setup' do
+
+    before :each do
+      Georgia.setup do |config|
+        config.templates = %w(Foo)
+        config.url = 'Foo'
+        config.navigation = %w(foo)
+        config.storage = :fog
+      end
     end
+
+    it 'assigns template' do
+      expect(Georgia.templates).to eq %w(Foo)
+    end
+
+    it 'assigns url' do
+      expect(Georgia.url).to eq 'Foo'
+    end
+
+    it 'assigns navigation' do
+      expect(Georgia.navigation).to eq %w(foo)
+    end
+
+    it 'assigns storage' do
+      expect(Georgia.storage).to eq :fog
+    end
+
     it 'deprecates config.header' do
       ActiveSupport::Deprecation.should_receive(:warn)
       Georgia.setup do |config|
         config.header = %w(foo)
       end
     end
+
   end
 
 end

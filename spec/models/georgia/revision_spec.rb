@@ -6,9 +6,9 @@ describe Georgia::Revision, type: :model do
 
   it_behaves_like 'a contentable model'
 
-  it { expect(subject).to have_many :slides }
-  it { expect(subject).to have_many :widgets }
-  it { expect(subject).to belong_to :revisionable }
+  it { is_expected.to have_many :slides }
+  it { is_expected.to have_many :widgets }
+  it { is_expected.to belong_to :revisionable }
 
   describe 'status' do
     it 'defaults to "draft"' do
@@ -43,10 +43,8 @@ describe Georgia::Revision, type: :model do
   end
 
   describe 'templates' do
-    it { expect(subject).to allow_value('one-column').for(:template) }
-    it { expect(subject).to allow_value('sidebar-left').for(:template) }
-    it { expect(subject).to allow_value('sidebar-right').for(:template) }
-    it { expect(subject).not_to allow_value('foobar').for(:template) }
+    it { is_expected.to allow_value('default').for(:template) }
+    it { is_expected.not_to allow_value('foobar').for(:template) }
   end
 
 end

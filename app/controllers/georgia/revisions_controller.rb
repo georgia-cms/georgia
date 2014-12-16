@@ -6,7 +6,7 @@ module Georgia
     before_filter :prepare_content, only: [:edit, :update]
 
     def index
-      @revisions = @page.revisions.order('created_at DESC')
+      @revisions = @page.revisions.order(created_at: :desc)
       authorize @revisions
     end
 

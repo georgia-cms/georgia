@@ -1,4 +1,4 @@
-<%= simple_form_for @page, as: :page, url: url_for( controller: controller_name, action: :update, id: @page.id), html: {class: 'form-vertical form-with-helpers js-spin-and-roll', data: {'page-id' => @page.id}, defaults: { input_html: { class: "form-control" }}} do |f| %>
+<%= simple_form_for @page, as: :page, url: url_for(controller: controller_name, action: :update, id: @page.id), html: {class: 'form-vertical form-with-helpers js-spin-and-roll', data: {'page-id' => @page.id}, defaults: { input_html: { class: "form-control" }}} do |f| %>
   <header class='header-main'>
     <div class="header-gutter">
       <%= link_to_back search_pages_path %>

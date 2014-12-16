@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Georgia::Link, type: :model do
   specify {expect(build(:georgia_link)).to be_valid}
 
-  it { expect(subject).to belong_to :menu }
+  it { is_expected.to belong_to :menu }
 
   describe 'slug' do
 
@@ -17,7 +17,7 @@ describe Georgia::Link, type: :model do
 
   describe 'validation' do
 
-    let(:link) {  build(:georgia_link) }
+    let(:link) { build(:georgia_link) }
 
     describe 'url' do
 
@@ -27,7 +27,6 @@ describe Georgia::Link, type: :model do
           link.contents << build(:georgia_content, text: 'http')
           link.contents << build(:georgia_content, text: 'https')
           expect(link).to be_valid
-          expect(link).to have(:no).errors_on(:base)
         end
 
       end
@@ -38,7 +37,6 @@ describe Georgia::Link, type: :model do
           link.contents << build(:georgia_content, text: '/foo')
           link.contents << build(:georgia_content, text: '/bar')
           expect(link).to be_valid
-          expect(link).to have(:no).errors_on(:base)
         end
 
       end

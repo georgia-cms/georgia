@@ -94,29 +94,10 @@ describe Georgia::Page, type: :model do
 
   end
 
-  describe 'indexing' do
+  describe 'searching' do
 
-    let(:instance) { create(:georgia_page) }
-
-    describe 'searching' do
-
-      it "responds to .search" do
-        expect(Georgia::Page).to respond_to :search
-      end
-
-      it 'in full text mode by query' do
-        Georgia::Page.tire.index.delete
-        Georgia::Page.tire.create_elasticsearch_index
-        revision = create(:georgia_revision)
-        revision.contents << build(:georgia_content, title: 'Wise Wiesel')
-        instance.revisions << revision
-        instance.current_revision = revision
-        instance.save
-        Georgia::Page.tire.index.refresh
-        search = Georgia::Page.search_index(query: 'Wise')
-        expect(search.results.first.title).to match 'Wise Wiesel'
-      end
-
+    it "responds to .search" do
+      expect(Georgia::Page).to respond_to :search
     end
 
   end

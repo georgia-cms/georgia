@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'media#search' do
+describe 'Media Library', type: :feature do
 
   before :each do
     login_as_admin
@@ -12,11 +12,16 @@ describe 'media#search' do
     it 'adds the new file to the table'
   end
 
-  describe 'table actions' do
+  describe 'deleting' do
 
-    it 'lets a user select a row', js: true
-    it 'lets a user delete multiple assets', js: true
-    it 'lets a user download multiple assets', js: true
+    it 'deletes the asset'
+    it 'removes the object from the view'
+
+  end
+
+  describe 'downloading' do
+
+    it 'sends a zip folder of all selected assets'
 
   end
 

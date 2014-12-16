@@ -1,19 +1,18 @@
 require 'rails_helper'
 
 describe Georgia::RevisionsController, type: :controller do
+  render_views
 
   before :all do
     @page = create(:georgia_page)
-    @revision = create(:georgia_revision, revisionable: @page)
-    @page.current_revision = @revision
-    @page.revisions << @revision
-    @page.save
+    @revision = @page.current_revision
   end
 
   before :each do
     @current_user = create(:georgia_user, :admin)
     controller.class.skip_before_filter :authenticate_user!
     allow(controller).to receive(:current_user).and_return(@current_user)
+    allow(controller).to receive(:controller_name).and_return('georgia/revisions')
   end
 
   describe "GET index" do
@@ -31,11 +30,6 @@ describe Georgia::RevisionsController, type: :controller do
     it "assigns revisions" do
       get :index, use_route: :admin, page_id: @page.id
       expect(assigns(:revisions).length).to eq 1
-    end
-
-    it "assigns revisions without current_revision" do
-      get :index, use_route: :admin, page_id: @page.id
-      expect(assigns(:revisions)).to include @revision
     end
 
   end
@@ -86,13 +80,13 @@ describe Georgia::RevisionsController, type: :controller do
 
   describe "PUT update" do
 
-    let(:update_revision) { put :update, use_route: :admin, page_id: @page.id, id: @revision.id, revision: {template: 'foobar'} }
+    let(:revision_attributes) { { contents_attributes: { @revision.content.id.to_s => { title: "You used to be much more...muchier. You've lost your muchness.", id: @revision.content.id } } } }
+    let(:update_revision) { put :update, use_route: :admin, page_id: @page.id, id: @revision.id, revision: revision_attributes }
 
     it "redirects to edit" do
-      Georgia.templates = %w{default foobar}
       update_revision
       expect(response).to be_redirect
-      expect(assigns(:revision).template).to eq 'foobar'
+      expect(assigns(:revision).title).to eq "You used to be much more...muchier. You've lost your muchness."
     end
 
     context 'as an admin' do
@@ -100,7 +94,7 @@ describe Georgia::RevisionsController, type: :controller do
       it "overwrites the current revision" do
         @page.current_revision = @revision
         @page.save
-        expect{update_revision}.to change(Georgia::Revision, :count).by(0)
+        expect{update_revision}.not_to change(Georgia::Revision, :count)
       end
 
     end

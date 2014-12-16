@@ -1,31 +1,47 @@
 require 'rails_helper'
 
-feature 'User signs in' do
+describe 'User signs in', type: :feature do
 
   before :all do
-    Georgia::User.where(email: 'test@me.com').first_or_create(password: '1234-get-the-kittens-out-the-door', password_confirmation: '1234-get-the-kittens-out-the-door')
+    Georgia::User.destroy_all
+    PublicActivity::Activity.destroy_all
+    create(:georgia_user, email: 'test@me.com', password: '1234-get-the-kittens-out-the-door', password_confirmation: '1234-get-the-kittens-out-the-door')
   end
 
-  scenario 'with valid email and password', js: true do
-    log_in_with 'test@me.com', '1234-get-the-kittens-out-the-door'
-    expect(page).to have_content('Signed in successfully')
+  before :each do
+    @login_page = Login.new
+    @login_page.load
   end
 
-  scenario 'with invalid email' do
-    log_in_with 'wrong@email.com', '1234-get-the-kittens-out-the-door'
-    expect(page).to have_content('Invalid email or password')
+  after :all do
+    Georgia::User.destroy_all
   end
 
-  scenario 'with blank password' do
-    log_in_with 'test@me.com', ''
-    expect(page).to have_content('Invalid email or password')
+  context 'with valid email and password' do
+    it 'logs in successfully', js: true do
+      @login_page.email_field.set 'test@me.com'
+      @login_page.password_field.set '1234-get-the-kittens-out-the-door'
+      @login_page.submit_button.click
+      expect(page).to have_content 'Signed in successfully'
+    end
   end
 
-  def log_in_with(email, password)
-    visit '/admin/login'
-    fill_in 'Email', with: email
-    fill_in 'Password', with: password
-    click_button 'Log in'
+  context 'with invalid email' do
+    it 'returns an error message' do
+      @login_page.email_field.set 'wrong@wrong.com'
+      @login_page.password_field.set '1234-get-the-kittens-out-the-door'
+      @login_page.submit_button.click
+      expect(@login_page.error_message).to have_text 'Invalid email or password'
+    end
+  end
+
+  context 'with blank password' do
+    it 'returns an error message' do
+      @login_page.email_field.set 'test@me.com'
+      @login_page.password_field.set ''
+      @login_page.submit_button.click
+      expect(@login_page.error_message).to have_text 'Invalid email or password'
+    end
   end
 
 end

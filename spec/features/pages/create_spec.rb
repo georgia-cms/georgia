@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'pages#search', type: :feature do
+describe 'Creating a page', type: :feature do
 
   def create_page
     within('div.header-actions') do
@@ -18,24 +18,20 @@ describe 'pages#search', type: :feature do
     create_page
   end
 
-  describe 'creating a page' do
+  context 'with a valid title' do
 
-    context 'with a valid title' do
-
-      let(:title) { 'Foo' }
-      it 'redirects to revisions#edit', js: true do
-        expect(page).to have_css('.header-title > h1 > a', text: title)
-      end
-
+    let(:title) { 'Foo' }
+    it 'redirects to revisions#edit', js: true do
+      expect(page).to have_css('.header-title > h1 > a', text: title)
     end
 
-    context 'with an invalid title' do
+  end
 
-      let(:title) { '#@$%^&' }
-      it 'displays an error message', js: true do
-        expect(page).to have_css('.alert-error', text: "You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)")
-      end
+  context 'with an invalid title' do
 
+    let(:title) { '#@$%^&' }
+    it 'displays an error message', js: true do
+      expect(page).to have_css('.alert-error', text: "You need a valid and unique page title. Your page title can only consist of letters, numbers, dash (-) and underscore (_)")
     end
 
   end
