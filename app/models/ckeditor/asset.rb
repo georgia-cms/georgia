@@ -21,7 +21,7 @@ class Ckeditor::Asset < ActiveRecord::Base
 
   paginates_per 15
 
-  scope :latest, order('created_at DESC')
+  scope :latest, -> { order(created_at: :desc) }
 
   def to_jq_upload
     {
