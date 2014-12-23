@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick'
   s.add_dependency 'bourbon'
   s.add_dependency 'neat'
-  s.add_dependency 'sass-rails', '~> 4.0.3'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'jquery-fileupload-rails'
   s.add_dependency 'ancestry'
