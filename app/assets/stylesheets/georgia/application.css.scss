@@ -1,14 +1,75 @@
 @import "bourbon";
 @import "neat";
-
-// Vendors
 @import "select2";
-@import "vendor/*";
 
-// SMACCS
-@import "settings/*";
-@import "mixins/*";
-@import "layout/*";
-@import "components/*";
-@import "modules/*";
-@import "overrides/*";
+@import "vendor/autocomplete";
+@import "vendor/bootstrap-datetimepicker";
+@import "vendor/bootswatch-flatly-theme";
+@import "vendor/ekko-lightbox.min";
+@import "vendor/select2_bootstrap";
+@import "vendor/select2";
+@import "vendor/textext.core";
+@import "vendor/textext.plugin.arrow";
+@import "vendor/textext.plugin.autocomplete";
+@import "vendor/textext.plugin.clear";
+@import "vendor/textext.plugin.focus";
+@import "vendor/textext.plugin.prompt";
+@import "vendor/textext.plugin.tags";
+@import "vendor/tooltip";
+
+@import "settings/base";
+@import "settings/colors";
+@import "settings/z-index";
+
+@import "mixins/clearfix";
+@import "mixins/ellipsis";
+@import "mixins/inflectors";
+@import "mixins/opacity";
+@import "mixins/utilities";
+
+@import "layout/base";
+@import "layout/devise";
+@import "layout/print";
+
+@import "components/box";
+@import "components/button";
+@import "components/checkbox";
+@import "components/form";
+@import "components/help";
+@import "components/icon";
+@import "components/input";
+@import "components/label";
+@import "components/modal";
+@import "components/nav-list";
+@import "components/note";
+@import "components/portlet";
+@import "components/progress";
+@import "components/status";
+@import "components/table";
+@import "components/transparent";
+
+@import "modules/activities";
+@import "modules/facets";
+@import "modules/footer";
+@import "modules/form_with_helpers";
+@import "modules/header";
+@import "modules/link";
+@import "modules/login";
+@import "modules/media";
+@import "modules/menu";
+@import "modules/message";
+@import "modules/navigation";
+@import "modules/notifications";
+@import "modules/pages";
+@import "modules/pagination";
+@import "modules/results";
+@import "modules/revision";
+@import "modules/sidebar";
+@import "modules/slide";
+@import "modules/subpage";
+@import "modules/users";
+@import "modules/widget";
+
+@import "overrides/flatly";
+@import "overrides/select2";
+@import "overrides/textext";
