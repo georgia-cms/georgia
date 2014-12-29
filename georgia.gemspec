@@ -39,7 +39,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on'
   s.add_dependency 'select2-rails'
   s.add_dependency 'rubyzip', '> 1'
-  s.add_dependency 'mousetrap-rails'
   s.add_dependency 'elasticsearch-rails'
   s.add_dependency 'elasticsearch-model'
   s.add_dependency 'pundit'

@@ -24,7 +24,6 @@ module Georgia
     require 'jquery-rails'
     require 'jquery-ui-rails'
     require 'select2-rails'
-    require 'mousetrap-rails'
     require 'icon_tag'
     require 'public_activity'
 

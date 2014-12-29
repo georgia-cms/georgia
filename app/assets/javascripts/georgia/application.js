@@ -5,7 +5,6 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require select2
-//= require mousetrap
 
 //= require ckeditor/init
 //= require_tree ./ckeditor
@@ -15,5 +14,4 @@
 //= require_tree ./components
 //= require ./bootstrap-vendor
 //= require ./featured-image
-//= require ./keybindings
 //= require ./toggle
