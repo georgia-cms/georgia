@@ -148,9 +148,13 @@ module Georgia
     def search
       authorize model
       session[:search_params] = params
-      search_conditions = model.search_conditions(params)
-      @search = model.search(search_conditions).page(params[:page])
-      @pages = Georgia::PageDecorator.decorate_collection(@search.records)
+      if model.count > 0
+        search_conditions = model.search_conditions(params)
+        @search = model.search(search_conditions).page(params[:page])
+        @pages = Georgia::PageDecorator.decorate_collection(@search.records)
+      else
+        @pages = []
+      end
     end
 
     private

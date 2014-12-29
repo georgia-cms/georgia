@@ -24,7 +24,7 @@
       </tbody>
     </table>
   <% else -%>
-    <h2>Yikes! There are <%= pluralize(0, instance_name.humanize.downcase) %>.</h2>
+    <h2>Yikes! You don't have any <%= instance_name.try(:humanize).try(:downcase).try(:pluralize) %> yet.</h2>
     <%= link_to "Get Started", '#', class: 'btn btn-primary btn--jumbo', data: {toggle: 'modal', target: '#page_form'} %>
   <% end -%>
 
