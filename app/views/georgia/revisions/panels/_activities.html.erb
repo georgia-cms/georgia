@@ -1,6 +1,8 @@
 <div class="activities panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Activity Feed</h3></div>
   <div class="panel-body">
-    <%= render_activities(@activities) %>
+    <% @activities.each do |activity| %>
+      <%= render_activity(activity, display: activity.key.split('.')[1]) %>
+    <% end %>
   </div>
 </div>
