@@ -13,5 +13,9 @@ module Georgia
       @georgia_role_collection ||= Georgia::Role.pluck(:name, :id).map{|name, id| [name.titleize, id]}
     end
 
+    def unknown_user_name
+      content_tag(:span, 'Unknown', class: 'text-muted')
+    end
+
   end
 end

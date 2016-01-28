@@ -1,8 +1,8 @@
 <div id='activity_<%= activity.id %>' class="activity media">
-  <%= image_tag(avatar_url(activity.owner.email), alt: '', class: 'media-object pull-left') %>
+  <%= image_tag(avatar_url(activity.owner.try(:email)), alt: '', class: 'media-object pull-left') %>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= activity.owner.name %> has created <em><%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
+      <%= activity.owner.try(:name) || unknown_user_name %> has created <em><%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
     </h4>
     <p>
       <small>
