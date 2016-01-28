@@ -1,7 +1,7 @@
 Georgia::Engine.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users, class_name: "Georgia::User", path: '/', module: 'georgia/users', path_names: {sign_in: '/login', sign_out: '/logout'}
+  devise_for :users, class_name: "Georgia::User", path: '', module: 'georgia/users', path_names: {sign_in: 'login', sign_out: 'logout'}
 
   namespace :api do
     resources :media, only: [] do
