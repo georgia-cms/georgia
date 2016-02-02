@@ -13,9 +13,7 @@
   <% end -%>
   <div class="row">
     <div class="col-md-7">
-      <% @activities.each do |activity| %>
-        <%= render_activity(activity, display: activity.key.split('.')[1]) %>
-      <% end %>
+      <%= render_activities @activities %>
       <%= paginate @activities %>
     </div>
     <div class="col-md-5">

@@ -2,12 +2,7 @@
   <%= image_tag(avatar_url(activity.owner.try(:email)), alt: '', class: 'media-object pull-left') %>
   <div class="media-body">
     <h4 class="media-heading">
-      <%= activity.owner.try(:name) || unknown_user_name %> has updated <em>
-      <% if activity.trackable.try(:revisionable) %>
-        <%= link_to activity.trackable.title, [activity.trackable.revisionable, activity.trackable] rescue '[deleted]' %></em>
-      <% else %>
-        <%= link_to activity.trackable.title, activity.trackable rescue '[deleted]' %></em>
-      <% end %>
+      <%= activity.owner.try(:name) || unknown_user_name %> has decline a review for <em><%= link_to activity.trackable.title, [:edit, activity.trackable] rescue '[deleted]' %></em>
     </h4>
     <p>
       <small>
