@@ -13,7 +13,7 @@
   <% end -%>
   <div class="row">
     <div class="col-md-7">
-      <%= render_activities @activities %>
+      <%= render_activities @activities, fallback: 'default' %>
       <%= paginate @activities %>
     </div>
     <div class="col-md-5">

@@ -1,6 +1,6 @@
 <div class="activities panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Activity Feed</h3></div>
   <div class="panel-body">
-    <%= render_activities(@activities) %>
+    <%= render_activities(@activities, fallback: 'default') %>
   </div>
 </div>
